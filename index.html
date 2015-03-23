@@ -1,67 +1,105 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-    <meta charset='utf-8'>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="description" content="Sensidl : A generic framework for implementing sensor communication interfaces">
-
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
     <title>Sensidl</title>
   </head>
-
   <body>
-
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
-        <header class="inner">
-         
-		  <a id="project_logo" href="http://sensidl.de"> <img id=logo src="images/sensidl_logo.png"/> </a>
-                  <h2 id="project_tagline">A generic framework for implementing<br/> sensor communication interfaces</h2>
-		<section id="menu" class="outer">
-		<a class="menu_link" href="index.html">Home</a>
-		<a class="menu_link" href="publications.html">Publications</a>
-			<a class="menu_link" href="download.html">Download</a>
-				<a class="menu_link" href="contact.html">Contact</a>
-		</section>
-          <!--  <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/SENSIDL-PROJECT/SensIDL/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/SENSIDL-PROJECT/SensIDL/tarball/master">Download this project as a tar.gz file</a>
-            </section> -->
-        </header>
+      <header class="inner"> <a id="project_logo" href="http://sensidl.de"> <img
+            id="logo" src="images/sensidl_logo.png"> </a>
+        <h2 id="project_tagline">A generic framework for implementing<br>
+          sensor communication interfaces</h2>
+        <section id="menu" class="outer"> <a class="menu_link" href="index.html">Home</a>
+          <a class="menu_link" href="publications.html">Publications</a> <a class="menu_link"
+            href="download.html">Download</a> <a class="menu_link" href="aboutus.html">About
+            Us</a> <a class="menu_link" href="contact.html">Contact</a> </section>
+        <!--  <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/SENSIDL-PROJECT/SensIDL/zipball/master">Download this project as a .zip file</a>              <a class="tar_download_link" href="https://github.com/SENSIDL-PROJECT/SensIDL/tarball/master">Download this project as a tar.gz file</a>            </section> -->
+      </header>
     </div>
-
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>
-<a id="sensidl" class="anchor" href="#sensidl" aria-hidden="true"><span class="octicon octicon-link"></span></a>SENSIDL</h1>
-
-<p>The SensIDL (Sensor Interface Description Language) development framework targets sensor developers as well as the developers of IT-systems connected to these sensors and processing the collected data. It is an open source development framework based on a model-driven software development (MDSD) approach supporting the sensor developers in specifying and implementing the communication interfaces.</p>
+        <h1> <a id="sensidl" class="anchor" href="#sensidl" aria-hidden="true"><span
+              class="octicon octicon-link"></span></a>SensIDL</h1>
+        <p>The SensIDL (Sensor Interface Description Language) development
+          framework targets sensor developers as well as developers of
+          IT-systems connected to these sensors and processing the collected
+          data. It is an open source development framework based on a
+          model-driven software development (MDSD) approach supporting the
+          sensor developers in specifying and implementing the communication
+          interfaces.</p>
+        <img title="SensIDL Overveiw" alt="Overview" src="images/overview.png">
+        <p> The SensIDL framework consists of several builing blocks as
+          illustrated in the figure above: </p>
+        <ol>
+          <li><strong>SensIDL Language</strong><br>
+            The SensIDL language is a dedicated domain specific language (DSL)
+            acting as an interface description language (IDL) for specifying the
+            data provided by a smart sensor. Dedicated graphical and textual
+            editors based on the Eclipse Modelling Framework [3] allow an easy
+            and intuitive specification of sensor interfaces. </li>
+          <li> <strong>SensIDL Communication Framework</strong><br>
+            The communication framework provides basic communication
+            functionalities like marshaling, message handling, etc. through a
+            generic API. It abstratcs communication technology specific details.
+            Such a separation into generic framework code and application
+            specifically generated code is a frequently used pattern in MDSD
+            frameworks. </li>
+          <li><strong>SensIDL Code Generators</strong><br>
+            The SensIDL code generators take the interface description based on
+            the SensIDL language as input to automatically generate a sensor- or
+            rather interface-specific API on top of the generic communication
+            framework. Providing a very specific and type safe API reduces the
+            risk of implementation errors resulting in different data
+            interpretations or parsing. Since the generators can be used to
+            generate the sensor-side code as well as the client-side code, the
+            SensIDL does not only ease the sensor implementation but also the
+            implementation of client code to access the sensor data. </li>
+          <li><strong>Reference Demonstrator</strong><br>
+            The SensIDL reference demonstrator is not only a demonstrator of
+            project results. It rather is the basis to derive the code
+            generators using a manual implementation of the demonstrator
+            showcase. For this reason, it is a showcase representative for Smart
+            Home applications as well as industrial production scenarios. <br>
+          </li>
+          <li><strong>Integrated Toolchain</strong><img title="Built on eclipse"
+              alt="Eclipse logo" src="images/eclipse_builton.png" align="right"><br>
+            Although the SensIDL framework consists of several building blocks,
+            we aim on providing an smoothly integrateted tool. We selected the <a
+              href="http://www.eclipse.org">ecplise plattform</a> as a basis for
+            implementing and integrating the SensIDL tool chain. With the <a href="http://www.eclipse.org/modeling/emf/">ecplise
+              modeling framework (EMF)</a> and <a href="https://eclipse.org/Xtext/">XText</a>,
+            the <a href="https://eclipse.org/modeling/">eclipse modeling
+              project</a> provides extensive support for the implementation of
+            DSLs and corresponding editors. Furthermore, <a href="https://eclipse.org/Xtend">Xtend
+              </a>is a powerful basis to implement code generators.<br>
+          </li>
+        </ol>
       </section>
     </div>
-
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
-      <footer class="inner">
-	   <a id="forkme_banner" href="https://github.com/SENSIDL-PROJECT/SensIDL">View on GitHub</a>
-        <p class="copyright">Sensidl maintained by <a href="https://github.com/SENSIDL-PROJECT">SENSIDL-PROJECT</a><BR/>
-        Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      <footer class="inner"> <a id="forkme_banner" href="https://github.com/SENSIDL-PROJECT/SensIDL">View
+          on GitHub</a>
+        <p class="copyright">Sensidl maintained by <a href="https://github.com/SENSIDL-PROJECT">SENSIDL-PROJECT</a><br>
+          Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-
-              <script type="text/javascript">
+    <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
-          <script type="text/javascript">
+    <script type="text/javascript">
             try {
               var pageTracker = _gat._getTracker("UA-58640009-1");
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
-
-
   </body>
 </html>

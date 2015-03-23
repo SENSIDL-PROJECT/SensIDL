@@ -62,9 +62,10 @@ h1, h2, h3, h4, h5, h6 {
   margin: 10px 0;
   font-weight: 700;
   color:#222222;
-  font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
+  font-family: 'Consolas', 'Calibri', Helvetica, Arial, sans-serif;
   letter-spacing: -1px;
 }
+
 
 h1 {
   font-size: 36px;
@@ -131,6 +132,7 @@ em {
 
 strong {
   font-weight: bold;
+    font-family: 'Consolas', 'Calibri', Helvetica, Arial, sans-serif;
 }
 
 img {
@@ -139,13 +141,13 @@ img {
   max-width: 739px;
   padding: 5px;
   margin: 10px 0 10px 0;
-  border: 1px solid #ebebeb;
-
-  box-shadow: 0 0 5px #ebebeb;
-  -webkit-box-shadow: 0 0 5px #ebebeb;
-  -moz-box-shadow: 0 0 5px #ebebeb;
-  -o-box-shadow: 0 0 5px #ebebeb;
-  -ms-box-shadow: 0 0 5px #ebebeb;
+  border: 1px solid #FFFFFF;
+background-color:#FFFFFF;
+  box-shadow: 0 0 5px #111111;
+  -webkit-box-shadow: 0 0 5px #111111;
+  -moz-box-shadow: 0 0 5px #111111;
+  -o-box-shadow: 0 0 5px #111111;
+  -ms-box-shadow: 0 0 5px #111111;
 }
 
 p img {
@@ -352,7 +354,7 @@ position: absolute;
   bottom: -10px;
   left: 0;
   padding-left:5px;
-    padding-right:5px;
+  padding-right:5px;
  
 }
 
@@ -366,6 +368,8 @@ position: absolute;
   border-bottom-right-radius: 2px;
   margin-left:5px;
   margin-right:5px;
+  font-weight: bold;
+    font-family: 'Consolas', 'Calibri', Helvetica, Arial, sans-serif;
 }
 
 .zip_download_link {
