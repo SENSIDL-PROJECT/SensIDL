@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sensidl" nsURI="http://fzi.de/sensidl/design/1.0" nsPrefix="de.fzi.design.model.sensidl">
+  <eClassifiers xsi:type="ecore:EClass" name="DataModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="representations" ordered="false"
+        upperBound="-1" eType="#//Representation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interpretations" upperBound="-1"
+        eType="#//Interpretation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transmit" lowerBound="1"
+        upperBound="-1" eType="#//Interpretation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="options" ordered="false"
+        lowerBound="1" eType="#//Options" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="commands" upperBound="-1"
+        eType="#//Command"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Command">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="structure" eType="#//Interpretation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Representation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="byteCount" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Interpretation" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Calculated" eSuperTypes="#//Interpretation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="representation" lowerBound="1"
+        eType="#//Representation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="methodName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="methodNameOut" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
+        eType="#//Parameter" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Parameter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interpretation" lowerBound="1"
+        eType="#//Interpretation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="argumentType" lowerBound="1"
+        eType="#//ArgumentType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Constant" eSuperTypes="#//Interpretation">
+    <eTypeParameters name="ConstantType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="representation" lowerBound="1"
+        eType="#//Representation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="constantValue">
+      <eGenericType eTypeParameter="#//Constant/ConstantType"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveInterpretation" eSuperTypes="#//Interpretation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="representation" lowerBound="1"
+        eType="#//Representation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Measurement" eSuperTypes="#//Interpretation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="quantity" lowerBound="1"
+        eType="#//Quantity"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scale" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="representation" lowerBound="1"
+        eType="#//Representation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+        eType="#//MeasurementConstraint" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InterpretationGroup" eSuperTypes="#//Interpretation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interpretations" upperBound="-1"
+        eType="#//Interpretation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Type">
+    <eLiterals name="BYTE"/>
+    <eLiterals name="SHORT" value="1"/>
+    <eLiterals name="INT" value="2" literal="INT"/>
+    <eLiterals name="LONG" value="3"/>
+    <eLiterals name="FLOAT" value="4" literal="FLOAT"/>
+    <eLiterals name="DOUBLE" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ArgumentType">
+    <eLiterals name="BYTE_ARRAY"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Options">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transmissionType" lowerBound="1"
+        eType="#//TransmissionType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sensorLanguage" eType="#//GenerationLanguage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="receiverLanguage" eType="#//GenerationLanguage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TransmissionType">
+    <eLiterals name="PUSH"/>
+    <eLiterals name="PULL" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="GenerationLanguage">
+    <eLiterals name="JAVA"/>
+    <eLiterals name="CPP" value="1"/>
+    <eLiterals name="C" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Quantity">
+    <eLiterals name="FLOW" literal="FLOW"/>
+    <eLiterals name="TEMPERATURE" value="1"/>
+    <eLiterals name="VOLUME" value="2"/>
+    <eLiterals name="DURATION" value="3"/>
+    <eLiterals name="PRESSURE" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MeasurementConstraint" abstract="true"
+      eSuperTypes="#//Constraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MeasurementInRange" eSuperTypes="#//MeasurementConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" eType="#//Measure"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" eType="#//Measure"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Measure">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+</ecore:EPackage>

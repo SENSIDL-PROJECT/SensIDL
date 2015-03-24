@@ -1,0 +1,16 @@
+sensor T1 {
+	dataformat {
+		[ 4 byte unsigned int big endian TempInt ]
+		[ 3 byte unsigned int big endian DistInt ]
+	}
+
+	measures Temperature
+	in SI.KELVIN
+	represented in TempInt
+	map linear [ 0 => -123, 100 => ... ]
+	
+	measures Distance
+	in SI.METER
+	represented in DistInt
+	map times 10
+}

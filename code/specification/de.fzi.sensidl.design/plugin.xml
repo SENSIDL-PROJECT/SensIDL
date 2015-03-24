@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated sensIDL -->
+      <package
+            uri="http://fzi.de/sensidl/design/1.0"
+            class="sensidl.SensidlPackage"
+            genModel="models/sensIDL.genmodel"/>
+   </extension>
+
+</plugin>
