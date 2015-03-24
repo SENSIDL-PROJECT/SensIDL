@@ -299,7 +299,7 @@ Full-Width Styles
 
 #header_wrap .inner {
   padding: 50px 10px 30px 10px;
-  height:70px;
+  height:80px;
 }
 
 #project_logo {
@@ -313,8 +313,8 @@ position: absolute;
  position: relative;
   margin: 0 auto;
  
-  padding: 0px;
-  margin: 20px 0 10px 0;
+  padding: 10px;
+  margin: 10px 0 10px 0;
   border: 1px solid #ebebeb;
 
   box-shadow: 0 0 5px #ebebeb;
