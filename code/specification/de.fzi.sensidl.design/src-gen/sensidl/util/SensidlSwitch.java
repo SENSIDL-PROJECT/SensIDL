@@ -164,6 +164,42 @@ public class SensidlSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SensidlPackage.TRANSMISSION: {
+				Transmission transmission = (Transmission)theEObject;
+				T result = caseTransmission(transmission);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SensidlPackage.PULL: {
+				Pull pull = (Pull)theEObject;
+				T result = casePull(pull);
+				if (result == null) result = caseTransmission(pull);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SensidlPackage.PUSH: {
+				Push push = (Push)theEObject;
+				T result = casePush(push);
+				if (result == null) result = caseTransmission(push);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SensidlPackage.TIME_DIVISION_MULTIPLEXING: {
+				TimeDivisionMultiplexing timeDivisionMultiplexing = (TimeDivisionMultiplexing)theEObject;
+				T result = caseTimeDivisionMultiplexing(timeDivisionMultiplexing);
+				if (result == null) result = casePull(timeDivisionMultiplexing);
+				if (result == null) result = caseTransmission(timeDivisionMultiplexing);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SensidlPackage.MEASUREMENT_ADAPTION: {
+				MeasurementAdaption measurementAdaption = (MeasurementAdaption)theEObject;
+				T result = caseMeasurementAdaption(measurementAdaption);
+				if (result == null) result = caseMeasurementConstraint(measurementAdaption);
+				if (result == null) result = caseConstraint(measurementAdaption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -390,6 +426,81 @@ public class SensidlSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMeasure(Measure object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Transmission</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Transmission</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTransmission(Transmission object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pull</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pull</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePull(Pull object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Push</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Push</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePush(Push object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Time Division Multiplexing</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Time Division Multiplexing</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTimeDivisionMultiplexing(TimeDivisionMultiplexing object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Measurement Adaption</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Measurement Adaption</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMeasurementAdaption(MeasurementAdaption object) {
 		return null;
 	}
 

@@ -39,12 +39,14 @@ public class SensidlParser extends AbstractContentAssistParser {
 				{
 					put(grammarAccess.getDataModelAccess().getAlternatives_4(), "rule__DataModel__Alternatives_4");
 					put(grammarAccess.getOptionsAccess().getAlternatives_1(), "rule__Options__Alternatives_1");
+					put(grammarAccess.getTransmissionAccess().getAlternatives(), "rule__Transmission__Alternatives");
+					put(grammarAccess.getPullAccess().getAlternatives(), "rule__Pull__Alternatives");
 					put(grammarAccess.getRepresentationAccess().getAlternatives_0(), "rule__Representation__Alternatives_0");
 					put(grammarAccess.getRepresentationAccess().getAlternatives_6(), "rule__Representation__Alternatives_6");
 					put(grammarAccess.getInterpretationAccess().getAlternatives(), "rule__Interpretation__Alternatives");
 					put(grammarAccess.getCalculatedAccess().getAlternatives_0(), "rule__Calculated__Alternatives_0");
+					put(grammarAccess.getMeasurementConstraintAccess().getAlternatives(), "rule__MeasurementConstraint__Alternatives");
 					put(grammarAccess.getGenerationLanguageAccess().getAlternatives(), "rule__GenerationLanguage__Alternatives");
-					put(grammarAccess.getTransmissionTypeAccess().getAlternatives(), "rule__TransmissionType__Alternatives");
 					put(grammarAccess.getQuantityAccess().getAlternatives(), "rule__Quantity__Alternatives");
 					put(grammarAccess.getTypeAccess().getAlternatives(), "rule__Type__Alternatives");
 					put(grammarAccess.getDataModelAccess().getGroup(), "rule__DataModel__Group__0");
@@ -53,6 +55,9 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOptionsAccess().getGroup_1_0(), "rule__Options__Group_1_0__0");
 					put(grammarAccess.getOptionsAccess().getGroup_1_1(), "rule__Options__Group_1_1__0");
 					put(grammarAccess.getOptionsAccess().getGroup_1_2(), "rule__Options__Group_1_2__0");
+					put(grammarAccess.getPushAccess().getGroup(), "rule__Push__Group__0");
+					put(grammarAccess.getPullAccess().getGroup_1(), "rule__Pull__Group_1__0");
+					put(grammarAccess.getTimeDivisionMultiplexingAccess().getGroup(), "rule__TimeDivisionMultiplexing__Group__0");
 					put(grammarAccess.getRepresentationAccess().getGroup(), "rule__Representation__Group__0");
 					put(grammarAccess.getCalculatedAccess().getGroup(), "rule__Calculated__Group__0");
 					put(grammarAccess.getCalculatedAccess().getGroup_6(), "rule__Calculated__Group_6__0");
@@ -62,6 +67,7 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getInterpretationGroupAccess().getGroup(), "rule__InterpretationGroup__Group__0");
 					put(grammarAccess.getMeasurementAccess().getGroup(), "rule__Measurement__Group__0");
 					put(grammarAccess.getMeasurementInRangeAccess().getGroup(), "rule__MeasurementInRange__Group__0");
+					put(grammarAccess.getMeasurementAdaptionAccess().getGroup(), "rule__MeasurementAdaption__Group__0");
 					put(grammarAccess.getMeasureAccess().getGroup(), "rule__Measure__Group__0");
 					put(grammarAccess.getPrimitiveInterpretationAccess().getGroup(), "rule__PrimitiveInterpretation__Group__0");
 					put(grammarAccess.getConstantAccess().getGroup(), "rule__Constant__Group__0");
@@ -75,6 +81,11 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOptionsAccess().getTransmissionTypeAssignment_1_0_3(), "rule__Options__TransmissionTypeAssignment_1_0_3");
 					put(grammarAccess.getOptionsAccess().getSensorLanguageAssignment_1_1_3(), "rule__Options__SensorLanguageAssignment_1_1_3");
 					put(grammarAccess.getOptionsAccess().getReceiverLanguageAssignment_1_2_3(), "rule__Options__ReceiverLanguageAssignment_1_2_3");
+					put(grammarAccess.getPushAccess().getMethodNameAssignment_2(), "rule__Push__MethodNameAssignment_2");
+					put(grammarAccess.getPullAccess().getFrequencyAssignment_1_4(), "rule__Pull__FrequencyAssignment_1_4");
+					put(grammarAccess.getTimeDivisionMultiplexingAccess().getFrequencyAssignment_4(), "rule__TimeDivisionMultiplexing__FrequencyAssignment_4");
+					put(grammarAccess.getTimeDivisionMultiplexingAccess().getDurationAssignment_8(), "rule__TimeDivisionMultiplexing__DurationAssignment_8");
+					put(grammarAccess.getTimeDivisionMultiplexingAccess().getTimeSlotAssignment_12(), "rule__TimeDivisionMultiplexing__TimeSlotAssignment_12");
 					put(grammarAccess.getRepresentationAccess().getNameAssignment_1(), "rule__Representation__NameAssignment_1");
 					put(grammarAccess.getRepresentationAccess().getTypeAssignment_3(), "rule__Representation__TypeAssignment_3");
 					put(grammarAccess.getRepresentationAccess().getByteCountAssignment_5(), "rule__Representation__ByteCountAssignment_5");
@@ -96,6 +107,8 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMeasurementAccess().getConstraintsAssignment_9(), "rule__Measurement__ConstraintsAssignment_9");
 					put(grammarAccess.getMeasurementInRangeAccess().getLowerBoundAssignment_1(), "rule__MeasurementInRange__LowerBoundAssignment_1");
 					put(grammarAccess.getMeasurementInRangeAccess().getUpperBoundAssignment_3(), "rule__MeasurementInRange__UpperBoundAssignment_3");
+					put(grammarAccess.getMeasurementAdaptionAccess().getScalingFactorAssignment_3(), "rule__MeasurementAdaption__ScalingFactorAssignment_3");
+					put(grammarAccess.getMeasurementAdaptionAccess().getOffsetAssignment_7(), "rule__MeasurementAdaption__OffsetAssignment_7");
 					put(grammarAccess.getMeasureAccess().getValueAssignment_0(), "rule__Measure__ValueAssignment_0");
 					put(grammarAccess.getMeasureAccess().getUnitAssignment_1(), "rule__Measure__UnitAssignment_1");
 					put(grammarAccess.getPrimitiveInterpretationAccess().getTypeAssignment_1(), "rule__PrimitiveInterpretation__TypeAssignment_1");

@@ -81,14 +81,10 @@
     <eLiterals name="BYTE_ARRAY"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Options">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transmissionType" lowerBound="1"
-        eType="#//TransmissionType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sensorLanguage" eType="#//GenerationLanguage"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="receiverLanguage" eType="#//GenerationLanguage"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="TransmissionType">
-    <eLiterals name="PUSH"/>
-    <eLiterals name="PULL" value="1"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transmissionType" lowerBound="1"
+        eType="#//Transmission" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="GenerationLanguage">
     <eLiterals name="JAVA"/>
@@ -114,5 +110,26 @@
   <eClassifiers xsi:type="ecore:EClass" name="Measure">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transmission" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Pull" eSuperTypes="#//Transmission">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="frequency" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Push" eSuperTypes="#//Transmission">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="methodName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeDivisionMultiplexing" eSuperTypes="#//Pull">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeSlot" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MeasurementAdaption" eSuperTypes="#//MeasurementConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scalingFactor" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
   </eClassifiers>
 </ecore:EPackage>

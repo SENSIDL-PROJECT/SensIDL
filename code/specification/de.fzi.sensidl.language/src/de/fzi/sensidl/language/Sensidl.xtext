@@ -28,18 +28,37 @@ DataModel:
 Options:
 	{Options}
 	(
-		("transmission" "type" ":" transmissionType=TransmissionType) |
+		("transmission" "type" ":" transmissionType=Transmission) |
 		("sensor" "language" ":" sensorLanguage=GenerationLanguage) |
 		("receiver" "language" ":" receiverLanguage=GenerationLanguage)
 	)*
 ;
 
-enum GenerationLanguage:
-	JAVA | CPP | C
+Transmission:
+	Pull |
+	Push
 ;
 
-enum TransmissionType:	
-	PUSH | PULL
+Push:
+	"push"
+	"with" methodName = ID
+;
+
+Pull:
+	(TimeDivisionMultiplexing) |
+	"pull"
+	"with" "Frequency" ":" frequency=INT
+;
+
+TimeDivisionMultiplexing:
+	"timeDivisionMultiplexing"
+	"with" "Frequency" ":" frequency=INT
+	"and" "Duration" ":" duration=DOUBLE
+	"and" "timeSlot" ":" timeSlot=DOUBLE
+;
+
+enum GenerationLanguage:
+	JAVA | CPP | C
 ;
 
 Representation:
@@ -90,13 +109,20 @@ Measurement:
 ;
 
 MeasurementConstraint:
-	MeasurementInRange
+	MeasurementInRange |
+	MeasurementAdaption
 ;
 
 MeasurementInRange:
 	"from" lowerBound=Measure
 	"to" upperBound=Measure
 ;
+
+MeasurementAdaption:
+	"with" "scaling factor" ":" scalingFactor=DOUBLE
+	"and" "offset" ":" offset=DOUBLE 
+;
+
 
 /*
  * Einheiten noch als String

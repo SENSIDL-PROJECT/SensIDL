@@ -20,12 +20,16 @@ import sensidl.DataModel;
 import sensidl.InterpretationGroup;
 import sensidl.Measure;
 import sensidl.Measurement;
+import sensidl.MeasurementAdaption;
 import sensidl.MeasurementInRange;
 import sensidl.Options;
 import sensidl.Parameter;
 import sensidl.PrimitiveInterpretation;
+import sensidl.Pull;
+import sensidl.Push;
 import sensidl.Representation;
 import sensidl.SensidlPackage;
+import sensidl.TimeDivisionMultiplexing;
 
 @SuppressWarnings("all")
 public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequencer {
@@ -75,6 +79,13 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 					return; 
 				}
 				else break;
+			case SensidlPackage.MEASUREMENT_ADAPTION:
+				if(context == grammarAccess.getMeasurementAdaptionRule() ||
+				   context == grammarAccess.getMeasurementConstraintRule()) {
+					sequence_MeasurementAdaption(context, (MeasurementAdaption) semanticObject); 
+					return; 
+				}
+				else break;
 			case SensidlPackage.MEASUREMENT_IN_RANGE:
 				if(context == grammarAccess.getMeasurementConstraintRule() ||
 				   context == grammarAccess.getMeasurementInRangeRule()) {
@@ -101,9 +112,31 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 					return; 
 				}
 				else break;
+			case SensidlPackage.PULL:
+				if(context == grammarAccess.getPullRule() ||
+				   context == grammarAccess.getTransmissionRule()) {
+					sequence_Pull(context, (Pull) semanticObject); 
+					return; 
+				}
+				else break;
+			case SensidlPackage.PUSH:
+				if(context == grammarAccess.getPushRule() ||
+				   context == grammarAccess.getTransmissionRule()) {
+					sequence_Push(context, (Push) semanticObject); 
+					return; 
+				}
+				else break;
 			case SensidlPackage.REPRESENTATION:
 				if(context == grammarAccess.getRepresentationRule()) {
 					sequence_Representation(context, (Representation) semanticObject); 
+					return; 
+				}
+				else break;
+			case SensidlPackage.TIME_DIVISION_MULTIPLEXING:
+				if(context == grammarAccess.getPullRule() ||
+				   context == grammarAccess.getTimeDivisionMultiplexingRule() ||
+				   context == grammarAccess.getTransmissionRule()) {
+					sequence_TimeDivisionMultiplexing(context, (TimeDivisionMultiplexing) semanticObject); 
 					return; 
 				}
 				else break;
@@ -193,6 +226,25 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
+	 *     (scalingFactor=DOUBLE offset=DOUBLE)
+	 */
+	protected void sequence_MeasurementAdaption(EObject context, MeasurementAdaption semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.MEASUREMENT_ADAPTION__SCALING_FACTOR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.MEASUREMENT_ADAPTION__SCALING_FACTOR));
+			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.MEASUREMENT_ADAPTION__OFFSET) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.MEASUREMENT_ADAPTION__OFFSET));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getMeasurementAdaptionAccess().getScalingFactorDOUBLEParserRuleCall_3_0(), semanticObject.getScalingFactor());
+		feeder.accept(grammarAccess.getMeasurementAdaptionAccess().getOffsetDOUBLEParserRuleCall_7_0(), semanticObject.getOffset());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (lowerBound=Measure upperBound=Measure)
 	 */
 	protected void sequence_MeasurementInRange(EObject context, MeasurementInRange semanticObject) {
@@ -228,7 +280,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     ((transmissionType=TransmissionType | sensorLanguage=GenerationLanguage | receiverLanguage=GenerationLanguage)*)
+	 *     ((transmissionType=Transmission | sensorLanguage=GenerationLanguage | receiverLanguage=GenerationLanguage)*)
 	 */
 	protected void sequence_Options(EObject context, Options semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -268,6 +320,38 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
+	 *     frequency=INT
+	 */
+	protected void sequence_Pull(EObject context, Pull semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.PULL__FREQUENCY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.PULL__FREQUENCY));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getPullAccess().getFrequencyINTTerminalRuleCall_1_4_0(), semanticObject.getFrequency());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     methodName=ID
+	 */
+	protected void sequence_Push(EObject context, Push semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.PUSH__METHOD_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.PUSH__METHOD_NAME));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getPushAccess().getMethodNameIDTerminalRuleCall_2_0(), semanticObject.getMethodName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (name=ID type=Type byteCount=INT)
 	 */
 	protected void sequence_Representation(EObject context, Representation semanticObject) {
@@ -284,6 +368,28 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 		feeder.accept(grammarAccess.getRepresentationAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getRepresentationAccess().getTypeTypeEnumRuleCall_3_0(), semanticObject.getType());
 		feeder.accept(grammarAccess.getRepresentationAccess().getByteCountINTTerminalRuleCall_5_0(), semanticObject.getByteCount());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (frequency=INT duration=DOUBLE timeSlot=DOUBLE)
+	 */
+	protected void sequence_TimeDivisionMultiplexing(EObject context, TimeDivisionMultiplexing semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.PULL__FREQUENCY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.PULL__FREQUENCY));
+			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.TIME_DIVISION_MULTIPLEXING__DURATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.TIME_DIVISION_MULTIPLEXING__DURATION));
+			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.TIME_DIVISION_MULTIPLEXING__TIME_SLOT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.TIME_DIVISION_MULTIPLEXING__TIME_SLOT));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getTimeDivisionMultiplexingAccess().getFrequencyINTTerminalRuleCall_4_0(), semanticObject.getFrequency());
+		feeder.accept(grammarAccess.getTimeDivisionMultiplexingAccess().getDurationDOUBLEParserRuleCall_8_0(), semanticObject.getDuration());
+		feeder.accept(grammarAccess.getTimeDivisionMultiplexingAccess().getTimeSlotDOUBLEParserRuleCall_12_0(), semanticObject.getTimeSlot());
 		feeder.finish();
 	}
 }

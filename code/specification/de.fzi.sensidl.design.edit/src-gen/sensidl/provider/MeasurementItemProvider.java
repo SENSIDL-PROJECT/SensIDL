@@ -239,6 +239,11 @@ public class MeasurementItemProvider extends InterpretationItemProvider {
 			(createChildParameter
 				(SensidlPackage.Literals.MEASUREMENT__CONSTRAINTS,
 				 SensidlFactory.eINSTANCE.createMeasurementInRange()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SensidlPackage.Literals.MEASUREMENT__CONSTRAINTS,
+				 SensidlFactory.eINSTANCE.createMeasurementAdaption()));
 	}
 
 }

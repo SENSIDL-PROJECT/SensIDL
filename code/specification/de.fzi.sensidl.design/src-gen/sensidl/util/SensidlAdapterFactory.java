@@ -128,6 +128,26 @@ public class SensidlAdapterFactory extends AdapterFactoryImpl {
 				return createMeasureAdapter();
 			}
 			@Override
+			public Adapter caseTransmission(Transmission object) {
+				return createTransmissionAdapter();
+			}
+			@Override
+			public Adapter casePull(Pull object) {
+				return createPullAdapter();
+			}
+			@Override
+			public Adapter casePush(Push object) {
+				return createPushAdapter();
+			}
+			@Override
+			public Adapter caseTimeDivisionMultiplexing(TimeDivisionMultiplexing object) {
+				return createTimeDivisionMultiplexingAdapter();
+			}
+			@Override
+			public Adapter caseMeasurementAdaption(MeasurementAdaption object) {
+				return createMeasurementAdaptionAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -354,6 +374,76 @@ public class SensidlAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMeasureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sensidl.Transmission <em>Transmission</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sensidl.Transmission
+	 * @generated
+	 */
+	public Adapter createTransmissionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sensidl.Pull <em>Pull</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sensidl.Pull
+	 * @generated
+	 */
+	public Adapter createPullAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sensidl.Push <em>Push</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sensidl.Push
+	 * @generated
+	 */
+	public Adapter createPushAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sensidl.TimeDivisionMultiplexing <em>Time Division Multiplexing</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sensidl.TimeDivisionMultiplexing
+	 * @generated
+	 */
+	public Adapter createTimeDivisionMultiplexingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sensidl.MeasurementAdaption <em>Measurement Adaption</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sensidl.MeasurementAdaption
+	 * @generated
+	 */
+	public Adapter createMeasurementAdaptionAdapter() {
 		return null;
 	}
 

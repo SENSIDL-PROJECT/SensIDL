@@ -348,6 +348,98 @@ public class SensidlItemProviderAdapterFactory extends SensidlAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link sensidl.Pull} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PullItemProvider pullItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link sensidl.Pull}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPullAdapter() {
+		if (pullItemProvider == null) {
+			pullItemProvider = new PullItemProvider(this);
+		}
+
+		return pullItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link sensidl.Push} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PushItemProvider pushItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link sensidl.Push}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPushAdapter() {
+		if (pushItemProvider == null) {
+			pushItemProvider = new PushItemProvider(this);
+		}
+
+		return pushItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link sensidl.TimeDivisionMultiplexing} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TimeDivisionMultiplexingItemProvider timeDivisionMultiplexingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link sensidl.TimeDivisionMultiplexing}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTimeDivisionMultiplexingAdapter() {
+		if (timeDivisionMultiplexingItemProvider == null) {
+			timeDivisionMultiplexingItemProvider = new TimeDivisionMultiplexingItemProvider(this);
+		}
+
+		return timeDivisionMultiplexingItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link sensidl.MeasurementAdaption} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MeasurementAdaptionItemProvider measurementAdaptionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link sensidl.MeasurementAdaption}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMeasurementAdaptionAdapter() {
+		if (measurementAdaptionItemProvider == null) {
+			measurementAdaptionItemProvider = new MeasurementAdaptionItemProvider(this);
+		}
+
+		return measurementAdaptionItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -458,6 +550,10 @@ public class SensidlItemProviderAdapterFactory extends SensidlAdapterFactory imp
 		if (optionsItemProvider != null) optionsItemProvider.dispose();
 		if (measurementInRangeItemProvider != null) measurementInRangeItemProvider.dispose();
 		if (measureItemProvider != null) measureItemProvider.dispose();
+		if (pullItemProvider != null) pullItemProvider.dispose();
+		if (pushItemProvider != null) pushItemProvider.dispose();
+		if (timeDivisionMultiplexingItemProvider != null) timeDivisionMultiplexingItemProvider.dispose();
+		if (measurementAdaptionItemProvider != null) measurementAdaptionItemProvider.dispose();
 	}
 
 }

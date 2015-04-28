@@ -130,6 +130,42 @@ public interface SensidlFactory extends EFactory {
 	Measure createMeasure();
 
 	/**
+	 * Returns a new object of class '<em>Pull</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Pull</em>'.
+	 * @generated
+	 */
+	Pull createPull();
+
+	/**
+	 * Returns a new object of class '<em>Push</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Push</em>'.
+	 * @generated
+	 */
+	Push createPush();
+
+	/**
+	 * Returns a new object of class '<em>Time Division Multiplexing</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Time Division Multiplexing</em>'.
+	 * @generated
+	 */
+	TimeDivisionMultiplexing createTimeDivisionMultiplexing();
+
+	/**
+	 * Returns a new object of class '<em>Measurement Adaption</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Measurement Adaption</em>'.
+	 * @generated
+	 */
+	MeasurementAdaption createMeasurementAdaption();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

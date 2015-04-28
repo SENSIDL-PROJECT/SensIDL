@@ -69,6 +69,10 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 			case SensidlPackage.OPTIONS: return createOptions();
 			case SensidlPackage.MEASUREMENT_IN_RANGE: return createMeasurementInRange();
 			case SensidlPackage.MEASURE: return createMeasure();
+			case SensidlPackage.PULL: return createPull();
+			case SensidlPackage.PUSH: return createPush();
+			case SensidlPackage.TIME_DIVISION_MULTIPLEXING: return createTimeDivisionMultiplexing();
+			case SensidlPackage.MEASUREMENT_ADAPTION: return createMeasurementAdaption();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -86,8 +90,6 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 				return createTypeFromString(eDataType, initialValue);
 			case SensidlPackage.ARGUMENT_TYPE:
 				return createArgumentTypeFromString(eDataType, initialValue);
-			case SensidlPackage.TRANSMISSION_TYPE:
-				return createTransmissionTypeFromString(eDataType, initialValue);
 			case SensidlPackage.GENERATION_LANGUAGE:
 				return createGenerationLanguageFromString(eDataType, initialValue);
 			case SensidlPackage.QUANTITY:
@@ -109,8 +111,6 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 				return convertTypeToString(eDataType, instanceValue);
 			case SensidlPackage.ARGUMENT_TYPE:
 				return convertArgumentTypeToString(eDataType, instanceValue);
-			case SensidlPackage.TRANSMISSION_TYPE:
-				return convertTransmissionTypeToString(eDataType, instanceValue);
 			case SensidlPackage.GENERATION_LANGUAGE:
 				return convertGenerationLanguageToString(eDataType, instanceValue);
 			case SensidlPackage.QUANTITY:
@@ -245,6 +245,46 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Pull createPull() {
+		PullImpl pull = new PullImpl();
+		return pull;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Push createPush() {
+		PushImpl push = new PushImpl();
+		return push;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TimeDivisionMultiplexing createTimeDivisionMultiplexing() {
+		TimeDivisionMultiplexingImpl timeDivisionMultiplexing = new TimeDivisionMultiplexingImpl();
+		return timeDivisionMultiplexing;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MeasurementAdaption createMeasurementAdaption() {
+		MeasurementAdaptionImpl measurementAdaption = new MeasurementAdaptionImpl();
+		return measurementAdaption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Type createTypeFromString(EDataType eDataType, String initialValue) {
 		Type result = Type.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -277,26 +317,6 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	 * @generated
 	 */
 	public String convertArgumentTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TransmissionType createTransmissionTypeFromString(EDataType eDataType, String initialValue) {
-		TransmissionType result = TransmissionType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertTransmissionTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

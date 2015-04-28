@@ -636,22 +636,13 @@ public interface SensidlPackage extends EPackage {
 	int OPTIONS = 10;
 
 	/**
-	 * The feature id for the '<em><b>Transmission Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPTIONS__TRANSMISSION_TYPE = 0;
-
-	/**
 	 * The feature id for the '<em><b>Sensor Language</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPTIONS__SENSOR_LANGUAGE = 1;
+	int OPTIONS__SENSOR_LANGUAGE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Receiver Language</b></em>' attribute.
@@ -660,7 +651,16 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPTIONS__RECEIVER_LANGUAGE = 2;
+	int OPTIONS__RECEIVER_LANGUAGE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Transmission Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONS__TRANSMISSION_TYPE = 2;
 
 	/**
 	 * The number of structural features of the '<em>Options</em>' class.
@@ -829,6 +829,209 @@ public interface SensidlPackage extends EPackage {
 	int MEASURE_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link sensidl.impl.TransmissionImpl <em>Transmission</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sensidl.impl.TransmissionImpl
+	 * @see sensidl.impl.SensidlPackageImpl#getTransmission()
+	 * @generated
+	 */
+	int TRANSMISSION = 15;
+
+	/**
+	 * The number of structural features of the '<em>Transmission</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSMISSION_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Transmission</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSMISSION_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link sensidl.impl.PullImpl <em>Pull</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sensidl.impl.PullImpl
+	 * @see sensidl.impl.SensidlPackageImpl#getPull()
+	 * @generated
+	 */
+	int PULL = 16;
+
+	/**
+	 * The feature id for the '<em><b>Frequency</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PULL__FREQUENCY = TRANSMISSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Pull</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PULL_FEATURE_COUNT = TRANSMISSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Pull</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PULL_OPERATION_COUNT = TRANSMISSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link sensidl.impl.PushImpl <em>Push</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sensidl.impl.PushImpl
+	 * @see sensidl.impl.SensidlPackageImpl#getPush()
+	 * @generated
+	 */
+	int PUSH = 17;
+
+	/**
+	 * The feature id for the '<em><b>Method Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH__METHOD_NAME = TRANSMISSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Push</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_FEATURE_COUNT = TRANSMISSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Push</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH_OPERATION_COUNT = TRANSMISSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link sensidl.impl.TimeDivisionMultiplexingImpl <em>Time Division Multiplexing</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sensidl.impl.TimeDivisionMultiplexingImpl
+	 * @see sensidl.impl.SensidlPackageImpl#getTimeDivisionMultiplexing()
+	 * @generated
+	 */
+	int TIME_DIVISION_MULTIPLEXING = 18;
+
+	/**
+	 * The feature id for the '<em><b>Frequency</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_DIVISION_MULTIPLEXING__FREQUENCY = PULL__FREQUENCY;
+
+	/**
+	 * The feature id for the '<em><b>Duration</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_DIVISION_MULTIPLEXING__DURATION = PULL_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Time Slot</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_DIVISION_MULTIPLEXING__TIME_SLOT = PULL_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Time Division Multiplexing</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_DIVISION_MULTIPLEXING_FEATURE_COUNT = PULL_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Time Division Multiplexing</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_DIVISION_MULTIPLEXING_OPERATION_COUNT = PULL_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link sensidl.impl.MeasurementAdaptionImpl <em>Measurement Adaption</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sensidl.impl.MeasurementAdaptionImpl
+	 * @see sensidl.impl.SensidlPackageImpl#getMeasurementAdaption()
+	 * @generated
+	 */
+	int MEASUREMENT_ADAPTION = 19;
+
+	/**
+	 * The feature id for the '<em><b>Scaling Factor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEASUREMENT_ADAPTION__SCALING_FACTOR = MEASUREMENT_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEASUREMENT_ADAPTION__OFFSET = MEASUREMENT_CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Measurement Adaption</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEASUREMENT_ADAPTION_FEATURE_COUNT = MEASUREMENT_CONSTRAINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Measurement Adaption</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEASUREMENT_ADAPTION_OPERATION_COUNT = MEASUREMENT_CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link sensidl.Type <em>Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -836,7 +1039,7 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 15;
+	int TYPE = 20;
 
 	/**
 	 * The meta object id for the '{@link sensidl.ArgumentType <em>Argument Type</em>}' enum.
@@ -846,17 +1049,7 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getArgumentType()
 	 * @generated
 	 */
-	int ARGUMENT_TYPE = 16;
-
-	/**
-	 * The meta object id for the '{@link sensidl.TransmissionType <em>Transmission Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see sensidl.TransmissionType
-	 * @see sensidl.impl.SensidlPackageImpl#getTransmissionType()
-	 * @generated
-	 */
-	int TRANSMISSION_TYPE = 17;
+	int ARGUMENT_TYPE = 21;
 
 	/**
 	 * The meta object id for the '{@link sensidl.GenerationLanguage <em>Generation Language</em>}' enum.
@@ -866,7 +1059,7 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getGenerationLanguage()
 	 * @generated
 	 */
-	int GENERATION_LANGUAGE = 18;
+	int GENERATION_LANGUAGE = 22;
 
 	/**
 	 * The meta object id for the '{@link sensidl.Quantity <em>Quantity</em>}' enum.
@@ -876,7 +1069,7 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getQuantity()
 	 * @generated
 	 */
-	int QUANTITY = 19;
+	int QUANTITY = 23;
 
 
 	/**
@@ -1287,15 +1480,15 @@ public interface SensidlPackage extends EPackage {
 	EClass getOptions();
 
 	/**
-	 * Returns the meta object for the attribute '{@link sensidl.Options#getTransmissionType <em>Transmission Type</em>}'.
+	 * Returns the meta object for the containment reference '{@link sensidl.Options#getTransmissionType <em>Transmission Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Transmission Type</em>'.
+	 * @return the meta object for the containment reference '<em>Transmission Type</em>'.
 	 * @see sensidl.Options#getTransmissionType()
 	 * @see #getOptions()
 	 * @generated
 	 */
-	EAttribute getOptions_TransmissionType();
+	EReference getOptions_TransmissionType();
 
 	/**
 	 * Returns the meta object for the attribute '{@link sensidl.Options#getSensorLanguage <em>Sensor Language</em>}'.
@@ -1404,6 +1597,122 @@ public interface SensidlPackage extends EPackage {
 	EAttribute getMeasure_Value();
 
 	/**
+	 * Returns the meta object for class '{@link sensidl.Transmission <em>Transmission</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Transmission</em>'.
+	 * @see sensidl.Transmission
+	 * @generated
+	 */
+	EClass getTransmission();
+
+	/**
+	 * Returns the meta object for class '{@link sensidl.Pull <em>Pull</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Pull</em>'.
+	 * @see sensidl.Pull
+	 * @generated
+	 */
+	EClass getPull();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sensidl.Pull#getFrequency <em>Frequency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Frequency</em>'.
+	 * @see sensidl.Pull#getFrequency()
+	 * @see #getPull()
+	 * @generated
+	 */
+	EAttribute getPull_Frequency();
+
+	/**
+	 * Returns the meta object for class '{@link sensidl.Push <em>Push</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Push</em>'.
+	 * @see sensidl.Push
+	 * @generated
+	 */
+	EClass getPush();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sensidl.Push#getMethodName <em>Method Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Method Name</em>'.
+	 * @see sensidl.Push#getMethodName()
+	 * @see #getPush()
+	 * @generated
+	 */
+	EAttribute getPush_MethodName();
+
+	/**
+	 * Returns the meta object for class '{@link sensidl.TimeDivisionMultiplexing <em>Time Division Multiplexing</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Time Division Multiplexing</em>'.
+	 * @see sensidl.TimeDivisionMultiplexing
+	 * @generated
+	 */
+	EClass getTimeDivisionMultiplexing();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sensidl.TimeDivisionMultiplexing#getDuration <em>Duration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Duration</em>'.
+	 * @see sensidl.TimeDivisionMultiplexing#getDuration()
+	 * @see #getTimeDivisionMultiplexing()
+	 * @generated
+	 */
+	EAttribute getTimeDivisionMultiplexing_Duration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sensidl.TimeDivisionMultiplexing#getTimeSlot <em>Time Slot</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Time Slot</em>'.
+	 * @see sensidl.TimeDivisionMultiplexing#getTimeSlot()
+	 * @see #getTimeDivisionMultiplexing()
+	 * @generated
+	 */
+	EAttribute getTimeDivisionMultiplexing_TimeSlot();
+
+	/**
+	 * Returns the meta object for class '{@link sensidl.MeasurementAdaption <em>Measurement Adaption</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Measurement Adaption</em>'.
+	 * @see sensidl.MeasurementAdaption
+	 * @generated
+	 */
+	EClass getMeasurementAdaption();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sensidl.MeasurementAdaption#getScalingFactor <em>Scaling Factor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Scaling Factor</em>'.
+	 * @see sensidl.MeasurementAdaption#getScalingFactor()
+	 * @see #getMeasurementAdaption()
+	 * @generated
+	 */
+	EAttribute getMeasurementAdaption_ScalingFactor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sensidl.MeasurementAdaption#getOffset <em>Offset</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Offset</em>'.
+	 * @see sensidl.MeasurementAdaption#getOffset()
+	 * @see #getMeasurementAdaption()
+	 * @generated
+	 */
+	EAttribute getMeasurementAdaption_Offset();
+
+	/**
 	 * Returns the meta object for enum '{@link sensidl.Type <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1422,16 +1731,6 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getArgumentType();
-
-	/**
-	 * Returns the meta object for enum '{@link sensidl.TransmissionType <em>Transmission Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Transmission Type</em>'.
-	 * @see sensidl.TransmissionType
-	 * @generated
-	 */
-	EEnum getTransmissionType();
 
 	/**
 	 * Returns the meta object for enum '{@link sensidl.GenerationLanguage <em>Generation Language</em>}'.
@@ -1803,12 +2102,12 @@ public interface SensidlPackage extends EPackage {
 		EClass OPTIONS = eINSTANCE.getOptions();
 
 		/**
-		 * The meta object literal for the '<em><b>Transmission Type</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Transmission Type</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute OPTIONS__TRANSMISSION_TYPE = eINSTANCE.getOptions_TransmissionType();
+		EReference OPTIONS__TRANSMISSION_TYPE = eINSTANCE.getOptions_TransmissionType();
 
 		/**
 		 * The meta object literal for the '<em><b>Sensor Language</b></em>' attribute feature.
@@ -1899,6 +2198,104 @@ public interface SensidlPackage extends EPackage {
 		EAttribute MEASURE__VALUE = eINSTANCE.getMeasure_Value();
 
 		/**
+		 * The meta object literal for the '{@link sensidl.impl.TransmissionImpl <em>Transmission</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sensidl.impl.TransmissionImpl
+		 * @see sensidl.impl.SensidlPackageImpl#getTransmission()
+		 * @generated
+		 */
+		EClass TRANSMISSION = eINSTANCE.getTransmission();
+
+		/**
+		 * The meta object literal for the '{@link sensidl.impl.PullImpl <em>Pull</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sensidl.impl.PullImpl
+		 * @see sensidl.impl.SensidlPackageImpl#getPull()
+		 * @generated
+		 */
+		EClass PULL = eINSTANCE.getPull();
+
+		/**
+		 * The meta object literal for the '<em><b>Frequency</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PULL__FREQUENCY = eINSTANCE.getPull_Frequency();
+
+		/**
+		 * The meta object literal for the '{@link sensidl.impl.PushImpl <em>Push</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sensidl.impl.PushImpl
+		 * @see sensidl.impl.SensidlPackageImpl#getPush()
+		 * @generated
+		 */
+		EClass PUSH = eINSTANCE.getPush();
+
+		/**
+		 * The meta object literal for the '<em><b>Method Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PUSH__METHOD_NAME = eINSTANCE.getPush_MethodName();
+
+		/**
+		 * The meta object literal for the '{@link sensidl.impl.TimeDivisionMultiplexingImpl <em>Time Division Multiplexing</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sensidl.impl.TimeDivisionMultiplexingImpl
+		 * @see sensidl.impl.SensidlPackageImpl#getTimeDivisionMultiplexing()
+		 * @generated
+		 */
+		EClass TIME_DIVISION_MULTIPLEXING = eINSTANCE.getTimeDivisionMultiplexing();
+
+		/**
+		 * The meta object literal for the '<em><b>Duration</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TIME_DIVISION_MULTIPLEXING__DURATION = eINSTANCE.getTimeDivisionMultiplexing_Duration();
+
+		/**
+		 * The meta object literal for the '<em><b>Time Slot</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TIME_DIVISION_MULTIPLEXING__TIME_SLOT = eINSTANCE.getTimeDivisionMultiplexing_TimeSlot();
+
+		/**
+		 * The meta object literal for the '{@link sensidl.impl.MeasurementAdaptionImpl <em>Measurement Adaption</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sensidl.impl.MeasurementAdaptionImpl
+		 * @see sensidl.impl.SensidlPackageImpl#getMeasurementAdaption()
+		 * @generated
+		 */
+		EClass MEASUREMENT_ADAPTION = eINSTANCE.getMeasurementAdaption();
+
+		/**
+		 * The meta object literal for the '<em><b>Scaling Factor</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MEASUREMENT_ADAPTION__SCALING_FACTOR = eINSTANCE.getMeasurementAdaption_ScalingFactor();
+
+		/**
+		 * The meta object literal for the '<em><b>Offset</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MEASUREMENT_ADAPTION__OFFSET = eINSTANCE.getMeasurementAdaption_Offset();
+
+		/**
 		 * The meta object literal for the '{@link sensidl.Type <em>Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1917,16 +2314,6 @@ public interface SensidlPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ARGUMENT_TYPE = eINSTANCE.getArgumentType();
-
-		/**
-		 * The meta object literal for the '{@link sensidl.TransmissionType <em>Transmission Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see sensidl.TransmissionType
-		 * @see sensidl.impl.SensidlPackageImpl#getTransmissionType()
-		 * @generated
-		 */
-		EEnum TRANSMISSION_TYPE = eINSTANCE.getTransmissionType();
 
 		/**
 		 * The meta object literal for the '{@link sensidl.GenerationLanguage <em>Generation Language</em>}' enum.
