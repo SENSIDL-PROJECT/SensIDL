@@ -12,7 +12,7 @@
 'Duration'=49
 'FLOAT'=30
 'FLOW'=21
-'Frequency'=46
+'Frequency'=45
 'INT'=28
 'JAVA'=18
 'LONG'=29
@@ -20,7 +20,7 @@
 'SHORT'=27
 'TEMPERATURE'=22
 'VOLUME'=23
-'and'=48
+'and'=46
 'as'=53
 'by'=52
 'byte'=15
@@ -38,14 +38,14 @@
 'offset'=63
 'options'=32
 'primitive'=64
-'pull'=45
+'pull'=47
 'push'=43
 'receiver'=42
 'repr'=12
 'representation'=13
 'scaling factor'=62
 'sensor'=40
-'timeDivisionMultiplexing'=47
+'timeDivisionMultiplexing'=48
 'timeSlot'=50
 'to'=61
 'transmission'=37

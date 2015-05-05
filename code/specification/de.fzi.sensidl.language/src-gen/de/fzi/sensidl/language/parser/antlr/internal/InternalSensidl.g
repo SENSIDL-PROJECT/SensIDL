@@ -363,15 +363,49 @@ rulePush returns [EObject current=null]
     {
     	newLeafNode(otherlv_0, grammarAccess.getPushAccess().getPushKeyword_0());
     }
-	otherlv_1='with' 
+(	otherlv_1='with' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getPushAccess().getWithKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getPushAccess().getWithKeyword_1_0());
+    }
+	otherlv_2='Frequency' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getPushAccess().getFrequencyKeyword_1_1());
+    }
+	otherlv_3=':' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getPushAccess().getColonKeyword_1_2());
     }
 (
 (
-		lv_methodName_2_0=RULE_ID
+		lv_frequency_4_0=RULE_INT
 		{
-			newLeafNode(lv_methodName_2_0, grammarAccess.getPushAccess().getMethodNameIDTerminalRuleCall_2_0()); 
+			newLeafNode(lv_frequency_4_0, grammarAccess.getPushAccess().getFrequencyINTTerminalRuleCall_1_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPushRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"frequency",
+        		lv_frequency_4_0, 
+        		"INT");
+	    }
+
+)
+)	otherlv_5='and' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getPushAccess().getAndKeyword_1_4());
+    }
+)?	otherlv_6='with' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getPushAccess().getWithKeyword_2());
+    }
+(
+(
+		lv_methodName_7_0=RULE_ID
+		{
+			newLeafNode(lv_methodName_7_0, grammarAccess.getPushAccess().getMethodNameIDTerminalRuleCall_3_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -380,7 +414,7 @@ rulePush returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"methodName",
-        		lv_methodName_2_0, 
+        		lv_methodName_7_0, 
         		"ID");
 	    }
 

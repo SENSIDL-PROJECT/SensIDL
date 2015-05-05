@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'options'", "'{'", "'}'", "'transmit'", "','", "'transmission'", "'type'", "':'", "'sensor'", "'language'", "'receiver'", "'push'", "'with'", "'pull'", "'Frequency'", "'timeDivisionMultiplexing'", "'and'", "'Duration'", "'timeSlot'", "'repr'", "'representation'", "'is'", "'by'", "'bytes'", "'byte'", "'calculate'", "'calculated'", "'as'", "'('", "')'", "'group'", "'measurement'", "'of'", "'in'", "'from'", "'to'", "'scaling factor'", "'offset'", "'primitive'", "'constant'", "'.'", "'JAVA'", "'CPP'", "'C'", "'BYTE_ARRAY'", "'FLOW'", "'TEMPERATURE'", "'VOLUME'", "'DURATION'", "'PRESSURE'", "'BYTE'", "'SHORT'", "'INT'", "'LONG'", "'FLOAT'", "'DOUBLE'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'options'", "'{'", "'}'", "'transmit'", "','", "'transmission'", "'type'", "':'", "'sensor'", "'language'", "'receiver'", "'push'", "'with'", "'Frequency'", "'and'", "'pull'", "'timeDivisionMultiplexing'", "'Duration'", "'timeSlot'", "'repr'", "'representation'", "'is'", "'by'", "'bytes'", "'byte'", "'calculate'", "'calculated'", "'as'", "'('", "')'", "'group'", "'measurement'", "'of'", "'in'", "'from'", "'to'", "'scaling factor'", "'offset'", "'primitive'", "'constant'", "'.'", "'JAVA'", "'CPP'", "'C'", "'BYTE_ARRAY'", "'FLOW'", "'TEMPERATURE'", "'VOLUME'", "'DURATION'", "'PRESSURE'", "'BYTE'", "'SHORT'", "'INT'", "'LONG'", "'FLOAT'", "'DOUBLE'"
     };
     public static final int RULE_ID=4;
     public static final int T__66=66;
@@ -771,7 +771,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( (LA4_0==24||LA4_0==26) ) {
+            if ( ((LA4_0>=26 && LA4_0<=27)) ) {
                 alt4=1;
             }
             else if ( (LA4_0==22) ) {
@@ -877,40 +877,108 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePush"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:358:1: rulePush returns [EObject current=null] : (otherlv_0= 'push' otherlv_1= 'with' ( (lv_methodName_2_0= RULE_ID ) ) ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:358:1: rulePush returns [EObject current=null] : (otherlv_0= 'push' (otherlv_1= 'with' otherlv_2= 'Frequency' otherlv_3= ':' ( (lv_frequency_4_0= RULE_INT ) ) otherlv_5= 'and' )? otherlv_6= 'with' ( (lv_methodName_7_0= RULE_ID ) ) ) ;
     public final EObject rulePush() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token otherlv_1=null;
-        Token lv_methodName_2_0=null;
+        Token otherlv_2=null;
+        Token otherlv_3=null;
+        Token lv_frequency_4_0=null;
+        Token otherlv_5=null;
+        Token otherlv_6=null;
+        Token lv_methodName_7_0=null;
 
          enterRule(); 
             
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:361:28: ( (otherlv_0= 'push' otherlv_1= 'with' ( (lv_methodName_2_0= RULE_ID ) ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:362:1: (otherlv_0= 'push' otherlv_1= 'with' ( (lv_methodName_2_0= RULE_ID ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:361:28: ( (otherlv_0= 'push' (otherlv_1= 'with' otherlv_2= 'Frequency' otherlv_3= ':' ( (lv_frequency_4_0= RULE_INT ) ) otherlv_5= 'and' )? otherlv_6= 'with' ( (lv_methodName_7_0= RULE_ID ) ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:362:1: (otherlv_0= 'push' (otherlv_1= 'with' otherlv_2= 'Frequency' otherlv_3= ':' ( (lv_frequency_4_0= RULE_INT ) ) otherlv_5= 'and' )? otherlv_6= 'with' ( (lv_methodName_7_0= RULE_ID ) ) )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:362:1: (otherlv_0= 'push' otherlv_1= 'with' ( (lv_methodName_2_0= RULE_ID ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:362:3: otherlv_0= 'push' otherlv_1= 'with' ( (lv_methodName_2_0= RULE_ID ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:362:1: (otherlv_0= 'push' (otherlv_1= 'with' otherlv_2= 'Frequency' otherlv_3= ':' ( (lv_frequency_4_0= RULE_INT ) ) otherlv_5= 'and' )? otherlv_6= 'with' ( (lv_methodName_7_0= RULE_ID ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:362:3: otherlv_0= 'push' (otherlv_1= 'with' otherlv_2= 'Frequency' otherlv_3= ':' ( (lv_frequency_4_0= RULE_INT ) ) otherlv_5= 'and' )? otherlv_6= 'with' ( (lv_methodName_7_0= RULE_ID ) )
             {
             otherlv_0=(Token)match(input,22,FOLLOW_22_in_rulePush759); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getPushAccess().getPushKeyword_0());
                 
-            otherlv_1=(Token)match(input,23,FOLLOW_23_in_rulePush771); 
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:366:1: (otherlv_1= 'with' otherlv_2= 'Frequency' otherlv_3= ':' ( (lv_frequency_4_0= RULE_INT ) ) otherlv_5= 'and' )?
+            int alt5=2;
+            int LA5_0 = input.LA(1);
 
-                	newLeafNode(otherlv_1, grammarAccess.getPushAccess().getWithKeyword_1());
+            if ( (LA5_0==23) ) {
+                int LA5_1 = input.LA(2);
+
+                if ( (LA5_1==24) ) {
+                    alt5=1;
+                }
+            }
+            switch (alt5) {
+                case 1 :
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:366:3: otherlv_1= 'with' otherlv_2= 'Frequency' otherlv_3= ':' ( (lv_frequency_4_0= RULE_INT ) ) otherlv_5= 'and'
+                    {
+                    otherlv_1=(Token)match(input,23,FOLLOW_23_in_rulePush772); 
+
+                        	newLeafNode(otherlv_1, grammarAccess.getPushAccess().getWithKeyword_1_0());
+                        
+                    otherlv_2=(Token)match(input,24,FOLLOW_24_in_rulePush784); 
+
+                        	newLeafNode(otherlv_2, grammarAccess.getPushAccess().getFrequencyKeyword_1_1());
+                        
+                    otherlv_3=(Token)match(input,18,FOLLOW_18_in_rulePush796); 
+
+                        	newLeafNode(otherlv_3, grammarAccess.getPushAccess().getColonKeyword_1_2());
+                        
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:378:1: ( (lv_frequency_4_0= RULE_INT ) )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:379:1: (lv_frequency_4_0= RULE_INT )
+                    {
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:379:1: (lv_frequency_4_0= RULE_INT )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:380:3: lv_frequency_4_0= RULE_INT
+                    {
+                    lv_frequency_4_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_rulePush813); 
+
+                    			newLeafNode(lv_frequency_4_0, grammarAccess.getPushAccess().getFrequencyINTTerminalRuleCall_1_3_0()); 
+                    		
+
+                    	        if (current==null) {
+                    	            current = createModelElement(grammarAccess.getPushRule());
+                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"frequency",
+                            		lv_frequency_4_0, 
+                            		"INT");
+                    	    
+
+                    }
+
+
+                    }
+
+                    otherlv_5=(Token)match(input,25,FOLLOW_25_in_rulePush830); 
+
+                        	newLeafNode(otherlv_5, grammarAccess.getPushAccess().getAndKeyword_1_4());
+                        
+
+                    }
+                    break;
+
+            }
+
+            otherlv_6=(Token)match(input,23,FOLLOW_23_in_rulePush844); 
+
+                	newLeafNode(otherlv_6, grammarAccess.getPushAccess().getWithKeyword_2());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:370:1: ( (lv_methodName_2_0= RULE_ID ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:371:1: (lv_methodName_2_0= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:404:1: ( (lv_methodName_7_0= RULE_ID ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:405:1: (lv_methodName_7_0= RULE_ID )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:371:1: (lv_methodName_2_0= RULE_ID )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:372:3: lv_methodName_2_0= RULE_ID
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:405:1: (lv_methodName_7_0= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:406:3: lv_methodName_7_0= RULE_ID
             {
-            lv_methodName_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePush788); 
+            lv_methodName_7_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePush861); 
 
-            			newLeafNode(lv_methodName_2_0, grammarAccess.getPushAccess().getMethodNameIDTerminalRuleCall_2_0()); 
+            			newLeafNode(lv_methodName_7_0, grammarAccess.getPushAccess().getMethodNameIDTerminalRuleCall_3_0()); 
             		
 
             	        if (current==null) {
@@ -919,7 +987,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                    		setWithLastConsumed(
                    			current, 
                    			"methodName",
-                    		lv_methodName_2_0, 
+                    		lv_methodName_7_0, 
                     		"ID");
             	    
 
@@ -949,7 +1017,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePull"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:396:1: entryRulePull returns [EObject current=null] : iv_rulePull= rulePull EOF ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:430:1: entryRulePull returns [EObject current=null] : iv_rulePull= rulePull EOF ;
     public final EObject entryRulePull() throws RecognitionException {
         EObject current = null;
 
@@ -957,17 +1025,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:397:2: (iv_rulePull= rulePull EOF )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:398:2: iv_rulePull= rulePull EOF
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:431:2: (iv_rulePull= rulePull EOF )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:432:2: iv_rulePull= rulePull EOF
             {
              newCompositeNode(grammarAccess.getPullRule()); 
-            pushFollow(FOLLOW_rulePull_in_entryRulePull829);
+            pushFollow(FOLLOW_rulePull_in_entryRulePull902);
             iv_rulePull=rulePull();
 
             state._fsp--;
 
              current =iv_rulePull; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePull839); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePull912); 
 
             }
 
@@ -985,7 +1053,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePull"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:405:1: rulePull returns [EObject current=null] : (this_TimeDivisionMultiplexing_0= ruleTimeDivisionMultiplexing | (otherlv_1= 'pull' otherlv_2= 'with' otherlv_3= 'Frequency' otherlv_4= ':' ( (lv_frequency_5_0= RULE_INT ) ) ) ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:439:1: rulePull returns [EObject current=null] : (this_TimeDivisionMultiplexing_0= ruleTimeDivisionMultiplexing | (otherlv_1= 'pull' otherlv_2= 'with' otherlv_3= 'Frequency' otherlv_4= ':' ( (lv_frequency_5_0= RULE_INT ) ) ) ) ;
     public final EObject rulePull() throws RecognitionException {
         EObject current = null;
 
@@ -1000,33 +1068,33 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:408:28: ( (this_TimeDivisionMultiplexing_0= ruleTimeDivisionMultiplexing | (otherlv_1= 'pull' otherlv_2= 'with' otherlv_3= 'Frequency' otherlv_4= ':' ( (lv_frequency_5_0= RULE_INT ) ) ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:409:1: (this_TimeDivisionMultiplexing_0= ruleTimeDivisionMultiplexing | (otherlv_1= 'pull' otherlv_2= 'with' otherlv_3= 'Frequency' otherlv_4= ':' ( (lv_frequency_5_0= RULE_INT ) ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:442:28: ( (this_TimeDivisionMultiplexing_0= ruleTimeDivisionMultiplexing | (otherlv_1= 'pull' otherlv_2= 'with' otherlv_3= 'Frequency' otherlv_4= ':' ( (lv_frequency_5_0= RULE_INT ) ) ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:443:1: (this_TimeDivisionMultiplexing_0= ruleTimeDivisionMultiplexing | (otherlv_1= 'pull' otherlv_2= 'with' otherlv_3= 'Frequency' otherlv_4= ':' ( (lv_frequency_5_0= RULE_INT ) ) ) )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:409:1: (this_TimeDivisionMultiplexing_0= ruleTimeDivisionMultiplexing | (otherlv_1= 'pull' otherlv_2= 'with' otherlv_3= 'Frequency' otherlv_4= ':' ( (lv_frequency_5_0= RULE_INT ) ) ) )
-            int alt5=2;
-            int LA5_0 = input.LA(1);
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:443:1: (this_TimeDivisionMultiplexing_0= ruleTimeDivisionMultiplexing | (otherlv_1= 'pull' otherlv_2= 'with' otherlv_3= 'Frequency' otherlv_4= ':' ( (lv_frequency_5_0= RULE_INT ) ) ) )
+            int alt6=2;
+            int LA6_0 = input.LA(1);
 
-            if ( (LA5_0==26) ) {
-                alt5=1;
+            if ( (LA6_0==27) ) {
+                alt6=1;
             }
-            else if ( (LA5_0==24) ) {
-                alt5=2;
+            else if ( (LA6_0==26) ) {
+                alt6=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 5, 0, input);
+                    new NoViableAltException("", 6, 0, input);
 
                 throw nvae;
             }
-            switch (alt5) {
+            switch (alt6) {
                 case 1 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:410:5: this_TimeDivisionMultiplexing_0= ruleTimeDivisionMultiplexing
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:444:5: this_TimeDivisionMultiplexing_0= ruleTimeDivisionMultiplexing
                     {
                      
                             newCompositeNode(grammarAccess.getPullAccess().getTimeDivisionMultiplexingParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleTimeDivisionMultiplexing_in_rulePull886);
+                    pushFollow(FOLLOW_ruleTimeDivisionMultiplexing_in_rulePull959);
                     this_TimeDivisionMultiplexing_0=ruleTimeDivisionMultiplexing();
 
                     state._fsp--;
@@ -1039,34 +1107,34 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:419:6: (otherlv_1= 'pull' otherlv_2= 'with' otherlv_3= 'Frequency' otherlv_4= ':' ( (lv_frequency_5_0= RULE_INT ) ) )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:453:6: (otherlv_1= 'pull' otherlv_2= 'with' otherlv_3= 'Frequency' otherlv_4= ':' ( (lv_frequency_5_0= RULE_INT ) ) )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:419:6: (otherlv_1= 'pull' otherlv_2= 'with' otherlv_3= 'Frequency' otherlv_4= ':' ( (lv_frequency_5_0= RULE_INT ) ) )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:419:8: otherlv_1= 'pull' otherlv_2= 'with' otherlv_3= 'Frequency' otherlv_4= ':' ( (lv_frequency_5_0= RULE_INT ) )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:453:6: (otherlv_1= 'pull' otherlv_2= 'with' otherlv_3= 'Frequency' otherlv_4= ':' ( (lv_frequency_5_0= RULE_INT ) ) )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:453:8: otherlv_1= 'pull' otherlv_2= 'with' otherlv_3= 'Frequency' otherlv_4= ':' ( (lv_frequency_5_0= RULE_INT ) )
                     {
-                    otherlv_1=(Token)match(input,24,FOLLOW_24_in_rulePull904); 
+                    otherlv_1=(Token)match(input,26,FOLLOW_26_in_rulePull977); 
 
                         	newLeafNode(otherlv_1, grammarAccess.getPullAccess().getPullKeyword_1_0());
                         
-                    otherlv_2=(Token)match(input,23,FOLLOW_23_in_rulePull916); 
+                    otherlv_2=(Token)match(input,23,FOLLOW_23_in_rulePull989); 
 
                         	newLeafNode(otherlv_2, grammarAccess.getPullAccess().getWithKeyword_1_1());
                         
-                    otherlv_3=(Token)match(input,25,FOLLOW_25_in_rulePull928); 
+                    otherlv_3=(Token)match(input,24,FOLLOW_24_in_rulePull1001); 
 
                         	newLeafNode(otherlv_3, grammarAccess.getPullAccess().getFrequencyKeyword_1_2());
                         
-                    otherlv_4=(Token)match(input,18,FOLLOW_18_in_rulePull940); 
+                    otherlv_4=(Token)match(input,18,FOLLOW_18_in_rulePull1013); 
 
                         	newLeafNode(otherlv_4, grammarAccess.getPullAccess().getColonKeyword_1_3());
                         
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:435:1: ( (lv_frequency_5_0= RULE_INT ) )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:436:1: (lv_frequency_5_0= RULE_INT )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:469:1: ( (lv_frequency_5_0= RULE_INT ) )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:470:1: (lv_frequency_5_0= RULE_INT )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:436:1: (lv_frequency_5_0= RULE_INT )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:437:3: lv_frequency_5_0= RULE_INT
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:470:1: (lv_frequency_5_0= RULE_INT )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:471:3: lv_frequency_5_0= RULE_INT
                     {
-                    lv_frequency_5_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_rulePull957); 
+                    lv_frequency_5_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_rulePull1030); 
 
                     			newLeafNode(lv_frequency_5_0, grammarAccess.getPullAccess().getFrequencyINTTerminalRuleCall_1_4_0()); 
                     		
@@ -1113,7 +1181,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTimeDivisionMultiplexing"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:461:1: entryRuleTimeDivisionMultiplexing returns [EObject current=null] : iv_ruleTimeDivisionMultiplexing= ruleTimeDivisionMultiplexing EOF ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:495:1: entryRuleTimeDivisionMultiplexing returns [EObject current=null] : iv_ruleTimeDivisionMultiplexing= ruleTimeDivisionMultiplexing EOF ;
     public final EObject entryRuleTimeDivisionMultiplexing() throws RecognitionException {
         EObject current = null;
 
@@ -1121,17 +1189,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:462:2: (iv_ruleTimeDivisionMultiplexing= ruleTimeDivisionMultiplexing EOF )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:463:2: iv_ruleTimeDivisionMultiplexing= ruleTimeDivisionMultiplexing EOF
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:496:2: (iv_ruleTimeDivisionMultiplexing= ruleTimeDivisionMultiplexing EOF )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:497:2: iv_ruleTimeDivisionMultiplexing= ruleTimeDivisionMultiplexing EOF
             {
              newCompositeNode(grammarAccess.getTimeDivisionMultiplexingRule()); 
-            pushFollow(FOLLOW_ruleTimeDivisionMultiplexing_in_entryRuleTimeDivisionMultiplexing999);
+            pushFollow(FOLLOW_ruleTimeDivisionMultiplexing_in_entryRuleTimeDivisionMultiplexing1072);
             iv_ruleTimeDivisionMultiplexing=ruleTimeDivisionMultiplexing();
 
             state._fsp--;
 
              current =iv_ruleTimeDivisionMultiplexing; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTimeDivisionMultiplexing1009); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTimeDivisionMultiplexing1082); 
 
             }
 
@@ -1149,7 +1217,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTimeDivisionMultiplexing"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:470:1: ruleTimeDivisionMultiplexing returns [EObject current=null] : (otherlv_0= 'timeDivisionMultiplexing' otherlv_1= 'with' otherlv_2= 'Frequency' otherlv_3= ':' ( (lv_frequency_4_0= RULE_INT ) ) otherlv_5= 'and' otherlv_6= 'Duration' otherlv_7= ':' ( (lv_duration_8_0= ruleDOUBLE ) ) otherlv_9= 'and' otherlv_10= 'timeSlot' otherlv_11= ':' ( (lv_timeSlot_12_0= ruleDOUBLE ) ) ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:504:1: ruleTimeDivisionMultiplexing returns [EObject current=null] : (otherlv_0= 'timeDivisionMultiplexing' otherlv_1= 'with' otherlv_2= 'Frequency' otherlv_3= ':' ( (lv_frequency_4_0= RULE_INT ) ) otherlv_5= 'and' otherlv_6= 'Duration' otherlv_7= ':' ( (lv_duration_8_0= ruleDOUBLE ) ) otherlv_9= 'and' otherlv_10= 'timeSlot' otherlv_11= ':' ( (lv_timeSlot_12_0= ruleDOUBLE ) ) ) ;
     public final EObject ruleTimeDivisionMultiplexing() throws RecognitionException {
         EObject current = null;
 
@@ -1172,35 +1240,35 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:473:28: ( (otherlv_0= 'timeDivisionMultiplexing' otherlv_1= 'with' otherlv_2= 'Frequency' otherlv_3= ':' ( (lv_frequency_4_0= RULE_INT ) ) otherlv_5= 'and' otherlv_6= 'Duration' otherlv_7= ':' ( (lv_duration_8_0= ruleDOUBLE ) ) otherlv_9= 'and' otherlv_10= 'timeSlot' otherlv_11= ':' ( (lv_timeSlot_12_0= ruleDOUBLE ) ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:474:1: (otherlv_0= 'timeDivisionMultiplexing' otherlv_1= 'with' otherlv_2= 'Frequency' otherlv_3= ':' ( (lv_frequency_4_0= RULE_INT ) ) otherlv_5= 'and' otherlv_6= 'Duration' otherlv_7= ':' ( (lv_duration_8_0= ruleDOUBLE ) ) otherlv_9= 'and' otherlv_10= 'timeSlot' otherlv_11= ':' ( (lv_timeSlot_12_0= ruleDOUBLE ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:507:28: ( (otherlv_0= 'timeDivisionMultiplexing' otherlv_1= 'with' otherlv_2= 'Frequency' otherlv_3= ':' ( (lv_frequency_4_0= RULE_INT ) ) otherlv_5= 'and' otherlv_6= 'Duration' otherlv_7= ':' ( (lv_duration_8_0= ruleDOUBLE ) ) otherlv_9= 'and' otherlv_10= 'timeSlot' otherlv_11= ':' ( (lv_timeSlot_12_0= ruleDOUBLE ) ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:508:1: (otherlv_0= 'timeDivisionMultiplexing' otherlv_1= 'with' otherlv_2= 'Frequency' otherlv_3= ':' ( (lv_frequency_4_0= RULE_INT ) ) otherlv_5= 'and' otherlv_6= 'Duration' otherlv_7= ':' ( (lv_duration_8_0= ruleDOUBLE ) ) otherlv_9= 'and' otherlv_10= 'timeSlot' otherlv_11= ':' ( (lv_timeSlot_12_0= ruleDOUBLE ) ) )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:474:1: (otherlv_0= 'timeDivisionMultiplexing' otherlv_1= 'with' otherlv_2= 'Frequency' otherlv_3= ':' ( (lv_frequency_4_0= RULE_INT ) ) otherlv_5= 'and' otherlv_6= 'Duration' otherlv_7= ':' ( (lv_duration_8_0= ruleDOUBLE ) ) otherlv_9= 'and' otherlv_10= 'timeSlot' otherlv_11= ':' ( (lv_timeSlot_12_0= ruleDOUBLE ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:474:3: otherlv_0= 'timeDivisionMultiplexing' otherlv_1= 'with' otherlv_2= 'Frequency' otherlv_3= ':' ( (lv_frequency_4_0= RULE_INT ) ) otherlv_5= 'and' otherlv_6= 'Duration' otherlv_7= ':' ( (lv_duration_8_0= ruleDOUBLE ) ) otherlv_9= 'and' otherlv_10= 'timeSlot' otherlv_11= ':' ( (lv_timeSlot_12_0= ruleDOUBLE ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:508:1: (otherlv_0= 'timeDivisionMultiplexing' otherlv_1= 'with' otherlv_2= 'Frequency' otherlv_3= ':' ( (lv_frequency_4_0= RULE_INT ) ) otherlv_5= 'and' otherlv_6= 'Duration' otherlv_7= ':' ( (lv_duration_8_0= ruleDOUBLE ) ) otherlv_9= 'and' otherlv_10= 'timeSlot' otherlv_11= ':' ( (lv_timeSlot_12_0= ruleDOUBLE ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:508:3: otherlv_0= 'timeDivisionMultiplexing' otherlv_1= 'with' otherlv_2= 'Frequency' otherlv_3= ':' ( (lv_frequency_4_0= RULE_INT ) ) otherlv_5= 'and' otherlv_6= 'Duration' otherlv_7= ':' ( (lv_duration_8_0= ruleDOUBLE ) ) otherlv_9= 'and' otherlv_10= 'timeSlot' otherlv_11= ':' ( (lv_timeSlot_12_0= ruleDOUBLE ) )
             {
-            otherlv_0=(Token)match(input,26,FOLLOW_26_in_ruleTimeDivisionMultiplexing1046); 
+            otherlv_0=(Token)match(input,27,FOLLOW_27_in_ruleTimeDivisionMultiplexing1119); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getTimeDivisionMultiplexingAccess().getTimeDivisionMultiplexingKeyword_0());
                 
-            otherlv_1=(Token)match(input,23,FOLLOW_23_in_ruleTimeDivisionMultiplexing1058); 
+            otherlv_1=(Token)match(input,23,FOLLOW_23_in_ruleTimeDivisionMultiplexing1131); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getTimeDivisionMultiplexingAccess().getWithKeyword_1());
                 
-            otherlv_2=(Token)match(input,25,FOLLOW_25_in_ruleTimeDivisionMultiplexing1070); 
+            otherlv_2=(Token)match(input,24,FOLLOW_24_in_ruleTimeDivisionMultiplexing1143); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getTimeDivisionMultiplexingAccess().getFrequencyKeyword_2());
                 
-            otherlv_3=(Token)match(input,18,FOLLOW_18_in_ruleTimeDivisionMultiplexing1082); 
+            otherlv_3=(Token)match(input,18,FOLLOW_18_in_ruleTimeDivisionMultiplexing1155); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getTimeDivisionMultiplexingAccess().getColonKeyword_3());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:490:1: ( (lv_frequency_4_0= RULE_INT ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:491:1: (lv_frequency_4_0= RULE_INT )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:524:1: ( (lv_frequency_4_0= RULE_INT ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:525:1: (lv_frequency_4_0= RULE_INT )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:491:1: (lv_frequency_4_0= RULE_INT )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:492:3: lv_frequency_4_0= RULE_INT
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:525:1: (lv_frequency_4_0= RULE_INT )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:526:3: lv_frequency_4_0= RULE_INT
             {
-            lv_frequency_4_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleTimeDivisionMultiplexing1099); 
+            lv_frequency_4_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleTimeDivisionMultiplexing1172); 
 
             			newLeafNode(lv_frequency_4_0, grammarAccess.getTimeDivisionMultiplexingAccess().getFrequencyINTTerminalRuleCall_4_0()); 
             		
@@ -1220,28 +1288,28 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,27,FOLLOW_27_in_ruleTimeDivisionMultiplexing1116); 
+            otherlv_5=(Token)match(input,25,FOLLOW_25_in_ruleTimeDivisionMultiplexing1189); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getTimeDivisionMultiplexingAccess().getAndKeyword_5());
                 
-            otherlv_6=(Token)match(input,28,FOLLOW_28_in_ruleTimeDivisionMultiplexing1128); 
+            otherlv_6=(Token)match(input,28,FOLLOW_28_in_ruleTimeDivisionMultiplexing1201); 
 
                 	newLeafNode(otherlv_6, grammarAccess.getTimeDivisionMultiplexingAccess().getDurationKeyword_6());
                 
-            otherlv_7=(Token)match(input,18,FOLLOW_18_in_ruleTimeDivisionMultiplexing1140); 
+            otherlv_7=(Token)match(input,18,FOLLOW_18_in_ruleTimeDivisionMultiplexing1213); 
 
                 	newLeafNode(otherlv_7, grammarAccess.getTimeDivisionMultiplexingAccess().getColonKeyword_7());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:520:1: ( (lv_duration_8_0= ruleDOUBLE ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:521:1: (lv_duration_8_0= ruleDOUBLE )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:554:1: ( (lv_duration_8_0= ruleDOUBLE ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:555:1: (lv_duration_8_0= ruleDOUBLE )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:521:1: (lv_duration_8_0= ruleDOUBLE )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:522:3: lv_duration_8_0= ruleDOUBLE
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:555:1: (lv_duration_8_0= ruleDOUBLE )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:556:3: lv_duration_8_0= ruleDOUBLE
             {
              
             	        newCompositeNode(grammarAccess.getTimeDivisionMultiplexingAccess().getDurationDOUBLEParserRuleCall_8_0()); 
             	    
-            pushFollow(FOLLOW_ruleDOUBLE_in_ruleTimeDivisionMultiplexing1161);
+            pushFollow(FOLLOW_ruleDOUBLE_in_ruleTimeDivisionMultiplexing1234);
             lv_duration_8_0=ruleDOUBLE();
 
             state._fsp--;
@@ -1263,28 +1331,28 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_9=(Token)match(input,27,FOLLOW_27_in_ruleTimeDivisionMultiplexing1173); 
+            otherlv_9=(Token)match(input,25,FOLLOW_25_in_ruleTimeDivisionMultiplexing1246); 
 
                 	newLeafNode(otherlv_9, grammarAccess.getTimeDivisionMultiplexingAccess().getAndKeyword_9());
                 
-            otherlv_10=(Token)match(input,29,FOLLOW_29_in_ruleTimeDivisionMultiplexing1185); 
+            otherlv_10=(Token)match(input,29,FOLLOW_29_in_ruleTimeDivisionMultiplexing1258); 
 
                 	newLeafNode(otherlv_10, grammarAccess.getTimeDivisionMultiplexingAccess().getTimeSlotKeyword_10());
                 
-            otherlv_11=(Token)match(input,18,FOLLOW_18_in_ruleTimeDivisionMultiplexing1197); 
+            otherlv_11=(Token)match(input,18,FOLLOW_18_in_ruleTimeDivisionMultiplexing1270); 
 
                 	newLeafNode(otherlv_11, grammarAccess.getTimeDivisionMultiplexingAccess().getColonKeyword_11());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:550:1: ( (lv_timeSlot_12_0= ruleDOUBLE ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:551:1: (lv_timeSlot_12_0= ruleDOUBLE )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:584:1: ( (lv_timeSlot_12_0= ruleDOUBLE ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:585:1: (lv_timeSlot_12_0= ruleDOUBLE )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:551:1: (lv_timeSlot_12_0= ruleDOUBLE )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:552:3: lv_timeSlot_12_0= ruleDOUBLE
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:585:1: (lv_timeSlot_12_0= ruleDOUBLE )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:586:3: lv_timeSlot_12_0= ruleDOUBLE
             {
              
             	        newCompositeNode(grammarAccess.getTimeDivisionMultiplexingAccess().getTimeSlotDOUBLEParserRuleCall_12_0()); 
             	    
-            pushFollow(FOLLOW_ruleDOUBLE_in_ruleTimeDivisionMultiplexing1218);
+            pushFollow(FOLLOW_ruleDOUBLE_in_ruleTimeDivisionMultiplexing1291);
             lv_timeSlot_12_0=ruleDOUBLE();
 
             state._fsp--;
@@ -1327,7 +1395,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRepresentation"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:576:1: entryRuleRepresentation returns [EObject current=null] : iv_ruleRepresentation= ruleRepresentation EOF ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:610:1: entryRuleRepresentation returns [EObject current=null] : iv_ruleRepresentation= ruleRepresentation EOF ;
     public final EObject entryRuleRepresentation() throws RecognitionException {
         EObject current = null;
 
@@ -1335,17 +1403,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:577:2: (iv_ruleRepresentation= ruleRepresentation EOF )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:578:2: iv_ruleRepresentation= ruleRepresentation EOF
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:611:2: (iv_ruleRepresentation= ruleRepresentation EOF )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:612:2: iv_ruleRepresentation= ruleRepresentation EOF
             {
              newCompositeNode(grammarAccess.getRepresentationRule()); 
-            pushFollow(FOLLOW_ruleRepresentation_in_entryRuleRepresentation1254);
+            pushFollow(FOLLOW_ruleRepresentation_in_entryRuleRepresentation1327);
             iv_ruleRepresentation=ruleRepresentation();
 
             state._fsp--;
 
              current =iv_ruleRepresentation; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleRepresentation1264); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleRepresentation1337); 
 
             }
 
@@ -1363,7 +1431,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRepresentation"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:585:1: ruleRepresentation returns [EObject current=null] : ( (otherlv_0= 'repr' | otherlv_1= 'representation' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'is' ( (lv_type_4_0= ruleType ) ) otherlv_5= 'by' ( (lv_byteCount_6_0= RULE_INT ) ) (otherlv_7= 'bytes' | otherlv_8= 'byte' ) ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:619:1: ruleRepresentation returns [EObject current=null] : ( (otherlv_0= 'repr' | otherlv_1= 'representation' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'is' ( (lv_type_4_0= ruleType ) ) otherlv_5= 'by' ( (lv_byteCount_6_0= RULE_INT ) ) (otherlv_7= 'bytes' | otherlv_8= 'byte' ) ) ;
     public final EObject ruleRepresentation() throws RecognitionException {
         EObject current = null;
 
@@ -1381,33 +1449,33 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:588:28: ( ( (otherlv_0= 'repr' | otherlv_1= 'representation' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'is' ( (lv_type_4_0= ruleType ) ) otherlv_5= 'by' ( (lv_byteCount_6_0= RULE_INT ) ) (otherlv_7= 'bytes' | otherlv_8= 'byte' ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:589:1: ( (otherlv_0= 'repr' | otherlv_1= 'representation' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'is' ( (lv_type_4_0= ruleType ) ) otherlv_5= 'by' ( (lv_byteCount_6_0= RULE_INT ) ) (otherlv_7= 'bytes' | otherlv_8= 'byte' ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:622:28: ( ( (otherlv_0= 'repr' | otherlv_1= 'representation' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'is' ( (lv_type_4_0= ruleType ) ) otherlv_5= 'by' ( (lv_byteCount_6_0= RULE_INT ) ) (otherlv_7= 'bytes' | otherlv_8= 'byte' ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:623:1: ( (otherlv_0= 'repr' | otherlv_1= 'representation' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'is' ( (lv_type_4_0= ruleType ) ) otherlv_5= 'by' ( (lv_byteCount_6_0= RULE_INT ) ) (otherlv_7= 'bytes' | otherlv_8= 'byte' ) )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:589:1: ( (otherlv_0= 'repr' | otherlv_1= 'representation' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'is' ( (lv_type_4_0= ruleType ) ) otherlv_5= 'by' ( (lv_byteCount_6_0= RULE_INT ) ) (otherlv_7= 'bytes' | otherlv_8= 'byte' ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:589:2: (otherlv_0= 'repr' | otherlv_1= 'representation' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'is' ( (lv_type_4_0= ruleType ) ) otherlv_5= 'by' ( (lv_byteCount_6_0= RULE_INT ) ) (otherlv_7= 'bytes' | otherlv_8= 'byte' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:623:1: ( (otherlv_0= 'repr' | otherlv_1= 'representation' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'is' ( (lv_type_4_0= ruleType ) ) otherlv_5= 'by' ( (lv_byteCount_6_0= RULE_INT ) ) (otherlv_7= 'bytes' | otherlv_8= 'byte' ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:623:2: (otherlv_0= 'repr' | otherlv_1= 'representation' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'is' ( (lv_type_4_0= ruleType ) ) otherlv_5= 'by' ( (lv_byteCount_6_0= RULE_INT ) ) (otherlv_7= 'bytes' | otherlv_8= 'byte' )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:589:2: (otherlv_0= 'repr' | otherlv_1= 'representation' )
-            int alt6=2;
-            int LA6_0 = input.LA(1);
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:623:2: (otherlv_0= 'repr' | otherlv_1= 'representation' )
+            int alt7=2;
+            int LA7_0 = input.LA(1);
 
-            if ( (LA6_0==30) ) {
-                alt6=1;
+            if ( (LA7_0==30) ) {
+                alt7=1;
             }
-            else if ( (LA6_0==31) ) {
-                alt6=2;
+            else if ( (LA7_0==31) ) {
+                alt7=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 6, 0, input);
+                    new NoViableAltException("", 7, 0, input);
 
                 throw nvae;
             }
-            switch (alt6) {
+            switch (alt7) {
                 case 1 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:589:4: otherlv_0= 'repr'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:623:4: otherlv_0= 'repr'
                     {
-                    otherlv_0=(Token)match(input,30,FOLLOW_30_in_ruleRepresentation1302); 
+                    otherlv_0=(Token)match(input,30,FOLLOW_30_in_ruleRepresentation1375); 
 
                         	newLeafNode(otherlv_0, grammarAccess.getRepresentationAccess().getReprKeyword_0_0());
                         
@@ -1415,9 +1483,9 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:594:7: otherlv_1= 'representation'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:628:7: otherlv_1= 'representation'
                     {
-                    otherlv_1=(Token)match(input,31,FOLLOW_31_in_ruleRepresentation1320); 
+                    otherlv_1=(Token)match(input,31,FOLLOW_31_in_ruleRepresentation1393); 
 
                         	newLeafNode(otherlv_1, grammarAccess.getRepresentationAccess().getRepresentationKeyword_0_1());
                         
@@ -1427,13 +1495,13 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:598:2: ( (lv_name_2_0= RULE_ID ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:599:1: (lv_name_2_0= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:632:2: ( (lv_name_2_0= RULE_ID ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:633:1: (lv_name_2_0= RULE_ID )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:599:1: (lv_name_2_0= RULE_ID )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:600:3: lv_name_2_0= RULE_ID
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:633:1: (lv_name_2_0= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:634:3: lv_name_2_0= RULE_ID
             {
-            lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleRepresentation1338); 
+            lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleRepresentation1411); 
 
             			newLeafNode(lv_name_2_0, grammarAccess.getRepresentationAccess().getNameIDTerminalRuleCall_1_0()); 
             		
@@ -1453,20 +1521,20 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,32,FOLLOW_32_in_ruleRepresentation1355); 
+            otherlv_3=(Token)match(input,32,FOLLOW_32_in_ruleRepresentation1428); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getRepresentationAccess().getIsKeyword_2());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:620:1: ( (lv_type_4_0= ruleType ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:621:1: (lv_type_4_0= ruleType )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:654:1: ( (lv_type_4_0= ruleType ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:655:1: (lv_type_4_0= ruleType )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:621:1: (lv_type_4_0= ruleType )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:622:3: lv_type_4_0= ruleType
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:655:1: (lv_type_4_0= ruleType )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:656:3: lv_type_4_0= ruleType
             {
              
             	        newCompositeNode(grammarAccess.getRepresentationAccess().getTypeTypeEnumRuleCall_3_0()); 
             	    
-            pushFollow(FOLLOW_ruleType_in_ruleRepresentation1376);
+            pushFollow(FOLLOW_ruleType_in_ruleRepresentation1449);
             lv_type_4_0=ruleType();
 
             state._fsp--;
@@ -1488,17 +1556,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,33,FOLLOW_33_in_ruleRepresentation1388); 
+            otherlv_5=(Token)match(input,33,FOLLOW_33_in_ruleRepresentation1461); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getRepresentationAccess().getByKeyword_4());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:642:1: ( (lv_byteCount_6_0= RULE_INT ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:643:1: (lv_byteCount_6_0= RULE_INT )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:676:1: ( (lv_byteCount_6_0= RULE_INT ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:677:1: (lv_byteCount_6_0= RULE_INT )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:643:1: (lv_byteCount_6_0= RULE_INT )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:644:3: lv_byteCount_6_0= RULE_INT
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:677:1: (lv_byteCount_6_0= RULE_INT )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:678:3: lv_byteCount_6_0= RULE_INT
             {
-            lv_byteCount_6_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleRepresentation1405); 
+            lv_byteCount_6_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleRepresentation1478); 
 
             			newLeafNode(lv_byteCount_6_0, grammarAccess.getRepresentationAccess().getByteCountINTTerminalRuleCall_5_0()); 
             		
@@ -1518,27 +1586,27 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:660:2: (otherlv_7= 'bytes' | otherlv_8= 'byte' )
-            int alt7=2;
-            int LA7_0 = input.LA(1);
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:694:2: (otherlv_7= 'bytes' | otherlv_8= 'byte' )
+            int alt8=2;
+            int LA8_0 = input.LA(1);
 
-            if ( (LA7_0==34) ) {
-                alt7=1;
+            if ( (LA8_0==34) ) {
+                alt8=1;
             }
-            else if ( (LA7_0==35) ) {
-                alt7=2;
+            else if ( (LA8_0==35) ) {
+                alt8=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 7, 0, input);
+                    new NoViableAltException("", 8, 0, input);
 
                 throw nvae;
             }
-            switch (alt7) {
+            switch (alt8) {
                 case 1 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:660:4: otherlv_7= 'bytes'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:694:4: otherlv_7= 'bytes'
                     {
-                    otherlv_7=(Token)match(input,34,FOLLOW_34_in_ruleRepresentation1423); 
+                    otherlv_7=(Token)match(input,34,FOLLOW_34_in_ruleRepresentation1496); 
 
                         	newLeafNode(otherlv_7, grammarAccess.getRepresentationAccess().getBytesKeyword_6_0());
                         
@@ -1546,9 +1614,9 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:665:7: otherlv_8= 'byte'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:699:7: otherlv_8= 'byte'
                     {
-                    otherlv_8=(Token)match(input,35,FOLLOW_35_in_ruleRepresentation1441); 
+                    otherlv_8=(Token)match(input,35,FOLLOW_35_in_ruleRepresentation1514); 
 
                         	newLeafNode(otherlv_8, grammarAccess.getRepresentationAccess().getByteKeyword_6_1());
                         
@@ -1579,7 +1647,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleInterpretation"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:677:1: entryRuleInterpretation returns [EObject current=null] : iv_ruleInterpretation= ruleInterpretation EOF ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:711:1: entryRuleInterpretation returns [EObject current=null] : iv_ruleInterpretation= ruleInterpretation EOF ;
     public final EObject entryRuleInterpretation() throws RecognitionException {
         EObject current = null;
 
@@ -1587,17 +1655,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:678:2: (iv_ruleInterpretation= ruleInterpretation EOF )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:679:2: iv_ruleInterpretation= ruleInterpretation EOF
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:712:2: (iv_ruleInterpretation= ruleInterpretation EOF )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:713:2: iv_ruleInterpretation= ruleInterpretation EOF
             {
              newCompositeNode(grammarAccess.getInterpretationRule()); 
-            pushFollow(FOLLOW_ruleInterpretation_in_entryRuleInterpretation1478);
+            pushFollow(FOLLOW_ruleInterpretation_in_entryRuleInterpretation1551);
             iv_ruleInterpretation=ruleInterpretation();
 
             state._fsp--;
 
              current =iv_ruleInterpretation; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleInterpretation1488); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleInterpretation1561); 
 
             }
 
@@ -1615,7 +1683,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleInterpretation"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:686:1: ruleInterpretation returns [EObject current=null] : (this_Constant_0= ruleConstant | this_PrimitiveInterpretation_1= rulePrimitiveInterpretation | this_Measurement_2= ruleMeasurement | this_InterpretationGroup_3= ruleInterpretationGroup | this_Calculated_4= ruleCalculated ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:720:1: ruleInterpretation returns [EObject current=null] : (this_Constant_0= ruleConstant | this_PrimitiveInterpretation_1= rulePrimitiveInterpretation | this_Measurement_2= ruleMeasurement | this_InterpretationGroup_3= ruleInterpretationGroup | this_Calculated_4= ruleCalculated ) ;
     public final EObject ruleInterpretation() throws RecognitionException {
         EObject current = null;
 
@@ -1633,53 +1701,53 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:689:28: ( (this_Constant_0= ruleConstant | this_PrimitiveInterpretation_1= rulePrimitiveInterpretation | this_Measurement_2= ruleMeasurement | this_InterpretationGroup_3= ruleInterpretationGroup | this_Calculated_4= ruleCalculated ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:690:1: (this_Constant_0= ruleConstant | this_PrimitiveInterpretation_1= rulePrimitiveInterpretation | this_Measurement_2= ruleMeasurement | this_InterpretationGroup_3= ruleInterpretationGroup | this_Calculated_4= ruleCalculated )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:723:28: ( (this_Constant_0= ruleConstant | this_PrimitiveInterpretation_1= rulePrimitiveInterpretation | this_Measurement_2= ruleMeasurement | this_InterpretationGroup_3= ruleInterpretationGroup | this_Calculated_4= ruleCalculated ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:724:1: (this_Constant_0= ruleConstant | this_PrimitiveInterpretation_1= rulePrimitiveInterpretation | this_Measurement_2= ruleMeasurement | this_InterpretationGroup_3= ruleInterpretationGroup | this_Calculated_4= ruleCalculated )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:690:1: (this_Constant_0= ruleConstant | this_PrimitiveInterpretation_1= rulePrimitiveInterpretation | this_Measurement_2= ruleMeasurement | this_InterpretationGroup_3= ruleInterpretationGroup | this_Calculated_4= ruleCalculated )
-            int alt8=5;
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:724:1: (this_Constant_0= ruleConstant | this_PrimitiveInterpretation_1= rulePrimitiveInterpretation | this_Measurement_2= ruleMeasurement | this_InterpretationGroup_3= ruleInterpretationGroup | this_Calculated_4= ruleCalculated )
+            int alt9=5;
             switch ( input.LA(1) ) {
             case 50:
                 {
-                alt8=1;
+                alt9=1;
                 }
                 break;
             case 49:
                 {
-                alt8=2;
+                alt9=2;
                 }
                 break;
             case 42:
                 {
-                alt8=3;
+                alt9=3;
                 }
                 break;
             case 41:
                 {
-                alt8=4;
+                alt9=4;
                 }
                 break;
             case 36:
             case 37:
                 {
-                alt8=5;
+                alt9=5;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 8, 0, input);
+                    new NoViableAltException("", 9, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt8) {
+            switch (alt9) {
                 case 1 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:691:5: this_Constant_0= ruleConstant
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:725:5: this_Constant_0= ruleConstant
                     {
                      
                             newCompositeNode(grammarAccess.getInterpretationAccess().getConstantParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleConstant_in_ruleInterpretation1535);
+                    pushFollow(FOLLOW_ruleConstant_in_ruleInterpretation1608);
                     this_Constant_0=ruleConstant();
 
                     state._fsp--;
@@ -1692,12 +1760,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:701:5: this_PrimitiveInterpretation_1= rulePrimitiveInterpretation
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:735:5: this_PrimitiveInterpretation_1= rulePrimitiveInterpretation
                     {
                      
                             newCompositeNode(grammarAccess.getInterpretationAccess().getPrimitiveInterpretationParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_rulePrimitiveInterpretation_in_ruleInterpretation1562);
+                    pushFollow(FOLLOW_rulePrimitiveInterpretation_in_ruleInterpretation1635);
                     this_PrimitiveInterpretation_1=rulePrimitiveInterpretation();
 
                     state._fsp--;
@@ -1710,12 +1778,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:711:5: this_Measurement_2= ruleMeasurement
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:745:5: this_Measurement_2= ruleMeasurement
                     {
                      
                             newCompositeNode(grammarAccess.getInterpretationAccess().getMeasurementParserRuleCall_2()); 
                         
-                    pushFollow(FOLLOW_ruleMeasurement_in_ruleInterpretation1589);
+                    pushFollow(FOLLOW_ruleMeasurement_in_ruleInterpretation1662);
                     this_Measurement_2=ruleMeasurement();
 
                     state._fsp--;
@@ -1728,12 +1796,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:721:5: this_InterpretationGroup_3= ruleInterpretationGroup
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:755:5: this_InterpretationGroup_3= ruleInterpretationGroup
                     {
                      
                             newCompositeNode(grammarAccess.getInterpretationAccess().getInterpretationGroupParserRuleCall_3()); 
                         
-                    pushFollow(FOLLOW_ruleInterpretationGroup_in_ruleInterpretation1616);
+                    pushFollow(FOLLOW_ruleInterpretationGroup_in_ruleInterpretation1689);
                     this_InterpretationGroup_3=ruleInterpretationGroup();
 
                     state._fsp--;
@@ -1746,12 +1814,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:731:5: this_Calculated_4= ruleCalculated
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:765:5: this_Calculated_4= ruleCalculated
                     {
                      
                             newCompositeNode(grammarAccess.getInterpretationAccess().getCalculatedParserRuleCall_4()); 
                         
-                    pushFollow(FOLLOW_ruleCalculated_in_ruleInterpretation1643);
+                    pushFollow(FOLLOW_ruleCalculated_in_ruleInterpretation1716);
                     this_Calculated_4=ruleCalculated();
 
                     state._fsp--;
@@ -1784,7 +1852,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleCalculated"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:747:1: entryRuleCalculated returns [EObject current=null] : iv_ruleCalculated= ruleCalculated EOF ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:781:1: entryRuleCalculated returns [EObject current=null] : iv_ruleCalculated= ruleCalculated EOF ;
     public final EObject entryRuleCalculated() throws RecognitionException {
         EObject current = null;
 
@@ -1792,17 +1860,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:748:2: (iv_ruleCalculated= ruleCalculated EOF )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:749:2: iv_ruleCalculated= ruleCalculated EOF
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:782:2: (iv_ruleCalculated= ruleCalculated EOF )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:783:2: iv_ruleCalculated= ruleCalculated EOF
             {
              newCompositeNode(grammarAccess.getCalculatedRule()); 
-            pushFollow(FOLLOW_ruleCalculated_in_entryRuleCalculated1678);
+            pushFollow(FOLLOW_ruleCalculated_in_entryRuleCalculated1751);
             iv_ruleCalculated=ruleCalculated();
 
             state._fsp--;
 
              current =iv_ruleCalculated; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleCalculated1688); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleCalculated1761); 
 
             }
 
@@ -1820,7 +1888,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCalculated"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:756:1: ruleCalculated returns [EObject current=null] : ( (otherlv_0= 'calculate' | otherlv_1= 'calculated' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) otherlv_5= 'by' ( (lv_methodName_6_0= RULE_ID ) ) (otherlv_7= ',' ( (lv_methodNameOut_8_0= RULE_ID ) ) )? otherlv_9= 'with' ( (lv_parameter_10_0= ruleParameter ) ) (otherlv_11= ',' ( (lv_parameter_12_0= ruleParameter ) ) )* ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:790:1: ruleCalculated returns [EObject current=null] : ( (otherlv_0= 'calculate' | otherlv_1= 'calculated' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) otherlv_5= 'by' ( (lv_methodName_6_0= RULE_ID ) ) (otherlv_7= ',' ( (lv_methodNameOut_8_0= RULE_ID ) ) )? otherlv_9= 'with' ( (lv_parameter_10_0= ruleParameter ) ) (otherlv_11= ',' ( (lv_parameter_12_0= ruleParameter ) ) )* ) ;
     public final EObject ruleCalculated() throws RecognitionException {
         EObject current = null;
 
@@ -1843,33 +1911,33 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:759:28: ( ( (otherlv_0= 'calculate' | otherlv_1= 'calculated' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) otherlv_5= 'by' ( (lv_methodName_6_0= RULE_ID ) ) (otherlv_7= ',' ( (lv_methodNameOut_8_0= RULE_ID ) ) )? otherlv_9= 'with' ( (lv_parameter_10_0= ruleParameter ) ) (otherlv_11= ',' ( (lv_parameter_12_0= ruleParameter ) ) )* ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:760:1: ( (otherlv_0= 'calculate' | otherlv_1= 'calculated' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) otherlv_5= 'by' ( (lv_methodName_6_0= RULE_ID ) ) (otherlv_7= ',' ( (lv_methodNameOut_8_0= RULE_ID ) ) )? otherlv_9= 'with' ( (lv_parameter_10_0= ruleParameter ) ) (otherlv_11= ',' ( (lv_parameter_12_0= ruleParameter ) ) )* )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:793:28: ( ( (otherlv_0= 'calculate' | otherlv_1= 'calculated' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) otherlv_5= 'by' ( (lv_methodName_6_0= RULE_ID ) ) (otherlv_7= ',' ( (lv_methodNameOut_8_0= RULE_ID ) ) )? otherlv_9= 'with' ( (lv_parameter_10_0= ruleParameter ) ) (otherlv_11= ',' ( (lv_parameter_12_0= ruleParameter ) ) )* ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:794:1: ( (otherlv_0= 'calculate' | otherlv_1= 'calculated' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) otherlv_5= 'by' ( (lv_methodName_6_0= RULE_ID ) ) (otherlv_7= ',' ( (lv_methodNameOut_8_0= RULE_ID ) ) )? otherlv_9= 'with' ( (lv_parameter_10_0= ruleParameter ) ) (otherlv_11= ',' ( (lv_parameter_12_0= ruleParameter ) ) )* )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:760:1: ( (otherlv_0= 'calculate' | otherlv_1= 'calculated' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) otherlv_5= 'by' ( (lv_methodName_6_0= RULE_ID ) ) (otherlv_7= ',' ( (lv_methodNameOut_8_0= RULE_ID ) ) )? otherlv_9= 'with' ( (lv_parameter_10_0= ruleParameter ) ) (otherlv_11= ',' ( (lv_parameter_12_0= ruleParameter ) ) )* )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:760:2: (otherlv_0= 'calculate' | otherlv_1= 'calculated' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) otherlv_5= 'by' ( (lv_methodName_6_0= RULE_ID ) ) (otherlv_7= ',' ( (lv_methodNameOut_8_0= RULE_ID ) ) )? otherlv_9= 'with' ( (lv_parameter_10_0= ruleParameter ) ) (otherlv_11= ',' ( (lv_parameter_12_0= ruleParameter ) ) )*
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:794:1: ( (otherlv_0= 'calculate' | otherlv_1= 'calculated' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) otherlv_5= 'by' ( (lv_methodName_6_0= RULE_ID ) ) (otherlv_7= ',' ( (lv_methodNameOut_8_0= RULE_ID ) ) )? otherlv_9= 'with' ( (lv_parameter_10_0= ruleParameter ) ) (otherlv_11= ',' ( (lv_parameter_12_0= ruleParameter ) ) )* )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:794:2: (otherlv_0= 'calculate' | otherlv_1= 'calculated' ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) otherlv_5= 'by' ( (lv_methodName_6_0= RULE_ID ) ) (otherlv_7= ',' ( (lv_methodNameOut_8_0= RULE_ID ) ) )? otherlv_9= 'with' ( (lv_parameter_10_0= ruleParameter ) ) (otherlv_11= ',' ( (lv_parameter_12_0= ruleParameter ) ) )*
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:760:2: (otherlv_0= 'calculate' | otherlv_1= 'calculated' )
-            int alt9=2;
-            int LA9_0 = input.LA(1);
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:794:2: (otherlv_0= 'calculate' | otherlv_1= 'calculated' )
+            int alt10=2;
+            int LA10_0 = input.LA(1);
 
-            if ( (LA9_0==36) ) {
-                alt9=1;
+            if ( (LA10_0==36) ) {
+                alt10=1;
             }
-            else if ( (LA9_0==37) ) {
-                alt9=2;
+            else if ( (LA10_0==37) ) {
+                alt10=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 9, 0, input);
+                    new NoViableAltException("", 10, 0, input);
 
                 throw nvae;
             }
-            switch (alt9) {
+            switch (alt10) {
                 case 1 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:760:4: otherlv_0= 'calculate'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:794:4: otherlv_0= 'calculate'
                     {
-                    otherlv_0=(Token)match(input,36,FOLLOW_36_in_ruleCalculated1726); 
+                    otherlv_0=(Token)match(input,36,FOLLOW_36_in_ruleCalculated1799); 
 
                         	newLeafNode(otherlv_0, grammarAccess.getCalculatedAccess().getCalculateKeyword_0_0());
                         
@@ -1877,9 +1945,9 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:765:7: otherlv_1= 'calculated'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:799:7: otherlv_1= 'calculated'
                     {
-                    otherlv_1=(Token)match(input,37,FOLLOW_37_in_ruleCalculated1744); 
+                    otherlv_1=(Token)match(input,37,FOLLOW_37_in_ruleCalculated1817); 
 
                         	newLeafNode(otherlv_1, grammarAccess.getCalculatedAccess().getCalculatedKeyword_0_1());
                         
@@ -1889,13 +1957,13 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:769:2: ( (lv_name_2_0= RULE_ID ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:770:1: (lv_name_2_0= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:803:2: ( (lv_name_2_0= RULE_ID ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:804:1: (lv_name_2_0= RULE_ID )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:770:1: (lv_name_2_0= RULE_ID )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:771:3: lv_name_2_0= RULE_ID
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:804:1: (lv_name_2_0= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:805:3: lv_name_2_0= RULE_ID
             {
-            lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleCalculated1762); 
+            lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleCalculated1835); 
 
             			newLeafNode(lv_name_2_0, grammarAccess.getCalculatedAccess().getNameIDTerminalRuleCall_1_0()); 
             		
@@ -1915,22 +1983,22 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,38,FOLLOW_38_in_ruleCalculated1779); 
+            otherlv_3=(Token)match(input,38,FOLLOW_38_in_ruleCalculated1852); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getCalculatedAccess().getAsKeyword_2());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:791:1: ( (otherlv_4= RULE_ID ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:792:1: (otherlv_4= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:825:1: ( (otherlv_4= RULE_ID ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:826:1: (otherlv_4= RULE_ID )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:792:1: (otherlv_4= RULE_ID )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:793:3: otherlv_4= RULE_ID
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:826:1: (otherlv_4= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:827:3: otherlv_4= RULE_ID
             {
 
             			if (current==null) {
             	            current = createModelElement(grammarAccess.getCalculatedRule());
             	        }
                     
-            otherlv_4=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleCalculated1799); 
+            otherlv_4=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleCalculated1872); 
 
             		newLeafNode(otherlv_4, grammarAccess.getCalculatedAccess().getRepresentationRepresentationCrossReference_3_0()); 
             	
@@ -1940,17 +2008,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,33,FOLLOW_33_in_ruleCalculated1811); 
+            otherlv_5=(Token)match(input,33,FOLLOW_33_in_ruleCalculated1884); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getCalculatedAccess().getByKeyword_4());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:808:1: ( (lv_methodName_6_0= RULE_ID ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:809:1: (lv_methodName_6_0= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:842:1: ( (lv_methodName_6_0= RULE_ID ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:843:1: (lv_methodName_6_0= RULE_ID )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:809:1: (lv_methodName_6_0= RULE_ID )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:810:3: lv_methodName_6_0= RULE_ID
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:843:1: (lv_methodName_6_0= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:844:3: lv_methodName_6_0= RULE_ID
             {
-            lv_methodName_6_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleCalculated1828); 
+            lv_methodName_6_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleCalculated1901); 
 
             			newLeafNode(lv_methodName_6_0, grammarAccess.getCalculatedAccess().getMethodNameIDTerminalRuleCall_5_0()); 
             		
@@ -1970,28 +2038,28 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:826:2: (otherlv_7= ',' ( (lv_methodNameOut_8_0= RULE_ID ) ) )?
-            int alt10=2;
-            int LA10_0 = input.LA(1);
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:860:2: (otherlv_7= ',' ( (lv_methodNameOut_8_0= RULE_ID ) ) )?
+            int alt11=2;
+            int LA11_0 = input.LA(1);
 
-            if ( (LA10_0==15) ) {
-                alt10=1;
+            if ( (LA11_0==15) ) {
+                alt11=1;
             }
-            switch (alt10) {
+            switch (alt11) {
                 case 1 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:826:4: otherlv_7= ',' ( (lv_methodNameOut_8_0= RULE_ID ) )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:860:4: otherlv_7= ',' ( (lv_methodNameOut_8_0= RULE_ID ) )
                     {
-                    otherlv_7=(Token)match(input,15,FOLLOW_15_in_ruleCalculated1846); 
+                    otherlv_7=(Token)match(input,15,FOLLOW_15_in_ruleCalculated1919); 
 
                         	newLeafNode(otherlv_7, grammarAccess.getCalculatedAccess().getCommaKeyword_6_0());
                         
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:830:1: ( (lv_methodNameOut_8_0= RULE_ID ) )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:831:1: (lv_methodNameOut_8_0= RULE_ID )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:864:1: ( (lv_methodNameOut_8_0= RULE_ID ) )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:865:1: (lv_methodNameOut_8_0= RULE_ID )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:831:1: (lv_methodNameOut_8_0= RULE_ID )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:832:3: lv_methodNameOut_8_0= RULE_ID
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:865:1: (lv_methodNameOut_8_0= RULE_ID )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:866:3: lv_methodNameOut_8_0= RULE_ID
                     {
-                    lv_methodNameOut_8_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleCalculated1863); 
+                    lv_methodNameOut_8_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleCalculated1936); 
 
                     			newLeafNode(lv_methodNameOut_8_0, grammarAccess.getCalculatedAccess().getMethodNameOutIDTerminalRuleCall_6_1_0()); 
                     		
@@ -2017,20 +2085,20 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_9=(Token)match(input,23,FOLLOW_23_in_ruleCalculated1882); 
+            otherlv_9=(Token)match(input,23,FOLLOW_23_in_ruleCalculated1955); 
 
                 	newLeafNode(otherlv_9, grammarAccess.getCalculatedAccess().getWithKeyword_7());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:852:1: ( (lv_parameter_10_0= ruleParameter ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:853:1: (lv_parameter_10_0= ruleParameter )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:886:1: ( (lv_parameter_10_0= ruleParameter ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:887:1: (lv_parameter_10_0= ruleParameter )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:853:1: (lv_parameter_10_0= ruleParameter )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:854:3: lv_parameter_10_0= ruleParameter
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:887:1: (lv_parameter_10_0= ruleParameter )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:888:3: lv_parameter_10_0= ruleParameter
             {
              
             	        newCompositeNode(grammarAccess.getCalculatedAccess().getParameterParameterParserRuleCall_8_0()); 
             	    
-            pushFollow(FOLLOW_ruleParameter_in_ruleCalculated1903);
+            pushFollow(FOLLOW_ruleParameter_in_ruleCalculated1976);
             lv_parameter_10_0=ruleParameter();
 
             state._fsp--;
@@ -2052,35 +2120,35 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:870:2: (otherlv_11= ',' ( (lv_parameter_12_0= ruleParameter ) ) )*
-            loop11:
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:904:2: (otherlv_11= ',' ( (lv_parameter_12_0= ruleParameter ) ) )*
+            loop12:
             do {
-                int alt11=2;
-                int LA11_0 = input.LA(1);
+                int alt12=2;
+                int LA12_0 = input.LA(1);
 
-                if ( (LA11_0==15) ) {
-                    alt11=1;
+                if ( (LA12_0==15) ) {
+                    alt12=1;
                 }
 
 
-                switch (alt11) {
+                switch (alt12) {
             	case 1 :
-            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:870:4: otherlv_11= ',' ( (lv_parameter_12_0= ruleParameter ) )
+            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:904:4: otherlv_11= ',' ( (lv_parameter_12_0= ruleParameter ) )
             	    {
-            	    otherlv_11=(Token)match(input,15,FOLLOW_15_in_ruleCalculated1916); 
+            	    otherlv_11=(Token)match(input,15,FOLLOW_15_in_ruleCalculated1989); 
 
             	        	newLeafNode(otherlv_11, grammarAccess.getCalculatedAccess().getCommaKeyword_9_0());
             	        
-            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:874:1: ( (lv_parameter_12_0= ruleParameter ) )
-            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:875:1: (lv_parameter_12_0= ruleParameter )
+            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:908:1: ( (lv_parameter_12_0= ruleParameter ) )
+            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:909:1: (lv_parameter_12_0= ruleParameter )
             	    {
-            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:875:1: (lv_parameter_12_0= ruleParameter )
-            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:876:3: lv_parameter_12_0= ruleParameter
+            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:909:1: (lv_parameter_12_0= ruleParameter )
+            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:910:3: lv_parameter_12_0= ruleParameter
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getCalculatedAccess().getParameterParameterParserRuleCall_9_1_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleParameter_in_ruleCalculated1937);
+            	    pushFollow(FOLLOW_ruleParameter_in_ruleCalculated2010);
             	    lv_parameter_12_0=ruleParameter();
 
             	    state._fsp--;
@@ -2107,7 +2175,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop11;
+            	    break loop12;
                 }
             } while (true);
 
@@ -2132,7 +2200,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleParameter"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:900:1: entryRuleParameter returns [EObject current=null] : iv_ruleParameter= ruleParameter EOF ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:934:1: entryRuleParameter returns [EObject current=null] : iv_ruleParameter= ruleParameter EOF ;
     public final EObject entryRuleParameter() throws RecognitionException {
         EObject current = null;
 
@@ -2140,17 +2208,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:901:2: (iv_ruleParameter= ruleParameter EOF )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:902:2: iv_ruleParameter= ruleParameter EOF
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:935:2: (iv_ruleParameter= ruleParameter EOF )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:936:2: iv_ruleParameter= ruleParameter EOF
             {
              newCompositeNode(grammarAccess.getParameterRule()); 
-            pushFollow(FOLLOW_ruleParameter_in_entryRuleParameter1975);
+            pushFollow(FOLLOW_ruleParameter_in_entryRuleParameter2048);
             iv_ruleParameter=ruleParameter();
 
             state._fsp--;
 
              current =iv_ruleParameter; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleParameter1985); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleParameter2058); 
 
             }
 
@@ -2168,7 +2236,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleParameter"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:909:1: ruleParameter returns [EObject current=null] : (otherlv_0= '(' ( (otherlv_1= RULE_ID ) ) (otherlv_2= 'as' ( (lv_argumentType_3_0= ruleArgumentType ) ) )? otherlv_4= ')' ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:943:1: ruleParameter returns [EObject current=null] : (otherlv_0= '(' ( (otherlv_1= RULE_ID ) ) (otherlv_2= 'as' ( (lv_argumentType_3_0= ruleArgumentType ) ) )? otherlv_4= ')' ) ;
     public final EObject ruleParameter() throws RecognitionException {
         EObject current = null;
 
@@ -2182,28 +2250,28 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:912:28: ( (otherlv_0= '(' ( (otherlv_1= RULE_ID ) ) (otherlv_2= 'as' ( (lv_argumentType_3_0= ruleArgumentType ) ) )? otherlv_4= ')' ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:913:1: (otherlv_0= '(' ( (otherlv_1= RULE_ID ) ) (otherlv_2= 'as' ( (lv_argumentType_3_0= ruleArgumentType ) ) )? otherlv_4= ')' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:946:28: ( (otherlv_0= '(' ( (otherlv_1= RULE_ID ) ) (otherlv_2= 'as' ( (lv_argumentType_3_0= ruleArgumentType ) ) )? otherlv_4= ')' ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:947:1: (otherlv_0= '(' ( (otherlv_1= RULE_ID ) ) (otherlv_2= 'as' ( (lv_argumentType_3_0= ruleArgumentType ) ) )? otherlv_4= ')' )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:913:1: (otherlv_0= '(' ( (otherlv_1= RULE_ID ) ) (otherlv_2= 'as' ( (lv_argumentType_3_0= ruleArgumentType ) ) )? otherlv_4= ')' )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:913:3: otherlv_0= '(' ( (otherlv_1= RULE_ID ) ) (otherlv_2= 'as' ( (lv_argumentType_3_0= ruleArgumentType ) ) )? otherlv_4= ')'
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:947:1: (otherlv_0= '(' ( (otherlv_1= RULE_ID ) ) (otherlv_2= 'as' ( (lv_argumentType_3_0= ruleArgumentType ) ) )? otherlv_4= ')' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:947:3: otherlv_0= '(' ( (otherlv_1= RULE_ID ) ) (otherlv_2= 'as' ( (lv_argumentType_3_0= ruleArgumentType ) ) )? otherlv_4= ')'
             {
-            otherlv_0=(Token)match(input,39,FOLLOW_39_in_ruleParameter2022); 
+            otherlv_0=(Token)match(input,39,FOLLOW_39_in_ruleParameter2095); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getParameterAccess().getLeftParenthesisKeyword_0());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:917:1: ( (otherlv_1= RULE_ID ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:918:1: (otherlv_1= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:951:1: ( (otherlv_1= RULE_ID ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:952:1: (otherlv_1= RULE_ID )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:918:1: (otherlv_1= RULE_ID )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:919:3: otherlv_1= RULE_ID
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:952:1: (otherlv_1= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:953:3: otherlv_1= RULE_ID
             {
 
             			if (current==null) {
             	            current = createModelElement(grammarAccess.getParameterRule());
             	        }
                     
-            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleParameter2042); 
+            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleParameter2115); 
 
             		newLeafNode(otherlv_1, grammarAccess.getParameterAccess().getInterpretationInterpretationCrossReference_1_0()); 
             	
@@ -2213,31 +2281,31 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:930:2: (otherlv_2= 'as' ( (lv_argumentType_3_0= ruleArgumentType ) ) )?
-            int alt12=2;
-            int LA12_0 = input.LA(1);
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:964:2: (otherlv_2= 'as' ( (lv_argumentType_3_0= ruleArgumentType ) ) )?
+            int alt13=2;
+            int LA13_0 = input.LA(1);
 
-            if ( (LA12_0==38) ) {
-                alt12=1;
+            if ( (LA13_0==38) ) {
+                alt13=1;
             }
-            switch (alt12) {
+            switch (alt13) {
                 case 1 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:930:4: otherlv_2= 'as' ( (lv_argumentType_3_0= ruleArgumentType ) )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:964:4: otherlv_2= 'as' ( (lv_argumentType_3_0= ruleArgumentType ) )
                     {
-                    otherlv_2=(Token)match(input,38,FOLLOW_38_in_ruleParameter2055); 
+                    otherlv_2=(Token)match(input,38,FOLLOW_38_in_ruleParameter2128); 
 
                         	newLeafNode(otherlv_2, grammarAccess.getParameterAccess().getAsKeyword_2_0());
                         
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:934:1: ( (lv_argumentType_3_0= ruleArgumentType ) )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:935:1: (lv_argumentType_3_0= ruleArgumentType )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:968:1: ( (lv_argumentType_3_0= ruleArgumentType ) )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:969:1: (lv_argumentType_3_0= ruleArgumentType )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:935:1: (lv_argumentType_3_0= ruleArgumentType )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:936:3: lv_argumentType_3_0= ruleArgumentType
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:969:1: (lv_argumentType_3_0= ruleArgumentType )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:970:3: lv_argumentType_3_0= ruleArgumentType
                     {
                      
                     	        newCompositeNode(grammarAccess.getParameterAccess().getArgumentTypeArgumentTypeEnumRuleCall_2_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleArgumentType_in_ruleParameter2076);
+                    pushFollow(FOLLOW_ruleArgumentType_in_ruleParameter2149);
                     lv_argumentType_3_0=ruleArgumentType();
 
                     state._fsp--;
@@ -2265,7 +2333,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,40,FOLLOW_40_in_ruleParameter2090); 
+            otherlv_4=(Token)match(input,40,FOLLOW_40_in_ruleParameter2163); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getParameterAccess().getRightParenthesisKeyword_3());
                 
@@ -2290,7 +2358,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleInterpretationGroup"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:964:1: entryRuleInterpretationGroup returns [EObject current=null] : iv_ruleInterpretationGroup= ruleInterpretationGroup EOF ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:998:1: entryRuleInterpretationGroup returns [EObject current=null] : iv_ruleInterpretationGroup= ruleInterpretationGroup EOF ;
     public final EObject entryRuleInterpretationGroup() throws RecognitionException {
         EObject current = null;
 
@@ -2298,17 +2366,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:965:2: (iv_ruleInterpretationGroup= ruleInterpretationGroup EOF )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:966:2: iv_ruleInterpretationGroup= ruleInterpretationGroup EOF
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:999:2: (iv_ruleInterpretationGroup= ruleInterpretationGroup EOF )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1000:2: iv_ruleInterpretationGroup= ruleInterpretationGroup EOF
             {
              newCompositeNode(grammarAccess.getInterpretationGroupRule()); 
-            pushFollow(FOLLOW_ruleInterpretationGroup_in_entryRuleInterpretationGroup2126);
+            pushFollow(FOLLOW_ruleInterpretationGroup_in_entryRuleInterpretationGroup2199);
             iv_ruleInterpretationGroup=ruleInterpretationGroup();
 
             state._fsp--;
 
              current =iv_ruleInterpretationGroup; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleInterpretationGroup2136); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleInterpretationGroup2209); 
 
             }
 
@@ -2326,7 +2394,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleInterpretationGroup"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:973:1: ruleInterpretationGroup returns [EObject current=null] : (otherlv_0= 'group' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_interpretations_3_0= ruleInterpretation ) )* otherlv_4= '}' ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1007:1: ruleInterpretationGroup returns [EObject current=null] : (otherlv_0= 'group' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_interpretations_3_0= ruleInterpretation ) )* otherlv_4= '}' ) ;
     public final EObject ruleInterpretationGroup() throws RecognitionException {
         EObject current = null;
 
@@ -2340,23 +2408,23 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:976:28: ( (otherlv_0= 'group' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_interpretations_3_0= ruleInterpretation ) )* otherlv_4= '}' ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:977:1: (otherlv_0= 'group' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_interpretations_3_0= ruleInterpretation ) )* otherlv_4= '}' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1010:28: ( (otherlv_0= 'group' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_interpretations_3_0= ruleInterpretation ) )* otherlv_4= '}' ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1011:1: (otherlv_0= 'group' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_interpretations_3_0= ruleInterpretation ) )* otherlv_4= '}' )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:977:1: (otherlv_0= 'group' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_interpretations_3_0= ruleInterpretation ) )* otherlv_4= '}' )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:977:3: otherlv_0= 'group' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_interpretations_3_0= ruleInterpretation ) )* otherlv_4= '}'
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1011:1: (otherlv_0= 'group' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_interpretations_3_0= ruleInterpretation ) )* otherlv_4= '}' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1011:3: otherlv_0= 'group' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_interpretations_3_0= ruleInterpretation ) )* otherlv_4= '}'
             {
-            otherlv_0=(Token)match(input,41,FOLLOW_41_in_ruleInterpretationGroup2173); 
+            otherlv_0=(Token)match(input,41,FOLLOW_41_in_ruleInterpretationGroup2246); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getInterpretationGroupAccess().getGroupKeyword_0());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:981:1: ( (lv_name_1_0= RULE_ID ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:982:1: (lv_name_1_0= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1015:1: ( (lv_name_1_0= RULE_ID ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1016:1: (lv_name_1_0= RULE_ID )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:982:1: (lv_name_1_0= RULE_ID )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:983:3: lv_name_1_0= RULE_ID
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1016:1: (lv_name_1_0= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1017:3: lv_name_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleInterpretationGroup2190); 
+            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleInterpretationGroup2263); 
 
             			newLeafNode(lv_name_1_0, grammarAccess.getInterpretationGroupAccess().getNameIDTerminalRuleCall_1_0()); 
             		
@@ -2376,32 +2444,32 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,12,FOLLOW_12_in_ruleInterpretationGroup2207); 
+            otherlv_2=(Token)match(input,12,FOLLOW_12_in_ruleInterpretationGroup2280); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getInterpretationGroupAccess().getLeftCurlyBracketKeyword_2());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1003:1: ( (lv_interpretations_3_0= ruleInterpretation ) )*
-            loop13:
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1037:1: ( (lv_interpretations_3_0= ruleInterpretation ) )*
+            loop14:
             do {
-                int alt13=2;
-                int LA13_0 = input.LA(1);
+                int alt14=2;
+                int LA14_0 = input.LA(1);
 
-                if ( ((LA13_0>=36 && LA13_0<=37)||(LA13_0>=41 && LA13_0<=42)||(LA13_0>=49 && LA13_0<=50)) ) {
-                    alt13=1;
+                if ( ((LA14_0>=36 && LA14_0<=37)||(LA14_0>=41 && LA14_0<=42)||(LA14_0>=49 && LA14_0<=50)) ) {
+                    alt14=1;
                 }
 
 
-                switch (alt13) {
+                switch (alt14) {
             	case 1 :
-            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1004:1: (lv_interpretations_3_0= ruleInterpretation )
+            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1038:1: (lv_interpretations_3_0= ruleInterpretation )
             	    {
-            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1004:1: (lv_interpretations_3_0= ruleInterpretation )
-            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1005:3: lv_interpretations_3_0= ruleInterpretation
+            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1038:1: (lv_interpretations_3_0= ruleInterpretation )
+            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1039:3: lv_interpretations_3_0= ruleInterpretation
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getInterpretationGroupAccess().getInterpretationsInterpretationParserRuleCall_3_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleInterpretation_in_ruleInterpretationGroup2228);
+            	    pushFollow(FOLLOW_ruleInterpretation_in_ruleInterpretationGroup2301);
             	    lv_interpretations_3_0=ruleInterpretation();
 
             	    state._fsp--;
@@ -2425,11 +2493,11 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop13;
+            	    break loop14;
                 }
             } while (true);
 
-            otherlv_4=(Token)match(input,13,FOLLOW_13_in_ruleInterpretationGroup2241); 
+            otherlv_4=(Token)match(input,13,FOLLOW_13_in_ruleInterpretationGroup2314); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getInterpretationGroupAccess().getRightCurlyBracketKeyword_4());
                 
@@ -2454,7 +2522,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMeasurement"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1033:1: entryRuleMeasurement returns [EObject current=null] : iv_ruleMeasurement= ruleMeasurement EOF ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1067:1: entryRuleMeasurement returns [EObject current=null] : iv_ruleMeasurement= ruleMeasurement EOF ;
     public final EObject entryRuleMeasurement() throws RecognitionException {
         EObject current = null;
 
@@ -2462,17 +2530,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1034:2: (iv_ruleMeasurement= ruleMeasurement EOF )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1035:2: iv_ruleMeasurement= ruleMeasurement EOF
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1068:2: (iv_ruleMeasurement= ruleMeasurement EOF )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1069:2: iv_ruleMeasurement= ruleMeasurement EOF
             {
              newCompositeNode(grammarAccess.getMeasurementRule()); 
-            pushFollow(FOLLOW_ruleMeasurement_in_entryRuleMeasurement2277);
+            pushFollow(FOLLOW_ruleMeasurement_in_entryRuleMeasurement2350);
             iv_ruleMeasurement=ruleMeasurement();
 
             state._fsp--;
 
              current =iv_ruleMeasurement; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleMeasurement2287); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMeasurement2360); 
 
             }
 
@@ -2490,7 +2558,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMeasurement"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1042:1: ruleMeasurement returns [EObject current=null] : (otherlv_0= 'measurement' otherlv_1= 'of' ( (lv_quantity_2_0= ruleQuantity ) ) ( (lv_name_3_0= RULE_ID ) ) otherlv_4= 'in' ( (lv_scale_5_0= ruleDOUBLE ) )? ( (lv_unit_6_0= RULE_STRING ) ) otherlv_7= 'as' ( (otherlv_8= RULE_ID ) ) ( (lv_constraints_9_0= ruleMeasurementConstraint ) )* ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1076:1: ruleMeasurement returns [EObject current=null] : (otherlv_0= 'measurement' otherlv_1= 'of' ( (lv_quantity_2_0= ruleQuantity ) ) ( (lv_name_3_0= RULE_ID ) ) otherlv_4= 'in' ( (lv_scale_5_0= ruleDOUBLE ) )? ( (lv_unit_6_0= RULE_STRING ) ) otherlv_7= 'as' ( (otherlv_8= RULE_ID ) ) ( (lv_constraints_9_0= ruleMeasurementConstraint ) )* ) ;
     public final EObject ruleMeasurement() throws RecognitionException {
         EObject current = null;
 
@@ -2511,30 +2579,30 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1045:28: ( (otherlv_0= 'measurement' otherlv_1= 'of' ( (lv_quantity_2_0= ruleQuantity ) ) ( (lv_name_3_0= RULE_ID ) ) otherlv_4= 'in' ( (lv_scale_5_0= ruleDOUBLE ) )? ( (lv_unit_6_0= RULE_STRING ) ) otherlv_7= 'as' ( (otherlv_8= RULE_ID ) ) ( (lv_constraints_9_0= ruleMeasurementConstraint ) )* ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1046:1: (otherlv_0= 'measurement' otherlv_1= 'of' ( (lv_quantity_2_0= ruleQuantity ) ) ( (lv_name_3_0= RULE_ID ) ) otherlv_4= 'in' ( (lv_scale_5_0= ruleDOUBLE ) )? ( (lv_unit_6_0= RULE_STRING ) ) otherlv_7= 'as' ( (otherlv_8= RULE_ID ) ) ( (lv_constraints_9_0= ruleMeasurementConstraint ) )* )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1079:28: ( (otherlv_0= 'measurement' otherlv_1= 'of' ( (lv_quantity_2_0= ruleQuantity ) ) ( (lv_name_3_0= RULE_ID ) ) otherlv_4= 'in' ( (lv_scale_5_0= ruleDOUBLE ) )? ( (lv_unit_6_0= RULE_STRING ) ) otherlv_7= 'as' ( (otherlv_8= RULE_ID ) ) ( (lv_constraints_9_0= ruleMeasurementConstraint ) )* ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1080:1: (otherlv_0= 'measurement' otherlv_1= 'of' ( (lv_quantity_2_0= ruleQuantity ) ) ( (lv_name_3_0= RULE_ID ) ) otherlv_4= 'in' ( (lv_scale_5_0= ruleDOUBLE ) )? ( (lv_unit_6_0= RULE_STRING ) ) otherlv_7= 'as' ( (otherlv_8= RULE_ID ) ) ( (lv_constraints_9_0= ruleMeasurementConstraint ) )* )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1046:1: (otherlv_0= 'measurement' otherlv_1= 'of' ( (lv_quantity_2_0= ruleQuantity ) ) ( (lv_name_3_0= RULE_ID ) ) otherlv_4= 'in' ( (lv_scale_5_0= ruleDOUBLE ) )? ( (lv_unit_6_0= RULE_STRING ) ) otherlv_7= 'as' ( (otherlv_8= RULE_ID ) ) ( (lv_constraints_9_0= ruleMeasurementConstraint ) )* )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1046:3: otherlv_0= 'measurement' otherlv_1= 'of' ( (lv_quantity_2_0= ruleQuantity ) ) ( (lv_name_3_0= RULE_ID ) ) otherlv_4= 'in' ( (lv_scale_5_0= ruleDOUBLE ) )? ( (lv_unit_6_0= RULE_STRING ) ) otherlv_7= 'as' ( (otherlv_8= RULE_ID ) ) ( (lv_constraints_9_0= ruleMeasurementConstraint ) )*
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1080:1: (otherlv_0= 'measurement' otherlv_1= 'of' ( (lv_quantity_2_0= ruleQuantity ) ) ( (lv_name_3_0= RULE_ID ) ) otherlv_4= 'in' ( (lv_scale_5_0= ruleDOUBLE ) )? ( (lv_unit_6_0= RULE_STRING ) ) otherlv_7= 'as' ( (otherlv_8= RULE_ID ) ) ( (lv_constraints_9_0= ruleMeasurementConstraint ) )* )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1080:3: otherlv_0= 'measurement' otherlv_1= 'of' ( (lv_quantity_2_0= ruleQuantity ) ) ( (lv_name_3_0= RULE_ID ) ) otherlv_4= 'in' ( (lv_scale_5_0= ruleDOUBLE ) )? ( (lv_unit_6_0= RULE_STRING ) ) otherlv_7= 'as' ( (otherlv_8= RULE_ID ) ) ( (lv_constraints_9_0= ruleMeasurementConstraint ) )*
             {
-            otherlv_0=(Token)match(input,42,FOLLOW_42_in_ruleMeasurement2324); 
+            otherlv_0=(Token)match(input,42,FOLLOW_42_in_ruleMeasurement2397); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getMeasurementAccess().getMeasurementKeyword_0());
                 
-            otherlv_1=(Token)match(input,43,FOLLOW_43_in_ruleMeasurement2336); 
+            otherlv_1=(Token)match(input,43,FOLLOW_43_in_ruleMeasurement2409); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getMeasurementAccess().getOfKeyword_1());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1054:1: ( (lv_quantity_2_0= ruleQuantity ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1055:1: (lv_quantity_2_0= ruleQuantity )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1088:1: ( (lv_quantity_2_0= ruleQuantity ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1089:1: (lv_quantity_2_0= ruleQuantity )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1055:1: (lv_quantity_2_0= ruleQuantity )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1056:3: lv_quantity_2_0= ruleQuantity
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1089:1: (lv_quantity_2_0= ruleQuantity )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1090:3: lv_quantity_2_0= ruleQuantity
             {
              
             	        newCompositeNode(grammarAccess.getMeasurementAccess().getQuantityQuantityEnumRuleCall_2_0()); 
             	    
-            pushFollow(FOLLOW_ruleQuantity_in_ruleMeasurement2357);
+            pushFollow(FOLLOW_ruleQuantity_in_ruleMeasurement2430);
             lv_quantity_2_0=ruleQuantity();
 
             state._fsp--;
@@ -2556,13 +2624,13 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1072:2: ( (lv_name_3_0= RULE_ID ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1073:1: (lv_name_3_0= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1106:2: ( (lv_name_3_0= RULE_ID ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1107:1: (lv_name_3_0= RULE_ID )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1073:1: (lv_name_3_0= RULE_ID )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1074:3: lv_name_3_0= RULE_ID
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1107:1: (lv_name_3_0= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1108:3: lv_name_3_0= RULE_ID
             {
-            lv_name_3_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleMeasurement2374); 
+            lv_name_3_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleMeasurement2447); 
 
             			newLeafNode(lv_name_3_0, grammarAccess.getMeasurementAccess().getNameIDTerminalRuleCall_3_0()); 
             		
@@ -2582,28 +2650,28 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,44,FOLLOW_44_in_ruleMeasurement2391); 
+            otherlv_4=(Token)match(input,44,FOLLOW_44_in_ruleMeasurement2464); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getMeasurementAccess().getInKeyword_4());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1094:1: ( (lv_scale_5_0= ruleDOUBLE ) )?
-            int alt14=2;
-            int LA14_0 = input.LA(1);
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1128:1: ( (lv_scale_5_0= ruleDOUBLE ) )?
+            int alt15=2;
+            int LA15_0 = input.LA(1);
 
-            if ( (LA14_0==RULE_INT) ) {
-                alt14=1;
+            if ( (LA15_0==RULE_INT) ) {
+                alt15=1;
             }
-            switch (alt14) {
+            switch (alt15) {
                 case 1 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1095:1: (lv_scale_5_0= ruleDOUBLE )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1129:1: (lv_scale_5_0= ruleDOUBLE )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1095:1: (lv_scale_5_0= ruleDOUBLE )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1096:3: lv_scale_5_0= ruleDOUBLE
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1129:1: (lv_scale_5_0= ruleDOUBLE )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1130:3: lv_scale_5_0= ruleDOUBLE
                     {
                      
                     	        newCompositeNode(grammarAccess.getMeasurementAccess().getScaleDOUBLEParserRuleCall_5_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleDOUBLE_in_ruleMeasurement2412);
+                    pushFollow(FOLLOW_ruleDOUBLE_in_ruleMeasurement2485);
                     lv_scale_5_0=ruleDOUBLE();
 
                     state._fsp--;
@@ -2628,13 +2696,13 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1112:3: ( (lv_unit_6_0= RULE_STRING ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1113:1: (lv_unit_6_0= RULE_STRING )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1146:3: ( (lv_unit_6_0= RULE_STRING ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1147:1: (lv_unit_6_0= RULE_STRING )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1113:1: (lv_unit_6_0= RULE_STRING )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1114:3: lv_unit_6_0= RULE_STRING
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1147:1: (lv_unit_6_0= RULE_STRING )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1148:3: lv_unit_6_0= RULE_STRING
             {
-            lv_unit_6_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleMeasurement2430); 
+            lv_unit_6_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleMeasurement2503); 
 
             			newLeafNode(lv_unit_6_0, grammarAccess.getMeasurementAccess().getUnitSTRINGTerminalRuleCall_6_0()); 
             		
@@ -2654,22 +2722,22 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,38,FOLLOW_38_in_ruleMeasurement2447); 
+            otherlv_7=(Token)match(input,38,FOLLOW_38_in_ruleMeasurement2520); 
 
                 	newLeafNode(otherlv_7, grammarAccess.getMeasurementAccess().getAsKeyword_7());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1134:1: ( (otherlv_8= RULE_ID ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1135:1: (otherlv_8= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1168:1: ( (otherlv_8= RULE_ID ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1169:1: (otherlv_8= RULE_ID )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1135:1: (otherlv_8= RULE_ID )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1136:3: otherlv_8= RULE_ID
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1169:1: (otherlv_8= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1170:3: otherlv_8= RULE_ID
             {
 
             			if (current==null) {
             	            current = createModelElement(grammarAccess.getMeasurementRule());
             	        }
                     
-            otherlv_8=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleMeasurement2467); 
+            otherlv_8=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleMeasurement2540); 
 
             		newLeafNode(otherlv_8, grammarAccess.getMeasurementAccess().getRepresentationRepresentationCrossReference_8_0()); 
             	
@@ -2679,28 +2747,28 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1147:2: ( (lv_constraints_9_0= ruleMeasurementConstraint ) )*
-            loop15:
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1181:2: ( (lv_constraints_9_0= ruleMeasurementConstraint ) )*
+            loop16:
             do {
-                int alt15=2;
-                int LA15_0 = input.LA(1);
+                int alt16=2;
+                int LA16_0 = input.LA(1);
 
-                if ( (LA15_0==23||LA15_0==45) ) {
-                    alt15=1;
+                if ( (LA16_0==23||LA16_0==45) ) {
+                    alt16=1;
                 }
 
 
-                switch (alt15) {
+                switch (alt16) {
             	case 1 :
-            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1148:1: (lv_constraints_9_0= ruleMeasurementConstraint )
+            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1182:1: (lv_constraints_9_0= ruleMeasurementConstraint )
             	    {
-            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1148:1: (lv_constraints_9_0= ruleMeasurementConstraint )
-            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1149:3: lv_constraints_9_0= ruleMeasurementConstraint
+            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1182:1: (lv_constraints_9_0= ruleMeasurementConstraint )
+            	    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1183:3: lv_constraints_9_0= ruleMeasurementConstraint
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getMeasurementAccess().getConstraintsMeasurementConstraintParserRuleCall_9_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleMeasurementConstraint_in_ruleMeasurement2488);
+            	    pushFollow(FOLLOW_ruleMeasurementConstraint_in_ruleMeasurement2561);
             	    lv_constraints_9_0=ruleMeasurementConstraint();
 
             	    state._fsp--;
@@ -2724,7 +2792,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop15;
+            	    break loop16;
                 }
             } while (true);
 
@@ -2749,7 +2817,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMeasurementConstraint"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1173:1: entryRuleMeasurementConstraint returns [EObject current=null] : iv_ruleMeasurementConstraint= ruleMeasurementConstraint EOF ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1207:1: entryRuleMeasurementConstraint returns [EObject current=null] : iv_ruleMeasurementConstraint= ruleMeasurementConstraint EOF ;
     public final EObject entryRuleMeasurementConstraint() throws RecognitionException {
         EObject current = null;
 
@@ -2757,17 +2825,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1174:2: (iv_ruleMeasurementConstraint= ruleMeasurementConstraint EOF )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1175:2: iv_ruleMeasurementConstraint= ruleMeasurementConstraint EOF
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1208:2: (iv_ruleMeasurementConstraint= ruleMeasurementConstraint EOF )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1209:2: iv_ruleMeasurementConstraint= ruleMeasurementConstraint EOF
             {
              newCompositeNode(grammarAccess.getMeasurementConstraintRule()); 
-            pushFollow(FOLLOW_ruleMeasurementConstraint_in_entryRuleMeasurementConstraint2525);
+            pushFollow(FOLLOW_ruleMeasurementConstraint_in_entryRuleMeasurementConstraint2598);
             iv_ruleMeasurementConstraint=ruleMeasurementConstraint();
 
             state._fsp--;
 
              current =iv_ruleMeasurementConstraint; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleMeasurementConstraint2535); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMeasurementConstraint2608); 
 
             }
 
@@ -2785,7 +2853,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMeasurementConstraint"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1182:1: ruleMeasurementConstraint returns [EObject current=null] : (this_MeasurementInRange_0= ruleMeasurementInRange | this_MeasurementAdaption_1= ruleMeasurementAdaption ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1216:1: ruleMeasurementConstraint returns [EObject current=null] : (this_MeasurementInRange_0= ruleMeasurementInRange | this_MeasurementAdaption_1= ruleMeasurementAdaption ) ;
     public final EObject ruleMeasurementConstraint() throws RecognitionException {
         EObject current = null;
 
@@ -2797,33 +2865,33 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1185:28: ( (this_MeasurementInRange_0= ruleMeasurementInRange | this_MeasurementAdaption_1= ruleMeasurementAdaption ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1186:1: (this_MeasurementInRange_0= ruleMeasurementInRange | this_MeasurementAdaption_1= ruleMeasurementAdaption )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1219:28: ( (this_MeasurementInRange_0= ruleMeasurementInRange | this_MeasurementAdaption_1= ruleMeasurementAdaption ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1220:1: (this_MeasurementInRange_0= ruleMeasurementInRange | this_MeasurementAdaption_1= ruleMeasurementAdaption )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1186:1: (this_MeasurementInRange_0= ruleMeasurementInRange | this_MeasurementAdaption_1= ruleMeasurementAdaption )
-            int alt16=2;
-            int LA16_0 = input.LA(1);
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1220:1: (this_MeasurementInRange_0= ruleMeasurementInRange | this_MeasurementAdaption_1= ruleMeasurementAdaption )
+            int alt17=2;
+            int LA17_0 = input.LA(1);
 
-            if ( (LA16_0==45) ) {
-                alt16=1;
+            if ( (LA17_0==45) ) {
+                alt17=1;
             }
-            else if ( (LA16_0==23) ) {
-                alt16=2;
+            else if ( (LA17_0==23) ) {
+                alt17=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 16, 0, input);
+                    new NoViableAltException("", 17, 0, input);
 
                 throw nvae;
             }
-            switch (alt16) {
+            switch (alt17) {
                 case 1 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1187:5: this_MeasurementInRange_0= ruleMeasurementInRange
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1221:5: this_MeasurementInRange_0= ruleMeasurementInRange
                     {
                      
                             newCompositeNode(grammarAccess.getMeasurementConstraintAccess().getMeasurementInRangeParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_ruleMeasurementInRange_in_ruleMeasurementConstraint2582);
+                    pushFollow(FOLLOW_ruleMeasurementInRange_in_ruleMeasurementConstraint2655);
                     this_MeasurementInRange_0=ruleMeasurementInRange();
 
                     state._fsp--;
@@ -2836,12 +2904,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1197:5: this_MeasurementAdaption_1= ruleMeasurementAdaption
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1231:5: this_MeasurementAdaption_1= ruleMeasurementAdaption
                     {
                      
                             newCompositeNode(grammarAccess.getMeasurementConstraintAccess().getMeasurementAdaptionParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_ruleMeasurementAdaption_in_ruleMeasurementConstraint2609);
+                    pushFollow(FOLLOW_ruleMeasurementAdaption_in_ruleMeasurementConstraint2682);
                     this_MeasurementAdaption_1=ruleMeasurementAdaption();
 
                     state._fsp--;
@@ -2874,7 +2942,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMeasurementInRange"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1213:1: entryRuleMeasurementInRange returns [EObject current=null] : iv_ruleMeasurementInRange= ruleMeasurementInRange EOF ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1247:1: entryRuleMeasurementInRange returns [EObject current=null] : iv_ruleMeasurementInRange= ruleMeasurementInRange EOF ;
     public final EObject entryRuleMeasurementInRange() throws RecognitionException {
         EObject current = null;
 
@@ -2882,17 +2950,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1214:2: (iv_ruleMeasurementInRange= ruleMeasurementInRange EOF )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1215:2: iv_ruleMeasurementInRange= ruleMeasurementInRange EOF
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1248:2: (iv_ruleMeasurementInRange= ruleMeasurementInRange EOF )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1249:2: iv_ruleMeasurementInRange= ruleMeasurementInRange EOF
             {
              newCompositeNode(grammarAccess.getMeasurementInRangeRule()); 
-            pushFollow(FOLLOW_ruleMeasurementInRange_in_entryRuleMeasurementInRange2644);
+            pushFollow(FOLLOW_ruleMeasurementInRange_in_entryRuleMeasurementInRange2717);
             iv_ruleMeasurementInRange=ruleMeasurementInRange();
 
             state._fsp--;
 
              current =iv_ruleMeasurementInRange; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleMeasurementInRange2654); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMeasurementInRange2727); 
 
             }
 
@@ -2910,7 +2978,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMeasurementInRange"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1222:1: ruleMeasurementInRange returns [EObject current=null] : (otherlv_0= 'from' ( (lv_lowerBound_1_0= ruleMeasure ) ) otherlv_2= 'to' ( (lv_upperBound_3_0= ruleMeasure ) ) ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1256:1: ruleMeasurementInRange returns [EObject current=null] : (otherlv_0= 'from' ( (lv_lowerBound_1_0= ruleMeasure ) ) otherlv_2= 'to' ( (lv_upperBound_3_0= ruleMeasure ) ) ) ;
     public final EObject ruleMeasurementInRange() throws RecognitionException {
         EObject current = null;
 
@@ -2924,26 +2992,26 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1225:28: ( (otherlv_0= 'from' ( (lv_lowerBound_1_0= ruleMeasure ) ) otherlv_2= 'to' ( (lv_upperBound_3_0= ruleMeasure ) ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1226:1: (otherlv_0= 'from' ( (lv_lowerBound_1_0= ruleMeasure ) ) otherlv_2= 'to' ( (lv_upperBound_3_0= ruleMeasure ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1259:28: ( (otherlv_0= 'from' ( (lv_lowerBound_1_0= ruleMeasure ) ) otherlv_2= 'to' ( (lv_upperBound_3_0= ruleMeasure ) ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1260:1: (otherlv_0= 'from' ( (lv_lowerBound_1_0= ruleMeasure ) ) otherlv_2= 'to' ( (lv_upperBound_3_0= ruleMeasure ) ) )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1226:1: (otherlv_0= 'from' ( (lv_lowerBound_1_0= ruleMeasure ) ) otherlv_2= 'to' ( (lv_upperBound_3_0= ruleMeasure ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1226:3: otherlv_0= 'from' ( (lv_lowerBound_1_0= ruleMeasure ) ) otherlv_2= 'to' ( (lv_upperBound_3_0= ruleMeasure ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1260:1: (otherlv_0= 'from' ( (lv_lowerBound_1_0= ruleMeasure ) ) otherlv_2= 'to' ( (lv_upperBound_3_0= ruleMeasure ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1260:3: otherlv_0= 'from' ( (lv_lowerBound_1_0= ruleMeasure ) ) otherlv_2= 'to' ( (lv_upperBound_3_0= ruleMeasure ) )
             {
-            otherlv_0=(Token)match(input,45,FOLLOW_45_in_ruleMeasurementInRange2691); 
+            otherlv_0=(Token)match(input,45,FOLLOW_45_in_ruleMeasurementInRange2764); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getMeasurementInRangeAccess().getFromKeyword_0());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1230:1: ( (lv_lowerBound_1_0= ruleMeasure ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1231:1: (lv_lowerBound_1_0= ruleMeasure )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1264:1: ( (lv_lowerBound_1_0= ruleMeasure ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1265:1: (lv_lowerBound_1_0= ruleMeasure )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1231:1: (lv_lowerBound_1_0= ruleMeasure )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1232:3: lv_lowerBound_1_0= ruleMeasure
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1265:1: (lv_lowerBound_1_0= ruleMeasure )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1266:3: lv_lowerBound_1_0= ruleMeasure
             {
              
             	        newCompositeNode(grammarAccess.getMeasurementInRangeAccess().getLowerBoundMeasureParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleMeasure_in_ruleMeasurementInRange2712);
+            pushFollow(FOLLOW_ruleMeasure_in_ruleMeasurementInRange2785);
             lv_lowerBound_1_0=ruleMeasure();
 
             state._fsp--;
@@ -2965,20 +3033,20 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,46,FOLLOW_46_in_ruleMeasurementInRange2724); 
+            otherlv_2=(Token)match(input,46,FOLLOW_46_in_ruleMeasurementInRange2797); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getMeasurementInRangeAccess().getToKeyword_2());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1252:1: ( (lv_upperBound_3_0= ruleMeasure ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1253:1: (lv_upperBound_3_0= ruleMeasure )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1286:1: ( (lv_upperBound_3_0= ruleMeasure ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1287:1: (lv_upperBound_3_0= ruleMeasure )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1253:1: (lv_upperBound_3_0= ruleMeasure )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1254:3: lv_upperBound_3_0= ruleMeasure
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1287:1: (lv_upperBound_3_0= ruleMeasure )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1288:3: lv_upperBound_3_0= ruleMeasure
             {
              
             	        newCompositeNode(grammarAccess.getMeasurementInRangeAccess().getUpperBoundMeasureParserRuleCall_3_0()); 
             	    
-            pushFollow(FOLLOW_ruleMeasure_in_ruleMeasurementInRange2745);
+            pushFollow(FOLLOW_ruleMeasure_in_ruleMeasurementInRange2818);
             lv_upperBound_3_0=ruleMeasure();
 
             state._fsp--;
@@ -3021,7 +3089,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMeasurementAdaption"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1278:1: entryRuleMeasurementAdaption returns [EObject current=null] : iv_ruleMeasurementAdaption= ruleMeasurementAdaption EOF ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1312:1: entryRuleMeasurementAdaption returns [EObject current=null] : iv_ruleMeasurementAdaption= ruleMeasurementAdaption EOF ;
     public final EObject entryRuleMeasurementAdaption() throws RecognitionException {
         EObject current = null;
 
@@ -3029,17 +3097,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1279:2: (iv_ruleMeasurementAdaption= ruleMeasurementAdaption EOF )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1280:2: iv_ruleMeasurementAdaption= ruleMeasurementAdaption EOF
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1313:2: (iv_ruleMeasurementAdaption= ruleMeasurementAdaption EOF )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1314:2: iv_ruleMeasurementAdaption= ruleMeasurementAdaption EOF
             {
              newCompositeNode(grammarAccess.getMeasurementAdaptionRule()); 
-            pushFollow(FOLLOW_ruleMeasurementAdaption_in_entryRuleMeasurementAdaption2781);
+            pushFollow(FOLLOW_ruleMeasurementAdaption_in_entryRuleMeasurementAdaption2854);
             iv_ruleMeasurementAdaption=ruleMeasurementAdaption();
 
             state._fsp--;
 
              current =iv_ruleMeasurementAdaption; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleMeasurementAdaption2791); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMeasurementAdaption2864); 
 
             }
 
@@ -3057,7 +3125,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMeasurementAdaption"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1287:1: ruleMeasurementAdaption returns [EObject current=null] : (otherlv_0= 'with' otherlv_1= 'scaling factor' otherlv_2= ':' ( (lv_scalingFactor_3_0= ruleDOUBLE ) ) otherlv_4= 'and' otherlv_5= 'offset' otherlv_6= ':' ( (lv_offset_7_0= ruleDOUBLE ) ) ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1321:1: ruleMeasurementAdaption returns [EObject current=null] : (otherlv_0= 'with' otherlv_1= 'scaling factor' otherlv_2= ':' ( (lv_scalingFactor_3_0= ruleDOUBLE ) ) otherlv_4= 'and' otherlv_5= 'offset' otherlv_6= ':' ( (lv_offset_7_0= ruleDOUBLE ) ) ) ;
     public final EObject ruleMeasurementAdaption() throws RecognitionException {
         EObject current = null;
 
@@ -3075,34 +3143,34 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1290:28: ( (otherlv_0= 'with' otherlv_1= 'scaling factor' otherlv_2= ':' ( (lv_scalingFactor_3_0= ruleDOUBLE ) ) otherlv_4= 'and' otherlv_5= 'offset' otherlv_6= ':' ( (lv_offset_7_0= ruleDOUBLE ) ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1291:1: (otherlv_0= 'with' otherlv_1= 'scaling factor' otherlv_2= ':' ( (lv_scalingFactor_3_0= ruleDOUBLE ) ) otherlv_4= 'and' otherlv_5= 'offset' otherlv_6= ':' ( (lv_offset_7_0= ruleDOUBLE ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1324:28: ( (otherlv_0= 'with' otherlv_1= 'scaling factor' otherlv_2= ':' ( (lv_scalingFactor_3_0= ruleDOUBLE ) ) otherlv_4= 'and' otherlv_5= 'offset' otherlv_6= ':' ( (lv_offset_7_0= ruleDOUBLE ) ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1325:1: (otherlv_0= 'with' otherlv_1= 'scaling factor' otherlv_2= ':' ( (lv_scalingFactor_3_0= ruleDOUBLE ) ) otherlv_4= 'and' otherlv_5= 'offset' otherlv_6= ':' ( (lv_offset_7_0= ruleDOUBLE ) ) )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1291:1: (otherlv_0= 'with' otherlv_1= 'scaling factor' otherlv_2= ':' ( (lv_scalingFactor_3_0= ruleDOUBLE ) ) otherlv_4= 'and' otherlv_5= 'offset' otherlv_6= ':' ( (lv_offset_7_0= ruleDOUBLE ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1291:3: otherlv_0= 'with' otherlv_1= 'scaling factor' otherlv_2= ':' ( (lv_scalingFactor_3_0= ruleDOUBLE ) ) otherlv_4= 'and' otherlv_5= 'offset' otherlv_6= ':' ( (lv_offset_7_0= ruleDOUBLE ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1325:1: (otherlv_0= 'with' otherlv_1= 'scaling factor' otherlv_2= ':' ( (lv_scalingFactor_3_0= ruleDOUBLE ) ) otherlv_4= 'and' otherlv_5= 'offset' otherlv_6= ':' ( (lv_offset_7_0= ruleDOUBLE ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1325:3: otherlv_0= 'with' otherlv_1= 'scaling factor' otherlv_2= ':' ( (lv_scalingFactor_3_0= ruleDOUBLE ) ) otherlv_4= 'and' otherlv_5= 'offset' otherlv_6= ':' ( (lv_offset_7_0= ruleDOUBLE ) )
             {
-            otherlv_0=(Token)match(input,23,FOLLOW_23_in_ruleMeasurementAdaption2828); 
+            otherlv_0=(Token)match(input,23,FOLLOW_23_in_ruleMeasurementAdaption2901); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getMeasurementAdaptionAccess().getWithKeyword_0());
                 
-            otherlv_1=(Token)match(input,47,FOLLOW_47_in_ruleMeasurementAdaption2840); 
+            otherlv_1=(Token)match(input,47,FOLLOW_47_in_ruleMeasurementAdaption2913); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getMeasurementAdaptionAccess().getScalingFactorKeyword_1());
                 
-            otherlv_2=(Token)match(input,18,FOLLOW_18_in_ruleMeasurementAdaption2852); 
+            otherlv_2=(Token)match(input,18,FOLLOW_18_in_ruleMeasurementAdaption2925); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getMeasurementAdaptionAccess().getColonKeyword_2());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1303:1: ( (lv_scalingFactor_3_0= ruleDOUBLE ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1304:1: (lv_scalingFactor_3_0= ruleDOUBLE )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1337:1: ( (lv_scalingFactor_3_0= ruleDOUBLE ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1338:1: (lv_scalingFactor_3_0= ruleDOUBLE )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1304:1: (lv_scalingFactor_3_0= ruleDOUBLE )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1305:3: lv_scalingFactor_3_0= ruleDOUBLE
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1338:1: (lv_scalingFactor_3_0= ruleDOUBLE )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1339:3: lv_scalingFactor_3_0= ruleDOUBLE
             {
              
             	        newCompositeNode(grammarAccess.getMeasurementAdaptionAccess().getScalingFactorDOUBLEParserRuleCall_3_0()); 
             	    
-            pushFollow(FOLLOW_ruleDOUBLE_in_ruleMeasurementAdaption2873);
+            pushFollow(FOLLOW_ruleDOUBLE_in_ruleMeasurementAdaption2946);
             lv_scalingFactor_3_0=ruleDOUBLE();
 
             state._fsp--;
@@ -3124,28 +3192,28 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,27,FOLLOW_27_in_ruleMeasurementAdaption2885); 
+            otherlv_4=(Token)match(input,25,FOLLOW_25_in_ruleMeasurementAdaption2958); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getMeasurementAdaptionAccess().getAndKeyword_4());
                 
-            otherlv_5=(Token)match(input,48,FOLLOW_48_in_ruleMeasurementAdaption2897); 
+            otherlv_5=(Token)match(input,48,FOLLOW_48_in_ruleMeasurementAdaption2970); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getMeasurementAdaptionAccess().getOffsetKeyword_5());
                 
-            otherlv_6=(Token)match(input,18,FOLLOW_18_in_ruleMeasurementAdaption2909); 
+            otherlv_6=(Token)match(input,18,FOLLOW_18_in_ruleMeasurementAdaption2982); 
 
                 	newLeafNode(otherlv_6, grammarAccess.getMeasurementAdaptionAccess().getColonKeyword_6());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1333:1: ( (lv_offset_7_0= ruleDOUBLE ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1334:1: (lv_offset_7_0= ruleDOUBLE )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1367:1: ( (lv_offset_7_0= ruleDOUBLE ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1368:1: (lv_offset_7_0= ruleDOUBLE )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1334:1: (lv_offset_7_0= ruleDOUBLE )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1335:3: lv_offset_7_0= ruleDOUBLE
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1368:1: (lv_offset_7_0= ruleDOUBLE )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1369:3: lv_offset_7_0= ruleDOUBLE
             {
              
             	        newCompositeNode(grammarAccess.getMeasurementAdaptionAccess().getOffsetDOUBLEParserRuleCall_7_0()); 
             	    
-            pushFollow(FOLLOW_ruleDOUBLE_in_ruleMeasurementAdaption2930);
+            pushFollow(FOLLOW_ruleDOUBLE_in_ruleMeasurementAdaption3003);
             lv_offset_7_0=ruleDOUBLE();
 
             state._fsp--;
@@ -3188,7 +3256,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMeasure"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1359:1: entryRuleMeasure returns [EObject current=null] : iv_ruleMeasure= ruleMeasure EOF ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1393:1: entryRuleMeasure returns [EObject current=null] : iv_ruleMeasure= ruleMeasure EOF ;
     public final EObject entryRuleMeasure() throws RecognitionException {
         EObject current = null;
 
@@ -3196,17 +3264,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1360:2: (iv_ruleMeasure= ruleMeasure EOF )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1361:2: iv_ruleMeasure= ruleMeasure EOF
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1394:2: (iv_ruleMeasure= ruleMeasure EOF )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1395:2: iv_ruleMeasure= ruleMeasure EOF
             {
              newCompositeNode(grammarAccess.getMeasureRule()); 
-            pushFollow(FOLLOW_ruleMeasure_in_entryRuleMeasure2966);
+            pushFollow(FOLLOW_ruleMeasure_in_entryRuleMeasure3039);
             iv_ruleMeasure=ruleMeasure();
 
             state._fsp--;
 
              current =iv_ruleMeasure; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleMeasure2976); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMeasure3049); 
 
             }
 
@@ -3224,7 +3292,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMeasure"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1368:1: ruleMeasure returns [EObject current=null] : ( ( (lv_value_0_0= ruleDOUBLE ) ) ( (lv_unit_1_0= RULE_STRING ) ) ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1402:1: ruleMeasure returns [EObject current=null] : ( ( (lv_value_0_0= ruleDOUBLE ) ) ( (lv_unit_1_0= RULE_STRING ) ) ) ;
     public final EObject ruleMeasure() throws RecognitionException {
         EObject current = null;
 
@@ -3235,22 +3303,22 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1371:28: ( ( ( (lv_value_0_0= ruleDOUBLE ) ) ( (lv_unit_1_0= RULE_STRING ) ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1372:1: ( ( (lv_value_0_0= ruleDOUBLE ) ) ( (lv_unit_1_0= RULE_STRING ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1405:28: ( ( ( (lv_value_0_0= ruleDOUBLE ) ) ( (lv_unit_1_0= RULE_STRING ) ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1406:1: ( ( (lv_value_0_0= ruleDOUBLE ) ) ( (lv_unit_1_0= RULE_STRING ) ) )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1372:1: ( ( (lv_value_0_0= ruleDOUBLE ) ) ( (lv_unit_1_0= RULE_STRING ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1372:2: ( (lv_value_0_0= ruleDOUBLE ) ) ( (lv_unit_1_0= RULE_STRING ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1406:1: ( ( (lv_value_0_0= ruleDOUBLE ) ) ( (lv_unit_1_0= RULE_STRING ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1406:2: ( (lv_value_0_0= ruleDOUBLE ) ) ( (lv_unit_1_0= RULE_STRING ) )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1372:2: ( (lv_value_0_0= ruleDOUBLE ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1373:1: (lv_value_0_0= ruleDOUBLE )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1406:2: ( (lv_value_0_0= ruleDOUBLE ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1407:1: (lv_value_0_0= ruleDOUBLE )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1373:1: (lv_value_0_0= ruleDOUBLE )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1374:3: lv_value_0_0= ruleDOUBLE
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1407:1: (lv_value_0_0= ruleDOUBLE )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1408:3: lv_value_0_0= ruleDOUBLE
             {
              
             	        newCompositeNode(grammarAccess.getMeasureAccess().getValueDOUBLEParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_ruleDOUBLE_in_ruleMeasure3022);
+            pushFollow(FOLLOW_ruleDOUBLE_in_ruleMeasure3095);
             lv_value_0_0=ruleDOUBLE();
 
             state._fsp--;
@@ -3272,13 +3340,13 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1390:2: ( (lv_unit_1_0= RULE_STRING ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1391:1: (lv_unit_1_0= RULE_STRING )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1424:2: ( (lv_unit_1_0= RULE_STRING ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1425:1: (lv_unit_1_0= RULE_STRING )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1391:1: (lv_unit_1_0= RULE_STRING )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1392:3: lv_unit_1_0= RULE_STRING
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1425:1: (lv_unit_1_0= RULE_STRING )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1426:3: lv_unit_1_0= RULE_STRING
             {
-            lv_unit_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleMeasure3039); 
+            lv_unit_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleMeasure3112); 
 
             			newLeafNode(lv_unit_1_0, grammarAccess.getMeasureAccess().getUnitSTRINGTerminalRuleCall_1_0()); 
             		
@@ -3319,7 +3387,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePrimitiveInterpretation"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1416:1: entryRulePrimitiveInterpretation returns [EObject current=null] : iv_rulePrimitiveInterpretation= rulePrimitiveInterpretation EOF ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1450:1: entryRulePrimitiveInterpretation returns [EObject current=null] : iv_rulePrimitiveInterpretation= rulePrimitiveInterpretation EOF ;
     public final EObject entryRulePrimitiveInterpretation() throws RecognitionException {
         EObject current = null;
 
@@ -3327,17 +3395,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1417:2: (iv_rulePrimitiveInterpretation= rulePrimitiveInterpretation EOF )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1418:2: iv_rulePrimitiveInterpretation= rulePrimitiveInterpretation EOF
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1451:2: (iv_rulePrimitiveInterpretation= rulePrimitiveInterpretation EOF )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1452:2: iv_rulePrimitiveInterpretation= rulePrimitiveInterpretation EOF
             {
              newCompositeNode(grammarAccess.getPrimitiveInterpretationRule()); 
-            pushFollow(FOLLOW_rulePrimitiveInterpretation_in_entryRulePrimitiveInterpretation3080);
+            pushFollow(FOLLOW_rulePrimitiveInterpretation_in_entryRulePrimitiveInterpretation3153);
             iv_rulePrimitiveInterpretation=rulePrimitiveInterpretation();
 
             state._fsp--;
 
              current =iv_rulePrimitiveInterpretation; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePrimitiveInterpretation3090); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePrimitiveInterpretation3163); 
 
             }
 
@@ -3355,7 +3423,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrimitiveInterpretation"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1425:1: rulePrimitiveInterpretation returns [EObject current=null] : (otherlv_0= 'primitive' ( (lv_type_1_0= ruleType ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1459:1: rulePrimitiveInterpretation returns [EObject current=null] : (otherlv_0= 'primitive' ( (lv_type_1_0= ruleType ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) ) ;
     public final EObject rulePrimitiveInterpretation() throws RecognitionException {
         EObject current = null;
 
@@ -3369,26 +3437,26 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1428:28: ( (otherlv_0= 'primitive' ( (lv_type_1_0= ruleType ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1429:1: (otherlv_0= 'primitive' ( (lv_type_1_0= ruleType ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1462:28: ( (otherlv_0= 'primitive' ( (lv_type_1_0= ruleType ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1463:1: (otherlv_0= 'primitive' ( (lv_type_1_0= ruleType ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1429:1: (otherlv_0= 'primitive' ( (lv_type_1_0= ruleType ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1429:3: otherlv_0= 'primitive' ( (lv_type_1_0= ruleType ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1463:1: (otherlv_0= 'primitive' ( (lv_type_1_0= ruleType ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1463:3: otherlv_0= 'primitive' ( (lv_type_1_0= ruleType ) ) ( (lv_name_2_0= RULE_ID ) ) otherlv_3= 'as' ( (otherlv_4= RULE_ID ) )
             {
-            otherlv_0=(Token)match(input,49,FOLLOW_49_in_rulePrimitiveInterpretation3127); 
+            otherlv_0=(Token)match(input,49,FOLLOW_49_in_rulePrimitiveInterpretation3200); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getPrimitiveInterpretationAccess().getPrimitiveKeyword_0());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1433:1: ( (lv_type_1_0= ruleType ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1434:1: (lv_type_1_0= ruleType )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1467:1: ( (lv_type_1_0= ruleType ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1468:1: (lv_type_1_0= ruleType )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1434:1: (lv_type_1_0= ruleType )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1435:3: lv_type_1_0= ruleType
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1468:1: (lv_type_1_0= ruleType )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1469:3: lv_type_1_0= ruleType
             {
              
             	        newCompositeNode(grammarAccess.getPrimitiveInterpretationAccess().getTypeTypeEnumRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_ruleType_in_rulePrimitiveInterpretation3148);
+            pushFollow(FOLLOW_ruleType_in_rulePrimitiveInterpretation3221);
             lv_type_1_0=ruleType();
 
             state._fsp--;
@@ -3410,13 +3478,13 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1451:2: ( (lv_name_2_0= RULE_ID ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1452:1: (lv_name_2_0= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1485:2: ( (lv_name_2_0= RULE_ID ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1486:1: (lv_name_2_0= RULE_ID )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1452:1: (lv_name_2_0= RULE_ID )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1453:3: lv_name_2_0= RULE_ID
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1486:1: (lv_name_2_0= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1487:3: lv_name_2_0= RULE_ID
             {
-            lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePrimitiveInterpretation3165); 
+            lv_name_2_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePrimitiveInterpretation3238); 
 
             			newLeafNode(lv_name_2_0, grammarAccess.getPrimitiveInterpretationAccess().getNameIDTerminalRuleCall_2_0()); 
             		
@@ -3436,22 +3504,22 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,38,FOLLOW_38_in_rulePrimitiveInterpretation3182); 
+            otherlv_3=(Token)match(input,38,FOLLOW_38_in_rulePrimitiveInterpretation3255); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getPrimitiveInterpretationAccess().getAsKeyword_3());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1473:1: ( (otherlv_4= RULE_ID ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1474:1: (otherlv_4= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1507:1: ( (otherlv_4= RULE_ID ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1508:1: (otherlv_4= RULE_ID )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1474:1: (otherlv_4= RULE_ID )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1475:3: otherlv_4= RULE_ID
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1508:1: (otherlv_4= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1509:3: otherlv_4= RULE_ID
             {
 
             			if (current==null) {
             	            current = createModelElement(grammarAccess.getPrimitiveInterpretationRule());
             	        }
                     
-            otherlv_4=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePrimitiveInterpretation3202); 
+            otherlv_4=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePrimitiveInterpretation3275); 
 
             		newLeafNode(otherlv_4, grammarAccess.getPrimitiveInterpretationAccess().getRepresentationRepresentationCrossReference_4_0()); 
             	
@@ -3482,7 +3550,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleConstant"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1494:1: entryRuleConstant returns [EObject current=null] : iv_ruleConstant= ruleConstant EOF ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1528:1: entryRuleConstant returns [EObject current=null] : iv_ruleConstant= ruleConstant EOF ;
     public final EObject entryRuleConstant() throws RecognitionException {
         EObject current = null;
 
@@ -3490,17 +3558,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1495:2: (iv_ruleConstant= ruleConstant EOF )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1496:2: iv_ruleConstant= ruleConstant EOF
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1529:2: (iv_ruleConstant= ruleConstant EOF )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1530:2: iv_ruleConstant= ruleConstant EOF
             {
              newCompositeNode(grammarAccess.getConstantRule()); 
-            pushFollow(FOLLOW_ruleConstant_in_entryRuleConstant3238);
+            pushFollow(FOLLOW_ruleConstant_in_entryRuleConstant3311);
             iv_ruleConstant=ruleConstant();
 
             state._fsp--;
 
              current =iv_ruleConstant; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleConstant3248); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleConstant3321); 
 
             }
 
@@ -3518,7 +3586,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleConstant"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1503:1: ruleConstant returns [EObject current=null] : (otherlv_0= 'constant' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'as' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'is' ( (lv_constantValue_5_0= RULE_STRING ) ) ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1537:1: ruleConstant returns [EObject current=null] : (otherlv_0= 'constant' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'as' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'is' ( (lv_constantValue_5_0= RULE_STRING ) ) ) ;
     public final EObject ruleConstant() throws RecognitionException {
         EObject current = null;
 
@@ -3532,23 +3600,23 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1506:28: ( (otherlv_0= 'constant' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'as' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'is' ( (lv_constantValue_5_0= RULE_STRING ) ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1507:1: (otherlv_0= 'constant' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'as' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'is' ( (lv_constantValue_5_0= RULE_STRING ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1540:28: ( (otherlv_0= 'constant' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'as' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'is' ( (lv_constantValue_5_0= RULE_STRING ) ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1541:1: (otherlv_0= 'constant' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'as' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'is' ( (lv_constantValue_5_0= RULE_STRING ) ) )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1507:1: (otherlv_0= 'constant' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'as' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'is' ( (lv_constantValue_5_0= RULE_STRING ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1507:3: otherlv_0= 'constant' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'as' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'is' ( (lv_constantValue_5_0= RULE_STRING ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1541:1: (otherlv_0= 'constant' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'as' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'is' ( (lv_constantValue_5_0= RULE_STRING ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1541:3: otherlv_0= 'constant' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'as' ( (otherlv_3= RULE_ID ) ) otherlv_4= 'is' ( (lv_constantValue_5_0= RULE_STRING ) )
             {
-            otherlv_0=(Token)match(input,50,FOLLOW_50_in_ruleConstant3285); 
+            otherlv_0=(Token)match(input,50,FOLLOW_50_in_ruleConstant3358); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getConstantAccess().getConstantKeyword_0());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1511:1: ( (lv_name_1_0= RULE_ID ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1512:1: (lv_name_1_0= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1545:1: ( (lv_name_1_0= RULE_ID ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1546:1: (lv_name_1_0= RULE_ID )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1512:1: (lv_name_1_0= RULE_ID )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1513:3: lv_name_1_0= RULE_ID
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1546:1: (lv_name_1_0= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1547:3: lv_name_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleConstant3302); 
+            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleConstant3375); 
 
             			newLeafNode(lv_name_1_0, grammarAccess.getConstantAccess().getNameIDTerminalRuleCall_1_0()); 
             		
@@ -3568,22 +3636,22 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,38,FOLLOW_38_in_ruleConstant3319); 
+            otherlv_2=(Token)match(input,38,FOLLOW_38_in_ruleConstant3392); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getConstantAccess().getAsKeyword_2());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1533:1: ( (otherlv_3= RULE_ID ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1534:1: (otherlv_3= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1567:1: ( (otherlv_3= RULE_ID ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1568:1: (otherlv_3= RULE_ID )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1534:1: (otherlv_3= RULE_ID )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1535:3: otherlv_3= RULE_ID
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1568:1: (otherlv_3= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1569:3: otherlv_3= RULE_ID
             {
 
             			if (current==null) {
             	            current = createModelElement(grammarAccess.getConstantRule());
             	        }
                     
-            otherlv_3=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleConstant3339); 
+            otherlv_3=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleConstant3412); 
 
             		newLeafNode(otherlv_3, grammarAccess.getConstantAccess().getRepresentationRepresentationCrossReference_3_0()); 
             	
@@ -3593,17 +3661,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,32,FOLLOW_32_in_ruleConstant3351); 
+            otherlv_4=(Token)match(input,32,FOLLOW_32_in_ruleConstant3424); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getConstantAccess().getIsKeyword_4());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1550:1: ( (lv_constantValue_5_0= RULE_STRING ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1551:1: (lv_constantValue_5_0= RULE_STRING )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1584:1: ( (lv_constantValue_5_0= RULE_STRING ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1585:1: (lv_constantValue_5_0= RULE_STRING )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1551:1: (lv_constantValue_5_0= RULE_STRING )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1552:3: lv_constantValue_5_0= RULE_STRING
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1585:1: (lv_constantValue_5_0= RULE_STRING )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1586:3: lv_constantValue_5_0= RULE_STRING
             {
-            lv_constantValue_5_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleConstant3368); 
+            lv_constantValue_5_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleConstant3441); 
 
             			newLeafNode(lv_constantValue_5_0, grammarAccess.getConstantAccess().getConstantValueSTRINGTerminalRuleCall_5_0()); 
             		
@@ -3644,7 +3712,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDOUBLE"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1576:1: entryRuleDOUBLE returns [String current=null] : iv_ruleDOUBLE= ruleDOUBLE EOF ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1610:1: entryRuleDOUBLE returns [String current=null] : iv_ruleDOUBLE= ruleDOUBLE EOF ;
     public final String entryRuleDOUBLE() throws RecognitionException {
         String current = null;
 
@@ -3652,17 +3720,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1577:2: (iv_ruleDOUBLE= ruleDOUBLE EOF )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1578:2: iv_ruleDOUBLE= ruleDOUBLE EOF
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1611:2: (iv_ruleDOUBLE= ruleDOUBLE EOF )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1612:2: iv_ruleDOUBLE= ruleDOUBLE EOF
             {
              newCompositeNode(grammarAccess.getDOUBLERule()); 
-            pushFollow(FOLLOW_ruleDOUBLE_in_entryRuleDOUBLE3410);
+            pushFollow(FOLLOW_ruleDOUBLE_in_entryRuleDOUBLE3483);
             iv_ruleDOUBLE=ruleDOUBLE();
 
             state._fsp--;
 
              current =iv_ruleDOUBLE.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDOUBLE3421); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDOUBLE3494); 
 
             }
 
@@ -3680,7 +3748,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDOUBLE"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1585:1: ruleDOUBLE returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1619:1: ruleDOUBLE returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? ) ;
     public final AntlrDatatypeRuleToken ruleDOUBLE() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3691,36 +3759,36 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1588:28: ( (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1589:1: (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1622:28: ( (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1623:1: (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1589:1: (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1589:6: this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )?
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1623:1: (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1623:6: this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )?
             {
-            this_INT_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDOUBLE3461); 
+            this_INT_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDOUBLE3534); 
 
             		current.merge(this_INT_0);
                 
              
                 newLeafNode(this_INT_0, grammarAccess.getDOUBLEAccess().getINTTerminalRuleCall_0()); 
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1596:1: (kw= '.' this_INT_2= RULE_INT )?
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1630:1: (kw= '.' this_INT_2= RULE_INT )?
+            int alt18=2;
+            int LA18_0 = input.LA(1);
 
-            if ( (LA17_0==51) ) {
-                alt17=1;
+            if ( (LA18_0==51) ) {
+                alt18=1;
             }
-            switch (alt17) {
+            switch (alt18) {
                 case 1 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1597:2: kw= '.' this_INT_2= RULE_INT
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1631:2: kw= '.' this_INT_2= RULE_INT
                     {
-                    kw=(Token)match(input,51,FOLLOW_51_in_ruleDOUBLE3480); 
+                    kw=(Token)match(input,51,FOLLOW_51_in_ruleDOUBLE3553); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getDOUBLEAccess().getFullStopKeyword_1_0()); 
                         
-                    this_INT_2=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDOUBLE3495); 
+                    this_INT_2=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleDOUBLE3568); 
 
                     		current.merge(this_INT_2);
                         
@@ -3754,7 +3822,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleGenerationLanguage"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1617:1: ruleGenerationLanguage returns [Enumerator current=null] : ( (enumLiteral_0= 'JAVA' ) | (enumLiteral_1= 'CPP' ) | (enumLiteral_2= 'C' ) ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1651:1: ruleGenerationLanguage returns [Enumerator current=null] : ( (enumLiteral_0= 'JAVA' ) | (enumLiteral_1= 'CPP' ) | (enumLiteral_2= 'C' ) ) ;
     public final Enumerator ruleGenerationLanguage() throws RecognitionException {
         Enumerator current = null;
 
@@ -3764,42 +3832,42 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1619:28: ( ( (enumLiteral_0= 'JAVA' ) | (enumLiteral_1= 'CPP' ) | (enumLiteral_2= 'C' ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1620:1: ( (enumLiteral_0= 'JAVA' ) | (enumLiteral_1= 'CPP' ) | (enumLiteral_2= 'C' ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1653:28: ( ( (enumLiteral_0= 'JAVA' ) | (enumLiteral_1= 'CPP' ) | (enumLiteral_2= 'C' ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1654:1: ( (enumLiteral_0= 'JAVA' ) | (enumLiteral_1= 'CPP' ) | (enumLiteral_2= 'C' ) )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1620:1: ( (enumLiteral_0= 'JAVA' ) | (enumLiteral_1= 'CPP' ) | (enumLiteral_2= 'C' ) )
-            int alt18=3;
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1654:1: ( (enumLiteral_0= 'JAVA' ) | (enumLiteral_1= 'CPP' ) | (enumLiteral_2= 'C' ) )
+            int alt19=3;
             switch ( input.LA(1) ) {
             case 52:
                 {
-                alt18=1;
+                alt19=1;
                 }
                 break;
             case 53:
                 {
-                alt18=2;
+                alt19=2;
                 }
                 break;
             case 54:
                 {
-                alt18=3;
+                alt19=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 18, 0, input);
+                    new NoViableAltException("", 19, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt18) {
+            switch (alt19) {
                 case 1 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1620:2: (enumLiteral_0= 'JAVA' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1654:2: (enumLiteral_0= 'JAVA' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1620:2: (enumLiteral_0= 'JAVA' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1620:4: enumLiteral_0= 'JAVA'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1654:2: (enumLiteral_0= 'JAVA' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1654:4: enumLiteral_0= 'JAVA'
                     {
-                    enumLiteral_0=(Token)match(input,52,FOLLOW_52_in_ruleGenerationLanguage3556); 
+                    enumLiteral_0=(Token)match(input,52,FOLLOW_52_in_ruleGenerationLanguage3629); 
 
                             current = grammarAccess.getGenerationLanguageAccess().getJAVAEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getGenerationLanguageAccess().getJAVAEnumLiteralDeclaration_0()); 
@@ -3811,12 +3879,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1626:6: (enumLiteral_1= 'CPP' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1660:6: (enumLiteral_1= 'CPP' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1626:6: (enumLiteral_1= 'CPP' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1626:8: enumLiteral_1= 'CPP'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1660:6: (enumLiteral_1= 'CPP' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1660:8: enumLiteral_1= 'CPP'
                     {
-                    enumLiteral_1=(Token)match(input,53,FOLLOW_53_in_ruleGenerationLanguage3573); 
+                    enumLiteral_1=(Token)match(input,53,FOLLOW_53_in_ruleGenerationLanguage3646); 
 
                             current = grammarAccess.getGenerationLanguageAccess().getCPPEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getGenerationLanguageAccess().getCPPEnumLiteralDeclaration_1()); 
@@ -3828,12 +3896,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1632:6: (enumLiteral_2= 'C' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1666:6: (enumLiteral_2= 'C' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1632:6: (enumLiteral_2= 'C' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1632:8: enumLiteral_2= 'C'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1666:6: (enumLiteral_2= 'C' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1666:8: enumLiteral_2= 'C'
                     {
-                    enumLiteral_2=(Token)match(input,54,FOLLOW_54_in_ruleGenerationLanguage3590); 
+                    enumLiteral_2=(Token)match(input,54,FOLLOW_54_in_ruleGenerationLanguage3663); 
 
                             current = grammarAccess.getGenerationLanguageAccess().getCEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getGenerationLanguageAccess().getCEnumLiteralDeclaration_2()); 
@@ -3865,7 +3933,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleArgumentType"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1642:1: ruleArgumentType returns [Enumerator current=null] : (enumLiteral_0= 'BYTE_ARRAY' ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1676:1: ruleArgumentType returns [Enumerator current=null] : (enumLiteral_0= 'BYTE_ARRAY' ) ;
     public final Enumerator ruleArgumentType() throws RecognitionException {
         Enumerator current = null;
 
@@ -3873,13 +3941,13 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1644:28: ( (enumLiteral_0= 'BYTE_ARRAY' ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1645:1: (enumLiteral_0= 'BYTE_ARRAY' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1678:28: ( (enumLiteral_0= 'BYTE_ARRAY' ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1679:1: (enumLiteral_0= 'BYTE_ARRAY' )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1645:1: (enumLiteral_0= 'BYTE_ARRAY' )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1645:3: enumLiteral_0= 'BYTE_ARRAY'
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1679:1: (enumLiteral_0= 'BYTE_ARRAY' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1679:3: enumLiteral_0= 'BYTE_ARRAY'
             {
-            enumLiteral_0=(Token)match(input,55,FOLLOW_55_in_ruleArgumentType3634); 
+            enumLiteral_0=(Token)match(input,55,FOLLOW_55_in_ruleArgumentType3707); 
 
                     current = grammarAccess.getArgumentTypeAccess().getBYTE_ARRAYEnumLiteralDeclaration().getEnumLiteral().getInstance();
                     newLeafNode(enumLiteral_0, grammarAccess.getArgumentTypeAccess().getBYTE_ARRAYEnumLiteralDeclaration()); 
@@ -3905,7 +3973,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQuantity"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1655:1: ruleQuantity returns [Enumerator current=null] : ( (enumLiteral_0= 'FLOW' ) | (enumLiteral_1= 'TEMPERATURE' ) | (enumLiteral_2= 'VOLUME' ) | (enumLiteral_3= 'DURATION' ) | (enumLiteral_4= 'PRESSURE' ) ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1689:1: ruleQuantity returns [Enumerator current=null] : ( (enumLiteral_0= 'FLOW' ) | (enumLiteral_1= 'TEMPERATURE' ) | (enumLiteral_2= 'VOLUME' ) | (enumLiteral_3= 'DURATION' ) | (enumLiteral_4= 'PRESSURE' ) ) ;
     public final Enumerator ruleQuantity() throws RecognitionException {
         Enumerator current = null;
 
@@ -3917,52 +3985,52 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1657:28: ( ( (enumLiteral_0= 'FLOW' ) | (enumLiteral_1= 'TEMPERATURE' ) | (enumLiteral_2= 'VOLUME' ) | (enumLiteral_3= 'DURATION' ) | (enumLiteral_4= 'PRESSURE' ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1658:1: ( (enumLiteral_0= 'FLOW' ) | (enumLiteral_1= 'TEMPERATURE' ) | (enumLiteral_2= 'VOLUME' ) | (enumLiteral_3= 'DURATION' ) | (enumLiteral_4= 'PRESSURE' ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1691:28: ( ( (enumLiteral_0= 'FLOW' ) | (enumLiteral_1= 'TEMPERATURE' ) | (enumLiteral_2= 'VOLUME' ) | (enumLiteral_3= 'DURATION' ) | (enumLiteral_4= 'PRESSURE' ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1692:1: ( (enumLiteral_0= 'FLOW' ) | (enumLiteral_1= 'TEMPERATURE' ) | (enumLiteral_2= 'VOLUME' ) | (enumLiteral_3= 'DURATION' ) | (enumLiteral_4= 'PRESSURE' ) )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1658:1: ( (enumLiteral_0= 'FLOW' ) | (enumLiteral_1= 'TEMPERATURE' ) | (enumLiteral_2= 'VOLUME' ) | (enumLiteral_3= 'DURATION' ) | (enumLiteral_4= 'PRESSURE' ) )
-            int alt19=5;
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1692:1: ( (enumLiteral_0= 'FLOW' ) | (enumLiteral_1= 'TEMPERATURE' ) | (enumLiteral_2= 'VOLUME' ) | (enumLiteral_3= 'DURATION' ) | (enumLiteral_4= 'PRESSURE' ) )
+            int alt20=5;
             switch ( input.LA(1) ) {
             case 56:
                 {
-                alt19=1;
+                alt20=1;
                 }
                 break;
             case 57:
                 {
-                alt19=2;
+                alt20=2;
                 }
                 break;
             case 58:
                 {
-                alt19=3;
+                alt20=3;
                 }
                 break;
             case 59:
                 {
-                alt19=4;
+                alt20=4;
                 }
                 break;
             case 60:
                 {
-                alt19=5;
+                alt20=5;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 19, 0, input);
+                    new NoViableAltException("", 20, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt19) {
+            switch (alt20) {
                 case 1 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1658:2: (enumLiteral_0= 'FLOW' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1692:2: (enumLiteral_0= 'FLOW' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1658:2: (enumLiteral_0= 'FLOW' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1658:4: enumLiteral_0= 'FLOW'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1692:2: (enumLiteral_0= 'FLOW' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1692:4: enumLiteral_0= 'FLOW'
                     {
-                    enumLiteral_0=(Token)match(input,56,FOLLOW_56_in_ruleQuantity3678); 
+                    enumLiteral_0=(Token)match(input,56,FOLLOW_56_in_ruleQuantity3751); 
 
                             current = grammarAccess.getQuantityAccess().getFLOWEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getQuantityAccess().getFLOWEnumLiteralDeclaration_0()); 
@@ -3974,12 +4042,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1664:6: (enumLiteral_1= 'TEMPERATURE' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1698:6: (enumLiteral_1= 'TEMPERATURE' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1664:6: (enumLiteral_1= 'TEMPERATURE' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1664:8: enumLiteral_1= 'TEMPERATURE'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1698:6: (enumLiteral_1= 'TEMPERATURE' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1698:8: enumLiteral_1= 'TEMPERATURE'
                     {
-                    enumLiteral_1=(Token)match(input,57,FOLLOW_57_in_ruleQuantity3695); 
+                    enumLiteral_1=(Token)match(input,57,FOLLOW_57_in_ruleQuantity3768); 
 
                             current = grammarAccess.getQuantityAccess().getTEMPERATUREEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getQuantityAccess().getTEMPERATUREEnumLiteralDeclaration_1()); 
@@ -3991,12 +4059,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1670:6: (enumLiteral_2= 'VOLUME' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1704:6: (enumLiteral_2= 'VOLUME' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1670:6: (enumLiteral_2= 'VOLUME' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1670:8: enumLiteral_2= 'VOLUME'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1704:6: (enumLiteral_2= 'VOLUME' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1704:8: enumLiteral_2= 'VOLUME'
                     {
-                    enumLiteral_2=(Token)match(input,58,FOLLOW_58_in_ruleQuantity3712); 
+                    enumLiteral_2=(Token)match(input,58,FOLLOW_58_in_ruleQuantity3785); 
 
                             current = grammarAccess.getQuantityAccess().getVOLUMEEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getQuantityAccess().getVOLUMEEnumLiteralDeclaration_2()); 
@@ -4008,12 +4076,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1676:6: (enumLiteral_3= 'DURATION' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1710:6: (enumLiteral_3= 'DURATION' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1676:6: (enumLiteral_3= 'DURATION' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1676:8: enumLiteral_3= 'DURATION'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1710:6: (enumLiteral_3= 'DURATION' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1710:8: enumLiteral_3= 'DURATION'
                     {
-                    enumLiteral_3=(Token)match(input,59,FOLLOW_59_in_ruleQuantity3729); 
+                    enumLiteral_3=(Token)match(input,59,FOLLOW_59_in_ruleQuantity3802); 
 
                             current = grammarAccess.getQuantityAccess().getDURATIONEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_3, grammarAccess.getQuantityAccess().getDURATIONEnumLiteralDeclaration_3()); 
@@ -4025,12 +4093,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1682:6: (enumLiteral_4= 'PRESSURE' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1716:6: (enumLiteral_4= 'PRESSURE' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1682:6: (enumLiteral_4= 'PRESSURE' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1682:8: enumLiteral_4= 'PRESSURE'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1716:6: (enumLiteral_4= 'PRESSURE' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1716:8: enumLiteral_4= 'PRESSURE'
                     {
-                    enumLiteral_4=(Token)match(input,60,FOLLOW_60_in_ruleQuantity3746); 
+                    enumLiteral_4=(Token)match(input,60,FOLLOW_60_in_ruleQuantity3819); 
 
                             current = grammarAccess.getQuantityAccess().getPRESSUREEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_4, grammarAccess.getQuantityAccess().getPRESSUREEnumLiteralDeclaration_4()); 
@@ -4062,7 +4130,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleType"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1692:1: ruleType returns [Enumerator current=null] : ( (enumLiteral_0= 'BYTE' ) | (enumLiteral_1= 'SHORT' ) | (enumLiteral_2= 'INT' ) | (enumLiteral_3= 'LONG' ) | (enumLiteral_4= 'FLOAT' ) | (enumLiteral_5= 'DOUBLE' ) ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1726:1: ruleType returns [Enumerator current=null] : ( (enumLiteral_0= 'BYTE' ) | (enumLiteral_1= 'SHORT' ) | (enumLiteral_2= 'INT' ) | (enumLiteral_3= 'LONG' ) | (enumLiteral_4= 'FLOAT' ) | (enumLiteral_5= 'DOUBLE' ) ) ;
     public final Enumerator ruleType() throws RecognitionException {
         Enumerator current = null;
 
@@ -4075,57 +4143,57 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1694:28: ( ( (enumLiteral_0= 'BYTE' ) | (enumLiteral_1= 'SHORT' ) | (enumLiteral_2= 'INT' ) | (enumLiteral_3= 'LONG' ) | (enumLiteral_4= 'FLOAT' ) | (enumLiteral_5= 'DOUBLE' ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1695:1: ( (enumLiteral_0= 'BYTE' ) | (enumLiteral_1= 'SHORT' ) | (enumLiteral_2= 'INT' ) | (enumLiteral_3= 'LONG' ) | (enumLiteral_4= 'FLOAT' ) | (enumLiteral_5= 'DOUBLE' ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1728:28: ( ( (enumLiteral_0= 'BYTE' ) | (enumLiteral_1= 'SHORT' ) | (enumLiteral_2= 'INT' ) | (enumLiteral_3= 'LONG' ) | (enumLiteral_4= 'FLOAT' ) | (enumLiteral_5= 'DOUBLE' ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1729:1: ( (enumLiteral_0= 'BYTE' ) | (enumLiteral_1= 'SHORT' ) | (enumLiteral_2= 'INT' ) | (enumLiteral_3= 'LONG' ) | (enumLiteral_4= 'FLOAT' ) | (enumLiteral_5= 'DOUBLE' ) )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1695:1: ( (enumLiteral_0= 'BYTE' ) | (enumLiteral_1= 'SHORT' ) | (enumLiteral_2= 'INT' ) | (enumLiteral_3= 'LONG' ) | (enumLiteral_4= 'FLOAT' ) | (enumLiteral_5= 'DOUBLE' ) )
-            int alt20=6;
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1729:1: ( (enumLiteral_0= 'BYTE' ) | (enumLiteral_1= 'SHORT' ) | (enumLiteral_2= 'INT' ) | (enumLiteral_3= 'LONG' ) | (enumLiteral_4= 'FLOAT' ) | (enumLiteral_5= 'DOUBLE' ) )
+            int alt21=6;
             switch ( input.LA(1) ) {
             case 61:
                 {
-                alt20=1;
+                alt21=1;
                 }
                 break;
             case 62:
                 {
-                alt20=2;
+                alt21=2;
                 }
                 break;
             case 63:
                 {
-                alt20=3;
+                alt21=3;
                 }
                 break;
             case 64:
                 {
-                alt20=4;
+                alt21=4;
                 }
                 break;
             case 65:
                 {
-                alt20=5;
+                alt21=5;
                 }
                 break;
             case 66:
                 {
-                alt20=6;
+                alt21=6;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 20, 0, input);
+                    new NoViableAltException("", 21, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt20) {
+            switch (alt21) {
                 case 1 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1695:2: (enumLiteral_0= 'BYTE' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1729:2: (enumLiteral_0= 'BYTE' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1695:2: (enumLiteral_0= 'BYTE' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1695:4: enumLiteral_0= 'BYTE'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1729:2: (enumLiteral_0= 'BYTE' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1729:4: enumLiteral_0= 'BYTE'
                     {
-                    enumLiteral_0=(Token)match(input,61,FOLLOW_61_in_ruleType3791); 
+                    enumLiteral_0=(Token)match(input,61,FOLLOW_61_in_ruleType3864); 
 
                             current = grammarAccess.getTypeAccess().getBYTEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getTypeAccess().getBYTEEnumLiteralDeclaration_0()); 
@@ -4137,12 +4205,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1701:6: (enumLiteral_1= 'SHORT' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1735:6: (enumLiteral_1= 'SHORT' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1701:6: (enumLiteral_1= 'SHORT' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1701:8: enumLiteral_1= 'SHORT'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1735:6: (enumLiteral_1= 'SHORT' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1735:8: enumLiteral_1= 'SHORT'
                     {
-                    enumLiteral_1=(Token)match(input,62,FOLLOW_62_in_ruleType3808); 
+                    enumLiteral_1=(Token)match(input,62,FOLLOW_62_in_ruleType3881); 
 
                             current = grammarAccess.getTypeAccess().getSHORTEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getTypeAccess().getSHORTEnumLiteralDeclaration_1()); 
@@ -4154,12 +4222,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1707:6: (enumLiteral_2= 'INT' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1741:6: (enumLiteral_2= 'INT' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1707:6: (enumLiteral_2= 'INT' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1707:8: enumLiteral_2= 'INT'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1741:6: (enumLiteral_2= 'INT' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1741:8: enumLiteral_2= 'INT'
                     {
-                    enumLiteral_2=(Token)match(input,63,FOLLOW_63_in_ruleType3825); 
+                    enumLiteral_2=(Token)match(input,63,FOLLOW_63_in_ruleType3898); 
 
                             current = grammarAccess.getTypeAccess().getINTEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getTypeAccess().getINTEnumLiteralDeclaration_2()); 
@@ -4171,12 +4239,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1713:6: (enumLiteral_3= 'LONG' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1747:6: (enumLiteral_3= 'LONG' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1713:6: (enumLiteral_3= 'LONG' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1713:8: enumLiteral_3= 'LONG'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1747:6: (enumLiteral_3= 'LONG' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1747:8: enumLiteral_3= 'LONG'
                     {
-                    enumLiteral_3=(Token)match(input,64,FOLLOW_64_in_ruleType3842); 
+                    enumLiteral_3=(Token)match(input,64,FOLLOW_64_in_ruleType3915); 
 
                             current = grammarAccess.getTypeAccess().getLONGEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_3, grammarAccess.getTypeAccess().getLONGEnumLiteralDeclaration_3()); 
@@ -4188,12 +4256,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1719:6: (enumLiteral_4= 'FLOAT' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1753:6: (enumLiteral_4= 'FLOAT' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1719:6: (enumLiteral_4= 'FLOAT' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1719:8: enumLiteral_4= 'FLOAT'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1753:6: (enumLiteral_4= 'FLOAT' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1753:8: enumLiteral_4= 'FLOAT'
                     {
-                    enumLiteral_4=(Token)match(input,65,FOLLOW_65_in_ruleType3859); 
+                    enumLiteral_4=(Token)match(input,65,FOLLOW_65_in_ruleType3932); 
 
                             current = grammarAccess.getTypeAccess().getFLOATEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_4, grammarAccess.getTypeAccess().getFLOATEnumLiteralDeclaration_4()); 
@@ -4205,12 +4273,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1725:6: (enumLiteral_5= 'DOUBLE' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1759:6: (enumLiteral_5= 'DOUBLE' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1725:6: (enumLiteral_5= 'DOUBLE' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1725:8: enumLiteral_5= 'DOUBLE'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1759:6: (enumLiteral_5= 'DOUBLE' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1759:8: enumLiteral_5= 'DOUBLE'
                     {
-                    enumLiteral_5=(Token)match(input,66,FOLLOW_66_in_ruleType3876); 
+                    enumLiteral_5=(Token)match(input,66,FOLLOW_66_in_ruleType3949); 
 
                             current = grammarAccess.getTypeAccess().getDOUBLEEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_5, grammarAccess.getTypeAccess().getDOUBLEEnumLiteralDeclaration_5()); 
@@ -4261,7 +4329,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_EOF_in_entryRuleOptions331 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_16_in_ruleOptions379 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_17_in_ruleOptions391 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleOptions403 = new BitSet(new long[]{0x0000000005400000L});
+    public static final BitSet FOLLOW_18_in_ruleOptions403 = new BitSet(new long[]{0x000000000C400000L});
     public static final BitSet FOLLOW_ruleTransmission_in_ruleOptions424 = new BitSet(new long[]{0x0000000000290002L});
     public static final BitSet FOLLOW_19_in_ruleOptions444 = new BitSet(new long[]{0x0000000000100000L});
     public static final BitSet FOLLOW_20_in_ruleOptions456 = new BitSet(new long[]{0x0000000000040000L});
@@ -4278,148 +4346,153 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_rulePush_in_entryRulePush712 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePush722 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_22_in_rulePush759 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_rulePush771 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_rulePush788 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePull_in_entryRulePull829 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePull839 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTimeDivisionMultiplexing_in_rulePull886 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_rulePull904 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_rulePull916 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_rulePull928 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_rulePull940 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_INT_in_rulePull957 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTimeDivisionMultiplexing_in_entryRuleTimeDivisionMultiplexing999 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTimeDivisionMultiplexing1009 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_ruleTimeDivisionMultiplexing1046 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleTimeDivisionMultiplexing1058 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_ruleTimeDivisionMultiplexing1070 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleTimeDivisionMultiplexing1082 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleTimeDivisionMultiplexing1099 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_ruleTimeDivisionMultiplexing1116 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_ruleTimeDivisionMultiplexing1128 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleTimeDivisionMultiplexing1140 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_ruleDOUBLE_in_ruleTimeDivisionMultiplexing1161 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_ruleTimeDivisionMultiplexing1173 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_ruleTimeDivisionMultiplexing1185 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleTimeDivisionMultiplexing1197 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_ruleDOUBLE_in_ruleTimeDivisionMultiplexing1218 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRepresentation_in_entryRuleRepresentation1254 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleRepresentation1264 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_ruleRepresentation1302 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_31_in_ruleRepresentation1320 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleRepresentation1338 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_ruleRepresentation1355 = new BitSet(new long[]{0xE000000000000000L,0x0000000000000007L});
-    public static final BitSet FOLLOW_ruleType_in_ruleRepresentation1376 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_ruleRepresentation1388 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleRepresentation1405 = new BitSet(new long[]{0x0000000C00000000L});
-    public static final BitSet FOLLOW_34_in_ruleRepresentation1423 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_ruleRepresentation1441 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInterpretation_in_entryRuleInterpretation1478 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleInterpretation1488 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstant_in_ruleInterpretation1535 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePrimitiveInterpretation_in_ruleInterpretation1562 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMeasurement_in_ruleInterpretation1589 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInterpretationGroup_in_ruleInterpretation1616 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCalculated_in_ruleInterpretation1643 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCalculated_in_entryRuleCalculated1678 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleCalculated1688 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_ruleCalculated1726 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_37_in_ruleCalculated1744 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleCalculated1762 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_ruleCalculated1779 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleCalculated1799 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_ruleCalculated1811 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleCalculated1828 = new BitSet(new long[]{0x0000000000808000L});
-    public static final BitSet FOLLOW_15_in_ruleCalculated1846 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleCalculated1863 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleCalculated1882 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_ruleParameter_in_ruleCalculated1903 = new BitSet(new long[]{0x0000000000008002L});
-    public static final BitSet FOLLOW_15_in_ruleCalculated1916 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_ruleParameter_in_ruleCalculated1937 = new BitSet(new long[]{0x0000000000008002L});
-    public static final BitSet FOLLOW_ruleParameter_in_entryRuleParameter1975 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleParameter1985 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_ruleParameter2022 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleParameter2042 = new BitSet(new long[]{0x0000014000000000L});
-    public static final BitSet FOLLOW_38_in_ruleParameter2055 = new BitSet(new long[]{0x0080000000000000L});
-    public static final BitSet FOLLOW_ruleArgumentType_in_ruleParameter2076 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_40_in_ruleParameter2090 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInterpretationGroup_in_entryRuleInterpretationGroup2126 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleInterpretationGroup2136 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_ruleInterpretationGroup2173 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleInterpretationGroup2190 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_ruleInterpretationGroup2207 = new BitSet(new long[]{0x00060630C0002000L});
-    public static final BitSet FOLLOW_ruleInterpretation_in_ruleInterpretationGroup2228 = new BitSet(new long[]{0x00060630C0002000L});
-    public static final BitSet FOLLOW_13_in_ruleInterpretationGroup2241 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMeasurement_in_entryRuleMeasurement2277 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleMeasurement2287 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_ruleMeasurement2324 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_43_in_ruleMeasurement2336 = new BitSet(new long[]{0x1F00000000000000L});
-    public static final BitSet FOLLOW_ruleQuantity_in_ruleMeasurement2357 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleMeasurement2374 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_44_in_ruleMeasurement2391 = new BitSet(new long[]{0x0000000000000060L});
-    public static final BitSet FOLLOW_ruleDOUBLE_in_ruleMeasurement2412 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleMeasurement2430 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_ruleMeasurement2447 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleMeasurement2467 = new BitSet(new long[]{0x0000200000800002L});
-    public static final BitSet FOLLOW_ruleMeasurementConstraint_in_ruleMeasurement2488 = new BitSet(new long[]{0x0000200000800002L});
-    public static final BitSet FOLLOW_ruleMeasurementConstraint_in_entryRuleMeasurementConstraint2525 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleMeasurementConstraint2535 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMeasurementInRange_in_ruleMeasurementConstraint2582 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMeasurementAdaption_in_ruleMeasurementConstraint2609 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMeasurementInRange_in_entryRuleMeasurementInRange2644 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleMeasurementInRange2654 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_ruleMeasurementInRange2691 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_ruleMeasure_in_ruleMeasurementInRange2712 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_46_in_ruleMeasurementInRange2724 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_ruleMeasure_in_ruleMeasurementInRange2745 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMeasurementAdaption_in_entryRuleMeasurementAdaption2781 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleMeasurementAdaption2791 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_ruleMeasurementAdaption2828 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_47_in_ruleMeasurementAdaption2840 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleMeasurementAdaption2852 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_ruleDOUBLE_in_ruleMeasurementAdaption2873 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_ruleMeasurementAdaption2885 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_ruleMeasurementAdaption2897 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleMeasurementAdaption2909 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_ruleDOUBLE_in_ruleMeasurementAdaption2930 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMeasure_in_entryRuleMeasure2966 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleMeasure2976 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDOUBLE_in_ruleMeasure3022 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleMeasure3039 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePrimitiveInterpretation_in_entryRulePrimitiveInterpretation3080 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePrimitiveInterpretation3090 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_rulePrimitiveInterpretation3127 = new BitSet(new long[]{0xE000000000000000L,0x0000000000000007L});
-    public static final BitSet FOLLOW_ruleType_in_rulePrimitiveInterpretation3148 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_rulePrimitiveInterpretation3165 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_rulePrimitiveInterpretation3182 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_rulePrimitiveInterpretation3202 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstant_in_entryRuleConstant3238 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleConstant3248 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_ruleConstant3285 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleConstant3302 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_ruleConstant3319 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleConstant3339 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_32_in_ruleConstant3351 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleConstant3368 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDOUBLE_in_entryRuleDOUBLE3410 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDOUBLE3421 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleDOUBLE3461 = new BitSet(new long[]{0x0008000000000002L});
-    public static final BitSet FOLLOW_51_in_ruleDOUBLE3480 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleDOUBLE3495 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_ruleGenerationLanguage3556 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_ruleGenerationLanguage3573 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_ruleGenerationLanguage3590 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_55_in_ruleArgumentType3634 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_ruleQuantity3678 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_ruleQuantity3695 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_58_in_ruleQuantity3712 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_59_in_ruleQuantity3729 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_ruleQuantity3746 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_ruleType3791 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_62_in_ruleType3808 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_63_in_ruleType3825 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_64_in_ruleType3842 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_ruleType3859 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_66_in_ruleType3876 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_rulePush772 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_24_in_rulePush784 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_rulePush796 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_INT_in_rulePush813 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_rulePush830 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_rulePush844 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePush861 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePull_in_entryRulePull902 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePull912 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTimeDivisionMultiplexing_in_rulePull959 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_rulePull977 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_rulePull989 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_24_in_rulePull1001 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_rulePull1013 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_INT_in_rulePull1030 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTimeDivisionMultiplexing_in_entryRuleTimeDivisionMultiplexing1072 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTimeDivisionMultiplexing1082 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_ruleTimeDivisionMultiplexing1119 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_ruleTimeDivisionMultiplexing1131 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_24_in_ruleTimeDivisionMultiplexing1143 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleTimeDivisionMultiplexing1155 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleTimeDivisionMultiplexing1172 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_ruleTimeDivisionMultiplexing1189 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_ruleTimeDivisionMultiplexing1201 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleTimeDivisionMultiplexing1213 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_ruleDOUBLE_in_ruleTimeDivisionMultiplexing1234 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_ruleTimeDivisionMultiplexing1246 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_ruleTimeDivisionMultiplexing1258 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleTimeDivisionMultiplexing1270 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_ruleDOUBLE_in_ruleTimeDivisionMultiplexing1291 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRepresentation_in_entryRuleRepresentation1327 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleRepresentation1337 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_ruleRepresentation1375 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_31_in_ruleRepresentation1393 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleRepresentation1411 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_ruleRepresentation1428 = new BitSet(new long[]{0xE000000000000000L,0x0000000000000007L});
+    public static final BitSet FOLLOW_ruleType_in_ruleRepresentation1449 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_33_in_ruleRepresentation1461 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleRepresentation1478 = new BitSet(new long[]{0x0000000C00000000L});
+    public static final BitSet FOLLOW_34_in_ruleRepresentation1496 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_ruleRepresentation1514 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInterpretation_in_entryRuleInterpretation1551 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleInterpretation1561 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstant_in_ruleInterpretation1608 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePrimitiveInterpretation_in_ruleInterpretation1635 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMeasurement_in_ruleInterpretation1662 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInterpretationGroup_in_ruleInterpretation1689 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCalculated_in_ruleInterpretation1716 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCalculated_in_entryRuleCalculated1751 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleCalculated1761 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_ruleCalculated1799 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_37_in_ruleCalculated1817 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleCalculated1835 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_ruleCalculated1852 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleCalculated1872 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_33_in_ruleCalculated1884 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleCalculated1901 = new BitSet(new long[]{0x0000000000808000L});
+    public static final BitSet FOLLOW_15_in_ruleCalculated1919 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleCalculated1936 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_ruleCalculated1955 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_ruleParameter_in_ruleCalculated1976 = new BitSet(new long[]{0x0000000000008002L});
+    public static final BitSet FOLLOW_15_in_ruleCalculated1989 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_ruleParameter_in_ruleCalculated2010 = new BitSet(new long[]{0x0000000000008002L});
+    public static final BitSet FOLLOW_ruleParameter_in_entryRuleParameter2048 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleParameter2058 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_ruleParameter2095 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleParameter2115 = new BitSet(new long[]{0x0000014000000000L});
+    public static final BitSet FOLLOW_38_in_ruleParameter2128 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_ruleArgumentType_in_ruleParameter2149 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_40_in_ruleParameter2163 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInterpretationGroup_in_entryRuleInterpretationGroup2199 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleInterpretationGroup2209 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_ruleInterpretationGroup2246 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleInterpretationGroup2263 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_ruleInterpretationGroup2280 = new BitSet(new long[]{0x00060630C0002000L});
+    public static final BitSet FOLLOW_ruleInterpretation_in_ruleInterpretationGroup2301 = new BitSet(new long[]{0x00060630C0002000L});
+    public static final BitSet FOLLOW_13_in_ruleInterpretationGroup2314 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMeasurement_in_entryRuleMeasurement2350 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMeasurement2360 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_ruleMeasurement2397 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_43_in_ruleMeasurement2409 = new BitSet(new long[]{0x1F00000000000000L});
+    public static final BitSet FOLLOW_ruleQuantity_in_ruleMeasurement2430 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleMeasurement2447 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_44_in_ruleMeasurement2464 = new BitSet(new long[]{0x0000000000000060L});
+    public static final BitSet FOLLOW_ruleDOUBLE_in_ruleMeasurement2485 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleMeasurement2503 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_ruleMeasurement2520 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleMeasurement2540 = new BitSet(new long[]{0x0000200000800002L});
+    public static final BitSet FOLLOW_ruleMeasurementConstraint_in_ruleMeasurement2561 = new BitSet(new long[]{0x0000200000800002L});
+    public static final BitSet FOLLOW_ruleMeasurementConstraint_in_entryRuleMeasurementConstraint2598 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMeasurementConstraint2608 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMeasurementInRange_in_ruleMeasurementConstraint2655 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMeasurementAdaption_in_ruleMeasurementConstraint2682 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMeasurementInRange_in_entryRuleMeasurementInRange2717 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMeasurementInRange2727 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_ruleMeasurementInRange2764 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_ruleMeasure_in_ruleMeasurementInRange2785 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_46_in_ruleMeasurementInRange2797 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_ruleMeasure_in_ruleMeasurementInRange2818 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMeasurementAdaption_in_entryRuleMeasurementAdaption2854 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMeasurementAdaption2864 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_ruleMeasurementAdaption2901 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_47_in_ruleMeasurementAdaption2913 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleMeasurementAdaption2925 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_ruleDOUBLE_in_ruleMeasurementAdaption2946 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_ruleMeasurementAdaption2958 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_ruleMeasurementAdaption2970 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleMeasurementAdaption2982 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_ruleDOUBLE_in_ruleMeasurementAdaption3003 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMeasure_in_entryRuleMeasure3039 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMeasure3049 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDOUBLE_in_ruleMeasure3095 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleMeasure3112 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePrimitiveInterpretation_in_entryRulePrimitiveInterpretation3153 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePrimitiveInterpretation3163 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_rulePrimitiveInterpretation3200 = new BitSet(new long[]{0xE000000000000000L,0x0000000000000007L});
+    public static final BitSet FOLLOW_ruleType_in_rulePrimitiveInterpretation3221 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePrimitiveInterpretation3238 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_rulePrimitiveInterpretation3255 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePrimitiveInterpretation3275 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstant_in_entryRuleConstant3311 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleConstant3321 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_ruleConstant3358 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleConstant3375 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_ruleConstant3392 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleConstant3412 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32_in_ruleConstant3424 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleConstant3441 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDOUBLE_in_entryRuleDOUBLE3483 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDOUBLE3494 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleDOUBLE3534 = new BitSet(new long[]{0x0008000000000002L});
+    public static final BitSet FOLLOW_51_in_ruleDOUBLE3553 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleDOUBLE3568 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_ruleGenerationLanguage3629 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_ruleGenerationLanguage3646 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_ruleGenerationLanguage3663 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_55_in_ruleArgumentType3707 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_ruleQuantity3751 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_ruleQuantity3768 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_58_in_ruleQuantity3785 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_59_in_ruleQuantity3802 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_60_in_ruleQuantity3819 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_ruleType3864 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_62_in_ruleType3881 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_63_in_ruleType3898 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_64_in_ruleType3915 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_ruleType3932 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_ruleType3949 = new BitSet(new long[]{0x0000000000000002L});
 
 }

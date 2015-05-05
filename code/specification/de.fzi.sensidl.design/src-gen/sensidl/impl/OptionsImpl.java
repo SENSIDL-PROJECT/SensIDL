@@ -103,6 +103,48 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public GenerationLanguage getSensorLanguage() {
+		return sensorLanguage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSensorLanguage(GenerationLanguage newSensorLanguage) {
+		GenerationLanguage oldSensorLanguage = sensorLanguage;
+		sensorLanguage = newSensorLanguage == null ? SENSOR_LANGUAGE_EDEFAULT : newSensorLanguage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SensidlPackage.OPTIONS__SENSOR_LANGUAGE, oldSensorLanguage, sensorLanguage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GenerationLanguage getReceiverLanguage() {
+		return receiverLanguage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReceiverLanguage(GenerationLanguage newReceiverLanguage) {
+		GenerationLanguage oldReceiverLanguage = receiverLanguage;
+		receiverLanguage = newReceiverLanguage == null ? RECEIVER_LANGUAGE_EDEFAULT : newReceiverLanguage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SensidlPackage.OPTIONS__RECEIVER_LANGUAGE, oldReceiverLanguage, receiverLanguage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Transmission getTransmissionType() {
 		return transmissionType;
 	}
@@ -153,48 +195,6 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
 				return basicSetTransmissionType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GenerationLanguage getSensorLanguage() {
-		return sensorLanguage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSensorLanguage(GenerationLanguage newSensorLanguage) {
-		GenerationLanguage oldSensorLanguage = sensorLanguage;
-		sensorLanguage = newSensorLanguage == null ? SENSOR_LANGUAGE_EDEFAULT : newSensorLanguage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SensidlPackage.OPTIONS__SENSOR_LANGUAGE, oldSensorLanguage, sensorLanguage));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GenerationLanguage getReceiverLanguage() {
-		return receiverLanguage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setReceiverLanguage(GenerationLanguage newReceiverLanguage) {
-		GenerationLanguage oldReceiverLanguage = receiverLanguage;
-		receiverLanguage = newReceiverLanguage == null ? RECEIVER_LANGUAGE_EDEFAULT : newReceiverLanguage;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SensidlPackage.OPTIONS__RECEIVER_LANGUAGE, oldReceiverLanguage, receiverLanguage));
 	}
 
 	/**

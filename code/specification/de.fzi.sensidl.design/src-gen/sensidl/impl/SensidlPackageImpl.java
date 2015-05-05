@@ -620,15 +620,6 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOptions_TransmissionType() {
-		return (EReference)optionsEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getOptions_SensorLanguage() {
 		return (EAttribute)optionsEClass.getEStructuralFeatures().get(0);
 	}
@@ -640,6 +631,15 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 */
 	public EAttribute getOptions_ReceiverLanguage() {
 		return (EAttribute)optionsEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOptions_TransmissionType() {
+		return (EReference)optionsEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -728,8 +728,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPull() {
-		return pullEClass;
+	public EAttribute getTransmission_Frequency() {
+		return (EAttribute)transmissionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -737,8 +737,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPull_Frequency() {
-		return (EAttribute)pullEClass.getEStructuralFeatures().get(0);
+	public EClass getPull() {
+		return pullEClass;
 	}
 
 	/**
@@ -942,9 +942,9 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		createEAttribute(measureEClass, MEASURE__VALUE);
 
 		transmissionEClass = createEClass(TRANSMISSION);
+		createEAttribute(transmissionEClass, TRANSMISSION__FREQUENCY);
 
 		pullEClass = createEClass(PULL);
-		createEAttribute(pullEClass, PULL__FREQUENCY);
 
 		pushEClass = createEClass(PUSH);
 		createEAttribute(pushEClass, PUSH__METHOD_NAME);
@@ -1072,9 +1072,9 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		initEAttribute(getMeasure_Value(), ecorePackage.getEDouble(), "value", null, 1, 1, Measure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(transmissionEClass, Transmission.class, "Transmission", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTransmission_Frequency(), ecorePackage.getEInt(), "frequency", null, 1, 1, Transmission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pullEClass, Pull.class, "Pull", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPull_Frequency(), ecorePackage.getEInt(), "frequency", null, 1, 1, Pull.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pushEClass, Push.class, "Push", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPush_MethodName(), ecorePackage.getEString(), "methodName", null, 1, 1, Push.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

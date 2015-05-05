@@ -209,7 +209,10 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPullParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cPushParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//Transmission:
+		/// **
+		// * Übertragungsmöglichkeit durch Pull oder Push
+		// * @author Max Scheerer
+		// * / Transmission:
 		//	Pull | Push;
 		public ParserRule getRule() { return rule; }
 
@@ -227,28 +230,59 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Push");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cPushKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cWithKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cMethodNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cMethodNameIDTerminalRuleCall_2_0 = (RuleCall)cMethodNameAssignment_2.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cWithKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Keyword cFrequencyKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Keyword cColonKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final Assignment cFrequencyAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
+		private final RuleCall cFrequencyINTTerminalRuleCall_1_3_0 = (RuleCall)cFrequencyAssignment_1_3.eContents().get(0);
+		private final Keyword cAndKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
+		private final Keyword cWithKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cMethodNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cMethodNameIDTerminalRuleCall_3_0 = (RuleCall)cMethodNameAssignment_3.eContents().get(0);
 		
-		//Push:
-		//	"push" "with" methodName=ID;
+		/// **
+		// * 
+		// * @author Max Scheerer
+		// * / Push:
+		//	"push" ("with" "Frequency" ":" frequency=INT "and")? "with" methodName=ID;
 		public ParserRule getRule() { return rule; }
 
-		//"push" "with" methodName=ID
+		//"push" ("with" "Frequency" ":" frequency=INT "and")? "with" methodName=ID
 		public Group getGroup() { return cGroup; }
 
 		//"push"
 		public Keyword getPushKeyword_0() { return cPushKeyword_0; }
 
+		//("with" "Frequency" ":" frequency=INT "and")?
+		public Group getGroup_1() { return cGroup_1; }
+
 		//"with"
-		public Keyword getWithKeyword_1() { return cWithKeyword_1; }
+		public Keyword getWithKeyword_1_0() { return cWithKeyword_1_0; }
+
+		//"Frequency"
+		public Keyword getFrequencyKeyword_1_1() { return cFrequencyKeyword_1_1; }
+
+		//":"
+		public Keyword getColonKeyword_1_2() { return cColonKeyword_1_2; }
+
+		//frequency=INT
+		public Assignment getFrequencyAssignment_1_3() { return cFrequencyAssignment_1_3; }
+
+		//INT
+		public RuleCall getFrequencyINTTerminalRuleCall_1_3_0() { return cFrequencyINTTerminalRuleCall_1_3_0; }
+
+		//"and"
+		public Keyword getAndKeyword_1_4() { return cAndKeyword_1_4; }
+
+		//"with"
+		public Keyword getWithKeyword_2() { return cWithKeyword_2; }
 
 		//methodName=ID
-		public Assignment getMethodNameAssignment_2() { return cMethodNameAssignment_2; }
+		public Assignment getMethodNameAssignment_3() { return cMethodNameAssignment_3; }
 
 		//ID
-		public RuleCall getMethodNameIDTerminalRuleCall_2_0() { return cMethodNameIDTerminalRuleCall_2_0; }
+		public RuleCall getMethodNameIDTerminalRuleCall_3_0() { return cMethodNameIDTerminalRuleCall_3_0; }
 	}
 
 	public class PullElements extends AbstractParserRuleElementFinder {
@@ -1291,7 +1325,10 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		return getOptionsAccess().getRule();
 	}
 
-	//Transmission:
+	/// **
+	// * Übertragungsmöglichkeit durch Pull oder Push
+	// * @author Max Scheerer
+	// * / Transmission:
 	//	Pull | Push;
 	public TransmissionElements getTransmissionAccess() {
 		return pTransmission;
@@ -1301,8 +1338,11 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		return getTransmissionAccess().getRule();
 	}
 
-	//Push:
-	//	"push" "with" methodName=ID;
+	/// **
+	// * 
+	// * @author Max Scheerer
+	// * / Push:
+	//	"push" ("with" "Frequency" ":" frequency=INT "and")? "with" methodName=ID;
 	public PushElements getPushAccess() {
 		return pPush;
 	}

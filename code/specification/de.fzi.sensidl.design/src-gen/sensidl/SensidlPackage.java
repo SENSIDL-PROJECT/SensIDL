@@ -839,13 +839,22 @@ public interface SensidlPackage extends EPackage {
 	int TRANSMISSION = 15;
 
 	/**
+	 * The feature id for the '<em><b>Frequency</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSMISSION__FREQUENCY = 0;
+
+	/**
 	 * The number of structural features of the '<em>Transmission</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSMISSION_FEATURE_COUNT = 0;
+	int TRANSMISSION_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Transmission</em>' class.
@@ -873,7 +882,7 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PULL__FREQUENCY = TRANSMISSION_FEATURE_COUNT + 0;
+	int PULL__FREQUENCY = TRANSMISSION__FREQUENCY;
 
 	/**
 	 * The number of structural features of the '<em>Pull</em>' class.
@@ -882,7 +891,7 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PULL_FEATURE_COUNT = TRANSMISSION_FEATURE_COUNT + 1;
+	int PULL_FEATURE_COUNT = TRANSMISSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Pull</em>' class.
@@ -902,6 +911,15 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 */
 	int PUSH = 17;
+
+	/**
+	 * The feature id for the '<em><b>Frequency</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUSH__FREQUENCY = TRANSMISSION__FREQUENCY;
 
 	/**
 	 * The feature id for the '<em><b>Method Name</b></em>' attribute.
@@ -1480,17 +1498,6 @@ public interface SensidlPackage extends EPackage {
 	EClass getOptions();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link sensidl.Options#getTransmissionType <em>Transmission Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Transmission Type</em>'.
-	 * @see sensidl.Options#getTransmissionType()
-	 * @see #getOptions()
-	 * @generated
-	 */
-	EReference getOptions_TransmissionType();
-
-	/**
 	 * Returns the meta object for the attribute '{@link sensidl.Options#getSensorLanguage <em>Sensor Language</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1511,6 +1518,17 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getOptions_ReceiverLanguage();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link sensidl.Options#getTransmissionType <em>Transmission Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Transmission Type</em>'.
+	 * @see sensidl.Options#getTransmissionType()
+	 * @see #getOptions()
+	 * @generated
+	 */
+	EReference getOptions_TransmissionType();
 
 	/**
 	 * Returns the meta object for class '{@link sensidl.Constraint <em>Constraint</em>}'.
@@ -1607,6 +1625,17 @@ public interface SensidlPackage extends EPackage {
 	EClass getTransmission();
 
 	/**
+	 * Returns the meta object for the attribute '{@link sensidl.Transmission#getFrequency <em>Frequency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Frequency</em>'.
+	 * @see sensidl.Transmission#getFrequency()
+	 * @see #getTransmission()
+	 * @generated
+	 */
+	EAttribute getTransmission_Frequency();
+
+	/**
 	 * Returns the meta object for class '{@link sensidl.Pull <em>Pull</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1615,17 +1644,6 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPull();
-
-	/**
-	 * Returns the meta object for the attribute '{@link sensidl.Pull#getFrequency <em>Frequency</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Frequency</em>'.
-	 * @see sensidl.Pull#getFrequency()
-	 * @see #getPull()
-	 * @generated
-	 */
-	EAttribute getPull_Frequency();
 
 	/**
 	 * Returns the meta object for class '{@link sensidl.Push <em>Push</em>}'.
@@ -2102,14 +2120,6 @@ public interface SensidlPackage extends EPackage {
 		EClass OPTIONS = eINSTANCE.getOptions();
 
 		/**
-		 * The meta object literal for the '<em><b>Transmission Type</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OPTIONS__TRANSMISSION_TYPE = eINSTANCE.getOptions_TransmissionType();
-
-		/**
 		 * The meta object literal for the '<em><b>Sensor Language</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2124,6 +2134,14 @@ public interface SensidlPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute OPTIONS__RECEIVER_LANGUAGE = eINSTANCE.getOptions_ReceiverLanguage();
+
+		/**
+		 * The meta object literal for the '<em><b>Transmission Type</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPTIONS__TRANSMISSION_TYPE = eINSTANCE.getOptions_TransmissionType();
 
 		/**
 		 * The meta object literal for the '{@link sensidl.Constraint <em>Constraint</em>}' class.
@@ -2208,6 +2226,14 @@ public interface SensidlPackage extends EPackage {
 		EClass TRANSMISSION = eINSTANCE.getTransmission();
 
 		/**
+		 * The meta object literal for the '<em><b>Frequency</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRANSMISSION__FREQUENCY = eINSTANCE.getTransmission_Frequency();
+
+		/**
 		 * The meta object literal for the '{@link sensidl.impl.PullImpl <em>Pull</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2216,14 +2242,6 @@ public interface SensidlPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PULL = eINSTANCE.getPull();
-
-		/**
-		 * The meta object literal for the '<em><b>Frequency</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PULL__FREQUENCY = eINSTANCE.getPull_Frequency();
 
 		/**
 		 * The meta object literal for the '{@link sensidl.impl.PushImpl <em>Push</em>}' class.

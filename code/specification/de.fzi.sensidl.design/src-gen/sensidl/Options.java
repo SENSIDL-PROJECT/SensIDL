@@ -24,32 +24,6 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Options extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Transmission Type</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Transmission Type</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Transmission Type</em>' containment reference.
-	 * @see #setTransmissionType(Transmission)
-	 * @see sensidl.SensidlPackage#getOptions_TransmissionType()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	Transmission getTransmissionType();
-
-	/**
-	 * Sets the value of the '{@link sensidl.Options#getTransmissionType <em>Transmission Type</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Transmission Type</em>' containment reference.
-	 * @see #getTransmissionType()
-	 * @generated
-	 */
-	void setTransmissionType(Transmission value);
-
-	/**
 	 * Returns the value of the '<em><b>Sensor Language</b></em>' attribute.
 	 * The literals are from the enumeration {@link sensidl.GenerationLanguage}.
 	 * <!-- begin-user-doc -->
@@ -106,5 +80,31 @@ public interface Options extends EObject {
 	 * @generated
 	 */
 	void setReceiverLanguage(GenerationLanguage value);
+
+	/**
+	 * Returns the value of the '<em><b>Transmission Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Transmission Type</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Transmission Type</em>' containment reference.
+	 * @see #setTransmissionType(Transmission)
+	 * @see sensidl.SensidlPackage#getOptions_TransmissionType()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	Transmission getTransmissionType();
+
+	/**
+	 * Sets the value of the '{@link sensidl.Options#getTransmissionType <em>Transmission Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Transmission Type</em>' containment reference.
+	 * @see #getTransmissionType()
+	 * @generated
+	 */
+	void setTransmissionType(Transmission value);
 
 } // Options

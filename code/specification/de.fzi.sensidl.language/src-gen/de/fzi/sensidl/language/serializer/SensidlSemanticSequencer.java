@@ -324,8 +324,8 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 */
 	protected void sequence_Pull(EObject context, Pull semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.PULL__FREQUENCY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.PULL__FREQUENCY));
+			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.TRANSMISSION__FREQUENCY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.TRANSMISSION__FREQUENCY));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
@@ -336,17 +336,10 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     methodName=ID
+	 *     (frequency=INT? methodName=ID)
 	 */
 	protected void sequence_Push(EObject context, Push semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.PUSH__METHOD_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.PUSH__METHOD_NAME));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPushAccess().getMethodNameIDTerminalRuleCall_2_0(), semanticObject.getMethodName());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -378,8 +371,8 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 */
 	protected void sequence_TimeDivisionMultiplexing(EObject context, TimeDivisionMultiplexing semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.PULL__FREQUENCY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.PULL__FREQUENCY));
+			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.TRANSMISSION__FREQUENCY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.TRANSMISSION__FREQUENCY));
 			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.TIME_DIVISION_MULTIPLEXING__DURATION) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.TIME_DIVISION_MULTIPLEXING__DURATION));
 			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.TIME_DIVISION_MULTIPLEXING__TIME_SLOT) == ValueTransient.YES)

@@ -34,22 +34,39 @@ Options:
 	)*
 ;
 
+/**
+ * Übertragungsmöglichkeit durch Pull oder Push.
+ */
 Transmission:
 	Pull |
 	Push
 ;
 
+/**
+ * Mit "methodName" kann nach Aufforderung auf der Empfängerseite "gepusht" werden.
+ * Optional kann mit "frequency" (in Hz) "gepusht" werden.
+ */
 Push:
 	"push"
+	("with" "Frequency" ":" frequency=INT "and")?
 	"with" methodName = ID
 ;
 
+/**
+ * Mit "frequency" (Hz) wird angegeben, wie häufig "gepullt" werden soll. 
+ */
 Pull:
 	(TimeDivisionMultiplexing) |
 	"pull"
 	"with" "Frequency" ":" frequency=INT
 ;
 
+/**
+ * Spezialfall von Push.
+ * "frequency" wie bei pull und push
+ * Mit "duration" wird die Übertragungsdauer angegeben.
+ * Mit "timeSlot" wird der genaue Zeitpunkt angegeben wenn mit Dauer "duration" übertragen werden kann. 
+ */
 TimeDivisionMultiplexing:
 	"timeDivisionMultiplexing"
 	"with" "Frequency" ":" frequency=INT
@@ -118,6 +135,10 @@ MeasurementInRange:
 	"to" upperBound=Measure
 ;
 
+/**
+ * Konkrete Fall eines MeasurementConstraints.
+ * Wertadaption durch Skalierungsfaktor "scalingFactor" und dem Offset "offset".
+ */
 MeasurementAdaption:
 	"with" "scaling factor" ":" scalingFactor=DOUBLE
 	"and" "offset" ":" offset=DOUBLE 
