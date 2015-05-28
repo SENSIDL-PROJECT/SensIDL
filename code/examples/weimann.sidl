@@ -1,0 +1,49 @@
+options {
+	receiver language: JAVA
+	sensor language: JAVA
+	transmission type: PULL
+}
+
+repr twoByteShort is SHORT by 2 byte
+repr oneByteByte is BYTE by 1 byte
+repr int4Byte is INT by 4 bytes
+
+constant IDENTIFIER as oneByteByte is "0xAA"
+
+group Payload {
+	group Data {
+		group Measurements {
+			measurement of FLOW mFlow in 0.0078125 "L/min"
+				as twoByteShort
+			measurement of TEMPERATURE mTemperature in 0.1 "Celsius"
+				as twoByteShort
+			measurement of PRESSURE mPressure in "mBar" as twoByteShort
+			measurement of VOLUME mVExhale in "mL" as twoByteShort
+			measurement of VOLUME mVInhale in "mL" as twoByteShort
+			measurement of DURATION mTExhale in "ms" as twoByteShort
+			measurement of DURATION mTInhale in "ms" as twoByteShort
+		}
+		
+		group Metadata {
+			primitive INT mSoftwareVersion as twoByteShort
+			primitive INT mMesswertCounter as twoByteShort
+			primitive INT mRecordVersion as twoByteShort
+			
+			primitive BYTE mStatus as twoByteShort
+		}
+	}
+	
+	calculate mChecksum
+		as oneByteByte
+		by calculateChecksum, calculateChecksum
+		with (Data as BYTE_ARRAY)
+}
+
+calculate base128payload
+	as int4Byte
+	by base128_encode, base128_decode
+	with (Payload as BYTE_ARRAY)
+	
+transmit
+	IDENTIFIER,
+	base128payload

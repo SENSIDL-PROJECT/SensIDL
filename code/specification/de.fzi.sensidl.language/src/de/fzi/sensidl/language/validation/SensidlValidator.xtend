@@ -25,13 +25,13 @@ class SensidlValidator extends AbstractSensidlValidator {
 	@Check
 	def checkOnlySupportedLanguages(Options options) {
 		if (!languageSupported(options.receiverLanguage)) {
-			error('Generation language for receiver not supported',
+			warning('Generation language for receiver not yet supported',
 				SensidlPackage.Literals.OPTIONS__RECEIVER_LANGUAGE,
 				'invalidReceiverLanguage'
 			);
 		}
 		if (!languageSupported(options.sensorLanguage)) {
-			error('Generation language for sensor not supported',
+			warning('Generation language for sensor not yet supported',
 				SensidlPackage.Literals.OPTIONS__SENSOR_LANGUAGE,
 				'invalidSensorLanguage'
 			);

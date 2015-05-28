@@ -210,8 +210,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPushParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		/// **
-		// * Übertragungsmöglichkeit durch Pull oder Push
-		// * @author Max Scheerer
+		// * Übertragungsmöglichkeit durch Pull oder Push.
 		// * / Transmission:
 		//	Pull | Push;
 		public ParserRule getRule() { return rule; }
@@ -242,8 +241,8 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cMethodNameIDTerminalRuleCall_3_0 = (RuleCall)cMethodNameAssignment_3.eContents().get(0);
 		
 		/// **
-		// * 
-		// * @author Max Scheerer
+		// * Mit "methodName" kann nach Aufforderung auf der Empfängerseite "gepusht" werden.
+		// * Optional kann mit "frequency" (in Hz) "gepusht" werden.
 		// * / Push:
 		//	"push" ("with" "Frequency" ":" frequency=INT "and")? "with" methodName=ID;
 		public ParserRule getRule() { return rule; }
@@ -297,7 +296,9 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cFrequencyAssignment_1_4 = (Assignment)cGroup_1.eContents().get(4);
 		private final RuleCall cFrequencyINTTerminalRuleCall_1_4_0 = (RuleCall)cFrequencyAssignment_1_4.eContents().get(0);
 		
-		//Pull:
+		/// **
+		// * Mit "frequency" (Hz) wird angegeben, wie häufig "gepullt" werden soll. 
+		// * / Pull:
 		//	TimeDivisionMultiplexing | "pull" "with" "Frequency" ":" frequency=INT;
 		public ParserRule getRule() { return rule; }
 
@@ -349,7 +350,12 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cTimeSlotAssignment_12 = (Assignment)cGroup.eContents().get(12);
 		private final RuleCall cTimeSlotDOUBLEParserRuleCall_12_0 = (RuleCall)cTimeSlotAssignment_12.eContents().get(0);
 		
-		//TimeDivisionMultiplexing:
+		/// **
+		// * Spezialfall von Push.
+		// * "frequency" wie bei pull und push
+		// * Mit "duration" wird die Übertragungsdauer angegeben.
+		// * Mit "timeSlot" wird der genaue Zeitpunkt angegeben wenn mit Dauer "duration" übertragen werden kann. 
+		// * / TimeDivisionMultiplexing:
 		//	"timeDivisionMultiplexing" "with" "Frequency" ":" frequency=INT "and" "Duration" ":" duration=DOUBLE "and" "timeSlot"
 		//	":" timeSlot=DOUBLE;
 		public ParserRule getRule() { return rule; }
@@ -855,7 +861,10 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOffsetAssignment_7 = (Assignment)cGroup.eContents().get(7);
 		private final RuleCall cOffsetDOUBLEParserRuleCall_7_0 = (RuleCall)cOffsetAssignment_7.eContents().get(0);
 		
-		//MeasurementAdaption:
+		/// **
+		// * Konkrete Fall eines MeasurementConstraints.
+		// * Wertadaption durch Skalierungsfaktor "scalingFactor" und dem Offset "offset".
+		// * / MeasurementAdaption:
 		//	"with" "scaling factor" ":" scalingFactor=DOUBLE "and" "offset" ":" offset=DOUBLE;
 		public ParserRule getRule() { return rule; }
 
@@ -1061,12 +1070,14 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cCPPCPPKeyword_1_0 = (Keyword)cCPPEnumLiteralDeclaration_1.eContents().get(0);
 		private final EnumLiteralDeclaration cCEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
 		private final Keyword cCCKeyword_2_0 = (Keyword)cCEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cCSHARPEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cCSHARPCSHARPKeyword_3_0 = (Keyword)cCSHARPEnumLiteralDeclaration_3.eContents().get(0);
 		
 		//enum GenerationLanguage:
-		//	JAVA | CPP | C;
+		//	JAVA | CPP | C | CSHARP;
 		public EnumRule getRule() { return rule; }
 
-		//JAVA | CPP | C
+		//JAVA | CPP | C | CSHARP
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//JAVA
@@ -1086,6 +1097,12 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"C"
 		public Keyword getCCKeyword_2_0() { return cCCKeyword_2_0; }
+
+		//CSHARP
+		public EnumLiteralDeclaration getCSHARPEnumLiteralDeclaration_3() { return cCSHARPEnumLiteralDeclaration_3; }
+
+		//"CSHARP"
+		public Keyword getCSHARPCSHARPKeyword_3_0() { return cCSHARPCSHARPKeyword_3_0; }
 	}
 
 	public class ArgumentTypeElements extends AbstractEnumRuleElementFinder {
@@ -1119,12 +1136,14 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cDURATIONDURATIONKeyword_3_0 = (Keyword)cDURATIONEnumLiteralDeclaration_3.eContents().get(0);
 		private final EnumLiteralDeclaration cPRESSUREEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
 		private final Keyword cPRESSUREPRESSUREKeyword_4_0 = (Keyword)cPRESSUREEnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cELECTRICENERGYEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
+		private final Keyword cELECTRICENERGYELECTRICENERGYKeyword_5_0 = (Keyword)cELECTRICENERGYEnumLiteralDeclaration_5.eContents().get(0);
 		
 		//enum Quantity:
-		//	FLOW | TEMPERATURE | VOLUME | DURATION | PRESSURE;
+		//	FLOW | TEMPERATURE | VOLUME | DURATION | PRESSURE | ELECTRICENERGY;
 		public EnumRule getRule() { return rule; }
 
-		//FLOW | TEMPERATURE | VOLUME | DURATION | PRESSURE
+		//FLOW | TEMPERATURE | VOLUME | DURATION | PRESSURE | ELECTRICENERGY
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//FLOW
@@ -1156,6 +1175,12 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"PRESSURE"
 		public Keyword getPRESSUREPRESSUREKeyword_4_0() { return cPRESSUREPRESSUREKeyword_4_0; }
+
+		//ELECTRICENERGY
+		public EnumLiteralDeclaration getELECTRICENERGYEnumLiteralDeclaration_5() { return cELECTRICENERGYEnumLiteralDeclaration_5; }
+
+		//"ELECTRICENERGY"
+		public Keyword getELECTRICENERGYELECTRICENERGYKeyword_5_0() { return cELECTRICENERGYELECTRICENERGYKeyword_5_0; }
 	}
 
 	public class TypeElements extends AbstractEnumRuleElementFinder {
@@ -1326,8 +1351,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// **
-	// * Übertragungsmöglichkeit durch Pull oder Push
-	// * @author Max Scheerer
+	// * Übertragungsmöglichkeit durch Pull oder Push.
 	// * / Transmission:
 	//	Pull | Push;
 	public TransmissionElements getTransmissionAccess() {
@@ -1339,8 +1363,8 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// **
-	// * 
-	// * @author Max Scheerer
+	// * Mit "methodName" kann nach Aufforderung auf der Empfängerseite "gepusht" werden.
+	// * Optional kann mit "frequency" (in Hz) "gepusht" werden.
 	// * / Push:
 	//	"push" ("with" "Frequency" ":" frequency=INT "and")? "with" methodName=ID;
 	public PushElements getPushAccess() {
@@ -1351,7 +1375,9 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		return getPushAccess().getRule();
 	}
 
-	//Pull:
+	/// **
+	// * Mit "frequency" (Hz) wird angegeben, wie häufig "gepullt" werden soll. 
+	// * / Pull:
 	//	TimeDivisionMultiplexing | "pull" "with" "Frequency" ":" frequency=INT;
 	public PullElements getPullAccess() {
 		return pPull;
@@ -1361,7 +1387,12 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		return getPullAccess().getRule();
 	}
 
-	//TimeDivisionMultiplexing:
+	/// **
+	// * Spezialfall von Push.
+	// * "frequency" wie bei pull und push
+	// * Mit "duration" wird die Übertragungsdauer angegeben.
+	// * Mit "timeSlot" wird der genaue Zeitpunkt angegeben wenn mit Dauer "duration" übertragen werden kann. 
+	// * / TimeDivisionMultiplexing:
 	//	"timeDivisionMultiplexing" "with" "Frequency" ":" frequency=INT "and" "Duration" ":" duration=DOUBLE "and" "timeSlot"
 	//	":" timeSlot=DOUBLE;
 	public TimeDivisionMultiplexingElements getTimeDivisionMultiplexingAccess() {
@@ -1373,7 +1404,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum GenerationLanguage:
-	//	JAVA | CPP | C;
+	//	JAVA | CPP | C | CSHARP;
 	public GenerationLanguageElements getGenerationLanguageAccess() {
 		return unknownRuleGenerationLanguage;
 	}
@@ -1466,7 +1497,10 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		return getMeasurementInRangeAccess().getRule();
 	}
 
-	//MeasurementAdaption:
+	/// **
+	// * Konkrete Fall eines MeasurementConstraints.
+	// * Wertadaption durch Skalierungsfaktor "scalingFactor" und dem Offset "offset".
+	// * / MeasurementAdaption:
 	//	"with" "scaling factor" ":" scalingFactor=DOUBLE "and" "offset" ":" offset=DOUBLE;
 	public MeasurementAdaptionElements getMeasurementAdaptionAccess() {
 		return pMeasurementAdaption;
@@ -1531,7 +1565,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum Quantity:
-	//	FLOW | TEMPERATURE | VOLUME | DURATION | PRESSURE;
+	//	FLOW | TEMPERATURE | VOLUME | DURATION | PRESSURE | ELECTRICENERGY;
 	public QuantityElements getQuantityAccess() {
 		return unknownRuleQuantity;
 	}

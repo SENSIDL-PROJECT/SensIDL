@@ -1103,6 +1103,7 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		addEEnumLiteral(generationLanguageEEnum, GenerationLanguage.JAVA);
 		addEEnumLiteral(generationLanguageEEnum, GenerationLanguage.CPP);
 		addEEnumLiteral(generationLanguageEEnum, GenerationLanguage.C);
+		addEEnumLiteral(generationLanguageEEnum, GenerationLanguage.CSHARP);
 
 		initEEnum(quantityEEnum, Quantity.class, "Quantity");
 		addEEnumLiteral(quantityEEnum, Quantity.FLOW);
@@ -1110,6 +1111,7 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		addEEnumLiteral(quantityEEnum, Quantity.VOLUME);
 		addEEnumLiteral(quantityEEnum, Quantity.DURATION);
 		addEEnumLiteral(quantityEEnum, Quantity.PRESSURE);
+		addEEnumLiteral(quantityEEnum, Quantity.ELECTRICENERGY);
 
 		// Create resource
 		createResource(eNS_URI);

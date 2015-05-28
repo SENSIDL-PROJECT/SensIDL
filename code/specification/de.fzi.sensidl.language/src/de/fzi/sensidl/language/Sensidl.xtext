@@ -75,7 +75,7 @@ TimeDivisionMultiplexing:
 ;
 
 enum GenerationLanguage:
-	JAVA | CPP | C
+	JAVA | CPP | C | CSHARP
 ;
 
 Representation:
@@ -174,7 +174,7 @@ enum ArgumentType:
 ;
 
 enum Quantity:
-	FLOW | TEMPERATURE | VOLUME | DURATION | PRESSURE
+	FLOW | TEMPERATURE | VOLUME | DURATION | PRESSURE | ELECTRICENERGY
 ;
 
 enum Type:

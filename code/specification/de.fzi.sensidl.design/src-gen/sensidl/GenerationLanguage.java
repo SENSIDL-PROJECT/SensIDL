@@ -46,7 +46,15 @@ public enum GenerationLanguage implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	C(2, "C", "C");
+	C(2, "C", "C"), /**
+	 * The '<em><b>CSHARP</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #CSHARP_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	CSHARP(3, "CSHARP", "CSHARP");
 
 	/**
 	 * The '<em><b>JAVA</b></em>' literal value.
@@ -94,6 +102,21 @@ public enum GenerationLanguage implements Enumerator {
 	public static final int C_VALUE = 2;
 
 	/**
+	 * The '<em><b>CSHARP</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CSHARP</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CSHARP
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CSHARP_VALUE = 3;
+
+	/**
 	 * An array of all the '<em><b>Generation Language</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -104,6 +127,7 @@ public enum GenerationLanguage implements Enumerator {
 			JAVA,
 			CPP,
 			C,
+			CSHARP,
 		};
 
 	/**
@@ -157,6 +181,7 @@ public enum GenerationLanguage implements Enumerator {
 			case JAVA_VALUE: return JAVA;
 			case CPP_VALUE: return CPP;
 			case C_VALUE: return C;
+			case CSHARP_VALUE: return CSHARP;
 		}
 		return null;
 	}

@@ -1,0 +1,206 @@
+/* *
+ * In diesem Beispiel soll die Beschreibung von EMeter durch SensIDL illustrieren. Als Anwendungsszenario wird auf
+ * Empfängerseite ein C#-Client angenommen, der mit dem auf C basierenden Modul von EMeter kommuniziert. Die Daten
+ * werden von der Empfängerseite nach Bedarf abgerufen. 
+ */
+
+/* *
+ * Über die Optionen wird festgelegt, das der generierte Code auf Empfängerseite in C# und auf Sensorseite in C 
+ * generiert wird. Die Empfängerseite ruft die Daten nach Bedarf mit "getMeasures" ab.
+ */
+options {
+	receiver language: CSHARP
+	sensor language: C
+	transmission type: push with getMeasures
+}
+
+/* *
+ * Deklaration von verschiedenen Repräsentationen die (z.B.) ein "Measurement" besitzen kann. 
+ */
+repr oneByteByte is BYTE by 1 byte
+repr oneByteInt8 is INT by 1 byte
+repr twoByteInt16 is INT by 2 bytes
+repr fourByteFloat is FLOAT by 4 bytes
+repr fourteenByteByte is BYTE by 14 bytes
+repr fourByteInt32 is INT by 4 bytes
+
+/* *
+ * Beschreibung der Phase L1 
+ */
+group L1 {
+	group Data {
+		
+		/* *
+ 		 * In dieser Gruppe werden die Metadaten von L1 gruppiert. Diese entsprechen den ersten zwei Bytes
+ 		 * in der EMeter-Datenstruktur.
+ 		 */
+		group Metadata {
+			primitive BYTE DeviceType as oneByteByte
+			primitive BYTE RecordType as oneByteByte
+		}
+		
+		/* *
+ 		 * In dieser Gruppe werden die gemessenen Werte von L1 gruppiert. Diese entsprechen den Bytes 3-12
+ 		 * in der EMeter-Datenstruktur.
+ 		 */
+		group MeasuredValues {
+			measurement of ELECTRICENERGY Voltage in "V" as twoByteInt16
+			measurement of ELECTRICENERGY CurrentIntensity in "A" as fourByteFloat
+			measurement of ELECTRICENERGY Energy in "Ws" as fourByteFloat
+			primitive BYTE CosPhi as oneByteInt8
+		}
+		
+		/* *
+ 		 * In dieser Gruppe werden die Messnummern von L1 gruppiert. Diese entsprechen dem letzen Byte.
+ 		 */
+		group RecordData {
+			primitive BYTE RecordNo as oneByteByte
+		}
+	}
+}
+
+/* *
+ * Der Teil "Coding_L1" soll schließlich die Kodierungsverfahren repräsentieren. Hierbei werden die Methoden
+ * "structToByte" und "byteToStruct" generiert, welche für die Kodierung und Dekodierung verantwortlich sind. 
+ */
+calculate Coding_L1
+	as fourteenByteByte
+	by structToByte, byteToStruct
+	with (L1 as BYTE_ARRAY)
+
+/* *
+ * Siehe Phase L1 
+ */	
+group L2 {
+	group Data {
+		group Metadata {
+			primitive BYTE DeviceType as oneByteByte
+			primitive BYTE RecordType as oneByteByte
+		}
+		
+		group MeasuredValues {
+			measurement of ELECTRICENERGY Voltage in "V" as twoByteInt16
+			measurement of ELECTRICENERGY CurrentIntensity in "A" as fourByteFloat
+			measurement of ELECTRICENERGY Energy in "Ws" as fourByteFloat
+			primitive BYTE CosPhi as oneByteInt8
+		}
+		
+		group RecordData {
+			primitive BYTE RecordNo as oneByteByte
+		}
+	}
+}
+
+/* *
+ * Siehe Coding_L1 
+ */
+calculate Coding_L2
+	as fourteenByteByte
+	by structToByte, byteToStruct
+	with (L2 as BYTE_ARRAY)
+
+/* *
+ * Siehe Phase L1 
+ */		
+group L3 {
+	group Data {
+		group Metadata {
+			primitive BYTE DeviceType as oneByteByte
+			primitive BYTE RecordType as oneByteByte
+		}
+		
+		group MeasuredValues {
+			measurement of ELECTRICENERGY Voltage in "V" as twoByteInt16
+			measurement of ELECTRICENERGY CurrentIntensity in "A" as fourByteFloat
+			measurement of ELECTRICENERGY Energy in "Ws" as fourByteFloat
+			primitive BYTE CosPhi as oneByteInt8
+		}
+		
+		group RecordData {
+			primitive BYTE RecordNo as oneByteByte
+		}
+	}
+}
+
+/* *
+ * Siehe Coding_L1 
+ */
+calculate Coding_L3
+	as fourteenByteByte
+	by structToByte, byteToStruct
+	with (L3 as BYTE_ARRAY)
+
+/* *
+ * Siehe Phase L1...L3 
+ */	
+group N {
+	group Data {
+		
+		group Metadata {
+			primitive BYTE DeviceType as oneByteByte
+			primitive BYTE RecordType as oneByteByte
+		}
+		
+		group MeasuredValues {
+			primitive INT Dummy as twoByteInt16
+			measurement of ELECTRICENERGY CurrentIntensity in "A" as fourByteFloat
+			primitive INT Dummy1 as fourByteInt32
+			primitive BYTE CosPhi as oneByteInt8
+		}
+		
+		group RecordData {
+			primitive BYTE RecordNo as oneByteByte
+		}
+	}
+}
+
+/* *
+ * Siehe Coding_L1...L3 
+ */	
+calculate Coding_N
+	as fourteenByteByte
+	by structToByte, byteToStruct
+	with (N as BYTE_ARRAY)
+
+/* *
+ * Beschreibung der bezogenen Energiemenge L1,L2,L3.
+ */
+group Energy {
+	group Data {
+		/* *
+ 		 * In dieser Gruppe werden die Metadaten gruppiert. Diese entsprechen den ersten zwei Bytes
+ 		 * in der EMeter-Datenstruktur.
+ 		 */
+		group Metadata {
+			primitive BYTE DeviceType as oneByteByte
+			primitive BYTE RecordType as oneByteByte
+		}
+		
+		/* *
+ 		 * In dieser Gruppe werden die Messwerte gruppiert und entsprechen den Bytes 3-14.
+ 		 */
+		group MeasuredValues {
+			measurement of ELECTRICENERGY fE_L1 in "kWh" as fourByteFloat
+			measurement of ELECTRICENERGY fE_L2 in "kWh" as fourByteFloat
+			measurement of ELECTRICENERGY fE_L3 in "kWh" as fourByteFloat
+		}
+	}
+}
+
+/* *
+ * Siehe Coding_L1...L3 oder Coding_N 
+ */	
+calculate Coding_Energy
+	as fourteenByteByte 
+	by structToByte, byteToStruct
+	with (Energy as BYTE_ARRAY)
+
+/* *
+ * Letztlich sollen die fünf Datenpackete übermittelt werden. 
+ */	
+transmit
+	Coding_L1,
+	Coding_L2,
+	Coding_L3,
+	Coding_N,
+	Coding_Energy

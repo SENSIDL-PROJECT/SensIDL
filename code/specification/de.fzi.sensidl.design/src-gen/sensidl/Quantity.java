@@ -66,7 +66,15 @@ public enum Quantity implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PRESSURE(4, "PRESSURE", "PRESSURE");
+	PRESSURE(4, "PRESSURE", "PRESSURE"), /**
+	 * The '<em><b>ELECTRICENERGY</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ELECTRICENERGY_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	ELECTRICENERGY(5, "ELECTRICENERGY", "ELECTRICENERGY");
 
 	/**
 	 * The '<em><b>FLOW</b></em>' literal value.
@@ -144,6 +152,21 @@ public enum Quantity implements Enumerator {
 	public static final int PRESSURE_VALUE = 4;
 
 	/**
+	 * The '<em><b>ELECTRICENERGY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>ELECTRICENERGY</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #ELECTRICENERGY
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int ELECTRICENERGY_VALUE = 5;
+
+	/**
 	 * An array of all the '<em><b>Quantity</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -156,6 +179,7 @@ public enum Quantity implements Enumerator {
 			VOLUME,
 			DURATION,
 			PRESSURE,
+			ELECTRICENERGY,
 		};
 
 	/**
@@ -211,6 +235,7 @@ public enum Quantity implements Enumerator {
 			case VOLUME_VALUE: return VOLUME;
 			case DURATION_VALUE: return DURATION;
 			case PRESSURE_VALUE: return PRESSURE;
+			case ELECTRICENERGY_VALUE: return ELECTRICENERGY;
 		}
 		return null;
 	}

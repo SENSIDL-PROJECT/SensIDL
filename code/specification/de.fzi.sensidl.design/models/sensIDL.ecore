@@ -90,6 +90,7 @@
     <eLiterals name="JAVA"/>
     <eLiterals name="CPP" value="1"/>
     <eLiterals name="C" value="2"/>
+    <eLiterals name="CSHARP" value="3" literal="CSHARP"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Quantity">
     <eLiterals name="FLOW" literal="FLOW"/>
@@ -97,6 +98,7 @@
     <eLiterals name="VOLUME" value="2"/>
     <eLiterals name="DURATION" value="3"/>
     <eLiterals name="PRESSURE" value="4"/>
+    <eLiterals name="ELECTRICENERGY" value="5" literal="ELECTRICENERGY"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="MeasurementConstraint" abstract="true"

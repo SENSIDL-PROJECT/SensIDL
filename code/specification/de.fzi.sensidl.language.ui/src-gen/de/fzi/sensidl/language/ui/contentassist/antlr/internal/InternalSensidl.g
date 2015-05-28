@@ -926,6 +926,13 @@ rule__GenerationLanguage__Alternatives
 { after(grammarAccess.getGenerationLanguageAccess().getCEnumLiteralDeclaration_2()); }
 )
 
+    |(
+{ before(grammarAccess.getGenerationLanguageAccess().getCSHARPEnumLiteralDeclaration_3()); }
+(	'CSHARP' 
+)
+{ after(grammarAccess.getGenerationLanguageAccess().getCSHARPEnumLiteralDeclaration_3()); }
+)
+
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -969,6 +976,13 @@ rule__Quantity__Alternatives
 (	'PRESSURE' 
 )
 { after(grammarAccess.getQuantityAccess().getPRESSUREEnumLiteralDeclaration_4()); }
+)
+
+    |(
+{ before(grammarAccess.getQuantityAccess().getELECTRICENERGYEnumLiteralDeclaration_5()); }
+(	'ELECTRICENERGY' 
+)
+{ after(grammarAccess.getQuantityAccess().getELECTRICENERGYEnumLiteralDeclaration_5()); }
 )
 
 ;

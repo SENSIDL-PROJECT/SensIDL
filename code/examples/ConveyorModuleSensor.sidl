@@ -1,0 +1,75 @@
+/* *
+ * In diesem Beispiel soll durch SensIDL ein Sensor eines Fördertechnikmodules beschrieben werden. Der Sensor misst zum einen die
+ * Geschwindigkeit, mit der das Modul verschiedene Pakete transportiert. Zum anderen besitzt der Sensor einen Zähler - der wiederum
+ * die Anzahl der transportierten Paktete zählt - sowie ein Maß über die aktuelle Dauer des Betriebs. Über die Methode "Throughput" 
+ * kann der Durchsatz eines Fördertechnikmodules berechnet werden.
+ */
+
+/* *
+ * Über die Optionen kann angegeben werden, in welcher Sprache der Code für die Empfänger- und Sensorseite generiert werden soll.
+ * Zusätzlich werden die Daten von der Empfängerseite nach Bedarf abgerufen (siehe "transmission type").
+ */ 
+options {
+	receiver language : JAVA 
+	sensor language : C 
+	transmission type : push with getData 
+}
+
+/* *
+ * Deklaration von verschiedenen Repräsentationen eines (z.B.) "Measurements" wie Temperatur.
+ */ 
+repr twoByteShort is SHORT by 2 byte
+repr oneByteInt is INT by 1 byte
+
+/* *
+ * Standard-Struktur: Deklaration eines "Payloads", welcher die Daten beinhaltet.
+ */
+group Payload {
+	group Data {
+	
+		/* *
+ 		 * In "Metadata" können verschiedene Metadaten spezifiziert werden, wie beispielsweise die Softwareversions.
+ 		 */	
+		group Metadata {
+			primitive INT SoftwareVersion as twoByteShort 
+			primitive INT ConveyorModuleID as oneByteInt
+		}
+		
+		/* *
+ 		 * Gruppierung der "Measurements" des Sensors. In diesem Falls misst der Sensor die Geschwindigkeit des Moduls.
+ 		 */	
+		group Measurements {
+			measurement of FLOW Velocity in "m/s" as twoByteShort
+		}
+		
+		/* *
+ 		 * Gruppierung von bestimmten Messwerten, welche später für die Berechnung des Durchsatzes gebraucht werden.
+ 		 */	
+		group ThroughputParameter {
+			primitive INT PacketCounter as oneByteInt
+			measurement of DURATION currentDuration in "s" as oneByteInt
+		}
+		
+		/* *
+ 		 * Methode zur Brechnung des Durchsatzes, welche später durch den Entwickler implementiert werden muss.
+ 		 */
+		calculate Throughput
+			as twoByteShort 
+			by calculateThroughput
+			with ( ThroughputParameter )	
+	}
+}
+
+/* *
+ * Methode zur Brechnung der Kodierung des "Payloads", welche später durch den Entwickler implementiert werden muss.
+ */
+calculate base128payload
+	as int4Byte
+	by base128_encode, base128_decode
+	with (Payload as BYTE_ARRAY)
+	
+/* *
+ * Zu übermittelnde Daten.
+ */
+transmit
+	base128payload

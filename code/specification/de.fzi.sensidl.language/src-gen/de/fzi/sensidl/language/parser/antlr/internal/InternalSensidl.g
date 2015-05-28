@@ -1668,6 +1668,12 @@ ruleGenerationLanguage returns [Enumerator current=null]
         $current = grammarAccess.getGenerationLanguageAccess().getCEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
         newLeafNode(enumLiteral_2, grammarAccess.getGenerationLanguageAccess().getCEnumLiteralDeclaration_2()); 
     }
+)
+    |(	enumLiteral_3='CSHARP' 
+	{
+        $current = grammarAccess.getGenerationLanguageAccess().getCSHARPEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_3, grammarAccess.getGenerationLanguageAccess().getCSHARPEnumLiteralDeclaration_3()); 
+    }
 ));
 
 
@@ -1717,6 +1723,12 @@ ruleQuantity returns [Enumerator current=null]
 	{
         $current = grammarAccess.getQuantityAccess().getPRESSUREEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
         newLeafNode(enumLiteral_4, grammarAccess.getQuantityAccess().getPRESSUREEnumLiteralDeclaration_4()); 
+    }
+)
+    |(	enumLiteral_5='ELECTRICENERGY' 
+	{
+        $current = grammarAccess.getQuantityAccess().getELECTRICENERGYEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_5, grammarAccess.getQuantityAccess().getELECTRICENERGYEnumLiteralDeclaration_5()); 
     }
 ));
 
