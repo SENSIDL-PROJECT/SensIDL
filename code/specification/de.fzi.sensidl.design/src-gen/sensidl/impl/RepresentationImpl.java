@@ -57,7 +57,7 @@ public class RepresentationImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Type TYPE_EDEFAULT = Type.BYTE;
+	protected static final Type TYPE_EDEFAULT = Type.BOOL;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.

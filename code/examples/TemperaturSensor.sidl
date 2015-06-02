@@ -6,62 +6,62 @@
 
 /* *
  * Über die Optionen kann angegeben werden, in welcher Sprache der Code für die Empfänger- und Sensorseite generiert werden soll.
- * Zusätzlich werden die Daten von der Empfängerseite periodisch abgerufen (siehe "transmission type").
  */ 
-options {
-	receiver language: JAVA
-	sensor language: JAVA
-	transmission type: pull with Frequency : 60
-}
-
-/* *
- * Deklaration von verschiedenen Repräsentationen eines (z.B.) "Measurements" wie Temperatur.
- */
-repr twoByteShort is SHORT by 2 byte
-repr oneByteByte is BYTE by 1 byte
-repr int4Byte is INT by 4 bytes
-
-/* *
- * Standard-Struktur: Deklaration eines "Payloads", welcher die Daten beinhaltet.
- */
-group Payload {
-	group Data {
-	
-		/* *
- 		 * In "Metadata" können verschiedene Metadaten spezifiziert werden, wie beispielsweise die Softwareversions.
- 		 */	
-		group Metadata {
-			primitive INT SoftwareVersion as twoByteShort
-		}
-		
-		/* *
- 		 * Gruppierung der "Measurements" des Sensors. In diesem Falls misst der Sensor die Temperatur des Gemisches mit angegebenen Intervall.
- 		 */	
-		group Measurements {
-			measurement of TEMPERATURE temperature in "Celsius" as twoByteShort 
-				from 30 "Celsius" to 60 "Celsius" 
-		}
+datamodel {
+	options {
+		receiver language: JAVA
+		sensor language: JAVA
 	}
 	
 	/* *
- 	* Deklaration der Methode "mChecksum" zur Berechnung und Prüfung der Checksumme. Die Methode muss der Entwickler implementieren. 
- 	*/	
-	calculate mChecksum
-		as oneByteByte
-		by calculateChecksum, calculateChecksum
-		with (Data as BYTE_ARRAY)
-}
-
-/* *
- * Methode zur Brechnung der Kodierung des "Payloads", welche später durch den Entwickler implementiert werden muss.
- */
-calculate base128payload
-	as int4Byte
-	by base128_encode, base128_decode
-	with (Payload as BYTE_ARRAY)
+	 * Deklaration von verschiedenen Repr�sentationen die bestimmte Daten besitzen k�nnen.
+	 */
+	repr twoByteShort is 2 byte in SHORT
+	repr oneByteByte is 1 byte in CHAR 
+	repr int4Byte is 4 bytes in INT
 	
-/* *
- * Zu übermittelnde Daten.
- */
-transmit
-	base128payload
+	/* *
+	 * Standard-Struktur: Deklaration eines "Payloads", welcher die Daten beinhaltet.
+	 */
+	structure Payload {
+		structure Data {
+		
+			/* *
+	 		 * In "Metadata" können verschiedene Metadaten spezifiziert werden, wie beispielsweise die Softwareversions.
+	 		 */	
+			structure Metadata {
+				primitive INT SoftwareVersion as twoByteShort
+			}
+			
+			/* *
+	 		 * Gruppierung der Messwerte des Sensors. In diesem Falls misst der Sensor die Temperatur des Gemisches mit angegebenen Intervall.
+	 		 */	
+			structure Measurements {
+				data of temperature in "Celsius" as twoByteShort 
+					from 30 "Celsius" to 60 "Celsius" 
+			}
+		}
+		
+		/* *
+	 	* Deklaration der Methode "mChecksum" zur Berechnung und Prüfung der Checksumme. Die Methode muss der Entwickler implementieren. 
+	 	*/	
+		calculate mChecksum
+			as oneByteByte
+			by calculateChecksum, calculateChecksum
+			with (Data as BYTE_ARRAY)
+	}
+	
+	/* *
+	 * Methode zur Brechnung der Kodierung des "Payloads", welche später durch den Entwickler implementiert werden muss.
+	 */
+	calculate base128payload
+		as int4Byte
+		by base128_encode, base128_decode
+		with (Payload as BYTE_ARRAY)
+		
+	/* *
+	 * Zu übermittelnde Daten.
+	 */
+	transmit
+		base128payload	
+}

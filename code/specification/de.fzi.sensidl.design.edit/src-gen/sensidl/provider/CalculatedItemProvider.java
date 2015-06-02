@@ -26,7 +26,7 @@ import sensidl.SensidlPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CalculatedItemProvider extends InterpretationItemProvider {
+public class CalculatedItemProvider extends DatafieldItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

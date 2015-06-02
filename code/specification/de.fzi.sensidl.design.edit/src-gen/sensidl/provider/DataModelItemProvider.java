@@ -125,7 +125,7 @@ public class DataModelItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(SensidlPackage.Literals.DATA_MODEL__REPRESENTATIONS);
-			childrenFeatures.add(SensidlPackage.Literals.DATA_MODEL__INTERPRETATIONS);
+			childrenFeatures.add(SensidlPackage.Literals.DATA_MODEL__DATAFIELDS);
 			childrenFeatures.add(SensidlPackage.Literals.DATA_MODEL__OPTIONS);
 		}
 		return childrenFeatures;
@@ -180,7 +180,7 @@ public class DataModelItemProvider
 
 		switch (notification.getFeatureID(DataModel.class)) {
 			case SensidlPackage.DATA_MODEL__REPRESENTATIONS:
-			case SensidlPackage.DATA_MODEL__INTERPRETATIONS:
+			case SensidlPackage.DATA_MODEL__DATAFIELDS:
 			case SensidlPackage.DATA_MODEL__OPTIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -206,28 +206,23 @@ public class DataModelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SensidlPackage.Literals.DATA_MODEL__INTERPRETATIONS,
+				(SensidlPackage.Literals.DATA_MODEL__DATAFIELDS,
 				 SensidlFactory.eINSTANCE.createCalculated()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SensidlPackage.Literals.DATA_MODEL__INTERPRETATIONS,
-				 SensidlFactory.eINSTANCE.createConstant()));
+				(SensidlPackage.Literals.DATA_MODEL__DATAFIELDS,
+				 SensidlFactory.eINSTANCE.createMetadata()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SensidlPackage.Literals.DATA_MODEL__INTERPRETATIONS,
-				 SensidlFactory.eINSTANCE.createPrimitiveInterpretation()));
+				(SensidlPackage.Literals.DATA_MODEL__DATAFIELDS,
+				 SensidlFactory.eINSTANCE.createData()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SensidlPackage.Literals.DATA_MODEL__INTERPRETATIONS,
-				 SensidlFactory.eINSTANCE.createMeasurement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SensidlPackage.Literals.DATA_MODEL__INTERPRETATIONS,
-				 SensidlFactory.eINSTANCE.createInterpretationGroup()));
+				(SensidlPackage.Literals.DATA_MODEL__DATAFIELDS,
+				 SensidlFactory.eINSTANCE.createDatastructure()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link sensidl.Parameter#getInterpretation <em>Interpretation</em>}</li>
+ *   <li>{@link sensidl.Parameter#getDatafield <em>Datafield</em>}</li>
  *   <li>{@link sensidl.Parameter#getArgumentType <em>Argument Type</em>}</li>
  * </ul>
  * </p>
@@ -23,30 +23,30 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Parameter extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Interpretation</b></em>' reference.
+	 * Returns the value of the '<em><b>Datafield</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Interpretation</em>' reference isn't clear,
+	 * If the meaning of the '<em>Datafield</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Interpretation</em>' reference.
-	 * @see #setInterpretation(Interpretation)
-	 * @see sensidl.SensidlPackage#getParameter_Interpretation()
+	 * @return the value of the '<em>Datafield</em>' reference.
+	 * @see #setDatafield(Datafield)
+	 * @see sensidl.SensidlPackage#getParameter_Datafield()
 	 * @model required="true"
 	 * @generated
 	 */
-	Interpretation getInterpretation();
+	Datafield getDatafield();
 
 	/**
-	 * Sets the value of the '{@link sensidl.Parameter#getInterpretation <em>Interpretation</em>}' reference.
+	 * Sets the value of the '{@link sensidl.Parameter#getDatafield <em>Datafield</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Interpretation</em>' reference.
-	 * @see #getInterpretation()
+	 * @param value the new value of the '<em>Datafield</em>' reference.
+	 * @see #getDatafield()
 	 * @generated
 	 */
-	void setInterpretation(Interpretation value);
+	void setDatafield(Datafield value);
 
 	/**
 	 * Returns the value of the '<em><b>Argument Type</b></em>' attribute.

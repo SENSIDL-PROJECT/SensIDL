@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link sensidl.DataModel#getRepresentations <em>Representations</em>}</li>
- *   <li>{@link sensidl.DataModel#getInterpretations <em>Interpretations</em>}</li>
+ *   <li>{@link sensidl.DataModel#getDatafields <em>Datafields</em>}</li>
  *   <li>{@link sensidl.DataModel#getTransmit <em>Transmit</em>}</li>
  *   <li>{@link sensidl.DataModel#getOptions <em>Options</em>}</li>
  *   <li>{@link sensidl.DataModel#getCommands <em>Commands</em>}</li>
@@ -44,24 +44,24 @@ public interface DataModel extends EObject {
 	EList<Representation> getRepresentations();
 
 	/**
-	 * Returns the value of the '<em><b>Interpretations</b></em>' containment reference list.
-	 * The list contents are of type {@link sensidl.Interpretation}.
+	 * Returns the value of the '<em><b>Datafields</b></em>' containment reference list.
+	 * The list contents are of type {@link sensidl.Datafield}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Interpretations</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Datafields</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Interpretations</em>' containment reference list.
-	 * @see sensidl.SensidlPackage#getDataModel_Interpretations()
+	 * @return the value of the '<em>Datafields</em>' containment reference list.
+	 * @see sensidl.SensidlPackage#getDataModel_Datafields()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Interpretation> getInterpretations();
+	EList<Datafield> getDatafields();
 
 	/**
 	 * Returns the value of the '<em><b>Transmit</b></em>' reference list.
-	 * The list contents are of type {@link sensidl.Interpretation}.
+	 * The list contents are of type {@link sensidl.Datafield}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Transmit</em>' reference list isn't clear,
@@ -73,7 +73,7 @@ public interface DataModel extends EObject {
 	 * @model required="true"
 	 * @generated
 	 */
-	EList<Interpretation> getTransmit();
+	EList<Datafield> getTransmit();
 
 	/**
 	 * Returns the value of the '<em><b>Options</b></em>' containment reference.

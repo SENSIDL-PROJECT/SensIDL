@@ -3,25 +3,19 @@
 package sensidl.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import sensidl.Command;
 import sensidl.DataModel;
-import sensidl.Interpretation;
+import sensidl.Datafield;
 import sensidl.Options;
 import sensidl.Representation;
 import sensidl.SensidlPackage;
@@ -34,7 +28,7 @@ import sensidl.SensidlPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link sensidl.impl.DataModelImpl#getRepresentations <em>Representations</em>}</li>
- *   <li>{@link sensidl.impl.DataModelImpl#getInterpretations <em>Interpretations</em>}</li>
+ *   <li>{@link sensidl.impl.DataModelImpl#getDatafields <em>Datafields</em>}</li>
  *   <li>{@link sensidl.impl.DataModelImpl#getTransmit <em>Transmit</em>}</li>
  *   <li>{@link sensidl.impl.DataModelImpl#getOptions <em>Options</em>}</li>
  *   <li>{@link sensidl.impl.DataModelImpl#getCommands <em>Commands</em>}</li>
@@ -55,14 +49,14 @@ public class DataModelImpl extends MinimalEObjectImpl.Container implements DataM
 	protected EList<Representation> representations;
 
 	/**
-	 * The cached value of the '{@link #getInterpretations() <em>Interpretations</em>}' containment reference list.
+	 * The cached value of the '{@link #getDatafields() <em>Datafields</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInterpretations()
+	 * @see #getDatafields()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Interpretation> interpretations;
+	protected EList<Datafield> datafields;
 
 	/**
 	 * The cached value of the '{@link #getTransmit() <em>Transmit</em>}' reference list.
@@ -72,7 +66,7 @@ public class DataModelImpl extends MinimalEObjectImpl.Container implements DataM
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Interpretation> transmit;
+	protected EList<Datafield> transmit;
 
 	/**
 	 * The cached value of the '{@link #getOptions() <em>Options</em>}' containment reference.
@@ -130,11 +124,11 @@ public class DataModelImpl extends MinimalEObjectImpl.Container implements DataM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Interpretation> getInterpretations() {
-		if (interpretations == null) {
-			interpretations = new EObjectContainmentEList<Interpretation>(Interpretation.class, this, SensidlPackage.DATA_MODEL__INTERPRETATIONS);
+	public EList<Datafield> getDatafields() {
+		if (datafields == null) {
+			datafields = new EObjectContainmentEList<Datafield>(Datafield.class, this, SensidlPackage.DATA_MODEL__DATAFIELDS);
 		}
-		return interpretations;
+		return datafields;
 	}
 
 	/**
@@ -142,9 +136,9 @@ public class DataModelImpl extends MinimalEObjectImpl.Container implements DataM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Interpretation> getTransmit() {
+	public EList<Datafield> getTransmit() {
 		if (transmit == null) {
-			transmit = new EObjectResolvingEList<Interpretation>(Interpretation.class, this, SensidlPackage.DATA_MODEL__TRANSMIT);
+			transmit = new EObjectResolvingEList<Datafield>(Datafield.class, this, SensidlPackage.DATA_MODEL__TRANSMIT);
 		}
 		return transmit;
 	}
@@ -214,8 +208,8 @@ public class DataModelImpl extends MinimalEObjectImpl.Container implements DataM
 		switch (featureID) {
 			case SensidlPackage.DATA_MODEL__REPRESENTATIONS:
 				return ((InternalEList<?>)getRepresentations()).basicRemove(otherEnd, msgs);
-			case SensidlPackage.DATA_MODEL__INTERPRETATIONS:
-				return ((InternalEList<?>)getInterpretations()).basicRemove(otherEnd, msgs);
+			case SensidlPackage.DATA_MODEL__DATAFIELDS:
+				return ((InternalEList<?>)getDatafields()).basicRemove(otherEnd, msgs);
 			case SensidlPackage.DATA_MODEL__OPTIONS:
 				return basicSetOptions(null, msgs);
 		}
@@ -232,8 +226,8 @@ public class DataModelImpl extends MinimalEObjectImpl.Container implements DataM
 		switch (featureID) {
 			case SensidlPackage.DATA_MODEL__REPRESENTATIONS:
 				return getRepresentations();
-			case SensidlPackage.DATA_MODEL__INTERPRETATIONS:
-				return getInterpretations();
+			case SensidlPackage.DATA_MODEL__DATAFIELDS:
+				return getDatafields();
 			case SensidlPackage.DATA_MODEL__TRANSMIT:
 				return getTransmit();
 			case SensidlPackage.DATA_MODEL__OPTIONS:
@@ -257,13 +251,13 @@ public class DataModelImpl extends MinimalEObjectImpl.Container implements DataM
 				getRepresentations().clear();
 				getRepresentations().addAll((Collection<? extends Representation>)newValue);
 				return;
-			case SensidlPackage.DATA_MODEL__INTERPRETATIONS:
-				getInterpretations().clear();
-				getInterpretations().addAll((Collection<? extends Interpretation>)newValue);
+			case SensidlPackage.DATA_MODEL__DATAFIELDS:
+				getDatafields().clear();
+				getDatafields().addAll((Collection<? extends Datafield>)newValue);
 				return;
 			case SensidlPackage.DATA_MODEL__TRANSMIT:
 				getTransmit().clear();
-				getTransmit().addAll((Collection<? extends Interpretation>)newValue);
+				getTransmit().addAll((Collection<? extends Datafield>)newValue);
 				return;
 			case SensidlPackage.DATA_MODEL__OPTIONS:
 				setOptions((Options)newValue);
@@ -287,8 +281,8 @@ public class DataModelImpl extends MinimalEObjectImpl.Container implements DataM
 			case SensidlPackage.DATA_MODEL__REPRESENTATIONS:
 				getRepresentations().clear();
 				return;
-			case SensidlPackage.DATA_MODEL__INTERPRETATIONS:
-				getInterpretations().clear();
+			case SensidlPackage.DATA_MODEL__DATAFIELDS:
+				getDatafields().clear();
 				return;
 			case SensidlPackage.DATA_MODEL__TRANSMIT:
 				getTransmit().clear();
@@ -313,8 +307,8 @@ public class DataModelImpl extends MinimalEObjectImpl.Container implements DataM
 		switch (featureID) {
 			case SensidlPackage.DATA_MODEL__REPRESENTATIONS:
 				return representations != null && !representations.isEmpty();
-			case SensidlPackage.DATA_MODEL__INTERPRETATIONS:
-				return interpretations != null && !interpretations.isEmpty();
+			case SensidlPackage.DATA_MODEL__DATAFIELDS:
+				return datafields != null && !datafields.isEmpty();
 			case SensidlPackage.DATA_MODEL__TRANSMIT:
 				return transmit != null && !transmit.isEmpty();
 			case SensidlPackage.DATA_MODEL__OPTIONS:

@@ -57,12 +57,12 @@ public interface Command extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Structure</em>' reference.
-	 * @see #setStructure(Interpretation)
+	 * @see #setStructure(Datafield)
 	 * @see sensidl.SensidlPackage#getCommand_Structure()
 	 * @model
 	 * @generated
 	 */
-	Interpretation getStructure();
+	Datafield getStructure();
 
 	/**
 	 * Sets the value of the '{@link sensidl.Command#getStructure <em>Structure</em>}' reference.
@@ -72,6 +72,6 @@ public interface Command extends EObject {
 	 * @see #getStructure()
 	 * @generated
 	 */
-	void setStructure(Interpretation value);
+	void setStructure(Datafield value);
 
 } // Command

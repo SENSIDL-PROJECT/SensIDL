@@ -8,7 +8,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -21,7 +20,6 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import sensidl.GenerationLanguage;
 import sensidl.Options;
-import sensidl.SensidlFactory;
 import sensidl.SensidlPackage;
 
 /**
@@ -110,36 +108,6 @@ public class OptionsItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(SensidlPackage.Literals.OPTIONS__TRANSMISSION_TYPE);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
 	 * This returns Options.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -182,9 +150,6 @@ public class OptionsItemProvider
 			case SensidlPackage.OPTIONS__RECEIVER_LANGUAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case SensidlPackage.OPTIONS__TRANSMISSION_TYPE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -199,21 +164,6 @@ public class OptionsItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SensidlPackage.Literals.OPTIONS__TRANSMISSION_TYPE,
-				 SensidlFactory.eINSTANCE.createPull()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SensidlPackage.Literals.OPTIONS__TRANSMISSION_TYPE,
-				 SensidlFactory.eINSTANCE.createPush()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SensidlPackage.Literals.OPTIONS__TRANSMISSION_TYPE,
-				 SensidlFactory.eINSTANCE.createTimeDivisionMultiplexing()));
 	}
 
 	/**

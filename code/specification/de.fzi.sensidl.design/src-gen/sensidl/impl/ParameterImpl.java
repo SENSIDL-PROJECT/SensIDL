@@ -3,15 +3,12 @@
 package sensidl.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import sensidl.ArgumentType;
-import sensidl.Interpretation;
+import sensidl.Datafield;
 import sensidl.Parameter;
 import sensidl.SensidlPackage;
 
@@ -22,7 +19,7 @@ import sensidl.SensidlPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link sensidl.impl.ParameterImpl#getInterpretation <em>Interpretation</em>}</li>
+ *   <li>{@link sensidl.impl.ParameterImpl#getDatafield <em>Datafield</em>}</li>
  *   <li>{@link sensidl.impl.ParameterImpl#getArgumentType <em>Argument Type</em>}</li>
  * </ul>
  * </p>
@@ -31,14 +28,14 @@ import sensidl.SensidlPackage;
  */
 public class ParameterImpl extends MinimalEObjectImpl.Container implements Parameter {
 	/**
-	 * The cached value of the '{@link #getInterpretation() <em>Interpretation</em>}' reference.
+	 * The cached value of the '{@link #getDatafield() <em>Datafield</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInterpretation()
+	 * @see #getDatafield()
 	 * @generated
 	 * @ordered
 	 */
-	protected Interpretation interpretation;
+	protected Datafield datafield;
 
 	/**
 	 * The default value of the '{@link #getArgumentType() <em>Argument Type</em>}' attribute.
@@ -84,16 +81,16 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Interpretation getInterpretation() {
-		if (interpretation != null && interpretation.eIsProxy()) {
-			InternalEObject oldInterpretation = (InternalEObject)interpretation;
-			interpretation = (Interpretation)eResolveProxy(oldInterpretation);
-			if (interpretation != oldInterpretation) {
+	public Datafield getDatafield() {
+		if (datafield != null && datafield.eIsProxy()) {
+			InternalEObject oldDatafield = (InternalEObject)datafield;
+			datafield = (Datafield)eResolveProxy(oldDatafield);
+			if (datafield != oldDatafield) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SensidlPackage.PARAMETER__INTERPRETATION, oldInterpretation, interpretation));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SensidlPackage.PARAMETER__DATAFIELD, oldDatafield, datafield));
 			}
 		}
-		return interpretation;
+		return datafield;
 	}
 
 	/**
@@ -101,8 +98,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Interpretation basicGetInterpretation() {
-		return interpretation;
+	public Datafield basicGetDatafield() {
+		return datafield;
 	}
 
 	/**
@@ -110,11 +107,11 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInterpretation(Interpretation newInterpretation) {
-		Interpretation oldInterpretation = interpretation;
-		interpretation = newInterpretation;
+	public void setDatafield(Datafield newDatafield) {
+		Datafield oldDatafield = datafield;
+		datafield = newDatafield;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SensidlPackage.PARAMETER__INTERPRETATION, oldInterpretation, interpretation));
+			eNotify(new ENotificationImpl(this, Notification.SET, SensidlPackage.PARAMETER__DATAFIELD, oldDatafield, datafield));
 	}
 
 	/**
@@ -146,9 +143,9 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SensidlPackage.PARAMETER__INTERPRETATION:
-				if (resolve) return getInterpretation();
-				return basicGetInterpretation();
+			case SensidlPackage.PARAMETER__DATAFIELD:
+				if (resolve) return getDatafield();
+				return basicGetDatafield();
 			case SensidlPackage.PARAMETER__ARGUMENT_TYPE:
 				return getArgumentType();
 		}
@@ -163,8 +160,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SensidlPackage.PARAMETER__INTERPRETATION:
-				setInterpretation((Interpretation)newValue);
+			case SensidlPackage.PARAMETER__DATAFIELD:
+				setDatafield((Datafield)newValue);
 				return;
 			case SensidlPackage.PARAMETER__ARGUMENT_TYPE:
 				setArgumentType((ArgumentType)newValue);
@@ -181,8 +178,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SensidlPackage.PARAMETER__INTERPRETATION:
-				setInterpretation((Interpretation)null);
+			case SensidlPackage.PARAMETER__DATAFIELD:
+				setDatafield((Datafield)null);
 				return;
 			case SensidlPackage.PARAMETER__ARGUMENT_TYPE:
 				setArgumentType(ARGUMENT_TYPE_EDEFAULT);
@@ -199,8 +196,8 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SensidlPackage.PARAMETER__INTERPRETATION:
-				return interpretation != null;
+			case SensidlPackage.PARAMETER__DATAFIELD:
+				return datafield != null;
 			case SensidlPackage.PARAMETER__ARGUMENT_TYPE:
 				return argumentType != ARGUMENT_TYPE_EDEFAULT;
 		}

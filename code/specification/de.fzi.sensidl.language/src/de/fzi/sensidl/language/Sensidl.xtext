@@ -12,66 +12,27 @@ import "platform:/resource/de.fzi.sensidl.design/models/sensIDL.ecore"
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 DataModel:
-	"options" "{"
-		options=Options
+	"datamodel" "{"
+		"options" "{"
+			options=Options
+		"}"
+		
+		(
+			(representations += Representation) |
+		 	(datafields += Datafield)
+		)*
+		
+		"transmit" transmit+=[Datafield]
+			("," transmit+=[Datafield])*
 	"}"
-	
-	(
-		(representations += Representation) |
-	 	(interpretations += Interpretation)
-	)*
-	
-	"transmit" transmit+=[Interpretation]
-		("," transmit+=[Interpretation])*
 ;
 
 Options:
 	{Options}
 	(
-		("transmission" "type" ":" transmissionType=Transmission) |
 		("sensor" "language" ":" sensorLanguage=GenerationLanguage) |
 		("receiver" "language" ":" receiverLanguage=GenerationLanguage)
 	)*
-;
-
-/**
- * Übertragungsmöglichkeit durch Pull oder Push.
- */
-Transmission:
-	Pull |
-	Push
-;
-
-/**
- * Mit "methodName" kann nach Aufforderung auf der Empfängerseite "gepusht" werden.
- * Optional kann mit "frequency" (in Hz) "gepusht" werden.
- */
-Push:
-	"push"
-	("with" "Frequency" ":" frequency=INT "and")?
-	"with" methodName = ID
-;
-
-/**
- * Mit "frequency" (Hz) wird angegeben, wie häufig "gepullt" werden soll. 
- */
-Pull:
-	(TimeDivisionMultiplexing) |
-	"pull"
-	"with" "Frequency" ":" frequency=INT
-;
-
-/**
- * Spezialfall von Push.
- * "frequency" wie bei pull und push
- * Mit "duration" wird die Übertragungsdauer angegeben.
- * Mit "timeSlot" wird der genaue Zeitpunkt angegeben wenn mit Dauer "duration" übertragen werden kann. 
- */
-TimeDivisionMultiplexing:
-	"timeDivisionMultiplexing"
-	"with" "Frequency" ":" frequency=INT
-	"and" "Duration" ":" duration=DOUBLE
-	"and" "timeSlot" ":" timeSlot=DOUBLE
 ;
 
 enum GenerationLanguage:
@@ -80,15 +41,14 @@ enum GenerationLanguage:
 
 Representation:
 	("repr" | "representation") name=ID
-	"is" type=Type
-	"by" byteCount=INT ("bytes" | "byte") 
+	"is" byteCount=INT ("bytes" | "byte")
+	"in" type=Type
 ;
 
-Interpretation:
-	Constant |
-	PrimitiveInterpretation |
-	Measurement |
-	InterpretationGroup |
+Datafield:
+	Metadata |
+	Data |
+	Datastructure |
 	Calculated
 ;
 
@@ -102,44 +62,44 @@ Calculated:
 
 Parameter:
 	"("
-		interpretation=[Interpretation]
+		datafield=[Datafield]
 		("as" argumentType=ArgumentType)?
 	")"
 ;
 
-InterpretationGroup:
-	"group" name=ID "{"
-		(interpretations+=Interpretation)*
+Datastructure: 
+	"structure" name=ID "{"
+		(datafields+=Datafield)*
 	"}"
 ;
 
 /*
  * Einheiten noch als String
  */
-Measurement:
-	"measurement" "of"
-	quantity=Quantity
+Data: 
+	"data" "of"
 	name=ID
-	"in" (scale=DOUBLE)? unit=STRING
+	("in" (scale=DOUBLE)? unit=STRING)?
 	"as" representation=[Representation]
-	(constraints+=MeasurementConstraint)*
+	("with" "bit" "numbering" bitNumbering=BitNumbering)? 
+	(constraints+=DataConstraint)*
 ;
 
-MeasurementConstraint:
-	MeasurementInRange |
-	MeasurementAdaption
+DataConstraint: 
+	DataRange |
+	DataAdaption
 ;
 
-MeasurementInRange:
-	"from" lowerBound=Measure
-	"to" upperBound=Measure
+DataRange: 
+	"from" lowerBound=Bound
+	"to" upperBound=Bound
 ;
 
 /**
  * Konkrete Fall eines MeasurementConstraints.
  * Wertadaption durch Skalierungsfaktor "scalingFactor" und dem Offset "offset".
  */
-MeasurementAdaption:
+DataAdaption: 
 	"with" "scaling factor" ":" scalingFactor=DOUBLE
 	"and" "offset" ":" offset=DOUBLE 
 ;
@@ -148,20 +108,14 @@ MeasurementAdaption:
 /*
  * Einheiten noch als String
  */
-Measure:
+Bound: 
 	value=DOUBLE unit=STRING
 ;
 
 
-PrimitiveInterpretation:
+Metadata: 
 	"primitive" type=Type name=ID
 	"as" representation=[Representation]
-;
-
-Constant:
-	"constant" name=ID
-	"as" representation=[Representation]
-	"is" constantValue=STRING
 ;
 
 DOUBLE returns ecore::EDouble: INT ('.' INT)?;
@@ -173,10 +127,10 @@ enum ArgumentType:
 	BYTE_ARRAY 
 ;
 
-enum Quantity:
-	FLOW | TEMPERATURE | VOLUME | DURATION | PRESSURE | ELECTRICENERGY
+enum Type:
+	BOOL | CHAR | SHORT | INT | LONG | LONGLONG | FLOAT | DOUBLE | LONGDOUBLE
 ;
 
-enum Type:
-	BYTE | SHORT | INT | LONG | FLOAT | DOUBLE
+enum BitNumbering:
+	LSB | MSB
 ;

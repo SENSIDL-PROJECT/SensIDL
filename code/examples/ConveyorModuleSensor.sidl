@@ -7,47 +7,45 @@
 
 /* *
  * Über die Optionen kann angegeben werden, in welcher Sprache der Code für die Empfänger- und Sensorseite generiert werden soll.
- * Zusätzlich werden die Daten von der Empfängerseite nach Bedarf abgerufen (siehe "transmission type").
  */ 
 options {
 	receiver language : JAVA 
-	sensor language : C 
-	transmission type : push with getData 
+	sensor language : C  
 }
 
 /* *
- * Deklaration von verschiedenen Repräsentationen eines (z.B.) "Measurements" wie Temperatur.
+ * Deklaration von verschiedenen Repräsentationen die bestimmte Daten besitzen k�nnen.
  */ 
-repr twoByteShort is SHORT by 2 byte
-repr oneByteInt is INT by 1 byte
+repr twoByteShort is 2 byte in SHORT 
+repr oneByteInt is 1 byte in INT
 
 /* *
  * Standard-Struktur: Deklaration eines "Payloads", welcher die Daten beinhaltet.
  */
-group Payload {
-	group Data {
+structure Payload {
+	structure Data {
 	
 		/* *
  		 * In "Metadata" können verschiedene Metadaten spezifiziert werden, wie beispielsweise die Softwareversions.
  		 */	
-		group Metadata {
+		structure Metadata {
 			primitive INT SoftwareVersion as twoByteShort 
 			primitive INT ConveyorModuleID as oneByteInt
 		}
 		
 		/* *
- 		 * Gruppierung der "Measurements" des Sensors. In diesem Falls misst der Sensor die Geschwindigkeit des Moduls.
+ 		 * Gruppierung der Messwerte des Sensors. In diesem Falls misst der Sensor die Geschwindigkeit des Moduls.
  		 */	
-		group Measurements {
-			measurement of FLOW Velocity in "m/s" as twoByteShort
+		structure Measurements {
+			data of Velocity in "m/s" as twoByteShort
 		}
 		
 		/* *
  		 * Gruppierung von bestimmten Messwerten, welche später für die Berechnung des Durchsatzes gebraucht werden.
  		 */	
-		group ThroughputParameter {
-			primitive INT PacketCounter as oneByteInt
-			measurement of DURATION currentDuration in "s" as oneByteInt
+		structure ThroughputParameter {
+			data of PacketCounter as oneByteInt
+			data of currentDuration in "s" as oneByteInt
 		}
 		
 		/* *
@@ -56,7 +54,7 @@ group Payload {
 		calculate Throughput
 			as twoByteShort 
 			by calculateThroughput
-			with ( ThroughputParameter )	
+			with ( ThroughputParameter as BYTE_ARRAY )	
 	}
 }
 

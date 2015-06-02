@@ -19,16 +19,22 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum Type implements Enumerator {
 	/**
-	 * The '<em><b>BYTE</b></em>' literal object.
+	 * The '<em><b>BOOL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BYTE_VALUE
+	 * @see #BOOL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BYTE(0, "BYTE", "BYTE"),
-
-	/**
+	BOOL(0, "BOOL", "BOOL"), /**
+	 * The '<em><b>CHAR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #CHAR_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	CHAR(1, "CHAR", "CHAR"), /**
 	 * The '<em><b>SHORT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -36,7 +42,7 @@ public enum Type implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SHORT(1, "SHORT", "SHORT"),
+	SHORT(2, "SHORT", "SHORT"),
 
 	/**
 	 * The '<em><b>INT</b></em>' literal object.
@@ -46,7 +52,7 @@ public enum Type implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INT(2, "INT", "INT"),
+	INT(3, "INT", "INT"),
 
 	/**
 	 * The '<em><b>LONG</b></em>' literal object.
@@ -56,9 +62,17 @@ public enum Type implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LONG(3, "LONG", "LONG"),
+	LONG(4, "LONG", "LONG"),
 
 	/**
+	 * The '<em><b>LONGLONG</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LONGLONG_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	LONGLONG(5, "LONGLONG", "LONGLONG"), /**
 	 * The '<em><b>FLOAT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,7 +80,7 @@ public enum Type implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FLOAT(4, "FLOAT", "FLOAT"),
+	FLOAT(6, "FLOAT", "FLOAT"),
 
 	/**
 	 * The '<em><b>DOUBLE</b></em>' literal object.
@@ -76,22 +90,45 @@ public enum Type implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE(5, "DOUBLE", "DOUBLE");
+	DOUBLE(7, "DOUBLE", "DOUBLE"), /**
+	 * The '<em><b>LONGDOUBLE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LONGDOUBLE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	LONGDOUBLE(8, "LONGDOUBLE", "LONGDOUBLE");
 
 	/**
-	 * The '<em><b>BYTE</b></em>' literal value.
+	 * The '<em><b>BOOL</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>BYTE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>BOOL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BYTE
+	 * @see #BOOL
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BYTE_VALUE = 0;
+	public static final int BOOL_VALUE = 0;
+
+	/**
+	 * The '<em><b>CHAR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CHAR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #CHAR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CHAR_VALUE = 1;
 
 	/**
 	 * The '<em><b>SHORT</b></em>' literal value.
@@ -106,7 +143,7 @@ public enum Type implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SHORT_VALUE = 1;
+	public static final int SHORT_VALUE = 2;
 
 	/**
 	 * The '<em><b>INT</b></em>' literal value.
@@ -121,7 +158,7 @@ public enum Type implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INT_VALUE = 2;
+	public static final int INT_VALUE = 3;
 
 	/**
 	 * The '<em><b>LONG</b></em>' literal value.
@@ -136,7 +173,22 @@ public enum Type implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LONG_VALUE = 3;
+	public static final int LONG_VALUE = 4;
+
+	/**
+	 * The '<em><b>LONGLONG</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LONGLONG</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LONGLONG
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LONGLONG_VALUE = 5;
 
 	/**
 	 * The '<em><b>FLOAT</b></em>' literal value.
@@ -151,7 +203,7 @@ public enum Type implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLOAT_VALUE = 4;
+	public static final int FLOAT_VALUE = 6;
 
 	/**
 	 * The '<em><b>DOUBLE</b></em>' literal value.
@@ -166,7 +218,22 @@ public enum Type implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOUBLE_VALUE = 5;
+	public static final int DOUBLE_VALUE = 7;
+
+	/**
+	 * The '<em><b>LONGDOUBLE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>LONGDOUBLE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #LONGDOUBLE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LONGDOUBLE_VALUE = 8;
 
 	/**
 	 * An array of all the '<em><b>Type</b></em>' enumerators.
@@ -176,12 +243,15 @@ public enum Type implements Enumerator {
 	 */
 	private static final Type[] VALUES_ARRAY =
 		new Type[] {
-			BYTE,
+			BOOL,
+			CHAR,
 			SHORT,
 			INT,
 			LONG,
+			LONGLONG,
 			FLOAT,
 			DOUBLE,
+			LONGDOUBLE,
 		};
 
 	/**
@@ -232,12 +302,15 @@ public enum Type implements Enumerator {
 	 */
 	public static Type get(int value) {
 		switch (value) {
-			case BYTE_VALUE: return BYTE;
+			case BOOL_VALUE: return BOOL;
+			case CHAR_VALUE: return CHAR;
 			case SHORT_VALUE: return SHORT;
 			case INT_VALUE: return INT;
 			case LONG_VALUE: return LONG;
+			case LONGLONG_VALUE: return LONGLONG;
 			case FLOAT_VALUE: return FLOAT;
 			case DOUBLE_VALUE: return DOUBLE;
+			case LONGDOUBLE_VALUE: return LONGDOUBLE;
 		}
 		return null;
 	}

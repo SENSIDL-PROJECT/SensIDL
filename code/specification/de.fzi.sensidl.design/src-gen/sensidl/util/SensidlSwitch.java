@@ -84,16 +84,16 @@ public class SensidlSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SensidlPackage.INTERPRETATION: {
-				Interpretation interpretation = (Interpretation)theEObject;
-				T result = caseInterpretation(interpretation);
+			case SensidlPackage.DATAFIELD: {
+				Datafield datafield = (Datafield)theEObject;
+				T result = caseDatafield(datafield);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case SensidlPackage.CALCULATED: {
 				Calculated calculated = (Calculated)theEObject;
 				T result = caseCalculated(calculated);
-				if (result == null) result = caseInterpretation(calculated);
+				if (result == null) result = caseDatafield(calculated);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -103,31 +103,24 @@ public class SensidlSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SensidlPackage.CONSTANT: {
-				Constant<?> constant = (Constant<?>)theEObject;
-				T result = caseConstant(constant);
-				if (result == null) result = caseInterpretation(constant);
+			case SensidlPackage.METADATA: {
+				Metadata metadata = (Metadata)theEObject;
+				T result = caseMetadata(metadata);
+				if (result == null) result = caseDatafield(metadata);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SensidlPackage.PRIMITIVE_INTERPRETATION: {
-				PrimitiveInterpretation primitiveInterpretation = (PrimitiveInterpretation)theEObject;
-				T result = casePrimitiveInterpretation(primitiveInterpretation);
-				if (result == null) result = caseInterpretation(primitiveInterpretation);
+			case SensidlPackage.DATA: {
+				Data data = (Data)theEObject;
+				T result = caseData(data);
+				if (result == null) result = caseDatafield(data);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SensidlPackage.MEASUREMENT: {
-				Measurement measurement = (Measurement)theEObject;
-				T result = caseMeasurement(measurement);
-				if (result == null) result = caseInterpretation(measurement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SensidlPackage.INTERPRETATION_GROUP: {
-				InterpretationGroup interpretationGroup = (InterpretationGroup)theEObject;
-				T result = caseInterpretationGroup(interpretationGroup);
-				if (result == null) result = caseInterpretation(interpretationGroup);
+			case SensidlPackage.DATASTRUCTURE: {
+				Datastructure datastructure = (Datastructure)theEObject;
+				T result = caseDatastructure(datastructure);
+				if (result == null) result = caseDatafield(datastructure);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -143,60 +136,32 @@ public class SensidlSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SensidlPackage.MEASUREMENT_CONSTRAINT: {
-				MeasurementConstraint measurementConstraint = (MeasurementConstraint)theEObject;
-				T result = caseMeasurementConstraint(measurementConstraint);
-				if (result == null) result = caseConstraint(measurementConstraint);
+			case SensidlPackage.DATA_CONSTRAINT: {
+				DataConstraint dataConstraint = (DataConstraint)theEObject;
+				T result = caseDataConstraint(dataConstraint);
+				if (result == null) result = caseConstraint(dataConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SensidlPackage.MEASUREMENT_IN_RANGE: {
-				MeasurementInRange measurementInRange = (MeasurementInRange)theEObject;
-				T result = caseMeasurementInRange(measurementInRange);
-				if (result == null) result = caseMeasurementConstraint(measurementInRange);
-				if (result == null) result = caseConstraint(measurementInRange);
+			case SensidlPackage.DATA_RANGE: {
+				DataRange dataRange = (DataRange)theEObject;
+				T result = caseDataRange(dataRange);
+				if (result == null) result = caseDataConstraint(dataRange);
+				if (result == null) result = caseConstraint(dataRange);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SensidlPackage.MEASURE: {
-				Measure measure = (Measure)theEObject;
-				T result = caseMeasure(measure);
+			case SensidlPackage.BOUND: {
+				Bound bound = (Bound)theEObject;
+				T result = caseBound(bound);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SensidlPackage.TRANSMISSION: {
-				Transmission transmission = (Transmission)theEObject;
-				T result = caseTransmission(transmission);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SensidlPackage.PULL: {
-				Pull pull = (Pull)theEObject;
-				T result = casePull(pull);
-				if (result == null) result = caseTransmission(pull);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SensidlPackage.PUSH: {
-				Push push = (Push)theEObject;
-				T result = casePush(push);
-				if (result == null) result = caseTransmission(push);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SensidlPackage.TIME_DIVISION_MULTIPLEXING: {
-				TimeDivisionMultiplexing timeDivisionMultiplexing = (TimeDivisionMultiplexing)theEObject;
-				T result = caseTimeDivisionMultiplexing(timeDivisionMultiplexing);
-				if (result == null) result = casePull(timeDivisionMultiplexing);
-				if (result == null) result = caseTransmission(timeDivisionMultiplexing);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SensidlPackage.MEASUREMENT_ADAPTION: {
-				MeasurementAdaption measurementAdaption = (MeasurementAdaption)theEObject;
-				T result = caseMeasurementAdaption(measurementAdaption);
-				if (result == null) result = caseMeasurementConstraint(measurementAdaption);
-				if (result == null) result = caseConstraint(measurementAdaption);
+			case SensidlPackage.DATA_ADAPTION: {
+				DataAdaption dataAdaption = (DataAdaption)theEObject;
+				T result = caseDataAdaption(dataAdaption);
+				if (result == null) result = caseDataConstraint(dataAdaption);
+				if (result == null) result = caseConstraint(dataAdaption);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -250,17 +215,17 @@ public class SensidlSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Interpretation</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Datafield</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Interpretation</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Datafield</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInterpretation(Interpretation object) {
+	public T caseDatafield(Datafield object) {
 		return null;
 	}
 
@@ -295,62 +260,47 @@ public class SensidlSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constant</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Metadata</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constant</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Metadata</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <ConstantType> T caseConstant(Constant<ConstantType> object) {
+	public T caseMetadata(Metadata object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Primitive Interpretation</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Primitive Interpretation</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Data</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePrimitiveInterpretation(PrimitiveInterpretation object) {
+	public T caseData(Data object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Measurement</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Datastructure</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Measurement</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Datastructure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMeasurement(Measurement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Interpretation Group</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Interpretation Group</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInterpretationGroup(InterpretationGroup object) {
+	public T caseDatastructure(Datastructure object) {
 		return null;
 	}
 
@@ -385,122 +335,62 @@ public class SensidlSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Measurement Constraint</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Data Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Measurement Constraint</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Data Constraint</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMeasurementConstraint(MeasurementConstraint object) {
+	public T caseDataConstraint(DataConstraint object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Measurement In Range</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Data Range</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Measurement In Range</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Data Range</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMeasurementInRange(MeasurementInRange object) {
+	public T caseDataRange(DataRange object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Measure</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Bound</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Measure</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Bound</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMeasure(Measure object) {
+	public T caseBound(Bound object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Transmission</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Data Adaption</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Transmission</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Data Adaption</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTransmission(Transmission object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Pull</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Pull</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePull(Pull object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Push</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Push</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePush(Push object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Time Division Multiplexing</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Time Division Multiplexing</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTimeDivisionMultiplexing(TimeDivisionMultiplexing object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Measurement Adaption</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Measurement Adaption</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMeasurementAdaption(MeasurementAdaption object) {
+	public T caseDataAdaption(DataAdaption object) {
 		return null;
 	}
 

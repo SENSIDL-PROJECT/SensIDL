@@ -13,7 +13,7 @@ import sensidl.SensidlFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CalculatedTest extends InterpretationTest {
+public class CalculatedTest extends DatafieldTest {
 
 	/**
 	 * <!-- begin-user-doc -->

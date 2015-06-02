@@ -8,12 +8,15 @@
   <foreignModel>sensIDL.ecore</foreignModel>
   <genPackages prefix="Sensidl" disposableProviderFactory="true" ecorePackage="sensIDL.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="sensIDL.ecore#//Type">
-      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Type/BYTE"/>
+      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Type/BOOL"/>
+      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Type/CHAR"/>
       <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Type/SHORT"/>
       <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Type/INT"/>
       <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Type/LONG"/>
+      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Type/LONGLONG"/>
       <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Type/FLOAT"/>
       <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Type/DOUBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Type/LONGDOUBLE"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="sensIDL.ecore#//ArgumentType">
       <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//ArgumentType/BYTE_ARRAY"/>
@@ -22,13 +25,11 @@
       <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//GenerationLanguage/JAVA"/>
       <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//GenerationLanguage/CPP"/>
       <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//GenerationLanguage/C"/>
+      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//GenerationLanguage/CSHARP"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="sensIDL.ecore#//Quantity">
-      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Quantity/FLOW"/>
-      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Quantity/TEMPERATURE"/>
-      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Quantity/VOLUME"/>
-      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Quantity/DURATION"/>
-      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Quantity/PRESSURE"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="sensIDL.ecore#//BitNumbering">
+      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//BitNumbering/LSB"/>
+      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//BitNumbering/MSB"/>
     </genEnums>
     <genClasses ecoreClass="sensIDL.ecore#//DataModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//DataModel/representations"/>

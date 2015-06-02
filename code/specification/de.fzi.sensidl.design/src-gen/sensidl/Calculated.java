@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Calculated extends Interpretation {
+public interface Calculated extends Datafield {
 	/**
 	 * Returns the value of the '<em><b>Representation</b></em>' reference.
 	 * <!-- begin-user-doc -->

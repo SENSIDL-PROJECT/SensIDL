@@ -187,95 +187,72 @@ public class SensidlItemProviderAdapterFactory extends SensidlAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sensidl.Constant} instances.
+	 * This keeps track of the one adapter used for all {@link sensidl.Metadata} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConstantItemProvider constantItemProvider;
+	protected MetadataItemProvider metadataItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sensidl.Constant}.
+	 * This creates an adapter for a {@link sensidl.Metadata}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createConstantAdapter() {
-		if (constantItemProvider == null) {
-			constantItemProvider = new ConstantItemProvider(this);
+	public Adapter createMetadataAdapter() {
+		if (metadataItemProvider == null) {
+			metadataItemProvider = new MetadataItemProvider(this);
 		}
 
-		return constantItemProvider;
+		return metadataItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sensidl.PrimitiveInterpretation} instances.
+	 * This keeps track of the one adapter used for all {@link sensidl.Data} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PrimitiveInterpretationItemProvider primitiveInterpretationItemProvider;
+	protected DataItemProvider dataItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sensidl.PrimitiveInterpretation}.
+	 * This creates an adapter for a {@link sensidl.Data}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createPrimitiveInterpretationAdapter() {
-		if (primitiveInterpretationItemProvider == null) {
-			primitiveInterpretationItemProvider = new PrimitiveInterpretationItemProvider(this);
+	public Adapter createDataAdapter() {
+		if (dataItemProvider == null) {
+			dataItemProvider = new DataItemProvider(this);
 		}
 
-		return primitiveInterpretationItemProvider;
+		return dataItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sensidl.Measurement} instances.
+	 * This keeps track of the one adapter used for all {@link sensidl.Datastructure} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MeasurementItemProvider measurementItemProvider;
+	protected DatastructureItemProvider datastructureItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sensidl.Measurement}.
+	 * This creates an adapter for a {@link sensidl.Datastructure}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createMeasurementAdapter() {
-		if (measurementItemProvider == null) {
-			measurementItemProvider = new MeasurementItemProvider(this);
+	public Adapter createDatastructureAdapter() {
+		if (datastructureItemProvider == null) {
+			datastructureItemProvider = new DatastructureItemProvider(this);
 		}
 
-		return measurementItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link sensidl.InterpretationGroup} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected InterpretationGroupItemProvider interpretationGroupItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link sensidl.InterpretationGroup}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createInterpretationGroupAdapter() {
-		if (interpretationGroupItemProvider == null) {
-			interpretationGroupItemProvider = new InterpretationGroupItemProvider(this);
-		}
-
-		return interpretationGroupItemProvider;
+		return datastructureItemProvider;
 	}
 
 	/**
@@ -302,141 +279,72 @@ public class SensidlItemProviderAdapterFactory extends SensidlAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sensidl.MeasurementInRange} instances.
+	 * This keeps track of the one adapter used for all {@link sensidl.DataRange} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MeasurementInRangeItemProvider measurementInRangeItemProvider;
+	protected DataRangeItemProvider dataRangeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sensidl.MeasurementInRange}.
+	 * This creates an adapter for a {@link sensidl.DataRange}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createMeasurementInRangeAdapter() {
-		if (measurementInRangeItemProvider == null) {
-			measurementInRangeItemProvider = new MeasurementInRangeItemProvider(this);
+	public Adapter createDataRangeAdapter() {
+		if (dataRangeItemProvider == null) {
+			dataRangeItemProvider = new DataRangeItemProvider(this);
 		}
 
-		return measurementInRangeItemProvider;
+		return dataRangeItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sensidl.Measure} instances.
+	 * This keeps track of the one adapter used for all {@link sensidl.Bound} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MeasureItemProvider measureItemProvider;
+	protected BoundItemProvider boundItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sensidl.Measure}.
+	 * This creates an adapter for a {@link sensidl.Bound}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createMeasureAdapter() {
-		if (measureItemProvider == null) {
-			measureItemProvider = new MeasureItemProvider(this);
+	public Adapter createBoundAdapter() {
+		if (boundItemProvider == null) {
+			boundItemProvider = new BoundItemProvider(this);
 		}
 
-		return measureItemProvider;
+		return boundItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sensidl.Pull} instances.
+	 * This keeps track of the one adapter used for all {@link sensidl.DataAdaption} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PullItemProvider pullItemProvider;
+	protected DataAdaptionItemProvider dataAdaptionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sensidl.Pull}.
+	 * This creates an adapter for a {@link sensidl.DataAdaption}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createPullAdapter() {
-		if (pullItemProvider == null) {
-			pullItemProvider = new PullItemProvider(this);
+	public Adapter createDataAdaptionAdapter() {
+		if (dataAdaptionItemProvider == null) {
+			dataAdaptionItemProvider = new DataAdaptionItemProvider(this);
 		}
 
-		return pullItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link sensidl.Push} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PushItemProvider pushItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link sensidl.Push}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createPushAdapter() {
-		if (pushItemProvider == null) {
-			pushItemProvider = new PushItemProvider(this);
-		}
-
-		return pushItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link sensidl.TimeDivisionMultiplexing} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TimeDivisionMultiplexingItemProvider timeDivisionMultiplexingItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link sensidl.TimeDivisionMultiplexing}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTimeDivisionMultiplexingAdapter() {
-		if (timeDivisionMultiplexingItemProvider == null) {
-			timeDivisionMultiplexingItemProvider = new TimeDivisionMultiplexingItemProvider(this);
-		}
-
-		return timeDivisionMultiplexingItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link sensidl.MeasurementAdaption} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected MeasurementAdaptionItemProvider measurementAdaptionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link sensidl.MeasurementAdaption}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createMeasurementAdaptionAdapter() {
-		if (measurementAdaptionItemProvider == null) {
-			measurementAdaptionItemProvider = new MeasurementAdaptionItemProvider(this);
-		}
-
-		return measurementAdaptionItemProvider;
+		return dataAdaptionItemProvider;
 	}
 
 	/**
@@ -543,17 +451,13 @@ public class SensidlItemProviderAdapterFactory extends SensidlAdapterFactory imp
 		if (representationItemProvider != null) representationItemProvider.dispose();
 		if (calculatedItemProvider != null) calculatedItemProvider.dispose();
 		if (parameterItemProvider != null) parameterItemProvider.dispose();
-		if (constantItemProvider != null) constantItemProvider.dispose();
-		if (primitiveInterpretationItemProvider != null) primitiveInterpretationItemProvider.dispose();
-		if (measurementItemProvider != null) measurementItemProvider.dispose();
-		if (interpretationGroupItemProvider != null) interpretationGroupItemProvider.dispose();
+		if (metadataItemProvider != null) metadataItemProvider.dispose();
+		if (dataItemProvider != null) dataItemProvider.dispose();
+		if (datastructureItemProvider != null) datastructureItemProvider.dispose();
 		if (optionsItemProvider != null) optionsItemProvider.dispose();
-		if (measurementInRangeItemProvider != null) measurementInRangeItemProvider.dispose();
-		if (measureItemProvider != null) measureItemProvider.dispose();
-		if (pullItemProvider != null) pullItemProvider.dispose();
-		if (pushItemProvider != null) pushItemProvider.dispose();
-		if (timeDivisionMultiplexingItemProvider != null) timeDivisionMultiplexingItemProvider.dispose();
-		if (measurementAdaptionItemProvider != null) measurementAdaptionItemProvider.dispose();
+		if (dataRangeItemProvider != null) dataRangeItemProvider.dispose();
+		if (boundItemProvider != null) boundItemProvider.dispose();
+		if (dataAdaptionItemProvider != null) dataAdaptionItemProvider.dispose();
 	}
 
 }

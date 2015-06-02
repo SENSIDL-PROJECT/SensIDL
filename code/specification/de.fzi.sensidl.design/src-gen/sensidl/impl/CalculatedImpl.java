@@ -38,7 +38,7 @@ import sensidl.SensidlPackage;
  *
  * @generated
  */
-public class CalculatedImpl extends InterpretationImpl implements Calculated {
+public class CalculatedImpl extends DatafieldImpl implements Calculated {
 	/**
 	 * The cached value of the '{@link #getRepresentation() <em>Representation</em>}' reference.
 	 * <!-- begin-user-doc -->

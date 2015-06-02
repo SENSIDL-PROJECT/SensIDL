@@ -67,40 +67,31 @@ public interface SensidlFactory extends EFactory {
 	Parameter createParameter();
 
 	/**
-	 * Returns a new object of class '<em>Constant</em>'.
+	 * Returns a new object of class '<em>Metadata</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constant</em>'.
+	 * @return a new object of class '<em>Metadata</em>'.
 	 * @generated
 	 */
-	<ConstantType> Constant<ConstantType> createConstant();
+	Metadata createMetadata();
 
 	/**
-	 * Returns a new object of class '<em>Primitive Interpretation</em>'.
+	 * Returns a new object of class '<em>Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Primitive Interpretation</em>'.
+	 * @return a new object of class '<em>Data</em>'.
 	 * @generated
 	 */
-	PrimitiveInterpretation createPrimitiveInterpretation();
+	Data createData();
 
 	/**
-	 * Returns a new object of class '<em>Measurement</em>'.
+	 * Returns a new object of class '<em>Datastructure</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Measurement</em>'.
+	 * @return a new object of class '<em>Datastructure</em>'.
 	 * @generated
 	 */
-	Measurement createMeasurement();
-
-	/**
-	 * Returns a new object of class '<em>Interpretation Group</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Interpretation Group</em>'.
-	 * @generated
-	 */
-	InterpretationGroup createInterpretationGroup();
+	Datastructure createDatastructure();
 
 	/**
 	 * Returns a new object of class '<em>Options</em>'.
@@ -112,58 +103,31 @@ public interface SensidlFactory extends EFactory {
 	Options createOptions();
 
 	/**
-	 * Returns a new object of class '<em>Measurement In Range</em>'.
+	 * Returns a new object of class '<em>Data Range</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Measurement In Range</em>'.
+	 * @return a new object of class '<em>Data Range</em>'.
 	 * @generated
 	 */
-	MeasurementInRange createMeasurementInRange();
+	DataRange createDataRange();
 
 	/**
-	 * Returns a new object of class '<em>Measure</em>'.
+	 * Returns a new object of class '<em>Bound</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Measure</em>'.
+	 * @return a new object of class '<em>Bound</em>'.
 	 * @generated
 	 */
-	Measure createMeasure();
+	Bound createBound();
 
 	/**
-	 * Returns a new object of class '<em>Pull</em>'.
+	 * Returns a new object of class '<em>Data Adaption</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Pull</em>'.
+	 * @return a new object of class '<em>Data Adaption</em>'.
 	 * @generated
 	 */
-	Pull createPull();
-
-	/**
-	 * Returns a new object of class '<em>Push</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Push</em>'.
-	 * @generated
-	 */
-	Push createPush();
-
-	/**
-	 * Returns a new object of class '<em>Time Division Multiplexing</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Time Division Multiplexing</em>'.
-	 * @generated
-	 */
-	TimeDivisionMultiplexing createTimeDivisionMultiplexing();
-
-	/**
-	 * Returns a new object of class '<em>Measurement Adaption</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Measurement Adaption</em>'.
-	 * @generated
-	 */
-	MeasurementAdaption createMeasurementAdaption();
+	DataAdaption createDataAdaption();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -3,15 +3,12 @@
 package sensidl.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import sensidl.Command;
-import sensidl.Interpretation;
+import sensidl.Datafield;
 import sensidl.SensidlPackage;
 
 /**
@@ -57,7 +54,7 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
 	 * @generated
 	 * @ordered
 	 */
-	protected Interpretation structure;
+	protected Datafield structure;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -104,10 +101,10 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Interpretation getStructure() {
+	public Datafield getStructure() {
 		if (structure != null && structure.eIsProxy()) {
 			InternalEObject oldStructure = (InternalEObject)structure;
-			structure = (Interpretation)eResolveProxy(oldStructure);
+			structure = (Datafield)eResolveProxy(oldStructure);
 			if (structure != oldStructure) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SensidlPackage.COMMAND__STRUCTURE, oldStructure, structure));
@@ -121,7 +118,7 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Interpretation basicGetStructure() {
+	public Datafield basicGetStructure() {
 		return structure;
 	}
 
@@ -130,8 +127,8 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStructure(Interpretation newStructure) {
-		Interpretation oldStructure = structure;
+	public void setStructure(Datafield newStructure) {
+		Datafield oldStructure = structure;
 		structure = newStructure;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SensidlPackage.COMMAND__STRUCTURE, oldStructure, structure));
@@ -166,7 +163,7 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
 				setName((String)newValue);
 				return;
 			case SensidlPackage.COMMAND__STRUCTURE:
-				setStructure((Interpretation)newValue);
+				setStructure((Datafield)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -184,7 +181,7 @@ public class CommandImpl extends MinimalEObjectImpl.Container implements Command
 				setName(NAME_EDEFAULT);
 				return;
 			case SensidlPackage.COMMAND__STRUCTURE:
-				setStructure((Interpretation)null);
+				setStructure((Datafield)null);
 				return;
 		}
 		super.eUnset(featureID);

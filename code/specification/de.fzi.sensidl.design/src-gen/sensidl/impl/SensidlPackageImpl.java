@@ -5,36 +5,29 @@ package sensidl.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import sensidl.ArgumentType;
+import sensidl.BitNumbering;
+import sensidl.Bound;
 import sensidl.Calculated;
 import sensidl.Command;
-import sensidl.Constant;
 import sensidl.Constraint;
+import sensidl.Data;
+import sensidl.DataAdaption;
+import sensidl.DataConstraint;
 import sensidl.DataModel;
+import sensidl.DataRange;
+import sensidl.Datafield;
+import sensidl.Datastructure;
 import sensidl.GenerationLanguage;
-import sensidl.Interpretation;
-import sensidl.InterpretationGroup;
-import sensidl.Measure;
-import sensidl.Measurement;
-import sensidl.MeasurementAdaption;
-import sensidl.MeasurementConstraint;
-import sensidl.MeasurementInRange;
+import sensidl.Metadata;
 import sensidl.Options;
 import sensidl.Parameter;
-import sensidl.PrimitiveInterpretation;
-import sensidl.Pull;
-import sensidl.Push;
-import sensidl.Quantity;
 import sensidl.Representation;
 import sensidl.SensidlFactory;
 import sensidl.SensidlPackage;
-import sensidl.TimeDivisionMultiplexing;
-import sensidl.Transmission;
 import sensidl.Type;
 
 /**
@@ -70,7 +63,7 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass interpretationEClass = null;
+	private EClass datafieldEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,28 +84,21 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass constantEClass = null;
+	private EClass metadataEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass primitiveInterpretationEClass = null;
+	private EClass dataEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass measurementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass interpretationGroupEClass = null;
+	private EClass datastructureEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,56 +119,28 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass measurementConstraintEClass = null;
+	private EClass dataConstraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass measurementInRangeEClass = null;
+	private EClass dataRangeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass measureEClass = null;
+	private EClass boundEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass transmissionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass pullEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass pushEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass timeDivisionMultiplexingEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass measurementAdaptionEClass = null;
+	private EClass dataAdaptionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -210,7 +168,7 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum quantityEEnum = null;
+	private EEnum bitNumberingEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -296,7 +254,7 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDataModel_Interpretations() {
+	public EReference getDataModel_Datafields() {
 		return (EReference)dataModelEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -395,8 +353,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getInterpretation() {
-		return interpretationEClass;
+	public EClass getDatafield() {
+		return datafieldEClass;
 	}
 
 	/**
@@ -404,8 +362,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getInterpretation_Name() {
-		return (EAttribute)interpretationEClass.getEStructuralFeatures().get(0);
+	public EAttribute getDatafield_Name() {
+		return (EAttribute)datafieldEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -467,7 +425,7 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getParameter_Interpretation() {
+	public EReference getParameter_Datafield() {
 		return (EReference)parameterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -485,8 +443,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConstant() {
-		return constantEClass;
+	public EClass getMetadata() {
+		return metadataEClass;
 	}
 
 	/**
@@ -494,8 +452,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConstant_Representation() {
-		return (EReference)constantEClass.getEStructuralFeatures().get(0);
+	public EAttribute getMetadata_Type() {
+		return (EAttribute)metadataEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -503,8 +461,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConstant_ConstantValue() {
-		return (EAttribute)constantEClass.getEStructuralFeatures().get(1);
+	public EReference getMetadata_Representation() {
+		return (EReference)metadataEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -512,8 +470,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPrimitiveInterpretation() {
-		return primitiveInterpretationEClass;
+	public EClass getData() {
+		return dataEClass;
 	}
 
 	/**
@@ -521,8 +479,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPrimitiveInterpretation_Type() {
-		return (EAttribute)primitiveInterpretationEClass.getEStructuralFeatures().get(0);
+	public EAttribute getData_Unit() {
+		return (EAttribute)dataEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -530,8 +488,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPrimitiveInterpretation_Representation() {
-		return (EReference)primitiveInterpretationEClass.getEStructuralFeatures().get(1);
+	public EAttribute getData_Scale() {
+		return (EAttribute)dataEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -539,8 +497,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMeasurement() {
-		return measurementEClass;
+	public EReference getData_Representation() {
+		return (EReference)dataEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -548,8 +506,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMeasurement_Quantity() {
-		return (EAttribute)measurementEClass.getEStructuralFeatures().get(0);
+	public EReference getData_Constraints() {
+		return (EReference)dataEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -557,8 +515,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMeasurement_Unit() {
-		return (EAttribute)measurementEClass.getEStructuralFeatures().get(1);
+	public EAttribute getData_BitNumbering() {
+		return (EAttribute)dataEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -566,8 +524,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMeasurement_Scale() {
-		return (EAttribute)measurementEClass.getEStructuralFeatures().get(2);
+	public EClass getDatastructure() {
+		return datastructureEClass;
 	}
 
 	/**
@@ -575,35 +533,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMeasurement_Representation() {
-		return (EReference)measurementEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMeasurement_Constraints() {
-		return (EReference)measurementEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getInterpretationGroup() {
-		return interpretationGroupEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getInterpretationGroup_Interpretations() {
-		return (EReference)interpretationGroupEClass.getEStructuralFeatures().get(0);
+	public EReference getDatastructure_Datafields() {
+		return (EReference)datastructureEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -638,15 +569,6 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOptions_TransmissionType() {
-		return (EReference)optionsEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getConstraint() {
 		return constraintEClass;
 	}
@@ -656,8 +578,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMeasurementConstraint() {
-		return measurementConstraintEClass;
+	public EClass getDataConstraint() {
+		return dataConstraintEClass;
 	}
 
 	/**
@@ -665,8 +587,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMeasurementInRange() {
-		return measurementInRangeEClass;
+	public EClass getDataRange() {
+		return dataRangeEClass;
 	}
 
 	/**
@@ -674,8 +596,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMeasurementInRange_LowerBound() {
-		return (EReference)measurementInRangeEClass.getEStructuralFeatures().get(0);
+	public EReference getDataRange_LowerBound() {
+		return (EReference)dataRangeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -683,8 +605,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMeasurementInRange_UpperBound() {
-		return (EReference)measurementInRangeEClass.getEStructuralFeatures().get(1);
+	public EReference getDataRange_UpperBound() {
+		return (EReference)dataRangeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -692,8 +614,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMeasure() {
-		return measureEClass;
+	public EClass getBound() {
+		return boundEClass;
 	}
 
 	/**
@@ -701,8 +623,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMeasure_Unit() {
-		return (EAttribute)measureEClass.getEStructuralFeatures().get(0);
+	public EAttribute getBound_Unit() {
+		return (EAttribute)boundEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -710,8 +632,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMeasure_Value() {
-		return (EAttribute)measureEClass.getEStructuralFeatures().get(1);
+	public EAttribute getBound_Value() {
+		return (EAttribute)boundEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -719,8 +641,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTransmission() {
-		return transmissionEClass;
+	public EClass getDataAdaption() {
+		return dataAdaptionEClass;
 	}
 
 	/**
@@ -728,8 +650,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTransmission_Frequency() {
-		return (EAttribute)transmissionEClass.getEStructuralFeatures().get(0);
+	public EAttribute getDataAdaption_ScalingFactor() {
+		return (EAttribute)dataAdaptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -737,80 +659,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPull() {
-		return pullEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getPush() {
-		return pushEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPush_MethodName() {
-		return (EAttribute)pushEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTimeDivisionMultiplexing() {
-		return timeDivisionMultiplexingEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTimeDivisionMultiplexing_Duration() {
-		return (EAttribute)timeDivisionMultiplexingEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getTimeDivisionMultiplexing_TimeSlot() {
-		return (EAttribute)timeDivisionMultiplexingEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getMeasurementAdaption() {
-		return measurementAdaptionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMeasurementAdaption_ScalingFactor() {
-		return (EAttribute)measurementAdaptionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMeasurementAdaption_Offset() {
-		return (EAttribute)measurementAdaptionEClass.getEStructuralFeatures().get(1);
+	public EAttribute getDataAdaption_Offset() {
+		return (EAttribute)dataAdaptionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -845,8 +695,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getQuantity() {
-		return quantityEEnum;
+	public EEnum getBitNumbering() {
+		return bitNumberingEEnum;
 	}
 
 	/**
@@ -879,7 +729,7 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		// Create classes and their features
 		dataModelEClass = createEClass(DATA_MODEL);
 		createEReference(dataModelEClass, DATA_MODEL__REPRESENTATIONS);
-		createEReference(dataModelEClass, DATA_MODEL__INTERPRETATIONS);
+		createEReference(dataModelEClass, DATA_MODEL__DATAFIELDS);
 		createEReference(dataModelEClass, DATA_MODEL__TRANSMIT);
 		createEReference(dataModelEClass, DATA_MODEL__OPTIONS);
 		createEReference(dataModelEClass, DATA_MODEL__COMMANDS);
@@ -893,8 +743,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		createEAttribute(representationEClass, REPRESENTATION__TYPE);
 		createEAttribute(representationEClass, REPRESENTATION__NAME);
 
-		interpretationEClass = createEClass(INTERPRETATION);
-		createEAttribute(interpretationEClass, INTERPRETATION__NAME);
+		datafieldEClass = createEClass(DATAFIELD);
+		createEAttribute(datafieldEClass, DATAFIELD__NAME);
 
 		calculatedEClass = createEClass(CALCULATED);
 		createEReference(calculatedEClass, CALCULATED__REPRESENTATION);
@@ -903,65 +753,48 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		createEReference(calculatedEClass, CALCULATED__PARAMETER);
 
 		parameterEClass = createEClass(PARAMETER);
-		createEReference(parameterEClass, PARAMETER__INTERPRETATION);
+		createEReference(parameterEClass, PARAMETER__DATAFIELD);
 		createEAttribute(parameterEClass, PARAMETER__ARGUMENT_TYPE);
 
-		constantEClass = createEClass(CONSTANT);
-		createEReference(constantEClass, CONSTANT__REPRESENTATION);
-		createEAttribute(constantEClass, CONSTANT__CONSTANT_VALUE);
+		metadataEClass = createEClass(METADATA);
+		createEAttribute(metadataEClass, METADATA__TYPE);
+		createEReference(metadataEClass, METADATA__REPRESENTATION);
 
-		primitiveInterpretationEClass = createEClass(PRIMITIVE_INTERPRETATION);
-		createEAttribute(primitiveInterpretationEClass, PRIMITIVE_INTERPRETATION__TYPE);
-		createEReference(primitiveInterpretationEClass, PRIMITIVE_INTERPRETATION__REPRESENTATION);
+		dataEClass = createEClass(DATA);
+		createEAttribute(dataEClass, DATA__UNIT);
+		createEAttribute(dataEClass, DATA__SCALE);
+		createEReference(dataEClass, DATA__REPRESENTATION);
+		createEReference(dataEClass, DATA__CONSTRAINTS);
+		createEAttribute(dataEClass, DATA__BIT_NUMBERING);
 
-		measurementEClass = createEClass(MEASUREMENT);
-		createEAttribute(measurementEClass, MEASUREMENT__QUANTITY);
-		createEAttribute(measurementEClass, MEASUREMENT__UNIT);
-		createEAttribute(measurementEClass, MEASUREMENT__SCALE);
-		createEReference(measurementEClass, MEASUREMENT__REPRESENTATION);
-		createEReference(measurementEClass, MEASUREMENT__CONSTRAINTS);
-
-		interpretationGroupEClass = createEClass(INTERPRETATION_GROUP);
-		createEReference(interpretationGroupEClass, INTERPRETATION_GROUP__INTERPRETATIONS);
+		datastructureEClass = createEClass(DATASTRUCTURE);
+		createEReference(datastructureEClass, DATASTRUCTURE__DATAFIELDS);
 
 		optionsEClass = createEClass(OPTIONS);
 		createEAttribute(optionsEClass, OPTIONS__SENSOR_LANGUAGE);
 		createEAttribute(optionsEClass, OPTIONS__RECEIVER_LANGUAGE);
-		createEReference(optionsEClass, OPTIONS__TRANSMISSION_TYPE);
 
 		constraintEClass = createEClass(CONSTRAINT);
 
-		measurementConstraintEClass = createEClass(MEASUREMENT_CONSTRAINT);
+		dataConstraintEClass = createEClass(DATA_CONSTRAINT);
 
-		measurementInRangeEClass = createEClass(MEASUREMENT_IN_RANGE);
-		createEReference(measurementInRangeEClass, MEASUREMENT_IN_RANGE__LOWER_BOUND);
-		createEReference(measurementInRangeEClass, MEASUREMENT_IN_RANGE__UPPER_BOUND);
+		dataRangeEClass = createEClass(DATA_RANGE);
+		createEReference(dataRangeEClass, DATA_RANGE__LOWER_BOUND);
+		createEReference(dataRangeEClass, DATA_RANGE__UPPER_BOUND);
 
-		measureEClass = createEClass(MEASURE);
-		createEAttribute(measureEClass, MEASURE__UNIT);
-		createEAttribute(measureEClass, MEASURE__VALUE);
+		boundEClass = createEClass(BOUND);
+		createEAttribute(boundEClass, BOUND__UNIT);
+		createEAttribute(boundEClass, BOUND__VALUE);
 
-		transmissionEClass = createEClass(TRANSMISSION);
-		createEAttribute(transmissionEClass, TRANSMISSION__FREQUENCY);
-
-		pullEClass = createEClass(PULL);
-
-		pushEClass = createEClass(PUSH);
-		createEAttribute(pushEClass, PUSH__METHOD_NAME);
-
-		timeDivisionMultiplexingEClass = createEClass(TIME_DIVISION_MULTIPLEXING);
-		createEAttribute(timeDivisionMultiplexingEClass, TIME_DIVISION_MULTIPLEXING__DURATION);
-		createEAttribute(timeDivisionMultiplexingEClass, TIME_DIVISION_MULTIPLEXING__TIME_SLOT);
-
-		measurementAdaptionEClass = createEClass(MEASUREMENT_ADAPTION);
-		createEAttribute(measurementAdaptionEClass, MEASUREMENT_ADAPTION__SCALING_FACTOR);
-		createEAttribute(measurementAdaptionEClass, MEASUREMENT_ADAPTION__OFFSET);
+		dataAdaptionEClass = createEClass(DATA_ADAPTION);
+		createEAttribute(dataAdaptionEClass, DATA_ADAPTION__SCALING_FACTOR);
+		createEAttribute(dataAdaptionEClass, DATA_ADAPTION__OFFSET);
 
 		// Create enums
 		typeEEnum = createEEnum(TYPE);
 		argumentTypeEEnum = createEEnum(ARGUMENT_TYPE);
 		generationLanguageEEnum = createEEnum(GENERATION_LANGUAGE);
-		quantityEEnum = createEEnum(QUANTITY);
+		bitNumberingEEnum = createEEnum(BIT_NUMBERING);
 	}
 
 	/**
@@ -988,42 +821,37 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		setNsURI(eNS_URI);
 
 		// Create type parameters
-		ETypeParameter constantEClass_ConstantType = addETypeParameter(constantEClass, "ConstantType");
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		calculatedEClass.getESuperTypes().add(this.getInterpretation());
-		constantEClass.getESuperTypes().add(this.getInterpretation());
-		primitiveInterpretationEClass.getESuperTypes().add(this.getInterpretation());
-		measurementEClass.getESuperTypes().add(this.getInterpretation());
-		interpretationGroupEClass.getESuperTypes().add(this.getInterpretation());
-		measurementConstraintEClass.getESuperTypes().add(this.getConstraint());
-		measurementInRangeEClass.getESuperTypes().add(this.getMeasurementConstraint());
-		pullEClass.getESuperTypes().add(this.getTransmission());
-		pushEClass.getESuperTypes().add(this.getTransmission());
-		timeDivisionMultiplexingEClass.getESuperTypes().add(this.getPull());
-		measurementAdaptionEClass.getESuperTypes().add(this.getMeasurementConstraint());
+		calculatedEClass.getESuperTypes().add(this.getDatafield());
+		metadataEClass.getESuperTypes().add(this.getDatafield());
+		dataEClass.getESuperTypes().add(this.getDatafield());
+		datastructureEClass.getESuperTypes().add(this.getDatafield());
+		dataConstraintEClass.getESuperTypes().add(this.getConstraint());
+		dataRangeEClass.getESuperTypes().add(this.getDataConstraint());
+		dataAdaptionEClass.getESuperTypes().add(this.getDataConstraint());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(dataModelEClass, DataModel.class, "DataModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDataModel_Representations(), this.getRepresentation(), null, "representations", null, 0, -1, DataModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getDataModel_Interpretations(), this.getInterpretation(), null, "interpretations", null, 0, -1, DataModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDataModel_Transmit(), this.getInterpretation(), null, "transmit", null, 1, -1, DataModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDataModel_Datafields(), this.getDatafield(), null, "datafields", null, 0, -1, DataModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDataModel_Transmit(), this.getDatafield(), null, "transmit", null, 1, -1, DataModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDataModel_Options(), this.getOptions(), null, "options", null, 1, 1, DataModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDataModel_Commands(), this.getCommand(), null, "commands", null, 0, -1, DataModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(commandEClass, Command.class, "Command", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCommand_Name(), ecorePackage.getEString(), "name", null, 1, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCommand_Structure(), this.getInterpretation(), null, "structure", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCommand_Structure(), this.getDatafield(), null, "structure", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(representationEClass, Representation.class, "Representation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRepresentation_ByteCount(), ecorePackage.getEInt(), "byteCount", null, 1, 1, Representation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRepresentation_Type(), this.getType(), "type", null, 1, 1, Representation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRepresentation_Name(), ecorePackage.getEString(), "name", null, 1, 1, Representation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(interpretationEClass, Interpretation.class, "Interpretation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getInterpretation_Name(), ecorePackage.getEString(), "name", null, 1, 1, Interpretation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(datafieldEClass, Datafield.class, "Datafield", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDatafield_Name(), ecorePackage.getEString(), "name", null, 1, 1, Datafield.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(calculatedEClass, Calculated.class, "Calculated", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCalculated_Representation(), this.getRepresentation(), null, "representation", null, 1, 1, Calculated.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1032,69 +860,54 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		initEReference(getCalculated_Parameter(), this.getParameter(), null, "parameter", null, 0, -1, Calculated.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getParameter_Interpretation(), this.getInterpretation(), null, "interpretation", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getParameter_Datafield(), this.getDatafield(), null, "datafield", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getParameter_ArgumentType(), this.getArgumentType(), "argumentType", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(constantEClass, Constant.class, "Constant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConstant_Representation(), this.getRepresentation(), null, "representation", null, 1, 1, Constant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		EGenericType g1 = createEGenericType(constantEClass_ConstantType);
-		initEAttribute(getConstant_ConstantValue(), g1, "constantValue", null, 0, 1, Constant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(metadataEClass, Metadata.class, "Metadata", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMetadata_Type(), this.getType(), "type", null, 1, 1, Metadata.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMetadata_Representation(), this.getRepresentation(), null, "representation", null, 1, 1, Metadata.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(primitiveInterpretationEClass, PrimitiveInterpretation.class, "PrimitiveInterpretation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPrimitiveInterpretation_Type(), this.getType(), "type", null, 1, 1, PrimitiveInterpretation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPrimitiveInterpretation_Representation(), this.getRepresentation(), null, "representation", null, 1, 1, PrimitiveInterpretation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(dataEClass, Data.class, "Data", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getData_Unit(), ecorePackage.getEString(), "unit", null, 1, 1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getData_Scale(), ecorePackage.getEDouble(), "scale", "1", 1, 1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getData_Representation(), this.getRepresentation(), null, "representation", null, 1, 1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getData_Constraints(), this.getDataConstraint(), null, "constraints", null, 0, -1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getData_BitNumbering(), this.getBitNumbering(), "bitNumbering", null, 0, 1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(measurementEClass, Measurement.class, "Measurement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMeasurement_Quantity(), this.getQuantity(), "quantity", null, 1, 1, Measurement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMeasurement_Unit(), ecorePackage.getEString(), "unit", null, 1, 1, Measurement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMeasurement_Scale(), ecorePackage.getEDouble(), "scale", "1", 1, 1, Measurement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMeasurement_Representation(), this.getRepresentation(), null, "representation", null, 1, 1, Measurement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMeasurement_Constraints(), this.getMeasurementConstraint(), null, "constraints", null, 0, -1, Measurement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(interpretationGroupEClass, InterpretationGroup.class, "InterpretationGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInterpretationGroup_Interpretations(), this.getInterpretation(), null, "interpretations", null, 0, -1, InterpretationGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(datastructureEClass, Datastructure.class, "Datastructure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDatastructure_Datafields(), this.getDatafield(), null, "datafields", null, 0, -1, Datastructure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(optionsEClass, Options.class, "Options", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOptions_SensorLanguage(), this.getGenerationLanguage(), "sensorLanguage", null, 0, 1, Options.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOptions_ReceiverLanguage(), this.getGenerationLanguage(), "receiverLanguage", null, 0, 1, Options.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOptions_TransmissionType(), this.getTransmission(), null, "transmissionType", null, 1, 1, Options.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constraintEClass, Constraint.class, "Constraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(measurementConstraintEClass, MeasurementConstraint.class, "MeasurementConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(dataConstraintEClass, DataConstraint.class, "DataConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(measurementInRangeEClass, MeasurementInRange.class, "MeasurementInRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMeasurementInRange_LowerBound(), this.getMeasure(), null, "lowerBound", null, 0, 1, MeasurementInRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMeasurementInRange_UpperBound(), this.getMeasure(), null, "upperBound", null, 0, 1, MeasurementInRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(dataRangeEClass, DataRange.class, "DataRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDataRange_LowerBound(), this.getBound(), null, "lowerBound", null, 0, 1, DataRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDataRange_UpperBound(), this.getBound(), null, "upperBound", null, 0, 1, DataRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(measureEClass, Measure.class, "Measure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMeasure_Unit(), ecorePackage.getEString(), "unit", null, 1, 1, Measure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMeasure_Value(), ecorePackage.getEDouble(), "value", null, 1, 1, Measure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(boundEClass, Bound.class, "Bound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBound_Unit(), ecorePackage.getEString(), "unit", null, 1, 1, Bound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBound_Value(), ecorePackage.getEDouble(), "value", null, 1, 1, Bound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(transmissionEClass, Transmission.class, "Transmission", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTransmission_Frequency(), ecorePackage.getEInt(), "frequency", null, 1, 1, Transmission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(pullEClass, Pull.class, "Pull", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(pushEClass, Push.class, "Push", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPush_MethodName(), ecorePackage.getEString(), "methodName", null, 1, 1, Push.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(timeDivisionMultiplexingEClass, TimeDivisionMultiplexing.class, "TimeDivisionMultiplexing", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTimeDivisionMultiplexing_Duration(), ecorePackage.getEDouble(), "duration", null, 1, 1, TimeDivisionMultiplexing.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTimeDivisionMultiplexing_TimeSlot(), ecorePackage.getEDouble(), "timeSlot", null, 1, 1, TimeDivisionMultiplexing.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(measurementAdaptionEClass, MeasurementAdaption.class, "MeasurementAdaption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMeasurementAdaption_ScalingFactor(), ecorePackage.getEDoubleObject(), "scalingFactor", null, 1, 1, MeasurementAdaption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMeasurementAdaption_Offset(), ecorePackage.getEDoubleObject(), "offset", null, 1, 1, MeasurementAdaption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(dataAdaptionEClass, DataAdaption.class, "DataAdaption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDataAdaption_ScalingFactor(), ecorePackage.getEDoubleObject(), "scalingFactor", null, 1, 1, DataAdaption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDataAdaption_Offset(), ecorePackage.getEDoubleObject(), "offset", null, 1, 1, DataAdaption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(typeEEnum, Type.class, "Type");
-		addEEnumLiteral(typeEEnum, Type.BYTE);
+		addEEnumLiteral(typeEEnum, Type.BOOL);
+		addEEnumLiteral(typeEEnum, Type.CHAR);
 		addEEnumLiteral(typeEEnum, Type.SHORT);
 		addEEnumLiteral(typeEEnum, Type.INT);
 		addEEnumLiteral(typeEEnum, Type.LONG);
+		addEEnumLiteral(typeEEnum, Type.LONGLONG);
 		addEEnumLiteral(typeEEnum, Type.FLOAT);
 		addEEnumLiteral(typeEEnum, Type.DOUBLE);
+		addEEnumLiteral(typeEEnum, Type.LONGDOUBLE);
 
 		initEEnum(argumentTypeEEnum, ArgumentType.class, "ArgumentType");
 		addEEnumLiteral(argumentTypeEEnum, ArgumentType.BYTE_ARRAY);
@@ -1105,13 +918,9 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		addEEnumLiteral(generationLanguageEEnum, GenerationLanguage.C);
 		addEEnumLiteral(generationLanguageEEnum, GenerationLanguage.CSHARP);
 
-		initEEnum(quantityEEnum, Quantity.class, "Quantity");
-		addEEnumLiteral(quantityEEnum, Quantity.FLOW);
-		addEEnumLiteral(quantityEEnum, Quantity.TEMPERATURE);
-		addEEnumLiteral(quantityEEnum, Quantity.VOLUME);
-		addEEnumLiteral(quantityEEnum, Quantity.DURATION);
-		addEEnumLiteral(quantityEEnum, Quantity.PRESSURE);
-		addEEnumLiteral(quantityEEnum, Quantity.ELECTRICENERGY);
+		initEEnum(bitNumberingEEnum, BitNumbering.class, "BitNumbering");
+		addEEnumLiteral(bitNumberingEEnum, BitNumbering.LSB);
+		addEEnumLiteral(bitNumberingEEnum, BitNumbering.MSB);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -62,17 +62,13 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 			case SensidlPackage.REPRESENTATION: return createRepresentation();
 			case SensidlPackage.CALCULATED: return createCalculated();
 			case SensidlPackage.PARAMETER: return createParameter();
-			case SensidlPackage.CONSTANT: return createConstant();
-			case SensidlPackage.PRIMITIVE_INTERPRETATION: return createPrimitiveInterpretation();
-			case SensidlPackage.MEASUREMENT: return createMeasurement();
-			case SensidlPackage.INTERPRETATION_GROUP: return createInterpretationGroup();
+			case SensidlPackage.METADATA: return createMetadata();
+			case SensidlPackage.DATA: return createData();
+			case SensidlPackage.DATASTRUCTURE: return createDatastructure();
 			case SensidlPackage.OPTIONS: return createOptions();
-			case SensidlPackage.MEASUREMENT_IN_RANGE: return createMeasurementInRange();
-			case SensidlPackage.MEASURE: return createMeasure();
-			case SensidlPackage.PULL: return createPull();
-			case SensidlPackage.PUSH: return createPush();
-			case SensidlPackage.TIME_DIVISION_MULTIPLEXING: return createTimeDivisionMultiplexing();
-			case SensidlPackage.MEASUREMENT_ADAPTION: return createMeasurementAdaption();
+			case SensidlPackage.DATA_RANGE: return createDataRange();
+			case SensidlPackage.BOUND: return createBound();
+			case SensidlPackage.DATA_ADAPTION: return createDataAdaption();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -92,8 +88,8 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 				return createArgumentTypeFromString(eDataType, initialValue);
 			case SensidlPackage.GENERATION_LANGUAGE:
 				return createGenerationLanguageFromString(eDataType, initialValue);
-			case SensidlPackage.QUANTITY:
-				return createQuantityFromString(eDataType, initialValue);
+			case SensidlPackage.BIT_NUMBERING:
+				return createBitNumberingFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -113,8 +109,8 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 				return convertArgumentTypeToString(eDataType, instanceValue);
 			case SensidlPackage.GENERATION_LANGUAGE:
 				return convertGenerationLanguageToString(eDataType, instanceValue);
-			case SensidlPackage.QUANTITY:
-				return convertQuantityToString(eDataType, instanceValue);
+			case SensidlPackage.BIT_NUMBERING:
+				return convertBitNumberingToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -175,9 +171,9 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public <ConstantType> Constant<ConstantType> createConstant() {
-		ConstantImpl<ConstantType> constant = new ConstantImpl<ConstantType>();
-		return constant;
+	public Metadata createMetadata() {
+		MetadataImpl metadata = new MetadataImpl();
+		return metadata;
 	}
 
 	/**
@@ -185,9 +181,9 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrimitiveInterpretation createPrimitiveInterpretation() {
-		PrimitiveInterpretationImpl primitiveInterpretation = new PrimitiveInterpretationImpl();
-		return primitiveInterpretation;
+	public Data createData() {
+		DataImpl data = new DataImpl();
+		return data;
 	}
 
 	/**
@@ -195,19 +191,9 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Measurement createMeasurement() {
-		MeasurementImpl measurement = new MeasurementImpl();
-		return measurement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InterpretationGroup createInterpretationGroup() {
-		InterpretationGroupImpl interpretationGroup = new InterpretationGroupImpl();
-		return interpretationGroup;
+	public Datastructure createDatastructure() {
+		DatastructureImpl datastructure = new DatastructureImpl();
+		return datastructure;
 	}
 
 	/**
@@ -225,9 +211,9 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MeasurementInRange createMeasurementInRange() {
-		MeasurementInRangeImpl measurementInRange = new MeasurementInRangeImpl();
-		return measurementInRange;
+	public DataRange createDataRange() {
+		DataRangeImpl dataRange = new DataRangeImpl();
+		return dataRange;
 	}
 
 	/**
@@ -235,9 +221,9 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Measure createMeasure() {
-		MeasureImpl measure = new MeasureImpl();
-		return measure;
+	public Bound createBound() {
+		BoundImpl bound = new BoundImpl();
+		return bound;
 	}
 
 	/**
@@ -245,39 +231,9 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Pull createPull() {
-		PullImpl pull = new PullImpl();
-		return pull;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Push createPush() {
-		PushImpl push = new PushImpl();
-		return push;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TimeDivisionMultiplexing createTimeDivisionMultiplexing() {
-		TimeDivisionMultiplexingImpl timeDivisionMultiplexing = new TimeDivisionMultiplexingImpl();
-		return timeDivisionMultiplexing;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MeasurementAdaption createMeasurementAdaption() {
-		MeasurementAdaptionImpl measurementAdaption = new MeasurementAdaptionImpl();
-		return measurementAdaption;
+	public DataAdaption createDataAdaption() {
+		DataAdaptionImpl dataAdaption = new DataAdaptionImpl();
+		return dataAdaption;
 	}
 
 	/**
@@ -345,8 +301,8 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Quantity createQuantityFromString(EDataType eDataType, String initialValue) {
-		Quantity result = Quantity.get(initialValue);
+	public BitNumbering createBitNumberingFromString(EDataType eDataType, String initialValue) {
+		BitNumbering result = BitNumbering.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -356,7 +312,7 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertQuantityToString(EDataType eDataType, Object instanceValue) {
+	public String convertBitNumberingToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

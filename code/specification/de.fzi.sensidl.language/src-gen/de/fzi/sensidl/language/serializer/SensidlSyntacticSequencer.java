@@ -19,14 +19,14 @@ public class SensidlSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected SensidlGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_Calculated_CalculateKeyword_0_0_or_CalculatedKeyword_0_1;
-	protected AbstractElementAlias match_Representation_ByteKeyword_6_1_or_BytesKeyword_6_0;
+	protected AbstractElementAlias match_Representation_ByteKeyword_4_1_or_BytesKeyword_4_0;
 	protected AbstractElementAlias match_Representation_ReprKeyword_0_0_or_RepresentationKeyword_0_1;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (SensidlGrammarAccess) access;
 		match_Calculated_CalculateKeyword_0_0_or_CalculatedKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getCalculatedAccess().getCalculateKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getCalculatedAccess().getCalculatedKeyword_0_1()));
-		match_Representation_ByteKeyword_6_1_or_BytesKeyword_6_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getRepresentationAccess().getByteKeyword_6_1()), new TokenAlias(false, false, grammarAccess.getRepresentationAccess().getBytesKeyword_6_0()));
+		match_Representation_ByteKeyword_4_1_or_BytesKeyword_4_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getRepresentationAccess().getByteKeyword_4_1()), new TokenAlias(false, false, grammarAccess.getRepresentationAccess().getBytesKeyword_4_0()));
 		match_Representation_ReprKeyword_0_0_or_RepresentationKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getRepresentationAccess().getReprKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getRepresentationAccess().getRepresentationKeyword_0_1()));
 	}
 	
@@ -44,8 +44,8 @@ public class SensidlSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if(match_Calculated_CalculateKeyword_0_0_or_CalculatedKeyword_0_1.equals(syntax))
 				emit_Calculated_CalculateKeyword_0_0_or_CalculatedKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Representation_ByteKeyword_6_1_or_BytesKeyword_6_0.equals(syntax))
-				emit_Representation_ByteKeyword_6_1_or_BytesKeyword_6_0(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if(match_Representation_ByteKeyword_4_1_or_BytesKeyword_4_0.equals(syntax))
+				emit_Representation_ByteKeyword_4_1_or_BytesKeyword_4_0(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Representation_ReprKeyword_0_0_or_RepresentationKeyword_0_1.equals(syntax))
 				emit_Representation_ReprKeyword_0_0_or_RepresentationKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
@@ -64,7 +64,7 @@ public class SensidlSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * Syntax:
 	 *     'bytes' | 'byte'
 	 */
-	protected void emit_Representation_ByteKeyword_6_1_or_BytesKeyword_6_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Representation_ByteKeyword_4_1_or_BytesKeyword_4_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

@@ -61,26 +61,26 @@ public class ParameterItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addInterpretationPropertyDescriptor(object);
+			addDatafieldPropertyDescriptor(object);
 			addArgumentTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Interpretation feature.
+	 * This adds a property descriptor for the Datafield feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInterpretationPropertyDescriptor(Object object) {
+	protected void addDatafieldPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Parameter_interpretation_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Parameter_interpretation_feature", "_UI_Parameter_type"),
-				 SensidlPackage.Literals.PARAMETER__INTERPRETATION,
+				 getString("_UI_Parameter_datafield_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Parameter_datafield_feature", "_UI_Parameter_type"),
+				 SensidlPackage.Literals.PARAMETER__DATAFIELD,
 				 true,
 				 false,
 				 true,
