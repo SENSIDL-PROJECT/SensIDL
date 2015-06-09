@@ -36,7 +36,7 @@ public interface Data extends Datafield {
 	 * @return the value of the '<em>Unit</em>' attribute.
 	 * @see #setUnit(String)
 	 * @see sensidl.SensidlPackage#getData_Unit()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	String getUnit();
