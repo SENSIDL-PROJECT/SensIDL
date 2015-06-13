@@ -65,7 +65,8 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDataRangeAccess().getGroup(), "rule__DataRange__Group__0");
 					put(grammarAccess.getDataAdaptionAccess().getGroup(), "rule__DataAdaption__Group__0");
 					put(grammarAccess.getBoundAccess().getGroup(), "rule__Bound__Group__0");
-					put(grammarAccess.getMetadataAccess().getGroup(), "rule__Metadata__Group__0");
+					put(grammarAccess.getConstantDataAccess().getGroup(), "rule__ConstantData__Group__0");
+					put(grammarAccess.getConstantDataAccess().getGroup_5(), "rule__ConstantData__Group_5__0");
 					put(grammarAccess.getDOUBLEAccess().getGroup(), "rule__DOUBLE__Group__0");
 					put(grammarAccess.getDOUBLEAccess().getGroup_1(), "rule__DOUBLE__Group_1__0");
 					put(grammarAccess.getDataModelAccess().getOptionsAssignment_4(), "rule__DataModel__OptionsAssignment_4");
@@ -100,9 +101,10 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDataAdaptionAccess().getOffsetAssignment_7(), "rule__DataAdaption__OffsetAssignment_7");
 					put(grammarAccess.getBoundAccess().getValueAssignment_0(), "rule__Bound__ValueAssignment_0");
 					put(grammarAccess.getBoundAccess().getUnitAssignment_1(), "rule__Bound__UnitAssignment_1");
-					put(grammarAccess.getMetadataAccess().getTypeAssignment_1(), "rule__Metadata__TypeAssignment_1");
-					put(grammarAccess.getMetadataAccess().getNameAssignment_2(), "rule__Metadata__NameAssignment_2");
-					put(grammarAccess.getMetadataAccess().getRepresentationAssignment_4(), "rule__Metadata__RepresentationAssignment_4");
+					put(grammarAccess.getConstantDataAccess().getTypeAssignment_1(), "rule__ConstantData__TypeAssignment_1");
+					put(grammarAccess.getConstantDataAccess().getNameAssignment_2(), "rule__ConstantData__NameAssignment_2");
+					put(grammarAccess.getConstantDataAccess().getRepresentationAssignment_4(), "rule__ConstantData__RepresentationAssignment_4");
+					put(grammarAccess.getConstantDataAccess().getConstValueAssignment_5_1(), "rule__ConstantData__ConstValueAssignment_5_1");
 				}
 			};
 		}

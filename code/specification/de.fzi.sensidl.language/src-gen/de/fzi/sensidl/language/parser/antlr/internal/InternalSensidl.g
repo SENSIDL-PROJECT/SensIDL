@@ -403,11 +403,11 @@ ruleDatafield returns [EObject current=null]
     @after { leaveRule(); }:
 (
     { 
-        newCompositeNode(grammarAccess.getDatafieldAccess().getMetadataParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getDatafieldAccess().getConstantDataParserRuleCall_0()); 
     }
-    this_Metadata_0=ruleMetadata
+    this_ConstantData_0=ruleConstantData
     { 
-        $current = $this_Metadata_0.current; 
+        $current = $this_ConstantData_0.current; 
         afterParserOrEnumRuleCall();
     }
 
@@ -1128,32 +1128,32 @@ ruleBound returns [EObject current=null]
 
 
 
-// Entry rule entryRuleMetadata
-entryRuleMetadata returns [EObject current=null] 
+// Entry rule entryRuleConstantData
+entryRuleConstantData returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getMetadataRule()); }
-	 iv_ruleMetadata=ruleMetadata 
-	 { $current=$iv_ruleMetadata.current; } 
+	{ newCompositeNode(grammarAccess.getConstantDataRule()); }
+	 iv_ruleConstantData=ruleConstantData 
+	 { $current=$iv_ruleConstantData.current; } 
 	 EOF 
 ;
 
-// Rule Metadata
-ruleMetadata returns [EObject current=null] 
+// Rule ConstantData
+ruleConstantData returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='primitive' 
+(	otherlv_0='const' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getMetadataAccess().getPrimitiveKeyword_0());
+    	newLeafNode(otherlv_0, grammarAccess.getConstantDataAccess().getConstKeyword_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMetadataAccess().getTypeTypeEnumRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getConstantDataAccess().getTypeTypeEnumRuleCall_1_0()); 
 	    }
 		lv_type_1_0=ruleType		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getMetadataRule());
+	            $current = createModelElementForParent(grammarAccess.getConstantDataRule());
 	        }
        		set(
        			$current, 
@@ -1168,11 +1168,11 @@ ruleMetadata returns [EObject current=null]
 (
 		lv_name_2_0=RULE_ID
 		{
-			newLeafNode(lv_name_2_0, grammarAccess.getMetadataAccess().getNameIDTerminalRuleCall_2_0()); 
+			newLeafNode(lv_name_2_0, grammarAccess.getConstantDataAccess().getNameIDTerminalRuleCall_2_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetadataRule());
+	            $current = createModelElement(grammarAccess.getConstantDataRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -1184,22 +1184,44 @@ ruleMetadata returns [EObject current=null]
 )
 )	otherlv_3='as' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getMetadataAccess().getAsKeyword_3());
+    	newLeafNode(otherlv_3, grammarAccess.getConstantDataAccess().getAsKeyword_3());
     }
 (
 (
 		{
 			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getMetadataRule());
+	            $current = createModelElement(grammarAccess.getConstantDataRule());
 	        }
         }
 	otherlv_4=RULE_ID
 	{
-		newLeafNode(otherlv_4, grammarAccess.getMetadataAccess().getRepresentationRepresentationCrossReference_4_0()); 
+		newLeafNode(otherlv_4, grammarAccess.getConstantDataAccess().getRepresentationRepresentationCrossReference_4_0()); 
 	}
 
 )
-))
+)(	otherlv_5='is' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getConstantDataAccess().getIsKeyword_5_0());
+    }
+(
+(
+		lv_constValue_6_0=RULE_STRING
+		{
+			newLeafNode(lv_constValue_6_0, grammarAccess.getConstantDataAccess().getConstValueSTRINGTerminalRuleCall_5_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getConstantDataRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"constValue",
+        		lv_constValue_6_0, 
+        		"STRING");
+	    }
+
+)
+))?)
 ;
 
 

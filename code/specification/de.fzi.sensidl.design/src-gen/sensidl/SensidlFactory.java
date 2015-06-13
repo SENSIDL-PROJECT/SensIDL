@@ -67,13 +67,13 @@ public interface SensidlFactory extends EFactory {
 	Parameter createParameter();
 
 	/**
-	 * Returns a new object of class '<em>Metadata</em>'.
+	 * Returns a new object of class '<em>Constant Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Metadata</em>'.
+	 * @return a new object of class '<em>Constant Data</em>'.
 	 * @generated
 	 */
-	Metadata createMetadata();
+	ConstantData createConstantData();
 
 	/**
 	 * Returns a new object of class '<em>Data</em>'.

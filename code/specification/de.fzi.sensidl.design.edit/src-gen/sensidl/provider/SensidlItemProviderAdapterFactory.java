@@ -187,26 +187,26 @@ public class SensidlItemProviderAdapterFactory extends SensidlAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sensidl.Metadata} instances.
+	 * This keeps track of the one adapter used for all {@link sensidl.ConstantData} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MetadataItemProvider metadataItemProvider;
+	protected ConstantDataItemProvider constantDataItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sensidl.Metadata}.
+	 * This creates an adapter for a {@link sensidl.ConstantData}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createMetadataAdapter() {
-		if (metadataItemProvider == null) {
-			metadataItemProvider = new MetadataItemProvider(this);
+	public Adapter createConstantDataAdapter() {
+		if (constantDataItemProvider == null) {
+			constantDataItemProvider = new ConstantDataItemProvider(this);
 		}
 
-		return metadataItemProvider;
+		return constantDataItemProvider;
 	}
 
 	/**
@@ -451,7 +451,7 @@ public class SensidlItemProviderAdapterFactory extends SensidlAdapterFactory imp
 		if (representationItemProvider != null) representationItemProvider.dispose();
 		if (calculatedItemProvider != null) calculatedItemProvider.dispose();
 		if (parameterItemProvider != null) parameterItemProvider.dispose();
-		if (metadataItemProvider != null) metadataItemProvider.dispose();
+		if (constantDataItemProvider != null) constantDataItemProvider.dispose();
 		if (dataItemProvider != null) dataItemProvider.dispose();
 		if (datastructureItemProvider != null) datastructureItemProvider.dispose();
 		if (optionsItemProvider != null) optionsItemProvider.dispose();

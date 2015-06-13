@@ -13,6 +13,7 @@ import sensidl.BitNumbering;
 import sensidl.Bound;
 import sensidl.Calculated;
 import sensidl.Command;
+import sensidl.ConstantData;
 import sensidl.Constraint;
 import sensidl.Data;
 import sensidl.DataAdaption;
@@ -22,7 +23,6 @@ import sensidl.DataRange;
 import sensidl.Datafield;
 import sensidl.Datastructure;
 import sensidl.GenerationLanguage;
-import sensidl.Metadata;
 import sensidl.Options;
 import sensidl.Parameter;
 import sensidl.Representation;
@@ -84,7 +84,7 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass metadataEClass = null;
+	private EClass constantDataEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -443,8 +443,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMetadata() {
-		return metadataEClass;
+	public EClass getConstantData() {
+		return constantDataEClass;
 	}
 
 	/**
@@ -452,8 +452,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMetadata_Type() {
-		return (EAttribute)metadataEClass.getEStructuralFeatures().get(0);
+	public EAttribute getConstantData_Type() {
+		return (EAttribute)constantDataEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -461,8 +461,17 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMetadata_Representation() {
-		return (EReference)metadataEClass.getEStructuralFeatures().get(1);
+	public EReference getConstantData_Representation() {
+		return (EReference)constantDataEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConstantData_ConstValue() {
+		return (EAttribute)constantDataEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -756,9 +765,10 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		createEReference(parameterEClass, PARAMETER__DATAFIELD);
 		createEAttribute(parameterEClass, PARAMETER__ARGUMENT_TYPE);
 
-		metadataEClass = createEClass(METADATA);
-		createEAttribute(metadataEClass, METADATA__TYPE);
-		createEReference(metadataEClass, METADATA__REPRESENTATION);
+		constantDataEClass = createEClass(CONSTANT_DATA);
+		createEAttribute(constantDataEClass, CONSTANT_DATA__TYPE);
+		createEReference(constantDataEClass, CONSTANT_DATA__REPRESENTATION);
+		createEAttribute(constantDataEClass, CONSTANT_DATA__CONST_VALUE);
 
 		dataEClass = createEClass(DATA);
 		createEAttribute(dataEClass, DATA__UNIT);
@@ -826,7 +836,7 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 
 		// Add supertypes to classes
 		calculatedEClass.getESuperTypes().add(this.getDatafield());
-		metadataEClass.getESuperTypes().add(this.getDatafield());
+		constantDataEClass.getESuperTypes().add(this.getDatafield());
 		dataEClass.getESuperTypes().add(this.getDatafield());
 		datastructureEClass.getESuperTypes().add(this.getDatafield());
 		dataConstraintEClass.getESuperTypes().add(this.getConstraint());
@@ -863,13 +873,14 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		initEReference(getParameter_Datafield(), this.getDatafield(), null, "datafield", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getParameter_ArgumentType(), this.getArgumentType(), "argumentType", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(metadataEClass, Metadata.class, "Metadata", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMetadata_Type(), this.getType(), "type", null, 1, 1, Metadata.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMetadata_Representation(), this.getRepresentation(), null, "representation", null, 1, 1, Metadata.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(constantDataEClass, ConstantData.class, "ConstantData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getConstantData_Type(), this.getType(), "type", null, 1, 1, ConstantData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConstantData_Representation(), this.getRepresentation(), null, "representation", null, 1, 1, ConstantData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConstantData_ConstValue(), ecorePackage.getEString(), "constValue", null, 0, 1, ConstantData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataEClass, Data.class, "Data", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getData_Unit(), ecorePackage.getEString(), "unit", null, 0, 1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getData_Scale(), ecorePackage.getEDouble(), "scale", "1", 1, 1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getData_Scale(), ecorePackage.getEDouble(), "scale", "1", 0, 1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getData_Representation(), this.getRepresentation(), null, "representation", null, 1, 1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getData_Constraints(), this.getDataConstraint(), null, "constraints", null, 0, -1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getData_BitNumbering(), this.getBitNumbering(), "bitNumbering", null, 0, 1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

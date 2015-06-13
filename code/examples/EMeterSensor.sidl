@@ -9,8 +9,8 @@
  */
 datamodel { 
 	options {
-		receiver language: CSHARP
-		sensor language: C
+		receiver language: JAVA
+		sensor language: JAVA
 	}
 	
 	/* *
@@ -34,8 +34,8 @@ datamodel {
 	 		 * in der EMeter-Datenstruktur.
 	 		 */
 			structure Metadata {
-				primitive CHAR DeviceType as oneByteByte
-				primitive CHAR RecordType as oneByteByte
+				const CHAR DeviceType as oneByteByte
+				const CHAR RecordType as oneByteByte
 			}
 			
 			/* *
@@ -53,7 +53,7 @@ datamodel {
 	 		 * In dieser Struktur wird die Messnummer von L1 deklariert. Diese entspricht dem letzen Byte.
 	 		 */
 			structure RecordData {
-				primitive CHAR RecordNo as oneByteByte
+				const CHAR RecordNo as oneByteByte
 			}
 		}
 	}
@@ -73,8 +73,8 @@ datamodel {
 	structure L2 {
 		structure Data {
 			structure Metadata {
-				primitive CHAR DeviceType as oneByteByte
-				primitive CHAR RecordType as oneByteByte
+				const CHAR DeviceType as oneByteByte
+				const CHAR RecordType as oneByteByte
 			}
 			
 			structure MeasuredValues {
@@ -85,7 +85,7 @@ datamodel {
 			}
 			
 			structure RecordData {
-				primitive CHAR RecordNo as oneByteByte
+				const CHAR RecordNo as oneByteByte
 			}
 		}
 	}
@@ -104,8 +104,8 @@ datamodel {
 	structure L3 {
 		structure Data {
 			structure Metadata {
-				primitive CHAR DeviceType as oneByteByte
-				primitive CHAR RecordType as oneByteByte
+				const CHAR DeviceType as oneByteByte
+				const CHAR RecordType as oneByteByte
 			}
 			
 			structure MeasuredValues {
@@ -116,7 +116,7 @@ datamodel {
 			}
 			
 			structure RecordData {
-				primitive CHAR RecordNo as oneByteByte
+				const CHAR RecordNo as oneByteByte
 			}
 		}
 	}
@@ -137,8 +137,8 @@ datamodel {
 		structure Data {
 			
 			structure Metadata {
-				primitive CHAR DeviceType as oneByteByte
-				primitive CHAR RecordType as oneByteByte
+				const CHAR DeviceType as oneByteByte
+				const CHAR RecordType as oneByteByte
 			}
 			
 			structure MeasuredValues {
@@ -149,7 +149,7 @@ datamodel {
 			}
 			
 			structure RecordData {
-				primitive CHAR RecordNo as oneByteByte
+				const CHAR RecordNo as oneByteByte
 			}
 		}
 	}
@@ -172,8 +172,8 @@ datamodel {
 	 		 * in der EMeter-Datenstruktur.
 	 		 */
 			structure Metadata {
-				primitive CHAR DeviceType as oneByteByte
-				primitive CHAR RecordType as oneByteByte
+				const CHAR DeviceType as oneByteByte
+				const CHAR RecordType as oneByteByte
 			}
 			
 			/* *

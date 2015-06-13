@@ -212,7 +212,7 @@ public class DataModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(SensidlPackage.Literals.DATA_MODEL__DATAFIELDS,
-				 SensidlFactory.eINSTANCE.createMetadata()));
+				 SensidlFactory.eINSTANCE.createConstantData()));
 
 		newChildDescriptors.add
 			(createChildParameter

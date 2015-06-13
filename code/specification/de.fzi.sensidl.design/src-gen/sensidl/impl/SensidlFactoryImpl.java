@@ -62,7 +62,7 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 			case SensidlPackage.REPRESENTATION: return createRepresentation();
 			case SensidlPackage.CALCULATED: return createCalculated();
 			case SensidlPackage.PARAMETER: return createParameter();
-			case SensidlPackage.METADATA: return createMetadata();
+			case SensidlPackage.CONSTANT_DATA: return createConstantData();
 			case SensidlPackage.DATA: return createData();
 			case SensidlPackage.DATASTRUCTURE: return createDatastructure();
 			case SensidlPackage.OPTIONS: return createOptions();
@@ -171,9 +171,9 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Metadata createMetadata() {
-		MetadataImpl metadata = new MetadataImpl();
-		return metadata;
+	public ConstantData createConstantData() {
+		ConstantDataImpl constantData = new ConstantDataImpl();
+		return constantData;
 	}
 
 	/**

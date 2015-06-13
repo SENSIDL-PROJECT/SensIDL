@@ -18,7 +18,7 @@ datamodel {
 	 */
 	repr twoByteShort is 2 byte in SHORT
 	repr oneByteByte is 1 byte in CHAR 
-	repr int4Byte is 4 bytes in INT
+	repr fiveByteByte is 5 byte in CHAR
 	
 	/* *
 	 * Standard-Struktur: Deklaration eines "Payloads", welcher die Daten beinhaltet.
@@ -30,7 +30,7 @@ datamodel {
 	 		 * In "Metadata" können verschiedene Metadaten spezifiziert werden, wie beispielsweise die Softwareversions.
 	 		 */	
 			structure Metadata {
-				primitive INT SoftwareVersion as twoByteShort
+				const INT SoftwareVersion as twoByteShort
 			}
 			
 			/* *
@@ -55,7 +55,7 @@ datamodel {
 	 * Methode zur Brechnung der Kodierung des "Payloads", welche später durch den Entwickler implementiert werden muss.
 	 */
 	calculate base128payload
-		as int4Byte
+		as fiveByteByte
 		by base128_encode, base128_decode
 		with (Payload as BYTE_ARRAY)
 		

@@ -16,12 +16,12 @@ import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import sensidl.Bound;
 import sensidl.Calculated;
+import sensidl.ConstantData;
 import sensidl.Data;
 import sensidl.DataAdaption;
 import sensidl.DataModel;
 import sensidl.DataRange;
 import sensidl.Datastructure;
-import sensidl.Metadata;
 import sensidl.Options;
 import sensidl.Parameter;
 import sensidl.Representation;
@@ -45,6 +45,13 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 				if(context == grammarAccess.getCalculatedRule() ||
 				   context == grammarAccess.getDatafieldRule()) {
 					sequence_Calculated(context, (Calculated) semanticObject); 
+					return; 
+				}
+				else break;
+			case SensidlPackage.CONSTANT_DATA:
+				if(context == grammarAccess.getConstantDataRule() ||
+				   context == grammarAccess.getDatafieldRule()) {
+					sequence_ConstantData(context, (ConstantData) semanticObject); 
 					return; 
 				}
 				else break;
@@ -79,13 +86,6 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 				if(context == grammarAccess.getDatafieldRule() ||
 				   context == grammarAccess.getDatastructureRule()) {
 					sequence_Datastructure(context, (Datastructure) semanticObject); 
-					return; 
-				}
-				else break;
-			case SensidlPackage.METADATA:
-				if(context == grammarAccess.getDatafieldRule() ||
-				   context == grammarAccess.getMetadataRule()) {
-					sequence_Metadata(context, (Metadata) semanticObject); 
 					return; 
 				}
 				else break;
@@ -142,6 +142,15 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     )
 	 */
 	protected void sequence_Calculated(EObject context, Calculated semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (type=Type name=ID representation=[Representation|ID] constValue=STRING?)
+	 */
+	protected void sequence_ConstantData(EObject context, ConstantData semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -208,28 +217,6 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 */
 	protected void sequence_Datastructure(EObject context, Datastructure semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (type=Type name=ID representation=[Representation|ID])
-	 */
-	protected void sequence_Metadata(EObject context, Metadata semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.DATAFIELD__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.DATAFIELD__NAME));
-			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.METADATA__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.METADATA__TYPE));
-			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.METADATA__REPRESENTATION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.METADATA__REPRESENTATION));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getMetadataAccess().getTypeTypeEnumRuleCall_1_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getMetadataAccess().getNameIDTerminalRuleCall_2_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getMetadataAccess().getRepresentationRepresentationIDTerminalRuleCall_4_0_1(), semanticObject.getRepresentation());
-		feeder.finish();
 	}
 	
 	

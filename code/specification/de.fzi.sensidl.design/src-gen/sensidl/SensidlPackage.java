@@ -388,14 +388,14 @@ public interface SensidlPackage extends EPackage {
 	int PARAMETER_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link sensidl.impl.MetadataImpl <em>Metadata</em>}' class.
+	 * The meta object id for the '{@link sensidl.impl.ConstantDataImpl <em>Constant Data</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see sensidl.impl.MetadataImpl
-	 * @see sensidl.impl.SensidlPackageImpl#getMetadata()
+	 * @see sensidl.impl.ConstantDataImpl
+	 * @see sensidl.impl.SensidlPackageImpl#getConstantData()
 	 * @generated
 	 */
-	int METADATA = 6;
+	int CONSTANT_DATA = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -404,7 +404,7 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METADATA__NAME = DATAFIELD__NAME;
+	int CONSTANT_DATA__NAME = DATAFIELD__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -413,7 +413,7 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METADATA__TYPE = DATAFIELD_FEATURE_COUNT + 0;
+	int CONSTANT_DATA__TYPE = DATAFIELD_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Representation</b></em>' reference.
@@ -422,25 +422,34 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METADATA__REPRESENTATION = DATAFIELD_FEATURE_COUNT + 1;
+	int CONSTANT_DATA__REPRESENTATION = DATAFIELD_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Metadata</em>' class.
+	 * The feature id for the '<em><b>Const Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METADATA_FEATURE_COUNT = DATAFIELD_FEATURE_COUNT + 2;
+	int CONSTANT_DATA__CONST_VALUE = DATAFIELD_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Metadata</em>' class.
+	 * The number of structural features of the '<em>Constant Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METADATA_OPERATION_COUNT = DATAFIELD_OPERATION_COUNT + 0;
+	int CONSTANT_DATA_FEATURE_COUNT = DATAFIELD_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Constant Data</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT_DATA_OPERATION_COUNT = DATAFIELD_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link sensidl.impl.DataImpl <em>Data</em>}' class.
@@ -1098,36 +1107,47 @@ public interface SensidlPackage extends EPackage {
 	EAttribute getParameter_ArgumentType();
 
 	/**
-	 * Returns the meta object for class '{@link sensidl.Metadata <em>Metadata</em>}'.
+	 * Returns the meta object for class '{@link sensidl.ConstantData <em>Constant Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Metadata</em>'.
-	 * @see sensidl.Metadata
+	 * @return the meta object for class '<em>Constant Data</em>'.
+	 * @see sensidl.ConstantData
 	 * @generated
 	 */
-	EClass getMetadata();
+	EClass getConstantData();
 
 	/**
-	 * Returns the meta object for the attribute '{@link sensidl.Metadata#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link sensidl.ConstantData#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see sensidl.Metadata#getType()
-	 * @see #getMetadata()
+	 * @see sensidl.ConstantData#getType()
+	 * @see #getConstantData()
 	 * @generated
 	 */
-	EAttribute getMetadata_Type();
+	EAttribute getConstantData_Type();
 
 	/**
-	 * Returns the meta object for the reference '{@link sensidl.Metadata#getRepresentation <em>Representation</em>}'.
+	 * Returns the meta object for the reference '{@link sensidl.ConstantData#getRepresentation <em>Representation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Representation</em>'.
-	 * @see sensidl.Metadata#getRepresentation()
-	 * @see #getMetadata()
+	 * @see sensidl.ConstantData#getRepresentation()
+	 * @see #getConstantData()
 	 * @generated
 	 */
-	EReference getMetadata_Representation();
+	EReference getConstantData_Representation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sensidl.ConstantData#getConstValue <em>Const Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Const Value</em>'.
+	 * @see sensidl.ConstantData#getConstValue()
+	 * @see #getConstantData()
+	 * @generated
+	 */
+	EAttribute getConstantData_ConstValue();
 
 	/**
 	 * Returns the meta object for class '{@link sensidl.Data <em>Data</em>}'.
@@ -1623,14 +1643,14 @@ public interface SensidlPackage extends EPackage {
 		EAttribute PARAMETER__ARGUMENT_TYPE = eINSTANCE.getParameter_ArgumentType();
 
 		/**
-		 * The meta object literal for the '{@link sensidl.impl.MetadataImpl <em>Metadata</em>}' class.
+		 * The meta object literal for the '{@link sensidl.impl.ConstantDataImpl <em>Constant Data</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see sensidl.impl.MetadataImpl
-		 * @see sensidl.impl.SensidlPackageImpl#getMetadata()
+		 * @see sensidl.impl.ConstantDataImpl
+		 * @see sensidl.impl.SensidlPackageImpl#getConstantData()
 		 * @generated
 		 */
-		EClass METADATA = eINSTANCE.getMetadata();
+		EClass CONSTANT_DATA = eINSTANCE.getConstantData();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -1638,7 +1658,7 @@ public interface SensidlPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute METADATA__TYPE = eINSTANCE.getMetadata_Type();
+		EAttribute CONSTANT_DATA__TYPE = eINSTANCE.getConstantData_Type();
 
 		/**
 		 * The meta object literal for the '<em><b>Representation</b></em>' reference feature.
@@ -1646,7 +1666,15 @@ public interface SensidlPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference METADATA__REPRESENTATION = eINSTANCE.getMetadata_Representation();
+		EReference CONSTANT_DATA__REPRESENTATION = eINSTANCE.getConstantData_Representation();
+
+		/**
+		 * The meta object literal for the '<em><b>Const Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTANT_DATA__CONST_VALUE = eINSTANCE.getConstantData_ConstValue();
 
 		/**
 		 * The meta object literal for the '{@link sensidl.impl.DataImpl <em>Data</em>}' class.

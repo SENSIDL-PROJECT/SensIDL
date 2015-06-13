@@ -63,7 +63,7 @@ public interface Data extends Datafield {
 	 * @return the value of the '<em>Scale</em>' attribute.
 	 * @see #setScale(double)
 	 * @see sensidl.SensidlPackage#getData_Scale()
-	 * @model default="1" required="true"
+	 * @model default="1"
 	 * @generated
 	 */
 	double getScale();

@@ -103,10 +103,10 @@ public class SensidlSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SensidlPackage.METADATA: {
-				Metadata metadata = (Metadata)theEObject;
-				T result = caseMetadata(metadata);
-				if (result == null) result = caseDatafield(metadata);
+			case SensidlPackage.CONSTANT_DATA: {
+				ConstantData constantData = (ConstantData)theEObject;
+				T result = caseConstantData(constantData);
+				if (result == null) result = caseDatafield(constantData);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -260,17 +260,17 @@ public class SensidlSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Metadata</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Constant Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Metadata</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Constant Data</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMetadata(Metadata object) {
+	public T caseConstantData(ConstantData object) {
 		return null;
 	}
 

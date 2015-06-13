@@ -8,6 +8,8 @@ datamodel {
 	repr oneByteByte is 1 byte in CHAR
 	repr int4Byte is 4 bytes in INT
 	
+	const CHAR IDENTIFIER as oneByteByte is "0xAA"
+	
 	structure Payload {
 		structure Data {
 			structure Measurements {
@@ -23,11 +25,11 @@ datamodel {
 			}
 			
 			structure Metadata {
-				primitive INT mSoftwareVersion as twoByteShort
-				primitive INT mMesswertCounter as twoByteShort
-				primitive INT mRecordVersion as twoByteShort
+				const INT mSoftwareVersion as twoByteShort
+				const INT mMesswertCounter as twoByteShort
+				const INT mRecordVersion as twoByteShort
 				
-				primitive BYTE mStatus as twoByteShort
+				const CHAR mStatus as twoByteShort
 			}
 		}
 		
@@ -43,5 +45,6 @@ datamodel {
 		with (Payload as BYTE_ARRAY)
 		
 	transmit
+		IDENTIFIER,
 		base128payload
 }

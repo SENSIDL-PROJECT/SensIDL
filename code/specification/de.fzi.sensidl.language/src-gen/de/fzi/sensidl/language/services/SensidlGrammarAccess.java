@@ -262,20 +262,20 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	public class DatafieldElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Datafield");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cMetadataParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cConstantDataParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cDataParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cDatastructureParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cCalculatedParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//Datafield:
-		//	Metadata | Data | Datastructure | Calculated;
+		//	ConstantData | Data | Datastructure | Calculated;
 		public ParserRule getRule() { return rule; }
 
-		//Metadata | Data | Datastructure | Calculated
+		//ConstantData | Data | Datastructure | Calculated
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//Metadata
-		public RuleCall getMetadataParserRuleCall_0() { return cMetadataParserRuleCall_0; }
+		//ConstantData
+		public RuleCall getConstantDataParserRuleCall_0() { return cConstantDataParserRuleCall_0; }
 
 		//Data
 		public RuleCall getDataParserRuleCall_1() { return cDataParserRuleCall_1; }
@@ -726,10 +726,10 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getUnitSTRINGTerminalRuleCall_1_0() { return cUnitSTRINGTerminalRuleCall_1_0; }
 	}
 
-	public class MetadataElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Metadata");
+	public class ConstantDataElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConstantData");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cPrimitiveKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cConstKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cTypeTypeEnumRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
@@ -738,16 +738,20 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cRepresentationAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final CrossReference cRepresentationRepresentationCrossReference_4_0 = (CrossReference)cRepresentationAssignment_4.eContents().get(0);
 		private final RuleCall cRepresentationRepresentationIDTerminalRuleCall_4_0_1 = (RuleCall)cRepresentationRepresentationCrossReference_4_0.eContents().get(1);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cIsKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cConstValueAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cConstValueSTRINGTerminalRuleCall_5_1_0 = (RuleCall)cConstValueAssignment_5_1.eContents().get(0);
 		
-		//Metadata:
-		//	"primitive" type=Type name=ID "as" representation=[Representation];
+		//ConstantData:
+		//	"const" type=Type name=ID "as" representation=[Representation] ("is" constValue=STRING)?;
 		public ParserRule getRule() { return rule; }
 
-		//"primitive" type=Type name=ID "as" representation=[Representation]
+		//"const" type=Type name=ID "as" representation=[Representation] ("is" constValue=STRING)?
 		public Group getGroup() { return cGroup; }
 
-		//"primitive"
-		public Keyword getPrimitiveKeyword_0() { return cPrimitiveKeyword_0; }
+		//"const"
+		public Keyword getConstKeyword_0() { return cConstKeyword_0; }
 
 		//type=Type
 		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
@@ -772,6 +776,18 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ID
 		public RuleCall getRepresentationRepresentationIDTerminalRuleCall_4_0_1() { return cRepresentationRepresentationIDTerminalRuleCall_4_0_1; }
+
+		//("is" constValue=STRING)?
+		public Group getGroup_5() { return cGroup_5; }
+
+		//"is"
+		public Keyword getIsKeyword_5_0() { return cIsKeyword_5_0; }
+
+		//constValue=STRING
+		public Assignment getConstValueAssignment_5_1() { return cConstValueAssignment_5_1; }
+
+		//STRING
+		public RuleCall getConstValueSTRINGTerminalRuleCall_5_1_0() { return cConstValueSTRINGTerminalRuleCall_5_1_0; }
 	}
 
 	public class DOUBLEElements extends AbstractParserRuleElementFinder {
@@ -990,7 +1006,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	private final DataRangeElements pDataRange;
 	private final DataAdaptionElements pDataAdaption;
 	private final BoundElements pBound;
-	private final MetadataElements pMetadata;
+	private final ConstantDataElements pConstantData;
 	private final DOUBLEElements pDOUBLE;
 	private final ArgumentTypeElements unknownRuleArgumentType;
 	private final TypeElements unknownRuleType;
@@ -1018,7 +1034,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		this.pDataRange = new DataRangeElements();
 		this.pDataAdaption = new DataAdaptionElements();
 		this.pBound = new BoundElements();
-		this.pMetadata = new MetadataElements();
+		this.pConstantData = new ConstantDataElements();
 		this.pDOUBLE = new DOUBLEElements();
 		this.unknownRuleArgumentType = new ArgumentTypeElements();
 		this.unknownRuleType = new TypeElements();
@@ -1095,7 +1111,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Datafield:
-	//	Metadata | Data | Datastructure | Calculated;
+	//	ConstantData | Data | Datastructure | Calculated;
 	public DatafieldElements getDatafieldAccess() {
 		return pDatafield;
 	}
@@ -1193,14 +1209,14 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		return getBoundAccess().getRule();
 	}
 
-	//Metadata:
-	//	"primitive" type=Type name=ID "as" representation=[Representation];
-	public MetadataElements getMetadataAccess() {
-		return pMetadata;
+	//ConstantData:
+	//	"const" type=Type name=ID "as" representation=[Representation] ("is" constValue=STRING)?;
+	public ConstantDataElements getConstantDataAccess() {
+		return pConstantData;
 	}
 	
-	public ParserRule getMetadataRule() {
-		return getMetadataAccess().getRule();
+	public ParserRule getConstantDataRule() {
+		return getConstantDataAccess().getRule();
 	}
 
 	//DOUBLE returns ecore::EDouble:

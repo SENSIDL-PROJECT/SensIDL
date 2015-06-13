@@ -8,66 +8,70 @@
 /* *
  * Über die Optionen kann angegeben werden, in welcher Sprache der Code für die Empfänger- und Sensorseite generiert werden soll.
  */ 
-options {
-	receiver language : JAVA 
-	sensor language : C  
-}
-
-/* *
- * Deklaration von verschiedenen Repräsentationen die bestimmte Daten besitzen k�nnen.
- */ 
-repr twoByteShort is 2 byte in SHORT 
-repr oneByteInt is 1 byte in INT
-
-/* *
- * Standard-Struktur: Deklaration eines "Payloads", welcher die Daten beinhaltet.
- */
-structure Payload {
-	structure Data {
-	
-		/* *
- 		 * In "Metadata" können verschiedene Metadaten spezifiziert werden, wie beispielsweise die Softwareversions.
- 		 */	
-		structure Metadata {
-			primitive INT SoftwareVersion as twoByteShort 
-			primitive INT ConveyorModuleID as oneByteInt
-		}
-		
-		/* *
- 		 * Gruppierung der Messwerte des Sensors. In diesem Falls misst der Sensor die Geschwindigkeit des Moduls.
- 		 */	
-		structure Measurements {
-			data of Velocity in "m/s" as twoByteShort
-		}
-		
-		/* *
- 		 * Gruppierung von bestimmten Messwerten, welche später für die Berechnung des Durchsatzes gebraucht werden.
- 		 */	
-		structure ThroughputParameter {
-			data of PacketCounter as oneByteInt
-			data of currentDuration in "s" as oneByteInt
-		}
-		
-		/* *
- 		 * Methode zur Brechnung des Durchsatzes, welche später durch den Entwickler implementiert werden muss.
- 		 */
-		calculate Throughput
-			as twoByteShort 
-			by calculateThroughput
-			with ( ThroughputParameter as BYTE_ARRAY )	
+ datamodel {
+ 	options {
+		receiver language : JAVA 
+		sensor language : JAVA  
 	}
-}
 
-/* *
- * Methode zur Brechnung der Kodierung des "Payloads", welche später durch den Entwickler implementiert werden muss.
- */
-calculate base128payload
-	as int4Byte
-	by base128_encode, base128_decode
-	with (Payload as BYTE_ARRAY)
+	/* *
+	 * Deklaration von verschiedenen Repräsentationen die bestimmte Daten besitzen k�nnen.
+	 */ 
+	repr twoByteShort is 2 byte in SHORT 
+	repr oneByteInt is 1 byte in INT
+	repr oneByteShort is 1 byte in SHORT
+	repr eightByteByte is 8 byte in CHAR
 	
-/* *
- * Zu übermittelnde Daten.
- */
-transmit
-	base128payload
+	/* *
+	 * Standard-Struktur: Deklaration eines "Payloads", welcher die Daten beinhaltet.
+	 */
+	structure Payload {
+		structure Data {
+		
+			/* *
+	 		 * In "Metadata" können verschiedene Metadaten spezifiziert werden, wie beispielsweise die Softwareversions.
+	 		 */	
+			structure Metadata {
+				const INT SoftwareVersion as twoByteShort 
+				const INT ConveyorModuleID as oneByteInt
+			}
+			
+			/* *
+	 		 * Gruppierung der Messwerte des Sensors. In diesem Falls misst der Sensor die Geschwindigkeit des Moduls.
+	 		 */	
+			structure Measurements {
+				data of Velocity in "m/s" as twoByteShort
+			}
+			
+			/* *
+	 		 * Gruppierung von bestimmten Messwerten, welche später für die Berechnung des Durchsatzes gebraucht werden.
+	 		 */	
+			structure ThroughputParameter {
+				data of PacketCounter as oneByteInt
+				data of currentDuration in "s" as oneByteInt
+			}
+			
+			/* *
+	 		 * Methode zur Brechnung des Durchsatzes, welche später durch den Entwickler implementiert werden muss.
+	 		 */
+			calculate Throughput
+				as oneByteShort 
+				by calculateThroughput
+				with ( ThroughputParameter as BYTE_ARRAY )	
+		}
+	}
+	
+	/* *
+	 * Methode zur Brechnung der Kodierung des "Payloads", welche später durch den Entwickler implementiert werden muss.
+	 */
+	calculate base128payload
+		as eightByteByte
+		by base128_encode, base128_decode
+		with (Payload as BYTE_ARRAY)
+		
+	/* *
+	 * Zu übermittelnde Daten.
+	 */
+	transmit
+		base128payload
+ }

@@ -27,6 +27,7 @@
 'bytes'=24
 'calculate'=27
 'calculated'=28
+'const'=44
 'data'=35
 'datamodel'=11
 'from'=39
@@ -37,7 +38,6 @@
 'of'=36
 'offset'=43
 'options'=13
-'primitive'=44
 'receiver'=20
 'repr'=21
 'representation'=22

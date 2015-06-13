@@ -6,10 +6,10 @@ import sensidl.Calculated
 import sensidl.Constraint
 import sensidl.DataModel
 import sensidl.GenerationLanguage
-import sensidl.Interpretation
-import sensidl.InterpretationGroup
-import sensidl.Measure
-import sensidl.MeasurementInRange
+import sensidl.Datafield
+import sensidl.Datastructure
+import sensidl.Bound
+import sensidl.DataRange
 import sensidl.Type
 
 /**
@@ -31,7 +31,7 @@ class SensidlPseudoCodeGenerator implements ISensidlCodeGenerator {
 	 */
 	def static toJavaName(Type sensidlType) {
 		return switch (sensidlType) {
-			case BYTE: Byte.name
+			case CHAR: Byte.name
 			case DOUBLE: Double.name
 			case FLOAT: Float.name
 			case INT: Integer.name
@@ -50,7 +50,7 @@ class SensidlPseudoCodeGenerator implements ISensidlCodeGenerator {
 	 */
 	def static toPrimitiveJavaName(Type sensidlType) {
 		return switch (sensidlType) {
-			case BYTE: "byte"
+			case CHAR: "byte"
 			case DOUBLE: "double"
 			case FLOAT: "float"
 			case INT: "int"
@@ -76,8 +76,8 @@ class SensidlPseudoCodeGenerator implements ISensidlCodeGenerator {
 	 * Creates a String representation of a {@link Measure}.
 	 * @author Dominik Werle
 	 */
-	def static String toStringRepresentation(Measure m) {
-		'''«m.value» «m.unit»'''
+	def static String toStringRepresentation(Bound b) {
+		'''«b.value» «b.unit»'''
 	}
 
 	/**
@@ -86,10 +86,10 @@ class SensidlPseudoCodeGenerator implements ISensidlCodeGenerator {
 	 * @author Dominik Werle
 	 * @param mir the constraint to check
 	 */	
-	def static dispatch String generateConstraintCode(MeasurementInRange mir) {
+	def static dispatch String generateConstraintCode(DataRange dr) {
 		'''
 		// check if measurement is in range
-		// «mir.lowerBound.toStringRepresentation» to «mir.upperBound.toStringRepresentation»
+		// «dr.lowerBound.toStringRepresentation» to «dr.upperBound.toStringRepresentation»
 		'''
 	}
 	
@@ -103,9 +103,9 @@ class SensidlPseudoCodeGenerator implements ISensidlCodeGenerator {
 	 * @author Dominik Werle
 	 * @param group the {@link InterpretationGroup} to iterate over
 	 */
-	def static dispatch Iterable<Interpretation> collectInterpretationList(InterpretationGroup group) {
-		return group.interpretations.map [
-			collectInterpretationList
+	def static dispatch Iterable<Datafield> collectDatafields(Datastructure group) {
+		return group.datafields.map [
+			collectDatafields
 		].flatten.toSet
 	}
 	
@@ -119,9 +119,9 @@ class SensidlPseudoCodeGenerator implements ISensidlCodeGenerator {
 	 * @author Dominik Werle
 	 * @param calculated the {@link InterpretationGroup} to iterate over
 	 */
-	def static dispatch Iterable<Interpretation> collectInterpretationList(Calculated calculated) {
+	def static dispatch Iterable<Datafield> collectDatafields(Calculated calculated) {
 		return calculated.parameter.map [
-			interpretation.collectInterpretationList
+			datafield.collectDatafields
 		].flatten.toSet
 	}
 
@@ -134,8 +134,8 @@ class SensidlPseudoCodeGenerator implements ISensidlCodeGenerator {
 	 * @author Dominik Werle
 	 * @param interpretation the {@link Interpretation} to return
 	 */
-	def static dispatch Iterable<Interpretation> collectInterpretationList(Interpretation interpretation) {
-		return #[interpretation]
+	def static dispatch Iterable<Datafield> collectDatafields(Datafield datafield) {
+		return #[datafield]
 	}
 	
 	/**
@@ -156,10 +156,7 @@ class SensidlPseudoCodeGenerator implements ISensidlCodeGenerator {
 
 		// set up the different generators
 		val generators = #[
-			new EncoderGenerator(input, classNameBase),
-			new DecoderGenerator(input, classNameBase),
-			new DTOGenerator(input, classNameBase),
-			new ListenerGenerator(input, classNameBase)
+			new DTOGenerator(input, classNameBase)
 		]
 		
 		generators.forEach [ it.doGenerate(fsa) ]
@@ -169,13 +166,13 @@ class SensidlPseudoCodeGenerator implements ISensidlCodeGenerator {
 	 * Creates a name for a decode method for an {@link Interpetation}.
 	 * @param ip the {@link Interpetation} to create a decode name for
 	 */
-	def static decodeName(Interpretation ip) { '''decode«ip.name.toFirstUpper»''' }
+	def static decodeName(Datafield datafield) { '''decode«datafield.name.toFirstUpper»''' }
 	
 	/**
 	 * Creates a name for a encode method for an {@link Interpetation}.
 	 * @param ip the {@link Interpetation} to create a encode name for
 	 */
-	def static encodeName(Interpretation ip) { '''encode«ip.name.toFirstUpper»''' }
+	def static encodeName(Datafield datafield) { '''encode«datafield.name.toFirstUpper»''' }
 	
 	/**
 	 * Creates a file name for a class named {@code className}.

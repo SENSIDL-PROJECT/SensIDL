@@ -3,6 +3,7 @@
  * Das zugehörige Metamodell kann unter de.fzi.sensidl.design/models/sensIDL.ecore
  * gefunden werden.
  * @author Dominik Werle
+ * @author Max Scheerer
  */
 
 grammar de.fzi.sensidl.language.Sensidl with org.eclipse.xtext.common.Terminals
@@ -46,7 +47,7 @@ Representation:
 ;
 
 Datafield:
-	Metadata |
+	ConstantData |
 	Data |
 	Datastructure |
 	Calculated
@@ -113,9 +114,10 @@ Bound:
 ;
 
 
-Metadata: 
-	"primitive" type=Type name=ID
+ConstantData: 
+	"const" type=Type name=ID
 	"as" representation=[Representation]
+	("is" constValue=STRING)?
 ;
 
 DOUBLE returns ecore::EDouble: INT ('.' INT)?;

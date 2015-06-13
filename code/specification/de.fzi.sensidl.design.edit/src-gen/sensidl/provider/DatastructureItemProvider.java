@@ -144,7 +144,7 @@ public class DatastructureItemProvider extends DatafieldItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(SensidlPackage.Literals.DATASTRUCTURE__DATAFIELDS,
-				 SensidlFactory.eINSTANCE.createMetadata()));
+				 SensidlFactory.eINSTANCE.createConstantData()));
 
 		newChildDescriptors.add
 			(createChildParameter

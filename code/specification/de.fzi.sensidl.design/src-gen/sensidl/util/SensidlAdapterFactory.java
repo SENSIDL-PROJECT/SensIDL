@@ -92,8 +92,8 @@ public class SensidlAdapterFactory extends AdapterFactoryImpl {
 				return createParameterAdapter();
 			}
 			@Override
-			public Adapter caseMetadata(Metadata object) {
-				return createMetadataAdapter();
+			public Adapter caseConstantData(ConstantData object) {
+				return createConstantDataAdapter();
 			}
 			@Override
 			public Adapter caseData(Data object) {
@@ -232,16 +232,16 @@ public class SensidlAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link sensidl.Metadata <em>Metadata</em>}'.
+	 * Creates a new adapter for an object of class '{@link sensidl.ConstantData <em>Constant Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see sensidl.Metadata
+	 * @see sensidl.ConstantData
 	 * @generated
 	 */
-	public Adapter createMetadataAdapter() {
+	public Adapter createConstantDataAdapter() {
 		return null;
 	}
 
