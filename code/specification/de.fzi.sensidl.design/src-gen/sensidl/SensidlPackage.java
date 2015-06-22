@@ -104,22 +104,13 @@ public interface SensidlPackage extends EPackage {
 	int DATA_MODEL__OPTIONS = 3;
 
 	/**
-	 * The feature id for the '<em><b>Commands</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_MODEL__COMMANDS = 4;
-
-	/**
 	 * The number of structural features of the '<em>Data Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_MODEL_FEATURE_COUNT = 5;
+	int DATA_MODEL_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Data Model</em>' class.
@@ -131,14 +122,14 @@ public interface SensidlPackage extends EPackage {
 	int DATA_MODEL_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link sensidl.impl.CommandImpl <em>Command</em>}' class.
+	 * The meta object id for the '{@link sensidl.impl.NamedElementImpl <em>Named Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see sensidl.impl.CommandImpl
-	 * @see sensidl.impl.SensidlPackageImpl#getCommand()
+	 * @see sensidl.impl.NamedElementImpl
+	 * @see sensidl.impl.SensidlPackageImpl#getNamedElement()
 	 * @generated
 	 */
-	int COMMAND = 1;
+	int NAMED_ELEMENT = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -147,34 +138,43 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMMAND__NAME = 0;
+	int NAMED_ELEMENT__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Structure</b></em>' reference.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMMAND__STRUCTURE = 1;
+	int NAMED_ELEMENT__DESCRIPTION = 1;
 
 	/**
-	 * The number of structural features of the '<em>Command</em>' class.
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMMAND_FEATURE_COUNT = 2;
+	int NAMED_ELEMENT__ID = 2;
 
 	/**
-	 * The number of operations of the '<em>Command</em>' class.
+	 * The number of structural features of the '<em>Named Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMMAND_OPERATION_COUNT = 0;
+	int NAMED_ELEMENT_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Named Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link sensidl.impl.RepresentationImpl <em>Representation</em>}' class.
@@ -184,25 +184,7 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getRepresentation()
 	 * @generated
 	 */
-	int REPRESENTATION = 2;
-
-	/**
-	 * The feature id for the '<em><b>Byte Count</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPRESENTATION__BYTE_COUNT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REPRESENTATION__TYPE = 1;
+	int REPRESENTATION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -211,7 +193,43 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPRESENTATION__NAME = 2;
+	int REPRESENTATION__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPRESENTATION__DESCRIPTION = NAMED_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPRESENTATION__ID = NAMED_ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Byte Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPRESENTATION__BYTE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPRESENTATION__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Representation</em>' class.
@@ -220,7 +238,7 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPRESENTATION_FEATURE_COUNT = 3;
+	int REPRESENTATION_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Representation</em>' class.
@@ -229,7 +247,7 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REPRESENTATION_OPERATION_COUNT = 0;
+	int REPRESENTATION_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link sensidl.impl.DatafieldImpl <em>Datafield</em>}' class.
@@ -239,7 +257,7 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getDatafield()
 	 * @generated
 	 */
-	int DATAFIELD = 3;
+	int DATAFIELD = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -248,7 +266,25 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATAFIELD__NAME = 0;
+	int DATAFIELD__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAFIELD__DESCRIPTION = NAMED_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATAFIELD__ID = NAMED_ELEMENT__ID;
 
 	/**
 	 * The number of structural features of the '<em>Datafield</em>' class.
@@ -257,7 +293,7 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATAFIELD_FEATURE_COUNT = 1;
+	int DATAFIELD_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Datafield</em>' class.
@@ -266,7 +302,7 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATAFIELD_OPERATION_COUNT = 0;
+	int DATAFIELD_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link sensidl.impl.CalculatedImpl <em>Calculated</em>}' class.
@@ -276,7 +312,7 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getCalculated()
 	 * @generated
 	 */
-	int CALCULATED = 4;
+	int CALCULATED = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -286,6 +322,24 @@ public interface SensidlPackage extends EPackage {
 	 * @ordered
 	 */
 	int CALCULATED__NAME = DATAFIELD__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALCULATED__DESCRIPTION = DATAFIELD__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALCULATED__ID = DATAFIELD__ID;
 
 	/**
 	 * The feature id for the '<em><b>Representation</b></em>' reference.
@@ -349,7 +403,7 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 5;
+	int PARAMETER = 4;
 
 	/**
 	 * The feature id for the '<em><b>Datafield</b></em>' reference.
@@ -395,7 +449,7 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getConstantData()
 	 * @generated
 	 */
-	int CONSTANT_DATA = 6;
+	int CONSTANT_DATA = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -407,13 +461,31 @@ public interface SensidlPackage extends EPackage {
 	int CONSTANT_DATA__NAME = DATAFIELD__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT_DATA__TYPE = DATAFIELD_FEATURE_COUNT + 0;
+	int CONSTANT_DATA__DESCRIPTION = DATAFIELD__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT_DATA__ID = DATAFIELD__ID;
+
+	/**
+	 * The feature id for the '<em><b>Const Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT_DATA__CONST_VALUE = DATAFIELD_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Representation</b></em>' reference.
@@ -425,22 +497,13 @@ public interface SensidlPackage extends EPackage {
 	int CONSTANT_DATA__REPRESENTATION = DATAFIELD_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Const Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTANT_DATA__CONST_VALUE = DATAFIELD_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Constant Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT_DATA_FEATURE_COUNT = DATAFIELD_FEATURE_COUNT + 3;
+	int CONSTANT_DATA_FEATURE_COUNT = DATAFIELD_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Constant Data</em>' class.
@@ -452,14 +515,14 @@ public interface SensidlPackage extends EPackage {
 	int CONSTANT_DATA_OPERATION_COUNT = DATAFIELD_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link sensidl.impl.DataImpl <em>Data</em>}' class.
+	 * The meta object id for the '{@link sensidl.impl.VariableDataImpl <em>Variable Data</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see sensidl.impl.DataImpl
-	 * @see sensidl.impl.SensidlPackageImpl#getData()
+	 * @see sensidl.impl.VariableDataImpl
+	 * @see sensidl.impl.SensidlPackageImpl#getVariableData()
 	 * @generated
 	 */
-	int DATA = 7;
+	int VARIABLE_DATA = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -468,25 +531,25 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA__NAME = DATAFIELD__NAME;
+	int VARIABLE_DATA__NAME = DATAFIELD__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Unit</b></em>' attribute.
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA__UNIT = DATAFIELD_FEATURE_COUNT + 0;
+	int VARIABLE_DATA__DESCRIPTION = DATAFIELD__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Scale</b></em>' attribute.
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA__SCALE = DATAFIELD_FEATURE_COUNT + 1;
+	int VARIABLE_DATA__ID = DATAFIELD__ID;
 
 	/**
 	 * The feature id for the '<em><b>Representation</b></em>' reference.
@@ -495,7 +558,89 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA__REPRESENTATION = DATAFIELD_FEATURE_COUNT + 2;
+	int VARIABLE_DATA__REPRESENTATION = DATAFIELD_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Variable Data</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_DATA_FEATURE_COUNT = DATAFIELD_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Variable Data</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_DATA_OPERATION_COUNT = DATAFIELD_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link sensidl.impl.MeasuredDataImpl <em>Measured Data</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sensidl.impl.MeasuredDataImpl
+	 * @see sensidl.impl.SensidlPackageImpl#getMeasuredData()
+	 * @generated
+	 */
+	int MEASURED_DATA = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEASURED_DATA__NAME = VARIABLE_DATA__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEASURED_DATA__DESCRIPTION = VARIABLE_DATA__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEASURED_DATA__ID = VARIABLE_DATA__ID;
+
+	/**
+	 * The feature id for the '<em><b>Representation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEASURED_DATA__REPRESENTATION = VARIABLE_DATA__REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Unit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEASURED_DATA__UNIT = VARIABLE_DATA_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Scale</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEASURED_DATA__SCALE = VARIABLE_DATA_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -504,34 +649,25 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA__CONSTRAINTS = DATAFIELD_FEATURE_COUNT + 3;
+	int MEASURED_DATA__CONSTRAINTS = VARIABLE_DATA_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Bit Numbering</b></em>' attribute.
+	 * The number of structural features of the '<em>Measured Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA__BIT_NUMBERING = DATAFIELD_FEATURE_COUNT + 4;
+	int MEASURED_DATA_FEATURE_COUNT = VARIABLE_DATA_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the '<em>Data</em>' class.
+	 * The number of operations of the '<em>Measured Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_FEATURE_COUNT = DATAFIELD_FEATURE_COUNT + 5;
-
-	/**
-	 * The number of operations of the '<em>Data</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_OPERATION_COUNT = DATAFIELD_OPERATION_COUNT + 0;
+	int MEASURED_DATA_OPERATION_COUNT = VARIABLE_DATA_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link sensidl.impl.DatastructureImpl <em>Datastructure</em>}' class.
@@ -541,7 +677,7 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getDatastructure()
 	 * @generated
 	 */
-	int DATASTRUCTURE = 8;
+	int DATASTRUCTURE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -551,6 +687,24 @@ public interface SensidlPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATASTRUCTURE__NAME = DATAFIELD__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATASTRUCTURE__DESCRIPTION = DATAFIELD__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATASTRUCTURE__ID = DATAFIELD__ID;
 
 	/**
 	 * The feature id for the '<em><b>Datafields</b></em>' containment reference list.
@@ -587,7 +741,7 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getOptions()
 	 * @generated
 	 */
-	int OPTIONS = 9;
+	int OPTIONS = 8;
 
 	/**
 	 * The feature id for the '<em><b>Sensor Language</b></em>' attribute.
@@ -608,13 +762,22 @@ public interface SensidlPackage extends EPackage {
 	int OPTIONS__RECEIVER_LANGUAGE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Endianess</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONS__ENDIANESS = 2;
+
+	/**
 	 * The number of structural features of the '<em>Options</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPTIONS_FEATURE_COUNT = 2;
+	int OPTIONS_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Options</em>' class.
@@ -633,7 +796,34 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getConstraint()
 	 * @generated
 	 */
-	int CONSTRAINT = 10;
+	int CONSTRAINT = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__DESCRIPTION = NAMED_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__ID = NAMED_ELEMENT__ID;
 
 	/**
 	 * The number of structural features of the '<em>Constraint</em>' class.
@@ -642,7 +832,7 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_FEATURE_COUNT = 0;
+	int CONSTRAINT_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Constraint</em>' class.
@@ -651,7 +841,7 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_OPERATION_COUNT = 0;
+	int CONSTRAINT_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link sensidl.impl.DataConstraintImpl <em>Data Constraint</em>}' class.
@@ -661,7 +851,34 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getDataConstraint()
 	 * @generated
 	 */
-	int DATA_CONSTRAINT = 11;
+	int DATA_CONSTRAINT = 10;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONSTRAINT__NAME = CONSTRAINT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONSTRAINT__DESCRIPTION = CONSTRAINT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONSTRAINT__ID = CONSTRAINT__ID;
 
 	/**
 	 * The number of structural features of the '<em>Data Constraint</em>' class.
@@ -689,7 +906,34 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getDataRange()
 	 * @generated
 	 */
-	int DATA_RANGE = 12;
+	int DATA_RANGE = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_RANGE__NAME = DATA_CONSTRAINT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_RANGE__DESCRIPTION = DATA_CONSTRAINT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_RANGE__ID = DATA_CONSTRAINT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' containment reference.
@@ -735,7 +979,7 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getBound()
 	 * @generated
 	 */
-	int BOUND = 13;
+	int BOUND = 12;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' attribute.
@@ -781,7 +1025,34 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getDataAdaption()
 	 * @generated
 	 */
-	int DATA_ADAPTION = 14;
+	int DATA_ADAPTION = 13;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_ADAPTION__NAME = DATA_CONSTRAINT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_ADAPTION__DESCRIPTION = DATA_CONSTRAINT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_ADAPTION__ID = DATA_CONSTRAINT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Scaling Factor</b></em>' attribute.
@@ -820,6 +1091,79 @@ public interface SensidlPackage extends EPackage {
 	int DATA_ADAPTION_OPERATION_COUNT = DATA_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link sensidl.impl.NonMeasuredDataImpl <em>Non Measured Data</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sensidl.impl.NonMeasuredDataImpl
+	 * @see sensidl.impl.SensidlPackageImpl#getNonMeasuredData()
+	 * @generated
+	 */
+	int NON_MEASURED_DATA = 16;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_MEASURED_DATA__NAME = VARIABLE_DATA__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_MEASURED_DATA__DESCRIPTION = VARIABLE_DATA__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_MEASURED_DATA__ID = VARIABLE_DATA__ID;
+
+	/**
+	 * The feature id for the '<em><b>Representation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_MEASURED_DATA__REPRESENTATION = VARIABLE_DATA__REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_MEASURED_DATA__TYPE = VARIABLE_DATA_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Non Measured Data</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_MEASURED_DATA_FEATURE_COUNT = VARIABLE_DATA_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Non Measured Data</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_MEASURED_DATA_OPERATION_COUNT = VARIABLE_DATA_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link sensidl.Type <em>Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -827,7 +1171,7 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 15;
+	int TYPE = 17;
 
 	/**
 	 * The meta object id for the '{@link sensidl.ArgumentType <em>Argument Type</em>}' enum.
@@ -837,7 +1181,7 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getArgumentType()
 	 * @generated
 	 */
-	int ARGUMENT_TYPE = 16;
+	int ARGUMENT_TYPE = 18;
 
 	/**
 	 * The meta object id for the '{@link sensidl.GenerationLanguage <em>Generation Language</em>}' enum.
@@ -847,17 +1191,17 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getGenerationLanguage()
 	 * @generated
 	 */
-	int GENERATION_LANGUAGE = 17;
+	int GENERATION_LANGUAGE = 19;
 
 	/**
-	 * The meta object id for the '{@link sensidl.BitNumbering <em>Bit Numbering</em>}' enum.
+	 * The meta object id for the '{@link sensidl.Endianess <em>Endianess</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see sensidl.BitNumbering
-	 * @see sensidl.impl.SensidlPackageImpl#getBitNumbering()
+	 * @see sensidl.Endianess
+	 * @see sensidl.impl.SensidlPackageImpl#getEndianess()
 	 * @generated
 	 */
-	int BIT_NUMBERING = 18;
+	int ENDIANESS = 20;
 
 	/**
 	 * Returns the meta object for class '{@link sensidl.DataModel <em>Data Model</em>}'.
@@ -914,49 +1258,6 @@ public interface SensidlPackage extends EPackage {
 	EReference getDataModel_Options();
 
 	/**
-	 * Returns the meta object for the reference list '{@link sensidl.DataModel#getCommands <em>Commands</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Commands</em>'.
-	 * @see sensidl.DataModel#getCommands()
-	 * @see #getDataModel()
-	 * @generated
-	 */
-	EReference getDataModel_Commands();
-
-	/**
-	 * Returns the meta object for class '{@link sensidl.Command <em>Command</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Command</em>'.
-	 * @see sensidl.Command
-	 * @generated
-	 */
-	EClass getCommand();
-
-	/**
-	 * Returns the meta object for the attribute '{@link sensidl.Command#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see sensidl.Command#getName()
-	 * @see #getCommand()
-	 * @generated
-	 */
-	EAttribute getCommand_Name();
-
-	/**
-	 * Returns the meta object for the reference '{@link sensidl.Command#getStructure <em>Structure</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Structure</em>'.
-	 * @see sensidl.Command#getStructure()
-	 * @see #getCommand()
-	 * @generated
-	 */
-	EReference getCommand_Structure();
-
-	/**
 	 * Returns the meta object for class '{@link sensidl.Representation <em>Representation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -989,17 +1290,6 @@ public interface SensidlPackage extends EPackage {
 	EAttribute getRepresentation_Type();
 
 	/**
-	 * Returns the meta object for the attribute '{@link sensidl.Representation#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see sensidl.Representation#getName()
-	 * @see #getRepresentation()
-	 * @generated
-	 */
-	EAttribute getRepresentation_Name();
-
-	/**
 	 * Returns the meta object for class '{@link sensidl.Datafield <em>Datafield</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1008,17 +1298,6 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getDatafield();
-
-	/**
-	 * Returns the meta object for the attribute '{@link sensidl.Datafield#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see sensidl.Datafield#getName()
-	 * @see #getDatafield()
-	 * @generated
-	 */
-	EAttribute getDatafield_Name();
 
 	/**
 	 * Returns the meta object for class '{@link sensidl.Calculated <em>Calculated</em>}'.
@@ -1117,17 +1396,6 @@ public interface SensidlPackage extends EPackage {
 	EClass getConstantData();
 
 	/**
-	 * Returns the meta object for the attribute '{@link sensidl.ConstantData#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see sensidl.ConstantData#getType()
-	 * @see #getConstantData()
-	 * @generated
-	 */
-	EAttribute getConstantData_Type();
-
-	/**
 	 * Returns the meta object for the reference '{@link sensidl.ConstantData#getRepresentation <em>Representation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1139,6 +1407,49 @@ public interface SensidlPackage extends EPackage {
 	EReference getConstantData_Representation();
 
 	/**
+	 * Returns the meta object for class '{@link sensidl.MeasuredData <em>Measured Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Measured Data</em>'.
+	 * @see sensidl.MeasuredData
+	 * @generated
+	 */
+	EClass getMeasuredData();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sensidl.MeasuredData#getUnit <em>Unit</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Unit</em>'.
+	 * @see sensidl.MeasuredData#getUnit()
+	 * @see #getMeasuredData()
+	 * @generated
+	 */
+	EAttribute getMeasuredData_Unit();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sensidl.MeasuredData#getScale <em>Scale</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Scale</em>'.
+	 * @see sensidl.MeasuredData#getScale()
+	 * @see #getMeasuredData()
+	 * @generated
+	 */
+	EAttribute getMeasuredData_Scale();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link sensidl.MeasuredData#getConstraints <em>Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Constraints</em>'.
+	 * @see sensidl.MeasuredData#getConstraints()
+	 * @see #getMeasuredData()
+	 * @generated
+	 */
+	EReference getMeasuredData_Constraints();
+
+	/**
 	 * Returns the meta object for the attribute '{@link sensidl.ConstantData#getConstValue <em>Const Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1148,71 +1459,6 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getConstantData_ConstValue();
-
-	/**
-	 * Returns the meta object for class '{@link sensidl.Data <em>Data</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Data</em>'.
-	 * @see sensidl.Data
-	 * @generated
-	 */
-	EClass getData();
-
-	/**
-	 * Returns the meta object for the attribute '{@link sensidl.Data#getUnit <em>Unit</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Unit</em>'.
-	 * @see sensidl.Data#getUnit()
-	 * @see #getData()
-	 * @generated
-	 */
-	EAttribute getData_Unit();
-
-	/**
-	 * Returns the meta object for the attribute '{@link sensidl.Data#getScale <em>Scale</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Scale</em>'.
-	 * @see sensidl.Data#getScale()
-	 * @see #getData()
-	 * @generated
-	 */
-	EAttribute getData_Scale();
-
-	/**
-	 * Returns the meta object for the reference '{@link sensidl.Data#getRepresentation <em>Representation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Representation</em>'.
-	 * @see sensidl.Data#getRepresentation()
-	 * @see #getData()
-	 * @generated
-	 */
-	EReference getData_Representation();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link sensidl.Data#getConstraints <em>Constraints</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Constraints</em>'.
-	 * @see sensidl.Data#getConstraints()
-	 * @see #getData()
-	 * @generated
-	 */
-	EReference getData_Constraints();
-
-	/**
-	 * Returns the meta object for the attribute '{@link sensidl.Data#getBitNumbering <em>Bit Numbering</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Bit Numbering</em>'.
-	 * @see sensidl.Data#getBitNumbering()
-	 * @see #getData()
-	 * @generated
-	 */
-	EAttribute getData_BitNumbering();
 
 	/**
 	 * Returns the meta object for class '{@link sensidl.Datastructure <em>Datastructure</em>}'.
@@ -1266,6 +1512,17 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getOptions_ReceiverLanguage();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sensidl.Options#getEndianess <em>Endianess</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Endianess</em>'.
+	 * @see sensidl.Options#getEndianess()
+	 * @see #getOptions()
+	 * @generated
+	 */
+	EAttribute getOptions_Endianess();
 
 	/**
 	 * Returns the meta object for class '{@link sensidl.Constraint <em>Constraint</em>}'.
@@ -1384,6 +1641,91 @@ public interface SensidlPackage extends EPackage {
 	EAttribute getDataAdaption_Offset();
 
 	/**
+	 * Returns the meta object for class '{@link sensidl.NamedElement <em>Named Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Named Element</em>'.
+	 * @see sensidl.NamedElement
+	 * @generated
+	 */
+	EClass getNamedElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sensidl.NamedElement#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see sensidl.NamedElement#getName()
+	 * @see #getNamedElement()
+	 * @generated
+	 */
+	EAttribute getNamedElement_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sensidl.NamedElement#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see sensidl.NamedElement#getDescription()
+	 * @see #getNamedElement()
+	 * @generated
+	 */
+	EAttribute getNamedElement_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sensidl.NamedElement#getID <em>ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>ID</em>'.
+	 * @see sensidl.NamedElement#getID()
+	 * @see #getNamedElement()
+	 * @generated
+	 */
+	EAttribute getNamedElement_ID();
+
+	/**
+	 * Returns the meta object for class '{@link sensidl.VariableData <em>Variable Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Variable Data</em>'.
+	 * @see sensidl.VariableData
+	 * @generated
+	 */
+	EClass getVariableData();
+
+	/**
+	 * Returns the meta object for the reference '{@link sensidl.VariableData#getRepresentation <em>Representation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Representation</em>'.
+	 * @see sensidl.VariableData#getRepresentation()
+	 * @see #getVariableData()
+	 * @generated
+	 */
+	EReference getVariableData_Representation();
+
+	/**
+	 * Returns the meta object for class '{@link sensidl.NonMeasuredData <em>Non Measured Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Non Measured Data</em>'.
+	 * @see sensidl.NonMeasuredData
+	 * @generated
+	 */
+	EClass getNonMeasuredData();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sensidl.NonMeasuredData#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see sensidl.NonMeasuredData#getType()
+	 * @see #getNonMeasuredData()
+	 * @generated
+	 */
+	EAttribute getNonMeasuredData_Type();
+
+	/**
 	 * Returns the meta object for enum '{@link sensidl.Type <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1414,14 +1756,14 @@ public interface SensidlPackage extends EPackage {
 	EEnum getGenerationLanguage();
 
 	/**
-	 * Returns the meta object for enum '{@link sensidl.BitNumbering <em>Bit Numbering</em>}'.
+	 * Returns the meta object for enum '{@link sensidl.Endianess <em>Endianess</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Bit Numbering</em>'.
-	 * @see sensidl.BitNumbering
+	 * @return the meta object for enum '<em>Endianess</em>'.
+	 * @see sensidl.Endianess
 	 * @generated
 	 */
-	EEnum getBitNumbering();
+	EEnum getEndianess();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1489,40 +1831,6 @@ public interface SensidlPackage extends EPackage {
 		EReference DATA_MODEL__OPTIONS = eINSTANCE.getDataModel_Options();
 
 		/**
-		 * The meta object literal for the '<em><b>Commands</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATA_MODEL__COMMANDS = eINSTANCE.getDataModel_Commands();
-
-		/**
-		 * The meta object literal for the '{@link sensidl.impl.CommandImpl <em>Command</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see sensidl.impl.CommandImpl
-		 * @see sensidl.impl.SensidlPackageImpl#getCommand()
-		 * @generated
-		 */
-		EClass COMMAND = eINSTANCE.getCommand();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMMAND__NAME = eINSTANCE.getCommand_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Structure</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMMAND__STRUCTURE = eINSTANCE.getCommand_Structure();
-
-		/**
 		 * The meta object literal for the '{@link sensidl.impl.RepresentationImpl <em>Representation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1549,14 +1857,6 @@ public interface SensidlPackage extends EPackage {
 		EAttribute REPRESENTATION__TYPE = eINSTANCE.getRepresentation_Type();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REPRESENTATION__NAME = eINSTANCE.getRepresentation_Name();
-
-		/**
 		 * The meta object literal for the '{@link sensidl.impl.DatafieldImpl <em>Datafield</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1565,14 +1865,6 @@ public interface SensidlPackage extends EPackage {
 		 * @generated
 		 */
 		EClass DATAFIELD = eINSTANCE.getDatafield();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DATAFIELD__NAME = eINSTANCE.getDatafield_Name();
 
 		/**
 		 * The meta object literal for the '{@link sensidl.impl.CalculatedImpl <em>Calculated</em>}' class.
@@ -1653,14 +1945,6 @@ public interface SensidlPackage extends EPackage {
 		EClass CONSTANT_DATA = eINSTANCE.getConstantData();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONSTANT_DATA__TYPE = eINSTANCE.getConstantData_Type();
-
-		/**
 		 * The meta object literal for the '<em><b>Representation</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1669,22 +1953,14 @@ public interface SensidlPackage extends EPackage {
 		EReference CONSTANT_DATA__REPRESENTATION = eINSTANCE.getConstantData_Representation();
 
 		/**
-		 * The meta object literal for the '<em><b>Const Value</b></em>' attribute feature.
+		 * The meta object literal for the '{@link sensidl.impl.MeasuredDataImpl <em>Measured Data</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see sensidl.impl.MeasuredDataImpl
+		 * @see sensidl.impl.SensidlPackageImpl#getMeasuredData()
 		 * @generated
 		 */
-		EAttribute CONSTANT_DATA__CONST_VALUE = eINSTANCE.getConstantData_ConstValue();
-
-		/**
-		 * The meta object literal for the '{@link sensidl.impl.DataImpl <em>Data</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see sensidl.impl.DataImpl
-		 * @see sensidl.impl.SensidlPackageImpl#getData()
-		 * @generated
-		 */
-		EClass DATA = eINSTANCE.getData();
+		EClass MEASURED_DATA = eINSTANCE.getMeasuredData();
 
 		/**
 		 * The meta object literal for the '<em><b>Unit</b></em>' attribute feature.
@@ -1692,7 +1968,7 @@ public interface SensidlPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DATA__UNIT = eINSTANCE.getData_Unit();
+		EAttribute MEASURED_DATA__UNIT = eINSTANCE.getMeasuredData_Unit();
 
 		/**
 		 * The meta object literal for the '<em><b>Scale</b></em>' attribute feature.
@@ -1700,15 +1976,7 @@ public interface SensidlPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DATA__SCALE = eINSTANCE.getData_Scale();
-
-		/**
-		 * The meta object literal for the '<em><b>Representation</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATA__REPRESENTATION = eINSTANCE.getData_Representation();
+		EAttribute MEASURED_DATA__SCALE = eINSTANCE.getMeasuredData_Scale();
 
 		/**
 		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
@@ -1716,15 +1984,15 @@ public interface SensidlPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DATA__CONSTRAINTS = eINSTANCE.getData_Constraints();
+		EReference MEASURED_DATA__CONSTRAINTS = eINSTANCE.getMeasuredData_Constraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Bit Numbering</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Const Value</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DATA__BIT_NUMBERING = eINSTANCE.getData_BitNumbering();
+		EAttribute CONSTANT_DATA__CONST_VALUE = eINSTANCE.getConstantData_ConstValue();
 
 		/**
 		 * The meta object literal for the '{@link sensidl.impl.DatastructureImpl <em>Datastructure</em>}' class.
@@ -1769,6 +2037,14 @@ public interface SensidlPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute OPTIONS__RECEIVER_LANGUAGE = eINSTANCE.getOptions_ReceiverLanguage();
+
+		/**
+		 * The meta object literal for the '<em><b>Endianess</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPTIONS__ENDIANESS = eINSTANCE.getOptions_Endianess();
 
 		/**
 		 * The meta object literal for the '{@link sensidl.Constraint <em>Constraint</em>}' class.
@@ -1869,6 +2145,76 @@ public interface SensidlPackage extends EPackage {
 		EAttribute DATA_ADAPTION__OFFSET = eINSTANCE.getDataAdaption_Offset();
 
 		/**
+		 * The meta object literal for the '{@link sensidl.impl.NamedElementImpl <em>Named Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sensidl.impl.NamedElementImpl
+		 * @see sensidl.impl.SensidlPackageImpl#getNamedElement()
+		 * @generated
+		 */
+		EClass NAMED_ELEMENT = eINSTANCE.getNamedElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAMED_ELEMENT__DESCRIPTION = eINSTANCE.getNamedElement_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NAMED_ELEMENT__ID = eINSTANCE.getNamedElement_ID();
+
+		/**
+		 * The meta object literal for the '{@link sensidl.impl.VariableDataImpl <em>Variable Data</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sensidl.impl.VariableDataImpl
+		 * @see sensidl.impl.SensidlPackageImpl#getVariableData()
+		 * @generated
+		 */
+		EClass VARIABLE_DATA = eINSTANCE.getVariableData();
+
+		/**
+		 * The meta object literal for the '<em><b>Representation</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VARIABLE_DATA__REPRESENTATION = eINSTANCE.getVariableData_Representation();
+
+		/**
+		 * The meta object literal for the '{@link sensidl.impl.NonMeasuredDataImpl <em>Non Measured Data</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sensidl.impl.NonMeasuredDataImpl
+		 * @see sensidl.impl.SensidlPackageImpl#getNonMeasuredData()
+		 * @generated
+		 */
+		EClass NON_MEASURED_DATA = eINSTANCE.getNonMeasuredData();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NON_MEASURED_DATA__TYPE = eINSTANCE.getNonMeasuredData_Type();
+
+		/**
 		 * The meta object literal for the '{@link sensidl.Type <em>Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1899,14 +2245,14 @@ public interface SensidlPackage extends EPackage {
 		EEnum GENERATION_LANGUAGE = eINSTANCE.getGenerationLanguage();
 
 		/**
-		 * The meta object literal for the '{@link sensidl.BitNumbering <em>Bit Numbering</em>}' enum.
+		 * The meta object literal for the '{@link sensidl.Endianess <em>Endianess</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see sensidl.BitNumbering
-		 * @see sensidl.impl.SensidlPackageImpl#getBitNumbering()
+		 * @see sensidl.Endianess
+		 * @see sensidl.impl.SensidlPackageImpl#getEndianess()
 		 * @generated
 		 */
-		EEnum BIT_NUMBERING = eINSTANCE.getBitNumbering();
+		EEnum ENDIANESS = eINSTANCE.getEndianess();
 
 	}
 

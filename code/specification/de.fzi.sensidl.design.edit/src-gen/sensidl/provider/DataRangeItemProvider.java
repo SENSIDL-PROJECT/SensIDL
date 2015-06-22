@@ -100,7 +100,10 @@ public class DataRangeItemProvider extends DataConstraintItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_DataRange_type");
+		String label = ((DataRange)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DataRange_type") :
+			getString("_UI_DataRange_type") + " " + label;
 	}
 	
 

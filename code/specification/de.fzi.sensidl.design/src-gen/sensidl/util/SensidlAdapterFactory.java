@@ -72,10 +72,6 @@ public class SensidlAdapterFactory extends AdapterFactoryImpl {
 				return createDataModelAdapter();
 			}
 			@Override
-			public Adapter caseCommand(Command object) {
-				return createCommandAdapter();
-			}
-			@Override
 			public Adapter caseRepresentation(Representation object) {
 				return createRepresentationAdapter();
 			}
@@ -96,8 +92,8 @@ public class SensidlAdapterFactory extends AdapterFactoryImpl {
 				return createConstantDataAdapter();
 			}
 			@Override
-			public Adapter caseData(Data object) {
-				return createDataAdapter();
+			public Adapter caseMeasuredData(MeasuredData object) {
+				return createMeasuredDataAdapter();
 			}
 			@Override
 			public Adapter caseDatastructure(Datastructure object) {
@@ -126,6 +122,18 @@ public class SensidlAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseDataAdaption(DataAdaption object) {
 				return createDataAdaptionAdapter();
+			}
+			@Override
+			public Adapter caseNamedElement(NamedElement object) {
+				return createNamedElementAdapter();
+			}
+			@Override
+			public Adapter caseVariableData(VariableData object) {
+				return createVariableDataAdapter();
+			}
+			@Override
+			public Adapter caseNonMeasuredData(NonMeasuredData object) {
+				return createNonMeasuredDataAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -158,20 +166,6 @@ public class SensidlAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDataModelAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link sensidl.Command <em>Command</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see sensidl.Command
-	 * @generated
-	 */
-	public Adapter createCommandAdapter() {
 		return null;
 	}
 
@@ -246,16 +240,16 @@ public class SensidlAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link sensidl.Data <em>Data</em>}'.
+	 * Creates a new adapter for an object of class '{@link sensidl.MeasuredData <em>Measured Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see sensidl.Data
+	 * @see sensidl.MeasuredData
 	 * @generated
 	 */
-	public Adapter createDataAdapter() {
+	public Adapter createMeasuredDataAdapter() {
 		return null;
 	}
 
@@ -354,6 +348,48 @@ public class SensidlAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDataAdaptionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sensidl.NamedElement <em>Named Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sensidl.NamedElement
+	 * @generated
+	 */
+	public Adapter createNamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sensidl.VariableData <em>Variable Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sensidl.VariableData
+	 * @generated
+	 */
+	public Adapter createVariableDataAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sensidl.NonMeasuredData <em>Non Measured Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sensidl.NonMeasuredData
+	 * @generated
+	 */
+	public Adapter createNonMeasuredDataAdapter() {
 		return null;
 	}
 

@@ -2,10 +2,7 @@
  */
 package sensidl.tests;
 
-import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
-
 import sensidl.Representation;
 import sensidl.SensidlFactory;
 
@@ -15,15 +12,7 @@ import sensidl.SensidlFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RepresentationTest extends TestCase {
-
-	/**
-	 * The fixture for this Representation test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Representation fixture = null;
+public class RepresentationTest extends NamedElementTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -45,23 +34,14 @@ public class RepresentationTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Representation test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(Representation fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Representation test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected Representation getFixture() {
-		return fixture;
+		return (Representation)fixture;
 	}
 
 	/**

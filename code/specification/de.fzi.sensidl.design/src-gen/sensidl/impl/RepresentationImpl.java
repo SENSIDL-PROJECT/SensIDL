@@ -3,12 +3,8 @@
 package sensidl.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import sensidl.Representation;
 import sensidl.SensidlPackage;
 import sensidl.Type;
@@ -22,13 +18,12 @@ import sensidl.Type;
  * <ul>
  *   <li>{@link sensidl.impl.RepresentationImpl#getByteCount <em>Byte Count</em>}</li>
  *   <li>{@link sensidl.impl.RepresentationImpl#getType <em>Type</em>}</li>
- *   <li>{@link sensidl.impl.RepresentationImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class RepresentationImpl extends MinimalEObjectImpl.Container implements Representation {
+public class RepresentationImpl extends NamedElementImpl implements Representation {
 	/**
 	 * The default value of the '{@link #getByteCount() <em>Byte Count</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -68,26 +63,6 @@ public class RepresentationImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected Type type = TYPE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -155,27 +130,6 @@ public class RepresentationImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SensidlPackage.REPRESENTATION__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -183,8 +137,6 @@ public class RepresentationImpl extends MinimalEObjectImpl.Container implements 
 				return getByteCount();
 			case SensidlPackage.REPRESENTATION__TYPE:
 				return getType();
-			case SensidlPackage.REPRESENTATION__NAME:
-				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -202,9 +154,6 @@ public class RepresentationImpl extends MinimalEObjectImpl.Container implements 
 				return;
 			case SensidlPackage.REPRESENTATION__TYPE:
 				setType((Type)newValue);
-				return;
-			case SensidlPackage.REPRESENTATION__NAME:
-				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -224,9 +173,6 @@ public class RepresentationImpl extends MinimalEObjectImpl.Container implements 
 			case SensidlPackage.REPRESENTATION__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
-			case SensidlPackage.REPRESENTATION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -243,8 +189,6 @@ public class RepresentationImpl extends MinimalEObjectImpl.Container implements 
 				return byteCount != BYTE_COUNT_EDEFAULT;
 			case SensidlPackage.REPRESENTATION__TYPE:
 				return type != TYPE_EDEFAULT;
-			case SensidlPackage.REPRESENTATION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -263,8 +207,6 @@ public class RepresentationImpl extends MinimalEObjectImpl.Container implements 
 		result.append(byteCount);
 		result.append(", type: ");
 		result.append(type);
-		result.append(", name: ");
-		result.append(name);
 		result.append(')');
 		return result.toString();
 	}

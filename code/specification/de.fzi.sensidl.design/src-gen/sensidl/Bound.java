@@ -4,6 +4,7 @@ package sensidl;
 
 import org.eclipse.emf.ecore.EObject;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Bound</b></em>'.
@@ -33,7 +34,7 @@ public interface Bound extends EObject {
 	 * @return the value of the '<em>Unit</em>' attribute.
 	 * @see #setUnit(String)
 	 * @see sensidl.SensidlPackage#getBound_Unit()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	String getUnit();

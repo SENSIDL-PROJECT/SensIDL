@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import sensidl.Command;
 import sensidl.DataModel;
 import sensidl.Datafield;
 import sensidl.Options;
@@ -31,7 +30,6 @@ import sensidl.SensidlPackage;
  *   <li>{@link sensidl.impl.DataModelImpl#getDatafields <em>Datafields</em>}</li>
  *   <li>{@link sensidl.impl.DataModelImpl#getTransmit <em>Transmit</em>}</li>
  *   <li>{@link sensidl.impl.DataModelImpl#getOptions <em>Options</em>}</li>
- *   <li>{@link sensidl.impl.DataModelImpl#getCommands <em>Commands</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,16 +75,6 @@ public class DataModelImpl extends MinimalEObjectImpl.Container implements DataM
 	 * @ordered
 	 */
 	protected Options options;
-
-	/**
-	 * The cached value of the '{@link #getCommands() <em>Commands</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCommands()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Command> commands;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -191,18 +179,6 @@ public class DataModelImpl extends MinimalEObjectImpl.Container implements DataM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Command> getCommands() {
-		if (commands == null) {
-			commands = new EObjectResolvingEList<Command>(Command.class, this, SensidlPackage.DATA_MODEL__COMMANDS);
-		}
-		return commands;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -232,8 +208,6 @@ public class DataModelImpl extends MinimalEObjectImpl.Container implements DataM
 				return getTransmit();
 			case SensidlPackage.DATA_MODEL__OPTIONS:
 				return getOptions();
-			case SensidlPackage.DATA_MODEL__COMMANDS:
-				return getCommands();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -262,10 +236,6 @@ public class DataModelImpl extends MinimalEObjectImpl.Container implements DataM
 			case SensidlPackage.DATA_MODEL__OPTIONS:
 				setOptions((Options)newValue);
 				return;
-			case SensidlPackage.DATA_MODEL__COMMANDS:
-				getCommands().clear();
-				getCommands().addAll((Collection<? extends Command>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -290,9 +260,6 @@ public class DataModelImpl extends MinimalEObjectImpl.Container implements DataM
 			case SensidlPackage.DATA_MODEL__OPTIONS:
 				setOptions((Options)null);
 				return;
-			case SensidlPackage.DATA_MODEL__COMMANDS:
-				getCommands().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -313,8 +280,6 @@ public class DataModelImpl extends MinimalEObjectImpl.Container implements DataM
 				return transmit != null && !transmit.isEmpty();
 			case SensidlPackage.DATA_MODEL__OPTIONS:
 				return options != null;
-			case SensidlPackage.DATA_MODEL__COMMANDS:
-				return commands != null && !commands.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

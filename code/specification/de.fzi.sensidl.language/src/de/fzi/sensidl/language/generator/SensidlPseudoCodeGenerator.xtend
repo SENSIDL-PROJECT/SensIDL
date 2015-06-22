@@ -1,25 +1,24 @@
 package de.fzi.sensidl.language.generator
 
+import java.util.ArrayList
+import java.util.HashMap
 import org.eclipse.emf.common.util.URI
 import org.eclipse.xtext.generator.IFileSystemAccess
+import sensidl.Bound
 import sensidl.Calculated
 import sensidl.Constraint
 import sensidl.DataModel
-import sensidl.GenerationLanguage
+import sensidl.DataRange
 import sensidl.Datafield
 import sensidl.Datastructure
-import sensidl.Bound
-import sensidl.DataRange
+import sensidl.GenerationLanguage
 import sensidl.Type
 
 /**
  * Pseudocode generator für die SensIDL Sprache.
  * 
  * @author Dominik Werle
- * @see DTOGenerator
- * @see EncoderGenerator
- * @see DecoderGenerator
- * @see ListenerGenerator
+ * @author Max Scheerer
  */
 class SensidlPseudoCodeGenerator implements ISensidlCodeGenerator {
 	/**
@@ -141,7 +140,8 @@ class SensidlPseudoCodeGenerator implements ISensidlCodeGenerator {
 	/**
 	 * The entry point to the generation.
 	 * 
-	 * @author Dominik Werle
+	 * @author Dominik Werle - Base implementation
+	 * @author Max Scheerer	- refinement of the base implementation
 	 */
 	override doGenerate(DataModel input, URI uri, IFileSystemAccess fsa) {
 		// in this prototype: only generation of Java pseudo code
@@ -150,16 +150,46 @@ class SensidlPseudoCodeGenerator implements ISensidlCodeGenerator {
 			
 			return;
 		}
-
-		val trimmed = uri.trimFileExtension.trimFragment.trimQuery
-		val classNameBase = trimmed.lastSegment.toFirstUpper
-
-		// set up the different generators
-		val generators = #[
-			new DTOGenerator(input, classNameBase)
-		]
 		
-		generators.forEach [ it.doGenerate(fsa) ]
+		val trimmed = uri.trimFileExtension.trimFragment.trimQuery
+		
+		val executer = initExecuter(input, trimmed.lastSegment.toFirstUpper, fsa);
+		
+		// At this moment its enough to generate code of the receiver language
+		// Later its possible that receiver and sensor language are different. for that reason 
+		// two code generations must be made.
+		/*if(input.options.receiverLanguage != input.options.sensorLanguage) {
+			executer.get(input.options.receiverLanguage).execute();
+		}*/
+		executer.get(input.options.sensorLanguage).execute();		
+	}
+	
+	def initExecuter(DataModel input, String classNameBase, IFileSystemAccess fsa) {
+		val executer = new HashMap();
+		
+		executer.put(GenerationLanguage.JAVA, new IExecuter() { 
+												override void execute() { 
+													//Later: new JavaGenerator(input, classNameBase).generateEncoder(fsa); ...
+													new JavaGenerator(input, classNameBase).generateDTO(fsa);
+												}
+											  });
+		executer.put(GenerationLanguage.C, new IExecuter() { 
+												override void execute() { 
+													new CGenerator(input, classNameBase).generateDTO(fsa);
+												}
+											  });
+		executer.put(GenerationLanguage.CSHARP, new IExecuter() { 
+												override void execute() { 
+													new CSharpGenerator(input, classNameBase).generateDTO(fsa);
+												}
+											  });
+		executer.put(GenerationLanguage.CPP, new IExecuter() { 
+												override void execute() { 
+													new CppGenerator(input, classNameBase).generateDTO(fsa);
+												}
+											  })
+											  
+		return executer;
 	}
 	
 	/**

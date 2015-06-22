@@ -2,7 +2,6 @@
  */
 package sensidl;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,5 +13,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface Constraint extends EObject {
+public interface Constraint extends NamedElement {
 } // Constraint

@@ -58,17 +58,17 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case SensidlPackage.DATA_MODEL: return createDataModel();
-			case SensidlPackage.COMMAND: return createCommand();
 			case SensidlPackage.REPRESENTATION: return createRepresentation();
 			case SensidlPackage.CALCULATED: return createCalculated();
 			case SensidlPackage.PARAMETER: return createParameter();
 			case SensidlPackage.CONSTANT_DATA: return createConstantData();
-			case SensidlPackage.DATA: return createData();
+			case SensidlPackage.MEASURED_DATA: return createMeasuredData();
 			case SensidlPackage.DATASTRUCTURE: return createDatastructure();
 			case SensidlPackage.OPTIONS: return createOptions();
 			case SensidlPackage.DATA_RANGE: return createDataRange();
 			case SensidlPackage.BOUND: return createBound();
 			case SensidlPackage.DATA_ADAPTION: return createDataAdaption();
+			case SensidlPackage.NON_MEASURED_DATA: return createNonMeasuredData();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -88,8 +88,8 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 				return createArgumentTypeFromString(eDataType, initialValue);
 			case SensidlPackage.GENERATION_LANGUAGE:
 				return createGenerationLanguageFromString(eDataType, initialValue);
-			case SensidlPackage.BIT_NUMBERING:
-				return createBitNumberingFromString(eDataType, initialValue);
+			case SensidlPackage.ENDIANESS:
+				return createEndianessFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -109,8 +109,8 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 				return convertArgumentTypeToString(eDataType, instanceValue);
 			case SensidlPackage.GENERATION_LANGUAGE:
 				return convertGenerationLanguageToString(eDataType, instanceValue);
-			case SensidlPackage.BIT_NUMBERING:
-				return convertBitNumberingToString(eDataType, instanceValue);
+			case SensidlPackage.ENDIANESS:
+				return convertEndianessToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -124,16 +124,6 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	public DataModel createDataModel() {
 		DataModelImpl dataModel = new DataModelImpl();
 		return dataModel;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Command createCommand() {
-		CommandImpl command = new CommandImpl();
-		return command;
 	}
 
 	/**
@@ -181,9 +171,9 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Data createData() {
-		DataImpl data = new DataImpl();
-		return data;
+	public MeasuredData createMeasuredData() {
+		MeasuredDataImpl measuredData = new MeasuredDataImpl();
+		return measuredData;
 	}
 
 	/**
@@ -234,6 +224,16 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	public DataAdaption createDataAdaption() {
 		DataAdaptionImpl dataAdaption = new DataAdaptionImpl();
 		return dataAdaption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NonMeasuredData createNonMeasuredData() {
+		NonMeasuredDataImpl nonMeasuredData = new NonMeasuredDataImpl();
+		return nonMeasuredData;
 	}
 
 	/**
@@ -301,8 +301,8 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BitNumbering createBitNumberingFromString(EDataType eDataType, String initialValue) {
-		BitNumbering result = BitNumbering.get(initialValue);
+	public Endianess createEndianessFromString(EDataType eDataType, String initialValue) {
+		Endianess result = Endianess.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -312,7 +312,7 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertBitNumberingToString(EDataType eDataType, Object instanceValue) {
+	public String convertEndianessToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

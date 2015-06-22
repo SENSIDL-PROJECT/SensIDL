@@ -10,14 +10,15 @@
  */ 
  datamodel {
  	options {
-		receiver language : JAVA 
-		sensor language : JAVA  
+ 		Endianess : BIG_ENDIAN
+		sensor language : JAVA
+		receiver language : JAVA
 	}
 
 	/* *
 	 * Deklaration von verschiedenen Repräsentationen die bestimmte Daten besitzen k�nnen.
 	 */ 
-	repr twoByteShort is 2 byte in SHORT 
+	repr twoByteShort is 2 byte in SHORT
 	repr oneByteInt is 1 byte in INT
 	repr oneByteShort is 1 byte in SHORT
 	repr eightByteByte is 8 byte in CHAR
@@ -25,30 +26,34 @@
 	/* *
 	 * Standard-Struktur: Deklaration eines "Payloads", welcher die Daten beinhaltet.
 	 */
-	structure Payload {
-		structure Data {
+	set Payload {
+		set Data {
 		
 			/* *
 	 		 * In "Metadata" können verschiedene Metadaten spezifiziert werden, wie beispielsweise die Softwareversions.
 	 		 */	
-			structure Metadata {
-				const INT SoftwareVersion as twoByteShort 
-				const INT ConveyorModuleID as oneByteInt
+			set Metadata {
+				const SoftwareVersion as twoByteShort 
+				const ConveyorModuleID as oneByteInt
 			}
 			
 			/* *
 	 		 * Gruppierung der Messwerte des Sensors. In diesem Falls misst der Sensor die Geschwindigkeit des Moduls.
 	 		 */	
-			structure Measurements {
+			set Measurements {
 				data of Velocity in "m/s" as twoByteShort
 			}
 			
 			/* *
 	 		 * Gruppierung von bestimmten Messwerten, welche später für die Berechnung des Durchsatzes gebraucht werden.
 	 		 */	
-			structure ThroughputParameter {
+			set ThroughputParameter {
 				data of PacketCounter as oneByteInt
 				data of currentDuration in "s" as oneByteInt
+				/* *
+	 		 	* Bestimmte Elemente k�nnen optional durch eine Beschreibung beschrieben werden.
+	 		 	*/	
+				description : "Die Komposition ThroughputParameter gruppiert die beiden Daten "
 			}
 			
 			/* *

@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link sensidl.DataModel#getDatafields <em>Datafields</em>}</li>
  *   <li>{@link sensidl.DataModel#getTransmit <em>Transmit</em>}</li>
  *   <li>{@link sensidl.DataModel#getOptions <em>Options</em>}</li>
- *   <li>{@link sensidl.DataModel#getCommands <em>Commands</em>}</li>
  * </ul>
  * </p>
  *
@@ -100,21 +99,5 @@ public interface DataModel extends EObject {
 	 * @generated
 	 */
 	void setOptions(Options value);
-
-	/**
-	 * Returns the value of the '<em><b>Commands</b></em>' reference list.
-	 * The list contents are of type {@link sensidl.Command}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Commands</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Commands</em>' reference list.
-	 * @see sensidl.SensidlPackage#getDataModel_Commands()
-	 * @model
-	 * @generated
-	 */
-	EList<Command> getCommands();
 
 } // DataModel

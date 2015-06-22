@@ -9,8 +9,9 @@
  */
 datamodel { 
 	options {
-		receiver language: JAVA
+		Endianess : BIG_ENDIAN
 		sensor language: JAVA
+		receiver language: JAVA
 	}
 	
 	/* *
@@ -26,34 +27,38 @@ datamodel {
 	/* *
 	 * Beschreibung der Phase L1 
 	 */
-	structure L1 {
-		structure Data {
+	set L1 {
+		set Data {
 			
 			/* *
 	 		 * In dieser Struktur werden die Metadaten von L1 gruppiert. Diese entsprechen den ersten zwei Bytes
 	 		 * in der EMeter-Datenstruktur.
 	 		 */
-			structure Metadata {
-				const CHAR DeviceType as oneByteByte
-				const CHAR RecordType as oneByteByte
+			set Metadata {
+				const DeviceType as oneByteByte
+				const RecordType as oneByteByte
 			}
 			
 			/* *
 	 		 * In dieser Struktur werden die gemessenen Werte von L1 gruppiert. Diese entsprechen den Bytes 3-12
 	 		 * in der EMeter-Datenstruktur. Zusätzlich kann optional die Bitwertigkeit angegeben werden.
 	 		 */
-			structure MeasuredValues {
-				data of Voltage in "V" as twoByteInt16 with bit numbering MSB
-				data of CurrentIntensity in "A" as fourByteFloat with bit numbering MSB
-				data of Energy in "Ws" as fourByteFloat with bit numbering MSB
+			set MeasuredValues {
+				data of Voltage in "V" as twoByteInt16
+				data of CurrentIntensity in "A" as fourByteFloat
+				data of Energy in "Ws" as fourByteFloat
 				data of CosPhi as oneByteInt8
 			}
 			
 			/* *
 	 		 * In dieser Struktur wird die Messnummer von L1 deklariert. Diese entspricht dem letzen Byte.
 	 		 */
-			structure RecordData {
-				const CHAR RecordNo as oneByteByte
+			set RecordData {
+				basicdata CHAR RecordNo as oneByteByte
+					/* *
+	 		 		* Manche Elemente können optional durch Beschreibung beschrieben werden.
+	 		 		*/
+					description : "RecordData represents the current index of a measurement"
 			}
 		}
 	}
@@ -70,22 +75,22 @@ datamodel {
 	/* *
 	 * Siehe Phase L1 
 	 */	
-	structure L2 {
-		structure Data {
-			structure Metadata {
-				const CHAR DeviceType as oneByteByte
-				const CHAR RecordType as oneByteByte
+	set L2 {
+		set Data {
+			set Metadata {
+				const DeviceType as oneByteByte
+				const RecordType as oneByteByte
 			}
 			
-			structure MeasuredValues {
-				data of Voltage in "V" as twoByteInt16 with bit numbering MSB
-				data of CurrentIntensity in "A" as fourByteFloat with bit numbering MSB
-				data of Energy in "Ws" as fourByteFloat with bit numbering MSB
+			set MeasuredValues {
+				data of Voltage in "V" as twoByteInt16 
+				data of CurrentIntensity in "A" as fourByteFloat
+				data of Energy in "Ws" as fourByteFloat
 				data of CosPhi as oneByteInt8
 			}
 			
-			structure RecordData {
-				const CHAR RecordNo as oneByteByte
+			set RecordData {
+				basicdata CHAR RecordNo as oneByteByte
 			}
 		}
 	}
@@ -101,22 +106,22 @@ datamodel {
 	/* *
 	 * Siehe Phase L1 
 	 */	
-	structure L3 {
-		structure Data {
-			structure Metadata {
-				const CHAR DeviceType as oneByteByte
-				const CHAR RecordType as oneByteByte
+	set L3 {
+		set Data {
+			set Metadata {
+				const DeviceType as oneByteByte
+				const RecordType as oneByteByte
 			}
 			
-			structure MeasuredValues {
+			set MeasuredValues {
 				data of Voltage in "V" as twoByteInt16
 				data of CurrentIntensity in "A" as fourByteFloat
-				data of Energy in "Ws" as fourByteFloat with bit numbering MSB
+				data of Energy in "Ws" as fourByteFloat
 				data of CosPhi as oneByteInt8
 			}
 			
-			structure RecordData {
-				const CHAR RecordNo as oneByteByte
+			set RecordData {
+				basicdata CHAR RecordNo as oneByteByte
 			}
 		}
 	}
@@ -133,23 +138,23 @@ datamodel {
 	/* *
 	 * Siehe Phase L1...L3 
 	 */	
-	structure N {
-		structure Data {
+	set N {
+		set Data {
 			
-			structure Metadata {
-				const CHAR DeviceType as oneByteByte
-				const CHAR RecordType as oneByteByte
+			set Metadata {
+				const DeviceType as oneByteByte
+				const RecordType as oneByteByte
 			}
 			
-			structure MeasuredValues {
+			set MeasuredValues {
 				data of Dummy as twoByteInt16
-				data of CurrentIntensity in "A" as fourByteFloat with bit numbering MSB
+				data of CurrentIntensity in "A" as fourByteFloat 
 				data of Dummy1 as fourByteInt32
 				data of CosPhi as oneByteInt8
 			}
 			
-			structure RecordData {
-				const CHAR RecordNo as oneByteByte
+			set RecordData {
+				basicdata CHAR RecordNo as oneByteByte
 			}
 		}
 	}
@@ -165,24 +170,24 @@ datamodel {
 	/* *
 	 * Beschreibung der bezogenen Energiemenge L1,L2,L3.
 	 */
-	structure Energy {
-		structure Data {
+	set Energy {
+		set Data {
 			/* *
 	 		 * In dieser Gruppe werden die Metadaten gruppiert. Diese entsprechen den ersten zwei Bytes
 	 		 * in der EMeter-Datenstruktur.
 	 		 */
-			structure Metadata {
-				const CHAR DeviceType as oneByteByte
-				const CHAR RecordType as oneByteByte
+			set Metadata {
+				const DeviceType as oneByteByte
+				const RecordType as oneByteByte
 			}
 			
 			/* *
 	 		 * In dieser Gruppe werden die Messwerte gruppiert und entsprechen den Bytes 3-14.
 	 		 */
-			structure MeasuredValues {
-				data of fE_L1 in "kWh" as fourByteFloat with bit numbering MSB
-				data of fE_L2 in "kWh" as fourByteFloat with bit numbering MSB
-				data of fE_L3 in "kWh" as fourByteFloat with bit numbering MSB
+			set MeasuredValues {
+				data of fE_L1 in "kWh" as fourByteFloat
+				data of fE_L2 in "kWh" as fourByteFloat
+				data of fE_L3 in "kWh" as fourByteFloat
 			}
 		}
 	}

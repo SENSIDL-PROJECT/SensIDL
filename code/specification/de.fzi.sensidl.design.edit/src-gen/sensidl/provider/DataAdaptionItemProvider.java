@@ -114,8 +114,7 @@ public class DataAdaptionItemProvider extends DataConstraintItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		Double labelValue = ((DataAdaption)object).getScalingFactor();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((DataAdaption)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_DataAdaption_type") :
 			getString("_UI_DataAdaption_type") + " " + label;

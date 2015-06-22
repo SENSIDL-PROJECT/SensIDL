@@ -45,33 +45,10 @@ public class ConstantDataItemProvider extends DatafieldItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTypePropertyDescriptor(object);
-			addRepresentationPropertyDescriptor(object);
 			addConstValuePropertyDescriptor(object);
+			addRepresentationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Type feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ConstantData_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConstantData_type_feature", "_UI_ConstantData_type"),
-				 SensidlPackage.Literals.CONSTANT_DATA__TYPE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -156,7 +133,6 @@ public class ConstantDataItemProvider extends DatafieldItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ConstantData.class)) {
-			case SensidlPackage.CONSTANT_DATA__TYPE:
 			case SensidlPackage.CONSTANT_DATA__CONST_VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

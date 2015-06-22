@@ -6,6 +6,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import sensidl.Endianess;
 import sensidl.GenerationLanguage;
 import sensidl.Options;
 import sensidl.SensidlPackage;
@@ -19,6 +20,7 @@ import sensidl.SensidlPackage;
  * <ul>
  *   <li>{@link sensidl.impl.OptionsImpl#getSensorLanguage <em>Sensor Language</em>}</li>
  *   <li>{@link sensidl.impl.OptionsImpl#getReceiverLanguage <em>Receiver Language</em>}</li>
+ *   <li>{@link sensidl.impl.OptionsImpl#getEndianess <em>Endianess</em>}</li>
  * </ul>
  * </p>
  *
@@ -64,6 +66,26 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
 	 * @ordered
 	 */
 	protected GenerationLanguage receiverLanguage = RECEIVER_LANGUAGE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getEndianess() <em>Endianess</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEndianess()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Endianess ENDIANESS_EDEFAULT = Endianess.BIG_ENDIAN;
+
+	/**
+	 * The cached value of the '{@link #getEndianess() <em>Endianess</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEndianess()
+	 * @generated
+	 * @ordered
+	 */
+	protected Endianess endianess = ENDIANESS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -131,6 +153,27 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Endianess getEndianess() {
+		return endianess;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEndianess(Endianess newEndianess) {
+		Endianess oldEndianess = endianess;
+		endianess = newEndianess == null ? ENDIANESS_EDEFAULT : newEndianess;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SensidlPackage.OPTIONS__ENDIANESS, oldEndianess, endianess));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -138,6 +181,8 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
 				return getSensorLanguage();
 			case SensidlPackage.OPTIONS__RECEIVER_LANGUAGE:
 				return getReceiverLanguage();
+			case SensidlPackage.OPTIONS__ENDIANESS:
+				return getEndianess();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -155,6 +200,9 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
 				return;
 			case SensidlPackage.OPTIONS__RECEIVER_LANGUAGE:
 				setReceiverLanguage((GenerationLanguage)newValue);
+				return;
+			case SensidlPackage.OPTIONS__ENDIANESS:
+				setEndianess((Endianess)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -174,6 +222,9 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
 			case SensidlPackage.OPTIONS__RECEIVER_LANGUAGE:
 				setReceiverLanguage(RECEIVER_LANGUAGE_EDEFAULT);
 				return;
+			case SensidlPackage.OPTIONS__ENDIANESS:
+				setEndianess(ENDIANESS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -190,6 +241,8 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
 				return sensorLanguage != SENSOR_LANGUAGE_EDEFAULT;
 			case SensidlPackage.OPTIONS__RECEIVER_LANGUAGE:
 				return receiverLanguage != RECEIVER_LANGUAGE_EDEFAULT;
+			case SensidlPackage.OPTIONS__ENDIANESS:
+				return endianess != ENDIANESS_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -208,6 +261,8 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
 		result.append(sensorLanguage);
 		result.append(", receiverLanguage: ");
 		result.append(receiverLanguage);
+		result.append(", endianess: ");
+		result.append(endianess);
 		result.append(')');
 		return result.toString();
 	}

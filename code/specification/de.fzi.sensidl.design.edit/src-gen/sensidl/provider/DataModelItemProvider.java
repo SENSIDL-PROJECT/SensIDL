@@ -63,7 +63,6 @@ public class DataModelItemProvider
 			super.getPropertyDescriptors(object);
 
 			addTransmitPropertyDescriptor(object);
-			addCommandsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -82,28 +81,6 @@ public class DataModelItemProvider
 				 getString("_UI_DataModel_transmit_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_DataModel_transmit_feature", "_UI_DataModel_type"),
 				 SensidlPackage.Literals.DATA_MODEL__TRANSMIT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Commands feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addCommandsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DataModel_commands_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DataModel_commands_feature", "_UI_DataModel_type"),
-				 SensidlPackage.Literals.DATA_MODEL__COMMANDS,
 				 true,
 				 false,
 				 true,
@@ -217,12 +194,17 @@ public class DataModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(SensidlPackage.Literals.DATA_MODEL__DATAFIELDS,
-				 SensidlFactory.eINSTANCE.createData()));
+				 SensidlFactory.eINSTANCE.createMeasuredData()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(SensidlPackage.Literals.DATA_MODEL__DATAFIELDS,
 				 SensidlFactory.eINSTANCE.createDatastructure()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SensidlPackage.Literals.DATA_MODEL__DATAFIELDS,
+				 SensidlFactory.eINSTANCE.createNonMeasuredData()));
 
 		newChildDescriptors.add
 			(createChildParameter

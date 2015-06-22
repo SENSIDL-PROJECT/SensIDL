@@ -72,21 +72,17 @@ public class SensidlSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SensidlPackage.COMMAND: {
-				Command command = (Command)theEObject;
-				T result = caseCommand(command);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case SensidlPackage.REPRESENTATION: {
 				Representation representation = (Representation)theEObject;
 				T result = caseRepresentation(representation);
+				if (result == null) result = caseNamedElement(representation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case SensidlPackage.DATAFIELD: {
 				Datafield datafield = (Datafield)theEObject;
 				T result = caseDatafield(datafield);
+				if (result == null) result = caseNamedElement(datafield);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -94,6 +90,7 @@ public class SensidlSwitch<T> extends Switch<T> {
 				Calculated calculated = (Calculated)theEObject;
 				T result = caseCalculated(calculated);
 				if (result == null) result = caseDatafield(calculated);
+				if (result == null) result = caseNamedElement(calculated);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -107,13 +104,16 @@ public class SensidlSwitch<T> extends Switch<T> {
 				ConstantData constantData = (ConstantData)theEObject;
 				T result = caseConstantData(constantData);
 				if (result == null) result = caseDatafield(constantData);
+				if (result == null) result = caseNamedElement(constantData);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SensidlPackage.DATA: {
-				Data data = (Data)theEObject;
-				T result = caseData(data);
-				if (result == null) result = caseDatafield(data);
+			case SensidlPackage.MEASURED_DATA: {
+				MeasuredData measuredData = (MeasuredData)theEObject;
+				T result = caseMeasuredData(measuredData);
+				if (result == null) result = caseVariableData(measuredData);
+				if (result == null) result = caseDatafield(measuredData);
+				if (result == null) result = caseNamedElement(measuredData);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -121,6 +121,7 @@ public class SensidlSwitch<T> extends Switch<T> {
 				Datastructure datastructure = (Datastructure)theEObject;
 				T result = caseDatastructure(datastructure);
 				if (result == null) result = caseDatafield(datastructure);
+				if (result == null) result = caseNamedElement(datastructure);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -133,6 +134,7 @@ public class SensidlSwitch<T> extends Switch<T> {
 			case SensidlPackage.CONSTRAINT: {
 				Constraint constraint = (Constraint)theEObject;
 				T result = caseConstraint(constraint);
+				if (result == null) result = caseNamedElement(constraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -140,6 +142,7 @@ public class SensidlSwitch<T> extends Switch<T> {
 				DataConstraint dataConstraint = (DataConstraint)theEObject;
 				T result = caseDataConstraint(dataConstraint);
 				if (result == null) result = caseConstraint(dataConstraint);
+				if (result == null) result = caseNamedElement(dataConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -148,6 +151,7 @@ public class SensidlSwitch<T> extends Switch<T> {
 				T result = caseDataRange(dataRange);
 				if (result == null) result = caseDataConstraint(dataRange);
 				if (result == null) result = caseConstraint(dataRange);
+				if (result == null) result = caseNamedElement(dataRange);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -162,6 +166,30 @@ public class SensidlSwitch<T> extends Switch<T> {
 				T result = caseDataAdaption(dataAdaption);
 				if (result == null) result = caseDataConstraint(dataAdaption);
 				if (result == null) result = caseConstraint(dataAdaption);
+				if (result == null) result = caseNamedElement(dataAdaption);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SensidlPackage.NAMED_ELEMENT: {
+				NamedElement namedElement = (NamedElement)theEObject;
+				T result = caseNamedElement(namedElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SensidlPackage.VARIABLE_DATA: {
+				VariableData variableData = (VariableData)theEObject;
+				T result = caseVariableData(variableData);
+				if (result == null) result = caseDatafield(variableData);
+				if (result == null) result = caseNamedElement(variableData);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SensidlPackage.NON_MEASURED_DATA: {
+				NonMeasuredData nonMeasuredData = (NonMeasuredData)theEObject;
+				T result = caseNonMeasuredData(nonMeasuredData);
+				if (result == null) result = caseVariableData(nonMeasuredData);
+				if (result == null) result = caseDatafield(nonMeasuredData);
+				if (result == null) result = caseNamedElement(nonMeasuredData);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -181,21 +209,6 @@ public class SensidlSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDataModel(DataModel object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Command</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Command</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCommand(Command object) {
 		return null;
 	}
 
@@ -275,17 +288,17 @@ public class SensidlSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Data</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Measured Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Data</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Measured Data</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseData(Data object) {
+	public T caseMeasuredData(MeasuredData object) {
 		return null;
 	}
 
@@ -391,6 +404,51 @@ public class SensidlSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDataAdaption(DataAdaption object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedElement(NamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Variable Data</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Variable Data</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVariableData(VariableData object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Non Measured Data</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Non Measured Data</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNonMeasuredData(NonMeasuredData object) {
 		return null;
 	}
 

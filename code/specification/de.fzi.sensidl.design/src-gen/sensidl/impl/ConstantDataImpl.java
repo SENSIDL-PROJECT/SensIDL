@@ -3,16 +3,12 @@
 package sensidl.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import sensidl.ConstantData;
 import sensidl.Representation;
 import sensidl.SensidlPackage;
-import sensidl.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,45 +17,14 @@ import sensidl.Type;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link sensidl.impl.ConstantDataImpl#getType <em>Type</em>}</li>
- *   <li>{@link sensidl.impl.ConstantDataImpl#getRepresentation <em>Representation</em>}</li>
  *   <li>{@link sensidl.impl.ConstantDataImpl#getConstValue <em>Const Value</em>}</li>
+ *   <li>{@link sensidl.impl.ConstantDataImpl#getRepresentation <em>Representation</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ConstantDataImpl extends DatafieldImpl implements ConstantData {
-	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Type TYPE_EDEFAULT = Type.BOOL;
-
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected Type type = TYPE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getRepresentation() <em>Representation</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRepresentation()
-	 * @generated
-	 * @ordered
-	 */
-	protected Representation representation;
-
 	/**
 	 * The default value of the '{@link #getConstValue() <em>Const Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -81,6 +46,16 @@ public class ConstantDataImpl extends DatafieldImpl implements ConstantData {
 	protected String constValue = CONST_VALUE_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getRepresentation() <em>Representation</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRepresentation()
+	 * @generated
+	 * @ordered
+	 */
+	protected Representation representation;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -97,27 +72,6 @@ public class ConstantDataImpl extends DatafieldImpl implements ConstantData {
 	@Override
 	protected EClass eStaticClass() {
 		return SensidlPackage.Literals.CONSTANT_DATA;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Type getType() {
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setType(Type newType) {
-		Type oldType = type;
-		type = newType == null ? TYPE_EDEFAULT : newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SensidlPackage.CONSTANT_DATA__TYPE, oldType, type));
 	}
 
 	/**
@@ -187,13 +141,11 @@ public class ConstantDataImpl extends DatafieldImpl implements ConstantData {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SensidlPackage.CONSTANT_DATA__TYPE:
-				return getType();
+			case SensidlPackage.CONSTANT_DATA__CONST_VALUE:
+				return getConstValue();
 			case SensidlPackage.CONSTANT_DATA__REPRESENTATION:
 				if (resolve) return getRepresentation();
 				return basicGetRepresentation();
-			case SensidlPackage.CONSTANT_DATA__CONST_VALUE:
-				return getConstValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -206,14 +158,11 @@ public class ConstantDataImpl extends DatafieldImpl implements ConstantData {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SensidlPackage.CONSTANT_DATA__TYPE:
-				setType((Type)newValue);
+			case SensidlPackage.CONSTANT_DATA__CONST_VALUE:
+				setConstValue((String)newValue);
 				return;
 			case SensidlPackage.CONSTANT_DATA__REPRESENTATION:
 				setRepresentation((Representation)newValue);
-				return;
-			case SensidlPackage.CONSTANT_DATA__CONST_VALUE:
-				setConstValue((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -227,14 +176,11 @@ public class ConstantDataImpl extends DatafieldImpl implements ConstantData {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SensidlPackage.CONSTANT_DATA__TYPE:
-				setType(TYPE_EDEFAULT);
+			case SensidlPackage.CONSTANT_DATA__CONST_VALUE:
+				setConstValue(CONST_VALUE_EDEFAULT);
 				return;
 			case SensidlPackage.CONSTANT_DATA__REPRESENTATION:
 				setRepresentation((Representation)null);
-				return;
-			case SensidlPackage.CONSTANT_DATA__CONST_VALUE:
-				setConstValue(CONST_VALUE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -248,12 +194,10 @@ public class ConstantDataImpl extends DatafieldImpl implements ConstantData {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SensidlPackage.CONSTANT_DATA__TYPE:
-				return type != TYPE_EDEFAULT;
-			case SensidlPackage.CONSTANT_DATA__REPRESENTATION:
-				return representation != null;
 			case SensidlPackage.CONSTANT_DATA__CONST_VALUE:
 				return CONST_VALUE_EDEFAULT == null ? constValue != null : !CONST_VALUE_EDEFAULT.equals(constValue);
+			case SensidlPackage.CONSTANT_DATA__REPRESENTATION:
+				return representation != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -268,9 +212,7 @@ public class ConstantDataImpl extends DatafieldImpl implements ConstantData {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (type: ");
-		result.append(type);
-		result.append(", constValue: ");
+		result.append(" (constValue: ");
 		result.append(constValue);
 		result.append(')');
 		return result.toString();

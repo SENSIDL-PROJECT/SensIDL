@@ -2,8 +2,6 @@
  */
 package sensidl.tests;
 
-import junit.framework.TestCase;
-
 import sensidl.Constraint;
 
 /**
@@ -12,15 +10,7 @@ import sensidl.Constraint;
  * <!-- end-user-doc -->
  * @generated
  */
-public abstract class ConstraintTest extends TestCase {
-
-	/**
-	 * The fixture for this Constraint test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Constraint fixture = null;
+public abstract class ConstraintTest extends NamedElementTest {
 
 	/**
 	 * Constructs a new Constraint test case with the given name.
@@ -33,23 +23,14 @@ public abstract class ConstraintTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Constraint test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(Constraint fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Constraint test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected Constraint getFixture() {
-		return fixture;
+		return (Constraint)fixture;
 	}
 
 } //ConstraintTest

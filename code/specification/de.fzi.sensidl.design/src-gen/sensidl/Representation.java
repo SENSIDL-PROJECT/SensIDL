@@ -2,7 +2,6 @@
  */
 package sensidl;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +13,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link sensidl.Representation#getByteCount <em>Byte Count</em>}</li>
  *   <li>{@link sensidl.Representation#getType <em>Type</em>}</li>
- *   <li>{@link sensidl.Representation#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -22,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Representation extends EObject {
+public interface Representation extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Byte Count</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -77,31 +75,5 @@ public interface Representation extends EObject {
 	 * @generated
 	 */
 	void setType(Type value);
-
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see sensidl.SensidlPackage#getRepresentation_Name()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link sensidl.Representation#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
 
 } // Representation

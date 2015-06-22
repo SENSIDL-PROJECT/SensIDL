@@ -31,15 +31,6 @@ public interface SensidlFactory extends EFactory {
 	DataModel createDataModel();
 
 	/**
-	 * Returns a new object of class '<em>Command</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Command</em>'.
-	 * @generated
-	 */
-	Command createCommand();
-
-	/**
 	 * Returns a new object of class '<em>Representation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,13 +67,13 @@ public interface SensidlFactory extends EFactory {
 	ConstantData createConstantData();
 
 	/**
-	 * Returns a new object of class '<em>Data</em>'.
+	 * Returns a new object of class '<em>Measured Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Data</em>'.
+	 * @return a new object of class '<em>Measured Data</em>'.
 	 * @generated
 	 */
-	Data createData();
+	MeasuredData createMeasuredData();
 
 	/**
 	 * Returns a new object of class '<em>Datastructure</em>'.
@@ -128,6 +119,15 @@ public interface SensidlFactory extends EFactory {
 	 * @generated
 	 */
 	DataAdaption createDataAdaption();
+
+	/**
+	 * Returns a new object of class '<em>Non Measured Data</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Non Measured Data</em>'.
+	 * @generated
+	 */
+	NonMeasuredData createNonMeasuredData();
 
 	/**
 	 * Returns the package supported by this factory.

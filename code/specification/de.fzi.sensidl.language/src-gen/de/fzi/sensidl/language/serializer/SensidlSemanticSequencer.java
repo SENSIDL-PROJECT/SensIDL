@@ -17,11 +17,12 @@ import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransi
 import sensidl.Bound;
 import sensidl.Calculated;
 import sensidl.ConstantData;
-import sensidl.Data;
 import sensidl.DataAdaption;
 import sensidl.DataModel;
 import sensidl.DataRange;
 import sensidl.Datastructure;
+import sensidl.MeasuredData;
+import sensidl.NonMeasuredData;
 import sensidl.Options;
 import sensidl.Parameter;
 import sensidl.Representation;
@@ -43,28 +44,25 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 				else break;
 			case SensidlPackage.CALCULATED:
 				if(context == grammarAccess.getCalculatedRule() ||
-				   context == grammarAccess.getDatafieldRule()) {
+				   context == grammarAccess.getDatafieldRule() ||
+				   context == grammarAccess.getNamedElementRule()) {
 					sequence_Calculated(context, (Calculated) semanticObject); 
 					return; 
 				}
 				else break;
 			case SensidlPackage.CONSTANT_DATA:
 				if(context == grammarAccess.getConstantDataRule() ||
-				   context == grammarAccess.getDatafieldRule()) {
+				   context == grammarAccess.getDatafieldRule() ||
+				   context == grammarAccess.getNamedElementRule()) {
 					sequence_ConstantData(context, (ConstantData) semanticObject); 
 					return; 
 				}
 				else break;
-			case SensidlPackage.DATA:
-				if(context == grammarAccess.getDataRule() ||
-				   context == grammarAccess.getDatafieldRule()) {
-					sequence_Data(context, (Data) semanticObject); 
-					return; 
-				}
-				else break;
 			case SensidlPackage.DATA_ADAPTION:
-				if(context == grammarAccess.getDataAdaptionRule() ||
-				   context == grammarAccess.getDataConstraintRule()) {
+				if(context == grammarAccess.getConstraintRule() ||
+				   context == grammarAccess.getDataAdaptionRule() ||
+				   context == grammarAccess.getDataConstraintRule() ||
+				   context == grammarAccess.getNamedElementRule()) {
 					sequence_DataAdaption(context, (DataAdaption) semanticObject); 
 					return; 
 				}
@@ -76,16 +74,37 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 				}
 				else break;
 			case SensidlPackage.DATA_RANGE:
-				if(context == grammarAccess.getDataConstraintRule() ||
-				   context == grammarAccess.getDataRangeRule()) {
+				if(context == grammarAccess.getConstraintRule() ||
+				   context == grammarAccess.getDataConstraintRule() ||
+				   context == grammarAccess.getDataRangeRule() ||
+				   context == grammarAccess.getNamedElementRule()) {
 					sequence_DataRange(context, (DataRange) semanticObject); 
 					return; 
 				}
 				else break;
 			case SensidlPackage.DATASTRUCTURE:
 				if(context == grammarAccess.getDatafieldRule() ||
-				   context == grammarAccess.getDatastructureRule()) {
+				   context == grammarAccess.getDatastructureRule() ||
+				   context == grammarAccess.getNamedElementRule()) {
 					sequence_Datastructure(context, (Datastructure) semanticObject); 
+					return; 
+				}
+				else break;
+			case SensidlPackage.MEASURED_DATA:
+				if(context == grammarAccess.getDatafieldRule() ||
+				   context == grammarAccess.getMeasuredDataRule() ||
+				   context == grammarAccess.getNamedElementRule() ||
+				   context == grammarAccess.getVariableDataRule()) {
+					sequence_MeasuredData(context, (MeasuredData) semanticObject); 
+					return; 
+				}
+				else break;
+			case SensidlPackage.NON_MEASURED_DATA:
+				if(context == grammarAccess.getDatafieldRule() ||
+				   context == grammarAccess.getNamedElementRule() ||
+				   context == grammarAccess.getNonMeasuredDataRule() ||
+				   context == grammarAccess.getVariableDataRule()) {
+					sequence_NonMeasuredData(context, (NonMeasuredData) semanticObject); 
 					return; 
 				}
 				else break;
@@ -102,7 +121,8 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 				}
 				else break;
 			case SensidlPackage.REPRESENTATION:
-				if(context == grammarAccess.getRepresentationRule()) {
+				if(context == grammarAccess.getNamedElementRule() ||
+				   context == grammarAccess.getRepresentationRule()) {
 					sequence_Representation(context, (Representation) semanticObject); 
 					return; 
 				}
@@ -113,20 +133,10 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (value=DOUBLE unit=STRING)
+	 *     (value=DOUBLE unit=STRING?)
 	 */
 	protected void sequence_Bound(EObject context, Bound semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.BOUND__UNIT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.BOUND__UNIT));
-			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.BOUND__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.BOUND__VALUE));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getBoundAccess().getValueDOUBLEParserRuleCall_0_0(), semanticObject.getValue());
-		feeder.accept(grammarAccess.getBoundAccess().getUnitSTRINGTerminalRuleCall_1_0(), semanticObject.getUnit());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -138,7 +148,9 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *         methodName=ID 
 	 *         methodNameOut=ID? 
 	 *         parameter+=Parameter 
-	 *         parameter+=Parameter*
+	 *         parameter+=Parameter* 
+	 *         description=STRING? 
+	 *         ID=STRING?
 	 *     )
 	 */
 	protected void sequence_Calculated(EObject context, Calculated semanticObject) {
@@ -148,7 +160,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (type=Type name=ID representation=[Representation|ID] constValue=STRING?)
+	 *     (name=ID representation=[Representation|ID] constValue=STRING? description=STRING? ID=STRING?)
 	 */
 	protected void sequence_ConstantData(EObject context, ConstantData semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -157,20 +169,10 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (scalingFactor=DOUBLE offset=DOUBLE)
+	 *     (scalingFactor=DOUBLE offset=DOUBLE description=STRING? ID=STRING?)
 	 */
 	protected void sequence_DataAdaption(EObject context, DataAdaption semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.DATA_ADAPTION__SCALING_FACTOR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.DATA_ADAPTION__SCALING_FACTOR));
-			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.DATA_ADAPTION__OFFSET) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.DATA_ADAPTION__OFFSET));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDataAdaptionAccess().getScalingFactorDOUBLEParserRuleCall_3_0(), semanticObject.getScalingFactor());
-		feeder.accept(grammarAccess.getDataAdaptionAccess().getOffsetDOUBLEParserRuleCall_7_0(), semanticObject.getOffset());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -185,35 +187,16 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (lowerBound=Bound upperBound=Bound)
+	 *     (lowerBound=Bound upperBound=Bound description=STRING? ID=STRING?)
 	 */
 	protected void sequence_DataRange(EObject context, DataRange semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.DATA_RANGE__LOWER_BOUND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.DATA_RANGE__LOWER_BOUND));
-			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.DATA_RANGE__UPPER_BOUND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.DATA_RANGE__UPPER_BOUND));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getDataRangeAccess().getLowerBoundBoundParserRuleCall_1_0(), semanticObject.getLowerBound());
-		feeder.accept(grammarAccess.getDataRangeAccess().getUpperBoundBoundParserRuleCall_3_0(), semanticObject.getUpperBound());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=ID (scale=DOUBLE? unit=STRING)? representation=[Representation|ID] bitNumbering=BitNumbering? constraints+=DataConstraint*)
-	 */
-	protected void sequence_Data(EObject context, Data semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (name=ID datafields+=Datafield*)
+	 *     (name=ID datafields+=Datafield* description=STRING? ID=STRING?)
 	 */
 	protected void sequence_Datastructure(EObject context, Datastructure semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -222,10 +205,48 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     ((sensorLanguage=GenerationLanguage | receiverLanguage=GenerationLanguage)*)
+	 *     (
+	 *         name=ID 
+	 *         (scale=DOUBLE? unit=STRING)? 
+	 *         representation=[Representation|ID] 
+	 *         description=STRING? 
+	 *         ID=STRING? 
+	 *         constraints+=DataConstraint*
+	 *     )
+	 */
+	protected void sequence_MeasuredData(EObject context, MeasuredData semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (type=Type name=ID representation=[Representation|ID] description=STRING? ID=STRING?)
+	 */
+	protected void sequence_NonMeasuredData(EObject context, NonMeasuredData semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (endianess=Endianess sensorLanguage=GenerationLanguage receiverLanguage=GenerationLanguage)
 	 */
 	protected void sequence_Options(EObject context, Options semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.OPTIONS__SENSOR_LANGUAGE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.OPTIONS__SENSOR_LANGUAGE));
+			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.OPTIONS__RECEIVER_LANGUAGE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.OPTIONS__RECEIVER_LANGUAGE));
+			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.OPTIONS__ENDIANESS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.OPTIONS__ENDIANESS));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getOptionsAccess().getEndianessEndianessEnumRuleCall_1_0_2_0(), semanticObject.getEndianess());
+		feeder.accept(grammarAccess.getOptionsAccess().getSensorLanguageGenerationLanguageEnumRuleCall_1_1_3_0(), semanticObject.getSensorLanguage());
+		feeder.accept(grammarAccess.getOptionsAccess().getReceiverLanguageGenerationLanguageEnumRuleCall_1_2_3_0(), semanticObject.getReceiverLanguage());
+		feeder.finish();
 	}
 	
 	
@@ -240,22 +261,9 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name=ID byteCount=INT type=Type)
+	 *     (name=ID byteCount=INT type=Type description=STRING? ID=STRING?)
 	 */
 	protected void sequence_Representation(EObject context, Representation semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.REPRESENTATION__BYTE_COUNT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.REPRESENTATION__BYTE_COUNT));
-			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.REPRESENTATION__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.REPRESENTATION__TYPE));
-			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.REPRESENTATION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.REPRESENTATION__NAME));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getRepresentationAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getRepresentationAccess().getByteCountINTTerminalRuleCall_3_0(), semanticObject.getByteCount());
-		feeder.accept(grammarAccess.getRepresentationAccess().getTypeTypeEnumRuleCall_6_0(), semanticObject.getType());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 }

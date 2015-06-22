@@ -3,9 +3,6 @@
 package sensidl.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import sensidl.DataConstraint;
 import sensidl.SensidlPackage;
 
@@ -18,7 +15,7 @@ import sensidl.SensidlPackage;
  *
  * @generated
  */
-public abstract class DataConstraintImpl extends MinimalEObjectImpl.Container implements DataConstraint {
+public abstract class DataConstraintImpl extends NamedElementImpl implements DataConstraint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

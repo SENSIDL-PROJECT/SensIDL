@@ -2,28 +2,18 @@
  */
 package sensidl.tests;
 
-import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
 
-import sensidl.Command;
+import sensidl.NonMeasuredData;
 import sensidl.SensidlFactory;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Command</b></em>'.
+ * A test case for the model object '<em><b>Non Measured Data</b></em>'.
  * <!-- end-user-doc -->
  * @generated
  */
-public class CommandTest extends TestCase {
-
-	/**
-	 * The fixture for this Command test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Command fixture = null;
+public class NonMeasuredDataTest extends VariableDataTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -31,37 +21,28 @@ public class CommandTest extends TestCase {
 	 * @generated
 	 */
 	public static void main(String[] args) {
-		TestRunner.run(CommandTest.class);
+		TestRunner.run(NonMeasuredDataTest.class);
 	}
 
 	/**
-	 * Constructs a new Command test case with the given name.
+	 * Constructs a new Non Measured Data test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CommandTest(String name) {
+	public NonMeasuredDataTest(String name) {
 		super(name);
 	}
 
 	/**
-	 * Sets the fixture for this Command test case.
+	 * Returns the fixture for this Non Measured Data test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void setFixture(Command fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
-	 * Returns the fixture for this Command test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Command getFixture() {
-		return fixture;
+	@Override
+	protected NonMeasuredData getFixture() {
+		return (NonMeasuredData)fixture;
 	}
 
 	/**
@@ -72,7 +53,7 @@ public class CommandTest extends TestCase {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(SensidlFactory.eINSTANCE.createCommand());
+		setFixture(SensidlFactory.eINSTANCE.createNonMeasuredData());
 	}
 
 	/**
@@ -86,4 +67,4 @@ public class CommandTest extends TestCase {
 		setFixture(null);
 	}
 
-} //CommandTest
+} //NonMeasuredDataTest

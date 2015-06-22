@@ -1,0 +1,19 @@
+package de.fzi.sensidl.language.generator
+
+import org.eclipse.xtext.generator.IFileSystemAccess
+import sensidl.DataModel
+
+class CGenerator implements ICodeGenerator {
+	private DataModel input
+	private String classNameBase
+	
+	new(DataModel input, String classNameBase) {
+		this.input = input
+		this.classNameBase = classNameBase
+	}
+
+	override generateDTO(IFileSystemAccess fsa) throws UnsupportedOperationException {
+		new CDTO(input, classNameBase).generate(fsa);
+	}
+	
+}

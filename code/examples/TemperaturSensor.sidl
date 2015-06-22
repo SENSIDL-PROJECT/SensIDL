@@ -9,8 +9,9 @@
  */ 
 datamodel {
 	options {
-		receiver language: JAVA
+		Endianess : BIG_ENDIAN
 		sensor language: JAVA
+		receiver language: JAVA
 	}
 	
 	/* *
@@ -23,22 +24,23 @@ datamodel {
 	/* *
 	 * Standard-Struktur: Deklaration eines "Payloads", welcher die Daten beinhaltet.
 	 */
-	structure Payload {
-		structure Data {
+	set Payload {
+		set Data {
 		
 			/* *
 	 		 * In "Metadata" können verschiedene Metadaten spezifiziert werden, wie beispielsweise die Softwareversions.
 	 		 */	
-			structure Metadata {
-				const INT SoftwareVersion as twoByteShort
+			set Metadata {
+				const SoftwareVersion as twoByteShort
 			}
 			
 			/* *
 	 		 * Gruppierung der Messwerte des Sensors. In diesem Falls misst der Sensor die Temperatur des Gemisches mit angegebenen Intervall.
 	 		 */	
-			structure Measurements {
+			set Measurements {
 				data of temperature in "Celsius" as twoByteShort 
-					from 30 "Celsius" to 60 "Celsius" 
+					from 30 "Celsius" to 60 "Celsius"
+				description : "Die Komposition Measurement kapselt einen Temperatur-Messwert, der in einen bestimmten Intervall besitzt."				 
 			}
 		}
 		

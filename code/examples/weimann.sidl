@@ -1,18 +1,19 @@
 datamodel {
 	options {
-		receiver language: JAVA
+		Endianess : BIG_ENDIAN
 		sensor language: JAVA
+		receiver language: JAVA
 	}
 
 	repr twoByteShort is 2 byte in SHORT
 	repr oneByteByte is 1 byte in CHAR
 	repr int4Byte is 4 bytes in INT
 	
-	const CHAR IDENTIFIER as oneByteByte is "0xAA"
+	const IDENTIFIER as oneByteByte is "0xAA"
 	
-	structure Payload {
-		structure Data {
-			structure Measurements {
+	set Payload {
+		set Data {
+			set Measurements {
 				data of mFlow in 0.0078125 "L/min"
 					as twoByteShort
 				data of mTemperature in 0.1 "Celsius"
@@ -24,12 +25,12 @@ datamodel {
 				data of mTInhale in "ms" as twoByteShort
 			}
 			
-			structure Metadata {
-				const INT mSoftwareVersion as twoByteShort
-				const INT mMesswertCounter as twoByteShort
-				const INT mRecordVersion as twoByteShort
+			set Metadata {
+				const mSoftwareVersion as twoByteShort
+				const mRecordVersion as twoByteShort
 				
-				const CHAR mStatus as twoByteShort
+				basicdata INT mMesswertCounter as twoByteShort
+				basicdata CHAR mStatus as twoByteShort
 			}
 		}
 		

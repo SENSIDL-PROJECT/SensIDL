@@ -2,8 +2,6 @@
  */
 package sensidl.tests;
 
-import junit.framework.TestCase;
-
 import sensidl.Datafield;
 
 /**
@@ -12,15 +10,7 @@ import sensidl.Datafield;
  * <!-- end-user-doc -->
  * @generated
  */
-public abstract class DatafieldTest extends TestCase {
-
-	/**
-	 * The fixture for this Datafield test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Datafield fixture = null;
+public abstract class DatafieldTest extends NamedElementTest {
 
 	/**
 	 * Constructs a new Datafield test case with the given name.
@@ -33,23 +23,14 @@ public abstract class DatafieldTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Datafield test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(Datafield fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Datafield test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected Datafield getFixture() {
-		return fixture;
+		return (Datafield)fixture;
 	}
 
 } //DatafieldTest

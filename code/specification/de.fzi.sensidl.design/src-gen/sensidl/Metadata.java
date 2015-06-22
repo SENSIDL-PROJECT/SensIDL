@@ -2,6 +2,8 @@
  */
 package sensidl;
 
+import org.eclipse.emf.ecore.EObject;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -11,69 +13,66 @@ package sensidl;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link sensidl.Metadata#getType <em>Type</em>}</li>
- *   <li>{@link sensidl.Metadata#getRepresentation <em>Representation</em>}</li>
+ *   <li>{@link sensidl.Metadata#getName <em>Name</em>}</li>
+ *   <li>{@link sensidl.Metadata#getDescription <em>Description</em>}</li>
  * </ul>
  * </p>
  *
  * @see sensidl.SensidlPackage#getMetadata()
- * @model
+ * @model abstract="true"
  * @generated
  */
-public interface Metadata extends Datafield {
+public interface Metadata extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link sensidl.Type}.
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see sensidl.Type
-	 * @see #setType(Type)
-	 * @see sensidl.SensidlPackage#getMetadata_Type()
-	 * @model required="true"
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see sensidl.SensidlPackage#getMetadata_Name()
+	 * @model
 	 * @generated
 	 */
-	Type getType();
+	String getName();
 
 	/**
-	 * Sets the value of the '{@link sensidl.Metadata#getType <em>Type</em>}' attribute.
+	 * Sets the value of the '{@link sensidl.Metadata#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' attribute.
-	 * @see sensidl.Type
-	 * @see #getType()
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
 	 * @generated
 	 */
-	void setType(Type value);
+	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Representation</b></em>' reference.
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Representation</em>' reference isn't clear,
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Representation</em>' reference.
-	 * @see #setRepresentation(Representation)
-	 * @see sensidl.SensidlPackage#getMetadata_Representation()
-	 * @model required="true"
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see sensidl.SensidlPackage#getMetadata_Description()
+	 * @model
 	 * @generated
 	 */
-	Representation getRepresentation();
+	String getDescription();
 
 	/**
-	 * Sets the value of the '{@link sensidl.Metadata#getRepresentation <em>Representation</em>}' reference.
+	 * Sets the value of the '{@link sensidl.Metadata#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Representation</em>' reference.
-	 * @see #getRepresentation()
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
 	 * @generated
 	 */
-	void setRepresentation(Representation value);
+	void setDescription(String value);
 
 } // Metadata

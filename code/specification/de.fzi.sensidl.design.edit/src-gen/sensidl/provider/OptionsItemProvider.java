@@ -59,6 +59,7 @@ public class OptionsItemProvider
 
 			addSensorLanguagePropertyDescriptor(object);
 			addReceiverLanguagePropertyDescriptor(object);
+			addEndianessPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -108,6 +109,28 @@ public class OptionsItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Endianess feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEndianessPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Options_endianess_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Options_endianess_feature", "_UI_Options_type"),
+				 SensidlPackage.Literals.OPTIONS__ENDIANESS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Options.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -148,6 +171,7 @@ public class OptionsItemProvider
 		switch (notification.getFeatureID(Options.class)) {
 			case SensidlPackage.OPTIONS__SENSOR_LANGUAGE:
 			case SensidlPackage.OPTIONS__RECEIVER_LANGUAGE:
+			case SensidlPackage.OPTIONS__ENDIANESS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -31,26 +31,71 @@ DataModel:
 Options:
 	{Options}
 	(
-		("sensor" "language" ":" sensorLanguage=GenerationLanguage) |
+		("Endianess" ":" endianess=Endianess)
+		("sensor" "language" ":" sensorLanguage=GenerationLanguage) 
 		("receiver" "language" ":" receiverLanguage=GenerationLanguage)
-	)*
+	)
+;
+
+enum Endianess:
+	BIG_ENDIAN | LITTLE_ENDIAN
 ;
 
 enum GenerationLanguage:
 	JAVA | CPP | C | CSHARP
 ;
 
+NamedElement: 
+	Representation |
+	Datafield |
+	Constraint 
+;
+
+
 Representation:
 	("repr" | "representation") name=ID
 	"is" byteCount=INT ("bytes" | "byte")
 	"in" type=Type
+	("description" ":" description=STRING)?
+	("id" ":" ID=STRING)?
 ;
 
 Datafield:
+	VariableData |
 	ConstantData |
-	Data |
 	Datastructure |
-	Calculated
+	Calculated 
+;
+
+VariableData:
+	 MeasuredData |
+	 NonMeasuredData
+;
+
+MeasuredData: 
+	"data" "of"
+	name=ID
+	("in" (scale=DOUBLE)? unit=STRING)?
+	"as" representation=[Representation]
+	("description" ":" description=STRING)?
+	("id" ":" ID=STRING)? 
+	(constraints+=DataConstraint)*
+;
+
+NonMeasuredData: 
+	"basicdata" type=Type name=ID
+	"as" representation=[Representation]
+	("description" ":" description=STRING)? 
+	("id" ":" ID=STRING)?
+;
+
+
+ConstantData: 
+	"const" name=ID
+	"as" representation=[Representation]
+	("is" constValue=STRING)?
+	("description" ":" description=STRING)?
+	("id" ":" ID=STRING)?
 ;
 
 Calculated:
@@ -59,6 +104,8 @@ Calculated:
 	"as" representation=[Representation]
 	"by" methodName=ID ("," methodNameOut=ID)?
 	"with" parameter+=Parameter ("," parameter+=Parameter)*
+	("description" ":" description=STRING)?
+	("id" ":" ID=STRING)?
 ;
 
 Parameter:
@@ -68,23 +115,18 @@ Parameter:
 	")"
 ;
 
-Datastructure: 
-	"structure" name=ID "{"
+Datastructure:
+	"set" name=ID "{"
 		(datafields+=Datafield)*
+		("description" ":" description=STRING)?
+		("id" ":" ID=STRING)?
 	"}"
 ;
 
-/*
- * Einheiten noch als String
- */
-Data: 
-	"data" "of"
-	name=ID
-	("in" (scale=DOUBLE)? unit=STRING)?
-	"as" representation=[Representation]
-	("with" "bit" "numbering" bitNumbering=BitNumbering)? 
-	(constraints+=DataConstraint)*
+Constraint: 
+	DataConstraint
 ;
+
 
 DataConstraint: 
 	DataRange |
@@ -94,6 +136,8 @@ DataConstraint:
 DataRange: 
 	"from" lowerBound=Bound
 	"to" upperBound=Bound
+	("description" ":" description=STRING)?
+	("id" ":" ID=STRING)?
 ;
 
 /**
@@ -102,7 +146,9 @@ DataRange:
  */
 DataAdaption: 
 	"with" "scaling factor" ":" scalingFactor=DOUBLE
-	"and" "offset" ":" offset=DOUBLE 
+	"and" "offset" ":" offset=DOUBLE
+	("description" ":" description=STRING)?
+	("id" ":" ID=STRING)? 
 ;
 
 
@@ -110,14 +156,7 @@ DataAdaption:
  * Einheiten noch als String
  */
 Bound: 
-	value=DOUBLE unit=STRING
-;
-
-
-ConstantData: 
-	"const" type=Type name=ID
-	"as" representation=[Representation]
-	("is" constValue=STRING)?
+	value=DOUBLE (unit=STRING)?
 ;
 
 DOUBLE returns ecore::EDouble: INT ('.' INT)?;
@@ -131,8 +170,4 @@ enum ArgumentType:
 
 enum Type:
 	BOOL | CHAR | SHORT | INT | LONG | LONGLONG | FLOAT | DOUBLE | LONGDOUBLE
-;
-
-enum BitNumbering:
-	LSB | MSB
 ;

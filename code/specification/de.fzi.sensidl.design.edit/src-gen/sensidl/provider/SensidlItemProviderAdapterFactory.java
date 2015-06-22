@@ -95,29 +95,6 @@ public class SensidlItemProviderAdapterFactory extends SensidlAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sensidl.Command} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CommandItemProvider commandItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link sensidl.Command}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCommandAdapter() {
-		if (commandItemProvider == null) {
-			commandItemProvider = new CommandItemProvider(this);
-		}
-
-		return commandItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link sensidl.Representation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -210,26 +187,26 @@ public class SensidlItemProviderAdapterFactory extends SensidlAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link sensidl.Data} instances.
+	 * This keeps track of the one adapter used for all {@link sensidl.MeasuredData} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DataItemProvider dataItemProvider;
+	protected MeasuredDataItemProvider measuredDataItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link sensidl.Data}.
+	 * This creates an adapter for a {@link sensidl.MeasuredData}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createDataAdapter() {
-		if (dataItemProvider == null) {
-			dataItemProvider = new DataItemProvider(this);
+	public Adapter createMeasuredDataAdapter() {
+		if (measuredDataItemProvider == null) {
+			measuredDataItemProvider = new MeasuredDataItemProvider(this);
 		}
 
-		return dataItemProvider;
+		return measuredDataItemProvider;
 	}
 
 	/**
@@ -348,6 +325,29 @@ public class SensidlItemProviderAdapterFactory extends SensidlAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link sensidl.NonMeasuredData} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NonMeasuredDataItemProvider nonMeasuredDataItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link sensidl.NonMeasuredData}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNonMeasuredDataAdapter() {
+		if (nonMeasuredDataItemProvider == null) {
+			nonMeasuredDataItemProvider = new NonMeasuredDataItemProvider(this);
+		}
+
+		return nonMeasuredDataItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -447,17 +447,17 @@ public class SensidlItemProviderAdapterFactory extends SensidlAdapterFactory imp
 	 */
 	public void dispose() {
 		if (dataModelItemProvider != null) dataModelItemProvider.dispose();
-		if (commandItemProvider != null) commandItemProvider.dispose();
 		if (representationItemProvider != null) representationItemProvider.dispose();
 		if (calculatedItemProvider != null) calculatedItemProvider.dispose();
 		if (parameterItemProvider != null) parameterItemProvider.dispose();
 		if (constantDataItemProvider != null) constantDataItemProvider.dispose();
-		if (dataItemProvider != null) dataItemProvider.dispose();
+		if (measuredDataItemProvider != null) measuredDataItemProvider.dispose();
 		if (datastructureItemProvider != null) datastructureItemProvider.dispose();
 		if (optionsItemProvider != null) optionsItemProvider.dispose();
 		if (dataRangeItemProvider != null) dataRangeItemProvider.dispose();
 		if (boundItemProvider != null) boundItemProvider.dispose();
 		if (dataAdaptionItemProvider != null) dataAdaptionItemProvider.dispose();
+		if (nonMeasuredDataItemProvider != null) nonMeasuredDataItemProvider.dispose();
 	}
 
 }
