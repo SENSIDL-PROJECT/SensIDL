@@ -130,39 +130,70 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_1_0_1 = (Keyword)cGroup_1_0.eContents().get(1);
 		private final Assignment cEndianessAssignment_1_0_2 = (Assignment)cGroup_1_0.eContents().get(2);
 		private final RuleCall cEndianessEndianessEnumRuleCall_1_0_2_0 = (RuleCall)cEndianessAssignment_1_0_2.eContents().get(0);
+		private final Keyword cSemicolonKeyword_1_0_3 = (Keyword)cGroup_1_0.eContents().get(3);
 		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
 		private final Keyword cSensorKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
-		private final Keyword cLanguageKeyword_1_1_1 = (Keyword)cGroup_1_1.eContents().get(1);
+		private final Keyword cOptionsKeyword_1_1_1 = (Keyword)cGroup_1_1.eContents().get(1);
 		private final Keyword cColonKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
-		private final Assignment cSensorLanguageAssignment_1_1_3 = (Assignment)cGroup_1_1.eContents().get(3);
-		private final RuleCall cSensorLanguageGenerationLanguageEnumRuleCall_1_1_3_0 = (RuleCall)cSensorLanguageAssignment_1_1_3.eContents().get(0);
 		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
-		private final Keyword cReceiverKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
+		private final Keyword cSensorKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
 		private final Keyword cLanguageKeyword_1_2_1 = (Keyword)cGroup_1_2.eContents().get(1);
 		private final Keyword cColonKeyword_1_2_2 = (Keyword)cGroup_1_2.eContents().get(2);
-		private final Assignment cReceiverLanguageAssignment_1_2_3 = (Assignment)cGroup_1_2.eContents().get(3);
-		private final RuleCall cReceiverLanguageGenerationLanguageEnumRuleCall_1_2_3_0 = (RuleCall)cReceiverLanguageAssignment_1_2_3.eContents().get(0);
+		private final Assignment cSensorLanguageAssignment_1_2_3 = (Assignment)cGroup_1_2.eContents().get(3);
+		private final RuleCall cSensorLanguageGenerationLanguageEnumRuleCall_1_2_3_0 = (RuleCall)cSensorLanguageAssignment_1_2_3.eContents().get(0);
+		private final Keyword cSemicolonKeyword_1_2_4 = (Keyword)cGroup_1_2.eContents().get(4);
+		private final Group cGroup_1_3 = (Group)cGroup_1.eContents().get(3);
+		private final Keyword cSensorKeyword_1_3_0 = (Keyword)cGroup_1_3.eContents().get(0);
+		private final Keyword cAlignmentKeyword_1_3_1 = (Keyword)cGroup_1_3.eContents().get(1);
+		private final Keyword cColonKeyword_1_3_2 = (Keyword)cGroup_1_3.eContents().get(2);
+		private final Assignment cSensorAlignmentAssignment_1_3_3 = (Assignment)cGroup_1_3.eContents().get(3);
+		private final RuleCall cSensorAlignmentAlignmentEnumRuleCall_1_3_3_0 = (RuleCall)cSensorAlignmentAssignment_1_3_3.eContents().get(0);
+		private final Keyword cSemicolonKeyword_1_3_4 = (Keyword)cGroup_1_3.eContents().get(4);
+		private final Group cGroup_1_4 = (Group)cGroup_1.eContents().get(4);
+		private final Keyword cReceiverKeyword_1_4_0 = (Keyword)cGroup_1_4.eContents().get(0);
+		private final Keyword cOptionsKeyword_1_4_1 = (Keyword)cGroup_1_4.eContents().get(1);
+		private final Keyword cColonKeyword_1_4_2 = (Keyword)cGroup_1_4.eContents().get(2);
+		private final Group cGroup_1_5 = (Group)cGroup_1.eContents().get(5);
+		private final Keyword cReceiverKeyword_1_5_0 = (Keyword)cGroup_1_5.eContents().get(0);
+		private final Keyword cLanguageKeyword_1_5_1 = (Keyword)cGroup_1_5.eContents().get(1);
+		private final Keyword cColonKeyword_1_5_2 = (Keyword)cGroup_1_5.eContents().get(2);
+		private final Assignment cReceiverLanguageAssignment_1_5_3 = (Assignment)cGroup_1_5.eContents().get(3);
+		private final RuleCall cReceiverLanguageGenerationLanguageEnumRuleCall_1_5_3_0 = (RuleCall)cReceiverLanguageAssignment_1_5_3.eContents().get(0);
+		private final Keyword cSemicolonKeyword_1_5_4 = (Keyword)cGroup_1_5.eContents().get(4);
+		private final Group cGroup_1_6 = (Group)cGroup_1.eContents().get(6);
+		private final Keyword cReceiverKeyword_1_6_0 = (Keyword)cGroup_1_6.eContents().get(0);
+		private final Keyword cAlignmentKeyword_1_6_1 = (Keyword)cGroup_1_6.eContents().get(1);
+		private final Keyword cColonKeyword_1_6_2 = (Keyword)cGroup_1_6.eContents().get(2);
+		private final Assignment cReceiverAlignmentAssignment_1_6_3 = (Assignment)cGroup_1_6.eContents().get(3);
+		private final RuleCall cReceiverAlignmentAlignmentEnumRuleCall_1_6_3_0 = (RuleCall)cReceiverAlignmentAssignment_1_6_3.eContents().get(0);
+		private final Keyword cSemicolonKeyword_1_6_4 = (Keyword)cGroup_1_6.eContents().get(4);
 		
 		//Options:
-		//	{Options} (("Endianess" ":" endianess=Endianess) ("sensor" "language" ":" sensorLanguage=GenerationLanguage)
-		//	("receiver" "language" ":" receiverLanguage=GenerationLanguage));
+		//	{Options} (("endianess" ":" endianess=Endianess ";") ("sensor" "options" ":") ("sensor" "language" ":"
+		//	sensorLanguage=GenerationLanguage ";") ("sensor" "alignment" ":" sensorAlignment=Alignment ";") ("receiver" "options"
+		//	":") ("receiver" "language" ":" receiverLanguage=GenerationLanguage ";") ("receiver" "alignment" ":"
+		//	receiverAlignment=Alignment ";"));
 		public ParserRule getRule() { return rule; }
 
-		//{Options} (("Endianess" ":" endianess=Endianess) ("sensor" "language" ":" sensorLanguage=GenerationLanguage) ("receiver"
-		//"language" ":" receiverLanguage=GenerationLanguage))
+		//{Options} (("endianess" ":" endianess=Endianess ";") ("sensor" "options" ":") ("sensor" "language" ":"
+		//sensorLanguage=GenerationLanguage ";") ("sensor" "alignment" ":" sensorAlignment=Alignment ";") ("receiver" "options"
+		//":") ("receiver" "language" ":" receiverLanguage=GenerationLanguage ";") ("receiver" "alignment" ":"
+		//receiverAlignment=Alignment ";"))
 		public Group getGroup() { return cGroup; }
 
 		//{Options}
 		public Action getOptionsAction_0() { return cOptionsAction_0; }
 
-		//("Endianess" ":" endianess=Endianess) ("sensor" "language" ":" sensorLanguage=GenerationLanguage) ("receiver" "language"
-		//":" receiverLanguage=GenerationLanguage)
+		//("endianess" ":" endianess=Endianess ";") ("sensor" "options" ":") ("sensor" "language" ":"
+		//sensorLanguage=GenerationLanguage ";") ("sensor" "alignment" ":" sensorAlignment=Alignment ";") ("receiver" "options"
+		//":") ("receiver" "language" ":" receiverLanguage=GenerationLanguage ";") ("receiver" "alignment" ":"
+		//receiverAlignment=Alignment ";")
 		public Group getGroup_1() { return cGroup_1; }
 
-		//"Endianess" ":" endianess=Endianess
+		//"endianess" ":" endianess=Endianess ";"
 		public Group getGroup_1_0() { return cGroup_1_0; }
 
-		//"Endianess"
+		//"endianess"
 		public Keyword getEndianessKeyword_1_0_0() { return cEndianessKeyword_1_0_0; }
 
 		//":"
@@ -174,29 +205,26 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		//Endianess
 		public RuleCall getEndianessEndianessEnumRuleCall_1_0_2_0() { return cEndianessEndianessEnumRuleCall_1_0_2_0; }
 
-		//"sensor" "language" ":" sensorLanguage=GenerationLanguage
+		//";"
+		public Keyword getSemicolonKeyword_1_0_3() { return cSemicolonKeyword_1_0_3; }
+
+		//"sensor" "options" ":"
 		public Group getGroup_1_1() { return cGroup_1_1; }
 
 		//"sensor"
 		public Keyword getSensorKeyword_1_1_0() { return cSensorKeyword_1_1_0; }
 
-		//"language"
-		public Keyword getLanguageKeyword_1_1_1() { return cLanguageKeyword_1_1_1; }
+		//"options"
+		public Keyword getOptionsKeyword_1_1_1() { return cOptionsKeyword_1_1_1; }
 
 		//":"
 		public Keyword getColonKeyword_1_1_2() { return cColonKeyword_1_1_2; }
 
-		//sensorLanguage=GenerationLanguage
-		public Assignment getSensorLanguageAssignment_1_1_3() { return cSensorLanguageAssignment_1_1_3; }
-
-		//GenerationLanguage
-		public RuleCall getSensorLanguageGenerationLanguageEnumRuleCall_1_1_3_0() { return cSensorLanguageGenerationLanguageEnumRuleCall_1_1_3_0; }
-
-		//"receiver" "language" ":" receiverLanguage=GenerationLanguage
+		//"sensor" "language" ":" sensorLanguage=GenerationLanguage ";"
 		public Group getGroup_1_2() { return cGroup_1_2; }
 
-		//"receiver"
-		public Keyword getReceiverKeyword_1_2_0() { return cReceiverKeyword_1_2_0; }
+		//"sensor"
+		public Keyword getSensorKeyword_1_2_0() { return cSensorKeyword_1_2_0; }
 
 		//"language"
 		public Keyword getLanguageKeyword_1_2_1() { return cLanguageKeyword_1_2_1; }
@@ -204,11 +232,89 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_1_2_2() { return cColonKeyword_1_2_2; }
 
-		//receiverLanguage=GenerationLanguage
-		public Assignment getReceiverLanguageAssignment_1_2_3() { return cReceiverLanguageAssignment_1_2_3; }
+		//sensorLanguage=GenerationLanguage
+		public Assignment getSensorLanguageAssignment_1_2_3() { return cSensorLanguageAssignment_1_2_3; }
 
 		//GenerationLanguage
-		public RuleCall getReceiverLanguageGenerationLanguageEnumRuleCall_1_2_3_0() { return cReceiverLanguageGenerationLanguageEnumRuleCall_1_2_3_0; }
+		public RuleCall getSensorLanguageGenerationLanguageEnumRuleCall_1_2_3_0() { return cSensorLanguageGenerationLanguageEnumRuleCall_1_2_3_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_1_2_4() { return cSemicolonKeyword_1_2_4; }
+
+		//"sensor" "alignment" ":" sensorAlignment=Alignment ";"
+		public Group getGroup_1_3() { return cGroup_1_3; }
+
+		//"sensor"
+		public Keyword getSensorKeyword_1_3_0() { return cSensorKeyword_1_3_0; }
+
+		//"alignment"
+		public Keyword getAlignmentKeyword_1_3_1() { return cAlignmentKeyword_1_3_1; }
+
+		//":"
+		public Keyword getColonKeyword_1_3_2() { return cColonKeyword_1_3_2; }
+
+		//sensorAlignment=Alignment
+		public Assignment getSensorAlignmentAssignment_1_3_3() { return cSensorAlignmentAssignment_1_3_3; }
+
+		//Alignment
+		public RuleCall getSensorAlignmentAlignmentEnumRuleCall_1_3_3_0() { return cSensorAlignmentAlignmentEnumRuleCall_1_3_3_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_1_3_4() { return cSemicolonKeyword_1_3_4; }
+
+		//"receiver" "options" ":"
+		public Group getGroup_1_4() { return cGroup_1_4; }
+
+		//"receiver"
+		public Keyword getReceiverKeyword_1_4_0() { return cReceiverKeyword_1_4_0; }
+
+		//"options"
+		public Keyword getOptionsKeyword_1_4_1() { return cOptionsKeyword_1_4_1; }
+
+		//":"
+		public Keyword getColonKeyword_1_4_2() { return cColonKeyword_1_4_2; }
+
+		//"receiver" "language" ":" receiverLanguage=GenerationLanguage ";"
+		public Group getGroup_1_5() { return cGroup_1_5; }
+
+		//"receiver"
+		public Keyword getReceiverKeyword_1_5_0() { return cReceiverKeyword_1_5_0; }
+
+		//"language"
+		public Keyword getLanguageKeyword_1_5_1() { return cLanguageKeyword_1_5_1; }
+
+		//":"
+		public Keyword getColonKeyword_1_5_2() { return cColonKeyword_1_5_2; }
+
+		//receiverLanguage=GenerationLanguage
+		public Assignment getReceiverLanguageAssignment_1_5_3() { return cReceiverLanguageAssignment_1_5_3; }
+
+		//GenerationLanguage
+		public RuleCall getReceiverLanguageGenerationLanguageEnumRuleCall_1_5_3_0() { return cReceiverLanguageGenerationLanguageEnumRuleCall_1_5_3_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_1_5_4() { return cSemicolonKeyword_1_5_4; }
+
+		//"receiver" "alignment" ":" receiverAlignment=Alignment ";"
+		public Group getGroup_1_6() { return cGroup_1_6; }
+
+		//"receiver"
+		public Keyword getReceiverKeyword_1_6_0() { return cReceiverKeyword_1_6_0; }
+
+		//"alignment"
+		public Keyword getAlignmentKeyword_1_6_1() { return cAlignmentKeyword_1_6_1; }
+
+		//":"
+		public Keyword getColonKeyword_1_6_2() { return cColonKeyword_1_6_2; }
+
+		//receiverAlignment=Alignment
+		public Assignment getReceiverAlignmentAssignment_1_6_3() { return cReceiverAlignmentAssignment_1_6_3; }
+
+		//Alignment
+		public RuleCall getReceiverAlignmentAlignmentEnumRuleCall_1_6_3_0() { return cReceiverAlignmentAlignmentEnumRuleCall_1_6_3_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_1_6_4() { return cSemicolonKeyword_1_6_4; }
 	}
 
 	public class NamedElementElements extends AbstractParserRuleElementFinder {
@@ -262,14 +368,15 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_8_1 = (Keyword)cGroup_8.eContents().get(1);
 		private final Assignment cIDAssignment_8_2 = (Assignment)cGroup_8.eContents().get(2);
 		private final RuleCall cIDSTRINGTerminalRuleCall_8_2_0 = (RuleCall)cIDAssignment_8_2.eContents().get(0);
+		private final Keyword cSemicolonKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
 		//Representation:
 		//	("repr" | "representation") name=ID "is" byteCount=INT ("bytes" | "byte") "in" type=Type ("description" ":"
-		//	description=STRING)? ("id" ":" ID=STRING)?;
+		//	description=STRING)? ("id" ":" ID=STRING)? ";";
 		public ParserRule getRule() { return rule; }
 
 		//("repr" | "representation") name=ID "is" byteCount=INT ("bytes" | "byte") "in" type=Type ("description" ":"
-		//description=STRING)? ("id" ":" ID=STRING)?
+		//description=STRING)? ("id" ":" ID=STRING)? ";"
 		public Group getGroup() { return cGroup; }
 
 		//"repr" | "representation"
@@ -343,6 +450,9 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//STRING
 		public RuleCall getIDSTRINGTerminalRuleCall_8_2_0() { return cIDSTRINGTerminalRuleCall_8_2_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_9() { return cSemicolonKeyword_9; }
 	}
 
 	public class DatafieldElements extends AbstractParserRuleElementFinder {
@@ -351,13 +461,14 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cVariableDataParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cConstantDataParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cDatastructureParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cCalculatedParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cDeclarationParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cCalculatedParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//Datafield:
-		//	VariableData | ConstantData | Datastructure | Calculated;
+		//	VariableData | ConstantData | Datastructure | Declaration | Calculated;
 		public ParserRule getRule() { return rule; }
 
-		//VariableData | ConstantData | Datastructure | Calculated
+		//VariableData | ConstantData | Datastructure | Declaration | Calculated
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//VariableData
@@ -369,8 +480,11 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		//Datastructure
 		public RuleCall getDatastructureParserRuleCall_2() { return cDatastructureParserRuleCall_2; }
 
+		//Declaration
+		public RuleCall getDeclarationParserRuleCall_3() { return cDeclarationParserRuleCall_3; }
+
 		//Calculated
-		public RuleCall getCalculatedParserRuleCall_3() { return cCalculatedParserRuleCall_3; }
+		public RuleCall getCalculatedParserRuleCall_4() { return cCalculatedParserRuleCall_4; }
 	}
 
 	public class VariableDataElements extends AbstractParserRuleElementFinder {
@@ -422,14 +536,15 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIDSTRINGTerminalRuleCall_7_2_0 = (RuleCall)cIDAssignment_7_2.eContents().get(0);
 		private final Assignment cConstraintsAssignment_8 = (Assignment)cGroup.eContents().get(8);
 		private final RuleCall cConstraintsDataConstraintParserRuleCall_8_0 = (RuleCall)cConstraintsAssignment_8.eContents().get(0);
+		private final Keyword cSemicolonKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
 		//MeasuredData:
 		//	"data" "of" name=ID ("in" scale=DOUBLE? unit=STRING)? "as" representation=[Representation] ("description" ":"
-		//	description=STRING)? ("id" ":" ID=STRING)? constraints+=DataConstraint*;
+		//	description=STRING)? ("id" ":" ID=STRING)? constraints+=DataConstraint* ";";
 		public ParserRule getRule() { return rule; }
 
 		//"data" "of" name=ID ("in" scale=DOUBLE? unit=STRING)? "as" representation=[Representation] ("description" ":"
-		//description=STRING)? ("id" ":" ID=STRING)? constraints+=DataConstraint*
+		//description=STRING)? ("id" ":" ID=STRING)? constraints+=DataConstraint* ";"
 		public Group getGroup() { return cGroup; }
 
 		//"data"
@@ -509,6 +624,9 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//DataConstraint
 		public RuleCall getConstraintsDataConstraintParserRuleCall_8_0() { return cConstraintsDataConstraintParserRuleCall_8_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_9() { return cSemicolonKeyword_9; }
 	}
 
 	public class NonMeasuredDataElements extends AbstractParserRuleElementFinder {
@@ -533,14 +651,15 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
 		private final Assignment cIDAssignment_6_2 = (Assignment)cGroup_6.eContents().get(2);
 		private final RuleCall cIDSTRINGTerminalRuleCall_6_2_0 = (RuleCall)cIDAssignment_6_2.eContents().get(0);
+		private final Keyword cSemicolonKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//NonMeasuredData:
 		//	"basicdata" type=Type name=ID "as" representation=[Representation] ("description" ":" description=STRING)? ("id" ":"
-		//	ID=STRING)?;
+		//	ID=STRING)? ";";
 		public ParserRule getRule() { return rule; }
 
 		//"basicdata" type=Type name=ID "as" representation=[Representation] ("description" ":" description=STRING)? ("id" ":"
-		//ID=STRING)?
+		//ID=STRING)? ";"
 		public Group getGroup() { return cGroup; }
 
 		//"basicdata"
@@ -599,6 +718,9 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//STRING
 		public RuleCall getIDSTRINGTerminalRuleCall_6_2_0() { return cIDSTRINGTerminalRuleCall_6_2_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_7() { return cSemicolonKeyword_7; }
 	}
 
 	public class ConstantDataElements extends AbstractParserRuleElementFinder {
@@ -625,14 +747,15 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
 		private final Assignment cIDAssignment_6_2 = (Assignment)cGroup_6.eContents().get(2);
 		private final RuleCall cIDSTRINGTerminalRuleCall_6_2_0 = (RuleCall)cIDAssignment_6_2.eContents().get(0);
+		private final Keyword cSemicolonKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//ConstantData:
 		//	"const" name=ID "as" representation=[Representation] ("is" constValue=STRING)? ("description" ":"
-		//	description=STRING)? ("id" ":" ID=STRING)?;
+		//	description=STRING)? ("id" ":" ID=STRING)? ";";
 		public ParserRule getRule() { return rule; }
 
 		//"const" name=ID "as" representation=[Representation] ("is" constValue=STRING)? ("description" ":" description=STRING)?
-		//("id" ":" ID=STRING)?
+		//("id" ":" ID=STRING)? ";"
 		public Group getGroup() { return cGroup; }
 
 		//"const"
@@ -697,6 +820,9 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//STRING
 		public RuleCall getIDSTRINGTerminalRuleCall_6_2_0() { return cIDSTRINGTerminalRuleCall_6_2_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_7() { return cSemicolonKeyword_7; }
 	}
 
 	public class CalculatedElements extends AbstractParserRuleElementFinder {
@@ -735,15 +861,17 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_11_1 = (Keyword)cGroup_11.eContents().get(1);
 		private final Assignment cIDAssignment_11_2 = (Assignment)cGroup_11.eContents().get(2);
 		private final RuleCall cIDSTRINGTerminalRuleCall_11_2_0 = (RuleCall)cIDAssignment_11_2.eContents().get(0);
+		private final Keyword cSemicolonKeyword_12 = (Keyword)cGroup.eContents().get(12);
 		
 		//Calculated:
 		//	("calculate" | "calculated") name=ID "as" representation=[Representation] "by" methodName=ID ("," methodNameOut=ID)?
-		//	"with" parameter+=Parameter ("," parameter+=Parameter)* ("description" ":" description=STRING)? ("id" ":"
-		//	ID=STRING)?;
+		//	"with" parameter+=Parameter ("," parameter+=Parameter)* ("description" ":" description=STRING)? ("id" ":" ID=STRING)?
+		//	";";
 		public ParserRule getRule() { return rule; }
 
 		//("calculate" | "calculated") name=ID "as" representation=[Representation] "by" methodName=ID ("," methodNameOut=ID)?
 		//"with" parameter+=Parameter ("," parameter+=Parameter)* ("description" ":" description=STRING)? ("id" ":" ID=STRING)?
+		//";"
 		public Group getGroup() { return cGroup; }
 
 		//"calculate" | "calculated"
@@ -844,6 +972,9 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//STRING
 		public RuleCall getIDSTRINGTerminalRuleCall_11_2_0() { return cIDSTRINGTerminalRuleCall_11_2_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_12() { return cSemicolonKeyword_12; }
 	}
 
 	public class ParameterElements extends AbstractParserRuleElementFinder {
@@ -914,12 +1045,13 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cIDAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
 		private final RuleCall cIDSTRINGTerminalRuleCall_5_2_0 = (RuleCall)cIDAssignment_5_2.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cSemicolonKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//Datastructure:
-		//	"set" name=ID "{" datafields+=Datafield* ("description" ":" description=STRING)? ("id" ":" ID=STRING)? "}";
+		//	"set" name=ID "{" datafields+=Datafield* ("description" ":" description=STRING)? ("id" ":" ID=STRING)? "}" ";";
 		public ParserRule getRule() { return rule; }
 
-		//"set" name=ID "{" datafields+=Datafield* ("description" ":" description=STRING)? ("id" ":" ID=STRING)? "}"
+		//"set" name=ID "{" datafields+=Datafield* ("description" ":" description=STRING)? ("id" ":" ID=STRING)? "}" ";"
 		public Group getGroup() { return cGroup; }
 
 		//"set"
@@ -972,6 +1104,93 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
+
+		//";"
+		public Keyword getSemicolonKeyword_7() { return cSemicolonKeyword_7; }
+	}
+
+	public class DeclarationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Declaration");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Keyword cDeclarationKeyword_0_0 = (Keyword)cAlternatives_0.eContents().get(0);
+		private final Keyword cDeclKeyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
+		private final Assignment cDeclarationsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cDeclarationsDatastructureDeclarationParserRuleCall_1_0 = (RuleCall)cDeclarationsAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cDeclarationsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cDeclarationsDatastructureDeclarationParserRuleCall_2_1_0 = (RuleCall)cDeclarationsAssignment_2_1.eContents().get(0);
+		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//Declaration:
+		//	("declaration" | "decl") declarations+=DatastructureDeclaration ("," declarations+=DatastructureDeclaration)* ";";
+		public ParserRule getRule() { return rule; }
+
+		//("declaration" | "decl") declarations+=DatastructureDeclaration ("," declarations+=DatastructureDeclaration)* ";"
+		public Group getGroup() { return cGroup; }
+
+		//"declaration" | "decl"
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+
+		//"declaration"
+		public Keyword getDeclarationKeyword_0_0() { return cDeclarationKeyword_0_0; }
+
+		//"decl"
+		public Keyword getDeclKeyword_0_1() { return cDeclKeyword_0_1; }
+
+		//declarations+=DatastructureDeclaration
+		public Assignment getDeclarationsAssignment_1() { return cDeclarationsAssignment_1; }
+
+		//DatastructureDeclaration
+		public RuleCall getDeclarationsDatastructureDeclarationParserRuleCall_1_0() { return cDeclarationsDatastructureDeclarationParserRuleCall_1_0; }
+
+		//("," declarations+=DatastructureDeclaration)*
+		public Group getGroup_2() { return cGroup_2; }
+
+		//","
+		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+
+		//declarations+=DatastructureDeclaration
+		public Assignment getDeclarationsAssignment_2_1() { return cDeclarationsAssignment_2_1; }
+
+		//DatastructureDeclaration
+		public RuleCall getDeclarationsDatastructureDeclarationParserRuleCall_2_1_0() { return cDeclarationsDatastructureDeclarationParserRuleCall_2_1_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
+	}
+
+	public class DatastructureDeclarationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DatastructureDeclaration");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cReusedDatastructureAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cReusedDatastructureDatastructureCrossReference_0_0 = (CrossReference)cReusedDatastructureAssignment_0.eContents().get(0);
+		private final RuleCall cReusedDatastructureDatastructureIDTerminalRuleCall_0_0_1 = (RuleCall)cReusedDatastructureDatastructureCrossReference_0_0.eContents().get(1);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		
+		//DatastructureDeclaration:
+		//	reusedDatastructure=[Datastructure] name=ID;
+		public ParserRule getRule() { return rule; }
+
+		//reusedDatastructure=[Datastructure] name=ID
+		public Group getGroup() { return cGroup; }
+
+		//reusedDatastructure=[Datastructure]
+		public Assignment getReusedDatastructureAssignment_0() { return cReusedDatastructureAssignment_0; }
+
+		//[Datastructure]
+		public CrossReference getReusedDatastructureDatastructureCrossReference_0_0() { return cReusedDatastructureDatastructureCrossReference_0_0; }
+
+		//ID
+		public RuleCall getReusedDatastructureDatastructureIDTerminalRuleCall_0_0_1() { return cReusedDatastructureDatastructureIDTerminalRuleCall_0_0_1; }
+
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 	}
 
 	public class ConstraintElements extends AbstractParserRuleElementFinder {
@@ -1238,6 +1457,50 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
+	public class AlignmentElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "Alignment");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration c_8BITEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword c_8BIT_8BITKeyword_0_0 = (Keyword)c_8BITEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration c_16BITEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword c_16BIT_16BITKeyword_1_0 = (Keyword)c_16BITEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration c_32BITEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword c_32BIT_32BITKeyword_2_0 = (Keyword)c_32BITEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration c_64BITEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword c_64BIT_64BITKeyword_3_0 = (Keyword)c_64BITEnumLiteralDeclaration_3.eContents().get(0);
+		
+		//enum Alignment:
+		//	_8BIT | _16BIT | _32BIT | _64BIT;
+		public EnumRule getRule() { return rule; }
+
+		//_8BIT | _16BIT | _32BIT | _64BIT
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//_8BIT
+		public EnumLiteralDeclaration get_8BITEnumLiteralDeclaration_0() { return c_8BITEnumLiteralDeclaration_0; }
+
+		//"_8BIT"
+		public Keyword get_8BIT_8BITKeyword_0_0() { return c_8BIT_8BITKeyword_0_0; }
+
+		//_16BIT
+		public EnumLiteralDeclaration get_16BITEnumLiteralDeclaration_1() { return c_16BITEnumLiteralDeclaration_1; }
+
+		//"_16BIT"
+		public Keyword get_16BIT_16BITKeyword_1_0() { return c_16BIT_16BITKeyword_1_0; }
+
+		//_32BIT
+		public EnumLiteralDeclaration get_32BITEnumLiteralDeclaration_2() { return c_32BITEnumLiteralDeclaration_2; }
+
+		//"_32BIT"
+		public Keyword get_32BIT_32BITKeyword_2_0() { return c_32BIT_32BITKeyword_2_0; }
+
+		//_64BIT
+		public EnumLiteralDeclaration get_64BITEnumLiteralDeclaration_3() { return c_64BITEnumLiteralDeclaration_3; }
+
+		//"_64BIT"
+		public Keyword get_64BIT_64BITKeyword_3_0() { return c_64BIT_64BITKeyword_3_0; }
+	}
+
 	public class EndianessElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "Endianess");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -1414,6 +1677,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private final DataModelElements pDataModel;
 	private final OptionsElements pOptions;
+	private final AlignmentElements unknownRuleAlignment;
 	private final EndianessElements unknownRuleEndianess;
 	private final GenerationLanguageElements unknownRuleGenerationLanguage;
 	private final NamedElementElements pNamedElement;
@@ -1426,6 +1690,8 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	private final CalculatedElements pCalculated;
 	private final ParameterElements pParameter;
 	private final DatastructureElements pDatastructure;
+	private final DeclarationElements pDeclaration;
+	private final DatastructureDeclarationElements pDatastructureDeclaration;
 	private final ConstraintElements pConstraint;
 	private final DataConstraintElements pDataConstraint;
 	private final DataRangeElements pDataRange;
@@ -1446,6 +1712,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		this.gaTerminals = gaTerminals;
 		this.pDataModel = new DataModelElements();
 		this.pOptions = new OptionsElements();
+		this.unknownRuleAlignment = new AlignmentElements();
 		this.unknownRuleEndianess = new EndianessElements();
 		this.unknownRuleGenerationLanguage = new GenerationLanguageElements();
 		this.pNamedElement = new NamedElementElements();
@@ -1458,6 +1725,8 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		this.pCalculated = new CalculatedElements();
 		this.pParameter = new ParameterElements();
 		this.pDatastructure = new DatastructureElements();
+		this.pDeclaration = new DeclarationElements();
+		this.pDatastructureDeclaration = new DatastructureDeclarationElements();
 		this.pConstraint = new ConstraintElements();
 		this.pDataConstraint = new DataConstraintElements();
 		this.pDataRange = new DataRangeElements();
@@ -1507,14 +1776,26 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Options:
-	//	{Options} (("Endianess" ":" endianess=Endianess) ("sensor" "language" ":" sensorLanguage=GenerationLanguage)
-	//	("receiver" "language" ":" receiverLanguage=GenerationLanguage));
+	//	{Options} (("endianess" ":" endianess=Endianess ";") ("sensor" "options" ":") ("sensor" "language" ":"
+	//	sensorLanguage=GenerationLanguage ";") ("sensor" "alignment" ":" sensorAlignment=Alignment ";") ("receiver" "options"
+	//	":") ("receiver" "language" ":" receiverLanguage=GenerationLanguage ";") ("receiver" "alignment" ":"
+	//	receiverAlignment=Alignment ";"));
 	public OptionsElements getOptionsAccess() {
 		return pOptions;
 	}
 	
 	public ParserRule getOptionsRule() {
 		return getOptionsAccess().getRule();
+	}
+
+	//enum Alignment:
+	//	_8BIT | _16BIT | _32BIT | _64BIT;
+	public AlignmentElements getAlignmentAccess() {
+		return unknownRuleAlignment;
+	}
+	
+	public EnumRule getAlignmentRule() {
+		return getAlignmentAccess().getRule();
 	}
 
 	//enum Endianess:
@@ -1549,7 +1830,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Representation:
 	//	("repr" | "representation") name=ID "is" byteCount=INT ("bytes" | "byte") "in" type=Type ("description" ":"
-	//	description=STRING)? ("id" ":" ID=STRING)?;
+	//	description=STRING)? ("id" ":" ID=STRING)? ";";
 	public RepresentationElements getRepresentationAccess() {
 		return pRepresentation;
 	}
@@ -1559,7 +1840,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Datafield:
-	//	VariableData | ConstantData | Datastructure | Calculated;
+	//	VariableData | ConstantData | Datastructure | Declaration | Calculated;
 	public DatafieldElements getDatafieldAccess() {
 		return pDatafield;
 	}
@@ -1580,7 +1861,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 	//MeasuredData:
 	//	"data" "of" name=ID ("in" scale=DOUBLE? unit=STRING)? "as" representation=[Representation] ("description" ":"
-	//	description=STRING)? ("id" ":" ID=STRING)? constraints+=DataConstraint*;
+	//	description=STRING)? ("id" ":" ID=STRING)? constraints+=DataConstraint* ";";
 	public MeasuredDataElements getMeasuredDataAccess() {
 		return pMeasuredData;
 	}
@@ -1591,7 +1872,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 	//NonMeasuredData:
 	//	"basicdata" type=Type name=ID "as" representation=[Representation] ("description" ":" description=STRING)? ("id" ":"
-	//	ID=STRING)?;
+	//	ID=STRING)? ";";
 	public NonMeasuredDataElements getNonMeasuredDataAccess() {
 		return pNonMeasuredData;
 	}
@@ -1602,7 +1883,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 	//ConstantData:
 	//	"const" name=ID "as" representation=[Representation] ("is" constValue=STRING)? ("description" ":"
-	//	description=STRING)? ("id" ":" ID=STRING)?;
+	//	description=STRING)? ("id" ":" ID=STRING)? ";";
 	public ConstantDataElements getConstantDataAccess() {
 		return pConstantData;
 	}
@@ -1613,8 +1894,8 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Calculated:
 	//	("calculate" | "calculated") name=ID "as" representation=[Representation] "by" methodName=ID ("," methodNameOut=ID)?
-	//	"with" parameter+=Parameter ("," parameter+=Parameter)* ("description" ":" description=STRING)? ("id" ":"
-	//	ID=STRING)?;
+	//	"with" parameter+=Parameter ("," parameter+=Parameter)* ("description" ":" description=STRING)? ("id" ":" ID=STRING)?
+	//	";";
 	public CalculatedElements getCalculatedAccess() {
 		return pCalculated;
 	}
@@ -1634,13 +1915,33 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Datastructure:
-	//	"set" name=ID "{" datafields+=Datafield* ("description" ":" description=STRING)? ("id" ":" ID=STRING)? "}";
+	//	"set" name=ID "{" datafields+=Datafield* ("description" ":" description=STRING)? ("id" ":" ID=STRING)? "}" ";";
 	public DatastructureElements getDatastructureAccess() {
 		return pDatastructure;
 	}
 	
 	public ParserRule getDatastructureRule() {
 		return getDatastructureAccess().getRule();
+	}
+
+	//Declaration:
+	//	("declaration" | "decl") declarations+=DatastructureDeclaration ("," declarations+=DatastructureDeclaration)* ";";
+	public DeclarationElements getDeclarationAccess() {
+		return pDeclaration;
+	}
+	
+	public ParserRule getDeclarationRule() {
+		return getDeclarationAccess().getRule();
+	}
+
+	//DatastructureDeclaration:
+	//	reusedDatastructure=[Datastructure] name=ID;
+	public DatastructureDeclarationElements getDatastructureDeclarationAccess() {
+		return pDatastructureDeclaration;
+	}
+	
+	public ParserRule getDatastructureDeclarationRule() {
+		return getDatastructureDeclarationAccess().getRule();
 	}
 
 	//Constraint:

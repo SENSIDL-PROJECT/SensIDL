@@ -12,8 +12,9 @@ class CGenerator implements ICodeGenerator {
 		this.classNameBase = classNameBase
 	}
 
-	override generateDTO(IFileSystemAccess fsa) throws UnsupportedOperationException {
-		new CDTO(input, classNameBase).generate(fsa);
+	override generateDTO(IFileSystemAccess fsa) {
+		//new CDTO(input, classNameBase).generate(fsa);
+		throw new UnsupportedOperationException("C++ code-generation is not supported yet")
 	}
 	
 }

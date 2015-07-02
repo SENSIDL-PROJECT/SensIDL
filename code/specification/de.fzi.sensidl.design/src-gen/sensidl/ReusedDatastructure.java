@@ -4,6 +4,8 @@ package sensidl;
 
 import org.eclipse.emf.ecore.EObject;
 
+
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Reused Datastructure</b></em>'.
@@ -12,8 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link sensidl.ReusedDatastructure#getReusedDatafields <em>Reused Datafields</em>}</li>
  *   <li>{@link sensidl.ReusedDatastructure#getName <em>Name</em>}</li>
- *   <li>{@link sensidl.ReusedDatastructure#getDatastructure <em>Datastructure</em>}</li>
  * </ul>
  * </p>
  *
@@ -22,6 +24,32 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface ReusedDatastructure extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Reused Datafields</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Reused Datafields</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Reused Datafields</em>' reference.
+	 * @see #setReusedDatafields(Datastructure)
+	 * @see sensidl.SensidlPackage#getReusedDatastructure_ReusedDatafields()
+	 * @model required="true"
+	 * @generated
+	 */
+	Datastructure getReusedDatafields();
+
+	/**
+	 * Sets the value of the '{@link sensidl.ReusedDatastructure#getReusedDatafields <em>Reused Datafields</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Reused Datafields</em>' reference.
+	 * @see #getReusedDatafields()
+	 * @generated
+	 */
+	void setReusedDatafields(Datastructure value);
+
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -47,31 +75,5 @@ public interface ReusedDatastructure extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Datastructure</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Datastructure</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Datastructure</em>' reference.
-	 * @see #setDatastructure(Datastructure)
-	 * @see sensidl.SensidlPackage#getReusedDatastructure_Datastructure()
-	 * @model required="true"
-	 * @generated
-	 */
-	Datastructure getDatastructure();
-
-	/**
-	 * Sets the value of the '{@link sensidl.ReusedDatastructure#getDatastructure <em>Datastructure</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Datastructure</em>' reference.
-	 * @see #getDatastructure()
-	 * @generated
-	 */
-	void setDatastructure(Datastructure value);
 
 } // ReusedDatastructure

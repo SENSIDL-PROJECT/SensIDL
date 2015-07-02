@@ -69,6 +69,8 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 			case SensidlPackage.BOUND: return createBound();
 			case SensidlPackage.DATA_ADAPTION: return createDataAdaption();
 			case SensidlPackage.NON_MEASURED_DATA: return createNonMeasuredData();
+			case SensidlPackage.DATASTRUCTURE_DECLARATION: return createDatastructureDeclaration();
+			case SensidlPackage.DECLARATION: return createDeclaration();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -90,6 +92,8 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 				return createGenerationLanguageFromString(eDataType, initialValue);
 			case SensidlPackage.ENDIANESS:
 				return createEndianessFromString(eDataType, initialValue);
+			case SensidlPackage.ALIGNMENT:
+				return createAlignmentFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -111,6 +115,8 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 				return convertGenerationLanguageToString(eDataType, instanceValue);
 			case SensidlPackage.ENDIANESS:
 				return convertEndianessToString(eDataType, instanceValue);
+			case SensidlPackage.ALIGNMENT:
+				return convertAlignmentToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -241,6 +247,26 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DatastructureDeclaration createDatastructureDeclaration() {
+		DatastructureDeclarationImpl datastructureDeclaration = new DatastructureDeclarationImpl();
+		return datastructureDeclaration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Declaration createDeclaration() {
+		DeclarationImpl declaration = new DeclarationImpl();
+		return declaration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Type createTypeFromString(EDataType eDataType, String initialValue) {
 		Type result = Type.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -313,6 +339,26 @@ public class SensidlFactoryImpl extends EFactoryImpl implements SensidlFactory {
 	 * @generated
 	 */
 	public String convertEndianessToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Alignment createAlignmentFromString(EDataType eDataType, String initialValue) {
+		Alignment result = Alignment.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertAlignmentToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

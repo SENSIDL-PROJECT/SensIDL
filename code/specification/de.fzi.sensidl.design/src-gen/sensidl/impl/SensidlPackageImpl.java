@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import sensidl.Alignment;
 import sensidl.ArgumentType;
 import sensidl.Bound;
 import sensidl.Calculated;
@@ -19,6 +20,8 @@ import sensidl.DataModel;
 import sensidl.DataRange;
 import sensidl.Datafield;
 import sensidl.Datastructure;
+import sensidl.DatastructureDeclaration;
+import sensidl.Declaration;
 import sensidl.Endianess;
 import sensidl.GenerationLanguage;
 import sensidl.MeasuredData;
@@ -163,6 +166,20 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass datastructureDeclarationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass declarationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum typeEEnum = null;
 
 	/**
@@ -185,6 +202,13 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * @generated
 	 */
 	private EEnum endianessEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum alignmentEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -522,6 +546,24 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getOptions_SensorAlignment() {
+		return (EAttribute)optionsEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOptions_ReceiverAlignment() {
+		return (EAttribute)optionsEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getConstraint() {
 		return constraintEClass;
 	}
@@ -693,6 +735,42 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDatastructureDeclaration() {
+		return datastructureDeclarationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDatastructureDeclaration_ReusedDatastructure() {
+		return (EReference)datastructureDeclarationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDeclaration() {
+		return declarationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeclaration_Declarations() {
+		return (EReference)declarationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getType() {
 		return typeEEnum;
 	}
@@ -722,6 +800,15 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 	 */
 	public EEnum getEndianess() {
 		return endianessEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getAlignment() {
+		return alignmentEEnum;
 	}
 
 	/**
@@ -790,6 +877,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		createEAttribute(optionsEClass, OPTIONS__SENSOR_LANGUAGE);
 		createEAttribute(optionsEClass, OPTIONS__RECEIVER_LANGUAGE);
 		createEAttribute(optionsEClass, OPTIONS__ENDIANESS);
+		createEAttribute(optionsEClass, OPTIONS__SENSOR_ALIGNMENT);
+		createEAttribute(optionsEClass, OPTIONS__RECEIVER_ALIGNMENT);
 
 		constraintEClass = createEClass(CONSTRAINT);
 
@@ -818,11 +907,18 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		nonMeasuredDataEClass = createEClass(NON_MEASURED_DATA);
 		createEAttribute(nonMeasuredDataEClass, NON_MEASURED_DATA__TYPE);
 
+		datastructureDeclarationEClass = createEClass(DATASTRUCTURE_DECLARATION);
+		createEReference(datastructureDeclarationEClass, DATASTRUCTURE_DECLARATION__REUSED_DATASTRUCTURE);
+
+		declarationEClass = createEClass(DECLARATION);
+		createEReference(declarationEClass, DECLARATION__DECLARATIONS);
+
 		// Create enums
 		typeEEnum = createEEnum(TYPE);
 		argumentTypeEEnum = createEEnum(ARGUMENT_TYPE);
 		generationLanguageEEnum = createEEnum(GENERATION_LANGUAGE);
 		endianessEEnum = createEEnum(ENDIANESS);
+		alignmentEEnum = createEEnum(ALIGNMENT);
 	}
 
 	/**
@@ -865,6 +961,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		dataAdaptionEClass.getESuperTypes().add(this.getDataConstraint());
 		variableDataEClass.getESuperTypes().add(this.getDatafield());
 		nonMeasuredDataEClass.getESuperTypes().add(this.getVariableData());
+		datastructureDeclarationEClass.getESuperTypes().add(this.getDeclaration());
+		declarationEClass.getESuperTypes().add(this.getDatafield());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(dataModelEClass, DataModel.class, "DataModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -905,6 +1003,8 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		initEAttribute(getOptions_SensorLanguage(), this.getGenerationLanguage(), "sensorLanguage", null, 0, 1, Options.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOptions_ReceiverLanguage(), this.getGenerationLanguage(), "receiverLanguage", null, 0, 1, Options.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOptions_Endianess(), this.getEndianess(), "endianess", null, 0, 1, Options.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOptions_SensorAlignment(), this.getAlignment(), "sensorAlignment", null, 0, 1, Options.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOptions_ReceiverAlignment(), this.getAlignment(), "receiverAlignment", null, 0, 1, Options.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constraintEClass, Constraint.class, "Constraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -933,6 +1033,12 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		initEClass(nonMeasuredDataEClass, NonMeasuredData.class, "NonMeasuredData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNonMeasuredData_Type(), this.getType(), "type", null, 1, 1, NonMeasuredData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(datastructureDeclarationEClass, DatastructureDeclaration.class, "DatastructureDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDatastructureDeclaration_ReusedDatastructure(), this.getDatastructure(), null, "reusedDatastructure", null, 0, 1, DatastructureDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(declarationEClass, Declaration.class, "Declaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDeclaration_Declarations(), this.getDatastructureDeclaration(), null, "declarations", null, 0, -1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(typeEEnum, Type.class, "Type");
 		addEEnumLiteral(typeEEnum, Type.BOOL);
@@ -957,6 +1063,12 @@ public class SensidlPackageImpl extends EPackageImpl implements SensidlPackage {
 		initEEnum(endianessEEnum, Endianess.class, "Endianess");
 		addEEnumLiteral(endianessEEnum, Endianess.BIG_ENDIAN);
 		addEEnumLiteral(endianessEEnum, Endianess.LITTLE_ENDIAN);
+
+		initEEnum(alignmentEEnum, Alignment.class, "Alignment");
+		addEEnumLiteral(alignmentEEnum, Alignment._8BIT);
+		addEEnumLiteral(alignmentEEnum, Alignment._16BIT);
+		addEEnumLiteral(alignmentEEnum, Alignment._32BIT);
+		addEEnumLiteral(alignmentEEnum, Alignment._64BIT);
 
 		// Create resource
 		createResource(eNS_URI);

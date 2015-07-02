@@ -348,6 +348,52 @@ public class SensidlItemProviderAdapterFactory extends SensidlAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link sensidl.DatastructureDeclaration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DatastructureDeclarationItemProvider datastructureDeclarationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link sensidl.DatastructureDeclaration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDatastructureDeclarationAdapter() {
+		if (datastructureDeclarationItemProvider == null) {
+			datastructureDeclarationItemProvider = new DatastructureDeclarationItemProvider(this);
+		}
+
+		return datastructureDeclarationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link sensidl.Declaration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DeclarationItemProvider declarationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link sensidl.Declaration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDeclarationAdapter() {
+		if (declarationItemProvider == null) {
+			declarationItemProvider = new DeclarationItemProvider(this);
+		}
+
+		return declarationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -458,6 +504,8 @@ public class SensidlItemProviderAdapterFactory extends SensidlAdapterFactory imp
 		if (boundItemProvider != null) boundItemProvider.dispose();
 		if (dataAdaptionItemProvider != null) dataAdaptionItemProvider.dispose();
 		if (nonMeasuredDataItemProvider != null) nonMeasuredDataItemProvider.dispose();
+		if (datastructureDeclarationItemProvider != null) datastructureDeclarationItemProvider.dispose();
+		if (declarationItemProvider != null) declarationItemProvider.dispose();
 	}
 
 }

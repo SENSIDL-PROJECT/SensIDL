@@ -66,6 +66,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sensorLanguage" eType="#//GenerationLanguage"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="receiverLanguage" eType="#//GenerationLanguage"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="endianess" eType="#//Endianess"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sensorAlignment" eType="#//Alignment"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="receiverAlignment" eType="#//Alignment"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="GenerationLanguage">
     <eLiterals name="JAVA"/>
@@ -107,5 +109,18 @@
   <eClassifiers xsi:type="ecore:EEnum" name="Endianess">
     <eLiterals name="BIG_ENDIAN"/>
     <eLiterals name="LITTLE_ENDIAN" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DatastructureDeclaration" eSuperTypes="#//Declaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reusedDatastructure" eType="#//Datastructure"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Declaration" eSuperTypes="#//Datafield">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declarations" upperBound="-1"
+        eType="#//DatastructureDeclaration" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Alignment">
+    <eLiterals name="_8BIT" literal="_8BIT"/>
+    <eLiterals name="_16BIT" value="1"/>
+    <eLiterals name="_32BIT" value="2"/>
+    <eLiterals name="_64BIT" value="3"/>
   </eClassifiers>
 </ecore:EPackage>

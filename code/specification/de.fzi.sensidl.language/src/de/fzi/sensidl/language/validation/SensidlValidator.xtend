@@ -19,7 +19,7 @@ class SensidlValidator extends AbstractSensidlValidator {
 	 * Exemplary check if a language is supported.
 	 */
 	def languageSupported(GenerationLanguage language) {
-		language == GenerationLanguage.JAVA
+		language == GenerationLanguage.JAVA || language == GenerationLanguage.CSHARP
 	}
 
 	@Check

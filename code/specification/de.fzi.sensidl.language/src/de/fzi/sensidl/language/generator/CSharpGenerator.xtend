@@ -12,7 +12,7 @@ class CSharpGenerator implements ICodeGenerator {
 		this.classNameBase = classNameBase
 	}
 	
-	override generateDTO(IFileSystemAccess fsa) throws UnsupportedOperationException {
+	override generateDTO(IFileSystemAccess fsa) {
 		new CSharpDTO(input, classNameBase).generate(fsa);
 	}
 	

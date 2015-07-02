@@ -156,6 +156,16 @@ public class DatastructureItemProvider extends DatafieldItemProvider {
 			(createChildParameter
 				(SensidlPackage.Literals.DATASTRUCTURE__DATAFIELDS,
 				 SensidlFactory.eINSTANCE.createNonMeasuredData()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SensidlPackage.Literals.DATASTRUCTURE__DATAFIELDS,
+				 SensidlFactory.eINSTANCE.createDeclaration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SensidlPackage.Literals.DATASTRUCTURE__DATAFIELDS,
+				 SensidlFactory.eINSTANCE.createDatastructureDeclaration()));
 	}
 
 }

@@ -9,6 +9,15 @@ import sensidl.Type
 import sensidl.VariableData
 import sensidl.NonMeasuredData
 import sensidl.MeasuredData
+import sensidl.Datastructure
+import sensidl.Declaration
+import sensidl.Calculated
+import org.eclipse.emf.common.util.EList
+import java.util.EventListener
+import java.util.List
+import java.util.ArrayList
+import sensidl.DatastructureDeclaration
+import sensidl.GenerationLanguage
 
 /**
  * Implementation of the IDTO interface for java-code-generation
@@ -22,24 +31,40 @@ class JavaDTO extends DTO {
 		super(input, classNameBase);
 	}
 	
-	/**
-	 * Generates a DTO class.
-	 * @param fsa file system access for file generation
-	 * @see ISensidlGenerator#doGenerate(IFileSystemAccess)
-	 */
 	override generate(IFileSystemAccess fsa) {
-		val datafields = input.transmit.map [ SensidlPseudoCodeGenerator.collectDatafields(it) ].flatten
-		fsa.generateFile(SensidlPseudoCodeGenerator.toFileName(dtoClassName), generateDTOClass(dtoClassName, datafields))
+		fsa.generateFile(addFileExtensionTo(dtoClassName), generateDTOClass(dtoClassName, input.datafields))
 	}
 
+	def generateDTOClass(String className, Iterable<Datafield> Datafields) {
+		'''
+		«generateClassBody(className, Datafields)»
+		
+		'''
+	}
+	
+	override addFileExtensionTo(String ClassName) {
+		return ClassName + ".java"
+	}
+	
+	//TODO complete type conversion from c types to java types
+	override toLanguageTypename(Type sensidlType) {
+		return switch (sensidlType) {
+			case CHAR:  Character.name
+			case DOUBLE: Double.name
+			case FLOAT: Float.name
+			case INT: Integer.name
+			case LONG: Long.name
+			case SHORT: Short.name
+			default: "/* Undefined */" + Object.name
+		}
+	}
+	
 	/**
-	 * Generates a DTO class that encapsulates all Datafields
-	 * that are passed to the method.
-	 * 
+	 * Generates a class body with getter and setter methods
 	 * @param className the name of the class to create
 	 * @param Datafields the Datafields to include in the DTO
 	 */
-	def generateDTOClass(String className, Iterable<Datafield> Datafields) {
+	def generateClassBody(String className, Iterable<Datafield> Datafields)	{
 		'''
 		/**
 		 * Data transfer object for «className»
@@ -48,8 +73,8 @@ class JavaDTO extends DTO {
 		 */
 		class «className» {
 			// fields
-			«FOR ip : Datafields»
-			«ip.toField»;
+			«FOR datafield : Datafields»
+				«if(false == (datafield instanceof Calculated)) { datafield.toField }»
 			«ENDFOR»
 			
 			/**
@@ -58,23 +83,23 @@ class JavaDTO extends DTO {
 			 */
 			public «className»() { }
 			
-			«FOR ip : Datafields»
-			«ip.toGetter»
+			«FOR datafield : Datafields»
+				«if(false == (datafield instanceof Calculated)) {datafield.toGetter}»
 			«ENDFOR»
 			
-			«FOR ip : Datafields»
-			«ip.toSetter»
+			«FOR datafield : Datafields»
+				«if(false == (datafield instanceof Calculated)) {datafield.toSetter}»
 			«ENDFOR»
 		}
 		'''
-	}	
+	}
 	
 	/**
 	 * A setter method for the field generated for an Datafield
 	 * @param datafield an Datafield
 	 * @return a setter method
 	 */
-	def static String toSetter(Datafield datafield) {
+	def dispatch String toSetter(Datafield datafield) {
 		if(false == (datafield instanceof ConstantData)) {		
 			'''
 			public void «datafield.standardSetterName»(«datafield.toTypeName» new«datafield.toFieldName.toFirstUpper») {
@@ -84,13 +109,23 @@ class JavaDTO extends DTO {
 		}
 	}
 	
+	def dispatch String toSetter(Declaration declaration) {	
+		'''
+		«FOR decl : declaration.declarations»
+			public void «decl.standardSetterName»(«decl.reusedDatastructure.toTypeName» new«decl.toFieldName.toFirstUpper») {
+				this.«decl.toFieldName» = new«decl.toFieldName.toFirstUpper»;
+			}
+		«ENDFOR»
+		''' 
+	}
+	
 	/**
 	 * Returns the name for the setter for an Datafield
 	 * (that is not a constant Datafield).
 	 * @param datafield the Datafield
 	 * @return the name of the setter method
 	 */
-	def static dispatch String getStandardSetterName(Datafield datafield) {
+	def dispatch String getStandardSetterName(Datafield datafield) {
 		'''set«datafield.toFieldName.toFirstUpper.replaceAll("[^a-zA-Z0-9]", "")»'''
 	}
 	
@@ -99,7 +134,7 @@ class JavaDTO extends DTO {
 	 * @param data the Data
 	 * @return the name of the setter method (including the unit)
 	 */
-	def static dispatch String getStandardSetterName(Data data) {
+	def dispatch String getStandardSetterName(MeasuredData data) {
 		if(data.unit != null)
 		{
 			'''set«data.toFieldName.toFirstUpper»In«data.unit.unitJavaName»'''
@@ -117,7 +152,7 @@ class JavaDTO extends DTO {
 	 * @return an escaped form of the unit that can be used in a Java
 	 *         identifier
 	 */
-	def static String getUnitJavaName(String s) {
+	def String getUnitJavaName(String s) {
 		s.replace("/", "Per").replaceAll("[^a-zA-Z0-9]", "");
 	}
 	
@@ -127,7 +162,7 @@ class JavaDTO extends DTO {
 	 * @param datafield the Datafield
 	 * @return the getter method
 	 */
-	def String toGetter(Datafield datafield) {
+	def dispatch String toGetter(Datafield datafield) {
 		'''
 		public «datafield.toTypeName» «datafield.standardGetterName»() {
 			return this.«datafield.toFieldName»;
@@ -135,22 +170,52 @@ class JavaDTO extends DTO {
 		'''
 	}
 	
+	def dispatch String toGetter(Declaration declaration) {
+		'''
+		«FOR decl : declaration.declarations»
+			public «decl.reusedDatastructure.toTypeName» «decl.standardGetterName»() {
+				return this.«decl.toFieldName»;
+			}	
+		«ENDFOR»
+		''' 
+	}
+	
 	/**
 	 * Returns the name of the getter method for an Datafield.
 	 * @param datafield the Datafield
 	 * @return the name of the getter method
 	 */
-	def static String getStandardGetterName(Datafield datafield) {
+	def String getStandardGetterName(Datafield datafield) {
 		'''get«datafield.toFieldName.toFirstUpper.replaceAll("[^a-zA-Z0-9]", "")»'''
 	}
 	
 	/**
-	 * Transforms a Datafield (that is not a constant Datafield)
+	 * Transforms a Datafield (if it is not a instance of Calculated)
 	 * to a <code>private</code> field.
 	 * @param datafield the Datafield to transform
 	 * @return a string containing the Java field declaration 
 	 */
-	def static String toField(Datafield datafield) { '''private «if(datafield instanceof ConstantData) "final static"» «datafield.toTypeName» «datafield.toFieldName»''' }
+	def dispatch String toField(ConstantData datafield) { 
+		'''private «datafield.toTypeName» «datafield.toFieldName»;''' 
+	}
+	
+	def dispatch String toField(VariableData datafield) { 
+		'''private «datafield.toTypeName» «datafield.toFieldName»;''' 
+	}
+	
+	def dispatch String toField(Datastructure datafield) {
+		'''
+		«generateClassBody(datafield.toTypeName.toString(), datafield.datafields)»
+		private «datafield.toTypeName» «datafield.toFieldName»;'''
+	}
+	
+	def dispatch String toField(Declaration datafield) { 
+		'''
+		«FOR decl : datafield.declarations»
+			private «decl.reusedDatastructure.toTypeName» «decl.toFieldName»;
+		«ENDFOR»
+		''' 
+	}
 	
 	/**
 	 * Convenience method for getting the Java name of the 
@@ -160,30 +225,26 @@ class JavaDTO extends DTO {
 	 *          <code>datafield</code>
 	 * @see SensidlPseudoCodeGenerator#toJavaName(Type)
 	 */
-	def static toTypeName(Datafield datafield) { 
-		// TODO: This is a first solution for constantdata and not clear at this point
-		if(datafield instanceof ConstantData) {
-			return '''java.lang.String'''
-		}
+	def dispatch toTypeName(VariableData datafield) { 
+		toLanguageTypename(datafield.toType)
+	}
 	
-		SensidlPseudoCodeGenerator.toJavaName(datafield.toType)
+	def dispatch toTypeName(ConstantData datafield) { 
+		'''final static java.lang.String'''
+	}
+	
+	def dispatch toTypeName(Datastructure datafield) { 
+		datafield.name.toFirstUpper
 	}
 	
 	/**
-	 * Returns a constant type ({@link Type}) that corresponds
-	 * to the given Data (i.e. Double)
+	 * Returns the corresponding datatype of nonmeasured or measured data
 	 * @param nonMeasuredData the NonMeasuredData to get the type for
-	 * @return @link Type.DOUBLE
+	 * @return @Type.DOUBLE or the corresponding datatype 
 	 */
-	def static dispatch toType(NonMeasuredData nonMeasuredData) { nonMeasuredData.type }
+	def dispatch toType(NonMeasuredData nonMeasuredData) { nonMeasuredData.type }
 	
-	/**
-	 * Returns a constant type ({@link Type}) that corresponds
-	 * to the given Data (i.e. Double)
-	 * @param measuredData the MeasuredData to get the type for
-	 * @return @link Type.DOUBLE
-	 */
-	def static dispatch toType(MeasuredData measuredData) { Type.DOUBLE }
+	def dispatch toType(MeasuredData measuredData) { Type.DOUBLE }
 
 	/**
 	 * Returns a constant type ({@link Type}) that corresponds
@@ -195,7 +256,7 @@ class JavaDTO extends DTO {
 	 * @return -
 	 * @throws IllegalArgumentException always
 	 */
-	def static dispatch toType(Datafield datafield) {
+	def dispatch toType(Datafield datafield) {
 		throw new IllegalArgumentException("Unsupported Datafield type");
 	}
 	
@@ -204,5 +265,5 @@ class JavaDTO extends DTO {
 	 * @param datafield the Datafield
 	 * @return the name of the field
 	 */
-	def static String toFieldName(Datafield datafield) { datafield.name.toFirstLower }
+	def String toFieldName(Datafield datafield) { datafield.name.toFirstLower }
 }

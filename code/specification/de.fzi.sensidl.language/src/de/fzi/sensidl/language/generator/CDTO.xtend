@@ -2,6 +2,7 @@ package de.fzi.sensidl.language.generator
 
 import org.eclipse.xtext.generator.IFileSystemAccess
 import sensidl.DataModel
+import sensidl.Type
 
 class CDTO extends DTO {
 	
@@ -9,13 +10,16 @@ class CDTO extends DTO {
 		super(input, classNameBase);
 	}
 	
-	/**
-	 * Generates a DTO class.
-	 * @param fsa file system access for file generation
-	 * @see ISensidlGenerator#doGenerate(IFileSystemAccess)
-	 */	
 	override generate(IFileSystemAccess fsa) {
 		throw new UnsupportedOperationException("C code-generation is not supported yet")
+	}
+	
+	override addFileExtensionTo(String ClassName) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	override toLanguageTypename(Type sensidlType) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
 }

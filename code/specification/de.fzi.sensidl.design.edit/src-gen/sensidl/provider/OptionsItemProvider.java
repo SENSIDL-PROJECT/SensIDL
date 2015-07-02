@@ -60,6 +60,8 @@ public class OptionsItemProvider
 			addSensorLanguagePropertyDescriptor(object);
 			addReceiverLanguagePropertyDescriptor(object);
 			addEndianessPropertyDescriptor(object);
+			addSensorAlignmentPropertyDescriptor(object);
+			addReceiverAlignmentPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -131,6 +133,50 @@ public class OptionsItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Sensor Alignment feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSensorAlignmentPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Options_sensorAlignment_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Options_sensorAlignment_feature", "_UI_Options_type"),
+				 SensidlPackage.Literals.OPTIONS__SENSOR_ALIGNMENT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Receiver Alignment feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReceiverAlignmentPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Options_receiverAlignment_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Options_receiverAlignment_feature", "_UI_Options_type"),
+				 SensidlPackage.Literals.OPTIONS__RECEIVER_ALIGNMENT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Options.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -172,6 +218,8 @@ public class OptionsItemProvider
 			case SensidlPackage.OPTIONS__SENSOR_LANGUAGE:
 			case SensidlPackage.OPTIONS__RECEIVER_LANGUAGE:
 			case SensidlPackage.OPTIONS__ENDIANESS:
+			case SensidlPackage.OPTIONS__SENSOR_ALIGNMENT:
+			case SensidlPackage.OPTIONS__RECEIVER_ALIGNMENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

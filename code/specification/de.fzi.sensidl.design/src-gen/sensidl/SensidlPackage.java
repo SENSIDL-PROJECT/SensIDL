@@ -771,13 +771,31 @@ public interface SensidlPackage extends EPackage {
 	int OPTIONS__ENDIANESS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Sensor Alignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONS__SENSOR_ALIGNMENT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Receiver Alignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONS__RECEIVER_ALIGNMENT = 4;
+
+	/**
 	 * The number of structural features of the '<em>Options</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPTIONS_FEATURE_COUNT = 3;
+	int OPTIONS_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Options</em>' class.
@@ -1164,6 +1182,143 @@ public interface SensidlPackage extends EPackage {
 	int NON_MEASURED_DATA_OPERATION_COUNT = VARIABLE_DATA_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link sensidl.impl.DeclarationImpl <em>Declaration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sensidl.impl.DeclarationImpl
+	 * @see sensidl.impl.SensidlPackageImpl#getDeclaration()
+	 * @generated
+	 */
+	int DECLARATION = 18;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARATION__NAME = DATAFIELD__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARATION__DESCRIPTION = DATAFIELD__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARATION__ID = DATAFIELD__ID;
+
+	/**
+	 * The feature id for the '<em><b>Declarations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARATION__DECLARATIONS = DATAFIELD_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Declaration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARATION_FEATURE_COUNT = DATAFIELD_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Declaration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARATION_OPERATION_COUNT = DATAFIELD_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link sensidl.impl.DatastructureDeclarationImpl <em>Datastructure Declaration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sensidl.impl.DatastructureDeclarationImpl
+	 * @see sensidl.impl.SensidlPackageImpl#getDatastructureDeclaration()
+	 * @generated
+	 */
+	int DATASTRUCTURE_DECLARATION = 17;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATASTRUCTURE_DECLARATION__NAME = DECLARATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATASTRUCTURE_DECLARATION__DESCRIPTION = DECLARATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATASTRUCTURE_DECLARATION__ID = DECLARATION__ID;
+
+	/**
+	 * The feature id for the '<em><b>Declarations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATASTRUCTURE_DECLARATION__DECLARATIONS = DECLARATION__DECLARATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Reused Datastructure</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATASTRUCTURE_DECLARATION__REUSED_DATASTRUCTURE = DECLARATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Datastructure Declaration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATASTRUCTURE_DECLARATION_FEATURE_COUNT = DECLARATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Datastructure Declaration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATASTRUCTURE_DECLARATION_OPERATION_COUNT = DECLARATION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link sensidl.Type <em>Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1171,7 +1326,7 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 17;
+	int TYPE = 19;
 
 	/**
 	 * The meta object id for the '{@link sensidl.ArgumentType <em>Argument Type</em>}' enum.
@@ -1181,7 +1336,7 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getArgumentType()
 	 * @generated
 	 */
-	int ARGUMENT_TYPE = 18;
+	int ARGUMENT_TYPE = 20;
 
 	/**
 	 * The meta object id for the '{@link sensidl.GenerationLanguage <em>Generation Language</em>}' enum.
@@ -1191,7 +1346,7 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getGenerationLanguage()
 	 * @generated
 	 */
-	int GENERATION_LANGUAGE = 19;
+	int GENERATION_LANGUAGE = 21;
 
 	/**
 	 * The meta object id for the '{@link sensidl.Endianess <em>Endianess</em>}' enum.
@@ -1201,7 +1356,17 @@ public interface SensidlPackage extends EPackage {
 	 * @see sensidl.impl.SensidlPackageImpl#getEndianess()
 	 * @generated
 	 */
-	int ENDIANESS = 20;
+	int ENDIANESS = 22;
+
+	/**
+	 * The meta object id for the '{@link sensidl.Alignment <em>Alignment</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see sensidl.Alignment
+	 * @see sensidl.impl.SensidlPackageImpl#getAlignment()
+	 * @generated
+	 */
+	int ALIGNMENT = 23;
 
 	/**
 	 * Returns the meta object for class '{@link sensidl.DataModel <em>Data Model</em>}'.
@@ -1525,6 +1690,28 @@ public interface SensidlPackage extends EPackage {
 	EAttribute getOptions_Endianess();
 
 	/**
+	 * Returns the meta object for the attribute '{@link sensidl.Options#getSensorAlignment <em>Sensor Alignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Sensor Alignment</em>'.
+	 * @see sensidl.Options#getSensorAlignment()
+	 * @see #getOptions()
+	 * @generated
+	 */
+	EAttribute getOptions_SensorAlignment();
+
+	/**
+	 * Returns the meta object for the attribute '{@link sensidl.Options#getReceiverAlignment <em>Receiver Alignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Receiver Alignment</em>'.
+	 * @see sensidl.Options#getReceiverAlignment()
+	 * @see #getOptions()
+	 * @generated
+	 */
+	EAttribute getOptions_ReceiverAlignment();
+
+	/**
 	 * Returns the meta object for class '{@link sensidl.Constraint <em>Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1726,6 +1913,48 @@ public interface SensidlPackage extends EPackage {
 	EAttribute getNonMeasuredData_Type();
 
 	/**
+	 * Returns the meta object for class '{@link sensidl.DatastructureDeclaration <em>Datastructure Declaration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Datastructure Declaration</em>'.
+	 * @see sensidl.DatastructureDeclaration
+	 * @generated
+	 */
+	EClass getDatastructureDeclaration();
+
+	/**
+	 * Returns the meta object for the reference '{@link sensidl.DatastructureDeclaration#getReusedDatastructure <em>Reused Datastructure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Reused Datastructure</em>'.
+	 * @see sensidl.DatastructureDeclaration#getReusedDatastructure()
+	 * @see #getDatastructureDeclaration()
+	 * @generated
+	 */
+	EReference getDatastructureDeclaration_ReusedDatastructure();
+
+	/**
+	 * Returns the meta object for class '{@link sensidl.Declaration <em>Declaration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Declaration</em>'.
+	 * @see sensidl.Declaration
+	 * @generated
+	 */
+	EClass getDeclaration();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link sensidl.Declaration#getDeclarations <em>Declarations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Declarations</em>'.
+	 * @see sensidl.Declaration#getDeclarations()
+	 * @see #getDeclaration()
+	 * @generated
+	 */
+	EReference getDeclaration_Declarations();
+
+	/**
 	 * Returns the meta object for enum '{@link sensidl.Type <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1764,6 +1993,16 @@ public interface SensidlPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getEndianess();
+
+	/**
+	 * Returns the meta object for enum '{@link sensidl.Alignment <em>Alignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Alignment</em>'.
+	 * @see sensidl.Alignment
+	 * @generated
+	 */
+	EEnum getAlignment();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2047,6 +2286,22 @@ public interface SensidlPackage extends EPackage {
 		EAttribute OPTIONS__ENDIANESS = eINSTANCE.getOptions_Endianess();
 
 		/**
+		 * The meta object literal for the '<em><b>Sensor Alignment</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPTIONS__SENSOR_ALIGNMENT = eINSTANCE.getOptions_SensorAlignment();
+
+		/**
+		 * The meta object literal for the '<em><b>Receiver Alignment</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPTIONS__RECEIVER_ALIGNMENT = eINSTANCE.getOptions_ReceiverAlignment();
+
+		/**
 		 * The meta object literal for the '{@link sensidl.Constraint <em>Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2215,6 +2470,42 @@ public interface SensidlPackage extends EPackage {
 		EAttribute NON_MEASURED_DATA__TYPE = eINSTANCE.getNonMeasuredData_Type();
 
 		/**
+		 * The meta object literal for the '{@link sensidl.impl.DatastructureDeclarationImpl <em>Datastructure Declaration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sensidl.impl.DatastructureDeclarationImpl
+		 * @see sensidl.impl.SensidlPackageImpl#getDatastructureDeclaration()
+		 * @generated
+		 */
+		EClass DATASTRUCTURE_DECLARATION = eINSTANCE.getDatastructureDeclaration();
+
+		/**
+		 * The meta object literal for the '<em><b>Reused Datastructure</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATASTRUCTURE_DECLARATION__REUSED_DATASTRUCTURE = eINSTANCE.getDatastructureDeclaration_ReusedDatastructure();
+
+		/**
+		 * The meta object literal for the '{@link sensidl.impl.DeclarationImpl <em>Declaration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sensidl.impl.DeclarationImpl
+		 * @see sensidl.impl.SensidlPackageImpl#getDeclaration()
+		 * @generated
+		 */
+		EClass DECLARATION = eINSTANCE.getDeclaration();
+
+		/**
+		 * The meta object literal for the '<em><b>Declarations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DECLARATION__DECLARATIONS = eINSTANCE.getDeclaration_Declarations();
+
+		/**
 		 * The meta object literal for the '{@link sensidl.Type <em>Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2253,6 +2544,16 @@ public interface SensidlPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ENDIANESS = eINSTANCE.getEndianess();
+
+		/**
+		 * The meta object literal for the '{@link sensidl.Alignment <em>Alignment</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see sensidl.Alignment
+		 * @see sensidl.impl.SensidlPackageImpl#getAlignment()
+		 * @generated
+		 */
+		EEnum ALIGNMENT = eINSTANCE.getAlignment();
 
 	}
 

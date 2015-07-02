@@ -136,6 +136,14 @@ public class SensidlAdapterFactory extends AdapterFactoryImpl {
 				return createNonMeasuredDataAdapter();
 			}
 			@Override
+			public Adapter caseDatastructureDeclaration(DatastructureDeclaration object) {
+				return createDatastructureDeclarationAdapter();
+			}
+			@Override
+			public Adapter caseDeclaration(Declaration object) {
+				return createDeclarationAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -390,6 +398,34 @@ public class SensidlAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNonMeasuredDataAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sensidl.DatastructureDeclaration <em>Datastructure Declaration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sensidl.DatastructureDeclaration
+	 * @generated
+	 */
+	public Adapter createDatastructureDeclarationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link sensidl.Declaration <em>Declaration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see sensidl.Declaration
+	 * @generated
+	 */
+	public Adapter createDeclarationAdapter() {
 		return null;
 	}
 

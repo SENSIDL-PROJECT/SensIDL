@@ -6,6 +6,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import sensidl.Alignment;
 import sensidl.Endianess;
 import sensidl.GenerationLanguage;
 import sensidl.Options;
@@ -21,6 +22,8 @@ import sensidl.SensidlPackage;
  *   <li>{@link sensidl.impl.OptionsImpl#getSensorLanguage <em>Sensor Language</em>}</li>
  *   <li>{@link sensidl.impl.OptionsImpl#getReceiverLanguage <em>Receiver Language</em>}</li>
  *   <li>{@link sensidl.impl.OptionsImpl#getEndianess <em>Endianess</em>}</li>
+ *   <li>{@link sensidl.impl.OptionsImpl#getSensorAlignment <em>Sensor Alignment</em>}</li>
+ *   <li>{@link sensidl.impl.OptionsImpl#getReceiverAlignment <em>Receiver Alignment</em>}</li>
  * </ul>
  * </p>
  *
@@ -86,6 +89,46 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
 	 * @ordered
 	 */
 	protected Endianess endianess = ENDIANESS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSensorAlignment() <em>Sensor Alignment</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSensorAlignment()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Alignment SENSOR_ALIGNMENT_EDEFAULT = Alignment._8BIT;
+
+	/**
+	 * The cached value of the '{@link #getSensorAlignment() <em>Sensor Alignment</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSensorAlignment()
+	 * @generated
+	 * @ordered
+	 */
+	protected Alignment sensorAlignment = SENSOR_ALIGNMENT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getReceiverAlignment() <em>Receiver Alignment</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReceiverAlignment()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Alignment RECEIVER_ALIGNMENT_EDEFAULT = Alignment._8BIT;
+
+	/**
+	 * The cached value of the '{@link #getReceiverAlignment() <em>Receiver Alignment</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReceiverAlignment()
+	 * @generated
+	 * @ordered
+	 */
+	protected Alignment receiverAlignment = RECEIVER_ALIGNMENT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -174,6 +217,48 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Alignment getSensorAlignment() {
+		return sensorAlignment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSensorAlignment(Alignment newSensorAlignment) {
+		Alignment oldSensorAlignment = sensorAlignment;
+		sensorAlignment = newSensorAlignment == null ? SENSOR_ALIGNMENT_EDEFAULT : newSensorAlignment;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SensidlPackage.OPTIONS__SENSOR_ALIGNMENT, oldSensorAlignment, sensorAlignment));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Alignment getReceiverAlignment() {
+		return receiverAlignment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReceiverAlignment(Alignment newReceiverAlignment) {
+		Alignment oldReceiverAlignment = receiverAlignment;
+		receiverAlignment = newReceiverAlignment == null ? RECEIVER_ALIGNMENT_EDEFAULT : newReceiverAlignment;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SensidlPackage.OPTIONS__RECEIVER_ALIGNMENT, oldReceiverAlignment, receiverAlignment));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -183,6 +268,10 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
 				return getReceiverLanguage();
 			case SensidlPackage.OPTIONS__ENDIANESS:
 				return getEndianess();
+			case SensidlPackage.OPTIONS__SENSOR_ALIGNMENT:
+				return getSensorAlignment();
+			case SensidlPackage.OPTIONS__RECEIVER_ALIGNMENT:
+				return getReceiverAlignment();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -203,6 +292,12 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
 				return;
 			case SensidlPackage.OPTIONS__ENDIANESS:
 				setEndianess((Endianess)newValue);
+				return;
+			case SensidlPackage.OPTIONS__SENSOR_ALIGNMENT:
+				setSensorAlignment((Alignment)newValue);
+				return;
+			case SensidlPackage.OPTIONS__RECEIVER_ALIGNMENT:
+				setReceiverAlignment((Alignment)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -225,6 +320,12 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
 			case SensidlPackage.OPTIONS__ENDIANESS:
 				setEndianess(ENDIANESS_EDEFAULT);
 				return;
+			case SensidlPackage.OPTIONS__SENSOR_ALIGNMENT:
+				setSensorAlignment(SENSOR_ALIGNMENT_EDEFAULT);
+				return;
+			case SensidlPackage.OPTIONS__RECEIVER_ALIGNMENT:
+				setReceiverAlignment(RECEIVER_ALIGNMENT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -243,6 +344,10 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
 				return receiverLanguage != RECEIVER_LANGUAGE_EDEFAULT;
 			case SensidlPackage.OPTIONS__ENDIANESS:
 				return endianess != ENDIANESS_EDEFAULT;
+			case SensidlPackage.OPTIONS__SENSOR_ALIGNMENT:
+				return sensorAlignment != SENSOR_ALIGNMENT_EDEFAULT;
+			case SensidlPackage.OPTIONS__RECEIVER_ALIGNMENT:
+				return receiverAlignment != RECEIVER_ALIGNMENT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -263,6 +368,10 @@ public class OptionsImpl extends MinimalEObjectImpl.Container implements Options
 		result.append(receiverLanguage);
 		result.append(", endianess: ");
 		result.append(endianess);
+		result.append(", sensorAlignment: ");
+		result.append(sensorAlignment);
+		result.append(", receiverAlignment: ");
+		result.append(receiverAlignment);
 		result.append(')');
 		return result.toString();
 	}

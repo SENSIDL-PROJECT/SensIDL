@@ -21,6 +21,8 @@ import sensidl.DataAdaption;
 import sensidl.DataModel;
 import sensidl.DataRange;
 import sensidl.Datastructure;
+import sensidl.DatastructureDeclaration;
+import sensidl.Declaration;
 import sensidl.MeasuredData;
 import sensidl.NonMeasuredData;
 import sensidl.Options;
@@ -87,6 +89,20 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 				   context == grammarAccess.getDatastructureRule() ||
 				   context == grammarAccess.getNamedElementRule()) {
 					sequence_Datastructure(context, (Datastructure) semanticObject); 
+					return; 
+				}
+				else break;
+			case SensidlPackage.DATASTRUCTURE_DECLARATION:
+				if(context == grammarAccess.getDatastructureDeclarationRule()) {
+					sequence_DatastructureDeclaration(context, (DatastructureDeclaration) semanticObject); 
+					return; 
+				}
+				else break;
+			case SensidlPackage.DECLARATION:
+				if(context == grammarAccess.getDatafieldRule() ||
+				   context == grammarAccess.getDeclarationRule() ||
+				   context == grammarAccess.getNamedElementRule()) {
+					sequence_Declaration(context, (Declaration) semanticObject); 
 					return; 
 				}
 				else break;
@@ -196,9 +212,27 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
+	 *     (reusedDatastructure=[Datastructure|ID] name=ID)
+	 */
+	protected void sequence_DatastructureDeclaration(EObject context, DatastructureDeclaration semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (name=ID datafields+=Datafield* description=STRING? ID=STRING?)
 	 */
 	protected void sequence_Datastructure(EObject context, Datastructure semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (declarations+=DatastructureDeclaration declarations+=DatastructureDeclaration*)
+	 */
+	protected void sequence_Declaration(EObject context, Declaration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -230,7 +264,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (endianess=Endianess sensorLanguage=GenerationLanguage receiverLanguage=GenerationLanguage)
+	 *     (endianess=Endianess sensorLanguage=GenerationLanguage sensorAlignment=Alignment receiverLanguage=GenerationLanguage receiverAlignment=Alignment)
 	 */
 	protected void sequence_Options(EObject context, Options semanticObject) {
 		if(errorAcceptor != null) {
@@ -240,12 +274,18 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.OPTIONS__RECEIVER_LANGUAGE));
 			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.OPTIONS__ENDIANESS) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.OPTIONS__ENDIANESS));
+			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.OPTIONS__SENSOR_ALIGNMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.OPTIONS__SENSOR_ALIGNMENT));
+			if(transientValues.isValueTransient(semanticObject, SensidlPackage.Literals.OPTIONS__RECEIVER_ALIGNMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SensidlPackage.Literals.OPTIONS__RECEIVER_ALIGNMENT));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getOptionsAccess().getEndianessEndianessEnumRuleCall_1_0_2_0(), semanticObject.getEndianess());
-		feeder.accept(grammarAccess.getOptionsAccess().getSensorLanguageGenerationLanguageEnumRuleCall_1_1_3_0(), semanticObject.getSensorLanguage());
-		feeder.accept(grammarAccess.getOptionsAccess().getReceiverLanguageGenerationLanguageEnumRuleCall_1_2_3_0(), semanticObject.getReceiverLanguage());
+		feeder.accept(grammarAccess.getOptionsAccess().getSensorLanguageGenerationLanguageEnumRuleCall_1_2_3_0(), semanticObject.getSensorLanguage());
+		feeder.accept(grammarAccess.getOptionsAccess().getSensorAlignmentAlignmentEnumRuleCall_1_3_3_0(), semanticObject.getSensorAlignment());
+		feeder.accept(grammarAccess.getOptionsAccess().getReceiverLanguageGenerationLanguageEnumRuleCall_1_5_3_0(), semanticObject.getReceiverLanguage());
+		feeder.accept(grammarAccess.getOptionsAccess().getReceiverAlignmentAlignmentEnumRuleCall_1_6_3_0(), semanticObject.getReceiverAlignment());
 		feeder.finish();
 	}
 	

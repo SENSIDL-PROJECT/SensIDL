@@ -208,6 +208,16 @@ public class DataModelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(SensidlPackage.Literals.DATA_MODEL__DATAFIELDS,
+				 SensidlFactory.eINSTANCE.createDeclaration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SensidlPackage.Literals.DATA_MODEL__DATAFIELDS,
+				 SensidlFactory.eINSTANCE.createDatastructureDeclaration()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(SensidlPackage.Literals.DATA_MODEL__OPTIONS,
 				 SensidlFactory.eINSTANCE.createOptions()));
 	}

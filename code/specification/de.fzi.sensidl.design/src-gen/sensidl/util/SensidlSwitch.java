@@ -193,6 +193,23 @@ public class SensidlSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SensidlPackage.DATASTRUCTURE_DECLARATION: {
+				DatastructureDeclaration datastructureDeclaration = (DatastructureDeclaration)theEObject;
+				T result = caseDatastructureDeclaration(datastructureDeclaration);
+				if (result == null) result = caseDeclaration(datastructureDeclaration);
+				if (result == null) result = caseDatafield(datastructureDeclaration);
+				if (result == null) result = caseNamedElement(datastructureDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SensidlPackage.DECLARATION: {
+				Declaration declaration = (Declaration)theEObject;
+				T result = caseDeclaration(declaration);
+				if (result == null) result = caseDatafield(declaration);
+				if (result == null) result = caseNamedElement(declaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -449,6 +466,36 @@ public class SensidlSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNonMeasuredData(NonMeasuredData object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Datastructure Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Datastructure Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDatastructureDeclaration(DatastructureDeclaration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeclaration(Declaration object) {
 		return null;
 	}
 

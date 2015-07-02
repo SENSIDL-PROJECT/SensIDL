@@ -31,10 +31,18 @@ DataModel:
 Options:
 	{Options}
 	(
-		("Endianess" ":" endianess=Endianess)
-		("sensor" "language" ":" sensorLanguage=GenerationLanguage) 
-		("receiver" "language" ":" receiverLanguage=GenerationLanguage)
+		("endianess" ":" endianess=Endianess";")
+		("sensor" "options" ":")
+		("sensor" "language" ":" sensorLanguage=GenerationLanguage";")
+		("sensor" "alignment" ":" sensorAlignment=Alignment";") 
+		("receiver" "options" ":")
+		("receiver" "language" ":" receiverLanguage=GenerationLanguage";")
+		("receiver" "alignment" ":" receiverAlignment=Alignment";")
 	)
+;
+
+enum Alignment:
+	_8BIT | _16BIT | _32BIT | _64BIT
 ;
 
 enum Endianess:
@@ -58,12 +66,14 @@ Representation:
 	"in" type=Type
 	("description" ":" description=STRING)?
 	("id" ":" ID=STRING)?
+	";"
 ;
 
 Datafield:
 	VariableData |
 	ConstantData |
 	Datastructure |
+	Declaration |
 	Calculated 
 ;
 
@@ -80,6 +90,7 @@ MeasuredData:
 	("description" ":" description=STRING)?
 	("id" ":" ID=STRING)? 
 	(constraints+=DataConstraint)*
+	";"
 ;
 
 NonMeasuredData: 
@@ -87,6 +98,7 @@ NonMeasuredData:
 	"as" representation=[Representation]
 	("description" ":" description=STRING)? 
 	("id" ":" ID=STRING)?
+	";"
 ;
 
 
@@ -96,6 +108,7 @@ ConstantData:
 	("is" constValue=STRING)?
 	("description" ":" description=STRING)?
 	("id" ":" ID=STRING)?
+	";"
 ;
 
 Calculated:
@@ -106,6 +119,7 @@ Calculated:
 	"with" parameter+=Parameter ("," parameter+=Parameter)*
 	("description" ":" description=STRING)?
 	("id" ":" ID=STRING)?
+	";"
 ;
 
 Parameter:
@@ -120,7 +134,16 @@ Datastructure:
 		(datafields+=Datafield)*
 		("description" ":" description=STRING)?
 		("id" ":" ID=STRING)?
-	"}"
+	"}"";"
+;
+
+Declaration: 
+	("declaration"|"decl") declarations+=DatastructureDeclaration ("," declarations+=DatastructureDeclaration)*";"
+;
+
+
+DatastructureDeclaration: 
+	reusedDatastructure=[Datastructure] name=ID
 ;
 
 Constraint: 
