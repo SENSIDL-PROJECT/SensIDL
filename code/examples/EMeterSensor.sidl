@@ -9,20 +9,24 @@
  */
 datamodel { 
 	options {
-		Endianess : BIG_ENDIAN
-		sensor language: JAVA
-		receiver language: JAVA
+		endianess : BIG_ENDIAN;
+		sensor options :
+			sensor language : JAVA;
+			sensor alignment : _64BIT;
+		receiver options :
+			receiver language : CSHARP;
+			receiver alignment : _64BIT;
 	}
 	
 	/* *
 	 * Deklaration von verschiedenen Repräsentationen die bestimmte Daten besitzen können. 
 	 */
-	repr oneByteByte is 1 byte in CHAR
-	repr oneByteInt8 is 1 byte in INT
-	repr twoByteInt16 is 2 bytes in INT 
-	repr fourByteFloat is 4 bytes in FLOAT
-	repr fourteenByteByte is 14 bytes in CHAR
-	repr fourByteInt32 is 4 bytes in INT
+	repr oneByteByte is 1 byte in CHAR;
+	repr oneByteInt8 is 1 byte in INT;
+	repr twoByteInt16 is 2 bytes in INT; 
+	repr fourByteFloat is 4 bytes in FLOAT;
+	repr fourteenByteByte is 14 bytes in CHAR;
+	repr fourByteInt32 is 4 bytes in INT;
 	
 	/* *
 	 * Beschreibung der Phase L1 
@@ -35,20 +39,20 @@ datamodel {
 	 		 * in der EMeter-Datenstruktur.
 	 		 */
 			set Metadata {
-				const DeviceType as oneByteByte
-				const RecordType as oneByteByte
-			}
+				const DeviceType as oneByteByte;
+				const RecordType as oneByteByte;
+			};
 			
 			/* *
 	 		 * In dieser Struktur werden die gemessenen Werte von L1 gruppiert. Diese entsprechen den Bytes 3-12
 	 		 * in der EMeter-Datenstruktur. Zusätzlich kann optional die Bitwertigkeit angegeben werden.
 	 		 */
 			set MeasuredValues {
-				data of Voltage in "V" as twoByteInt16
-				data of CurrentIntensity in "A" as fourByteFloat
-				data of Energy in "Ws" as fourByteFloat
-				data of CosPhi as oneByteInt8
-			}
+				data of Voltage in "V" as twoByteInt16;
+				data of CurrentIntensity in "A" as fourByteFloat;
+				data of Energy in "Ws" as fourByteFloat;
+				data of CosPhi as oneByteInt8;
+			};
 			
 			/* *
 	 		 * In dieser Struktur wird die Messnummer von L1 deklariert. Diese entspricht dem letzen Byte.
@@ -58,10 +62,10 @@ datamodel {
 					/* *
 	 		 		* Manche Elemente können optional durch Beschreibung beschrieben werden.
 	 		 		*/
-					description : "RecordData represents the current index of a measurement"
-			}
-		}
-	}
+					description : "RecordData represents the current index of a measurement";
+			};
+		};
+	};
 	
 	/* *
 	 * Der Teil "Coding_L1" soll schließlich die Kodierungsverfahren repräsentieren. Hierbei werden die Methoden
@@ -70,30 +74,9 @@ datamodel {
 	calculate Coding_L1
 		as fourteenByteByte
 		by structToByte, byteToStruct
-		with (L1 as BYTE_ARRAY)
+		with (L1 as BYTE_ARRAY);
 	
-	/* *
-	 * Siehe Phase L1 
-	 */	
-	set L2 {
-		set Data {
-			set Metadata {
-				const DeviceType as oneByteByte
-				const RecordType as oneByteByte
-			}
-			
-			set MeasuredValues {
-				data of Voltage in "V" as twoByteInt16 
-				data of CurrentIntensity in "A" as fourByteFloat
-				data of Energy in "Ws" as fourByteFloat
-				data of CosPhi as oneByteInt8
-			}
-			
-			set RecordData {
-				basicdata CHAR RecordNo as oneByteByte
-			}
-		}
-	}
+	declaration L1 L2, L1 L3;
 	
 	/* *
 	 * Siehe Coding_L1 
@@ -101,30 +84,7 @@ datamodel {
 	calculate Coding_L2
 		as fourteenByteByte
 		by structToByte, byteToStruct
-		with (L2 as BYTE_ARRAY)
-	
-	/* *
-	 * Siehe Phase L1 
-	 */	
-	set L3 {
-		set Data {
-			set Metadata {
-				const DeviceType as oneByteByte
-				const RecordType as oneByteByte
-			}
-			
-			set MeasuredValues {
-				data of Voltage in "V" as twoByteInt16
-				data of CurrentIntensity in "A" as fourByteFloat
-				data of Energy in "Ws" as fourByteFloat
-				data of CosPhi as oneByteInt8
-			}
-			
-			set RecordData {
-				basicdata CHAR RecordNo as oneByteByte
-			}
-		}
-	}
+		with (L2 as BYTE_ARRAY);
 	
 	/* *
 	 * Siehe Coding_L1 
@@ -132,7 +92,7 @@ datamodel {
 	calculate Coding_L3
 		as fourteenByteByte
 		by structToByte, byteToStruct
-		with (L3 as BYTE_ARRAY)
+		with (L3 as BYTE_ARRAY);
 	
 	
 	/* *
@@ -142,22 +102,22 @@ datamodel {
 		set Data {
 			
 			set Metadata {
-				const DeviceType as oneByteByte
-				const RecordType as oneByteByte
-			}
+				const DeviceType as oneByteByte;
+				const RecordType as oneByteByte;
+			};
 			
 			set MeasuredValues {
-				data of Dummy as twoByteInt16
-				data of CurrentIntensity in "A" as fourByteFloat 
-				data of Dummy1 as fourByteInt32
-				data of CosPhi as oneByteInt8
-			}
+				data of Dummy as twoByteInt16;
+				data of CurrentIntensity in "A" as fourByteFloat; 
+				data of Dummy1 as fourByteInt32;
+				data of CosPhi as oneByteInt8;
+			};
 			
 			set RecordData {
-				basicdata CHAR RecordNo as oneByteByte
-			}
-		}
-	}
+				basicdata CHAR RecordNo as oneByteByte;
+			};
+		};
+	};
 	
 	/* *
 	 * Siehe Coding_L1...L3 
@@ -165,7 +125,7 @@ datamodel {
 	calculate Coding_N
 		as fourteenByteByte
 		by structToByte, byteToStruct
-		with (N as BYTE_ARRAY)
+		with (N as BYTE_ARRAY);
 	
 	/* *
 	 * Beschreibung der bezogenen Energiemenge L1,L2,L3.
@@ -177,20 +137,20 @@ datamodel {
 	 		 * in der EMeter-Datenstruktur.
 	 		 */
 			set Metadata {
-				const DeviceType as oneByteByte
-				const RecordType as oneByteByte
-			}
+				const DeviceType as oneByteByte;
+				const RecordType as oneByteByte;
+			};
 			
 			/* *
 	 		 * In dieser Gruppe werden die Messwerte gruppiert und entsprechen den Bytes 3-14.
 	 		 */
 			set MeasuredValues {
-				data of fE_L1 in "kWh" as fourByteFloat
-				data of fE_L2 in "kWh" as fourByteFloat
-				data of fE_L3 in "kWh" as fourByteFloat
-			}
-		}
-	}
+				data of fE_L1 in "kWh" as fourByteFloat;
+				data of fE_L2 in "kWh" as fourByteFloat;
+				data of fE_L3 in "kWh" as fourByteFloat;
+			};
+		};
+	};
 	
 	/* *
 	 * Siehe Coding_L1...L3 oder Coding_N 
@@ -198,7 +158,7 @@ datamodel {
 	calculate Coding_Energy
 		as fourteenByteByte 
 		by structToByte, byteToStruct
-		with (Energy as BYTE_ARRAY)
+		with (Energy as BYTE_ARRAY);
 	
 	/* *
 	 * Letztlich sollen die fünf Datenpackete übermittelt werden. 

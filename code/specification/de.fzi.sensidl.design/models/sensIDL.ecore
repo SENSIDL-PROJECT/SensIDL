@@ -1,121 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sensidl" nsURI="http://fzi.de/sensidl/design/1.0" nsPrefix="de.fzi.design.model.sensidl">
-  <eClassifiers xsi:type="ecore:EClass" name="DataModel">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="representations" ordered="false"
-        upperBound="-1" eType="#//Representation" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="datafields" upperBound="-1"
-        eType="#//Datafield" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="transmit" lowerBound="1"
-        upperBound="-1" eType="#//Datafield"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="options" ordered="false"
-        lowerBound="1" eType="#//Options" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Representation" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="byteCount" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//Type"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Datafield" abstract="true" eSuperTypes="#//NamedElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Calculated" eSuperTypes="#//Datafield">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="representation" lowerBound="1"
-        eType="#//Representation"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="methodName" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="methodNameOut" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
-        eType="#//Parameter" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Parameter">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="datafield" lowerBound="1"
-        eType="#//Datafield"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="argumentType" lowerBound="1"
-        eType="#//ArgumentType"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConstantData" eSuperTypes="#//Datafield">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="constValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="representation" lowerBound="1"
-        eType="#//Representation"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MeasuredData" eSuperTypes="#//VariableData">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
-        defaultValueLiteral="1"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
-        eType="#//DataConstraint" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Datastructure" eSuperTypes="#//Datafield">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="datafields" upperBound="-1"
-        eType="#//Datafield" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Type">
-    <eLiterals name="BOOL"/>
-    <eLiterals name="CHAR" value="1"/>
-    <eLiterals name="SHORT" value="2"/>
-    <eLiterals name="INT" value="3" literal="INT"/>
-    <eLiterals name="LONG" value="4"/>
-    <eLiterals name="LONGLONG" value="5" literal="LONGLONG"/>
-    <eLiterals name="FLOAT" value="6" literal="FLOAT"/>
-    <eLiterals name="DOUBLE" value="7"/>
-    <eLiterals name="LONGDOUBLE" value="8"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ArgumentType">
-    <eLiterals name="BYTE_ARRAY"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Options">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sensorLanguage" eType="#//GenerationLanguage"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="receiverLanguage" eType="#//GenerationLanguage"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="endianess" eType="#//Endianess"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sensorAlignment" eType="#//Alignment"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="receiverAlignment" eType="#//Alignment"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="GenerationLanguage">
-    <eLiterals name="JAVA"/>
-    <eLiterals name="CPP" value="1"/>
-    <eLiterals name="C" value="2"/>
-    <eLiterals name="CSHARP" value="3" literal="CSHARP"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true" interface="true"
-      eSuperTypes="#//NamedElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DataConstraint" abstract="true" eSuperTypes="#//Constraint"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DataRange" eSuperTypes="#//DataConstraint">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" eType="#//Bound"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" eType="#//Bound"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Bound">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DataAdaption" eSuperTypes="#//DataConstraint">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scalingFactor" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VariableData" abstract="true" eSuperTypes="#//Datafield">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="representation" lowerBound="1"
-        eType="#//Representation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SensorInterface" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metaInformation" lowerBound="1"
+        eType="#//SensorMetaInformation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataDescription" lowerBound="1"
+        eType="#//DataRepresentation/SensorDataDescription" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataTransmission" lowerBound="1"
+        eType="#//DataTransmission/SensorDataTransmission" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NonMeasuredData" eSuperTypes="#//VariableData">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//Type"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SensorMetaInformation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="coding" lowerBound="1"
+        eType="#//Coding"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="endianness" lowerBound="1"
+        eType="#//Endianness"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alignment" lowerBound="1"
+        eType="#//Alignment"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Endianess">
+  <eClassifiers xsi:type="ecore:EEnum" name="Coding">
+    <eLiterals name="SENSIDL_BINARY"/>
+    <eLiterals name="SENSIDL_JSON" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Endianness">
     <eLiterals name="BIG_ENDIAN"/>
     <eLiterals name="LITTLE_ENDIAN" value="1"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DatastructureDeclaration" eSuperTypes="#//Declaration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="reusedDatastructure" eType="#//Datastructure"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Declaration" eSuperTypes="#//Datafield">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="declarations" upperBound="-1"
-        eType="#//DatastructureDeclaration" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Alignment">
     <eLiterals name="_8BIT" literal="_8BIT"/>
@@ -123,4 +37,79 @@
     <eLiterals name="_32BIT" value="2"/>
     <eLiterals name="_64BIT" value="3"/>
   </eClassifiers>
+  <eSubpackages name="DataRepresentation" nsURI="http://fzi.de/sensidl/design/representation/1.0"
+      nsPrefix="de.fzi.design.model.sensidl.representation">
+    <eClassifiers xsi:type="ecore:EClass" name="SensorDataDescription" eSuperTypes="#//NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sets" upperBound="-1"
+          eType="#//DataRepresentation/DataSet" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataSet" eSuperTypes="#//NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sets" upperBound="-1"
+          eType="#//DataRepresentation/DataSet" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
+          eType="#//DataRepresentation/DataField" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataField" abstract="true" eSuperTypes="#//NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" lowerBound="1"
+          eType="#//DataRepresentation/DataType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConstantData" eSuperTypes="#//DataRepresentation/DataField">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="constValue" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="VariableData" abstract="true" eSuperTypes="#//DataRepresentation/DataField"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MeasurementData" eSuperTypes="#//DataRepresentation/VariableData">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+          eType="#//DataRepresentation/DataProperty" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NonMeasurementData" eSuperTypes="#//DataRepresentation/VariableData">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataProperty" abstract="true" eSuperTypes="#//NamedElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DataRange" eSuperTypes="#//DataRepresentation/DataProperty">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" eType="#//DataRepresentation/Bound"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" eType="#//DataRepresentation/Bound"
+          containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Bound">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="initialValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataAdaption" eSuperTypes="#//DataRepresentation/DataProperty">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="scalingFactor" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="DataType">
+      <eLiterals name="BOOL"/>
+      <eLiterals name="CHAR" value="1"/>
+      <eLiterals name="SHORT" value="2"/>
+      <eLiterals name="INT" value="3" literal="INT"/>
+      <eLiterals name="LONG" value="4"/>
+      <eLiterals name="LONGLONG" value="5" literal="LONGLONG"/>
+      <eLiterals name="FLOAT" value="6" literal="FLOAT"/>
+      <eLiterals name="DOUBLE" value="7"/>
+      <eLiterals name="LONGDOUBLE" value="8"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="DataTransmission" nsURI="http://fzi.de/sensidl/design/transmission/1.0"
+      nsPrefix="de.fzi.design.model.sensidl.transmisson">
+    <eClassifiers xsi:type="ecore:EClass" name="SensorDataTransmission" eSuperTypes="#//NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="operation" lowerBound="1"
+          eType="#//DataTransmission/Operation"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//NamedElement">
+      <eOperations name="connect"/>
+      <eOperations name="startMeasurement"/>
+      <eOperations name="stopMeasurement"/>
+      <eOperations name="pauseMeasurement"/>
+      <eOperations name="send" eType="#//DataRepresentation/DataField"/>
+      <eOperations name="send" eType="#//DataRepresentation/DataField">
+        <eParameters name="frequency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+      </eOperations>
+    </eClassifiers>
+  </eSubpackages>
 </ecore:EPackage>
