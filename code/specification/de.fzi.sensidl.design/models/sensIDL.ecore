@@ -2,14 +2,13 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sensidl" nsURI="http://fzi.de/sensidl/design/1.0" nsPrefix="de.fzi.design.model.sensidl">
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SensorInterface" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="metaInformation" lowerBound="1"
-        eType="#//SensorMetaInformation"/>
+        eType="#//SensorMetaInformation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataDescription" lowerBound="1"
         eType="#//DataRepresentation/SensorDataDescription" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataTransmission" lowerBound="1"
@@ -66,7 +65,11 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DataProperty" abstract="true" eSuperTypes="#//NamedElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DataProperty" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DataUnit" eSuperTypes="#//DataRepresentation/DataProperty">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataRange" eSuperTypes="#//DataRepresentation/DataProperty">
       <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" eType="#//DataRepresentation/Bound"
           containment="true"/>
@@ -93,19 +96,16 @@
       <eLiterals name="FLOAT" value="6" literal="FLOAT"/>
       <eLiterals name="DOUBLE" value="7"/>
       <eLiterals name="LONGDOUBLE" value="8"/>
+      <eLiterals name="BYTE" value="9" literal="BYTE"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="DataTransmission" nsURI="http://fzi.de/sensidl/design/transmission/1.0"
       nsPrefix="de.fzi.design.model.sensidl.transmisson">
     <eClassifiers xsi:type="ecore:EClass" name="SensorDataTransmission" eSuperTypes="#//NamedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="operation" lowerBound="1"
-          eType="#//DataTransmission/Operation"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//NamedElement">
       <eOperations name="connect"/>
-      <eOperations name="startMeasurement"/>
-      <eOperations name="stopMeasurement"/>
-      <eOperations name="pauseMeasurement"/>
+      <eOperations name="startMeasurement" eType="#//DataRepresentation/DataSet"/>
+      <eOperations name="stopMeasurement" eType="#//DataRepresentation/DataSet"/>
+      <eOperations name="pauseMeasurement" eType="#//DataRepresentation/DataSet"/>
       <eOperations name="send" eType="#//DataRepresentation/DataField"/>
       <eOperations name="send" eType="#//DataRepresentation/DataField">
         <eParameters name="frequency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>

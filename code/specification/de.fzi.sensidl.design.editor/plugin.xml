@@ -34,4 +34,60 @@
       </editor>
    </extension>
 
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated sensIDL -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="sensidl.DataRepresentation.presentation.DataRepresentationModelWizardID"
+            name="%_UI_DataRepresentationModelWizard_label"
+            class="sensidl.DataRepresentation.presentation.DataRepresentationModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/DataRepresentationModelFile.gif">
+         <description>%_UI_DataRepresentationModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated sensIDL -->
+      <editor
+            id="sensidl.DataRepresentation.presentation.DataRepresentationEditorID"
+            name="%_UI_DataRepresentationEditor_label"
+            icon="icons/full/obj16/DataRepresentationModelFile.gif"
+            extensions="datarepresentation"
+            class="sensidl.DataRepresentation.presentation.DataRepresentationEditor"
+            contributorClass="sensidl.DataRepresentation.presentation.DataRepresentationActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated sensIDL -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="sensidl.DataTransmission.presentation.DataTransmissionModelWizardID"
+            name="%_UI_DataTransmissionModelWizard_label"
+            class="sensidl.DataTransmission.presentation.DataTransmissionModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/DataTransmissionModelFile.gif">
+         <description>%_UI_DataTransmissionModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated sensIDL -->
+      <editor
+            id="sensidl.DataTransmission.presentation.DataTransmissionEditorID"
+            name="%_UI_DataTransmissionEditor_label"
+            icon="icons/full/obj16/DataTransmissionModelFile.gif"
+            extensions="datatransmission"
+            class="sensidl.DataTransmission.presentation.DataTransmissionEditor"
+            contributorClass="sensidl.DataTransmission.presentation.DataTransmissionActionBarContributor">
+      </editor>
+   </extension>
+
 </plugin>

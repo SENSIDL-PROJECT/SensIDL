@@ -7,7 +7,9 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: sensidl.tests
+Export-Package: sensidl.DataRepresentation.tests,
+ sensidl.DataTransmission.tests,
+ sensidl.tests
 Require-Bundle: org.eclipse.core.runtime,
  de.fzi.sensidl.design;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
