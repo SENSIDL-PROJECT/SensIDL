@@ -1,101 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<de.fzi.design.model.sensidl:SensorInterface xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:de.fzi.design.model.sensidl="http://fzi.de/sensidl/design/1.0" xmlns:de.fzi.design.model.sensidl.representation="http://fzi.de/sensidl/design/representation/1.0" ID="" name="eMeter" description="Sensor for measurement of electrical currents">
+<de.fzi.sensidl.design:SensorInterface xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:de.fzi.sensidl.design="http://fzi.de/sensidl/design/1.0" xmlns:de.fzi.sensidl.design.sensidl="http://fzi.de/sensidl/design/representation/1.0" ID="" name="eMeter" description="Sensor for measurement of electrical currents">
   <metaInformation endianness="LITTLE_ENDIAN"/>
   <dataDescription name="eMeter data structures" description="Data structures of the eMeter used for storing the measurement-relevant values">
     <sets name="L1" description="Phase for conductor 1st">
       <sets name="Type" description="Device and record type">
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:ConstantData" name="Device Type" dataType="BYTE" constValue="E-Meter 40"/>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:ConstantData" name="Record type" dataType="BYTE" constValue="1"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:ConstantData" ID="" name="Device Type" description="" dataType="BYTE" constValue="40"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:ConstantData" name="Record type" dataType="BYTE" constValue="1"/>
       </sets>
       <sets name="Measurement" description="Metered values">
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:MeasurementData" name="Voltage" description="" dataType="SHORT">
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataUnit" unit="V"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" name="Voltage" description="" dataType="SHORT">
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataUnit" unit="V"/>
         </fields>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:MeasurementData" name="Current" dataType="FLOAT">
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataUnit" unit="A"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" name="Current" dataType="FLOAT">
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataUnit" unit="A"/>
         </fields>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:MeasurementData" name="Power" dataType="FLOAT">
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataUnit" unit="W"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" name="Power" dataType="FLOAT">
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataUnit" unit="W"/>
         </fields>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:MeasurementData" name="Phase angle" dataType="BYTE">
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataUnit" unit="Degree"/>
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataAdaption" scalingFactor="1.0E-7"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" name="Phase angle" dataType="BYTE">
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataUnit" unit="Dimensionless"/>
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataAdaption" scalingFactor="1.0E-7"/>
         </fields>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:NonMeasurementData" ID="" name="Counter" description="Counted number of the measurement set" dataType="BYTE" value=""/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:NonMeasurementData" ID="" name="Counter" description="Counted number of the measurement set" dataType="BYTE" value=""/>
       </sets>
     </sets>
     <sets name="L2" description="Phase for conductor 2nd">
       <sets name="Type" description="Device and record type">
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:ConstantData" name="Device Type" dataType="BYTE" constValue="E-Meter 40"/>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:ConstantData" name="Record type" dataType="BYTE" constValue="2"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:ConstantData" name="Device Type" dataType="BYTE" constValue="40"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:ConstantData" name="Record type" dataType="BYTE" constValue="2"/>
       </sets>
       <sets name="Measurement" description="Metered values">
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:MeasurementData" name="Voltage" description="" dataType="SHORT">
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataUnit" unit="V"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" name="Voltage" description="" dataType="SHORT">
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataUnit" unit="V"/>
         </fields>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:MeasurementData" name="Current" dataType="FLOAT">
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataUnit" unit="A"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" name="Current" dataType="FLOAT">
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataUnit" unit="A"/>
         </fields>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:MeasurementData" name="Power" dataType="FLOAT">
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataUnit" unit="W"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" name="Power" dataType="FLOAT">
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataUnit" unit="W"/>
         </fields>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:MeasurementData" name="Phase angle" dataType="BYTE">
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataUnit" unit="Degree"/>
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataAdaption" scalingFactor="1.0E-7"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" name="Phase angle" dataType="BYTE">
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataUnit" unit="Degree"/>
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataAdaption" scalingFactor="1.0E-7"/>
         </fields>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:NonMeasurementData" ID="" name="Counter" description="Counted number of the measurement set" dataType="BYTE" value=""/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:NonMeasurementData" ID="" name="Counter" description="Counted number of the measurement set" dataType="BYTE" value=""/>
       </sets>
     </sets>
     <sets name="L3" description="Phase for conductor 3rd">
       <sets name="Type" description="Device and record type">
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:ConstantData" name="Device Type" dataType="BYTE" constValue="E-Meter 40"/>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:ConstantData" name="Record type" dataType="BYTE" constValue="3"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:ConstantData" name="Device Type" dataType="BYTE" constValue="40"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:ConstantData" name="Record type" dataType="BYTE" constValue="3"/>
       </sets>
       <sets name="Measurement" description="Metered values">
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:MeasurementData" name="Voltage" description="" dataType="SHORT">
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataUnit" unit="V"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" name="Voltage" description="" dataType="SHORT">
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataUnit" unit="V"/>
         </fields>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:MeasurementData" name="Current" dataType="FLOAT">
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataUnit" unit="A"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" name="Current" dataType="FLOAT">
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataUnit" unit="A"/>
         </fields>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:MeasurementData" name="Power" dataType="FLOAT">
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataUnit" unit="W"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" name="Power" dataType="FLOAT">
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataUnit" unit="W"/>
         </fields>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:MeasurementData" name="Phase angle" dataType="SHORT">
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataUnit" unit="Degree"/>
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataAdaption" scalingFactor="1.0E-7"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" name="Phase angle" dataType="SHORT">
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataUnit" unit="Degree"/>
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataAdaption" scalingFactor="1.0E-7"/>
         </fields>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:NonMeasurementData" ID="" name="Counter" description="Counted number of the measurement set" dataType="BYTE" value=""/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:NonMeasurementData" ID="" name="Counter" description="Counted number of the measurement set" dataType="BYTE" value=""/>
       </sets>
     </sets>
     <sets name="L0" description="Zero conductor">
       <sets name="Type" description="Device and record type">
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:ConstantData" name="Device Type" dataType="BYTE" constValue="E-Meter 40"/>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:ConstantData" name="Record type" dataType="BYTE" constValue="4"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:ConstantData" name="Device Type" dataType="BYTE" constValue="40"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:ConstantData" name="Record type" dataType="BYTE" constValue="4"/>
       </sets>
       <sets name="Measurement" description="Metered values">
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:MeasurementData" name="Current" dataType="FLOAT">
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataUnit" unit="A"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" name="Current" dataType="FLOAT">
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataUnit" unit="A"/>
         </fields>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:MeasurementData" name="Phase angle" dataType="BYTE">
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataUnit" unit="Degree"/>
-          <properties xsi:type="de.fzi.design.model.sensidl.representation:DataAdaption" scalingFactor="1.0E-7"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" name="Phase angle" dataType="BYTE">
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataUnit" unit="Degree"/>
+          <properties xsi:type="de.fzi.sensidl.design.sensidl:DataAdaption" scalingFactor="1.0E-7"/>
         </fields>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:NonMeasurementData" ID="" name="Counter" description="Counted number of the measurement set" dataType="BYTE" value=""/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:NonMeasurementData" ID="" name="Counter" description="Counted number of the measurement set" dataType="BYTE" value=""/>
       </sets>
     </sets>
     <sets name="Energy" description="Total energy amount">
       <sets name="Type" description="Device and record type">
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:ConstantData" name="Device Type" dataType="BYTE" constValue="E-Meter 40"/>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:ConstantData" name="Record type" dataType="BYTE" constValue="5"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:ConstantData" name="Device Type" dataType="BYTE" constValue="40"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:ConstantData" name="Record type" dataType="BYTE" constValue="5"/>
       </sets>
       <sets name="Measurement" description="Metered values">
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:MeasurementData" name="L1" description="Energy amount in conductor 1" dataType="FLOAT"/>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:MeasurementData" name="L2" description="Energy amount in conductor 2" dataType="FLOAT"/>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:MeasurementData" name="L3" description="Energy amount in conductor 3" dataType="FLOAT"/>
-        <fields xsi:type="de.fzi.design.model.sensidl.representation:NonMeasurementData" ID="" name="Counter" description="Counted number of the measurement set" value=""/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" name="L1" description="Energy amount in conductor 1" dataType="FLOAT"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" name="L2" description="Energy amount in conductor 2" dataType="FLOAT"/>
+        <fields xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" name="L3" description="Energy amount in conductor 3" dataType="FLOAT"/>
       </sets>
     </sets>
   </dataDescription>
   <dataTransmission name="Operations for preapering measurement data and data transmission, along with start/stop measurement, preparation etc." description="This part of the model is just an approach regarding the operations and does not conform the final state for coge templates."/>
-</de.fzi.design.model.sensidl:SensorInterface>
+</de.fzi.sensidl.design:SensorInterface>

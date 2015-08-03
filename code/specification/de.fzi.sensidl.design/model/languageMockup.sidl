@@ -1,3 +1,4 @@
+= Idea 1 = 
 sensor T1 {
 	dataformat {
 		[ 4 byte unsigned int big endian TempInt ]
@@ -14,3 +15,74 @@ sensor T1 {
 	represented in DistInt
 	map times 10
 }
+
+ = Idea 2 =
+sensor interface eMeter "Interface for devices measuring electronic current." {
+	datastructures {
+		data set L1 "Measurements for conductor L1" {
+			mandatory deviceType as BYTE const value 40 "Type 40 denotes eMeter.";
+			mandatory recordType as BYTE const value 1 "Distinct type for this data set.";
+			mandatory voltage as SHORT in SI.VOLT/"V";
+			mandatory current as FLOAT in SI.AMPERE/"A";
+			mandatory power as FLOAT in SI.WATT/"W";
+			mandatory powerFactor as BYTE in Dimensionless map linear [0=>0, 255 => 1] "Power factor for this conductor. 0 if not available.";
+			mandatory identifier as BYTE in Dimensionless "Identifier to correlate measurements for different conductors.";
+		}
+		...
+		data set Energy "Total amount of energy transferred since last reset." {
+			mandatory deviceType as BYTE const value 40 "Type 40 denotes eMeter.";
+			mandatory recordType as BYTE const value 5 "Distinct type for this data set.";
+			mandatory l1 as FLOAT in SI.JOULE/SI.WATTSECOND/"J" "Energy amount for conductor L1.";
+			mandatory l2 as FLOAT in SI.JOULE/SI.WATTSECOND/"J" "Energy amount for conductor L2.";
+			mandatory l3 as FLOAT in SI.JOULE/SI.WATTSECOND/"J" "Energy amount for conductor L3.";
+		}
+	}
+	encoding BINARY with LITTLE_ENDIAN alignment 8BIT;
+}
+
+= Idea 3 =
+sensor interface eMeter "Interface for devices measuring electronic current." {
+	data type deviceType as BYTE {
+		value 40 "...eMeter...";
+		value 39 "simple eMeter...";
+		value 255 "reserved";
+	}
+	data type recordType as BYTE "Denotes the type of the data set / record send." {
+		values 1..6;
+	}
+	data type powerFactor as BYTE in Dimensionless map linear [0=>0, 255 => 1] "Power factor for a conductor. 0 if not available.";
+	data type conductorMeasurement as composite {
+		mandatory voltage as SHORT in SI.VOLT/"V";
+		mandatory current as FLOAT in SI.AMPERE/"A";
+		mandatory power as FLOAT in SI.WATT/"W";
+		mandatory powerFactor; //Note: Same name as type used if applied only once 
+		mandatory identifier as BYTE in Dimensionless "Identifier to correlate measurements for different conductors.";
+	}
+	data type conductorEnergy as FLOAT in SI.JOULE/SI.WATTSECOND/"J" "Energy amount for a conductor";
+	datastructures {
+		data set L1 "Measurements for conductor L1" {
+			mandatory deviceType as (eMeter.)deviceType;
+			mandatory recordType as (eMeter.)recordType const value 1;
+			mandatory l1 as conductorMeasurement;
+		}
+		data set L2 "Measurements for conductor L2" {
+			mandatory deviceType as (eMeter.)deviceType;
+			mandatory recordType as (eMeter.)recordType const value 2;
+			mandatory l2 as conductorMeasurement;
+		}
+		...
+		data set Energy "Total amount of energy transferred since last reset." {
+			mandatory deviceType as (eMeter.)deviceType;
+			mandatory recordType as (eMeter.)recordType const value 5; 
+			mandatory l1 as conductorEnergy "Energy amount for conductor L1.";
+			mandatory l2 as conductorEnergy "Energy amount for conductor L2.";
+			mandatory l3 as conductorEnergy "Energy amount for conductor L3.";
+		}
+	}
+	encoding BINARY with LITTLE_ENDIAN alignment 8BIT;
+}
+---
+generate, with parameters deviceType=40, L1.powerFactor=0, L2.powerFactor=0, L3.powerFactor=0
+Note: recordType is the only data, which is not payload -> Will have to be handled if different communication styles (packet, stream, RPC) are supported
+Note: Hierarchical ordering of data and assignment to data types would only be interesting on the client sides and is left out for now. Hierarchy can be flattened. Validation step required to check for name conflicts.
+Note: Additional Namespace for data type definition could help later on. Right now it would not focus on it.
