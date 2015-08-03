@@ -7,15 +7,15 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: sensidl,
- sensidl.DataRepresentation,
- sensidl.DataRepresentation.impl,
- sensidl.DataRepresentation.util,
- sensidl.DataTransmission,
- sensidl.DataTransmission.impl,
- sensidl.DataTransmission.util,
- sensidl.impl,
- sensidl.util
+Export-Package: de.fzi.sensidl.design.sensidl,
+ de.fzi.sensidl.design.sensidl.DataRepresentation,
+ de.fzi.sensidl.design.sensidl.DataRepresentation.impl,
+ de.fzi.sensidl.design.sensidl.DataRepresentation.util,
+ de.fzi.sensidl.design.sensidl.DataTransmission,
+ de.fzi.sensidl.design.sensidl.DataTransmission.impl,
+ de.fzi.sensidl.design.sensidl.DataTransmission.util,
+ de.fzi.sensidl.design.sensidl.impl,
+ de.fzi.sensidl.design.sensidl.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sensidl" nsURI="http://fzi.de/sensidl/design/1.0" nsPrefix="de.fzi.design.model.sensidl">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sensidl" nsURI="http://fzi.de/sensidl/design/1.0" nsPrefix="de.fzi.sensidl.design">
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -37,7 +37,7 @@
     <eLiterals name="_64BIT" value="3"/>
   </eClassifiers>
   <eSubpackages name="DataRepresentation" nsURI="http://fzi.de/sensidl/design/representation/1.0"
-      nsPrefix="de.fzi.design.model.sensidl.representation">
+      nsPrefix="de.fzi.sensidl.design.sensidl">
     <eClassifiers xsi:type="ecore:EClass" name="SensorDataDescription" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sets" upperBound="-1"
           eType="#//DataRepresentation/DataSet" containment="true"/>
@@ -100,7 +100,7 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="DataTransmission" nsURI="http://fzi.de/sensidl/design/transmission/1.0"
-      nsPrefix="de.fzi.design.model.sensidl.transmisson">
+      nsPrefix="de.fzi.sensidl.design.sensidl">
     <eClassifiers xsi:type="ecore:EClass" name="SensorDataTransmission" eSuperTypes="#//NamedElement">
       <eOperations name="connect"/>
       <eOperations name="startMeasurement" eType="#//DataRepresentation/DataSet"/>

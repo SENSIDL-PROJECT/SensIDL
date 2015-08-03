@@ -6,7 +6,8 @@
     testsDirectory="/de.fzi.sensidl.design.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>sensIDL.ecore</foreignModel>
-  <genPackages prefix="Sensidl" disposableProviderFactory="true" ecorePackage="sensIDL.ecore#/">
+  <genPackages prefix="sensidl" basePackage="de.fzi.sensidl.design" disposableProviderFactory="true"
+      ecorePackage="sensIDL.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="sensIDL.ecore#//Coding">
       <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Coding/SENSIDL_BINARY"/>
       <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Coding/SENSIDL_JSON"/>
@@ -36,8 +37,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//SensorMetaInformation/endianness"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//SensorMetaInformation/alignment"/>
     </genClasses>
-    <nestedGenPackages prefix="DataRepresentation" basePackage="sensidl" disposableProviderFactory="true"
-        ecorePackage="sensIDL.ecore#//DataRepresentation">
+    <nestedGenPackages prefix="DataRepresentation" basePackage="de.fzi.sensidl.design.sensidl"
+        disposableProviderFactory="true" ecorePackage="sensIDL.ecore#//DataRepresentation">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="sensIDL.ecore#//DataRepresentation/DataType">
         <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//DataRepresentation/DataType/BOOL"/>
         <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//DataRepresentation/DataType/CHAR"/>
@@ -87,8 +88,8 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//DataRepresentation/DataAdaption/offset"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="DataTransmission" basePackage="sensidl" disposableProviderFactory="true"
-        ecorePackage="sensIDL.ecore#//DataTransmission">
+    <nestedGenPackages prefix="DataTransmission" basePackage="de.fzi.sensidl.design.sensidl"
+        disposableProviderFactory="true" ecorePackage="sensIDL.ecore#//DataTransmission">
       <genClasses ecoreClass="sensIDL.ecore#//DataTransmission/SensorDataTransmission">
         <genOperations ecoreOperation="sensIDL.ecore#//DataTransmission/SensorDataTransmission/connect"/>
         <genOperations ecoreOperation="sensIDL.ecore#//DataTransmission/SensorDataTransmission/startMeasurement"/>

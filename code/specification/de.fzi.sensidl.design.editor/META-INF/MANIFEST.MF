@@ -4,13 +4,13 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: de.fzi.sensidl.design.editor;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: sensidl.presentation.SensIDLEditorPlugin$Implementation
+Bundle-Activator: de.fzi.sensidl.design.sensidl.presentation.SensIDLEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: sensidl.DataRepresentation.presentation,
- sensidl.DataTransmission.presentation,
- sensidl.presentation
+Export-Package: de.fzi.sensidl.design.sensidl.DataRepresentation.presentation,
+ de.fzi.sensidl.design.sensidl.DataTransmission.presentation,
+ de.fzi.sensidl.design.sensidl.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
  de.fzi.sensidl.design.edit;visibility:=reexport,
