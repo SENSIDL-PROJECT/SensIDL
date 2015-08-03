@@ -52,7 +52,7 @@ sensor interface eMeter "Interface for devices measuring electronic current." {
 	}
 	data type powerFactor as BYTE in Dimensionless map linear [0=>0, 255 => 1] "Power factor for a conductor. 0 if not available.";
 	data type conductorMeasurement as composite {
-		mandatory voltage as SHORT in SI.VOLT/"V";
+		mandatory voltage as SHORT in SI.VOLT/"V" "Voltage of conductor";
 		mandatory current as FLOAT in SI.AMPERE/"A";
 		mandatory power as FLOAT in SI.WATT/"W";
 		mandatory powerFactor; //Note: Same name as type used if applied only once 
@@ -81,8 +81,58 @@ sensor interface eMeter "Interface for devices measuring electronic current." {
 	}
 	encoding BINARY with LITTLE_ENDIAN alignment 8BIT;
 }
----
+
+--- Comments
 generate, with parameters deviceType=40, L1.powerFactor=0, L2.powerFactor=0, L3.powerFactor=0
 Note: recordType is the only data, which is not payload -> Will have to be handled if different communication styles (packet, stream, RPC) are supported
 Note: Hierarchical ordering of data and assignment to data types would only be interesting on the client sides and is left out for now. Hierarchy can be flattened. Validation step required to check for name conflicts.
 Note: Additional Namespace for data type definition could help later on. Right now it would not focus on it.
+
+--- Exemplary code generated for a sensor in C with Doxygen
+/**\brief	Prepare sending of data set "L1"
+ *
+ *			Note: deviceType is always 40 ("...eMeter...") for this sensor.
+ *
+ * \param	voltage	Voltage of conductor. Measured in unit: SI.VOLT / "V".
+ * \param	current	(No explanation given)
+ * \param	power	(No explanation given)	
+ * \param	powerFactor	 (No explanation given)
+ * \param	identifier	Identifier to correlate measurements for different conductors. Measure in unit: Dimensionless.
+ *
+ * \return	Byte array ready to be send;
+byte[] marshalL1(short voltage, float current, float power, uint8 powerFactor, uint8 identifier);
+
+--- Exemplary code generated for a receiver in Java (comments and getter/setter left out for brevity) and BINARY encoding
+public class L1 {
+	public L1(short deviceType, short voltage, float current, float power, byte powerFactory, byte identifier) { ... }
+	private short deviceType;
+	private short voltage;
+	private float current;
+	private float power;
+	private byte powerFactory;
+	private byte identifier;
+}
+
+L1 unmarshalL1(byte[] dataset);
+
+--- Alternative specification with non-binary encoding
+...
+	encoding JSON;
+}
+
+--- Exemplary code generated for a receiver in Java (comments and getter/setter left out for brevity) and JSON encoding using generation setting GSON
+public class L1 {
+	public L1(short deviceType, short voltage, float current, float power, byte powerFactory, byte identifier) { ... }
+	private short deviceType;
+	private short voltage;
+	private float current;
+	private float power;
+	private byte powerFactory;
+	private byte identifier;
+}
+
+L1 unmarshalL1(Reader dataset) {
+	...
+	GSON.fromJson(dataset, ...)
+	...
+}
