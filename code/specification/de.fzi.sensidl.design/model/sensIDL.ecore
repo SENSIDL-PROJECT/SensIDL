@@ -45,32 +45,24 @@
     <eClassifiers xsi:type="ecore:EClass" name="DataSet" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sets" upperBound="-1"
           eType="#//DataRepresentation/DataSet" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
-          eType="#//DataRepresentation/DataField" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="data" upperBound="-1"
+          eType="#//DataRepresentation/Data" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DataField" abstract="true" eSuperTypes="#//NamedElement">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" lowerBound="1"
-          eType="#//DataRepresentation/DataType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Data" abstract="true" eSuperTypes="#//NamedElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MeasurementData" eSuperTypes="#//DataRepresentation/Data">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="adjustments" upperBound="-1"
+          eType="#//DataRepresentation/DataAdjustment" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ConstantData" eSuperTypes="#//DataRepresentation/DataField">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="constValue" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="VariableData" abstract="true" eSuperTypes="#//DataRepresentation/DataField"/>
-    <eClassifiers xsi:type="ecore:EClass" name="MeasurementData" eSuperTypes="#//DataRepresentation/VariableData">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
-          eType="#//DataRepresentation/DataProperty" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="NonMeasurementData" eSuperTypes="#//DataRepresentation/VariableData">
+    <eClassifiers xsi:type="ecore:EClass" name="NonMeasurementData" eSuperTypes="#//DataRepresentation/Data">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DataProperty" abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="DataUnit" eSuperTypes="#//DataRepresentation/DataProperty">
+    <eClassifiers xsi:type="ecore:EClass" name="DataAdjustment" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DataUnit" eSuperTypes="#//DataRepresentation/DataAdjustment">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DataRange" eSuperTypes="#//DataRepresentation/DataProperty">
+    <eClassifiers xsi:type="ecore:EClass" name="DataRange" eSuperTypes="#//DataRepresentation/DataAdjustment">
       <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" eType="#//DataRepresentation/Bound"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" eType="#//DataRepresentation/Bound"
@@ -80,7 +72,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="initialValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DataAdaption" eSuperTypes="#//DataRepresentation/DataProperty">
+    <eClassifiers xsi:type="ecore:EClass" name="DataAdaption" eSuperTypes="#//DataRepresentation/DataAdjustment">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="scalingFactor" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" lowerBound="1"
@@ -106,8 +98,8 @@
       <eOperations name="startMeasurement" eType="#//DataRepresentation/DataSet"/>
       <eOperations name="stopMeasurement" eType="#//DataRepresentation/DataSet"/>
       <eOperations name="pauseMeasurement" eType="#//DataRepresentation/DataSet"/>
-      <eOperations name="send" eType="#//DataRepresentation/DataField"/>
-      <eOperations name="send" eType="#//DataRepresentation/DataField">
+      <eOperations name="send"/>
+      <eOperations name="send">
         <eParameters name="frequency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       </eOperations>
     </eClassifiers>
