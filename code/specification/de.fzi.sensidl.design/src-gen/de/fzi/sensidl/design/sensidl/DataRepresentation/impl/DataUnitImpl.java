@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class DataUnitImpl extends DataPropertyImpl implements DataUnit {
+public class DataUnitImpl extends DataAdjustmentImpl implements DataUnit {
 	/**
 	 * The default value of the '{@link #getUnit() <em>Unit</em>}' attribute.
 	 * <!-- begin-user-doc -->

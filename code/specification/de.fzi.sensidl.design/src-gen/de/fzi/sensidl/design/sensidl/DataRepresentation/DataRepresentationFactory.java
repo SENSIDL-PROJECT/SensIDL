@@ -40,15 +40,6 @@ public interface DataRepresentationFactory extends EFactory {
 	DataSet createDataSet();
 
 	/**
-	 * Returns a new object of class '<em>Constant Data</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constant Data</em>'.
-	 * @generated
-	 */
-	ConstantData createConstantData();
-
-	/**
 	 * Returns a new object of class '<em>Measurement Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

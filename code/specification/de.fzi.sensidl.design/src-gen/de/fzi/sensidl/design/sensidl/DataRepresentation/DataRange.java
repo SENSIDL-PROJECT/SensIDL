@@ -20,7 +20,7 @@ package de.fzi.sensidl.design.sensidl.DataRepresentation;
  * @model
  * @generated
  */
-public interface DataRange extends DataProperty {
+public interface DataRange extends DataAdjustment {
 	/**
 	 * Returns the value of the '<em><b>Lower Bound</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -32,7 +32,7 @@ public interface DataRange extends DataProperty {
 	 * @return the value of the '<em>Lower Bound</em>' containment reference.
 	 * @see #setLowerBound(Bound)
 	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage#getDataRange_LowerBound()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	Bound getLowerBound();
@@ -58,7 +58,7 @@ public interface DataRange extends DataProperty {
 	 * @return the value of the '<em>Upper Bound</em>' containment reference.
 	 * @see #setUpperBound(Bound)
 	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage#getDataRange_UpperBound()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	Bound getUpperBound();

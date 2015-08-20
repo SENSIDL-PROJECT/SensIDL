@@ -6,10 +6,15 @@ import de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackag
 import de.fzi.sensidl.design.sensidl.DataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.DataRepresentation.SensorDataDescription;
 
+import de.fzi.sensidl.design.sensidl.SensorInterface;
+
 import de.fzi.sensidl.design.sensidl.impl.NamedElementImpl;
+
+import de.fzi.sensidl.design.sensidl.sensidlPackage;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -17,7 +22,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -29,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.SensorDataDescriptionImpl#getSets <em>Sets</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.SensorDataDescriptionImpl#getSensorInterface <em>Sensor Interface</em>}</li>
  * </ul>
  *
  * @generated
@@ -70,9 +79,69 @@ public class SensorDataDescriptionImpl extends NamedElementImpl implements Senso
 	 */
 	public EList<DataSet> getSets() {
 		if (sets == null) {
-			sets = new EObjectContainmentEList<DataSet>(DataSet.class, this, DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SETS);
+			sets = new EObjectContainmentWithInverseEList<DataSet>(DataSet.class, this, DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SETS, DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION);
 		}
 		return sets;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SensorInterface getSensorInterface() {
+		if (eContainerFeatureID() != DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE) return null;
+		return (SensorInterface)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSensorInterface(SensorInterface newSensorInterface, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newSensorInterface, DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSensorInterface(SensorInterface newSensorInterface) {
+		if (newSensorInterface != eInternalContainer() || (eContainerFeatureID() != DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE && newSensorInterface != null)) {
+			if (EcoreUtil.isAncestor(this, newSensorInterface))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newSensorInterface != null)
+				msgs = ((InternalEObject)newSensorInterface).eInverseAdd(this, sensidlPackage.SENSOR_INTERFACE__DATA_DESCRIPTION, SensorInterface.class, msgs);
+			msgs = basicSetSensorInterface(newSensorInterface, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE, newSensorInterface, newSensorInterface));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SETS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSets()).basicAdd(otherEnd, msgs);
+			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetSensorInterface((SensorInterface)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -85,8 +154,24 @@ public class SensorDataDescriptionImpl extends NamedElementImpl implements Senso
 		switch (featureID) {
 			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SETS:
 				return ((InternalEList<?>)getSets()).basicRemove(otherEnd, msgs);
+			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE:
+				return basicSetSensorInterface(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE:
+				return eInternalContainer().eInverseRemove(this, sensidlPackage.SENSOR_INTERFACE__DATA_DESCRIPTION, SensorInterface.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -99,6 +184,8 @@ public class SensorDataDescriptionImpl extends NamedElementImpl implements Senso
 		switch (featureID) {
 			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SETS:
 				return getSets();
+			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE:
+				return getSensorInterface();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -116,6 +203,9 @@ public class SensorDataDescriptionImpl extends NamedElementImpl implements Senso
 				getSets().clear();
 				getSets().addAll((Collection<? extends DataSet>)newValue);
 				return;
+			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE:
+				setSensorInterface((SensorInterface)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -131,6 +221,9 @@ public class SensorDataDescriptionImpl extends NamedElementImpl implements Senso
 			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SETS:
 				getSets().clear();
 				return;
+			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE:
+				setSensorInterface((SensorInterface)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -145,6 +238,8 @@ public class SensorDataDescriptionImpl extends NamedElementImpl implements Senso
 		switch (featureID) {
 			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SETS:
 				return sets != null && !sets.isEmpty();
+			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE:
+				return getSensorInterface() != null;
 		}
 		return super.eIsSet(featureID);
 	}

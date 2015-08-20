@@ -232,8 +232,8 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSensorMetaInformation_Coding() {
-		return (EAttribute)sensorMetaInformationEClass.getEStructuralFeatures().get(0);
+	public EReference getSensorMetaInformation_SensorInterface() {
+		return (EReference)sensorMetaInformationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -241,7 +241,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSensorMetaInformation_Endianness() {
+	public EAttribute getSensorMetaInformation_Coding() {
 		return (EAttribute)sensorMetaInformationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -250,8 +250,17 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSensorMetaInformation_Alignment() {
+	public EAttribute getSensorMetaInformation_Endianness() {
 		return (EAttribute)sensorMetaInformationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSensorMetaInformation_Alignment() {
+		return (EAttribute)sensorMetaInformationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -320,6 +329,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 		createEReference(sensorInterfaceEClass, SENSOR_INTERFACE__DATA_TRANSMISSION);
 
 		sensorMetaInformationEClass = createEClass(SENSOR_META_INFORMATION);
+		createEReference(sensorMetaInformationEClass, SENSOR_META_INFORMATION__SENSOR_INTERFACE);
 		createEAttribute(sensorMetaInformationEClass, SENSOR_META_INFORMATION__CODING);
 		createEAttribute(sensorMetaInformationEClass, SENSOR_META_INFORMATION__ENDIANNESS);
 		createEAttribute(sensorMetaInformationEClass, SENSOR_META_INFORMATION__ALIGNMENT);
@@ -375,11 +385,12 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 		initEAttribute(getNamedElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sensorInterfaceEClass, SensorInterface.class, "SensorInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSensorInterface_MetaInformation(), this.getSensorMetaInformation(), null, "metaInformation", null, 1, 1, SensorInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSensorInterface_DataDescription(), theDataRepresentationPackage.getSensorDataDescription(), null, "dataDescription", null, 1, 1, SensorInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSensorInterface_DataTransmission(), theDataTransmissionPackage.getSensorDataTransmission(), null, "dataTransmission", null, 1, 1, SensorInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSensorInterface_MetaInformation(), this.getSensorMetaInformation(), this.getSensorMetaInformation_SensorInterface(), "metaInformation", null, 1, 1, SensorInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSensorInterface_DataDescription(), theDataRepresentationPackage.getSensorDataDescription(), theDataRepresentationPackage.getSensorDataDescription_SensorInterface(), "dataDescription", null, 1, 1, SensorInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSensorInterface_DataTransmission(), theDataTransmissionPackage.getSensorDataTransmission(), theDataTransmissionPackage.getSensorDataTransmission_SensorInterface(), "dataTransmission", null, 1, 1, SensorInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sensorMetaInformationEClass, SensorMetaInformation.class, "SensorMetaInformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSensorMetaInformation_SensorInterface(), this.getSensorInterface(), this.getSensorInterface_MetaInformation(), "sensorInterface", null, 1, 1, SensorMetaInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSensorMetaInformation_Coding(), this.getCoding(), "coding", null, 1, 1, SensorMetaInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSensorMetaInformation_Endianness(), this.getEndianness(), "endianness", null, 1, 1, SensorMetaInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSensorMetaInformation_Alignment(), this.getAlignment(), "alignment", null, 1, 1, SensorMetaInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

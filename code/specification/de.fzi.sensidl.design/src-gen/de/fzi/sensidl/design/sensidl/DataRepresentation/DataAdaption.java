@@ -20,7 +20,7 @@ package de.fzi.sensidl.design.sensidl.DataRepresentation;
  * @model
  * @generated
  */
-public interface DataAdaption extends DataProperty {
+public interface DataAdaption extends DataAdjustment {
 	/**
 	 * Returns the value of the '<em><b>Scaling Factor</b></em>' attribute.
 	 * <!-- begin-user-doc -->

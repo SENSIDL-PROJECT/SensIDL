@@ -118,29 +118,6 @@ public class DataRepresentationItemProviderAdapterFactory extends DataRepresenta
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link de.fzi.sensidl.design.sensidl.DataRepresentation.ConstantData} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ConstantDataItemProvider constantDataItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.fzi.sensidl.design.sensidl.DataRepresentation.ConstantData}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createConstantDataAdapter() {
-		if (constantDataItemProvider == null) {
-			constantDataItemProvider = new ConstantDataItemProvider(this);
-		}
-
-		return constantDataItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link de.fzi.sensidl.design.sensidl.DataRepresentation.MeasurementData} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -379,7 +356,6 @@ public class DataRepresentationItemProviderAdapterFactory extends DataRepresenta
 	public void dispose() {
 		if (sensorDataDescriptionItemProvider != null) sensorDataDescriptionItemProvider.dispose();
 		if (dataSetItemProvider != null) dataSetItemProvider.dispose();
-		if (constantDataItemProvider != null) constantDataItemProvider.dispose();
 		if (measurementDataItemProvider != null) measurementDataItemProvider.dispose();
 		if (nonMeasurementDataItemProvider != null) nonMeasurementDataItemProvider.dispose();
 		if (dataUnitItemProvider != null) dataUnitItemProvider.dispose();

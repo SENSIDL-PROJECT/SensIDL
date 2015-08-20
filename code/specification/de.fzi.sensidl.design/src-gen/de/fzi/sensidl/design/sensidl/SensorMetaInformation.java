@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation#getSensorInterface <em>Sensor Interface</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation#getCoding <em>Coding</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation#getEndianness <em>Endianness</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation#getAlignment <em>Alignment</em>}</li>
@@ -23,6 +24,34 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface SensorMetaInformation extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Sensor Interface</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.SensorInterface#getMetaInformation <em>Meta Information</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sensor Interface</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sensor Interface</em>' container reference.
+	 * @see #setSensorInterface(SensorInterface)
+	 * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getSensorMetaInformation_SensorInterface()
+	 * @see de.fzi.sensidl.design.sensidl.SensorInterface#getMetaInformation
+	 * @model opposite="metaInformation" required="true" transient="false"
+	 * @generated
+	 */
+	SensorInterface getSensorInterface();
+
+	/**
+	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation#getSensorInterface <em>Sensor Interface</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sensor Interface</em>' container reference.
+	 * @see #getSensorInterface()
+	 * @generated
+	 */
+	void setSensorInterface(SensorInterface value);
+
 	/**
 	 * Returns the value of the '<em><b>Coding</b></em>' attribute.
 	 * The literals are from the enumeration {@link de.fzi.sensidl.design.sensidl.Coding}.

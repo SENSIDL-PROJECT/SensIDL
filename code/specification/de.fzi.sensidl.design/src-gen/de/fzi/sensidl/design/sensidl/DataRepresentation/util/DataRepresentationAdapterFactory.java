@@ -78,16 +78,8 @@ public class DataRepresentationAdapterFactory extends AdapterFactoryImpl {
 				return createDataSetAdapter();
 			}
 			@Override
-			public Adapter caseDataField(DataField object) {
-				return createDataFieldAdapter();
-			}
-			@Override
-			public Adapter caseConstantData(ConstantData object) {
-				return createConstantDataAdapter();
-			}
-			@Override
-			public Adapter caseVariableData(VariableData object) {
-				return createVariableDataAdapter();
+			public Adapter caseData(Data object) {
+				return createDataAdapter();
 			}
 			@Override
 			public Adapter caseMeasurementData(MeasurementData object) {
@@ -98,8 +90,8 @@ public class DataRepresentationAdapterFactory extends AdapterFactoryImpl {
 				return createNonMeasurementDataAdapter();
 			}
 			@Override
-			public Adapter caseDataProperty(DataProperty object) {
-				return createDataPropertyAdapter();
+			public Adapter caseDataAdjustment(DataAdjustment object) {
+				return createDataAdjustmentAdapter();
 			}
 			@Override
 			public Adapter caseDataUnit(DataUnit object) {
@@ -170,44 +162,16 @@ public class DataRepresentationAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.DataField <em>Data Field</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.Data <em>Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataField
+	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.Data
 	 * @generated
 	 */
-	public Adapter createDataFieldAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.ConstantData <em>Constant Data</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.ConstantData
-	 * @generated
-	 */
-	public Adapter createConstantDataAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.VariableData <em>Variable Data</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.VariableData
-	 * @generated
-	 */
-	public Adapter createVariableDataAdapter() {
+	public Adapter createDataAdapter() {
 		return null;
 	}
 
@@ -240,16 +204,16 @@ public class DataRepresentationAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.DataProperty <em>Data Property</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.DataAdjustment <em>Data Adjustment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataProperty
+	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataAdjustment
 	 * @generated
 	 */
-	public Adapter createDataPropertyAdapter() {
+	public Adapter createDataAdjustmentAdapter() {
 		return null;
 	}
 

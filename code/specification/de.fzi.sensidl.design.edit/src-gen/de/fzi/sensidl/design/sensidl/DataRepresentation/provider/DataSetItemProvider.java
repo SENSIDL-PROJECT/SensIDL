@@ -68,7 +68,7 @@ public class DataSetItemProvider extends NamedElementItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DataRepresentationPackage.Literals.DATA_SET__SETS);
-			childrenFeatures.add(DataRepresentationPackage.Literals.DATA_SET__FIELDS);
+			childrenFeatures.add(DataRepresentationPackage.Literals.DATA_SET__DATA);
 		}
 		return childrenFeatures;
 	}
@@ -125,7 +125,7 @@ public class DataSetItemProvider extends NamedElementItemProvider {
 
 		switch (notification.getFeatureID(DataSet.class)) {
 			case DataRepresentationPackage.DATA_SET__SETS:
-			case DataRepresentationPackage.DATA_SET__FIELDS:
+			case DataRepresentationPackage.DATA_SET__DATA:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -150,17 +150,12 @@ public class DataSetItemProvider extends NamedElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DataRepresentationPackage.Literals.DATA_SET__FIELDS,
-				 DataRepresentationFactory.eINSTANCE.createConstantData()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DataRepresentationPackage.Literals.DATA_SET__FIELDS,
+				(DataRepresentationPackage.Literals.DATA_SET__DATA,
 				 DataRepresentationFactory.eINSTANCE.createMeasurementData()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DataRepresentationPackage.Literals.DATA_SET__FIELDS,
+				(DataRepresentationPackage.Literals.DATA_SET__DATA,
 				 DataRepresentationFactory.eINSTANCE.createNonMeasurementData()));
 	}
 

@@ -19,12 +19,33 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.NonMeasurementDataImpl#isConstant <em>Constant</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.NonMeasurementDataImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class NonMeasurementDataImpl extends VariableDataImpl implements NonMeasurementData {
+public class NonMeasurementDataImpl extends DataImpl implements NonMeasurementData {
+	/**
+	 * The default value of the '{@link #isConstant() <em>Constant</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isConstant()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CONSTANT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isConstant() <em>Constant</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isConstant()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean constant = CONSTANT_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -69,6 +90,27 @@ public class NonMeasurementDataImpl extends VariableDataImpl implements NonMeasu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isConstant() {
+		return constant;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setConstant(boolean newConstant) {
+		boolean oldConstant = constant;
+		constant = newConstant;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataRepresentationPackage.NON_MEASUREMENT_DATA__CONSTANT, oldConstant, constant));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getValue() {
 		return value;
 	}
@@ -93,6 +135,8 @@ public class NonMeasurementDataImpl extends VariableDataImpl implements NonMeasu
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case DataRepresentationPackage.NON_MEASUREMENT_DATA__CONSTANT:
+				return isConstant();
 			case DataRepresentationPackage.NON_MEASUREMENT_DATA__VALUE:
 				return getValue();
 		}
@@ -107,6 +151,9 @@ public class NonMeasurementDataImpl extends VariableDataImpl implements NonMeasu
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case DataRepresentationPackage.NON_MEASUREMENT_DATA__CONSTANT:
+				setConstant((Boolean)newValue);
+				return;
 			case DataRepresentationPackage.NON_MEASUREMENT_DATA__VALUE:
 				setValue((String)newValue);
 				return;
@@ -122,6 +169,9 @@ public class NonMeasurementDataImpl extends VariableDataImpl implements NonMeasu
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case DataRepresentationPackage.NON_MEASUREMENT_DATA__CONSTANT:
+				setConstant(CONSTANT_EDEFAULT);
+				return;
 			case DataRepresentationPackage.NON_MEASUREMENT_DATA__VALUE:
 				setValue(VALUE_EDEFAULT);
 				return;
@@ -137,6 +187,8 @@ public class NonMeasurementDataImpl extends VariableDataImpl implements NonMeasu
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case DataRepresentationPackage.NON_MEASUREMENT_DATA__CONSTANT:
+				return constant != CONSTANT_EDEFAULT;
 			case DataRepresentationPackage.NON_MEASUREMENT_DATA__VALUE:
 				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
@@ -153,7 +205,9 @@ public class NonMeasurementDataImpl extends VariableDataImpl implements NonMeasu
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (value: ");
+		result.append(" (constant: ");
+		result.append(constant);
+		result.append(", value: ");
 		result.append(value);
 		result.append(')');
 		return result.toString();

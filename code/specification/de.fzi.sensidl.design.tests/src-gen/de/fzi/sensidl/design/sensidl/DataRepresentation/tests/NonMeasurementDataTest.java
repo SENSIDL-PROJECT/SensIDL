@@ -13,7 +13,7 @@ import junit.textui.TestRunner;
  * <!-- end-user-doc -->
  * @generated
  */
-public class NonMeasurementDataTest extends VariableDataTest {
+public class NonMeasurementDataTest extends DataTest {
 
 	/**
 	 * <!-- begin-user-doc -->

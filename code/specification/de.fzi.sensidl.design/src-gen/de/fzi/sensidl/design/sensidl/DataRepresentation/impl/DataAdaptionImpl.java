@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class DataAdaptionImpl extends DataPropertyImpl implements DataAdaption {
+public class DataAdaptionImpl extends DataAdjustmentImpl implements DataAdaption {
 	/**
 	 * The default value of the '{@link #getScalingFactor() <em>Scaling Factor</em>}' attribute.
 	 * <!-- begin-user-doc -->

@@ -33,7 +33,7 @@ public interface Bound extends EObject {
 	 * @return the value of the '<em>Initial Value</em>' attribute.
 	 * @see #setInitialValue(double)
 	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage#getBound_InitialValue()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	double getInitialValue();
@@ -59,7 +59,7 @@ public interface Bound extends EObject {
 	 * @return the value of the '<em>Unit</em>' attribute.
 	 * @see #setUnit(String)
 	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage#getBound_Unit()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getUnit();

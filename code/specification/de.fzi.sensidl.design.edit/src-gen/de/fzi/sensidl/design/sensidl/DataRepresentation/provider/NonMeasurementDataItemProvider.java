@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class NonMeasurementDataItemProvider extends VariableDataItemProvider {
+public class NonMeasurementDataItemProvider extends DataItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -45,9 +45,32 @@ public class NonMeasurementDataItemProvider extends VariableDataItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addConstantPropertyDescriptor(object);
 			addValuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Constant feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addConstantPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NonMeasurementData_constant_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NonMeasurementData_constant_feature", "_UI_NonMeasurementData_type"),
+				 DataRepresentationPackage.Literals.NON_MEASUREMENT_DATA__CONSTANT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -110,6 +133,7 @@ public class NonMeasurementDataItemProvider extends VariableDataItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(NonMeasurementData.class)) {
+			case DataRepresentationPackage.NON_MEASUREMENT_DATA__CONSTANT:
 			case DataRepresentationPackage.NON_MEASUREMENT_DATA__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

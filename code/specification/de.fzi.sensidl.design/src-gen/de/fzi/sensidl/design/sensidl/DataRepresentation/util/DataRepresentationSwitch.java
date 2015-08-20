@@ -82,34 +82,17 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DataRepresentationPackage.DATA_FIELD: {
-				DataField dataField = (DataField)theEObject;
-				T result = caseDataField(dataField);
-				if (result == null) result = caseNamedElement(dataField);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DataRepresentationPackage.CONSTANT_DATA: {
-				ConstantData constantData = (ConstantData)theEObject;
-				T result = caseConstantData(constantData);
-				if (result == null) result = caseDataField(constantData);
-				if (result == null) result = caseNamedElement(constantData);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DataRepresentationPackage.VARIABLE_DATA: {
-				VariableData variableData = (VariableData)theEObject;
-				T result = caseVariableData(variableData);
-				if (result == null) result = caseDataField(variableData);
-				if (result == null) result = caseNamedElement(variableData);
+			case DataRepresentationPackage.DATA: {
+				Data data = (Data)theEObject;
+				T result = caseData(data);
+				if (result == null) result = caseNamedElement(data);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DataRepresentationPackage.MEASUREMENT_DATA: {
 				MeasurementData measurementData = (MeasurementData)theEObject;
 				T result = caseMeasurementData(measurementData);
-				if (result == null) result = caseVariableData(measurementData);
-				if (result == null) result = caseDataField(measurementData);
+				if (result == null) result = caseData(measurementData);
 				if (result == null) result = caseNamedElement(measurementData);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -117,29 +100,28 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 			case DataRepresentationPackage.NON_MEASUREMENT_DATA: {
 				NonMeasurementData nonMeasurementData = (NonMeasurementData)theEObject;
 				T result = caseNonMeasurementData(nonMeasurementData);
-				if (result == null) result = caseVariableData(nonMeasurementData);
-				if (result == null) result = caseDataField(nonMeasurementData);
+				if (result == null) result = caseData(nonMeasurementData);
 				if (result == null) result = caseNamedElement(nonMeasurementData);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DataRepresentationPackage.DATA_PROPERTY: {
-				DataProperty dataProperty = (DataProperty)theEObject;
-				T result = caseDataProperty(dataProperty);
+			case DataRepresentationPackage.DATA_ADJUSTMENT: {
+				DataAdjustment dataAdjustment = (DataAdjustment)theEObject;
+				T result = caseDataAdjustment(dataAdjustment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DataRepresentationPackage.DATA_UNIT: {
 				DataUnit dataUnit = (DataUnit)theEObject;
 				T result = caseDataUnit(dataUnit);
-				if (result == null) result = caseDataProperty(dataUnit);
+				if (result == null) result = caseDataAdjustment(dataUnit);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DataRepresentationPackage.DATA_RANGE: {
 				DataRange dataRange = (DataRange)theEObject;
 				T result = caseDataRange(dataRange);
-				if (result == null) result = caseDataProperty(dataRange);
+				if (result == null) result = caseDataAdjustment(dataRange);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -152,7 +134,7 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 			case DataRepresentationPackage.DATA_ADAPTION: {
 				DataAdaption dataAdaption = (DataAdaption)theEObject;
 				T result = caseDataAdaption(dataAdaption);
-				if (result == null) result = caseDataProperty(dataAdaption);
+				if (result == null) result = caseDataAdjustment(dataAdaption);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -191,47 +173,17 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Data Field</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Data Field</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Data</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDataField(DataField object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constant Data</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constant Data</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConstantData(ConstantData object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Variable Data</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Variable Data</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseVariableData(VariableData object) {
+	public T caseData(Data object) {
 		return null;
 	}
 
@@ -266,17 +218,17 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Data Property</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Data Adjustment</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Data Property</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Data Adjustment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDataProperty(DataProperty object) {
+	public T caseDataAdjustment(DataAdjustment object) {
 		return null;
 	}
 

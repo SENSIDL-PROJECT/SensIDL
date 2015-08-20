@@ -7,6 +7,7 @@ import de.fzi.sensidl.design.sensidl.sensidlPackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -95,13 +96,22 @@ public interface DataTransmissionPackage extends EPackage {
 	int SENSOR_DATA_TRANSMISSION__DESCRIPTION = sensidlPackage.NAMED_ELEMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Sensor Interface</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR_DATA_TRANSMISSION__SENSOR_INTERFACE = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Sensor Data Transmission</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_DATA_TRANSMISSION_FEATURE_COUNT = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int SENSOR_DATA_TRANSMISSION_FEATURE_COUNT = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Connect</em>' operation.
@@ -176,6 +186,17 @@ public interface DataTransmissionPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSensorDataTransmission();
+
+	/**
+	 * Returns the meta object for the container reference '{@link de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#getSensorInterface <em>Sensor Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Sensor Interface</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#getSensorInterface()
+	 * @see #getSensorDataTransmission()
+	 * @generated
+	 */
+	EReference getSensorDataTransmission_SensorInterface();
 
 	/**
 	 * Returns the meta object for the '{@link de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#connect() <em>Connect</em>}' operation.
@@ -269,6 +290,14 @@ public interface DataTransmissionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SENSOR_DATA_TRANSMISSION = eINSTANCE.getSensorDataTransmission();
+
+		/**
+		 * The meta object literal for the '<em><b>Sensor Interface</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SENSOR_DATA_TRANSMISSION__SENSOR_INTERFACE = eINSTANCE.getSensorDataTransmission_SensorInterface();
 
 		/**
 		 * The meta object literal for the '<em><b>Connect</b></em>' operation.

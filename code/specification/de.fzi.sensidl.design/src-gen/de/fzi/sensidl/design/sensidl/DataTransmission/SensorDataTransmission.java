@@ -2,22 +2,56 @@
  */
 package de.fzi.sensidl.design.sensidl.DataTransmission;
 
-import de.fzi.sensidl.design.sensidl.DataRepresentation.DataField;
 import de.fzi.sensidl.design.sensidl.DataRepresentation.DataSet;
 
 import de.fzi.sensidl.design.sensidl.NamedElement;
+import de.fzi.sensidl.design.sensidl.SensorInterface;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Sensor Data Transmission</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#getSensorInterface <em>Sensor Interface</em>}</li>
+ * </ul>
  *
  * @see de.fzi.sensidl.design.sensidl.DataTransmission.DataTransmissionPackage#getSensorDataTransmission()
  * @model
  * @generated
  */
 public interface SensorDataTransmission extends NamedElement {
+	/**
+	 * Returns the value of the '<em><b>Sensor Interface</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.SensorInterface#getDataTransmission <em>Data Transmission</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sensor Interface</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sensor Interface</em>' container reference.
+	 * @see #setSensorInterface(SensorInterface)
+	 * @see de.fzi.sensidl.design.sensidl.DataTransmission.DataTransmissionPackage#getSensorDataTransmission_SensorInterface()
+	 * @see de.fzi.sensidl.design.sensidl.SensorInterface#getDataTransmission
+	 * @model opposite="dataTransmission" required="true" transient="false"
+	 * @generated
+	 */
+	SensorInterface getSensorInterface();
+
+	/**
+	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#getSensorInterface <em>Sensor Interface</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sensor Interface</em>' container reference.
+	 * @see #getSensorInterface()
+	 * @generated
+	 */
+	void setSensorInterface(SensorInterface value);
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,7 +90,7 @@ public interface SensorDataTransmission extends NamedElement {
 	 * @model
 	 * @generated
 	 */
-	DataField send();
+	void send();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -64,6 +98,6 @@ public interface SensorDataTransmission extends NamedElement {
 	 * @model
 	 * @generated
 	 */
-	DataField send(double frequency);
+	void send(double frequency);
 
 } // SensorDataTransmission

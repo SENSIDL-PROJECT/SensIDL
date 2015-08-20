@@ -2,14 +2,16 @@
  */
 package de.fzi.sensidl.design.sensidl.DataRepresentation.impl;
 
-import de.fzi.sensidl.design.sensidl.DataRepresentation.DataField;
+import de.fzi.sensidl.design.sensidl.DataRepresentation.Data;
 import de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.DataRepresentation.DataSet;
+import de.fzi.sensidl.design.sensidl.DataRepresentation.SensorDataDescription;
 
 import de.fzi.sensidl.design.sensidl.impl.NamedElementImpl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -17,7 +19,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -28,8 +34,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataSetImpl#getSensorDataDescription <em>Sensor Data Description</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataSetImpl#getSets <em>Sets</em>}</li>
- *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataSetImpl#getFields <em>Fields</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataSetImpl#getData <em>Data</em>}</li>
  * </ul>
  *
  * @generated
@@ -46,14 +53,14 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	protected EList<DataSet> sets;
 
 	/**
-	 * The cached value of the '{@link #getFields() <em>Fields</em>}' containment reference list.
+	 * The cached value of the '{@link #getData() <em>Data</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFields()
+	 * @see #getData()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DataField> fields;
+	protected EList<Data> data;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -79,6 +86,47 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SensorDataDescription getSensorDataDescription() {
+		if (eContainerFeatureID() != DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION) return null;
+		return (SensorDataDescription)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSensorDataDescription(SensorDataDescription newSensorDataDescription, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newSensorDataDescription, DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSensorDataDescription(SensorDataDescription newSensorDataDescription) {
+		if (newSensorDataDescription != eInternalContainer() || (eContainerFeatureID() != DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION && newSensorDataDescription != null)) {
+			if (EcoreUtil.isAncestor(this, newSensorDataDescription))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newSensorDataDescription != null)
+				msgs = ((InternalEObject)newSensorDataDescription).eInverseAdd(this, DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SETS, SensorDataDescription.class, msgs);
+			msgs = basicSetSensorDataDescription(newSensorDataDescription, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION, newSensorDataDescription, newSensorDataDescription));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<DataSet> getSets() {
 		if (sets == null) {
 			sets = new EObjectContainmentEList<DataSet>(DataSet.class, this, DataRepresentationPackage.DATA_SET__SETS);
@@ -91,11 +139,30 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DataField> getFields() {
-		if (fields == null) {
-			fields = new EObjectContainmentEList<DataField>(DataField.class, this, DataRepresentationPackage.DATA_SET__FIELDS);
+	public EList<Data> getData() {
+		if (data == null) {
+			data = new EObjectContainmentWithInverseEList<Data>(Data.class, this, DataRepresentationPackage.DATA_SET__DATA, DataRepresentationPackage.DATA__DATA_SET);
 		}
-		return fields;
+		return data;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetSensorDataDescription((SensorDataDescription)otherEnd, msgs);
+			case DataRepresentationPackage.DATA_SET__DATA:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getData()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -106,10 +173,12 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION:
+				return basicSetSensorDataDescription(null, msgs);
 			case DataRepresentationPackage.DATA_SET__SETS:
 				return ((InternalEList<?>)getSets()).basicRemove(otherEnd, msgs);
-			case DataRepresentationPackage.DATA_SET__FIELDS:
-				return ((InternalEList<?>)getFields()).basicRemove(otherEnd, msgs);
+			case DataRepresentationPackage.DATA_SET__DATA:
+				return ((InternalEList<?>)getData()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -120,12 +189,28 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION:
+				return eInternalContainer().eInverseRemove(this, DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SETS, SensorDataDescription.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION:
+				return getSensorDataDescription();
 			case DataRepresentationPackage.DATA_SET__SETS:
 				return getSets();
-			case DataRepresentationPackage.DATA_SET__FIELDS:
-				return getFields();
+			case DataRepresentationPackage.DATA_SET__DATA:
+				return getData();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -139,13 +224,16 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION:
+				setSensorDataDescription((SensorDataDescription)newValue);
+				return;
 			case DataRepresentationPackage.DATA_SET__SETS:
 				getSets().clear();
 				getSets().addAll((Collection<? extends DataSet>)newValue);
 				return;
-			case DataRepresentationPackage.DATA_SET__FIELDS:
-				getFields().clear();
-				getFields().addAll((Collection<? extends DataField>)newValue);
+			case DataRepresentationPackage.DATA_SET__DATA:
+				getData().clear();
+				getData().addAll((Collection<? extends Data>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -159,11 +247,14 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION:
+				setSensorDataDescription((SensorDataDescription)null);
+				return;
 			case DataRepresentationPackage.DATA_SET__SETS:
 				getSets().clear();
 				return;
-			case DataRepresentationPackage.DATA_SET__FIELDS:
-				getFields().clear();
+			case DataRepresentationPackage.DATA_SET__DATA:
+				getData().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -177,10 +268,12 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION:
+				return getSensorDataDescription() != null;
 			case DataRepresentationPackage.DATA_SET__SETS:
 				return sets != null && !sets.isEmpty();
-			case DataRepresentationPackage.DATA_SET__FIELDS:
-				return fields != null && !fields.isEmpty();
+			case DataRepresentationPackage.DATA_SET__DATA:
+				return data != null && !data.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -2,7 +2,7 @@
  */
 package de.fzi.sensidl.design.sensidl.DataRepresentation.impl;
 
-import de.fzi.sensidl.design.sensidl.DataRepresentation.DataProperty;
+import de.fzi.sensidl.design.sensidl.DataRepresentation.DataAdjustment;
 import de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.DataRepresentation.MeasurementData;
 
@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -26,21 +26,21 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.MeasurementDataImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.MeasurementDataImpl#getAdjustments <em>Adjustments</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class MeasurementDataImpl extends VariableDataImpl implements MeasurementData {
+public class MeasurementDataImpl extends DataImpl implements MeasurementData {
 	/**
-	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
+	 * The cached value of the '{@link #getAdjustments() <em>Adjustments</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProperties()
+	 * @see #getAdjustments()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DataProperty> properties;
+	protected EList<DataAdjustment> adjustments;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -66,11 +66,26 @@ public class MeasurementDataImpl extends VariableDataImpl implements Measurement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DataProperty> getProperties() {
-		if (properties == null) {
-			properties = new EObjectContainmentEList<DataProperty>(DataProperty.class, this, DataRepresentationPackage.MEASUREMENT_DATA__PROPERTIES);
+	public EList<DataAdjustment> getAdjustments() {
+		if (adjustments == null) {
+			adjustments = new EObjectContainmentWithInverseEList<DataAdjustment>(DataAdjustment.class, this, DataRepresentationPackage.MEASUREMENT_DATA__ADJUSTMENTS, DataRepresentationPackage.DATA_ADJUSTMENT__MEASUREMENT_DATA);
 		}
-		return properties;
+		return adjustments;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DataRepresentationPackage.MEASUREMENT_DATA__ADJUSTMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAdjustments()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -81,8 +96,8 @@ public class MeasurementDataImpl extends VariableDataImpl implements Measurement
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DataRepresentationPackage.MEASUREMENT_DATA__PROPERTIES:
-				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
+			case DataRepresentationPackage.MEASUREMENT_DATA__ADJUSTMENTS:
+				return ((InternalEList<?>)getAdjustments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -95,8 +110,8 @@ public class MeasurementDataImpl extends VariableDataImpl implements Measurement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DataRepresentationPackage.MEASUREMENT_DATA__PROPERTIES:
-				return getProperties();
+			case DataRepresentationPackage.MEASUREMENT_DATA__ADJUSTMENTS:
+				return getAdjustments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -110,9 +125,9 @@ public class MeasurementDataImpl extends VariableDataImpl implements Measurement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DataRepresentationPackage.MEASUREMENT_DATA__PROPERTIES:
-				getProperties().clear();
-				getProperties().addAll((Collection<? extends DataProperty>)newValue);
+			case DataRepresentationPackage.MEASUREMENT_DATA__ADJUSTMENTS:
+				getAdjustments().clear();
+				getAdjustments().addAll((Collection<? extends DataAdjustment>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,8 +141,8 @@ public class MeasurementDataImpl extends VariableDataImpl implements Measurement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DataRepresentationPackage.MEASUREMENT_DATA__PROPERTIES:
-				getProperties().clear();
+			case DataRepresentationPackage.MEASUREMENT_DATA__ADJUSTMENTS:
+				getAdjustments().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -141,8 +156,8 @@ public class MeasurementDataImpl extends VariableDataImpl implements Measurement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DataRepresentationPackage.MEASUREMENT_DATA__PROPERTIES:
-				return properties != null && !properties.isEmpty();
+			case DataRepresentationPackage.MEASUREMENT_DATA__ADJUSTMENTS:
+				return adjustments != null && !adjustments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

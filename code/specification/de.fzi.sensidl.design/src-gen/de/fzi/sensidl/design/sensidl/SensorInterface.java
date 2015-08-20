@@ -27,6 +27,7 @@ import de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission;
 public interface SensorInterface extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Meta Information</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation#getSensorInterface <em>Sensor Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Meta Information</em>' containment reference isn't clear,
@@ -36,7 +37,8 @@ public interface SensorInterface extends NamedElement {
 	 * @return the value of the '<em>Meta Information</em>' containment reference.
 	 * @see #setMetaInformation(SensorMetaInformation)
 	 * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getSensorInterface_MetaInformation()
-	 * @model containment="true" required="true"
+	 * @see de.fzi.sensidl.design.sensidl.SensorMetaInformation#getSensorInterface
+	 * @model opposite="sensorInterface" containment="true" required="true"
 	 * @generated
 	 */
 	SensorMetaInformation getMetaInformation();
@@ -53,6 +55,7 @@ public interface SensorInterface extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Data Description</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.SensorDataDescription#getSensorInterface <em>Sensor Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Data Description</em>' containment reference isn't clear,
@@ -62,7 +65,8 @@ public interface SensorInterface extends NamedElement {
 	 * @return the value of the '<em>Data Description</em>' containment reference.
 	 * @see #setDataDescription(SensorDataDescription)
 	 * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getSensorInterface_DataDescription()
-	 * @model containment="true" required="true"
+	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.SensorDataDescription#getSensorInterface
+	 * @model opposite="sensorInterface" containment="true" required="true"
 	 * @generated
 	 */
 	SensorDataDescription getDataDescription();
@@ -79,6 +83,7 @@ public interface SensorInterface extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Data Transmission</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#getSensorInterface <em>Sensor Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Data Transmission</em>' containment reference isn't clear,
@@ -88,7 +93,8 @@ public interface SensorInterface extends NamedElement {
 	 * @return the value of the '<em>Data Transmission</em>' containment reference.
 	 * @see #setDataTransmission(SensorDataTransmission)
 	 * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getSensorInterface_DataTransmission()
-	 * @model containment="true" required="true"
+	 * @see de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#getSensorInterface
+	 * @model opposite="sensorInterface" containment="true" required="true"
 	 * @generated
 	 */
 	SensorDataTransmission getDataTransmission();

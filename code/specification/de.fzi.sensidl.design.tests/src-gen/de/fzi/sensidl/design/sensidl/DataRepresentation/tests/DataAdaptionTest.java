@@ -13,7 +13,7 @@ import junit.textui.TestRunner;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DataAdaptionTest extends DataPropertyTest {
+public class DataAdaptionTest extends DataAdjustmentTest {
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class DataRangeImpl extends DataPropertyImpl implements DataRange {
+public class DataRangeImpl extends DataAdjustmentImpl implements DataRange {
 	/**
 	 * The cached value of the '{@link #getLowerBound() <em>Lower Bound</em>}' containment reference.
 	 * <!-- begin-user-doc -->

@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MeasurementDataItemProvider extends VariableDataItemProvider {
+public class MeasurementDataItemProvider extends DataItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -62,7 +62,7 @@ public class MeasurementDataItemProvider extends VariableDataItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DataRepresentationPackage.Literals.MEASUREMENT_DATA__PROPERTIES);
+			childrenFeatures.add(DataRepresentationPackage.Literals.MEASUREMENT_DATA__ADJUSTMENTS);
 		}
 		return childrenFeatures;
 	}
@@ -118,7 +118,7 @@ public class MeasurementDataItemProvider extends VariableDataItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MeasurementData.class)) {
-			case DataRepresentationPackage.MEASUREMENT_DATA__PROPERTIES:
+			case DataRepresentationPackage.MEASUREMENT_DATA__ADJUSTMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -138,17 +138,17 @@ public class MeasurementDataItemProvider extends VariableDataItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DataRepresentationPackage.Literals.MEASUREMENT_DATA__PROPERTIES,
+				(DataRepresentationPackage.Literals.MEASUREMENT_DATA__ADJUSTMENTS,
 				 DataRepresentationFactory.eINSTANCE.createDataUnit()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DataRepresentationPackage.Literals.MEASUREMENT_DATA__PROPERTIES,
+				(DataRepresentationPackage.Literals.MEASUREMENT_DATA__ADJUSTMENTS,
 				 DataRepresentationFactory.eINSTANCE.createDataRange()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DataRepresentationPackage.Literals.MEASUREMENT_DATA__PROPERTIES,
+				(DataRepresentationPackage.Literals.MEASUREMENT_DATA__ADJUSTMENTS,
 				 DataRepresentationFactory.eINSTANCE.createDataAdaption()));
 	}
 

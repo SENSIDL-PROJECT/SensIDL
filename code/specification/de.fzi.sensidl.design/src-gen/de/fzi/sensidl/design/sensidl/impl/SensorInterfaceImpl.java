@@ -2,8 +2,10 @@
  */
 package de.fzi.sensidl.design.sensidl.impl;
 
+import de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.DataRepresentation.SensorDataDescription;
 
+import de.fzi.sensidl.design.sensidl.DataTransmission.DataTransmissionPackage;
 import de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission;
 
 import de.fzi.sensidl.design.sensidl.SensorInterface;
@@ -116,9 +118,9 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 		if (newMetaInformation != metaInformation) {
 			NotificationChain msgs = null;
 			if (metaInformation != null)
-				msgs = ((InternalEObject)metaInformation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - sensidlPackage.SENSOR_INTERFACE__META_INFORMATION, null, msgs);
+				msgs = ((InternalEObject)metaInformation).eInverseRemove(this, sensidlPackage.SENSOR_META_INFORMATION__SENSOR_INTERFACE, SensorMetaInformation.class, msgs);
 			if (newMetaInformation != null)
-				msgs = ((InternalEObject)newMetaInformation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - sensidlPackage.SENSOR_INTERFACE__META_INFORMATION, null, msgs);
+				msgs = ((InternalEObject)newMetaInformation).eInverseAdd(this, sensidlPackage.SENSOR_META_INFORMATION__SENSOR_INTERFACE, SensorMetaInformation.class, msgs);
 			msgs = basicSetMetaInformation(newMetaInformation, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -159,9 +161,9 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 		if (newDataDescription != dataDescription) {
 			NotificationChain msgs = null;
 			if (dataDescription != null)
-				msgs = ((InternalEObject)dataDescription).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - sensidlPackage.SENSOR_INTERFACE__DATA_DESCRIPTION, null, msgs);
+				msgs = ((InternalEObject)dataDescription).eInverseRemove(this, DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE, SensorDataDescription.class, msgs);
 			if (newDataDescription != null)
-				msgs = ((InternalEObject)newDataDescription).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - sensidlPackage.SENSOR_INTERFACE__DATA_DESCRIPTION, null, msgs);
+				msgs = ((InternalEObject)newDataDescription).eInverseAdd(this, DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE, SensorDataDescription.class, msgs);
 			msgs = basicSetDataDescription(newDataDescription, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -202,14 +204,38 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 		if (newDataTransmission != dataTransmission) {
 			NotificationChain msgs = null;
 			if (dataTransmission != null)
-				msgs = ((InternalEObject)dataTransmission).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - sensidlPackage.SENSOR_INTERFACE__DATA_TRANSMISSION, null, msgs);
+				msgs = ((InternalEObject)dataTransmission).eInverseRemove(this, DataTransmissionPackage.SENSOR_DATA_TRANSMISSION__SENSOR_INTERFACE, SensorDataTransmission.class, msgs);
 			if (newDataTransmission != null)
-				msgs = ((InternalEObject)newDataTransmission).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - sensidlPackage.SENSOR_INTERFACE__DATA_TRANSMISSION, null, msgs);
+				msgs = ((InternalEObject)newDataTransmission).eInverseAdd(this, DataTransmissionPackage.SENSOR_DATA_TRANSMISSION__SENSOR_INTERFACE, SensorDataTransmission.class, msgs);
 			msgs = basicSetDataTransmission(newDataTransmission, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, sensidlPackage.SENSOR_INTERFACE__DATA_TRANSMISSION, newDataTransmission, newDataTransmission));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case sensidlPackage.SENSOR_INTERFACE__META_INFORMATION:
+				if (metaInformation != null)
+					msgs = ((InternalEObject)metaInformation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - sensidlPackage.SENSOR_INTERFACE__META_INFORMATION, null, msgs);
+				return basicSetMetaInformation((SensorMetaInformation)otherEnd, msgs);
+			case sensidlPackage.SENSOR_INTERFACE__DATA_DESCRIPTION:
+				if (dataDescription != null)
+					msgs = ((InternalEObject)dataDescription).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - sensidlPackage.SENSOR_INTERFACE__DATA_DESCRIPTION, null, msgs);
+				return basicSetDataDescription((SensorDataDescription)otherEnd, msgs);
+			case sensidlPackage.SENSOR_INTERFACE__DATA_TRANSMISSION:
+				if (dataTransmission != null)
+					msgs = ((InternalEObject)dataTransmission).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - sensidlPackage.SENSOR_INTERFACE__DATA_TRANSMISSION, null, msgs);
+				return basicSetDataTransmission((SensorDataTransmission)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

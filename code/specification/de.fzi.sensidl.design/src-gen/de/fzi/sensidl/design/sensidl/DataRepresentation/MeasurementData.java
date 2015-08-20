@@ -13,28 +13,30 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.MeasurementData#getProperties <em>Properties</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.MeasurementData#getAdjustments <em>Adjustments</em>}</li>
  * </ul>
  *
  * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage#getMeasurementData()
  * @model
  * @generated
  */
-public interface MeasurementData extends VariableData {
+public interface MeasurementData extends Data {
 	/**
-	 * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
-	 * The list contents are of type {@link de.fzi.sensidl.design.sensidl.DataRepresentation.DataProperty}.
+	 * Returns the value of the '<em><b>Adjustments</b></em>' containment reference list.
+	 * The list contents are of type {@link de.fzi.sensidl.design.sensidl.DataRepresentation.DataAdjustment}.
+	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.DataAdjustment#getMeasurementData <em>Measurement Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Properties</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Adjustments</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Properties</em>' containment reference list.
-	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage#getMeasurementData_Properties()
-	 * @model containment="true"
+	 * @return the value of the '<em>Adjustments</em>' containment reference list.
+	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage#getMeasurementData_Adjustments()
+	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataAdjustment#getMeasurementData
+	 * @model opposite="measurementData" containment="true"
 	 * @generated
 	 */
-	EList<DataProperty> getProperties();
+	EList<DataAdjustment> getAdjustments();
 
 } // MeasurementData

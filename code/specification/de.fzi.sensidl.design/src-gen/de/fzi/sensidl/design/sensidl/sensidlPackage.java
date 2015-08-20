@@ -205,13 +205,22 @@ public interface sensidlPackage extends EPackage {
 	int SENSOR_META_INFORMATION = 2;
 
 	/**
+	 * The feature id for the '<em><b>Sensor Interface</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR_META_INFORMATION__SENSOR_INTERFACE = 0;
+
+	/**
 	 * The feature id for the '<em><b>Coding</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_META_INFORMATION__CODING = 0;
+	int SENSOR_META_INFORMATION__CODING = 1;
 
 	/**
 	 * The feature id for the '<em><b>Endianness</b></em>' attribute.
@@ -220,7 +229,7 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_META_INFORMATION__ENDIANNESS = 1;
+	int SENSOR_META_INFORMATION__ENDIANNESS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
@@ -229,7 +238,7 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_META_INFORMATION__ALIGNMENT = 2;
+	int SENSOR_META_INFORMATION__ALIGNMENT = 3;
 
 	/**
 	 * The number of structural features of the '<em>Sensor Meta Information</em>' class.
@@ -238,7 +247,7 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_META_INFORMATION_FEATURE_COUNT = 3;
+	int SENSOR_META_INFORMATION_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Sensor Meta Information</em>' class.
@@ -375,6 +384,17 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSensorMetaInformation();
+
+	/**
+	 * Returns the meta object for the container reference '{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation#getSensorInterface <em>Sensor Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Sensor Interface</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.SensorMetaInformation#getSensorInterface()
+	 * @see #getSensorMetaInformation()
+	 * @generated
+	 */
+	EReference getSensorMetaInformation_SensorInterface();
 
 	/**
 	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation#getCoding <em>Coding</em>}'.
@@ -539,6 +559,14 @@ public interface sensidlPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SENSOR_META_INFORMATION = eINSTANCE.getSensorMetaInformation();
+
+		/**
+		 * The meta object literal for the '<em><b>Sensor Interface</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SENSOR_META_INFORMATION__SENSOR_INTERFACE = eINSTANCE.getSensorMetaInformation_SensorInterface();
 
 		/**
 		 * The meta object literal for the '<em><b>Coding</b></em>' attribute feature.

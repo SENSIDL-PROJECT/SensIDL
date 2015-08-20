@@ -19,7 +19,7 @@ package de.fzi.sensidl.design.sensidl.DataRepresentation;
  * @model
  * @generated
  */
-public interface DataUnit extends DataProperty {
+public interface DataUnit extends DataAdjustment {
 	/**
 	 * Returns the value of the '<em><b>Unit</b></em>' attribute.
 	 * <!-- begin-user-doc -->

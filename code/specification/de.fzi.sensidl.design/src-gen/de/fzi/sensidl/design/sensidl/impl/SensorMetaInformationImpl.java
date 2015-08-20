@@ -5,15 +5,20 @@ package de.fzi.sensidl.design.sensidl.impl;
 import de.fzi.sensidl.design.sensidl.Alignment;
 import de.fzi.sensidl.design.sensidl.Coding;
 import de.fzi.sensidl.design.sensidl.Endianness;
+import de.fzi.sensidl.design.sensidl.SensorInterface;
 import de.fzi.sensidl.design.sensidl.SensorMetaInformation;
 import de.fzi.sensidl.design.sensidl.sensidlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.impl.SensorMetaInformationImpl#getSensorInterface <em>Sensor Interface</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.impl.SensorMetaInformationImpl#getCoding <em>Coding</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.impl.SensorMetaInformationImpl#getEndianness <em>Endianness</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.impl.SensorMetaInformationImpl#getAlignment <em>Alignment</em>}</li>
@@ -115,6 +121,47 @@ public class SensorMetaInformationImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SensorInterface getSensorInterface() {
+		if (eContainerFeatureID() != sensidlPackage.SENSOR_META_INFORMATION__SENSOR_INTERFACE) return null;
+		return (SensorInterface)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSensorInterface(SensorInterface newSensorInterface, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newSensorInterface, sensidlPackage.SENSOR_META_INFORMATION__SENSOR_INTERFACE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSensorInterface(SensorInterface newSensorInterface) {
+		if (newSensorInterface != eInternalContainer() || (eContainerFeatureID() != sensidlPackage.SENSOR_META_INFORMATION__SENSOR_INTERFACE && newSensorInterface != null)) {
+			if (EcoreUtil.isAncestor(this, newSensorInterface))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newSensorInterface != null)
+				msgs = ((InternalEObject)newSensorInterface).eInverseAdd(this, sensidlPackage.SENSOR_INTERFACE__META_INFORMATION, SensorInterface.class, msgs);
+			msgs = basicSetSensorInterface(newSensorInterface, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, sensidlPackage.SENSOR_META_INFORMATION__SENSOR_INTERFACE, newSensorInterface, newSensorInterface));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Coding getCoding() {
 		return coding;
 	}
@@ -179,8 +226,54 @@ public class SensorMetaInformationImpl extends MinimalEObjectImpl.Container impl
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case sensidlPackage.SENSOR_META_INFORMATION__SENSOR_INTERFACE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetSensorInterface((SensorInterface)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case sensidlPackage.SENSOR_META_INFORMATION__SENSOR_INTERFACE:
+				return basicSetSensorInterface(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case sensidlPackage.SENSOR_META_INFORMATION__SENSOR_INTERFACE:
+				return eInternalContainer().eInverseRemove(this, sensidlPackage.SENSOR_INTERFACE__META_INFORMATION, SensorInterface.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case sensidlPackage.SENSOR_META_INFORMATION__SENSOR_INTERFACE:
+				return getSensorInterface();
 			case sensidlPackage.SENSOR_META_INFORMATION__CODING:
 				return getCoding();
 			case sensidlPackage.SENSOR_META_INFORMATION__ENDIANNESS:
@@ -199,6 +292,9 @@ public class SensorMetaInformationImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case sensidlPackage.SENSOR_META_INFORMATION__SENSOR_INTERFACE:
+				setSensorInterface((SensorInterface)newValue);
+				return;
 			case sensidlPackage.SENSOR_META_INFORMATION__CODING:
 				setCoding((Coding)newValue);
 				return;
@@ -220,6 +316,9 @@ public class SensorMetaInformationImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case sensidlPackage.SENSOR_META_INFORMATION__SENSOR_INTERFACE:
+				setSensorInterface((SensorInterface)null);
+				return;
 			case sensidlPackage.SENSOR_META_INFORMATION__CODING:
 				setCoding(CODING_EDEFAULT);
 				return;
@@ -241,6 +340,8 @@ public class SensorMetaInformationImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case sensidlPackage.SENSOR_META_INFORMATION__SENSOR_INTERFACE:
+				return getSensorInterface() != null;
 			case sensidlPackage.SENSOR_META_INFORMATION__CODING:
 				return coding != CODING_EDEFAULT;
 			case sensidlPackage.SENSOR_META_INFORMATION__ENDIANNESS:

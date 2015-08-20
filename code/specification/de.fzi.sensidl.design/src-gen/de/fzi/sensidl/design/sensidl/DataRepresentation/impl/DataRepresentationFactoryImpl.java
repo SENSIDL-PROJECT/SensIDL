@@ -59,7 +59,6 @@ public class DataRepresentationFactoryImpl extends EFactoryImpl implements DataR
 		switch (eClass.getClassifierID()) {
 			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION: return createSensorDataDescription();
 			case DataRepresentationPackage.DATA_SET: return createDataSet();
-			case DataRepresentationPackage.CONSTANT_DATA: return createConstantData();
 			case DataRepresentationPackage.MEASUREMENT_DATA: return createMeasurementData();
 			case DataRepresentationPackage.NON_MEASUREMENT_DATA: return createNonMeasurementData();
 			case DataRepresentationPackage.DATA_UNIT: return createDataUnit();
@@ -119,16 +118,6 @@ public class DataRepresentationFactoryImpl extends EFactoryImpl implements DataR
 	public DataSet createDataSet() {
 		DataSetImpl dataSet = new DataSetImpl();
 		return dataSet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ConstantData createConstantData() {
-		ConstantDataImpl constantData = new ConstantDataImpl();
-		return constantData;
 	}
 
 	/**

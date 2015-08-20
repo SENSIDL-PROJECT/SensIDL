@@ -19,64 +19,84 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum DataType implements Enumerator {
 	/**
-	 * The '<em><b>BOOL</b></em>' literal object.
+	 * The '<em><b>SIGNED CHAR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BOOL_VALUE
+	 * @see #SIGNED_CHAR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BOOL(0, "BOOL", "BOOL"),
+	SIGNED_CHAR(0, "SIGNED_CHAR", "SIGNED_CHAR"),
 
 	/**
-	 * The '<em><b>CHAR</b></em>' literal object.
+	 * The '<em><b>UNSIGNED CHAR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #CHAR_VALUE
+	 * @see #UNSIGNED_CHAR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	CHAR(1, "CHAR", "CHAR"),
+	UNSIGNED_CHAR(1, "UNSIGNED_CHAR", "UNSIGNED_CHAR"),
 
 	/**
-	 * The '<em><b>SHORT</b></em>' literal object.
+	 * The '<em><b>SIGNED SHORT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SHORT_VALUE
+	 * @see #SIGNED_SHORT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SHORT(2, "SHORT", "SHORT"),
+	SIGNED_SHORT(2, "SIGNED_SHORT", "SIGNED_SHORT"),
 
 	/**
-	 * The '<em><b>INT</b></em>' literal object.
+	 * The '<em><b>UNSIGNED SHORT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INT_VALUE
+	 * @see #UNSIGNED_SHORT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INT(3, "INT", "INT"),
+	UNSIGNED_SHORT(3, "UNSIGNED_SHORT", "UNSIGNED_SHORT"),
 
 	/**
-	 * The '<em><b>LONG</b></em>' literal object.
+	 * The '<em><b>SIGNED LONG</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LONG_VALUE
+	 * @see #SIGNED_LONG_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LONG(4, "LONG", "LONG"),
+	SIGNED_LONG(4, "SIGNED_LONG", "SIGNED_LONG"),
 
 	/**
-	 * The '<em><b>LONGLONG</b></em>' literal object.
+	 * The '<em><b>UNSIGNED LONG</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LONGLONG_VALUE
+	 * @see #UNSIGNED_LONG_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LONGLONG(5, "LONGLONG", "LONGLONG"),
+	UNSIGNED_LONG(5, "UNSIGNED_LONG", "UNSIGNED_LONG"),
+
+	/**
+	 * The '<em><b>SIGNED LONG LONG</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SIGNED_LONG_LONG_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SIGNED_LONG_LONG(6, "SIGNED_LONG_LONG", "SIGNED_LONG_LONG"),
+
+	/**
+	 * The '<em><b>UNSIGNED LONG LONG</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #UNSIGNED_LONG_LONG_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	UNSIGNED_LONG_LONG(7, "UNSIGNED_LONG_LONG", "UNSIGNED_LONG_LONG"),
 
 	/**
 	 * The '<em><b>FLOAT</b></em>' literal object.
@@ -86,7 +106,7 @@ public enum DataType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FLOAT(6, "FLOAT", "FLOAT"),
+	FLOAT(8, "FLOAT", "FLOAT"),
 
 	/**
 	 * The '<em><b>DOUBLE</b></em>' literal object.
@@ -96,117 +116,137 @@ public enum DataType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE(7, "DOUBLE", "DOUBLE"),
+	DOUBLE(9, "DOUBLE", "DOUBLE"),
 
 	/**
-	 * The '<em><b>LONGDOUBLE</b></em>' literal object.
+	 * The '<em><b>LONG DOUBLE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #LONGDOUBLE_VALUE
+	 * @see #LONG_DOUBLE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LONGDOUBLE(8, "LONGDOUBLE", "LONGDOUBLE"),
+	LONG_DOUBLE(10, "LONG_DOUBLE", "LONG_DOUBLE");
 
 	/**
-	 * The '<em><b>BYTE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #BYTE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	BYTE(9, "BYTE", "BYTE");
-
-	/**
-	 * The '<em><b>BOOL</b></em>' literal value.
+	 * The '<em><b>SIGNED CHAR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>BOOL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>SIGNED CHAR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BOOL
+	 * @see #SIGNED_CHAR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BOOL_VALUE = 0;
+	public static final int SIGNED_CHAR_VALUE = 0;
 
 	/**
-	 * The '<em><b>CHAR</b></em>' literal value.
+	 * The '<em><b>UNSIGNED CHAR</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>CHAR</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>UNSIGNED CHAR</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CHAR
+	 * @see #UNSIGNED_CHAR
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CHAR_VALUE = 1;
+	public static final int UNSIGNED_CHAR_VALUE = 1;
 
 	/**
-	 * The '<em><b>SHORT</b></em>' literal value.
+	 * The '<em><b>SIGNED SHORT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SHORT</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>SIGNED SHORT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SHORT
+	 * @see #SIGNED_SHORT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SHORT_VALUE = 2;
+	public static final int SIGNED_SHORT_VALUE = 2;
 
 	/**
-	 * The '<em><b>INT</b></em>' literal value.
+	 * The '<em><b>UNSIGNED SHORT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>INT</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>UNSIGNED SHORT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INT
+	 * @see #UNSIGNED_SHORT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INT_VALUE = 3;
+	public static final int UNSIGNED_SHORT_VALUE = 3;
 
 	/**
-	 * The '<em><b>LONG</b></em>' literal value.
+	 * The '<em><b>SIGNED LONG</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>LONG</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>SIGNED LONG</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LONG
+	 * @see #SIGNED_LONG
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LONG_VALUE = 4;
+	public static final int SIGNED_LONG_VALUE = 4;
 
 	/**
-	 * The '<em><b>LONGLONG</b></em>' literal value.
+	 * The '<em><b>UNSIGNED LONG</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>LONGLONG</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>UNSIGNED LONG</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LONGLONG
+	 * @see #UNSIGNED_LONG
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LONGLONG_VALUE = 5;
+	public static final int UNSIGNED_LONG_VALUE = 5;
+
+	/**
+	 * The '<em><b>SIGNED LONG LONG</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>SIGNED LONG LONG</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #SIGNED_LONG_LONG
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SIGNED_LONG_LONG_VALUE = 6;
+
+	/**
+	 * The '<em><b>UNSIGNED LONG LONG</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>UNSIGNED LONG LONG</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #UNSIGNED_LONG_LONG
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNSIGNED_LONG_LONG_VALUE = 7;
 
 	/**
 	 * The '<em><b>FLOAT</b></em>' literal value.
@@ -221,7 +261,7 @@ public enum DataType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FLOAT_VALUE = 6;
+	public static final int FLOAT_VALUE = 8;
 
 	/**
 	 * The '<em><b>DOUBLE</b></em>' literal value.
@@ -236,37 +276,22 @@ public enum DataType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOUBLE_VALUE = 7;
+	public static final int DOUBLE_VALUE = 9;
 
 	/**
-	 * The '<em><b>LONGDOUBLE</b></em>' literal value.
+	 * The '<em><b>LONG DOUBLE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>LONGDOUBLE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>LONG DOUBLE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #LONGDOUBLE
+	 * @see #LONG_DOUBLE
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LONGDOUBLE_VALUE = 8;
-
-	/**
-	 * The '<em><b>BYTE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>BYTE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #BYTE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int BYTE_VALUE = 9;
+	public static final int LONG_DOUBLE_VALUE = 10;
 
 	/**
 	 * An array of all the '<em><b>Data Type</b></em>' enumerators.
@@ -276,16 +301,17 @@ public enum DataType implements Enumerator {
 	 */
 	private static final DataType[] VALUES_ARRAY =
 		new DataType[] {
-			BOOL,
-			CHAR,
-			SHORT,
-			INT,
-			LONG,
-			LONGLONG,
+			SIGNED_CHAR,
+			UNSIGNED_CHAR,
+			SIGNED_SHORT,
+			UNSIGNED_SHORT,
+			SIGNED_LONG,
+			UNSIGNED_LONG,
+			SIGNED_LONG_LONG,
+			UNSIGNED_LONG_LONG,
 			FLOAT,
 			DOUBLE,
-			LONGDOUBLE,
-			BYTE,
+			LONG_DOUBLE,
 		};
 
 	/**
@@ -342,16 +368,17 @@ public enum DataType implements Enumerator {
 	 */
 	public static DataType get(int value) {
 		switch (value) {
-			case BOOL_VALUE: return BOOL;
-			case CHAR_VALUE: return CHAR;
-			case SHORT_VALUE: return SHORT;
-			case INT_VALUE: return INT;
-			case LONG_VALUE: return LONG;
-			case LONGLONG_VALUE: return LONGLONG;
+			case SIGNED_CHAR_VALUE: return SIGNED_CHAR;
+			case UNSIGNED_CHAR_VALUE: return UNSIGNED_CHAR;
+			case SIGNED_SHORT_VALUE: return SIGNED_SHORT;
+			case UNSIGNED_SHORT_VALUE: return UNSIGNED_SHORT;
+			case SIGNED_LONG_VALUE: return SIGNED_LONG;
+			case UNSIGNED_LONG_VALUE: return UNSIGNED_LONG;
+			case SIGNED_LONG_LONG_VALUE: return SIGNED_LONG_LONG;
+			case UNSIGNED_LONG_LONG_VALUE: return UNSIGNED_LONG_LONG;
 			case FLOAT_VALUE: return FLOAT;
 			case DOUBLE_VALUE: return DOUBLE;
-			case LONGDOUBLE_VALUE: return LONGDOUBLE;
-			case BYTE_VALUE: return BYTE;
+			case LONG_DOUBLE_VALUE: return LONG_DOUBLE;
 		}
 		return null;
 	}
