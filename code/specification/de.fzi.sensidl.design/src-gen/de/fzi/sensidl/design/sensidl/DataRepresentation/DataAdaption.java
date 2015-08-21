@@ -10,11 +10,11 @@ package de.fzi.sensidl.design.sensidl.DataRepresentation;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.DataAdaption#getScalingFactor <em>Scaling Factor</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.DataAdaption#getOffset <em>Offset</em>}</li>
  * </ul>
+ * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage#getDataAdaption()
  * @model

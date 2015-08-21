@@ -6,6 +6,7 @@ import de.fzi.sensidl.design.sensidl.sensidlPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -124,15 +125,6 @@ public interface DataRepresentationPackage extends EPackage {
 	int SENSOR_DATA_DESCRIPTION_FEATURE_COUNT = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Sensor Data Description</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SENSOR_DATA_DESCRIPTION_OPERATION_COUNT = sensidlPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataSetImpl <em>Data Set</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -206,15 +198,6 @@ public interface DataRepresentationPackage extends EPackage {
 	int DATA_SET_FEATURE_COUNT = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of operations of the '<em>Data Set</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_SET_OPERATION_COUNT = sensidlPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataImpl <em>Data</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -277,15 +260,6 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_FEATURE_COUNT = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Data</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_OPERATION_COUNT = sensidlPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.MeasurementDataImpl <em>Measurement Data</em>}' class.
@@ -352,22 +326,22 @@ public interface DataRepresentationPackage extends EPackage {
 	int MEASUREMENT_DATA__ADJUSTMENTS = DATA_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Unit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEASUREMENT_DATA__UNIT = DATA_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Measurement Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEASUREMENT_DATA_FEATURE_COUNT = DATA_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Measurement Data</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MEASUREMENT_DATA_OPERATION_COUNT = DATA_OPERATION_COUNT + 0;
+	int MEASUREMENT_DATA_FEATURE_COUNT = DATA_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.NonMeasurementDataImpl <em>Non Measurement Data</em>}' class.
@@ -452,15 +426,6 @@ public interface DataRepresentationPackage extends EPackage {
 	int NON_MEASUREMENT_DATA_FEATURE_COUNT = DATA_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Non Measurement Data</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NON_MEASUREMENT_DATA_OPERATION_COUNT = DATA_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataAdjustmentImpl <em>Data Adjustment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -489,61 +454,6 @@ public interface DataRepresentationPackage extends EPackage {
 	int DATA_ADJUSTMENT_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Data Adjustment</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_ADJUSTMENT_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataUnitImpl <em>Data Unit</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataUnitImpl
-	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataRepresentationPackageImpl#getDataUnit()
-	 * @generated
-	 */
-	int DATA_UNIT = 6;
-
-	/**
-	 * The feature id for the '<em><b>Measurement Data</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_UNIT__MEASUREMENT_DATA = DATA_ADJUSTMENT__MEASUREMENT_DATA;
-
-	/**
-	 * The feature id for the '<em><b>Unit</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_UNIT__UNIT = DATA_ADJUSTMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Data Unit</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_UNIT_FEATURE_COUNT = DATA_ADJUSTMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Data Unit</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_UNIT_OPERATION_COUNT = DATA_ADJUSTMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataRangeImpl <em>Data Range</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -551,7 +461,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataRepresentationPackageImpl#getDataRange()
 	 * @generated
 	 */
-	int DATA_RANGE = 7;
+	int DATA_RANGE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Measurement Data</b></em>' container reference.
@@ -590,15 +500,6 @@ public interface DataRepresentationPackage extends EPackage {
 	int DATA_RANGE_FEATURE_COUNT = DATA_ADJUSTMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Data Range</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_RANGE_OPERATION_COUNT = DATA_ADJUSTMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.BoundImpl <em>Bound</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -606,7 +507,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataRepresentationPackageImpl#getBound()
 	 * @generated
 	 */
-	int BOUND = 8;
+	int BOUND = 7;
 
 	/**
 	 * The feature id for the '<em><b>Initial Value</b></em>' attribute.
@@ -636,15 +537,6 @@ public interface DataRepresentationPackage extends EPackage {
 	int BOUND_FEATURE_COUNT = 2;
 
 	/**
-	 * The number of operations of the '<em>Bound</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOUND_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataAdaptionImpl <em>Data Adaption</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -652,7 +544,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataRepresentationPackageImpl#getDataAdaption()
 	 * @generated
 	 */
-	int DATA_ADAPTION = 9;
+	int DATA_ADAPTION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Measurement Data</b></em>' container reference.
@@ -691,15 +583,6 @@ public interface DataRepresentationPackage extends EPackage {
 	int DATA_ADAPTION_FEATURE_COUNT = DATA_ADJUSTMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of operations of the '<em>Data Adaption</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_ADAPTION_OPERATION_COUNT = DATA_ADJUSTMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.DataType <em>Data Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -707,7 +590,18 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataRepresentationPackageImpl#getDataType()
 	 * @generated
 	 */
-	int DATA_TYPE = 10;
+	int DATA_TYPE = 9;
+
+
+	/**
+	 * The meta object id for the '<em>Unit</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see javax.measure.unit.SI
+	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataRepresentationPackageImpl#getUnit()
+	 * @generated
+	 */
+	int UNIT = 10;
 
 
 	/**
@@ -839,6 +733,17 @@ public interface DataRepresentationPackage extends EPackage {
 	EReference getMeasurementData_Adjustments();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.MeasurementData#getUnit <em>Unit</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Unit</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.MeasurementData#getUnit()
+	 * @see #getMeasurementData()
+	 * @generated
+	 */
+	EAttribute getMeasurementData_Unit();
+
+	/**
 	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.NonMeasurementData <em>Non Measurement Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -890,27 +795,6 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDataAdjustment_MeasurementData();
-
-	/**
-	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.DataUnit <em>Data Unit</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Data Unit</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataUnit
-	 * @generated
-	 */
-	EClass getDataUnit();
-
-	/**
-	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.DataUnit#getUnit <em>Unit</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Unit</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataUnit#getUnit()
-	 * @see #getDataUnit()
-	 * @generated
-	 */
-	EAttribute getDataUnit_Unit();
 
 	/**
 	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.DataRange <em>Data Range</em>}'.
@@ -1017,6 +901,17 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getDataType();
+
+	/**
+	 * Returns the meta object for data type '{@link javax.measure.unit.SI <em>Unit</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Unit</em>'.
+	 * @see javax.measure.unit.SI
+	 * @model instanceClass="javax.measure.unit.SI"
+	 * @generated
+	 */
+	EDataType getUnit();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1146,6 +1041,14 @@ public interface DataRepresentationPackage extends EPackage {
 		EReference MEASUREMENT_DATA__ADJUSTMENTS = eINSTANCE.getMeasurementData_Adjustments();
 
 		/**
+		 * The meta object literal for the '<em><b>Unit</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MEASUREMENT_DATA__UNIT = eINSTANCE.getMeasurementData_Unit();
+
+		/**
 		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.NonMeasurementDataImpl <em>Non Measurement Data</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1188,24 +1091,6 @@ public interface DataRepresentationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DATA_ADJUSTMENT__MEASUREMENT_DATA = eINSTANCE.getDataAdjustment_MeasurementData();
-
-		/**
-		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataUnitImpl <em>Data Unit</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataUnitImpl
-		 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataRepresentationPackageImpl#getDataUnit()
-		 * @generated
-		 */
-		EClass DATA_UNIT = eINSTANCE.getDataUnit();
-
-		/**
-		 * The meta object literal for the '<em><b>Unit</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DATA_UNIT__UNIT = eINSTANCE.getDataUnit_Unit();
 
 		/**
 		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataRangeImpl <em>Data Range</em>}' class.
@@ -1294,6 +1179,16 @@ public interface DataRepresentationPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum DATA_TYPE = eINSTANCE.getDataType();
+
+		/**
+		 * The meta object literal for the '<em>Unit</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see javax.measure.unit.SI
+		 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataRepresentationPackageImpl#getUnit()
+		 * @generated
+		 */
+		EDataType UNIT = eINSTANCE.getUnit();
 
 	}
 

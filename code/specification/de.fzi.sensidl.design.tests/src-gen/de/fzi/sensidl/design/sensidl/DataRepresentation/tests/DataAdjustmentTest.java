@@ -48,7 +48,7 @@ public abstract class DataAdjustmentTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DataAdjustment getFixture() {
+	private DataAdjustment getFixture() {
 		return fixture;
 	}
 

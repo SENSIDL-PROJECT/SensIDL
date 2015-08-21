@@ -2,6 +2,8 @@
  */
 package de.fzi.sensidl.design.sensidl.DataRepresentation;
 
+import javax.measure.unit.SI;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -11,11 +13,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.Bound#getInitialValue <em>Initial Value</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.Bound#getUnit <em>Unit</em>}</li>
  * </ul>
+ * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage#getBound()
  * @model
@@ -57,12 +59,12 @@ public interface Bound extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Unit</em>' attribute.
-	 * @see #setUnit(String)
+	 * @see #setUnit(SI)
 	 * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage#getBound_Unit()
-	 * @model required="true"
+	 * @model dataType="de.fzi.sensidl.design.sensidl.DataRepresentation.Unit" required="true"
 	 * @generated
 	 */
-	String getUnit();
+	SI getUnit();
 
 	/**
 	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.DataRepresentation.Bound#getUnit <em>Unit</em>}' attribute.
@@ -72,6 +74,6 @@ public interface Bound extends EObject {
 	 * @see #getUnit()
 	 * @generated
 	 */
-	void setUnit(String value);
+	void setUnit(SI value);
 
 } // Bound

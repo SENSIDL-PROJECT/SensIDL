@@ -17,5 +17,7 @@ Export-Package: de.fzi.sensidl.design.sensidl,
  de.fzi.sensidl.design.sensidl.impl,
  de.fzi.sensidl.design.sensidl.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+ org.eclipse.emf.ecore;visibility:=reexport,
+ JScience;bundle-version="4.3.1"
+Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy

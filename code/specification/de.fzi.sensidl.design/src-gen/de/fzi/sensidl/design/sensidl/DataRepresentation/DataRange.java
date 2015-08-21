@@ -10,11 +10,11 @@ package de.fzi.sensidl.design.sensidl.DataRepresentation;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.DataRange#getLowerBound <em>Lower Bound</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.DataRange#getUpperBound <em>Upper Bound</em>}</li>
  * </ul>
+ * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage#getDataRange()
  * @model

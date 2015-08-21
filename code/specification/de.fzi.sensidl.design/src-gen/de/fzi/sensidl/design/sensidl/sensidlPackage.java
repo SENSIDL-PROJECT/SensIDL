@@ -104,15 +104,6 @@ public interface sensidlPackage extends EPackage {
 	int NAMED_ELEMENT_FEATURE_COUNT = 3;
 
 	/**
-	 * The number of operations of the '<em>Named Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.impl.SensorInterfaceImpl <em>Sensor Interface</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -186,15 +177,6 @@ public interface sensidlPackage extends EPackage {
 	int SENSOR_INTERFACE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of operations of the '<em>Sensor Interface</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SENSOR_INTERFACE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.impl.SensorMetaInformationImpl <em>Sensor Meta Information</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -248,15 +230,6 @@ public interface sensidlPackage extends EPackage {
 	 * @ordered
 	 */
 	int SENSOR_META_INFORMATION_FEATURE_COUNT = 4;
-
-	/**
-	 * The number of operations of the '<em>Sensor Meta Information</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SENSOR_META_INFORMATION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.Coding <em>Coding</em>}' enum.

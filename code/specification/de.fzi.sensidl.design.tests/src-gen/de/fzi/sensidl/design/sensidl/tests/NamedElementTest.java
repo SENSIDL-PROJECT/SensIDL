@@ -48,7 +48,7 @@ public abstract class NamedElementTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected NamedElement getFixture() {
+	private NamedElement getFixture() {
 		return fixture;
 	}
 

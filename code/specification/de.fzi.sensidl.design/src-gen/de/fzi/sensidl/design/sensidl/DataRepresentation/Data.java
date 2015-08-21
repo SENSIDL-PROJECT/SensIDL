@@ -11,11 +11,11 @@ import de.fzi.sensidl.design.sensidl.NamedElement;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.Data#getDataSet <em>Data Set</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.DataRepresentation.Data#getDataType <em>Data Type</em>}</li>
  * </ul>
+ * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage#getData()
  * @model abstract="true"

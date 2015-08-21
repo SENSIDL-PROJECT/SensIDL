@@ -58,15 +58,6 @@ public interface DataRepresentationFactory extends EFactory {
 	NonMeasurementData createNonMeasurementData();
 
 	/**
-	 * Returns a new object of class '<em>Data Unit</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Data Unit</em>'.
-	 * @generated
-	 */
-	DataUnit createDataUnit();
-
-	/**
 	 * Returns a new object of class '<em>Data Range</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

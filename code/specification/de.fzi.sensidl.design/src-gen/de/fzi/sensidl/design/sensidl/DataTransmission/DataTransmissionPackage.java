@@ -3,9 +3,7 @@
 package de.fzi.sensidl.design.sensidl.DataTransmission;
 
 import de.fzi.sensidl.design.sensidl.sensidlPackage;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -114,70 +112,6 @@ public interface DataTransmissionPackage extends EPackage {
 	int SENSOR_DATA_TRANSMISSION_FEATURE_COUNT = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Connect</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SENSOR_DATA_TRANSMISSION___CONNECT = sensidlPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Start Measurement</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SENSOR_DATA_TRANSMISSION___START_MEASUREMENT = sensidlPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Stop Measurement</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SENSOR_DATA_TRANSMISSION___STOP_MEASUREMENT = sensidlPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Pause Measurement</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SENSOR_DATA_TRANSMISSION___PAUSE_MEASUREMENT = sensidlPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Send</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SENSOR_DATA_TRANSMISSION___SEND = sensidlPackage.NAMED_ELEMENT_OPERATION_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Send</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SENSOR_DATA_TRANSMISSION___SEND__DOUBLE = sensidlPackage.NAMED_ELEMENT_OPERATION_COUNT + 5;
-
-	/**
-	 * The number of operations of the '<em>Sensor Data Transmission</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SENSOR_DATA_TRANSMISSION_OPERATION_COUNT = sensidlPackage.NAMED_ELEMENT_OPERATION_COUNT + 6;
-
-
-	/**
 	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission <em>Sensor Data Transmission</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -197,66 +131,6 @@ public interface DataTransmissionPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSensorDataTransmission_SensorInterface();
-
-	/**
-	 * Returns the meta object for the '{@link de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#connect() <em>Connect</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Connect</em>' operation.
-	 * @see de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#connect()
-	 * @generated
-	 */
-	EOperation getSensorDataTransmission__Connect();
-
-	/**
-	 * Returns the meta object for the '{@link de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#startMeasurement() <em>Start Measurement</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Start Measurement</em>' operation.
-	 * @see de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#startMeasurement()
-	 * @generated
-	 */
-	EOperation getSensorDataTransmission__StartMeasurement();
-
-	/**
-	 * Returns the meta object for the '{@link de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#stopMeasurement() <em>Stop Measurement</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Stop Measurement</em>' operation.
-	 * @see de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#stopMeasurement()
-	 * @generated
-	 */
-	EOperation getSensorDataTransmission__StopMeasurement();
-
-	/**
-	 * Returns the meta object for the '{@link de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#pauseMeasurement() <em>Pause Measurement</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Pause Measurement</em>' operation.
-	 * @see de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#pauseMeasurement()
-	 * @generated
-	 */
-	EOperation getSensorDataTransmission__PauseMeasurement();
-
-	/**
-	 * Returns the meta object for the '{@link de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#send() <em>Send</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Send</em>' operation.
-	 * @see de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#send()
-	 * @generated
-	 */
-	EOperation getSensorDataTransmission__Send();
-
-	/**
-	 * Returns the meta object for the '{@link de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#send(double) <em>Send</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Send</em>' operation.
-	 * @see de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission#send(double)
-	 * @generated
-	 */
-	EOperation getSensorDataTransmission__Send__double();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -298,54 +172,6 @@ public interface DataTransmissionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SENSOR_DATA_TRANSMISSION__SENSOR_INTERFACE = eINSTANCE.getSensorDataTransmission_SensorInterface();
-
-		/**
-		 * The meta object literal for the '<em><b>Connect</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation SENSOR_DATA_TRANSMISSION___CONNECT = eINSTANCE.getSensorDataTransmission__Connect();
-
-		/**
-		 * The meta object literal for the '<em><b>Start Measurement</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation SENSOR_DATA_TRANSMISSION___START_MEASUREMENT = eINSTANCE.getSensorDataTransmission__StartMeasurement();
-
-		/**
-		 * The meta object literal for the '<em><b>Stop Measurement</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation SENSOR_DATA_TRANSMISSION___STOP_MEASUREMENT = eINSTANCE.getSensorDataTransmission__StopMeasurement();
-
-		/**
-		 * The meta object literal for the '<em><b>Pause Measurement</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation SENSOR_DATA_TRANSMISSION___PAUSE_MEASUREMENT = eINSTANCE.getSensorDataTransmission__PauseMeasurement();
-
-		/**
-		 * The meta object literal for the '<em><b>Send</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation SENSOR_DATA_TRANSMISSION___SEND = eINSTANCE.getSensorDataTransmission__Send();
-
-		/**
-		 * The meta object literal for the '<em><b>Send</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation SENSOR_DATA_TRANSMISSION___SEND__DOUBLE = eINSTANCE.getSensorDataTransmission__Send__double();
 
 	}
 

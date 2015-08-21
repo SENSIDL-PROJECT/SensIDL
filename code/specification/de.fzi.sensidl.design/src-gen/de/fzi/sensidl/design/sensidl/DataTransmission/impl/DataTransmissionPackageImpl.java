@@ -127,60 +127,6 @@ public class DataTransmissionPackageImpl extends EPackageImpl implements DataTra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSensorDataTransmission__Connect() {
-		return sensorDataTransmissionEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getSensorDataTransmission__StartMeasurement() {
-		return sensorDataTransmissionEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getSensorDataTransmission__StopMeasurement() {
-		return sensorDataTransmissionEClass.getEOperations().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getSensorDataTransmission__PauseMeasurement() {
-		return sensorDataTransmissionEClass.getEOperations().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getSensorDataTransmission__Send() {
-		return sensorDataTransmissionEClass.getEOperations().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getSensorDataTransmission__Send__double() {
-		return sensorDataTransmissionEClass.getEOperations().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public DataTransmissionFactory getDataTransmissionFactory() {
 		return (DataTransmissionFactory)getEFactoryInstance();
 	}
@@ -206,12 +152,6 @@ public class DataTransmissionPackageImpl extends EPackageImpl implements DataTra
 		// Create classes and their features
 		sensorDataTransmissionEClass = createEClass(SENSOR_DATA_TRANSMISSION);
 		createEReference(sensorDataTransmissionEClass, SENSOR_DATA_TRANSMISSION__SENSOR_INTERFACE);
-		createEOperation(sensorDataTransmissionEClass, SENSOR_DATA_TRANSMISSION___CONNECT);
-		createEOperation(sensorDataTransmissionEClass, SENSOR_DATA_TRANSMISSION___START_MEASUREMENT);
-		createEOperation(sensorDataTransmissionEClass, SENSOR_DATA_TRANSMISSION___STOP_MEASUREMENT);
-		createEOperation(sensorDataTransmissionEClass, SENSOR_DATA_TRANSMISSION___PAUSE_MEASUREMENT);
-		createEOperation(sensorDataTransmissionEClass, SENSOR_DATA_TRANSMISSION___SEND);
-		createEOperation(sensorDataTransmissionEClass, SENSOR_DATA_TRANSMISSION___SEND__DOUBLE);
 	}
 
 	/**
@@ -241,29 +181,25 @@ public class DataTransmissionPackageImpl extends EPackageImpl implements DataTra
 		sensidlPackage thesensidlPackage = (sensidlPackage)EPackage.Registry.INSTANCE.getEPackage(sensidlPackage.eNS_URI);
 		DataRepresentationPackage theDataRepresentationPackage = (DataRepresentationPackage)EPackage.Registry.INSTANCE.getEPackage(DataRepresentationPackage.eNS_URI);
 
-		// Create type parameters
-
-		// Set bounds for type parameters
-
 		// Add supertypes to classes
 		sensorDataTransmissionEClass.getESuperTypes().add(thesensidlPackage.getNamedElement());
 
-		// Initialize classes, features, and operations; add parameters
+		// Initialize classes and features; add operations and parameters
 		initEClass(sensorDataTransmissionEClass, SensorDataTransmission.class, "SensorDataTransmission", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSensorDataTransmission_SensorInterface(), thesensidlPackage.getSensorInterface(), thesensidlPackage.getSensorInterface_DataTransmission(), "sensorInterface", null, 1, 1, SensorDataTransmission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEOperation(getSensorDataTransmission__Connect(), null, "connect", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sensorDataTransmissionEClass, null, "connect");
 
-		initEOperation(getSensorDataTransmission__StartMeasurement(), theDataRepresentationPackage.getDataSet(), "startMeasurement", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sensorDataTransmissionEClass, theDataRepresentationPackage.getDataSet(), "startMeasurement", 0, 1);
 
-		initEOperation(getSensorDataTransmission__StopMeasurement(), theDataRepresentationPackage.getDataSet(), "stopMeasurement", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sensorDataTransmissionEClass, theDataRepresentationPackage.getDataSet(), "stopMeasurement", 0, 1);
 
-		initEOperation(getSensorDataTransmission__PauseMeasurement(), theDataRepresentationPackage.getDataSet(), "pauseMeasurement", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sensorDataTransmissionEClass, theDataRepresentationPackage.getDataSet(), "pauseMeasurement", 0, 1);
 
-		initEOperation(getSensorDataTransmission__Send(), null, "send", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sensorDataTransmissionEClass, null, "send");
 
-		EOperation op = initEOperation(getSensorDataTransmission__Send__double(), null, "send", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDouble(), "frequency", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(sensorDataTransmissionEClass, null, "send");
+		addEParameter(op, ecorePackage.getEDouble(), "frequency", 0, 1);
 	}
 
 } //DataTransmissionPackageImpl

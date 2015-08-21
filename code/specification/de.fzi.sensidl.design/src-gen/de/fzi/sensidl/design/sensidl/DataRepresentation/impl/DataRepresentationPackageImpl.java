@@ -11,25 +11,20 @@ import de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationFactor
 import de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.DataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.DataRepresentation.DataType;
-import de.fzi.sensidl.design.sensidl.DataRepresentation.DataUnit;
 import de.fzi.sensidl.design.sensidl.DataRepresentation.MeasurementData;
 import de.fzi.sensidl.design.sensidl.DataRepresentation.NonMeasurementData;
 import de.fzi.sensidl.design.sensidl.DataRepresentation.SensorDataDescription;
-
 import de.fzi.sensidl.design.sensidl.DataTransmission.DataTransmissionPackage;
-
 import de.fzi.sensidl.design.sensidl.DataTransmission.impl.DataTransmissionPackageImpl;
-
 import de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl;
-
 import de.fzi.sensidl.design.sensidl.sensidlPackage;
-
+import javax.measure.unit.SI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -86,13 +81,6 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass dataUnitEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass dataRangeEClass = null;
 
 	/**
@@ -115,6 +103,13 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * @generated
 	 */
 	private EEnum dataTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType unitEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -298,6 +293,15 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMeasurementData_Unit() {
+		return (EAttribute)measurementDataEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getNonMeasurementData() {
 		return nonMeasurementDataEClass;
 	}
@@ -336,24 +340,6 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 */
 	public EReference getDataAdjustment_MeasurementData() {
 		return (EReference)dataAdjustmentEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getDataUnit() {
-		return dataUnitEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDataUnit_Unit() {
-		return (EAttribute)dataUnitEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -451,6 +437,15 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getUnit() {
+		return unitEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DataRepresentationFactory getDataRepresentationFactory() {
 		return (DataRepresentationFactory)getEFactoryInstance();
 	}
@@ -489,6 +484,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 
 		measurementDataEClass = createEClass(MEASUREMENT_DATA);
 		createEReference(measurementDataEClass, MEASUREMENT_DATA__ADJUSTMENTS);
+		createEAttribute(measurementDataEClass, MEASUREMENT_DATA__UNIT);
 
 		nonMeasurementDataEClass = createEClass(NON_MEASUREMENT_DATA);
 		createEAttribute(nonMeasurementDataEClass, NON_MEASUREMENT_DATA__CONSTANT);
@@ -496,9 +492,6 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 
 		dataAdjustmentEClass = createEClass(DATA_ADJUSTMENT);
 		createEReference(dataAdjustmentEClass, DATA_ADJUSTMENT__MEASUREMENT_DATA);
-
-		dataUnitEClass = createEClass(DATA_UNIT);
-		createEAttribute(dataUnitEClass, DATA_UNIT__UNIT);
 
 		dataRangeEClass = createEClass(DATA_RANGE);
 		createEReference(dataRangeEClass, DATA_RANGE__LOWER_BOUND);
@@ -514,6 +507,9 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 
 		// Create enums
 		dataTypeEEnum = createEEnum(DATA_TYPE);
+
+		// Create data types
+		unitEDataType = createEDataType(UNIT);
 	}
 
 	/**
@@ -542,21 +538,16 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 		// Obtain other dependent packages
 		sensidlPackage thesensidlPackage = (sensidlPackage)EPackage.Registry.INSTANCE.getEPackage(sensidlPackage.eNS_URI);
 
-		// Create type parameters
-
-		// Set bounds for type parameters
-
 		// Add supertypes to classes
 		sensorDataDescriptionEClass.getESuperTypes().add(thesensidlPackage.getNamedElement());
 		dataSetEClass.getESuperTypes().add(thesensidlPackage.getNamedElement());
 		dataEClass.getESuperTypes().add(thesensidlPackage.getNamedElement());
 		measurementDataEClass.getESuperTypes().add(this.getData());
 		nonMeasurementDataEClass.getESuperTypes().add(this.getData());
-		dataUnitEClass.getESuperTypes().add(this.getDataAdjustment());
 		dataRangeEClass.getESuperTypes().add(this.getDataAdjustment());
 		dataAdaptionEClass.getESuperTypes().add(this.getDataAdjustment());
 
-		// Initialize classes, features, and operations; add parameters
+		// Initialize classes and features; add operations and parameters
 		initEClass(sensorDataDescriptionEClass, SensorDataDescription.class, "SensorDataDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSensorDataDescription_Sets(), this.getDataSet(), this.getDataSet_SensorDataDescription(), "sets", null, 0, -1, SensorDataDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSensorDataDescription_SensorInterface(), thesensidlPackage.getSensorInterface(), thesensidlPackage.getSensorInterface_DataDescription(), "sensorInterface", null, 1, 1, SensorDataDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -572,6 +563,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 
 		initEClass(measurementDataEClass, MeasurementData.class, "MeasurementData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMeasurementData_Adjustments(), this.getDataAdjustment(), this.getDataAdjustment_MeasurementData(), "adjustments", null, 0, -1, MeasurementData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMeasurementData_Unit(), this.getUnit(), "unit", null, 1, 1, MeasurementData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nonMeasurementDataEClass, NonMeasurementData.class, "NonMeasurementData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNonMeasurementData_Constant(), ecorePackage.getEBoolean(), "constant", null, 1, 1, NonMeasurementData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -580,16 +572,13 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 		initEClass(dataAdjustmentEClass, DataAdjustment.class, "DataAdjustment", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDataAdjustment_MeasurementData(), this.getMeasurementData(), this.getMeasurementData_Adjustments(), "measurementData", null, 0, 1, DataAdjustment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(dataUnitEClass, DataUnit.class, "DataUnit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDataUnit_Unit(), ecorePackage.getEString(), "unit", null, 1, 1, DataUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(dataRangeEClass, DataRange.class, "DataRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDataRange_LowerBound(), this.getBound(), null, "lowerBound", null, 1, 1, DataRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDataRange_UpperBound(), this.getBound(), null, "upperBound", null, 1, 1, DataRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(boundEClass, Bound.class, "Bound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBound_InitialValue(), ecorePackage.getEDouble(), "initialValue", null, 1, 1, Bound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBound_Unit(), ecorePackage.getEString(), "unit", null, 1, 1, Bound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBound_Unit(), this.getUnit(), "unit", null, 1, 1, Bound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataAdaptionEClass, DataAdaption.class, "DataAdaption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDataAdaption_ScalingFactor(), ecorePackage.getEDoubleObject(), "scalingFactor", null, 1, 1, DataAdaption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -597,17 +586,20 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 
 		// Initialize enums and add enum literals
 		initEEnum(dataTypeEEnum, DataType.class, "DataType");
-		addEEnumLiteral(dataTypeEEnum, DataType.SIGNED_CHAR);
-		addEEnumLiteral(dataTypeEEnum, DataType.UNSIGNED_CHAR);
-		addEEnumLiteral(dataTypeEEnum, DataType.SIGNED_SHORT);
-		addEEnumLiteral(dataTypeEEnum, DataType.UNSIGNED_SHORT);
-		addEEnumLiteral(dataTypeEEnum, DataType.SIGNED_LONG);
-		addEEnumLiteral(dataTypeEEnum, DataType.UNSIGNED_LONG);
-		addEEnumLiteral(dataTypeEEnum, DataType.SIGNED_LONG_LONG);
-		addEEnumLiteral(dataTypeEEnum, DataType.UNSIGNED_LONG_LONG);
-		addEEnumLiteral(dataTypeEEnum, DataType.FLOAT);
-		addEEnumLiteral(dataTypeEEnum, DataType.DOUBLE);
-		addEEnumLiteral(dataTypeEEnum, DataType.LONG_DOUBLE);
+		addEEnumLiteral(dataTypeEEnum, DataType.SIGNED_CHAR_LITERAL);
+		addEEnumLiteral(dataTypeEEnum, DataType.UNSIGNED_CHAR_LITERAL);
+		addEEnumLiteral(dataTypeEEnum, DataType.SIGNED_SHORT_LITERAL);
+		addEEnumLiteral(dataTypeEEnum, DataType.UNSIGNED_SHORT_LITERAL);
+		addEEnumLiteral(dataTypeEEnum, DataType.SIGNED_LONG_LITERAL);
+		addEEnumLiteral(dataTypeEEnum, DataType.UNSIGNED_LONG_LITERAL);
+		addEEnumLiteral(dataTypeEEnum, DataType.SIGNED_LONG_LONG_LITERAL);
+		addEEnumLiteral(dataTypeEEnum, DataType.UNSIGNED_LONG_LONG_LITERAL);
+		addEEnumLiteral(dataTypeEEnum, DataType.FLOAT_LITERAL);
+		addEEnumLiteral(dataTypeEEnum, DataType.DOUBLE_LITERAL);
+		addEEnumLiteral(dataTypeEEnum, DataType.LONG_DOUBLE_LITERAL);
+
+		// Initialize data types
+		initEDataType(unitEDataType, SI.class, "Unit", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } //DataRepresentationPackageImpl

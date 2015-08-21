@@ -13,12 +13,12 @@ import de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.SensorInterface#getMetaInformation <em>Meta Information</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.SensorInterface#getDataDescription <em>Data Description</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.SensorInterface#getDataTransmission <em>Data Transmission</em>}</li>
  * </ul>
+ * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getSensorInterface()
  * @model
