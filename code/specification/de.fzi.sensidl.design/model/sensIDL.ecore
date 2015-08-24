@@ -88,12 +88,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" lowerBound="1"
           eType="#//DataRepresentation/Unit"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DataAdaption" eSuperTypes="#//DataRepresentation/DataAdjustment">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="scalingFactor" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataConversion" eSuperTypes="#//DataRepresentation/DataAdjustment"/>
     <eClassifiers xsi:type="ecore:EEnum" name="DataType">
       <eLiterals name="SIGNED_CHAR"/>
       <eLiterals name="UNSIGNED_CHAR" value="1"/>
@@ -108,6 +103,11 @@
       <eLiterals name="LONG_DOUBLE" value="10"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="Unit" instanceClassName="javax.measure.unit.SI"/>
+    <eClassifiers xsi:type="ecore:EClass" name="LinearDataConversion" eSuperTypes="#//DataRepresentation/DataConversion">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="scalingFactor" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="DataTransmission" nsURI="http://fzi.de/sensidl/design/transmission/1.0"
       nsPrefix="de.fzi.sensidl.design.sensidl">
