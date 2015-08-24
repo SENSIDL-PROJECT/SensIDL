@@ -2,7 +2,7 @@
  */
 package de.fzi.sensidl.design.sensidl.tests;
 
-import de.fzi.sensidl.design.sensidl.DataTransmission.tests.DataTransmissionTests;
+import de.fzi.sensidl.design.sensidl.dataTransmission.tests.DataTransmissionTests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;

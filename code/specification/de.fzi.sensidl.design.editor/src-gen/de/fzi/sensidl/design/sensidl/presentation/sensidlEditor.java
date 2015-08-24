@@ -156,9 +156,9 @@ import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
 import de.fzi.sensidl.design.sensidl.provider.sensidlItemProviderAdapterFactory;
 
-import de.fzi.sensidl.design.sensidl.DataRepresentation.provider.DataRepresentationItemProviderAdapterFactory;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.provider.DataRepresentationItemProviderAdapterFactory;
 
-import de.fzi.sensidl.design.sensidl.DataTransmission.provider.DataTransmissionItemProviderAdapterFactory;
+import de.fzi.sensidl.design.sensidl.dataTransmission.provider.DataTransmissionItemProviderAdapterFactory;
 
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 

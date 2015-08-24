@@ -8,8 +8,8 @@ Bundle-Activator: de.fzi.sensidl.design.sensidl.presentation.SensIDLEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: de.fzi.sensidl.design.sensidl.DataRepresentation.presentation,
- de.fzi.sensidl.design.sensidl.DataTransmission.presentation,
+Export-Package: de.fzi.sensidl.design.sensidl.dataRepresentation.presentation,
+ de.fzi.sensidl.design.sensidl.dataTransmission.presentation,
  de.fzi.sensidl.design.sensidl.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,

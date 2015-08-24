@@ -23,7 +23,7 @@
       <!-- @generated sensIDL -->
       <factory
             uri="http://fzi.de/sensidl/design/representation/1.0"
-            class="de.fzi.sensidl.design.sensidl.DataRepresentation.provider.DataRepresentationItemProviderAdapterFactory"
+            class="de.fzi.sensidl.design.sensidl.dataRepresentation.provider.DataRepresentationItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -36,7 +36,7 @@
       <!-- @generated sensIDL -->
       <factory
             uri="http://fzi.de/sensidl/design/transmission/1.0"
-            class="de.fzi.sensidl.design.sensidl.DataTransmission.provider.DataTransmissionItemProviderAdapterFactory"
+            class="de.fzi.sensidl.design.sensidl.dataTransmission.provider.DataTransmissionItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

@@ -3,11 +3,12 @@
 package de.fzi.sensidl.design.sensidl.provider;
 
 
-import de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationFactory;
-
-import de.fzi.sensidl.design.sensidl.DataTransmission.DataTransmissionFactory;
-
 import de.fzi.sensidl.design.sensidl.SensorInterface;
+
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationFactory;
+
+import de.fzi.sensidl.design.sensidl.dataTransmission.DataTransmissionFactory;
+
 import de.fzi.sensidl.design.sensidl.sensidlFactory;
 import de.fzi.sensidl.design.sensidl.sensidlPackage;
 

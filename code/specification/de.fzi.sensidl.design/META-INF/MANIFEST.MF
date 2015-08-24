@@ -8,16 +8,15 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.fzi.sensidl.design.sensidl,
- de.fzi.sensidl.design.sensidl.DataRepresentation,
- de.fzi.sensidl.design.sensidl.DataRepresentation.impl,
- de.fzi.sensidl.design.sensidl.DataRepresentation.util,
- de.fzi.sensidl.design.sensidl.DataTransmission,
- de.fzi.sensidl.design.sensidl.DataTransmission.impl,
- de.fzi.sensidl.design.sensidl.DataTransmission.util,
+ de.fzi.sensidl.design.sensidl.dataRepresentation,
+ de.fzi.sensidl.design.sensidl.dataRepresentation.impl,
+ de.fzi.sensidl.design.sensidl.dataRepresentation.util,
+ de.fzi.sensidl.design.sensidl.dataTransmission,
+ de.fzi.sensidl.design.sensidl.dataTransmission.impl,
+ de.fzi.sensidl.design.sensidl.dataTransmission.util,
  de.fzi.sensidl.design.sensidl.impl,
  de.fzi.sensidl.design.sensidl.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- JScience;bundle-version="4.3.1"
-Eclipse-LazyStart: true
+ org.jscience;bundle-version="4.1.3"
 Bundle-ActivationPolicy: lazy

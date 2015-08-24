@@ -2,14 +2,15 @@
  */
 package de.fzi.sensidl.design.sensidl.impl;
 
-import de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage;
-import de.fzi.sensidl.design.sensidl.DataRepresentation.SensorDataDescription;
-
-import de.fzi.sensidl.design.sensidl.DataTransmission.DataTransmissionPackage;
-import de.fzi.sensidl.design.sensidl.DataTransmission.SensorDataTransmission;
-
 import de.fzi.sensidl.design.sensidl.SensorInterface;
 import de.fzi.sensidl.design.sensidl.SensorMetaInformation;
+
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
+
+import de.fzi.sensidl.design.sensidl.dataTransmission.DataTransmissionPackage;
+import de.fzi.sensidl.design.sensidl.dataTransmission.SensorDataTransmission;
+
 import de.fzi.sensidl.design.sensidl.sensidlPackage;
 
 import org.eclipse.emf.common.notify.Notification;

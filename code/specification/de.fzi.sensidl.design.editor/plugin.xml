@@ -40,9 +40,9 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="de.fzi.sensidl.design.sensidl.DataRepresentation.presentation.DataRepresentationModelWizardID"
+            id="de.fzi.sensidl.design.sensidl.dataRepresentation.presentation.DataRepresentationModelWizardID"
             name="%_UI_DataRepresentationModelWizard_label"
-            class="de.fzi.sensidl.design.sensidl.DataRepresentation.presentation.DataRepresentationModelWizard"
+            class="de.fzi.sensidl.design.sensidl.dataRepresentation.presentation.DataRepresentationModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/DataRepresentationModelFile.gif">
          <description>%_UI_DataRepresentationModelWizard_description</description>
@@ -53,12 +53,12 @@
    <extension point="org.eclipse.ui.editors">
       <!-- @generated sensIDL -->
       <editor
-            id="de.fzi.sensidl.design.sensidl.DataRepresentation.presentation.DataRepresentationEditorID"
+            id="de.fzi.sensidl.design.sensidl.dataRepresentation.presentation.DataRepresentationEditorID"
             name="%_UI_DataRepresentationEditor_label"
             icon="icons/full/obj16/DataRepresentationModelFile.gif"
             extensions="datarepresentation"
-            class="de.fzi.sensidl.design.sensidl.DataRepresentation.presentation.DataRepresentationEditor"
-            contributorClass="de.fzi.sensidl.design.sensidl.DataRepresentation.presentation.DataRepresentationActionBarContributor">
+            class="de.fzi.sensidl.design.sensidl.dataRepresentation.presentation.DataRepresentationEditor"
+            contributorClass="de.fzi.sensidl.design.sensidl.dataRepresentation.presentation.DataRepresentationActionBarContributor">
       </editor>
    </extension>
 
@@ -68,9 +68,9 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="de.fzi.sensidl.design.sensidl.DataTransmission.presentation.DataTransmissionModelWizardID"
+            id="de.fzi.sensidl.design.sensidl.dataTransmission.presentation.DataTransmissionModelWizardID"
             name="%_UI_DataTransmissionModelWizard_label"
-            class="de.fzi.sensidl.design.sensidl.DataTransmission.presentation.DataTransmissionModelWizard"
+            class="de.fzi.sensidl.design.sensidl.dataTransmission.presentation.DataTransmissionModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/DataTransmissionModelFile.gif">
          <description>%_UI_DataTransmissionModelWizard_description</description>
@@ -81,12 +81,12 @@
    <extension point="org.eclipse.ui.editors">
       <!-- @generated sensIDL -->
       <editor
-            id="de.fzi.sensidl.design.sensidl.DataTransmission.presentation.DataTransmissionEditorID"
+            id="de.fzi.sensidl.design.sensidl.dataTransmission.presentation.DataTransmissionEditorID"
             name="%_UI_DataTransmissionEditor_label"
             icon="icons/full/obj16/DataTransmissionModelFile.gif"
             extensions="datatransmission"
-            class="de.fzi.sensidl.design.sensidl.DataTransmission.presentation.DataTransmissionEditor"
-            contributorClass="de.fzi.sensidl.design.sensidl.DataTransmission.presentation.DataTransmissionActionBarContributor">
+            class="de.fzi.sensidl.design.sensidl.dataTransmission.presentation.DataTransmissionEditor"
+            contributorClass="de.fzi.sensidl.design.sensidl.dataTransmission.presentation.DataTransmissionActionBarContributor">
       </editor>
    </extension>
 

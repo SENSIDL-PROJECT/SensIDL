@@ -4,19 +4,19 @@ package de.fzi.sensidl.design.sensidl.impl;
 
 import de.fzi.sensidl.design.sensidl.Alignment;
 import de.fzi.sensidl.design.sensidl.Coding;
-
-import de.fzi.sensidl.design.sensidl.DataRepresentation.DataRepresentationPackage;
-
-import de.fzi.sensidl.design.sensidl.DataRepresentation.impl.DataRepresentationPackageImpl;
-
-import de.fzi.sensidl.design.sensidl.DataTransmission.DataTransmissionPackage;
-
-import de.fzi.sensidl.design.sensidl.DataTransmission.impl.DataTransmissionPackageImpl;
-
 import de.fzi.sensidl.design.sensidl.Endianness;
 import de.fzi.sensidl.design.sensidl.NamedElement;
 import de.fzi.sensidl.design.sensidl.SensorInterface;
 import de.fzi.sensidl.design.sensidl.SensorMetaInformation;
+
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
+
+import de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl;
+
+import de.fzi.sensidl.design.sensidl.dataTransmission.DataTransmissionPackage;
+
+import de.fzi.sensidl.design.sensidl.dataTransmission.impl.DataTransmissionPackageImpl;
+
 import de.fzi.sensidl.design.sensidl.sensidlFactory;
 import de.fzi.sensidl.design.sensidl.sensidlPackage;
 
@@ -371,10 +371,14 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 		getESubpackages().add(theDataRepresentationPackage);
 		getESubpackages().add(theDataTransmissionPackage);
 
+		// Create type parameters
+
+		// Set bounds for type parameters
+
 		// Add supertypes to classes
 		sensorInterfaceEClass.getESuperTypes().add(this.getNamedElement());
 
-		// Initialize classes and features; add operations and parameters
+		// Initialize classes, features, and operations; add parameters
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedElement_ID(), ecorePackage.getEString(), "ID", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -393,18 +397,18 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 
 		// Initialize enums and add enum literals
 		initEEnum(codingEEnum, Coding.class, "Coding");
-		addEEnumLiteral(codingEEnum, Coding.SENSIDL_BINARY_LITERAL);
-		addEEnumLiteral(codingEEnum, Coding.SENSIDL_JSON_LITERAL);
+		addEEnumLiteral(codingEEnum, Coding.SENSIDL_BINARY);
+		addEEnumLiteral(codingEEnum, Coding.SENSIDL_JSON);
 
 		initEEnum(endiannessEEnum, Endianness.class, "Endianness");
-		addEEnumLiteral(endiannessEEnum, Endianness.BIG_ENDIAN_LITERAL);
-		addEEnumLiteral(endiannessEEnum, Endianness.LITTLE_ENDIAN_LITERAL);
+		addEEnumLiteral(endiannessEEnum, Endianness.BIG_ENDIAN);
+		addEEnumLiteral(endiannessEEnum, Endianness.LITTLE_ENDIAN);
 
 		initEEnum(alignmentEEnum, Alignment.class, "Alignment");
-		addEEnumLiteral(alignmentEEnum, Alignment._8BIT_LITERAL);
-		addEEnumLiteral(alignmentEEnum, Alignment._16BIT_LITERAL);
-		addEEnumLiteral(alignmentEEnum, Alignment._32BIT_LITERAL);
-		addEEnumLiteral(alignmentEEnum, Alignment._64BIT_LITERAL);
+		addEEnumLiteral(alignmentEEnum, Alignment._8BIT);
+		addEEnumLiteral(alignmentEEnum, Alignment._16BIT);
+		addEEnumLiteral(alignmentEEnum, Alignment._32BIT);
+		addEEnumLiteral(alignmentEEnum, Alignment._64BIT);
 
 		// Create resource
 		createResource(eNS_URI);
