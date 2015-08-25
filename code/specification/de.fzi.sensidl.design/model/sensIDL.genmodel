@@ -88,10 +88,11 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/Bound/initialValue"/>
       </genClasses>
       <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/DataConversion"/>
-      <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/LinearDataConversion">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/LinearDataConversion/scalingFactor"/>
+      <genClasses ecoreClass="sensIDL.ecore#//DataRepresentation/DataAdaption">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/LinearDataConversion/offset"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/LinearDataConversion/scalingFactor"/>
       </genClasses>
+      <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/LinearDataConversion"/>
     </nestedGenPackages>
     <nestedGenPackages prefix="DataTransmission" basePackage="de.fzi.sensidl.design.sensidl"
         disposableProviderFactory="true" ecorePackage="sensIDL.ecore#//dataTransmission">
