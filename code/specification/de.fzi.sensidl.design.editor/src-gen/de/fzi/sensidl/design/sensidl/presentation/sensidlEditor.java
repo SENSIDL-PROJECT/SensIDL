@@ -955,7 +955,7 @@ public class sensidlEditor
 	 * @generated
 	 */
 	public void createModel() {
-		URI resourceURI = EditUIUtil.getURI(getEditorInput(), editingDomain.getResourceSet().getURIConverter());
+		URI resourceURI = EditUIUtil.getURI(getEditorInput());
 		Exception exception = null;
 		Resource resource = null;
 		try {
@@ -983,11 +983,10 @@ public class sensidlEditor
 	 * @generated
 	 */
 	public Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
-		boolean hasErrors = !resource.getErrors().isEmpty();
-		if (hasErrors || !resource.getWarnings().isEmpty()) {
+		if (!resource.getErrors().isEmpty() || !resource.getWarnings().isEmpty()) {
 			BasicDiagnostic basicDiagnostic =
 				new BasicDiagnostic
-					(hasErrors ? Diagnostic.ERROR : Diagnostic.WARNING,
+					(Diagnostic.ERROR,
 					 "de.fzi.sensidl.design.editor",
 					 0,
 					 getString("_UI_CreateModelError_message", resource.getURI()),

@@ -22,7 +22,7 @@ public class sensidlFactoryImpl extends EFactoryImpl implements sensidlFactory {
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated 
+	 * @generated
 	 */
 	public static sensidlFactory init() {
 		try {

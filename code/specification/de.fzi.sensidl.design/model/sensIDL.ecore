@@ -80,20 +80,17 @@
           eOpposite="#//dataRepresentation/MeasurementData/adjustments"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataRange" eSuperTypes="#//dataRepresentation/DataAdjustment">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" lowerBound="1"
-          eType="#//dataRepresentation/Bound" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" lowerBound="1"
-          eType="#//dataRepresentation/Bound" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Bound">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="initialValue" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="range" lowerBound="1"
+          eType="#//dataRepresentation/Interval"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataConversion" eSuperTypes="#//dataRepresentation/DataAdjustment"/>
     <eClassifiers xsi:type="ecore:EClass" name="LinearDataConversion" eSuperTypes="#//dataRepresentation/DataConversion">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="scalingFactor" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="fromInterval" eType="#//dataRepresentation/Interval"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="toInterval" eType="#//dataRepresentation/Interval"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="DataType">
       <eLiterals name="SIGNED_CHAR"/>
@@ -110,6 +107,12 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="Unit" instanceClassName="javax.measure.unit.Unit">
       <eTypeParameters name="Q"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Interval">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="dataTransmission" nsURI="http://fzi.de/sensidl/design/transmission/1.0"

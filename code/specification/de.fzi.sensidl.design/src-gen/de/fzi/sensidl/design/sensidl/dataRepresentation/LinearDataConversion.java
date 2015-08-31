@@ -10,11 +10,13 @@ package de.fzi.sensidl.design.sensidl.dataRepresentation;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getScalingFactor <em>Scaling Factor</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getOffset <em>Offset</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getFromInterval <em>From Interval</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getToInterval <em>To Interval</em>}</li>
  * </ul>
+ * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getLinearDataConversion()
  * @model
@@ -58,7 +60,7 @@ public interface LinearDataConversion extends DataConversion {
 	 * @return the value of the '<em>Offset</em>' attribute.
 	 * @see #setOffset(double)
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getLinearDataConversion_Offset()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	double getOffset();
@@ -72,5 +74,57 @@ public interface LinearDataConversion extends DataConversion {
 	 * @generated
 	 */
 	void setOffset(double value);
+
+	/**
+	 * Returns the value of the '<em><b>From Interval</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>From Interval</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>From Interval</em>' reference.
+	 * @see #setFromInterval(Interval)
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getLinearDataConversion_FromInterval()
+	 * @model
+	 * @generated
+	 */
+	Interval getFromInterval();
+
+	/**
+	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getFromInterval <em>From Interval</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>From Interval</em>' reference.
+	 * @see #getFromInterval()
+	 * @generated
+	 */
+	void setFromInterval(Interval value);
+
+	/**
+	 * Returns the value of the '<em><b>To Interval</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>To Interval</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>To Interval</em>' reference.
+	 * @see #setToInterval(Interval)
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getLinearDataConversion_ToInterval()
+	 * @model
+	 * @generated
+	 */
+	Interval getToInterval();
+
+	/**
+	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getToInterval <em>To Interval</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>To Interval</em>' reference.
+	 * @see #getToInterval()
+	 * @generated
+	 */
+	void setToInterval(Interval value);
 
 } // LinearDataConversion

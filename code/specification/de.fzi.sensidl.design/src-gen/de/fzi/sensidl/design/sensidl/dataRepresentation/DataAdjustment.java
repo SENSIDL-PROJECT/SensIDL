@@ -11,10 +11,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataAdjustment#getMeasurementData <em>Measurement Data</em>}</li>
  * </ul>
+ * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getDataAdjustment()
  * @model abstract="true"

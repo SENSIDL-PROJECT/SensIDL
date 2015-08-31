@@ -11,13 +11,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation#getSensorInterface <em>Sensor Interface</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation#getCoding <em>Coding</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation#getEndianness <em>Endianness</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation#getAlignment <em>Alignment</em>}</li>
  * </ul>
+ * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getSensorMetaInformation()
  * @model

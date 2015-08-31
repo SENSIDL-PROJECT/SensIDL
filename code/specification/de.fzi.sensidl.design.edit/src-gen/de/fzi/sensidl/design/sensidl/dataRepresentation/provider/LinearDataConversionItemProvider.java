@@ -47,6 +47,8 @@ public class LinearDataConversionItemProvider extends DataConversionItemProvider
 
 			addScalingFactorPropertyDescriptor(object);
 			addOffsetPropertyDescriptor(object);
+			addFromIntervalPropertyDescriptor(object);
+			addToIntervalPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -91,6 +93,50 @@ public class LinearDataConversionItemProvider extends DataConversionItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the From Interval feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFromIntervalPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LinearDataConversion_fromInterval_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LinearDataConversion_fromInterval_feature", "_UI_LinearDataConversion_type"),
+				 DataRepresentationPackage.Literals.LINEAR_DATA_CONVERSION__FROM_INTERVAL,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the To Interval feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addToIntervalPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LinearDataConversion_toInterval_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LinearDataConversion_toInterval_feature", "_UI_LinearDataConversion_type"),
+				 DataRepresentationPackage.Literals.LINEAR_DATA_CONVERSION__TO_INTERVAL,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

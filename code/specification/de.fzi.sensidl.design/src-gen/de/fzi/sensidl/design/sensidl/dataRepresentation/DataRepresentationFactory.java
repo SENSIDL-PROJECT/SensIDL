@@ -67,15 +67,6 @@ public interface DataRepresentationFactory extends EFactory {
 	DataRange createDataRange();
 
 	/**
-	 * Returns a new object of class '<em>Bound</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Bound</em>'.
-	 * @generated
-	 */
-	Bound createBound();
-
-	/**
 	 * Returns a new object of class '<em>Data Conversion</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,6 +83,15 @@ public interface DataRepresentationFactory extends EFactory {
 	 * @generated
 	 */
 	LinearDataConversion createLinearDataConversion();
+
+	/**
+	 * Returns a new object of class '<em>Interval</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Interval</em>'.
+	 * @generated
+	 */
+	Interval createInterval();
 
 	/**
 	 * Returns the package supported by this factory.

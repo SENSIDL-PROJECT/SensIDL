@@ -14,10 +14,10 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataTransmission.SensorDataTransmission#getSensorInterface <em>Sensor Interface</em>}</li>
  * </ul>
+ * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.dataTransmission.DataTransmissionPackage#getSensorDataTransmission()
  * @model

@@ -49,7 +49,7 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param ePackage the package in question.
+	 * @parameter ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -118,12 +118,6 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DataRepresentationPackage.BOUND: {
-				Bound bound = (Bound)theEObject;
-				T result = caseBound(bound);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case DataRepresentationPackage.DATA_CONVERSION: {
 				DataConversion dataConversion = (DataConversion)theEObject;
 				T result = caseDataConversion(dataConversion);
@@ -136,6 +130,12 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 				T result = caseLinearDataConversion(linearDataConversion);
 				if (result == null) result = caseDataConversion(linearDataConversion);
 				if (result == null) result = caseDataAdjustment(linearDataConversion);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DataRepresentationPackage.INTERVAL: {
+				Interval interval = (Interval)theEObject;
+				T result = caseInterval(interval);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -249,21 +249,6 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Bound</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Bound</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBound(Bound object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Data Conversion</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -290,6 +275,21 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLinearDataConversion(LinearDataConversion object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Interval</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Interval</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInterval(Interval object) {
 		return null;
 	}
 

@@ -3,8 +3,8 @@
 package de.fzi.sensidl.design.sensidl.dataRepresentation.provider;
 
 
-import de.fzi.sensidl.design.sensidl.dataRepresentation.Bound;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.Interval;
 
 import de.fzi.sensidl.design.sensidl.provider.SensIDLEditPlugin;
 
@@ -28,12 +28,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link de.fzi.sensidl.design.sensidl.dataRepresentation.Bound} object.
+ * This is the item provider adapter for a {@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class BoundItemProvider 
+public class IntervalItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -47,7 +47,7 @@ public class BoundItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BoundItemProvider(AdapterFactory adapterFactory) {
+	public IntervalItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -62,25 +62,26 @@ public class BoundItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addInitialValuePropertyDescriptor(object);
+			addLowerBoundPropertyDescriptor(object);
+			addUpperBoundPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Initial Value feature.
+	 * This adds a property descriptor for the Lower Bound feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInitialValuePropertyDescriptor(Object object) {
+	protected void addLowerBoundPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Bound_initialValue_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Bound_initialValue_feature", "_UI_Bound_type"),
-				 DataRepresentationPackage.Literals.BOUND__INITIAL_VALUE,
+				 getString("_UI_Interval_lowerBound_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Interval_lowerBound_feature", "_UI_Interval_type"),
+				 DataRepresentationPackage.Literals.INTERVAL__LOWER_BOUND,
 				 true,
 				 false,
 				 false,
@@ -90,14 +91,36 @@ public class BoundItemProvider
 	}
 
 	/**
-	 * This returns Bound.gif.
+	 * This adds a property descriptor for the Upper Bound feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUpperBoundPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Interval_upperBound_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Interval_upperBound_feature", "_UI_Interval_type"),
+				 DataRepresentationPackage.Literals.INTERVAL__UPPER_BOUND,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns Interval.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Bound"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Interval"));
 	}
 
 	/**
@@ -108,8 +131,8 @@ public class BoundItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		Bound bound = (Bound)object;
-		return getString("_UI_Bound_type") + " " + bound.getInitialValue();
+		Interval interval = (Interval)object;
+		return getString("_UI_Interval_type") + " " + interval.getLowerBound();
 	}
 	
 
@@ -124,8 +147,9 @@ public class BoundItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Bound.class)) {
-			case DataRepresentationPackage.BOUND__INITIAL_VALUE:
+		switch (notification.getFeatureID(Interval.class)) {
+			case DataRepresentationPackage.INTERVAL__LOWER_BOUND:
+			case DataRepresentationPackage.INTERVAL__UPPER_BOUND:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -98,16 +98,16 @@ public class DataRepresentationAdapterFactory extends AdapterFactoryImpl {
 				return createDataRangeAdapter();
 			}
 			@Override
-			public Adapter caseBound(Bound object) {
-				return createBoundAdapter();
-			}
-			@Override
 			public Adapter caseDataConversion(DataConversion object) {
 				return createDataConversionAdapter();
 			}
 			@Override
 			public Adapter caseLinearDataConversion(LinearDataConversion object) {
 				return createLinearDataConversionAdapter();
+			}
+			@Override
+			public Adapter caseInterval(Interval object) {
+				return createIntervalAdapter();
 			}
 			@Override
 			public Adapter caseNamedElement(NamedElement object) {
@@ -232,20 +232,6 @@ public class DataRepresentationAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Bound <em>Bound</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.Bound
-	 * @generated
-	 */
-	public Adapter createBoundAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion <em>Data Conversion</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -270,6 +256,20 @@ public class DataRepresentationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLinearDataConversionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval <em>Interval</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.Interval
+	 * @generated
+	 */
+	public Adapter createIntervalAdapter() {
 		return null;
 	}
 

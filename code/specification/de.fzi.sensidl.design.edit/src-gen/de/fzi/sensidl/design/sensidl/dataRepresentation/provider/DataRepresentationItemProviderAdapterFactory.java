@@ -187,29 +187,6 @@ public class DataRepresentationItemProviderAdapterFactory extends DataRepresenta
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link de.fzi.sensidl.design.sensidl.dataRepresentation.Bound} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BoundItemProvider boundItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link de.fzi.sensidl.design.sensidl.dataRepresentation.Bound}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createBoundAdapter() {
-		if (boundItemProvider == null) {
-			boundItemProvider = new BoundItemProvider(this);
-		}
-
-		return boundItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -253,6 +230,29 @@ public class DataRepresentationItemProviderAdapterFactory extends DataRepresenta
 		}
 
 		return linearDataConversionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IntervalItemProvider intervalItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIntervalAdapter() {
+		if (intervalItemProvider == null) {
+			intervalItemProvider = new IntervalItemProvider(this);
+		}
+
+		return intervalItemProvider;
 	}
 
 	/**
@@ -359,9 +359,9 @@ public class DataRepresentationItemProviderAdapterFactory extends DataRepresenta
 		if (measurementDataItemProvider != null) measurementDataItemProvider.dispose();
 		if (nonMeasurementDataItemProvider != null) nonMeasurementDataItemProvider.dispose();
 		if (dataRangeItemProvider != null) dataRangeItemProvider.dispose();
-		if (boundItemProvider != null) boundItemProvider.dispose();
 		if (dataConversionItemProvider != null) dataConversionItemProvider.dispose();
 		if (linearDataConversionItemProvider != null) linearDataConversionItemProvider.dispose();
+		if (intervalItemProvider != null) intervalItemProvider.dispose();
 	}
 
 }

@@ -13,11 +13,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData#getAdjustments <em>Adjustments</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData#getUnit <em>Unit</em>}</li>
  * </ul>
+ * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getMeasurementData()
  * @model

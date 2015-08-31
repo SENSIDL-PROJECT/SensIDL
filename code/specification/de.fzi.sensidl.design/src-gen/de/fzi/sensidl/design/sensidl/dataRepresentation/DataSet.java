@@ -13,12 +13,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getSensorDataDescription <em>Sensor Data Description</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getSets <em>Sets</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getData <em>Data</em>}</li>
  * </ul>
+ * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getDataSet()
  * @model

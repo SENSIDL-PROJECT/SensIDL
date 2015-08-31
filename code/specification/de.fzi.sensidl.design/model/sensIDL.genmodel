@@ -81,18 +81,22 @@
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/DataAdjustment/measurementData"/>
       </genClasses>
       <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/DataRange">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/DataRange/lowerBound"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/DataRange/upperBound"/>
-      </genClasses>
-      <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/Bound">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/Bound/initialValue"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/DataRange/range"/>
       </genClasses>
       <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/DataConversion"/>
-      <genClasses ecoreClass="sensIDL.ecore#//DataRepresentation/DataAdaption">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/LinearDataConversion/offset"/>
+      <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/LinearDataConversion">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/LinearDataConversion/scalingFactor"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/LinearDataConversion/offset"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/LinearDataConversion/fromInterval"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/LinearDataConversion/toInterval"/>
       </genClasses>
-      <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/LinearDataConversion"/>
+      <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/Interval">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/Interval/lowerBound"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/Interval/upperBound"/>
+      </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="DataTransmission" basePackage="de.fzi.sensidl.design.sensidl"
         disposableProviderFactory="true" ecorePackage="sensIDL.ecore#//dataTransmission">

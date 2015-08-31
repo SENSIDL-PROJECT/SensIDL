@@ -527,22 +527,13 @@ public interface DataRepresentationPackage extends EPackage {
 	int DATA_RANGE__MEASUREMENT_DATA = DATA_ADJUSTMENT__MEASUREMENT_DATA;
 
 	/**
-	 * The feature id for the '<em><b>Lower Bound</b></em>' containment reference.
+	 * The feature id for the '<em><b>Range</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_RANGE__LOWER_BOUND = DATA_ADJUSTMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Upper Bound</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_RANGE__UPPER_BOUND = DATA_ADJUSTMENT_FEATURE_COUNT + 1;
+	int DATA_RANGE__RANGE = DATA_ADJUSTMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Data Range</em>' class.
@@ -551,7 +542,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_RANGE_FEATURE_COUNT = DATA_ADJUSTMENT_FEATURE_COUNT + 2;
+	int DATA_RANGE_FEATURE_COUNT = DATA_ADJUSTMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Data Range</em>' class.
@@ -563,43 +554,6 @@ public interface DataRepresentationPackage extends EPackage {
 	int DATA_RANGE_OPERATION_COUNT = DATA_ADJUSTMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.BoundImpl <em>Bound</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.BoundImpl
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getBound()
-	 * @generated
-	 */
-	int BOUND = 7;
-
-	/**
-	 * The feature id for the '<em><b>Initial Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOUND__INITIAL_VALUE = 0;
-
-	/**
-	 * The number of structural features of the '<em>Bound</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOUND_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Bound</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOUND_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataConversionImpl <em>Data Conversion</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -607,7 +561,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getDataConversion()
 	 * @generated
 	 */
-	int DATA_CONVERSION = 8;
+	int DATA_CONVERSION = 7;
 
 	/**
 	 * The feature id for the '<em><b>Measurement Data</b></em>' container reference.
@@ -644,7 +598,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getLinearDataConversion()
 	 * @generated
 	 */
-	int LINEAR_DATA_CONVERSION = 9;
+	int LINEAR_DATA_CONVERSION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Measurement Data</b></em>' container reference.
@@ -674,13 +628,31 @@ public interface DataRepresentationPackage extends EPackage {
 	int LINEAR_DATA_CONVERSION__OFFSET = DATA_CONVERSION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>From Interval</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_DATA_CONVERSION__FROM_INTERVAL = DATA_CONVERSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>To Interval</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_DATA_CONVERSION__TO_INTERVAL = DATA_CONVERSION_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Linear Data Conversion</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINEAR_DATA_CONVERSION_FEATURE_COUNT = DATA_CONVERSION_FEATURE_COUNT + 2;
+	int LINEAR_DATA_CONVERSION_FEATURE_COUNT = DATA_CONVERSION_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Linear Data Conversion</em>' class.
@@ -690,6 +662,52 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @ordered
 	 */
 	int LINEAR_DATA_CONVERSION_OPERATION_COUNT = DATA_CONVERSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.IntervalImpl <em>Interval</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.IntervalImpl
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getInterval()
+	 * @generated
+	 */
+	int INTERVAL = 9;
+
+	/**
+	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERVAL__LOWER_BOUND = 0;
+
+	/**
+	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERVAL__UPPER_BOUND = 1;
+
+	/**
+	 * The number of structural features of the '<em>Interval</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERVAL_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Interval</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERVAL_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataType <em>Data Type</em>}' enum.
@@ -915,47 +933,15 @@ public interface DataRepresentationPackage extends EPackage {
 	EClass getDataRange();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange#getLowerBound <em>Lower Bound</em>}'.
+	 * Returns the meta object for the reference '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange#getRange <em>Range</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Lower Bound</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange#getLowerBound()
+	 * @return the meta object for the reference '<em>Range</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange#getRange()
 	 * @see #getDataRange()
 	 * @generated
 	 */
-	EReference getDataRange_LowerBound();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange#getUpperBound <em>Upper Bound</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Upper Bound</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange#getUpperBound()
-	 * @see #getDataRange()
-	 * @generated
-	 */
-	EReference getDataRange_UpperBound();
-
-	/**
-	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Bound <em>Bound</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Bound</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.Bound
-	 * @generated
-	 */
-	EClass getBound();
-
-	/**
-	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Bound#getInitialValue <em>Initial Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Initial Value</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.Bound#getInitialValue()
-	 * @see #getBound()
-	 * @generated
-	 */
-	EAttribute getBound_InitialValue();
+	EReference getDataRange_Range();
 
 	/**
 	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion <em>Data Conversion</em>}'.
@@ -998,6 +984,60 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLinearDataConversion_Offset();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getFromInterval <em>From Interval</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>From Interval</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getFromInterval()
+	 * @see #getLinearDataConversion()
+	 * @generated
+	 */
+	EReference getLinearDataConversion_FromInterval();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getToInterval <em>To Interval</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>To Interval</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getToInterval()
+	 * @see #getLinearDataConversion()
+	 * @generated
+	 */
+	EReference getLinearDataConversion_ToInterval();
+
+	/**
+	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval <em>Interval</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Interval</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.Interval
+	 * @generated
+	 */
+	EClass getInterval();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getLowerBound <em>Lower Bound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Lower Bound</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getLowerBound()
+	 * @see #getInterval()
+	 * @generated
+	 */
+	EAttribute getInterval_LowerBound();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getUpperBound <em>Upper Bound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Upper Bound</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getUpperBound()
+	 * @see #getInterval()
+	 * @generated
+	 */
+	EAttribute getInterval_UpperBound();
 
 	/**
 	 * Returns the meta object for enum '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataType <em>Data Type</em>}'.
@@ -1210,38 +1250,12 @@ public interface DataRepresentationPackage extends EPackage {
 		EClass DATA_RANGE = eINSTANCE.getDataRange();
 
 		/**
-		 * The meta object literal for the '<em><b>Lower Bound</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Range</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DATA_RANGE__LOWER_BOUND = eINSTANCE.getDataRange_LowerBound();
-
-		/**
-		 * The meta object literal for the '<em><b>Upper Bound</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATA_RANGE__UPPER_BOUND = eINSTANCE.getDataRange_UpperBound();
-
-		/**
-		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.BoundImpl <em>Bound</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.BoundImpl
-		 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getBound()
-		 * @generated
-		 */
-		EClass BOUND = eINSTANCE.getBound();
-
-		/**
-		 * The meta object literal for the '<em><b>Initial Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BOUND__INITIAL_VALUE = eINSTANCE.getBound_InitialValue();
+		EReference DATA_RANGE__RANGE = eINSTANCE.getDataRange_Range();
 
 		/**
 		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataConversionImpl <em>Data Conversion</em>}' class.
@@ -1278,6 +1292,48 @@ public interface DataRepresentationPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LINEAR_DATA_CONVERSION__OFFSET = eINSTANCE.getLinearDataConversion_Offset();
+
+		/**
+		 * The meta object literal for the '<em><b>From Interval</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LINEAR_DATA_CONVERSION__FROM_INTERVAL = eINSTANCE.getLinearDataConversion_FromInterval();
+
+		/**
+		 * The meta object literal for the '<em><b>To Interval</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LINEAR_DATA_CONVERSION__TO_INTERVAL = eINSTANCE.getLinearDataConversion_ToInterval();
+
+		/**
+		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.IntervalImpl <em>Interval</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.IntervalImpl
+		 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getInterval()
+		 * @generated
+		 */
+		EClass INTERVAL = eINSTANCE.getInterval();
+
+		/**
+		 * The meta object literal for the '<em><b>Lower Bound</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTERVAL__LOWER_BOUND = eINSTANCE.getInterval_LowerBound();
+
+		/**
+		 * The meta object literal for the '<em><b>Upper Bound</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTERVAL__UPPER_BOUND = eINSTANCE.getInterval_UpperBound();
 
 		/**
 		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataType <em>Data Type</em>}' enum.

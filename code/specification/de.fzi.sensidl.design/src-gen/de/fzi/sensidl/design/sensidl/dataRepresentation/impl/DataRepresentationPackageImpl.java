@@ -2,7 +2,6 @@
  */
 package de.fzi.sensidl.design.sensidl.dataRepresentation.impl;
 
-import de.fzi.sensidl.design.sensidl.dataRepresentation.Bound;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataAdjustment;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion;
@@ -11,21 +10,16 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationFactor
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.Interval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
-
 import de.fzi.sensidl.design.sensidl.dataTransmission.DataTransmissionPackage;
-
 import de.fzi.sensidl.design.sensidl.dataTransmission.impl.DataTransmissionPackageImpl;
-
 import de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl;
-
 import de.fzi.sensidl.design.sensidl.sensidlPackage;
-
 import javax.measure.unit.Unit;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -33,7 +27,6 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -97,13 +90,6 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass boundEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass dataConversionEClass = null;
 
 	/**
@@ -112,6 +98,13 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * @generated
 	 */
 	private EClass linearDataConversionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass intervalEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -372,35 +365,8 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDataRange_LowerBound() {
+	public EReference getDataRange_Range() {
 		return (EReference)dataRangeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDataRange_UpperBound() {
-		return (EReference)dataRangeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getBound() {
-		return boundEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getBound_InitialValue() {
-		return (EAttribute)boundEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -437,6 +403,51 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 */
 	public EAttribute getLinearDataConversion_Offset() {
 		return (EAttribute)linearDataConversionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLinearDataConversion_FromInterval() {
+		return (EReference)linearDataConversionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLinearDataConversion_ToInterval() {
+		return (EReference)linearDataConversionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getInterval() {
+		return intervalEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getInterval_LowerBound() {
+		return (EAttribute)intervalEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getInterval_UpperBound() {
+		return (EAttribute)intervalEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -510,17 +521,19 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 		createEReference(dataAdjustmentEClass, DATA_ADJUSTMENT__MEASUREMENT_DATA);
 
 		dataRangeEClass = createEClass(DATA_RANGE);
-		createEReference(dataRangeEClass, DATA_RANGE__LOWER_BOUND);
-		createEReference(dataRangeEClass, DATA_RANGE__UPPER_BOUND);
-
-		boundEClass = createEClass(BOUND);
-		createEAttribute(boundEClass, BOUND__INITIAL_VALUE);
+		createEReference(dataRangeEClass, DATA_RANGE__RANGE);
 
 		dataConversionEClass = createEClass(DATA_CONVERSION);
 
 		linearDataConversionEClass = createEClass(LINEAR_DATA_CONVERSION);
 		createEAttribute(linearDataConversionEClass, LINEAR_DATA_CONVERSION__SCALING_FACTOR);
 		createEAttribute(linearDataConversionEClass, LINEAR_DATA_CONVERSION__OFFSET);
+		createEReference(linearDataConversionEClass, LINEAR_DATA_CONVERSION__FROM_INTERVAL);
+		createEReference(linearDataConversionEClass, LINEAR_DATA_CONVERSION__TO_INTERVAL);
+
+		intervalEClass = createEClass(INTERVAL);
+		createEAttribute(intervalEClass, INTERVAL__LOWER_BOUND);
+		createEAttribute(intervalEClass, INTERVAL__UPPER_BOUND);
 
 		// Create enums
 		dataTypeEEnum = createEEnum(DATA_TYPE);
@@ -599,17 +612,19 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 		initEReference(getDataAdjustment_MeasurementData(), this.getMeasurementData(), this.getMeasurementData_Adjustments(), "measurementData", null, 0, 1, DataAdjustment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataRangeEClass, DataRange.class, "DataRange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDataRange_LowerBound(), this.getBound(), null, "lowerBound", null, 1, 1, DataRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDataRange_UpperBound(), this.getBound(), null, "upperBound", null, 1, 1, DataRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(boundEClass, Bound.class, "Bound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBound_InitialValue(), ecorePackage.getEDouble(), "initialValue", null, 1, 1, Bound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDataRange_Range(), this.getInterval(), null, "range", null, 1, 1, DataRange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataConversionEClass, DataConversion.class, "DataConversion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(linearDataConversionEClass, LinearDataConversion.class, "LinearDataConversion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLinearDataConversion_ScalingFactor(), ecorePackage.getEDouble(), "scalingFactor", null, 1, 1, LinearDataConversion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLinearDataConversion_Offset(), ecorePackage.getEDouble(), "offset", null, 0, 1, LinearDataConversion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLinearDataConversion_Offset(), ecorePackage.getEDouble(), "offset", null, 1, 1, LinearDataConversion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLinearDataConversion_FromInterval(), this.getInterval(), null, "fromInterval", null, 0, 1, LinearDataConversion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLinearDataConversion_ToInterval(), this.getInterval(), null, "toInterval", null, 0, 1, LinearDataConversion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(intervalEClass, Interval.class, "Interval", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getInterval_LowerBound(), ecorePackage.getEDouble(), "lowerBound", null, 1, 1, Interval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getInterval_UpperBound(), ecorePackage.getEDouble(), "upperBound", null, 1, 1, Interval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(dataTypeEEnum, DataType.class, "DataType");

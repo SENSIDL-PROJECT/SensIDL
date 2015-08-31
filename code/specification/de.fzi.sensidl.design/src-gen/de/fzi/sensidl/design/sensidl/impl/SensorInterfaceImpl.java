@@ -27,12 +27,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.impl.SensorInterfaceImpl#getMetaInformation <em>Meta Information</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.impl.SensorInterfaceImpl#getDataDescription <em>Data Description</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.impl.SensorInterfaceImpl#getDataTransmission <em>Data Transmission</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
