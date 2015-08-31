@@ -81,7 +81,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataRange" eSuperTypes="#//dataRepresentation/DataAdjustment">
       <eStructuralFeatures xsi:type="ecore:EReference" name="range" lowerBound="1"
-          eType="#//dataRepresentation/Interval"/>
+          eType="#//dataRepresentation/Interval" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataConversion" eSuperTypes="#//dataRepresentation/DataAdjustment"/>
     <eClassifiers xsi:type="ecore:EClass" name="LinearDataConversion" eSuperTypes="#//dataRepresentation/DataConversion">
@@ -89,8 +89,10 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="fromInterval" eType="#//dataRepresentation/Interval"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="toInterval" eType="#//dataRepresentation/Interval"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="fromInterval" eType="#//dataRepresentation/Interval"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="toInterval" eType="#//dataRepresentation/Interval"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="DataType">
       <eLiterals name="SIGNED_CHAR"/>

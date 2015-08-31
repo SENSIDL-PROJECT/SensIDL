@@ -6,191 +6,116 @@
  * @author Max Scheerer
  */
 
-grammar de.fzi.sensidl.language.Sensidl with org.eclipse.xtext.common.Terminals
+grammar de.fzi.sensidl.language.Sensidl with org.eclipse.xtext.common.Terminals 
 
 // use a manually specified metamodel instead of generating one from the Xtext grammar
-import "platform:/resource/de.fzi.sensidl.design/models/sensIDL.ecore"
-import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+//import "platform:/resource/de.fzi.sensidl.design/model/sensIDL.ecore"
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore 
+import "http://fzi.de/sensidl/design/1.0" as sensidl
+import "http://fzi.de/sensidl/design/representation/1.0" as dataRepresentation
+import "http://fzi.de/sensidl/design/transmission/1.0" as dataTransmission
 
-DataModel:
-	"datamodel" "{"
-		"options" "{"
-			options=Options
-		"}"
-		
-		(
-			(representations += Representation) |
-		 	(datafields += Datafield)
-		)*
-		
-		"transmit" transmit+=[Datafield]
-			("," transmit+=[Datafield])*
-	"}"
+NamedElement returns sensidl::NamedElement:
+	SensorInterface | 
+	SensorDataDescription |
+	DataSet |
+	Data |
+	SensorDataTransmission	 
 ;
 
-Options:
-	{Options}
-	(
-		("endianess" ":" endianess=Endianess";")
-		("sensor" "options" ":")
-		("sensor" "language" ":" sensorLanguage=GenerationLanguage";")
-		("sensor" "alignment" ":" sensorAlignment=Alignment";") 
-		("receiver" "options" ":")
-		("receiver" "language" ":" receiverLanguage=GenerationLanguage";")
-		("receiver" "alignment" ":" receiverAlignment=Alignment";")
-	)
-;
-
-enum Alignment:
-	_8BIT | _16BIT | _32BIT | _64BIT
-;
-
-enum Endianess:
-	BIG_ENDIAN | LITTLE_ENDIAN
-;
-
-enum GenerationLanguage:
-	JAVA | CPP | C | CSHARP
-;
-
-NamedElement: 
-	Representation |
-	Datafield |
-	Constraint 
-;
-
-
-Representation:
-	("repr" | "representation") name=ID
-	"is" byteCount=INT ("bytes" | "byte")
-	"in" type=Type
-	("description" ":" description=STRING)?
-	("id" ":" ID=STRING)?
-	";"
-;
-
-Datafield:
-	VariableData |
-	ConstantData |
-	Datastructure |
-	Declaration |
-	Calculated 
-;
-
-VariableData:
-	 MeasuredData |
-	 NonMeasuredData
-;
-
-MeasuredData: 
-	"data" "of"
-	name=ID
-	("in" (scale=DOUBLE)? unit=STRING)?
-	"as" representation=[Representation]
-	("description" ":" description=STRING)?
-	("id" ":" ID=STRING)? 
-	(constraints+=DataConstraint)*
-	";"
-;
-
-NonMeasuredData: 
-	"basicdata" type=Type name=ID
-	"as" representation=[Representation]
-	("description" ":" description=STRING)? 
-	("id" ":" ID=STRING)?
-	";"
-;
-
-
-ConstantData: 
-	"const" name=ID
-	"as" representation=[Representation]
-	("is" constValue=STRING)?
-	("description" ":" description=STRING)?
-	("id" ":" ID=STRING)?
-	";"
-;
-
-Calculated:
-	("calculate" | "calculated")
-	name=ID
-	"as" representation=[Representation]
-	"by" methodName=ID ("," methodNameOut=ID)?
-	"with" parameter+=Parameter ("," parameter+=Parameter)*
-	("description" ":" description=STRING)?
-	("id" ":" ID=STRING)?
-	";"
-;
-
-Parameter:
-	"("
-		datafield=[Datafield]
-		("as" argumentType=ArgumentType)?
-	")"
-;
-
-Datastructure:
-	"set" name=ID "{"
-		(datafields+=Datafield)*
-		("description" ":" description=STRING)?
-		("id" ":" ID=STRING)?
+SensorInterface returns sensidl::SensorInterface: 
+	"Sensor" name=ID (description=STRING)? ("with" "identifier" ID=STRING)? "{"
+		metaInformation=SensorMetaInformation
+		dataDescription=SensorDataDescription
+		dataTransmission=SensorDataTransmission
 	"}"";"
 ;
 
-Declaration: 
-	("declaration"|"decl") declarations+=DatastructureDeclaration ("," declarations+=DatastructureDeclaration)*";"
+SensorMetaInformation returns sensidl::SensorMetaInformation: 
+	"encoding" coding=Coding "with" endianness=Endianness "alignment" alignment=Alignment
 ;
 
-
-DatastructureDeclaration: 
-	reusedDatastructure=[Datastructure] name=ID
+enum Alignment returns sensidl::Alignment: 
+	_8BIT | _16BIT | _32BIT | _64BIT
 ;
 
-Constraint: 
-	DataConstraint
+enum Coding returns sensidl::Coding:
+	SENSIDL_BINARY | SENSIDL_JSON
 ;
 
+enum Endianness returns sensidl::Endianness:
+	BIG_ENDIAN | LITTLE_ENDIAN
+;
 
-DataConstraint: 
+SensorDataDescription returns dataRepresentation::SensorDataDescription:
+	"SensorData" name=ID (description=STRING)? ("with" "identifier" ID=STRING)? "{"
+		sets+=DataSet
+	"}"";"
+;
+
+DataSet returns dataRepresentation::DataSet:
+	"MeasuredData" name=ID (description=STRING)? ("with" "identifier" ID=STRING)? "{"		
+		sets+=DataSet
+		data+=Data 
+	"}"";"
+;
+
+Data  returns dataRepresentation::Data:
+	MeasurementData |
+	NonMeasurementData
+;
+
+MeasurementData  returns dataRepresentation::MeasurementData:
+	name=ID "as" dataType=DataType "in" unit=UNIT (description=STRING)? ("with" "identifier" ID=STRING)?";"
+	("Adjusted" "by" ":" adjustments+=DataAdjustement ("," adjustments+=DataAdjustement)*)?
+;
+
+NonMeasurementData  returns dataRepresentation::NonMeasurementData:
+	name=ID "as" dataType=DataType "constant""=" constant=BOOLEAN "value" value=STRING (description=STRING)? ("with" "identifier" ID=STRING)?";"
+;
+
+enum DataType   returns dataRepresentation::DataType:
+	SIGNED_CHAR |
+	UNSIGNED_CHAR |
+	SIGNED_SHORT |
+	UNSIGNED_SHORT |
+	SIGNED_LONG |
+	UNSIGNED_LONG |
+	SIGNED_LONG_LONG |
+	UNSIGNED_LONG_LONG |
+	FLOAT |
+	DOUBLE |
+	LONG_DOUBLE
+;
+
+DataAdjustement  returns dataRepresentation::DataAdjustment:
 	DataRange |
-	DataAdaption
+	DataConversion
 ;
 
-DataRange: 
-	"from" lowerBound=Bound
-	"to" upperBound=Bound
-	("description" ":" description=STRING)?
-	("id" ":" ID=STRING)?
+DataRange  returns dataRepresentation::DataRange:
+	"with" "range" range=Interval";"
 ;
 
-/**
- * Konkrete Fall eines MeasurementConstraints.
- * Wertadaption durch Skalierungsfaktor "scalingFactor" und dem Offset "offset".
- */
-DataAdaption: 
-	"with" "scaling factor" ":" scalingFactor=DOUBLE
-	"and" "offset" ":" offset=DOUBLE
-	("description" ":" description=STRING)?
-	("id" ":" ID=STRING)? 
+Interval  returns dataRepresentation::Interval:
+	lowerBound=DOUBLE"..."upperBound=DOUBLE
 ;
 
+DataConversion  returns dataRepresentation::DataConversion:
+	LinearDataConversion
+;
 
-/*
- * Einheiten noch als String
- */
-Bound: 
-	value=DOUBLE (unit=STRING)?
+LinearDataConversion  returns dataRepresentation::LinearDataConversion:	
+	(
+		"with" "scaling factor"":" scalingFactor=DOUBLE "and" "offset"":"offset=DOUBLE |
+		"map linear" "[" fromInterval=Interval"]" "=>" "["toInterval=Interval"]" 
+	)";"
+;
+
+SensorDataTransmission  returns dataTransmission::SensorDataTransmission:
+	"DataTransmission" name=ID (description=STRING)? ("with" "identifier" ID=STRING)?
 ;
 
 DOUBLE returns ecore::EDouble: INT ('.' INT)?;
-
-/*
- * Die EEnums und EEnumLiterals können direkt so ausgedrückt werden.
- */
-enum ArgumentType:
-	BYTE_ARRAY 
-;
-
-enum Type:
-	BOOL | CHAR | SHORT | INT | LONG | LONGLONG | FLOAT | DOUBLE | LONGDOUBLE
-;
+BOOLEAN returns ecore::EBoolean: 'true' | 'false';
+UNIT returns dataRepresentation::Unit : STRING;
