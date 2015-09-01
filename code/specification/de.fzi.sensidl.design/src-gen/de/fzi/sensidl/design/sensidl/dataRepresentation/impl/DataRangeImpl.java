@@ -6,6 +6,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Interval;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -16,16 +17,16 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRangeImpl#getRange <em>Range</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class DataRangeImpl extends DataAdjustmentImpl implements DataRange {
 	/**
-	 * The cached value of the '{@link #getRange() <em>Range</em>}' reference.
+	 * The cached value of the '{@link #getRange() <em>Range</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getRange()
@@ -59,14 +60,6 @@ public class DataRangeImpl extends DataAdjustmentImpl implements DataRange {
 	 * @generated
 	 */
 	public Interval getRange() {
-		if (range != null && range.eIsProxy()) {
-			InternalEObject oldRange = (InternalEObject)range;
-			range = (Interval)eResolveProxy(oldRange);
-			if (range != oldRange) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DataRepresentationPackage.DATA_RANGE__RANGE, oldRange, range));
-			}
-		}
 		return range;
 	}
 
@@ -75,8 +68,14 @@ public class DataRangeImpl extends DataAdjustmentImpl implements DataRange {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Interval basicGetRange() {
-		return range;
+	public NotificationChain basicSetRange(Interval newRange, NotificationChain msgs) {
+		Interval oldRange = range;
+		range = newRange;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DataRepresentationPackage.DATA_RANGE__RANGE, oldRange, newRange);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -85,10 +84,47 @@ public class DataRangeImpl extends DataAdjustmentImpl implements DataRange {
 	 * @generated
 	 */
 	public void setRange(Interval newRange) {
-		Interval oldRange = range;
-		range = newRange;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataRepresentationPackage.DATA_RANGE__RANGE, oldRange, range));
+		if (newRange != range) {
+			NotificationChain msgs = null;
+			if (range != null)
+				msgs = ((InternalEObject)range).eInverseRemove(this, DataRepresentationPackage.INTERVAL__DATA_RANGE, Interval.class, msgs);
+			if (newRange != null)
+				msgs = ((InternalEObject)newRange).eInverseAdd(this, DataRepresentationPackage.INTERVAL__DATA_RANGE, Interval.class, msgs);
+			msgs = basicSetRange(newRange, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataRepresentationPackage.DATA_RANGE__RANGE, newRange, newRange));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DataRepresentationPackage.DATA_RANGE__RANGE:
+				if (range != null)
+					msgs = ((InternalEObject)range).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DataRepresentationPackage.DATA_RANGE__RANGE, null, msgs);
+				return basicSetRange((Interval)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DataRepresentationPackage.DATA_RANGE__RANGE:
+				return basicSetRange(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -100,8 +136,7 @@ public class DataRangeImpl extends DataAdjustmentImpl implements DataRange {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DataRepresentationPackage.DATA_RANGE__RANGE:
-				if (resolve) return getRange();
-				return basicGetRange();
+				return getRange();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

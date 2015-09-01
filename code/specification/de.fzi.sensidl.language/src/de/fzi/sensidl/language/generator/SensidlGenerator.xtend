@@ -7,9 +7,9 @@ import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
-import sensidl.DataModel
 import com.google.inject.Inject
 import de.fzi.sensidl.language.SensidlRuntimeModule
+import de.fzi.sensidl.design.sensidl.SensorInterface
 
 /**
  * Der Generator für SensIDL.
@@ -44,7 +44,7 @@ class SensidlGenerator implements IGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		val dataModel = resource
 			.contents
-			.filter(DataModel)
+			.filter(SensorInterface)
 			.head
 			
 		if (dataModel == null)

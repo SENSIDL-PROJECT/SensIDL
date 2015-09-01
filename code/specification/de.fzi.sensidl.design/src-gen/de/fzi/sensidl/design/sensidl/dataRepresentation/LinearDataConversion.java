@@ -10,13 +10,13 @@ package de.fzi.sensidl.design.sensidl.dataRepresentation;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getScalingFactor <em>Scaling Factor</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getOffset <em>Offset</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getFromInterval <em>From Interval</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getToInterval <em>To Interval</em>}</li>
  * </ul>
- * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getLinearDataConversion()
  * @model
@@ -76,52 +76,56 @@ public interface LinearDataConversion extends DataConversion {
 	void setOffset(double value);
 
 	/**
-	 * Returns the value of the '<em><b>From Interval</b></em>' reference.
+	 * Returns the value of the '<em><b>From Interval</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getLinearDataConversionFrom <em>Linear Data Conversion From</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>From Interval</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>From Interval</em>' reference.
+	 * @return the value of the '<em>From Interval</em>' containment reference.
 	 * @see #setFromInterval(Interval)
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getLinearDataConversion_FromInterval()
-	 * @model
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getLinearDataConversionFrom
+	 * @model opposite="linearDataConversionFrom" containment="true"
 	 * @generated
 	 */
 	Interval getFromInterval();
 
 	/**
-	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getFromInterval <em>From Interval</em>}' reference.
+	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getFromInterval <em>From Interval</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>From Interval</em>' reference.
+	 * @param value the new value of the '<em>From Interval</em>' containment reference.
 	 * @see #getFromInterval()
 	 * @generated
 	 */
 	void setFromInterval(Interval value);
 
 	/**
-	 * Returns the value of the '<em><b>To Interval</b></em>' reference.
+	 * Returns the value of the '<em><b>To Interval</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getLinearDataConversionTo <em>Linear Data Conversion To</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>To Interval</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>To Interval</em>' reference.
+	 * @return the value of the '<em>To Interval</em>' containment reference.
 	 * @see #setToInterval(Interval)
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getLinearDataConversion_ToInterval()
-	 * @model
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getLinearDataConversionTo
+	 * @model opposite="linearDataConversionTo" containment="true"
 	 * @generated
 	 */
 	Interval getToInterval();
 
 	/**
-	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getToInterval <em>To Interval</em>}' reference.
+	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getToInterval <em>To Interval</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>To Interval</em>' reference.
+	 * @param value the new value of the '<em>To Interval</em>' containment reference.
 	 * @see #getToInterval()
 	 * @generated
 	 */

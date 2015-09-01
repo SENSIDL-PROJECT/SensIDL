@@ -168,22 +168,13 @@ public interface sensidlPackage extends EPackage {
 	int SENSOR_INTERFACE__DATA_DESCRIPTION = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Data Transmission</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SENSOR_INTERFACE__DATA_TRANSMISSION = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Sensor Interface</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_INTERFACE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int SENSOR_INTERFACE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Sensor Interface</em>' class.
@@ -365,17 +356,6 @@ public interface sensidlPackage extends EPackage {
 	EReference getSensorInterface_DataDescription();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link de.fzi.sensidl.design.sensidl.SensorInterface#getDataTransmission <em>Data Transmission</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Data Transmission</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.SensorInterface#getDataTransmission()
-	 * @see #getSensorInterface()
-	 * @generated
-	 */
-	EReference getSensorInterface_DataTransmission();
-
-	/**
 	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation <em>Sensor Meta Information</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -541,14 +521,6 @@ public interface sensidlPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SENSOR_INTERFACE__DATA_DESCRIPTION = eINSTANCE.getSensorInterface_DataDescription();
-
-		/**
-		 * The meta object literal for the '<em><b>Data Transmission</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SENSOR_INTERFACE__DATA_TRANSMISSION = eINSTANCE.getSensorInterface_DataTransmission();
 
 		/**
 		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.impl.SensorMetaInformationImpl <em>Sensor Meta Information</em>}' class.

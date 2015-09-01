@@ -2,15 +2,20 @@
  */
 package de.fzi.sensidl.design.sensidl.dataRepresentation.impl;
 
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Interval;
 
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,11 +23,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.IntervalImpl#getLowerBound <em>Lower Bound</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.IntervalImpl#getUpperBound <em>Upper Bound</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.IntervalImpl#getLinearDataConversionFrom <em>Linear Data Conversion From</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.IntervalImpl#getLinearDataConversionTo <em>Linear Data Conversion To</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.IntervalImpl#getDataRange <em>Data Range</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -133,6 +141,189 @@ public class IntervalImpl extends MinimalEObjectImpl.Container implements Interv
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public LinearDataConversion getLinearDataConversionFrom() {
+		if (eContainerFeatureID() != DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM) return null;
+		return (LinearDataConversion)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLinearDataConversionFrom(LinearDataConversion newLinearDataConversionFrom, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newLinearDataConversionFrom, DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLinearDataConversionFrom(LinearDataConversion newLinearDataConversionFrom) {
+		if (newLinearDataConversionFrom != eInternalContainer() || (eContainerFeatureID() != DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM && newLinearDataConversionFrom != null)) {
+			if (EcoreUtil.isAncestor(this, newLinearDataConversionFrom))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newLinearDataConversionFrom != null)
+				msgs = ((InternalEObject)newLinearDataConversionFrom).eInverseAdd(this, DataRepresentationPackage.LINEAR_DATA_CONVERSION__FROM_INTERVAL, LinearDataConversion.class, msgs);
+			msgs = basicSetLinearDataConversionFrom(newLinearDataConversionFrom, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM, newLinearDataConversionFrom, newLinearDataConversionFrom));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LinearDataConversion getLinearDataConversionTo() {
+		if (eContainerFeatureID() != DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO) return null;
+		return (LinearDataConversion)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLinearDataConversionTo(LinearDataConversion newLinearDataConversionTo, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newLinearDataConversionTo, DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLinearDataConversionTo(LinearDataConversion newLinearDataConversionTo) {
+		if (newLinearDataConversionTo != eInternalContainer() || (eContainerFeatureID() != DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO && newLinearDataConversionTo != null)) {
+			if (EcoreUtil.isAncestor(this, newLinearDataConversionTo))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newLinearDataConversionTo != null)
+				msgs = ((InternalEObject)newLinearDataConversionTo).eInverseAdd(this, DataRepresentationPackage.LINEAR_DATA_CONVERSION__TO_INTERVAL, LinearDataConversion.class, msgs);
+			msgs = basicSetLinearDataConversionTo(newLinearDataConversionTo, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO, newLinearDataConversionTo, newLinearDataConversionTo));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DataRange getDataRange() {
+		if (eContainerFeatureID() != DataRepresentationPackage.INTERVAL__DATA_RANGE) return null;
+		return (DataRange)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDataRange(DataRange newDataRange, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newDataRange, DataRepresentationPackage.INTERVAL__DATA_RANGE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDataRange(DataRange newDataRange) {
+		if (newDataRange != eInternalContainer() || (eContainerFeatureID() != DataRepresentationPackage.INTERVAL__DATA_RANGE && newDataRange != null)) {
+			if (EcoreUtil.isAncestor(this, newDataRange))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newDataRange != null)
+				msgs = ((InternalEObject)newDataRange).eInverseAdd(this, DataRepresentationPackage.DATA_RANGE__RANGE, DataRange.class, msgs);
+			msgs = basicSetDataRange(newDataRange, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataRepresentationPackage.INTERVAL__DATA_RANGE, newDataRange, newDataRange));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetLinearDataConversionFrom((LinearDataConversion)otherEnd, msgs);
+			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetLinearDataConversionTo((LinearDataConversion)otherEnd, msgs);
+			case DataRepresentationPackage.INTERVAL__DATA_RANGE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetDataRange((DataRange)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM:
+				return basicSetLinearDataConversionFrom(null, msgs);
+			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO:
+				return basicSetLinearDataConversionTo(null, msgs);
+			case DataRepresentationPackage.INTERVAL__DATA_RANGE:
+				return basicSetDataRange(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM:
+				return eInternalContainer().eInverseRemove(this, DataRepresentationPackage.LINEAR_DATA_CONVERSION__FROM_INTERVAL, LinearDataConversion.class, msgs);
+			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO:
+				return eInternalContainer().eInverseRemove(this, DataRepresentationPackage.LINEAR_DATA_CONVERSION__TO_INTERVAL, LinearDataConversion.class, msgs);
+			case DataRepresentationPackage.INTERVAL__DATA_RANGE:
+				return eInternalContainer().eInverseRemove(this, DataRepresentationPackage.DATA_RANGE__RANGE, DataRange.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -140,6 +331,12 @@ public class IntervalImpl extends MinimalEObjectImpl.Container implements Interv
 				return getLowerBound();
 			case DataRepresentationPackage.INTERVAL__UPPER_BOUND:
 				return getUpperBound();
+			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM:
+				return getLinearDataConversionFrom();
+			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO:
+				return getLinearDataConversionTo();
+			case DataRepresentationPackage.INTERVAL__DATA_RANGE:
+				return getDataRange();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -157,6 +354,15 @@ public class IntervalImpl extends MinimalEObjectImpl.Container implements Interv
 				return;
 			case DataRepresentationPackage.INTERVAL__UPPER_BOUND:
 				setUpperBound((Double)newValue);
+				return;
+			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM:
+				setLinearDataConversionFrom((LinearDataConversion)newValue);
+				return;
+			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO:
+				setLinearDataConversionTo((LinearDataConversion)newValue);
+				return;
+			case DataRepresentationPackage.INTERVAL__DATA_RANGE:
+				setDataRange((DataRange)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -176,6 +382,15 @@ public class IntervalImpl extends MinimalEObjectImpl.Container implements Interv
 			case DataRepresentationPackage.INTERVAL__UPPER_BOUND:
 				setUpperBound(UPPER_BOUND_EDEFAULT);
 				return;
+			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM:
+				setLinearDataConversionFrom((LinearDataConversion)null);
+				return;
+			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO:
+				setLinearDataConversionTo((LinearDataConversion)null);
+				return;
+			case DataRepresentationPackage.INTERVAL__DATA_RANGE:
+				setDataRange((DataRange)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -192,6 +407,12 @@ public class IntervalImpl extends MinimalEObjectImpl.Container implements Interv
 				return lowerBound != LOWER_BOUND_EDEFAULT;
 			case DataRepresentationPackage.INTERVAL__UPPER_BOUND:
 				return upperBound != UPPER_BOUND_EDEFAULT;
+			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM:
+				return getLinearDataConversionFrom() != null;
+			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO:
+				return getLinearDataConversionTo() != null;
+			case DataRepresentationPackage.INTERVAL__DATA_RANGE:
+				return getDataRange() != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -8,7 +8,6 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.fzi.sensidl.design.sensidl.dataRepresentation.tests,
- de.fzi.sensidl.design.sensidl.dataTransmission.tests,
  de.fzi.sensidl.design.sensidl.tests
 Require-Bundle: org.eclipse.core.runtime,
  de.fzi.sensidl.design;visibility:=reexport,

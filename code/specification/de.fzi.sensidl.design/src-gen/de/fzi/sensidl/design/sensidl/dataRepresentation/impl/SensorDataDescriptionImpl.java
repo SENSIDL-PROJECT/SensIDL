@@ -34,25 +34,24 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
- *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.SensorDataDescriptionImpl#getSets <em>Sets</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.SensorDataDescriptionImpl#getDataSets <em>Data Sets</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.SensorDataDescriptionImpl#getSensorInterface <em>Sensor Interface</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class SensorDataDescriptionImpl extends NamedElementImpl implements SensorDataDescription {
 	/**
-	 * The cached value of the '{@link #getSets() <em>Sets</em>}' containment reference list.
+	 * The cached value of the '{@link #getDataSets() <em>Data Sets</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSets()
+	 * @see #getDataSets()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DataSet> sets;
-
+	protected EList<DataSet> dataSets;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,11 +76,11 @@ public class SensorDataDescriptionImpl extends NamedElementImpl implements Senso
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DataSet> getSets() {
-		if (sets == null) {
-			sets = new EObjectContainmentWithInverseEList<DataSet>(DataSet.class, this, DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SETS, DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION);
+	public EList<DataSet> getDataSets() {
+		if (dataSets == null) {
+			dataSets = new EObjectContainmentWithInverseEList<DataSet>(DataSet.class, this, DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__DATA_SETS, DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION);
 		}
-		return sets;
+		return dataSets;
 	}
 
 	/**
@@ -134,8 +133,8 @@ public class SensorDataDescriptionImpl extends NamedElementImpl implements Senso
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SETS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSets()).basicAdd(otherEnd, msgs);
+			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__DATA_SETS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDataSets()).basicAdd(otherEnd, msgs);
 			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -152,8 +151,8 @@ public class SensorDataDescriptionImpl extends NamedElementImpl implements Senso
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SETS:
-				return ((InternalEList<?>)getSets()).basicRemove(otherEnd, msgs);
+			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__DATA_SETS:
+				return ((InternalEList<?>)getDataSets()).basicRemove(otherEnd, msgs);
 			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE:
 				return basicSetSensorInterface(null, msgs);
 		}
@@ -182,8 +181,8 @@ public class SensorDataDescriptionImpl extends NamedElementImpl implements Senso
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SETS:
-				return getSets();
+			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__DATA_SETS:
+				return getDataSets();
 			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE:
 				return getSensorInterface();
 		}
@@ -199,9 +198,9 @@ public class SensorDataDescriptionImpl extends NamedElementImpl implements Senso
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SETS:
-				getSets().clear();
-				getSets().addAll((Collection<? extends DataSet>)newValue);
+			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__DATA_SETS:
+				getDataSets().clear();
+				getDataSets().addAll((Collection<? extends DataSet>)newValue);
 				return;
 			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE:
 				setSensorInterface((SensorInterface)newValue);
@@ -218,8 +217,8 @@ public class SensorDataDescriptionImpl extends NamedElementImpl implements Senso
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SETS:
-				getSets().clear();
+			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__DATA_SETS:
+				getDataSets().clear();
 				return;
 			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE:
 				setSensorInterface((SensorInterface)null);
@@ -236,8 +235,8 @@ public class SensorDataDescriptionImpl extends NamedElementImpl implements Senso
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SETS:
-				return sets != null && !sets.isEmpty();
+			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__DATA_SETS:
+				return dataSets != null && !dataSets.isEmpty();
 			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE:
 				return getSensorInterface() != null;
 		}

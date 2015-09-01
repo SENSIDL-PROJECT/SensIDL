@@ -67,7 +67,7 @@ public class SensorDataDescriptionItemProvider extends NamedElementItemProvider 
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DataRepresentationPackage.Literals.SENSOR_DATA_DESCRIPTION__SETS);
+			childrenFeatures.add(DataRepresentationPackage.Literals.SENSOR_DATA_DESCRIPTION__DATA_SETS);
 		}
 		return childrenFeatures;
 	}
@@ -123,7 +123,7 @@ public class SensorDataDescriptionItemProvider extends NamedElementItemProvider 
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SensorDataDescription.class)) {
-			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SETS:
+			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__DATA_SETS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -143,7 +143,7 @@ public class SensorDataDescriptionItemProvider extends NamedElementItemProvider 
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DataRepresentationPackage.Literals.SENSOR_DATA_DESCRIPTION__SETS,
+				(DataRepresentationPackage.Literals.SENSOR_DATA_DESCRIPTION__DATA_SETS,
 				 DataRepresentationFactory.eINSTANCE.createDataSet()));
 	}
 

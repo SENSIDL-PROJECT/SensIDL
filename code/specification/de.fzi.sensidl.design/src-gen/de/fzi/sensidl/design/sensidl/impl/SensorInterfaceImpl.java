@@ -4,21 +4,13 @@ package de.fzi.sensidl.design.sensidl.impl;
 
 import de.fzi.sensidl.design.sensidl.SensorInterface;
 import de.fzi.sensidl.design.sensidl.SensorMetaInformation;
-
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
-
-import de.fzi.sensidl.design.sensidl.dataTransmission.DataTransmissionPackage;
-import de.fzi.sensidl.design.sensidl.dataTransmission.SensorDataTransmission;
-
 import de.fzi.sensidl.design.sensidl.sensidlPackage;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -27,12 +19,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.impl.SensorInterfaceImpl#getMetaInformation <em>Meta Information</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.impl.SensorInterfaceImpl#getDataDescription <em>Data Description</em>}</li>
- *   <li>{@link de.fzi.sensidl.design.sensidl.impl.SensorInterfaceImpl#getDataTransmission <em>Data Transmission</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -56,16 +47,6 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 	 * @ordered
 	 */
 	protected SensorDataDescription dataDescription;
-
-	/**
-	 * The cached value of the '{@link #getDataTransmission() <em>Data Transmission</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDataTransmission()
-	 * @generated
-	 * @ordered
-	 */
-	protected SensorDataTransmission dataTransmission;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -177,49 +158,6 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SensorDataTransmission getDataTransmission() {
-		return dataTransmission;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDataTransmission(SensorDataTransmission newDataTransmission, NotificationChain msgs) {
-		SensorDataTransmission oldDataTransmission = dataTransmission;
-		dataTransmission = newDataTransmission;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, sensidlPackage.SENSOR_INTERFACE__DATA_TRANSMISSION, oldDataTransmission, newDataTransmission);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDataTransmission(SensorDataTransmission newDataTransmission) {
-		if (newDataTransmission != dataTransmission) {
-			NotificationChain msgs = null;
-			if (dataTransmission != null)
-				msgs = ((InternalEObject)dataTransmission).eInverseRemove(this, DataTransmissionPackage.SENSOR_DATA_TRANSMISSION__SENSOR_INTERFACE, SensorDataTransmission.class, msgs);
-			if (newDataTransmission != null)
-				msgs = ((InternalEObject)newDataTransmission).eInverseAdd(this, DataTransmissionPackage.SENSOR_DATA_TRANSMISSION__SENSOR_INTERFACE, SensorDataTransmission.class, msgs);
-			msgs = basicSetDataTransmission(newDataTransmission, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, sensidlPackage.SENSOR_INTERFACE__DATA_TRANSMISSION, newDataTransmission, newDataTransmission));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -231,10 +169,6 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 				if (dataDescription != null)
 					msgs = ((InternalEObject)dataDescription).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - sensidlPackage.SENSOR_INTERFACE__DATA_DESCRIPTION, null, msgs);
 				return basicSetDataDescription((SensorDataDescription)otherEnd, msgs);
-			case sensidlPackage.SENSOR_INTERFACE__DATA_TRANSMISSION:
-				if (dataTransmission != null)
-					msgs = ((InternalEObject)dataTransmission).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - sensidlPackage.SENSOR_INTERFACE__DATA_TRANSMISSION, null, msgs);
-				return basicSetDataTransmission((SensorDataTransmission)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -251,8 +185,6 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 				return basicSetMetaInformation(null, msgs);
 			case sensidlPackage.SENSOR_INTERFACE__DATA_DESCRIPTION:
 				return basicSetDataDescription(null, msgs);
-			case sensidlPackage.SENSOR_INTERFACE__DATA_TRANSMISSION:
-				return basicSetDataTransmission(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -269,8 +201,6 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 				return getMetaInformation();
 			case sensidlPackage.SENSOR_INTERFACE__DATA_DESCRIPTION:
 				return getDataDescription();
-			case sensidlPackage.SENSOR_INTERFACE__DATA_TRANSMISSION:
-				return getDataTransmission();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -288,9 +218,6 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 				return;
 			case sensidlPackage.SENSOR_INTERFACE__DATA_DESCRIPTION:
 				setDataDescription((SensorDataDescription)newValue);
-				return;
-			case sensidlPackage.SENSOR_INTERFACE__DATA_TRANSMISSION:
-				setDataTransmission((SensorDataTransmission)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -310,9 +237,6 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 			case sensidlPackage.SENSOR_INTERFACE__DATA_DESCRIPTION:
 				setDataDescription((SensorDataDescription)null);
 				return;
-			case sensidlPackage.SENSOR_INTERFACE__DATA_TRANSMISSION:
-				setDataTransmission((SensorDataTransmission)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -329,8 +253,6 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 				return metaInformation != null;
 			case sensidlPackage.SENSOR_INTERFACE__DATA_DESCRIPTION:
 				return dataDescription != null;
-			case sensidlPackage.SENSOR_INTERFACE__DATA_TRANSMISSION:
-				return dataTransmission != null;
 		}
 		return super.eIsSet(featureID);
 	}

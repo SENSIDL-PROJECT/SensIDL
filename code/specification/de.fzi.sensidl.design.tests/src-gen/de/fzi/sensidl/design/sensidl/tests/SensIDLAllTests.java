@@ -2,11 +2,8 @@
  */
 package de.fzi.sensidl.design.sensidl.tests;
 
-import de.fzi.sensidl.design.sensidl.dataTransmission.tests.DataTransmissionTests;
-
 import junit.framework.Test;
 import junit.framework.TestSuite;
-
 import junit.textui.TestRunner;
 
 /**
@@ -33,7 +30,6 @@ public class SensIDLAllTests extends TestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new SensIDLAllTests("SensIDL Tests");
-		suite.addTest(DataTransmissionTests.suite());
 		return suite;
 	}
 

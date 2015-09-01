@@ -4,8 +4,6 @@ package de.fzi.sensidl.design.sensidl;
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
 
-import de.fzi.sensidl.design.sensidl.dataTransmission.SensorDataTransmission;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Sensor Interface</b></em>'.
@@ -13,12 +11,11 @@ import de.fzi.sensidl.design.sensidl.dataTransmission.SensorDataTransmission;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.SensorInterface#getMetaInformation <em>Meta Information</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.SensorInterface#getDataDescription <em>Data Description</em>}</li>
- *   <li>{@link de.fzi.sensidl.design.sensidl.SensorInterface#getDataTransmission <em>Data Transmission</em>}</li>
  * </ul>
- * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getSensorInterface()
  * @model
@@ -80,33 +77,5 @@ public interface SensorInterface extends NamedElement {
 	 * @generated
 	 */
 	void setDataDescription(SensorDataDescription value);
-
-	/**
-	 * Returns the value of the '<em><b>Data Transmission</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataTransmission.SensorDataTransmission#getSensorInterface <em>Sensor Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Data Transmission</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data Transmission</em>' containment reference.
-	 * @see #setDataTransmission(SensorDataTransmission)
-	 * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getSensorInterface_DataTransmission()
-	 * @see de.fzi.sensidl.design.sensidl.dataTransmission.SensorDataTransmission#getSensorInterface
-	 * @model opposite="sensorInterface" containment="true" required="true"
-	 * @generated
-	 */
-	SensorDataTransmission getDataTransmission();
-
-	/**
-	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.SensorInterface#getDataTransmission <em>Data Transmission</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data Transmission</em>' containment reference.
-	 * @see #getDataTransmission()
-	 * @generated
-	 */
-	void setDataTransmission(SensorDataTransmission value);
 
 } // SensorInterface

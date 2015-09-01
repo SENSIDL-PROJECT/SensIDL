@@ -1,38 +1,36 @@
 /**
  * Die Grammatik für die SensIDL-Sprache.
- * Das zugehörige Metamodell kann unter de.fzi.sensidl.design/models/sensIDL.ecore
+ * Das zugehörige Metamodell kann unter de.fzi.sensidl.design/model/sensIDL.ecore
  * gefunden werden.
  * @author Dominik Werle
  * @author Max Scheerer
+ * @author Emre Taspolatoglu
  */
 
 grammar de.fzi.sensidl.language.Sensidl with org.eclipse.xtext.common.Terminals 
 
 // use a manually specified metamodel instead of generating one from the Xtext grammar
-//import "platform:/resource/de.fzi.sensidl.design/model/sensIDL.ecore"
+//import "platform:/resource/de.fzi.sensidl.design/model/sensIDL.ecore" as sensidl
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore 
 import "http://fzi.de/sensidl/design/1.0" as sensidl
 import "http://fzi.de/sensidl/design/representation/1.0" as dataRepresentation
-import "http://fzi.de/sensidl/design/transmission/1.0" as dataTransmission
 
 NamedElement returns sensidl::NamedElement:
 	SensorInterface | 
 	SensorDataDescription |
 	DataSet |
-	Data |
-	SensorDataTransmission	 
+	Data
 ;
 
 SensorInterface returns sensidl::SensorInterface: 
-	"Sensor" name=ID (description=STRING)? ("with" "identifier" ID=STRING)? "{"
+	"sensorInterface" name=STRING (description=STRING)? ("with" "identifier" ID=STRING)? "{"
 		metaInformation=SensorMetaInformation
 		dataDescription=SensorDataDescription
-		dataTransmission=SensorDataTransmission
 	"}"";"
 ;
 
 SensorMetaInformation returns sensidl::SensorMetaInformation: 
-	"encoding" coding=Coding "with" endianness=Endianness "alignment" alignment=Alignment
+	"encoding" coding=Coding "with" endianness=Endianness "alignment" alignment=Alignment ";"
 ;
 
 enum Alignment returns sensidl::Alignment: 
@@ -48,15 +46,15 @@ enum Endianness returns sensidl::Endianness:
 ;
 
 SensorDataDescription returns dataRepresentation::SensorDataDescription:
-	"SensorData" name=ID (description=STRING)? ("with" "identifier" ID=STRING)? "{"
-		sets+=DataSet
+	"sensorData" name=ID (description=STRING)? ("with" "identifier" ID=STRING)? "{"
+		(dataSets+=DataSet)*
 	"}"";"
 ;
 
 DataSet returns dataRepresentation::DataSet:
-	"MeasuredData" name=ID (description=STRING)? ("with" "identifier" ID=STRING)? "{"		
-		sets+=DataSet
-		data+=Data 
+	"dataSet" name=ID (description=STRING)? ("with" "identifier" ID=STRING)? "{"		
+		(subDataSets+=DataSet)?
+		(data+=Data)*
 	"}"";"
 ;
 
@@ -66,12 +64,12 @@ Data  returns dataRepresentation::Data:
 ;
 
 MeasurementData  returns dataRepresentation::MeasurementData:
-	name=ID "as" dataType=DataType "in" unit=UNIT (description=STRING)? ("with" "identifier" ID=STRING)?";"
-	("Adjusted" "by" ":" adjustments+=DataAdjustement ("," adjustments+=DataAdjustement)*)?
+	name=ID "as" dataType=DataType "in" unit=UNIT ("with" "identifier" ID=STRING)?
+	("adjusted" "by" ":" adjustments+=DataAdjustement ("," adjustments+=DataAdjustement)*)? (description=STRING)? ";"
 ;
 
 NonMeasurementData  returns dataRepresentation::NonMeasurementData:
-	name=ID "as" dataType=DataType "constant""=" constant=BOOLEAN "value" value=STRING (description=STRING)? ("with" "identifier" ID=STRING)?";"
+	name=ID "as" dataType=DataType "constant""=" constant=BOOLEAN "value""=" value=STRING ("with" "identifier" ID=STRING)? (description=STRING)? ";"
 ;
 
 enum DataType   returns dataRepresentation::DataType:
@@ -108,14 +106,11 @@ DataConversion  returns dataRepresentation::DataConversion:
 LinearDataConversion  returns dataRepresentation::LinearDataConversion:	
 	(
 		"with" "scaling factor"":" scalingFactor=DOUBLE "and" "offset"":"offset=DOUBLE |
-		"map linear" "[" fromInterval=Interval"]" "=>" "["toInterval=Interval"]" 
-	)";"
-;
-
-SensorDataTransmission  returns dataTransmission::SensorDataTransmission:
-	"DataTransmission" name=ID (description=STRING)? ("with" "identifier" ID=STRING)?
+		"linear mapping" "[" fromInterval=Interval"]" "=>" "["toInterval=Interval"]" 
+	)
 ;
 
 DOUBLE returns ecore::EDouble: INT ('.' INT)?;
 BOOLEAN returns ecore::EBoolean: 'true' | 'false';
-UNIT returns dataRepresentation::Unit : STRING;
+//UNIT returns dataRepresentation::Unit: STRING;
+terminal UNIT returns dataRepresentation::Unit : '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;

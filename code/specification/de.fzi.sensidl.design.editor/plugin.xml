@@ -62,32 +62,4 @@
       </editor>
    </extension>
 
-   <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated sensIDL -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
-      <wizard
-            id="de.fzi.sensidl.design.sensidl.dataTransmission.presentation.DataTransmissionModelWizardID"
-            name="%_UI_DataTransmissionModelWizard_label"
-            class="de.fzi.sensidl.design.sensidl.dataTransmission.presentation.DataTransmissionModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/DataTransmissionModelFile.gif">
-         <description>%_UI_DataTransmissionModelWizard_description</description>
-         <selection class="org.eclipse.core.resources.IResource"/>
-      </wizard>
-   </extension>
-
-   <extension point="org.eclipse.ui.editors">
-      <!-- @generated sensIDL -->
-      <editor
-            id="de.fzi.sensidl.design.sensidl.dataTransmission.presentation.DataTransmissionEditorID"
-            name="%_UI_DataTransmissionEditor_label"
-            icon="icons/full/obj16/DataTransmissionModelFile.gif"
-            extensions="datatransmission"
-            class="de.fzi.sensidl.design.sensidl.dataTransmission.presentation.DataTransmissionEditor"
-            contributorClass="de.fzi.sensidl.design.sensidl.dataTransmission.presentation.DataTransmissionActionBarContributor">
-      </editor>
-   </extension>
-
 </plugin>

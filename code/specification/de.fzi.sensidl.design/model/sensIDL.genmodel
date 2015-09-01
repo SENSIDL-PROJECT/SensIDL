@@ -30,7 +30,6 @@
     <genClasses ecoreClass="sensIDL.ecore#//SensorInterface">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//SensorInterface/metaInformation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//SensorInterface/dataDescription"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//SensorInterface/dataTransmission"/>
     </genClasses>
     <genClasses ecoreClass="sensIDL.ecore#//SensorMetaInformation">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//SensorMetaInformation/sensorInterface"/>
@@ -57,13 +56,14 @@
         <genTypeParameters ecoreTypeParameter="sensIDL.ecore#//dataRepresentation/Unit/Q"/>
       </genDataTypes>
       <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/SensorDataDescription">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/SensorDataDescription/sets"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/SensorDataDescription/dataSets"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/SensorDataDescription/sensorInterface"/>
       </genClasses>
       <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/DataSet">
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/DataSet/sensorDataDescription"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/DataSet/sets"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/DataSet/subDataSets"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/DataSet/data"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/DataSet/parentDataSet"/>
       </genClasses>
       <genClasses image="false" ecoreClass="sensIDL.ecore#//dataRepresentation/Data">
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/Data/dataSet"/>
@@ -96,20 +96,9 @@
       <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/Interval">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/Interval/lowerBound"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/Interval/upperBound"/>
-      </genClasses>
-    </nestedGenPackages>
-    <nestedGenPackages prefix="DataTransmission" basePackage="de.fzi.sensidl.design.sensidl"
-        disposableProviderFactory="true" ecorePackage="sensIDL.ecore#//dataTransmission">
-      <genClasses ecoreClass="sensIDL.ecore#//dataTransmission/SensorDataTransmission">
-        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//dataTransmission/SensorDataTransmission/sensorInterface"/>
-        <genOperations ecoreOperation="sensIDL.ecore#//dataTransmission/SensorDataTransmission/connect"/>
-        <genOperations ecoreOperation="sensIDL.ecore#//dataTransmission/SensorDataTransmission/startMeasurement"/>
-        <genOperations ecoreOperation="sensIDL.ecore#//dataTransmission/SensorDataTransmission/stopMeasurement"/>
-        <genOperations ecoreOperation="sensIDL.ecore#//dataTransmission/SensorDataTransmission/pauseMeasurement"/>
-        <genOperations ecoreOperation="sensIDL.ecore#//dataTransmission/SensorDataTransmission/send"/>
-        <genOperations ecoreOperation="sensIDL.ecore#//dataTransmission/SensorDataTransmission/send.1">
-          <genParameters ecoreParameter="sensIDL.ecore#//dataTransmission/SensorDataTransmission/send.1/frequency"/>
-        </genOperations>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/Interval/linearDataConversionFrom"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/Interval/linearDataConversionTo"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/Interval/dataRange"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

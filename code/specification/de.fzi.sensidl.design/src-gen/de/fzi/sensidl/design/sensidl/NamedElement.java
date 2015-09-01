@@ -11,12 +11,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.NamedElement#getID <em>ID</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.NamedElement#getName <em>Name</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.NamedElement#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getNamedElement()
  * @model abstract="true"

@@ -67,7 +67,7 @@ public class DataSetItemProvider extends NamedElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DataRepresentationPackage.Literals.DATA_SET__SETS);
+			childrenFeatures.add(DataRepresentationPackage.Literals.DATA_SET__SUB_DATA_SETS);
 			childrenFeatures.add(DataRepresentationPackage.Literals.DATA_SET__DATA);
 		}
 		return childrenFeatures;
@@ -124,7 +124,7 @@ public class DataSetItemProvider extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DataSet.class)) {
-			case DataRepresentationPackage.DATA_SET__SETS:
+			case DataRepresentationPackage.DATA_SET__SUB_DATA_SETS:
 			case DataRepresentationPackage.DATA_SET__DATA:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -145,7 +145,7 @@ public class DataSetItemProvider extends NamedElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DataRepresentationPackage.Literals.DATA_SET__SETS,
+				(DataRepresentationPackage.Literals.DATA_SET__SUB_DATA_SETS,
 				 DataRepresentationFactory.eINSTANCE.createDataSet()));
 
 		newChildDescriptors.add

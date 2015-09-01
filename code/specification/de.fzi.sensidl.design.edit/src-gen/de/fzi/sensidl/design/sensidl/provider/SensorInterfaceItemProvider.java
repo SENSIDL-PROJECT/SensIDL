@@ -4,22 +4,14 @@ package de.fzi.sensidl.design.sensidl.provider;
 
 
 import de.fzi.sensidl.design.sensidl.SensorInterface;
-
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationFactory;
-
-import de.fzi.sensidl.design.sensidl.dataTransmission.DataTransmissionFactory;
-
 import de.fzi.sensidl.design.sensidl.sensidlFactory;
 import de.fzi.sensidl.design.sensidl.sensidlPackage;
-
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -69,7 +61,6 @@ public class SensorInterfaceItemProvider extends NamedElementItemProvider {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(sensidlPackage.Literals.SENSOR_INTERFACE__META_INFORMATION);
 			childrenFeatures.add(sensidlPackage.Literals.SENSOR_INTERFACE__DATA_DESCRIPTION);
-			childrenFeatures.add(sensidlPackage.Literals.SENSOR_INTERFACE__DATA_TRANSMISSION);
 		}
 		return childrenFeatures;
 	}
@@ -127,7 +118,6 @@ public class SensorInterfaceItemProvider extends NamedElementItemProvider {
 		switch (notification.getFeatureID(SensorInterface.class)) {
 			case sensidlPackage.SENSOR_INTERFACE__META_INFORMATION:
 			case sensidlPackage.SENSOR_INTERFACE__DATA_DESCRIPTION:
-			case sensidlPackage.SENSOR_INTERFACE__DATA_TRANSMISSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -154,11 +144,6 @@ public class SensorInterfaceItemProvider extends NamedElementItemProvider {
 			(createChildParameter
 				(sensidlPackage.Literals.SENSOR_INTERFACE__DATA_DESCRIPTION,
 				 DataRepresentationFactory.eINSTANCE.createSensorDataDescription()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(sensidlPackage.Literals.SENSOR_INTERFACE__DATA_TRANSMISSION,
-				 DataTransmissionFactory.eINSTANCE.createSensorDataTransmission()));
 	}
 
 }

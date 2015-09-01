@@ -22,12 +22,4 @@
             genModel="model/sensIDL.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated sensIDL -->
-      <package
-            uri="http://fzi.de/sensidl/design/transmission/1.0"
-            class="de.fzi.sensidl.design.sensidl.dataTransmission.DataTransmissionPackage"
-            genModel="model/sensIDL.genmodel"/>
-   </extension>
-
 </plugin>

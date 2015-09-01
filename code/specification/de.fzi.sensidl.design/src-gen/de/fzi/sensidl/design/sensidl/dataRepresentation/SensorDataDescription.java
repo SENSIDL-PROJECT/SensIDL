@@ -14,11 +14,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
- *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription#getSets <em>Sets</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription#getDataSets <em>Data Sets</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription#getSensorInterface <em>Sensor Interface</em>}</li>
  * </ul>
- * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getSensorDataDescription()
  * @model
@@ -26,22 +26,22 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface SensorDataDescription extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Sets</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Data Sets</b></em>' containment reference list.
 	 * The list contents are of type {@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet}.
 	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getSensorDataDescription <em>Sensor Data Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sets</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Data Sets</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sets</em>' containment reference list.
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getSensorDataDescription_Sets()
+	 * @return the value of the '<em>Data Sets</em>' containment reference list.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getSensorDataDescription_DataSets()
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getSensorDataDescription
 	 * @model opposite="sensorDataDescription" containment="true"
 	 * @generated
 	 */
-	EList<DataSet> getSets();
+	EList<DataSet> getDataSets();
 
 	/**
 	 * Returns the value of the '<em><b>Sensor Interface</b></em>' container reference.

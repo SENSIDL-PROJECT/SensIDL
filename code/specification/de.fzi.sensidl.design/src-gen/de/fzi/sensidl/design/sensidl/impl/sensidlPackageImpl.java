@@ -8,24 +8,15 @@ import de.fzi.sensidl.design.sensidl.Endianness;
 import de.fzi.sensidl.design.sensidl.NamedElement;
 import de.fzi.sensidl.design.sensidl.SensorInterface;
 import de.fzi.sensidl.design.sensidl.SensorMetaInformation;
-
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
-
 import de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl;
-
-import de.fzi.sensidl.design.sensidl.dataTransmission.DataTransmissionPackage;
-
-import de.fzi.sensidl.design.sensidl.dataTransmission.impl.DataTransmissionPackageImpl;
-
 import de.fzi.sensidl.design.sensidl.sensidlFactory;
 import de.fzi.sensidl.design.sensidl.sensidlPackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -125,17 +116,14 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 
 		// Obtain or create and register interdependencies
 		DataRepresentationPackageImpl theDataRepresentationPackage = (DataRepresentationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DataRepresentationPackage.eNS_URI) instanceof DataRepresentationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DataRepresentationPackage.eNS_URI) : DataRepresentationPackage.eINSTANCE);
-		DataTransmissionPackageImpl theDataTransmissionPackage = (DataTransmissionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DataTransmissionPackage.eNS_URI) instanceof DataTransmissionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DataTransmissionPackage.eNS_URI) : DataTransmissionPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thesensidlPackage.createPackageContents();
 		theDataRepresentationPackage.createPackageContents();
-		theDataTransmissionPackage.createPackageContents();
 
 		// Initialize created meta-data
 		thesensidlPackage.initializePackageContents();
 		theDataRepresentationPackage.initializePackageContents();
-		theDataTransmissionPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		thesensidlPackage.freeze();
@@ -207,15 +195,6 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 */
 	public EReference getSensorInterface_DataDescription() {
 		return (EReference)sensorInterfaceEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSensorInterface_DataTransmission() {
-		return (EReference)sensorInterfaceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -326,7 +305,6 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 		sensorInterfaceEClass = createEClass(SENSOR_INTERFACE);
 		createEReference(sensorInterfaceEClass, SENSOR_INTERFACE__META_INFORMATION);
 		createEReference(sensorInterfaceEClass, SENSOR_INTERFACE__DATA_DESCRIPTION);
-		createEReference(sensorInterfaceEClass, SENSOR_INTERFACE__DATA_TRANSMISSION);
 
 		sensorMetaInformationEClass = createEClass(SENSOR_META_INFORMATION);
 		createEReference(sensorMetaInformationEClass, SENSOR_META_INFORMATION__SENSOR_INTERFACE);
@@ -365,11 +343,9 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 
 		// Obtain other dependent packages
 		DataRepresentationPackage theDataRepresentationPackage = (DataRepresentationPackage)EPackage.Registry.INSTANCE.getEPackage(DataRepresentationPackage.eNS_URI);
-		DataTransmissionPackage theDataTransmissionPackage = (DataTransmissionPackage)EPackage.Registry.INSTANCE.getEPackage(DataTransmissionPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theDataRepresentationPackage);
-		getESubpackages().add(theDataTransmissionPackage);
 
 		// Create type parameters
 
@@ -387,7 +363,6 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 		initEClass(sensorInterfaceEClass, SensorInterface.class, "SensorInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSensorInterface_MetaInformation(), this.getSensorMetaInformation(), this.getSensorMetaInformation_SensorInterface(), "metaInformation", null, 1, 1, SensorInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSensorInterface_DataDescription(), theDataRepresentationPackage.getSensorDataDescription(), theDataRepresentationPackage.getSensorDataDescription_SensorInterface(), "dataDescription", null, 1, 1, SensorInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSensorInterface_DataTransmission(), theDataTransmissionPackage.getSensorDataTransmission(), theDataTransmissionPackage.getSensorDataTransmission_SensorInterface(), "dataTransmission", null, 1, 1, SensorInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sensorMetaInformationEClass, SensorMetaInformation.class, "SensorMetaInformation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSensorMetaInformation_SensorInterface(), this.getSensorInterface(), this.getSensorInterface_MetaInformation(), "sensorInterface", null, 1, 1, SensorMetaInformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

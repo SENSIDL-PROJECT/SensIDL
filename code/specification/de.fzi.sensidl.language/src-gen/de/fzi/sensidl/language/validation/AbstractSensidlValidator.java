@@ -13,6 +13,7 @@ public class AbstractSensidlValidator extends org.eclipse.xtext.validation.Abstr
 	protected List<EPackage> getEPackages() {
 	    List<EPackage> result = new ArrayList<EPackage>();
 	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://fzi.de/sensidl/design/1.0"));
+	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://fzi.de/sensidl/design/representation/1.0"));
 		return result;
 	}
 }

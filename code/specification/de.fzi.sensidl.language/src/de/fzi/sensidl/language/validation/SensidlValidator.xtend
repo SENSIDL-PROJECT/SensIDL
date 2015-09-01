@@ -4,37 +4,13 @@
 package de.fzi.sensidl.language.validation
 
 import org.eclipse.xtext.validation.Check
-import sensidl.Options
-import sensidl.GenerationLanguage
-import sensidl.SensidlPackage
 import de.fzi.sensidl.language.validation.AbstractSensidlValidator
 
 /**
  * @author Dominik Werle
- * @generated not
+ * @author Emre Taspolatoglu
+ * @generated NOT
  */
 class SensidlValidator extends AbstractSensidlValidator {
 
-	/**
-	 * Exemplary check if a language is supported.
-	 */
-	def languageSupported(GenerationLanguage language) {
-		language == GenerationLanguage.JAVA || language == GenerationLanguage.CSHARP
-	}
-
-	@Check
-	def checkOnlySupportedLanguages(Options options) {
-		if (!languageSupported(options.receiverLanguage)) {
-			warning('Generation language for receiver not yet supported',
-				SensidlPackage.Literals.OPTIONS__RECEIVER_LANGUAGE,
-				'invalidReceiverLanguage'
-			);
-		}
-		if (!languageSupported(options.sensorLanguage)) {
-			warning('Generation language for sensor not yet supported',
-				SensidlPackage.Literals.OPTIONS__SENSOR_LANGUAGE,
-				'invalidSensorLanguage'
-			);
-		}
-	}
 }

@@ -11,11 +11,14 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getLowerBound <em>Lower Bound</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getUpperBound <em>Upper Bound</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getLinearDataConversionFrom <em>Linear Data Conversion From</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getLinearDataConversionTo <em>Linear Data Conversion To</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getDataRange <em>Data Range</em>}</li>
  * </ul>
- * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getInterval()
  * @model
@@ -73,5 +76,89 @@ public interface Interval extends EObject {
 	 * @generated
 	 */
 	void setUpperBound(double value);
+
+	/**
+	 * Returns the value of the '<em><b>Linear Data Conversion From</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getFromInterval <em>From Interval</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Linear Data Conversion From</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Linear Data Conversion From</em>' container reference.
+	 * @see #setLinearDataConversionFrom(LinearDataConversion)
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getInterval_LinearDataConversionFrom()
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getFromInterval
+	 * @model opposite="fromInterval" transient="false"
+	 * @generated
+	 */
+	LinearDataConversion getLinearDataConversionFrom();
+
+	/**
+	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getLinearDataConversionFrom <em>Linear Data Conversion From</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Linear Data Conversion From</em>' container reference.
+	 * @see #getLinearDataConversionFrom()
+	 * @generated
+	 */
+	void setLinearDataConversionFrom(LinearDataConversion value);
+
+	/**
+	 * Returns the value of the '<em><b>Linear Data Conversion To</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getToInterval <em>To Interval</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Linear Data Conversion To</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Linear Data Conversion To</em>' container reference.
+	 * @see #setLinearDataConversionTo(LinearDataConversion)
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getInterval_LinearDataConversionTo()
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getToInterval
+	 * @model opposite="toInterval" transient="false"
+	 * @generated
+	 */
+	LinearDataConversion getLinearDataConversionTo();
+
+	/**
+	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getLinearDataConversionTo <em>Linear Data Conversion To</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Linear Data Conversion To</em>' container reference.
+	 * @see #getLinearDataConversionTo()
+	 * @generated
+	 */
+	void setLinearDataConversionTo(LinearDataConversion value);
+
+	/**
+	 * Returns the value of the '<em><b>Data Range</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange#getRange <em>Range</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Data Range</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Range</em>' container reference.
+	 * @see #setDataRange(DataRange)
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getInterval_DataRange()
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange#getRange
+	 * @model opposite="range" transient="false"
+	 * @generated
+	 */
+	DataRange getDataRange();
+
+	/**
+	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getDataRange <em>Data Range</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Range</em>' container reference.
+	 * @see #getDataRange()
+	 * @generated
+	 */
+	void setDataRange(DataRange value);
 
 } // Interval
