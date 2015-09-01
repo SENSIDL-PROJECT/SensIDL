@@ -11,8 +11,6 @@
         eType="#//SensorMetaInformation" containment="true" eOpposite="#//SensorMetaInformation/sensorInterface"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataDescription" lowerBound="1"
         eType="#//dataRepresentation/SensorDataDescription" containment="true" eOpposite="#//dataRepresentation/SensorDataDescription/sensorInterface"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dataTransmission" lowerBound="1"
-        eType="#//dataTransmission/SensorDataTransmission" containment="true" eOpposite="#//dataTransmission/SensorDataTransmission/sensorInterface"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SensorMetaInformation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sensorInterface" lowerBound="1"
@@ -41,18 +39,20 @@
   <eSubpackages name="dataRepresentation" nsURI="http://fzi.de/sensidl/design/representation/1.0"
       nsPrefix="de.fzi.sensidl.design.sensidl">
     <eClassifiers xsi:type="ecore:EClass" name="SensorDataDescription" eSuperTypes="#//NamedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sets" upperBound="-1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dataSets" upperBound="-1"
           eType="#//dataRepresentation/DataSet" containment="true" eOpposite="#//dataRepresentation/DataSet/sensorDataDescription"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sensorInterface" lowerBound="1"
           eType="#//SensorInterface" eOpposite="#//SensorInterface/dataDescription"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataSet" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sensorDataDescription"
-          eType="#//dataRepresentation/SensorDataDescription" eOpposite="#//dataRepresentation/SensorDataDescription/sets"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sets" upperBound="-1"
-          eType="#//dataRepresentation/DataSet" containment="true"/>
+          eType="#//dataRepresentation/SensorDataDescription" eOpposite="#//dataRepresentation/SensorDataDescription/dataSets"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subDataSets" upperBound="-1"
+          eType="#//dataRepresentation/DataSet" containment="true" eOpposite="#//dataRepresentation/DataSet/parentDataSet"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="data" upperBound="-1"
           eType="#//dataRepresentation/Data" containment="true" eOpposite="#//dataRepresentation/Data/dataSet"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parentDataSet" eType="#//dataRepresentation/DataSet"
+          eOpposite="#//dataRepresentation/DataSet/subDataSets"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Data" abstract="true" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="dataSet" eType="#//dataRepresentation/DataSet"
@@ -81,7 +81,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataRange" eSuperTypes="#//dataRepresentation/DataAdjustment">
       <eStructuralFeatures xsi:type="ecore:EReference" name="range" lowerBound="1"
-          eType="#//dataRepresentation/Interval" containment="true"/>
+          eType="#//dataRepresentation/Interval" containment="true" eOpposite="#//dataRepresentation/Interval/dataRange"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataConversion" eSuperTypes="#//dataRepresentation/DataAdjustment"/>
     <eClassifiers xsi:type="ecore:EClass" name="LinearDataConversion" eSuperTypes="#//dataRepresentation/DataConversion">
@@ -90,9 +90,9 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="fromInterval" eType="#//dataRepresentation/Interval"
-          containment="true"/>
+          containment="true" eOpposite="#//dataRepresentation/Interval/linearDataConversionFrom"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="toInterval" eType="#//dataRepresentation/Interval"
-          containment="true"/>
+          containment="true" eOpposite="#//dataRepresentation/Interval/linearDataConversionTo"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="DataType">
       <eLiterals name="SIGNED_CHAR"/>
@@ -115,21 +115,12 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-    </eClassifiers>
-  </eSubpackages>
-  <eSubpackages name="dataTransmission" nsURI="http://fzi.de/sensidl/design/transmission/1.0"
-      nsPrefix="de.fzi.sensidl.design.sensidl">
-    <eClassifiers xsi:type="ecore:EClass" name="SensorDataTransmission" eSuperTypes="#//NamedElement">
-      <eOperations name="connect"/>
-      <eOperations name="startMeasurement" eType="#//dataRepresentation/DataSet"/>
-      <eOperations name="stopMeasurement" eType="#//dataRepresentation/DataSet"/>
-      <eOperations name="pauseMeasurement" eType="#//dataRepresentation/DataSet"/>
-      <eOperations name="send"/>
-      <eOperations name="send">
-        <eParameters name="frequency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sensorInterface" lowerBound="1"
-          eType="#//SensorInterface" eOpposite="#//SensorInterface/dataTransmission"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="linearDataConversionFrom"
+          eType="#//dataRepresentation/LinearDataConversion" eOpposite="#//dataRepresentation/LinearDataConversion/fromInterval"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="linearDataConversionTo"
+          eType="#//dataRepresentation/LinearDataConversion" eOpposite="#//dataRepresentation/LinearDataConversion/toInterval"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dataRange" eType="#//dataRepresentation/DataRange"
+          eOpposite="#//dataRepresentation/DataRange/range"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>
