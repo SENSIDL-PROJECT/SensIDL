@@ -2,7 +2,6 @@
  */
 package de.fzi.sensidl.design.sensidl.impl;
 
-import de.fzi.sensidl.design.sensidl.DescribableElement;
 import de.fzi.sensidl.design.sensidl.EncodingSettings;
 import de.fzi.sensidl.design.sensidl.SensorInterface;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
@@ -22,7 +21,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.fzi.sensidl.design.sensidl.impl.SensorInterfaceImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.impl.SensorInterfaceImpl#getEncodingSettings <em>Encoding Settings</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.impl.SensorInterfaceImpl#getDataDescription <em>Data Description</em>}</li>
  * </ul>
@@ -30,26 +28,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public class SensorInterfaceImpl extends NamedElementImpl implements SensorInterface {
-	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DESCRIPTION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected String description = DESCRIPTION_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getEncodingSettings() <em>Encoding Settings</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -87,27 +65,6 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 	@Override
 	protected EClass eStaticClass() {
 		return sensidlPackage.Literals.SENSOR_INTERFACE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDescription(String newDescription) {
-		String oldDescription = description;
-		description = newDescription;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, sensidlPackage.SENSOR_INTERFACE__DESCRIPTION, oldDescription, description));
 	}
 
 	/**
@@ -240,8 +197,6 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case sensidlPackage.SENSOR_INTERFACE__DESCRIPTION:
-				return getDescription();
 			case sensidlPackage.SENSOR_INTERFACE__ENCODING_SETTINGS:
 				return getEncodingSettings();
 			case sensidlPackage.SENSOR_INTERFACE__DATA_DESCRIPTION:
@@ -258,9 +213,6 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case sensidlPackage.SENSOR_INTERFACE__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
 			case sensidlPackage.SENSOR_INTERFACE__ENCODING_SETTINGS:
 				setEncodingSettings((EncodingSettings)newValue);
 				return;
@@ -279,9 +231,6 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case sensidlPackage.SENSOR_INTERFACE__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
 			case sensidlPackage.SENSOR_INTERFACE__ENCODING_SETTINGS:
 				setEncodingSettings((EncodingSettings)null);
 				return;
@@ -300,62 +249,12 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case sensidlPackage.SENSOR_INTERFACE__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case sensidlPackage.SENSOR_INTERFACE__ENCODING_SETTINGS:
 				return encodingSettings != null;
 			case sensidlPackage.SENSOR_INTERFACE__DATA_DESCRIPTION:
 				return dataDescription != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == DescribableElement.class) {
-			switch (derivedFeatureID) {
-				case sensidlPackage.SENSOR_INTERFACE__DESCRIPTION: return sensidlPackage.DESCRIBABLE_ELEMENT__DESCRIPTION;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == DescribableElement.class) {
-			switch (baseFeatureID) {
-				case sensidlPackage.DESCRIBABLE_ELEMENT__DESCRIPTION: return sensidlPackage.SENSOR_INTERFACE__DESCRIPTION;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (description: ");
-		result.append(description);
-		result.append(')');
-		return result.toString();
 	}
 
 } //SensorInterfaceImpl

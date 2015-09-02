@@ -2,13 +2,11 @@
  */
 package de.fzi.sensidl.design.sensidl.dataRepresentation.impl;
 
-import de.fzi.sensidl.design.sensidl.DescribableElement;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
 import de.fzi.sensidl.design.sensidl.impl.NamedElementImpl;
-import de.fzi.sensidl.design.sensidl.sensidlPackage;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -28,7 +26,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getSensorDataDescription <em>Sensor Data Description</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getSubDataSets <em>Sub Data Sets</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getData <em>Data</em>}</li>
@@ -38,26 +35,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class DataSetImpl extends NamedElementImpl implements DataSet {
-	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DESCRIPTION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected String description = DESCRIPTION_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getSubDataSets() <em>Sub Data Sets</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -95,27 +72,6 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	@Override
 	protected EClass eStaticClass() {
 		return DataRepresentationPackage.Literals.DATA_SET;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDescription(String newDescription) {
-		String oldDescription = description;
-		description = newDescription;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataRepresentationPackage.DATA_SET__DESCRIPTION, oldDescription, description));
 	}
 
 	/**
@@ -293,8 +249,6 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DataRepresentationPackage.DATA_SET__DESCRIPTION:
-				return getDescription();
 			case DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION:
 				return getSensorDataDescription();
 			case DataRepresentationPackage.DATA_SET__SUB_DATA_SETS:
@@ -316,9 +270,6 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DataRepresentationPackage.DATA_SET__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
 			case DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION:
 				setSensorDataDescription((SensorDataDescription)newValue);
 				return;
@@ -345,9 +296,6 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DataRepresentationPackage.DATA_SET__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
 			case DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION:
 				setSensorDataDescription((SensorDataDescription)null);
 				return;
@@ -372,8 +320,6 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DataRepresentationPackage.DATA_SET__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION:
 				return getSensorDataDescription() != null;
 			case DataRepresentationPackage.DATA_SET__SUB_DATA_SETS:
@@ -384,54 +330,6 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 				return getParentDataSet() != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == DescribableElement.class) {
-			switch (derivedFeatureID) {
-				case DataRepresentationPackage.DATA_SET__DESCRIPTION: return sensidlPackage.DESCRIBABLE_ELEMENT__DESCRIPTION;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == DescribableElement.class) {
-			switch (baseFeatureID) {
-				case sensidlPackage.DESCRIBABLE_ELEMENT__DESCRIPTION: return DataRepresentationPackage.DATA_SET__DESCRIPTION;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (description: ");
-		result.append(description);
-		result.append(')');
-		return result.toString();
 	}
 
 } //DataSetImpl

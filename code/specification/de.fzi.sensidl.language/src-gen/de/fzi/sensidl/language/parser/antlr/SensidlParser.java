@@ -25,7 +25,7 @@ public class SensidlParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrP
 	
 	@Override 
 	protected String getDefaultRuleName() {
-		return "NamedElement";
+		return "IdentifiableElement";
 	}
 	
 	public SensidlGrammarAccess getGrammarAccess() {

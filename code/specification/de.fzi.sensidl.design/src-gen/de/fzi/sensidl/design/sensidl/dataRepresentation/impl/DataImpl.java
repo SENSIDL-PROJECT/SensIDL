@@ -2,23 +2,16 @@
  */
 package de.fzi.sensidl.design.sensidl.dataRepresentation.impl;
 
-import de.fzi.sensidl.design.sensidl.DescribableElement;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType;
-
 import de.fzi.sensidl.design.sensidl.impl.NamedElementImpl;
-
-import de.fzi.sensidl.design.sensidl.sensidlPackage;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
@@ -29,7 +22,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataImpl#getDataSet <em>Data Set</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataImpl#getDataType <em>Data Type</em>}</li>
  * </ul>
@@ -37,26 +29,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @generated
  */
 public abstract class DataImpl extends NamedElementImpl implements Data {
-	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DESCRIPTION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected String description = DESCRIPTION_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getDataType() <em>Data Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -94,27 +66,6 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 	@Override
 	protected EClass eStaticClass() {
 		return DataRepresentationPackage.Literals.DATA;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDescription(String newDescription) {
-		String oldDescription = description;
-		description = newDescription;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataRepresentationPackage.DATA__DESCRIPTION, oldDescription, description));
 	}
 
 	/**
@@ -231,8 +182,6 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DataRepresentationPackage.DATA__DESCRIPTION:
-				return getDescription();
 			case DataRepresentationPackage.DATA__DATA_SET:
 				return getDataSet();
 			case DataRepresentationPackage.DATA__DATA_TYPE:
@@ -249,9 +198,6 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DataRepresentationPackage.DATA__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
 			case DataRepresentationPackage.DATA__DATA_SET:
 				setDataSet((DataSet)newValue);
 				return;
@@ -270,9 +216,6 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DataRepresentationPackage.DATA__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
 			case DataRepresentationPackage.DATA__DATA_SET:
 				setDataSet((DataSet)null);
 				return;
@@ -291,8 +234,6 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DataRepresentationPackage.DATA__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case DataRepresentationPackage.DATA__DATA_SET:
 				return getDataSet() != null;
 			case DataRepresentationPackage.DATA__DATA_TYPE:
@@ -307,45 +248,11 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == DescribableElement.class) {
-			switch (derivedFeatureID) {
-				case DataRepresentationPackage.DATA__DESCRIPTION: return sensidlPackage.DESCRIBABLE_ELEMENT__DESCRIPTION;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == DescribableElement.class) {
-			switch (baseFeatureID) {
-				case sensidlPackage.DESCRIBABLE_ELEMENT__DESCRIPTION: return DataRepresentationPackage.DATA__DESCRIPTION;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (description: ");
-		result.append(description);
-		result.append(", dataType: ");
+		result.append(" (dataType: ");
 		result.append(dataType);
 		result.append(')');
 		return result.toString();

@@ -611,9 +611,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 		// Add supertypes to classes
 		sensorDataDescriptionEClass.getESuperTypes().add(thesensidlPackage.getIdentifiableElement());
 		dataSetEClass.getESuperTypes().add(thesensidlPackage.getNamedElement());
-		dataSetEClass.getESuperTypes().add(thesensidlPackage.getDescribableElement());
 		dataEClass.getESuperTypes().add(thesensidlPackage.getNamedElement());
-		dataEClass.getESuperTypes().add(thesensidlPackage.getDescribableElement());
 		measurementDataEClass.getESuperTypes().add(this.getData());
 		nonMeasurementDataEClass.getESuperTypes().add(this.getData());
 		dataAdjustmentEClass.getESuperTypes().add(thesensidlPackage.getIdentifiableElement());

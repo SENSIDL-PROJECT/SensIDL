@@ -5,6 +5,7 @@
  * @author Dominik Werle
  * @author Max Scheerer
  * @author Emre Taspolatoglu
+ * 
  */
 
 grammar de.fzi.sensidl.language.Sensidl with org.eclipse.xtext.common.Terminals 
@@ -15,26 +16,29 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 import "http://fzi.de/sensidl/design/1.0" as sensidl
 import "http://fzi.de/sensidl/design/representation/1.0" as dataRepresentation
 
+IdentifiableElement returns sensidl::IdentifiableElement: 
+	NamedElement |
+	EncodingSettings |
+	SensorDataDescription |
+	DataAdjustment |
+	Interval
+;
+
 NamedElement returns sensidl::NamedElement:
 	SensorInterface | 
-	SensorDataDescription |
 	DataSet |
 	Data
 ;
 
 SensorInterface returns sensidl::SensorInterface: 
-	"sensorInterface" name=ID (description=STRING)? ("with" "identifier" ID=STRING)? "{"
-		metaInformation=SensorMetaInformation
+	"sensorInterface" name=ID (description=STRING)? ("with" "identifier" ":" ID=STRING)? "{"
+		encodingSettings=EncodingSettings
 		dataDescription=SensorDataDescription
 	"}"";"
 ;
 
-SensorMetaInformation returns sensidl::SensorMetaInformation: 
-	"encoding" coding=Coding "with" endianness=Endianness "alignment" alignment=Alignment ";"
-;
-
-enum Alignment returns sensidl::Alignment: 
-	_8BIT | _16BIT | _32BIT | _64BIT
+EncodingSettings returns sensidl::EncodingSettings: 
+	"encoding" coding=Coding "with" endianness=Endianness "alignment" alignment=INT ("with" "identifier" ":" ID=STRING)? ";"
 ;
 
 enum Coding returns sensidl::Coding:
@@ -45,34 +49,34 @@ enum Endianness returns sensidl::Endianness:
 	BIG_ENDIAN | LITTLE_ENDIAN
 ;
 
-SensorDataDescription returns dataRepresentation::SensorDataDescription:
-	"sensorData" name=ID (description=STRING)? ("with" "identifier" ID=STRING)? "{"
+SensorDataDescription returns dataRepresentation::SensorDataDescription: 
+	"sensorData" {dataRepresentation::SensorDataDescription} ("with" "identifier" ":" ID=STRING)? "{"
 		(dataSets+=DataSet)*
 	"}"";"
 ;
 
 DataSet returns dataRepresentation::DataSet:
-	"dataSet" name=ID (description=STRING)? ("with" "identifier" ID=STRING)? "{"		
+	"dataSet" name=ID ("with" "identifier" ID=STRING)? (description=STRING)? "{"		
 		(subDataSets+=DataSet)?
 		(data+=Data)*
 	"}"";"
 ;
 
-Data  returns dataRepresentation::Data:
+Data returns dataRepresentation::Data:
 	MeasurementData |
 	NonMeasurementData
 ;
 
-MeasurementData  returns dataRepresentation::MeasurementData:
-	name=ID "as" dataType=DataType "in" unit=UNIT ("with" "identifier" ID=STRING)?
-	("adjusted" "by" ":" adjustments+=DataAdjustement ("," adjustments+=DataAdjustement)*)? (description=STRING)? ";"
+MeasurementData returns dataRepresentation::MeasurementData:
+	name=ID "as" dataType=DataType "in" unit=UNIT ("with" "identifier" ":" ID=STRING)?
+	("adjusted" "by" ":" adjustments+=DataAdjustment ("," adjustments+=DataAdjustment)*)? (description=STRING)? ";"
 ;
 
-NonMeasurementData  returns dataRepresentation::NonMeasurementData:
-	name=ID "as" dataType=DataType "constant""=" constant=BOOLEAN "value""=" value=STRING ("with" "identifier" ID=STRING)? (description=STRING)? ";"
+NonMeasurementData returns dataRepresentation::NonMeasurementData:
+	name=ID "as" dataType=DataType "constant" "=" constant=BOOLEAN "value" "=" value=STRING ("with" "identifier" ":" ID=STRING)? (description=STRING)? ";"
 ;
 
-enum DataType   returns dataRepresentation::DataType:
+enum DataType returns dataRepresentation::DataType:
 	SIGNED_CHAR |
 	UNSIGNED_CHAR |
 	SIGNED_SHORT |
@@ -86,24 +90,24 @@ enum DataType   returns dataRepresentation::DataType:
 	LONG_DOUBLE
 ;
 
-DataAdjustement  returns dataRepresentation::DataAdjustment:
+DataAdjustment returns dataRepresentation::DataAdjustment:
 	DataRange |
 	DataConversion
 ;
 
-DataRange  returns dataRepresentation::DataRange:
-	"with" "range" range=Interval";"
+DataRange returns dataRepresentation::DataRange:
+	"with" "range" range=Interval ";"
 ;
 
-Interval  returns dataRepresentation::Interval:
+Interval returns dataRepresentation::Interval:
 	lowerBound=DOUBLE"..."upperBound=DOUBLE
 ;
 
-DataConversion  returns dataRepresentation::DataConversion:
+DataConversion returns dataRepresentation::DataConversion:
 	LinearDataConversion
 ;
 
-LinearDataConversion  returns dataRepresentation::LinearDataConversion:	
+LinearDataConversion returns dataRepresentation::LinearDataConversion:	
 	(
 		"with" "scaling factor"":" scalingFactor=DOUBLE "and" "offset"":"offset=DOUBLE |
 		"linear mapping" "[" fromInterval=Interval"]" "=>" "["toInterval=Interval"]" 

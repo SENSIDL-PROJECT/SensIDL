@@ -2,9 +2,7 @@
  */
 package de.fzi.sensidl.design.sensidl.dataRepresentation;
 
-import de.fzi.sensidl.design.sensidl.DescribableElement;
 import de.fzi.sensidl.design.sensidl.NamedElement;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -26,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface DataSet extends NamedElement, DescribableElement {
+public interface DataSet extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Sensor Data Description</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription#getDataSets <em>Data Sets</em>}'.

@@ -5,8 +5,8 @@ package de.fzi.sensidl.language.serializer;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import de.fzi.sensidl.design.sensidl.EncodingSettings;
 import de.fzi.sensidl.design.sensidl.SensorInterface;
-import de.fzi.sensidl.design.sensidl.SensorMetaInformation;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
@@ -58,11 +58,11 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 				return; 
 			}
 		else if(semanticObject.eClass().getEPackage() == sensidlPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
+			case sensidlPackage.ENCODING_SETTINGS:
+				sequence_EncodingSettings(context, (EncodingSettings) semanticObject); 
+				return; 
 			case sensidlPackage.SENSOR_INTERFACE:
 				sequence_SensorInterface(context, (SensorInterface) semanticObject); 
-				return; 
-			case sensidlPackage.SENSOR_META_INFORMATION:
-				sequence_SensorMetaInformation(context, (SensorMetaInformation) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
@@ -79,9 +79,18 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name=ID description=STRING? ID=STRING? subDataSets+=DataSet? data+=Data*)
+	 *     (name=ID ID=STRING? description=STRING? subDataSets+=DataSet? data+=Data*)
 	 */
 	protected void sequence_DataSet(EObject context, DataSet semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (coding=Coding endianness=Endianness alignment=INT ID=STRING?)
+	 */
+	protected void sequence_EncodingSettings(EObject context, EncodingSettings semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -111,7 +120,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *         dataType=DataType 
 	 *         unit=UNIT 
 	 *         ID=STRING? 
-	 *         (adjustments+=DataAdjustement adjustments+=DataAdjustement*)? 
+	 *         (adjustments+=DataAdjustment adjustments+=DataAdjustment*)? 
 	 *         description=STRING?
 	 *     )
 	 */
@@ -138,7 +147,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name=ID description=STRING? ID=STRING? dataSets+=DataSet*)
+	 *     (ID=STRING? dataSets+=DataSet*)
 	 */
 	protected void sequence_SensorDataDescription(EObject context, SensorDataDescription semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -147,18 +156,9 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name=ID description=STRING? ID=STRING? metaInformation=SensorMetaInformation dataDescription=SensorDataDescription)
+	 *     (name=ID description=STRING? ID=STRING? encodingSettings=EncodingSettings dataDescription=SensorDataDescription)
 	 */
 	protected void sequence_SensorInterface(EObject context, SensorInterface semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (coding=Coding endianness=Endianness alignment=Alignment)
-	 */
-	protected void sequence_SensorMetaInformation(EObject context, SensorMetaInformation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 }

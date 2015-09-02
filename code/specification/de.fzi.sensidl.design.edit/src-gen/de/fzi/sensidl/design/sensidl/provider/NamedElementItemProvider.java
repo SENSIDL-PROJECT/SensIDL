@@ -44,6 +44,7 @@ public class NamedElementItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -62,6 +63,28 @@ public class NamedElementItemProvider
 				 getString("_UI_NamedElement_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_name_feature", "_UI_NamedElement_type"),
 				 sensidlPackage.Literals.NAMED_ELEMENT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NamedElement_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_description_feature", "_UI_NamedElement_type"),
+				 sensidlPackage.Literals.NAMED_ELEMENT__DESCRIPTION,
 				 true,
 				 false,
 				 false,
@@ -98,6 +121,7 @@ public class NamedElementItemProvider
 
 		switch (notification.getFeatureID(NamedElement.class)) {
 			case sensidlPackage.NAMED_ELEMENT__NAME:
+			case sensidlPackage.NAMED_ELEMENT__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

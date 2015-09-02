@@ -2,15 +2,11 @@
  */
 package de.fzi.sensidl.design.sensidl.dataRepresentation.util;
 
-import de.fzi.sensidl.design.sensidl.DescribableElement;
 import de.fzi.sensidl.design.sensidl.IdentifiableElement;
 import de.fzi.sensidl.design.sensidl.NamedElement;
-
 import de.fzi.sensidl.design.sensidl.dataRepresentation.*;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
 /**
@@ -81,7 +77,6 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 				DataSet dataSet = (DataSet)theEObject;
 				T result = caseDataSet(dataSet);
 				if (result == null) result = caseNamedElement(dataSet);
-				if (result == null) result = caseDescribableElement(dataSet);
 				if (result == null) result = caseIdentifiableElement(dataSet);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -90,7 +85,6 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 				Data data = (Data)theEObject;
 				T result = caseData(data);
 				if (result == null) result = caseNamedElement(data);
-				if (result == null) result = caseDescribableElement(data);
 				if (result == null) result = caseIdentifiableElement(data);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -100,7 +94,6 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 				T result = caseMeasurementData(measurementData);
 				if (result == null) result = caseData(measurementData);
 				if (result == null) result = caseNamedElement(measurementData);
-				if (result == null) result = caseDescribableElement(measurementData);
 				if (result == null) result = caseIdentifiableElement(measurementData);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -110,7 +103,6 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 				T result = caseNonMeasurementData(nonMeasurementData);
 				if (result == null) result = caseData(nonMeasurementData);
 				if (result == null) result = caseNamedElement(nonMeasurementData);
-				if (result == null) result = caseDescribableElement(nonMeasurementData);
 				if (result == null) result = caseIdentifiableElement(nonMeasurementData);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -335,21 +327,6 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedElement(NamedElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Describable Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Describable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDescribableElement(DescribableElement object) {
 		return null;
 	}
 

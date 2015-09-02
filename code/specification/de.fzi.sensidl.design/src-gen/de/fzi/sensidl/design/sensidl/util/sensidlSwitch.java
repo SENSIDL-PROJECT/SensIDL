@@ -79,18 +79,10 @@ public class sensidlSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case sensidlPackage.DESCRIBABLE_ELEMENT: {
-				DescribableElement describableElement = (DescribableElement)theEObject;
-				T result = caseDescribableElement(describableElement);
-				if (result == null) result = caseIdentifiableElement(describableElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case sensidlPackage.SENSOR_INTERFACE: {
 				SensorInterface sensorInterface = (SensorInterface)theEObject;
 				T result = caseSensorInterface(sensorInterface);
 				if (result == null) result = caseNamedElement(sensorInterface);
-				if (result == null) result = caseDescribableElement(sensorInterface);
 				if (result == null) result = caseIdentifiableElement(sensorInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -133,21 +125,6 @@ public class sensidlSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedElement(NamedElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Describable Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Describable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDescribableElement(DescribableElement object) {
 		return null;
 	}
 

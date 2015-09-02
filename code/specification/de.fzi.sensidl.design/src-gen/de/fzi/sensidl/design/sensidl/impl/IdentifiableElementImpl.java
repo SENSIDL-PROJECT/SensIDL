@@ -6,11 +6,10 @@ import de.fzi.sensidl.design.sensidl.IdentifiableElement;
 import de.fzi.sensidl.design.sensidl.sensidlPackage;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,10 +48,11 @@ public abstract class IdentifiableElementImpl extends MinimalEObjectImpl.Contain
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected IdentifiableElementImpl() {
 		super();
+		setID(EcoreUtil.generateUUID());
 	}
 
 	/**

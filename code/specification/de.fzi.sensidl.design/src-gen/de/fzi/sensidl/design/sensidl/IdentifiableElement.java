@@ -32,7 +32,8 @@ public interface IdentifiableElement extends EObject {
 	 * @return the value of the '<em>ID</em>' attribute.
 	 * @see #setID(String)
 	 * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getIdentifiableElement_ID()
-	 * @model required="true"
+	 * @model id="true" ordered="false"
+	 *        extendedMetaData="name='ID' namespace='http://fzi.de/sensidl/design/1.0'"
 	 * @generated
 	 */
 	String getID();

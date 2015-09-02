@@ -76,10 +76,6 @@ public class sensidlAdapterFactory extends AdapterFactoryImpl {
 				return createNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseDescribableElement(DescribableElement object) {
-				return createDescribableElementAdapter();
-			}
-			@Override
 			public Adapter caseSensorInterface(SensorInterface object) {
 				return createSensorInterfaceAdapter();
 			}
@@ -132,20 +128,6 @@ public class sensidlAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNamedElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.DescribableElement <em>Describable Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.fzi.sensidl.design.sensidl.DescribableElement
-	 * @generated
-	 */
-	public Adapter createDescribableElementAdapter() {
 		return null;
 	}
 

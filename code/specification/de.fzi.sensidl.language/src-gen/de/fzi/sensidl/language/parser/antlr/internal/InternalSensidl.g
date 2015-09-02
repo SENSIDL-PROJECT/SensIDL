@@ -45,7 +45,7 @@ import de.fzi.sensidl.language.services.SensidlGrammarAccess;
     
     @Override
     protected String getFirstRuleName() {
-    	return "NamedElement";	
+    	return "IdentifiableElement";	
    	}
    	
    	@Override
@@ -60,6 +60,76 @@ import de.fzi.sensidl.language.services.SensidlGrammarAccess;
         appendSkippedTokens();
     } 
 }
+
+
+
+
+// Entry rule entryRuleIdentifiableElement
+entryRuleIdentifiableElement returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getIdentifiableElementRule()); }
+	 iv_ruleIdentifiableElement=ruleIdentifiableElement 
+	 { $current=$iv_ruleIdentifiableElement.current; } 
+	 EOF 
+;
+
+// Rule IdentifiableElement
+ruleIdentifiableElement returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getIdentifiableElementAccess().getNamedElementParserRuleCall_0()); 
+    }
+    this_NamedElement_0=ruleNamedElement
+    { 
+        $current = $this_NamedElement_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getIdentifiableElementAccess().getEncodingSettingsParserRuleCall_1()); 
+    }
+    this_EncodingSettings_1=ruleEncodingSettings
+    { 
+        $current = $this_EncodingSettings_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getIdentifiableElementAccess().getSensorDataDescriptionParserRuleCall_2()); 
+    }
+    this_SensorDataDescription_2=ruleSensorDataDescription
+    { 
+        $current = $this_SensorDataDescription_2.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getIdentifiableElementAccess().getDataAdjustmentParserRuleCall_3()); 
+    }
+    this_DataAdjustment_3=ruleDataAdjustment
+    { 
+        $current = $this_DataAdjustment_3.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getIdentifiableElementAccess().getIntervalParserRuleCall_4()); 
+    }
+    this_Interval_4=ruleInterval
+    { 
+        $current = $this_Interval_4.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
 
 
 
@@ -90,31 +160,21 @@ ruleNamedElement returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getNamedElementAccess().getSensorDataDescriptionParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getNamedElementAccess().getDataSetParserRuleCall_1()); 
     }
-    this_SensorDataDescription_1=ruleSensorDataDescription
+    this_DataSet_1=ruleDataSet
     { 
-        $current = $this_SensorDataDescription_1.current; 
+        $current = $this_DataSet_1.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getNamedElementAccess().getDataSetParserRuleCall_2()); 
+        newCompositeNode(grammarAccess.getNamedElementAccess().getDataParserRuleCall_2()); 
     }
-    this_DataSet_2=ruleDataSet
+    this_Data_2=ruleData
     { 
-        $current = $this_DataSet_2.current; 
-        afterParserOrEnumRuleCall();
-    }
-
-    |
-    { 
-        newCompositeNode(grammarAccess.getNamedElementAccess().getDataParserRuleCall_3()); 
-    }
-    this_Data_3=ruleData
-    { 
-        $current = $this_Data_3.current; 
+        $current = $this_Data_2.current; 
         afterParserOrEnumRuleCall();
     }
 )
@@ -186,11 +246,15 @@ ruleSensorInterface returns [EObject current=null]
     {
     	newLeafNode(otherlv_4, grammarAccess.getSensorInterfaceAccess().getIdentifierKeyword_3_1());
     }
+	otherlv_5=':' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getSensorInterfaceAccess().getColonKeyword_3_2());
+    }
 (
 (
-		lv_ID_5_0=RULE_STRING
+		lv_ID_6_0=RULE_STRING
 		{
-			newLeafNode(lv_ID_5_0, grammarAccess.getSensorInterfaceAccess().getIDSTRINGTerminalRuleCall_3_2_0()); 
+			newLeafNode(lv_ID_6_0, grammarAccess.getSensorInterfaceAccess().getIDSTRINGTerminalRuleCall_3_3_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -199,29 +263,29 @@ ruleSensorInterface returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"ID",
-        		lv_ID_5_0, 
+        		lv_ID_6_0, 
         		"STRING");
 	    }
 
 )
-))?	otherlv_6='{' 
+))?	otherlv_7='{' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getSensorInterfaceAccess().getLeftCurlyBracketKeyword_4());
+    	newLeafNode(otherlv_7, grammarAccess.getSensorInterfaceAccess().getLeftCurlyBracketKeyword_4());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSensorInterfaceAccess().getMetaInformationSensorMetaInformationParserRuleCall_5_0()); 
+	        newCompositeNode(grammarAccess.getSensorInterfaceAccess().getEncodingSettingsEncodingSettingsParserRuleCall_5_0()); 
 	    }
-		lv_metaInformation_7_0=ruleSensorMetaInformation		{
+		lv_encodingSettings_8_0=ruleEncodingSettings		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSensorInterfaceRule());
 	        }
        		set(
        			$current, 
-       			"metaInformation",
-        		lv_metaInformation_7_0, 
-        		"SensorMetaInformation");
+       			"encodingSettings",
+        		lv_encodingSettings_8_0, 
+        		"EncodingSettings");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -231,26 +295,26 @@ ruleSensorInterface returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getSensorInterfaceAccess().getDataDescriptionSensorDataDescriptionParserRuleCall_6_0()); 
 	    }
-		lv_dataDescription_8_0=ruleSensorDataDescription		{
+		lv_dataDescription_9_0=ruleSensorDataDescription		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSensorInterfaceRule());
 	        }
        		set(
        			$current, 
        			"dataDescription",
-        		lv_dataDescription_8_0, 
+        		lv_dataDescription_9_0, 
         		"SensorDataDescription");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_9='}' 
+)	otherlv_10='}' 
     {
-    	newLeafNode(otherlv_9, grammarAccess.getSensorInterfaceAccess().getRightCurlyBracketKeyword_7());
+    	newLeafNode(otherlv_10, grammarAccess.getSensorInterfaceAccess().getRightCurlyBracketKeyword_7());
     }
-	otherlv_10=';' 
+	otherlv_11=';' 
     {
-    	newLeafNode(otherlv_10, grammarAccess.getSensorInterfaceAccess().getSemicolonKeyword_8());
+    	newLeafNode(otherlv_11, grammarAccess.getSensorInterfaceAccess().getSemicolonKeyword_8());
     }
 )
 ;
@@ -259,32 +323,32 @@ ruleSensorInterface returns [EObject current=null]
 
 
 
-// Entry rule entryRuleSensorMetaInformation
-entryRuleSensorMetaInformation returns [EObject current=null] 
+// Entry rule entryRuleEncodingSettings
+entryRuleEncodingSettings returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getSensorMetaInformationRule()); }
-	 iv_ruleSensorMetaInformation=ruleSensorMetaInformation 
-	 { $current=$iv_ruleSensorMetaInformation.current; } 
+	{ newCompositeNode(grammarAccess.getEncodingSettingsRule()); }
+	 iv_ruleEncodingSettings=ruleEncodingSettings 
+	 { $current=$iv_ruleEncodingSettings.current; } 
 	 EOF 
 ;
 
-// Rule SensorMetaInformation
-ruleSensorMetaInformation returns [EObject current=null] 
+// Rule EncodingSettings
+ruleEncodingSettings returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 (	otherlv_0='encoding' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getSensorMetaInformationAccess().getEncodingKeyword_0());
+    	newLeafNode(otherlv_0, grammarAccess.getEncodingSettingsAccess().getEncodingKeyword_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSensorMetaInformationAccess().getCodingCodingEnumRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getEncodingSettingsAccess().getCodingCodingEnumRuleCall_1_0()); 
 	    }
 		lv_coding_1_0=ruleCoding		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getSensorMetaInformationRule());
+	            $current = createModelElementForParent(grammarAccess.getEncodingSettingsRule());
 	        }
        		set(
        			$current, 
@@ -297,16 +361,16 @@ ruleSensorMetaInformation returns [EObject current=null]
 )
 )	otherlv_2='with' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getSensorMetaInformationAccess().getWithKeyword_2());
+    	newLeafNode(otherlv_2, grammarAccess.getEncodingSettingsAccess().getWithKeyword_2());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSensorMetaInformationAccess().getEndiannessEndiannessEnumRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getEncodingSettingsAccess().getEndiannessEndiannessEnumRuleCall_3_0()); 
 	    }
 		lv_endianness_3_0=ruleEndianness		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getSensorMetaInformationRule());
+	            $current = createModelElementForParent(grammarAccess.getEncodingSettingsRule());
 	        }
        		set(
        			$current, 
@@ -319,29 +383,59 @@ ruleSensorMetaInformation returns [EObject current=null]
 )
 )	otherlv_4='alignment' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getSensorMetaInformationAccess().getAlignmentKeyword_4());
+    	newLeafNode(otherlv_4, grammarAccess.getEncodingSettingsAccess().getAlignmentKeyword_4());
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getSensorMetaInformationAccess().getAlignmentAlignmentEnumRuleCall_5_0()); 
-	    }
-		lv_alignment_5_0=ruleAlignment		{
+		lv_alignment_5_0=RULE_INT
+		{
+			newLeafNode(lv_alignment_5_0, grammarAccess.getEncodingSettingsAccess().getAlignmentINTTerminalRuleCall_5_0()); 
+		}
+		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getSensorMetaInformationRule());
+	            $current = createModelElement(grammarAccess.getEncodingSettingsRule());
 	        }
-       		set(
+       		setWithLastConsumed(
        			$current, 
        			"alignment",
         		lv_alignment_5_0, 
-        		"Alignment");
-	        afterParserOrEnumRuleCall();
+        		"INT");
 	    }
 
 )
-)	otherlv_6=';' 
+)(	otherlv_6='with' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getSensorMetaInformationAccess().getSemicolonKeyword_6());
+    	newLeafNode(otherlv_6, grammarAccess.getEncodingSettingsAccess().getWithKeyword_6_0());
+    }
+	otherlv_7='identifier' 
+    {
+    	newLeafNode(otherlv_7, grammarAccess.getEncodingSettingsAccess().getIdentifierKeyword_6_1());
+    }
+	otherlv_8=':' 
+    {
+    	newLeafNode(otherlv_8, grammarAccess.getEncodingSettingsAccess().getColonKeyword_6_2());
+    }
+(
+(
+		lv_ID_9_0=RULE_STRING
+		{
+			newLeafNode(lv_ID_9_0, grammarAccess.getEncodingSettingsAccess().getIDSTRINGTerminalRuleCall_6_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getEncodingSettingsRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"ID",
+        		lv_ID_9_0, 
+        		"STRING");
+	    }
+
+)
+))?	otherlv_10=';' 
+    {
+    	newLeafNode(otherlv_10, grammarAccess.getEncodingSettingsAccess().getSemicolonKeyword_7());
     }
 )
 ;
@@ -369,54 +463,28 @@ ruleSensorDataDescription returns [EObject current=null]
     	newLeafNode(otherlv_0, grammarAccess.getSensorDataDescriptionAccess().getSensorDataKeyword_0());
     }
 (
-(
-		lv_name_1_0=RULE_ID
-		{
-			newLeafNode(lv_name_1_0, grammarAccess.getSensorDataDescriptionAccess().getNameIDTerminalRuleCall_1_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getSensorDataDescriptionRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"name",
-        		lv_name_1_0, 
-        		"ID");
-	    }
-
-)
-)(
-(
-		lv_description_2_0=RULE_STRING
-		{
-			newLeafNode(lv_description_2_0, grammarAccess.getSensorDataDescriptionAccess().getDescriptionSTRINGTerminalRuleCall_2_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getSensorDataDescriptionRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"description",
-        		lv_description_2_0, 
-        		"STRING");
-	    }
-
-)
-)?(	otherlv_3='with' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getSensorDataDescriptionAccess().getWithKeyword_3_0());
+        $current = forceCreateModelElement(
+            grammarAccess.getSensorDataDescriptionAccess().getSensorDataDescriptionAction_1(),
+            $current);
     }
-	otherlv_4='identifier' 
+)(	otherlv_2='with' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getSensorDataDescriptionAccess().getIdentifierKeyword_3_1());
+    	newLeafNode(otherlv_2, grammarAccess.getSensorDataDescriptionAccess().getWithKeyword_2_0());
+    }
+	otherlv_3='identifier' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getSensorDataDescriptionAccess().getIdentifierKeyword_2_1());
+    }
+	otherlv_4=':' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getSensorDataDescriptionAccess().getColonKeyword_2_2());
     }
 (
 (
 		lv_ID_5_0=RULE_STRING
 		{
-			newLeafNode(lv_ID_5_0, grammarAccess.getSensorDataDescriptionAccess().getIDSTRINGTerminalRuleCall_3_2_0()); 
+			newLeafNode(lv_ID_5_0, grammarAccess.getSensorDataDescriptionAccess().getIDSTRINGTerminalRuleCall_2_3_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -432,12 +500,12 @@ ruleSensorDataDescription returns [EObject current=null]
 )
 ))?	otherlv_6='{' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getSensorDataDescriptionAccess().getLeftCurlyBracketKeyword_4());
+    	newLeafNode(otherlv_6, grammarAccess.getSensorDataDescriptionAccess().getLeftCurlyBracketKeyword_3());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSensorDataDescriptionAccess().getDataSetsDataSetParserRuleCall_5_0()); 
+	        newCompositeNode(grammarAccess.getSensorDataDescriptionAccess().getDataSetsDataSetParserRuleCall_4_0()); 
 	    }
 		lv_dataSets_7_0=ruleDataSet		{
 	        if ($current==null) {
@@ -454,11 +522,11 @@ ruleSensorDataDescription returns [EObject current=null]
 )
 )*	otherlv_8='}' 
     {
-    	newLeafNode(otherlv_8, grammarAccess.getSensorDataDescriptionAccess().getRightCurlyBracketKeyword_6());
+    	newLeafNode(otherlv_8, grammarAccess.getSensorDataDescriptionAccess().getRightCurlyBracketKeyword_5());
     }
 	otherlv_9=';' 
     {
-    	newLeafNode(otherlv_9, grammarAccess.getSensorDataDescriptionAccess().getSemicolonKeyword_7());
+    	newLeafNode(otherlv_9, grammarAccess.getSensorDataDescriptionAccess().getSemicolonKeyword_6());
     }
 )
 ;
@@ -503,37 +571,19 @@ ruleDataSet returns [EObject current=null]
 	    }
 
 )
-)(
-(
-		lv_description_2_0=RULE_STRING
-		{
-			newLeafNode(lv_description_2_0, grammarAccess.getDataSetAccess().getDescriptionSTRINGTerminalRuleCall_2_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getDataSetRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"description",
-        		lv_description_2_0, 
-        		"STRING");
-	    }
-
-)
-)?(	otherlv_3='with' 
+)(	otherlv_2='with' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getDataSetAccess().getWithKeyword_3_0());
+    	newLeafNode(otherlv_2, grammarAccess.getDataSetAccess().getWithKeyword_2_0());
     }
-	otherlv_4='identifier' 
+	otherlv_3='identifier' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getDataSetAccess().getIdentifierKeyword_3_1());
+    	newLeafNode(otherlv_3, grammarAccess.getDataSetAccess().getIdentifierKeyword_2_1());
     }
 (
 (
-		lv_ID_5_0=RULE_STRING
+		lv_ID_4_0=RULE_STRING
 		{
-			newLeafNode(lv_ID_5_0, grammarAccess.getDataSetAccess().getIDSTRINGTerminalRuleCall_3_2_0()); 
+			newLeafNode(lv_ID_4_0, grammarAccess.getDataSetAccess().getIDSTRINGTerminalRuleCall_2_2_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -542,12 +592,30 @@ ruleDataSet returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"ID",
-        		lv_ID_5_0, 
+        		lv_ID_4_0, 
         		"STRING");
 	    }
 
 )
-))?	otherlv_6='{' 
+))?(
+(
+		lv_description_5_0=RULE_STRING
+		{
+			newLeafNode(lv_description_5_0, grammarAccess.getDataSetAccess().getDescriptionSTRINGTerminalRuleCall_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDataSetRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"description",
+        		lv_description_5_0, 
+        		"STRING");
+	    }
+
+)
+)?	otherlv_6='{' 
     {
     	newLeafNode(otherlv_6, grammarAccess.getDataSetAccess().getLeftCurlyBracketKeyword_4());
     }
@@ -726,11 +794,15 @@ ruleMeasurementData returns [EObject current=null]
     {
     	newLeafNode(otherlv_6, grammarAccess.getMeasurementDataAccess().getIdentifierKeyword_5_1());
     }
+	otherlv_7=':' 
+    {
+    	newLeafNode(otherlv_7, grammarAccess.getMeasurementDataAccess().getColonKeyword_5_2());
+    }
 (
 (
-		lv_ID_7_0=RULE_STRING
+		lv_ID_8_0=RULE_STRING
 		{
-			newLeafNode(lv_ID_7_0, grammarAccess.getMeasurementDataAccess().getIDSTRINGTerminalRuleCall_5_2_0()); 
+			newLeafNode(lv_ID_8_0, grammarAccess.getMeasurementDataAccess().getIDSTRINGTerminalRuleCall_5_3_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -739,68 +811,68 @@ ruleMeasurementData returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"ID",
-        		lv_ID_7_0, 
+        		lv_ID_8_0, 
         		"STRING");
 	    }
 
 )
-))?(	otherlv_8='adjusted' 
+))?(	otherlv_9='adjusted' 
     {
-    	newLeafNode(otherlv_8, grammarAccess.getMeasurementDataAccess().getAdjustedKeyword_6_0());
+    	newLeafNode(otherlv_9, grammarAccess.getMeasurementDataAccess().getAdjustedKeyword_6_0());
     }
-	otherlv_9='by' 
+	otherlv_10='by' 
     {
-    	newLeafNode(otherlv_9, grammarAccess.getMeasurementDataAccess().getByKeyword_6_1());
+    	newLeafNode(otherlv_10, grammarAccess.getMeasurementDataAccess().getByKeyword_6_1());
     }
-	otherlv_10=':' 
+	otherlv_11=':' 
     {
-    	newLeafNode(otherlv_10, grammarAccess.getMeasurementDataAccess().getColonKeyword_6_2());
+    	newLeafNode(otherlv_11, grammarAccess.getMeasurementDataAccess().getColonKeyword_6_2());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataAdjustementParserRuleCall_6_3_0()); 
+	        newCompositeNode(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataAdjustmentParserRuleCall_6_3_0()); 
 	    }
-		lv_adjustments_11_0=ruleDataAdjustement		{
+		lv_adjustments_12_0=ruleDataAdjustment		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMeasurementDataRule());
 	        }
        		add(
        			$current, 
        			"adjustments",
-        		lv_adjustments_11_0, 
-        		"DataAdjustement");
+        		lv_adjustments_12_0, 
+        		"DataAdjustment");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	otherlv_12=',' 
+)(	otherlv_13=',' 
     {
-    	newLeafNode(otherlv_12, grammarAccess.getMeasurementDataAccess().getCommaKeyword_6_4_0());
+    	newLeafNode(otherlv_13, grammarAccess.getMeasurementDataAccess().getCommaKeyword_6_4_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataAdjustementParserRuleCall_6_4_1_0()); 
+	        newCompositeNode(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataAdjustmentParserRuleCall_6_4_1_0()); 
 	    }
-		lv_adjustments_13_0=ruleDataAdjustement		{
+		lv_adjustments_14_0=ruleDataAdjustment		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMeasurementDataRule());
 	        }
        		add(
        			$current, 
        			"adjustments",
-        		lv_adjustments_13_0, 
-        		"DataAdjustement");
+        		lv_adjustments_14_0, 
+        		"DataAdjustment");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 ))*)?(
 (
-		lv_description_14_0=RULE_STRING
+		lv_description_15_0=RULE_STRING
 		{
-			newLeafNode(lv_description_14_0, grammarAccess.getMeasurementDataAccess().getDescriptionSTRINGTerminalRuleCall_7_0()); 
+			newLeafNode(lv_description_15_0, grammarAccess.getMeasurementDataAccess().getDescriptionSTRINGTerminalRuleCall_7_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -809,14 +881,14 @@ ruleMeasurementData returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"description",
-        		lv_description_14_0, 
+        		lv_description_15_0, 
         		"STRING");
 	    }
 
 )
-)?	otherlv_15=';' 
+)?	otherlv_16=';' 
     {
-    	newLeafNode(otherlv_15, grammarAccess.getMeasurementDataAccess().getSemicolonKeyword_8());
+    	newLeafNode(otherlv_16, grammarAccess.getMeasurementDataAccess().getSemicolonKeyword_8());
     }
 )
 ;
@@ -939,11 +1011,15 @@ ruleNonMeasurementData returns [EObject current=null]
     {
     	newLeafNode(otherlv_10, grammarAccess.getNonMeasurementDataAccess().getIdentifierKeyword_9_1());
     }
+	otherlv_11=':' 
+    {
+    	newLeafNode(otherlv_11, grammarAccess.getNonMeasurementDataAccess().getColonKeyword_9_2());
+    }
 (
 (
-		lv_ID_11_0=RULE_STRING
+		lv_ID_12_0=RULE_STRING
 		{
-			newLeafNode(lv_ID_11_0, grammarAccess.getNonMeasurementDataAccess().getIDSTRINGTerminalRuleCall_9_2_0()); 
+			newLeafNode(lv_ID_12_0, grammarAccess.getNonMeasurementDataAccess().getIDSTRINGTerminalRuleCall_9_3_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -952,16 +1028,16 @@ ruleNonMeasurementData returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"ID",
-        		lv_ID_11_0, 
+        		lv_ID_12_0, 
         		"STRING");
 	    }
 
 )
 ))?(
 (
-		lv_description_12_0=RULE_STRING
+		lv_description_13_0=RULE_STRING
 		{
-			newLeafNode(lv_description_12_0, grammarAccess.getNonMeasurementDataAccess().getDescriptionSTRINGTerminalRuleCall_10_0()); 
+			newLeafNode(lv_description_13_0, grammarAccess.getNonMeasurementDataAccess().getDescriptionSTRINGTerminalRuleCall_10_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -970,14 +1046,14 @@ ruleNonMeasurementData returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"description",
-        		lv_description_12_0, 
+        		lv_description_13_0, 
         		"STRING");
 	    }
 
 )
-)?	otherlv_13=';' 
+)?	otherlv_14=';' 
     {
-    	newLeafNode(otherlv_13, grammarAccess.getNonMeasurementDataAccess().getSemicolonKeyword_11());
+    	newLeafNode(otherlv_14, grammarAccess.getNonMeasurementDataAccess().getSemicolonKeyword_11());
     }
 )
 ;
@@ -986,23 +1062,23 @@ ruleNonMeasurementData returns [EObject current=null]
 
 
 
-// Entry rule entryRuleDataAdjustement
-entryRuleDataAdjustement returns [EObject current=null] 
+// Entry rule entryRuleDataAdjustment
+entryRuleDataAdjustment returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getDataAdjustementRule()); }
-	 iv_ruleDataAdjustement=ruleDataAdjustement 
-	 { $current=$iv_ruleDataAdjustement.current; } 
+	{ newCompositeNode(grammarAccess.getDataAdjustmentRule()); }
+	 iv_ruleDataAdjustment=ruleDataAdjustment 
+	 { $current=$iv_ruleDataAdjustment.current; } 
 	 EOF 
 ;
 
-// Rule DataAdjustement
-ruleDataAdjustement returns [EObject current=null] 
+// Rule DataAdjustment
+ruleDataAdjustment returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 (
     { 
-        newCompositeNode(grammarAccess.getDataAdjustementAccess().getDataRangeParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getDataAdjustmentAccess().getDataRangeParserRuleCall_0()); 
     }
     this_DataRange_0=ruleDataRange
     { 
@@ -1012,7 +1088,7 @@ ruleDataAdjustement returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getDataAdjustementAccess().getDataConversionParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getDataAdjustmentAccess().getDataConversionParserRuleCall_1()); 
     }
     this_DataConversion_1=ruleDataConversion
     { 
@@ -1382,37 +1458,6 @@ ruleBOOLEAN returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()
     ;
 
 
-
-
-
-// Rule Alignment
-ruleAlignment returns [Enumerator current=null] 
-    @init { enterRule(); }
-    @after { leaveRule(); }:
-((	enumLiteral_0='_8BIT' 
-	{
-        $current = grammarAccess.getAlignmentAccess().get_8BITEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_0, grammarAccess.getAlignmentAccess().get_8BITEnumLiteralDeclaration_0()); 
-    }
-)
-    |(	enumLiteral_1='_16BIT' 
-	{
-        $current = grammarAccess.getAlignmentAccess().get_16BITEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_1, grammarAccess.getAlignmentAccess().get_16BITEnumLiteralDeclaration_1()); 
-    }
-)
-    |(	enumLiteral_2='_32BIT' 
-	{
-        $current = grammarAccess.getAlignmentAccess().get_32BITEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_2, grammarAccess.getAlignmentAccess().get_32BITEnumLiteralDeclaration_2()); 
-    }
-)
-    |(	enumLiteral_3='_64BIT' 
-	{
-        $current = grammarAccess.getAlignmentAccess().get_64BITEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_3, grammarAccess.getAlignmentAccess().get_64BITEnumLiteralDeclaration_3()); 
-    }
-));
 
 
 

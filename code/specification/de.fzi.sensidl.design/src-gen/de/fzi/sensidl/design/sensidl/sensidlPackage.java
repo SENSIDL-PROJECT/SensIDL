@@ -20,8 +20,14 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * <p>
+ * Main package for SensIDL.
+ * </p>
+ * <!-- end-model-doc -->
  * @see de.fzi.sensidl.design.sensidl.sensidlFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
  * @generated
  */
 public interface sensidlPackage extends EPackage {
@@ -123,13 +129,22 @@ public interface sensidlPackage extends EPackage {
 	int NAMED_ELEMENT__NAME = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__DESCRIPTION = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Named Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
+	int NAMED_ELEMENT_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Named Element</em>' class.
@@ -141,52 +156,6 @@ public interface sensidlPackage extends EPackage {
 	int NAMED_ELEMENT_OPERATION_COUNT = IDENTIFIABLE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.impl.DescribableElementImpl <em>Describable Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.fzi.sensidl.design.sensidl.impl.DescribableElementImpl
-	 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getDescribableElement()
-	 * @generated
-	 */
-	int DESCRIBABLE_ELEMENT = 2;
-
-	/**
-	 * The feature id for the '<em><b>ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIBABLE_ELEMENT__ID = IDENTIFIABLE_ELEMENT__ID;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIBABLE_ELEMENT__DESCRIPTION = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Describable Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIBABLE_ELEMENT_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Describable Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESCRIBABLE_ELEMENT_OPERATION_COUNT = IDENTIFIABLE_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.impl.SensorInterfaceImpl <em>Sensor Interface</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -194,7 +163,7 @@ public interface sensidlPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getSensorInterface()
 	 * @generated
 	 */
-	int SENSOR_INTERFACE = 3;
+	int SENSOR_INTERFACE = 2;
 
 	/**
 	 * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -221,7 +190,7 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_INTERFACE__DESCRIPTION = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int SENSOR_INTERFACE__DESCRIPTION = NAMED_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Encoding Settings</b></em>' containment reference.
@@ -230,7 +199,7 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_INTERFACE__ENCODING_SETTINGS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int SENSOR_INTERFACE__ENCODING_SETTINGS = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Data Description</b></em>' containment reference.
@@ -239,7 +208,7 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_INTERFACE__DATA_DESCRIPTION = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int SENSOR_INTERFACE__DATA_DESCRIPTION = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Sensor Interface</em>' class.
@@ -248,7 +217,7 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_INTERFACE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int SENSOR_INTERFACE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Sensor Interface</em>' class.
@@ -267,7 +236,7 @@ public interface sensidlPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getEncodingSettings()
 	 * @generated
 	 */
-	int ENCODING_SETTINGS = 4;
+	int ENCODING_SETTINGS = 3;
 
 	/**
 	 * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -340,7 +309,7 @@ public interface sensidlPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getCoding()
 	 * @generated
 	 */
-	int CODING = 5;
+	int CODING = 4;
 
 	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.Endianness <em>Endianness</em>}' enum.
@@ -350,7 +319,7 @@ public interface sensidlPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getEndianness()
 	 * @generated
 	 */
-	int ENDIANNESS = 6;
+	int ENDIANNESS = 5;
 
 	/**
 	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.IdentifiableElement <em>Identifiable Element</em>}'.
@@ -395,25 +364,15 @@ public interface sensidlPackage extends EPackage {
 	EAttribute getNamedElement_Name();
 
 	/**
-	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.DescribableElement <em>Describable Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Describable Element</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.DescribableElement
-	 * @generated
-	 */
-	EClass getDescribableElement();
-
-	/**
-	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.DescribableElement#getDescription <em>Description</em>}'.
+	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.NamedElement#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.DescribableElement#getDescription()
-	 * @see #getDescribableElement()
+	 * @see de.fzi.sensidl.design.sensidl.NamedElement#getDescription()
+	 * @see #getNamedElement()
 	 * @generated
 	 */
-	EAttribute getDescribableElement_Description();
+	EAttribute getNamedElement_Description();
 
 	/**
 	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.SensorInterface <em>Sensor Interface</em>}'.
@@ -581,22 +540,12 @@ public interface sensidlPackage extends EPackage {
 		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
 
 		/**
-		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.impl.DescribableElementImpl <em>Describable Element</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.fzi.sensidl.design.sensidl.impl.DescribableElementImpl
-		 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getDescribableElement()
-		 * @generated
-		 */
-		EClass DESCRIBABLE_ELEMENT = eINSTANCE.getDescribableElement();
-
-		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DESCRIBABLE_ELEMENT__DESCRIPTION = eINSTANCE.getDescribableElement_Description();
+		EAttribute NAMED_ELEMENT__DESCRIPTION = eINSTANCE.getNamedElement_Description();
 
 		/**
 		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.impl.SensorInterfaceImpl <em>Sensor Interface</em>}' class.

@@ -13,6 +13,7 @@ package de.fzi.sensidl.design.sensidl;
  * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.NamedElement#getName <em>Name</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.NamedElement#getDescription <em>Description</em>}</li>
  * </ul>
  *
  * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getNamedElement()
@@ -45,5 +46,31 @@ public interface NamedElement extends IdentifiableElement {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getNamedElement_Description()
+	 * @model
+	 * @generated
+	 */
+	String getDescription();
+
+	/**
+	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.NamedElement#getDescription <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
+	 * @generated
+	 */
+	void setDescription(String value);
 
 } // NamedElement

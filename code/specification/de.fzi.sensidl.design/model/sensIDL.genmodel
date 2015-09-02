@@ -21,9 +21,7 @@
     </genClasses>
     <genClasses image="false" ecoreClass="sensIDL.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//NamedElement/name"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="sensIDL.ecore#//DescribableElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//DescribableElement/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//NamedElement/description"/>
     </genClasses>
     <genClasses ecoreClass="sensIDL.ecore#//SensorInterface">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//SensorInterface/encodingSettings"/>

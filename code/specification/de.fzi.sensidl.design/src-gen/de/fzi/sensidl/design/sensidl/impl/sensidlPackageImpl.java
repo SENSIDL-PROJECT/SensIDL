@@ -3,7 +3,6 @@
 package de.fzi.sensidl.design.sensidl.impl;
 
 import de.fzi.sensidl.design.sensidl.Coding;
-import de.fzi.sensidl.design.sensidl.DescribableElement;
 import de.fzi.sensidl.design.sensidl.EncodingSettings;
 import de.fzi.sensidl.design.sensidl.Endianness;
 import de.fzi.sensidl.design.sensidl.IdentifiableElement;
@@ -40,13 +39,6 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * @generated
 	 */
 	private EClass namedElementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass describableElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -183,17 +175,8 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDescribableElement() {
-		return describableElementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDescribableElement_Description() {
-		return (EAttribute)describableElementEClass.getEStructuralFeatures().get(0);
+	public EAttribute getNamedElement_Description() {
+		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -319,9 +302,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
-
-		describableElementEClass = createEClass(DESCRIBABLE_ELEMENT);
-		createEAttribute(describableElementEClass, DESCRIBABLE_ELEMENT__DESCRIPTION);
+		createEAttribute(namedElementEClass, NAMED_ELEMENT__DESCRIPTION);
 
 		sensorInterfaceEClass = createEClass(SENSOR_INTERFACE);
 		createEReference(sensorInterfaceEClass, SENSOR_INTERFACE__ENCODING_SETTINGS);
@@ -373,20 +354,16 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 
 		// Add supertypes to classes
 		namedElementEClass.getESuperTypes().add(this.getIdentifiableElement());
-		describableElementEClass.getESuperTypes().add(this.getIdentifiableElement());
 		sensorInterfaceEClass.getESuperTypes().add(this.getNamedElement());
-		sensorInterfaceEClass.getESuperTypes().add(this.getDescribableElement());
 		encodingSettingsEClass.getESuperTypes().add(this.getIdentifiableElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(identifiableElementEClass, IdentifiableElement.class, "IdentifiableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIdentifiableElement_ID(), ecorePackage.getEString(), "ID", null, 1, 1, IdentifiableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getIdentifiableElement_ID(), ecorePackage.getEString(), "ID", null, 0, 1, IdentifiableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(describableElementEClass, DescribableElement.class, "DescribableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDescribableElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, DescribableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNamedElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sensorInterfaceEClass, SensorInterface.class, "SensorInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSensorInterface_EncodingSettings(), this.getEncodingSettings(), this.getEncodingSettings_SensorInterface(), "encodingSettings", null, 1, 1, SensorInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -409,6 +386,47 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
+		// http:///org/eclipse/emf/ecore/util/ExtendedMetaData
+		createExtendedMetaDataAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http:///org/eclipse/emf/ecore/util/ExtendedMetaData</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createExtendedMetaDataAnnotations() {
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";	
+		addAnnotation
+		  (getIdentifiableElement_ID(), 
+		   source, 
+		   new String[] {
+			 "name", "ID",
+			 "namespace", "http://fzi.de/sensidl/design/1.0"
+		   });
 	}
 
 } //sensidlPackageImpl

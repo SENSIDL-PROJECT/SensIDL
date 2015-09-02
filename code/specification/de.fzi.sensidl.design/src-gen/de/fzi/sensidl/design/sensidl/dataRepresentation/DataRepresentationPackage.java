@@ -23,6 +23,11 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * <p>
+ * Package for the data structure definition.
+ * </p>
+ * <!-- end-model-doc -->
  * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationFactory
  * @model kind="package"
  * @generated
@@ -150,7 +155,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_SET__DESCRIPTION = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int DATA_SET__DESCRIPTION = sensidlPackage.NAMED_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Sensor Data Description</b></em>' container reference.
@@ -159,7 +164,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_SET__SENSOR_DATA_DESCRIPTION = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int DATA_SET__SENSOR_DATA_DESCRIPTION = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Sub Data Sets</b></em>' containment reference list.
@@ -168,7 +173,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_SET__SUB_DATA_SETS = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int DATA_SET__SUB_DATA_SETS = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Data</b></em>' containment reference list.
@@ -177,7 +182,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_SET__DATA = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int DATA_SET__DATA = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Parent Data Set</b></em>' container reference.
@@ -186,7 +191,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_SET__PARENT_DATA_SET = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int DATA_SET__PARENT_DATA_SET = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Data Set</em>' class.
@@ -195,7 +200,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_SET_FEATURE_COUNT = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int DATA_SET_FEATURE_COUNT = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Data Set</em>' class.
@@ -241,7 +246,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA__DESCRIPTION = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int DATA__DESCRIPTION = sensidlPackage.NAMED_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Data Set</b></em>' container reference.
@@ -250,7 +255,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA__DATA_SET = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int DATA__DATA_SET = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Data Type</b></em>' attribute.
@@ -259,7 +264,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA__DATA_TYPE = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int DATA__DATA_TYPE = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Data</em>' class.
@@ -268,7 +273,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_FEATURE_COUNT = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int DATA_FEATURE_COUNT = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Data</em>' class.

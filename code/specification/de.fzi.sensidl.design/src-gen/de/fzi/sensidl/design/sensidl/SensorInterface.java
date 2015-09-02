@@ -21,7 +21,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
  * @model
  * @generated
  */
-public interface SensorInterface extends NamedElement, DescribableElement {
+public interface SensorInterface extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Encoding Settings</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.EncodingSettings#getSensorInterface <em>Sensor Interface</em>}'.
