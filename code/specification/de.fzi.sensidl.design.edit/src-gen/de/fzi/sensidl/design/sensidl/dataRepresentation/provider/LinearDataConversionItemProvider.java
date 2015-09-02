@@ -160,8 +160,10 @@ public class LinearDataConversionItemProvider extends DataConversionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		LinearDataConversion linearDataConversion = (LinearDataConversion)object;
-		return getString("_UI_LinearDataConversion_type") + " " + linearDataConversion.getScalingFactor();
+		String label = ((LinearDataConversion)object).getID();
+		return label == null || label.length() == 0 ?
+			getString("_UI_LinearDataConversion_type") :
+			getString("_UI_LinearDataConversion_type") + " " + label;
 	}
 	
 

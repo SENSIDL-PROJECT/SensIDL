@@ -95,26 +95,26 @@ public class sensidlItemProviderAdapterFactory extends sensidlAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link de.fzi.sensidl.design.sensidl.SensorMetaInformation} instances.
+	 * This keeps track of the one adapter used for all {@link de.fzi.sensidl.design.sensidl.EncodingSettings} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SensorMetaInformationItemProvider sensorMetaInformationItemProvider;
+	protected EncodingSettingsItemProvider encodingSettingsItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link de.fzi.sensidl.design.sensidl.SensorMetaInformation}.
+	 * This creates an adapter for a {@link de.fzi.sensidl.design.sensidl.EncodingSettings}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createSensorMetaInformationAdapter() {
-		if (sensorMetaInformationItemProvider == null) {
-			sensorMetaInformationItemProvider = new SensorMetaInformationItemProvider(this);
+	public Adapter createEncodingSettingsAdapter() {
+		if (encodingSettingsItemProvider == null) {
+			encodingSettingsItemProvider = new EncodingSettingsItemProvider(this);
 		}
 
-		return sensorMetaInformationItemProvider;
+		return encodingSettingsItemProvider;
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class sensidlItemProviderAdapterFactory extends sensidlAdapterFactory imp
 	 */
 	public void dispose() {
 		if (sensorInterfaceItemProvider != null) sensorInterfaceItemProvider.dispose();
-		if (sensorMetaInformationItemProvider != null) sensorMetaInformationItemProvider.dispose();
+		if (encodingSettingsItemProvider != null) encodingSettingsItemProvider.dispose();
 	}
 
 }

@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sensidl" nsURI="http://fzi.de/sensidl/design/1.0" nsPrefix="de.fzi.sensidl.design">
-  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IdentifiableElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SensorInterface" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="metaInformation" lowerBound="1"
-        eType="#//SensorMetaInformation" containment="true" eOpposite="#//SensorMetaInformation/sensorInterface"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//IdentifiableElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DescribableElement" abstract="true"
+      eSuperTypes="#//IdentifiableElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SensorInterface" eSuperTypes="#//NamedElement #//DescribableElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="encodingSettings" lowerBound="1"
+        eType="#//EncodingSettings" containment="true" eOpposite="#//EncodingSettings/sensorInterface"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataDescription" lowerBound="1"
         eType="#//dataRepresentation/SensorDataDescription" containment="true" eOpposite="#//dataRepresentation/SensorDataDescription/sensorInterface"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SensorMetaInformation">
+  <eClassifiers xsi:type="ecore:EClass" name="EncodingSettings" eSuperTypes="#//IdentifiableElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sensorInterface" lowerBound="1"
-        eType="#//SensorInterface" eOpposite="#//SensorInterface/metaInformation"/>
+        eType="#//SensorInterface" eOpposite="#//SensorInterface/encodingSettings"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="coding" lowerBound="1"
         eType="#//Coding"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="endianness" lowerBound="1"
         eType="#//Endianness"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="alignment" lowerBound="1"
-        eType="#//Alignment"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Coding">
     <eLiterals name="SENSIDL_BINARY"/>
@@ -30,21 +36,15 @@
     <eLiterals name="BIG_ENDIAN"/>
     <eLiterals name="LITTLE_ENDIAN" value="1"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Alignment">
-    <eLiterals name="_8BIT" literal="_8BIT"/>
-    <eLiterals name="_16BIT" value="1"/>
-    <eLiterals name="_32BIT" value="2"/>
-    <eLiterals name="_64BIT" value="3"/>
-  </eClassifiers>
   <eSubpackages name="dataRepresentation" nsURI="http://fzi.de/sensidl/design/representation/1.0"
       nsPrefix="de.fzi.sensidl.design.sensidl">
-    <eClassifiers xsi:type="ecore:EClass" name="SensorDataDescription" eSuperTypes="#//NamedElement">
+    <eClassifiers xsi:type="ecore:EClass" name="SensorDataDescription" eSuperTypes="#//IdentifiableElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="dataSets" upperBound="-1"
           eType="#//dataRepresentation/DataSet" containment="true" eOpposite="#//dataRepresentation/DataSet/sensorDataDescription"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sensorInterface" lowerBound="1"
           eType="#//SensorInterface" eOpposite="#//SensorInterface/dataDescription"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DataSet" eSuperTypes="#//NamedElement">
+    <eClassifiers xsi:type="ecore:EClass" name="DataSet" eSuperTypes="#//NamedElement #//DescribableElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sensorDataDescription"
           eType="#//dataRepresentation/SensorDataDescription" eOpposite="#//dataRepresentation/SensorDataDescription/dataSets"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="subDataSets" upperBound="-1"
@@ -54,7 +54,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="parentDataSet" eType="#//dataRepresentation/DataSet"
           eOpposite="#//dataRepresentation/DataSet/subDataSets"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Data" abstract="true" eSuperTypes="#//NamedElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Data" abstract="true" eSuperTypes="#//NamedElement #//DescribableElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="dataSet" eType="#//dataRepresentation/DataSet"
           eOpposite="#//dataRepresentation/DataSet/data"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" lowerBound="1"
@@ -75,7 +75,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DataAdjustment" abstract="true">
+    <eClassifiers xsi:type="ecore:EClass" name="DataAdjustment" abstract="true" eSuperTypes="#//IdentifiableElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="measurementData" eType="#//dataRepresentation/MeasurementData"
           eOpposite="#//dataRepresentation/MeasurementData/adjustments"/>
     </eClassifiers>
@@ -110,7 +110,7 @@
     <eClassifiers xsi:type="ecore:EDataType" name="Unit" instanceClassName="javax.measure.unit.Unit">
       <eTypeParameters name="Q"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Interval">
+    <eClassifiers xsi:type="ecore:EClass" name="Interval" eSuperTypes="#//IdentifiableElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" lowerBound="1"

@@ -2,9 +2,8 @@
  */
 package de.fzi.sensidl.design.sensidl.dataRepresentation;
 
-import de.fzi.sensidl.design.sensidl.NamedElement;
+import de.fzi.sensidl.design.sensidl.IdentifiableElement;
 import de.fzi.sensidl.design.sensidl.SensorInterface;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -24,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface SensorDataDescription extends NamedElement {
+public interface SensorDataDescription extends IdentifiableElement {
 	/**
 	 * Returns the value of the '<em><b>Data Sets</b></em>' containment reference list.
 	 * The list contents are of type {@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet}.

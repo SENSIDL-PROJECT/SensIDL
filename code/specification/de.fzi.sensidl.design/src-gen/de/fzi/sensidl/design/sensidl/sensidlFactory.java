@@ -31,13 +31,13 @@ public interface sensidlFactory extends EFactory {
 	SensorInterface createSensorInterface();
 
 	/**
-	 * Returns a new object of class '<em>Sensor Meta Information</em>'.
+	 * Returns a new object of class '<em>Encoding Settings</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Sensor Meta Information</em>'.
+	 * @return a new object of class '<em>Encoding Settings</em>'.
 	 * @generated
 	 */
-	SensorMetaInformation createSensorMetaInformation();
+	EncodingSettings createEncodingSettings();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -3,6 +3,7 @@
 package de.fzi.sensidl.design.sensidl.dataRepresentation.provider;
 
 
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
 import java.util.Collection;
 import java.util.List;
@@ -85,7 +86,10 @@ public class DataRangeItemProvider extends DataAdjustmentItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_DataRange_type");
+		String label = ((DataRange)object).getID();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DataRange_type") :
+			getString("_UI_DataRange_type") + " " + label;
 	}
 	
 

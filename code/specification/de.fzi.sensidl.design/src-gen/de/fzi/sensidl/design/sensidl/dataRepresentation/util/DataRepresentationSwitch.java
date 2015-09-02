@@ -2,6 +2,8 @@
  */
 package de.fzi.sensidl.design.sensidl.dataRepresentation.util;
 
+import de.fzi.sensidl.design.sensidl.DescribableElement;
+import de.fzi.sensidl.design.sensidl.IdentifiableElement;
 import de.fzi.sensidl.design.sensidl.NamedElement;
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.*;
@@ -71,7 +73,7 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 			case DataRepresentationPackage.SENSOR_DATA_DESCRIPTION: {
 				SensorDataDescription sensorDataDescription = (SensorDataDescription)theEObject;
 				T result = caseSensorDataDescription(sensorDataDescription);
-				if (result == null) result = caseNamedElement(sensorDataDescription);
+				if (result == null) result = caseIdentifiableElement(sensorDataDescription);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -79,6 +81,8 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 				DataSet dataSet = (DataSet)theEObject;
 				T result = caseDataSet(dataSet);
 				if (result == null) result = caseNamedElement(dataSet);
+				if (result == null) result = caseDescribableElement(dataSet);
+				if (result == null) result = caseIdentifiableElement(dataSet);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -86,6 +90,8 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 				Data data = (Data)theEObject;
 				T result = caseData(data);
 				if (result == null) result = caseNamedElement(data);
+				if (result == null) result = caseDescribableElement(data);
+				if (result == null) result = caseIdentifiableElement(data);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -94,6 +100,8 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 				T result = caseMeasurementData(measurementData);
 				if (result == null) result = caseData(measurementData);
 				if (result == null) result = caseNamedElement(measurementData);
+				if (result == null) result = caseDescribableElement(measurementData);
+				if (result == null) result = caseIdentifiableElement(measurementData);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -102,12 +110,15 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 				T result = caseNonMeasurementData(nonMeasurementData);
 				if (result == null) result = caseData(nonMeasurementData);
 				if (result == null) result = caseNamedElement(nonMeasurementData);
+				if (result == null) result = caseDescribableElement(nonMeasurementData);
+				if (result == null) result = caseIdentifiableElement(nonMeasurementData);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DataRepresentationPackage.DATA_ADJUSTMENT: {
 				DataAdjustment dataAdjustment = (DataAdjustment)theEObject;
 				T result = caseDataAdjustment(dataAdjustment);
+				if (result == null) result = caseIdentifiableElement(dataAdjustment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -115,6 +126,7 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 				DataRange dataRange = (DataRange)theEObject;
 				T result = caseDataRange(dataRange);
 				if (result == null) result = caseDataAdjustment(dataRange);
+				if (result == null) result = caseIdentifiableElement(dataRange);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -122,6 +134,7 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 				DataConversion dataConversion = (DataConversion)theEObject;
 				T result = caseDataConversion(dataConversion);
 				if (result == null) result = caseDataAdjustment(dataConversion);
+				if (result == null) result = caseIdentifiableElement(dataConversion);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -130,12 +143,14 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 				T result = caseLinearDataConversion(linearDataConversion);
 				if (result == null) result = caseDataConversion(linearDataConversion);
 				if (result == null) result = caseDataAdjustment(linearDataConversion);
+				if (result == null) result = caseIdentifiableElement(linearDataConversion);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DataRepresentationPackage.INTERVAL: {
 				Interval interval = (Interval)theEObject;
 				T result = caseInterval(interval);
+				if (result == null) result = caseIdentifiableElement(interval);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -294,6 +309,21 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiableElement(IdentifiableElement object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -305,6 +335,21 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedElement(NamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Describable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Describable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDescribableElement(DescribableElement object) {
 		return null;
 	}
 

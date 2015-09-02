@@ -3,8 +3,7 @@
 package de.fzi.sensidl.design.sensidl.provider;
 
 
-import de.fzi.sensidl.design.sensidl.Coding;
-import de.fzi.sensidl.design.sensidl.SensorMetaInformation;
+import de.fzi.sensidl.design.sensidl.IdentifiableElement;
 import de.fzi.sensidl.design.sensidl.sensidlPackage;
 
 import java.util.Collection;
@@ -27,12 +26,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link de.fzi.sensidl.design.sensidl.SensorMetaInformation} object.
+ * This is the item provider adapter for a {@link de.fzi.sensidl.design.sensidl.IdentifiableElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SensorMetaInformationItemProvider 
+public class IdentifiableElementItemProvider 
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -46,7 +45,7 @@ public class SensorMetaInformationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SensorMetaInformationItemProvider(AdapterFactory adapterFactory) {
+	public IdentifiableElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -61,88 +60,31 @@ public class SensorMetaInformationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCodingPropertyDescriptor(object);
-			addEndiannessPropertyDescriptor(object);
-			addAlignmentPropertyDescriptor(object);
+			addIDPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Coding feature.
+	 * This adds a property descriptor for the ID feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCodingPropertyDescriptor(Object object) {
+	protected void addIDPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SensorMetaInformation_coding_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SensorMetaInformation_coding_feature", "_UI_SensorMetaInformation_type"),
-				 sensidlPackage.Literals.SENSOR_META_INFORMATION__CODING,
+				 getString("_UI_IdentifiableElement_ID_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IdentifiableElement_ID_feature", "_UI_IdentifiableElement_type"),
+				 sensidlPackage.Literals.IDENTIFIABLE_ELEMENT__ID,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Endianness feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addEndiannessPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SensorMetaInformation_endianness_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SensorMetaInformation_endianness_feature", "_UI_SensorMetaInformation_type"),
-				 sensidlPackage.Literals.SENSOR_META_INFORMATION__ENDIANNESS,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Alignment feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addAlignmentPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SensorMetaInformation_alignment_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SensorMetaInformation_alignment_feature", "_UI_SensorMetaInformation_type"),
-				 sensidlPackage.Literals.SENSOR_META_INFORMATION__ALIGNMENT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns SensorMetaInformation.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SensorMetaInformation"));
 	}
 
 	/**
@@ -153,11 +95,10 @@ public class SensorMetaInformationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		Coding labelValue = ((SensorMetaInformation)object).getCoding();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((IdentifiableElement)object).getID();
 		return label == null || label.length() == 0 ?
-			getString("_UI_SensorMetaInformation_type") :
-			getString("_UI_SensorMetaInformation_type") + " " + label;
+			getString("_UI_IdentifiableElement_type") :
+			getString("_UI_IdentifiableElement_type") + " " + label;
 	}
 	
 
@@ -172,10 +113,8 @@ public class SensorMetaInformationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SensorMetaInformation.class)) {
-			case sensidlPackage.SENSOR_META_INFORMATION__CODING:
-			case sensidlPackage.SENSOR_META_INFORMATION__ENDIANNESS:
-			case sensidlPackage.SENSOR_META_INFORMATION__ALIGNMENT:
+		switch (notification.getFeatureID(IdentifiableElement.class)) {
+			case sensidlPackage.IDENTIFIABLE_ELEMENT__ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

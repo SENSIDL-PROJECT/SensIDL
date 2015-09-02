@@ -2,6 +2,7 @@
  */
 package de.fzi.sensidl.design.sensidl.dataRepresentation;
 
+import de.fzi.sensidl.design.sensidl.DescribableElement;
 import de.fzi.sensidl.design.sensidl.NamedElement;
 
 /**
@@ -21,7 +22,7 @@ import de.fzi.sensidl.design.sensidl.NamedElement;
  * @model abstract="true"
  * @generated
  */
-public interface Data extends NamedElement {
+public interface Data extends NamedElement, DescribableElement {
 	/**
 	 * Returns the value of the '<em><b>Data Set</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getData <em>Data</em>}'.

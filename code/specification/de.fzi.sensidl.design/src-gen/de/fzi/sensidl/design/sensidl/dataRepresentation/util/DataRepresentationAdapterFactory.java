@@ -2,6 +2,8 @@
  */
 package de.fzi.sensidl.design.sensidl.dataRepresentation.util;
 
+import de.fzi.sensidl.design.sensidl.DescribableElement;
+import de.fzi.sensidl.design.sensidl.IdentifiableElement;
 import de.fzi.sensidl.design.sensidl.NamedElement;
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.*;
@@ -110,8 +112,16 @@ public class DataRepresentationAdapterFactory extends AdapterFactoryImpl {
 				return createIntervalAdapter();
 			}
 			@Override
+			public Adapter caseIdentifiableElement(IdentifiableElement object) {
+				return createIdentifiableElementAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
+			}
+			@Override
+			public Adapter caseDescribableElement(DescribableElement object) {
+				return createDescribableElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -274,6 +284,20 @@ public class DataRepresentationAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.IdentifiableElement <em>Identifiable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.fzi.sensidl.design.sensidl.IdentifiableElement
+	 * @generated
+	 */
+	public Adapter createIdentifiableElementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -284,6 +308,20 @@ public class DataRepresentationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.DescribableElement <em>Describable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.fzi.sensidl.design.sensidl.DescribableElement
+	 * @generated
+	 */
+	public Adapter createDescribableElementAdapter() {
 		return null;
 	}
 

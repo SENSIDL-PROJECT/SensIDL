@@ -5,16 +5,12 @@ package de.fzi.sensidl.design.sensidl.dataRepresentation.impl;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataAdjustment;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
-
+import de.fzi.sensidl.design.sensidl.impl.IdentifiableElementImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
@@ -30,7 +26,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *
  * @generated
  */
-public abstract class DataAdjustmentImpl extends MinimalEObjectImpl.Container implements DataAdjustment {
+public abstract class DataAdjustmentImpl extends IdentifiableElementImpl implements DataAdjustment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

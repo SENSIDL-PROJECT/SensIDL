@@ -6,20 +6,14 @@ package de.fzi.sensidl.design.sensidl.dataRepresentation.provider;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationFactory;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
-
-import de.fzi.sensidl.design.sensidl.provider.NamedElementItemProvider;
+import de.fzi.sensidl.design.sensidl.provider.IdentifiableElementItemProvider;
 import de.fzi.sensidl.design.sensidl.provider.SensIDLEditPlugin;
-
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -29,7 +23,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SensorDataDescriptionItemProvider extends NamedElementItemProvider {
+public class SensorDataDescriptionItemProvider extends IdentifiableElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -104,7 +98,7 @@ public class SensorDataDescriptionItemProvider extends NamedElementItemProvider 
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SensorDataDescription)object).getName();
+		String label = ((SensorDataDescription)object).getID();
 		return label == null || label.length() == 0 ?
 			getString("_UI_SensorDataDescription_type") :
 			getString("_UI_SensorDataDescription_type") + " " + label;

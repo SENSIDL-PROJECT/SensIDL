@@ -16,26 +16,24 @@
       <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Endianness/BIG_ENDIAN"/>
       <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Endianness/LITTLE_ENDIAN"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="sensIDL.ecore#//Alignment">
-      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Alignment/_8BIT"/>
-      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Alignment/_16BIT"/>
-      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Alignment/_32BIT"/>
-      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Alignment/_64BIT"/>
-    </genEnums>
+    <genClasses image="false" ecoreClass="sensIDL.ecore#//IdentifiableElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//IdentifiableElement/ID"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="sensIDL.ecore#//NamedElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//NamedElement/ID"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//NamedElement/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//NamedElement/description"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="sensIDL.ecore#//DescribableElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//DescribableElement/description"/>
     </genClasses>
     <genClasses ecoreClass="sensIDL.ecore#//SensorInterface">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//SensorInterface/metaInformation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//SensorInterface/encodingSettings"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//SensorInterface/dataDescription"/>
     </genClasses>
-    <genClasses ecoreClass="sensIDL.ecore#//SensorMetaInformation">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//SensorMetaInformation/sensorInterface"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//SensorMetaInformation/coding"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//SensorMetaInformation/endianness"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//SensorMetaInformation/alignment"/>
+    <genClasses ecoreClass="sensIDL.ecore#//EncodingSettings">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//EncodingSettings/sensorInterface"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//EncodingSettings/coding"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//EncodingSettings/endianness"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//EncodingSettings/alignment"/>
     </genClasses>
     <nestedGenPackages prefix="DataRepresentation" basePackage="de.fzi.sensidl.design.sensidl"
         disposableProviderFactory="true" ecorePackage="sensIDL.ecore#//dataRepresentation">

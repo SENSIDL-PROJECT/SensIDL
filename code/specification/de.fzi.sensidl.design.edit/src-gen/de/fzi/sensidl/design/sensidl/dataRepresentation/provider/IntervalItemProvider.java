@@ -5,26 +5,16 @@ package de.fzi.sensidl.design.sensidl.dataRepresentation.provider;
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Interval;
-
+import de.fzi.sensidl.design.sensidl.provider.IdentifiableElementItemProvider;
 import de.fzi.sensidl.design.sensidl.provider.SensIDLEditPlugin;
-
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -34,13 +24,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class IntervalItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends IdentifiableElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -131,8 +115,10 @@ public class IntervalItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		Interval interval = (Interval)object;
-		return getString("_UI_Interval_type") + " " + interval.getLowerBound();
+		String label = ((Interval)object).getID();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Interval_type") :
+			getString("_UI_Interval_type") + " " + label;
 	}
 	
 

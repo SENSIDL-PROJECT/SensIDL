@@ -66,9 +66,23 @@ public class sensidlSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case sensidlPackage.IDENTIFIABLE_ELEMENT: {
+				IdentifiableElement identifiableElement = (IdentifiableElement)theEObject;
+				T result = caseIdentifiableElement(identifiableElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case sensidlPackage.NAMED_ELEMENT: {
 				NamedElement namedElement = (NamedElement)theEObject;
 				T result = caseNamedElement(namedElement);
+				if (result == null) result = caseIdentifiableElement(namedElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case sensidlPackage.DESCRIBABLE_ELEMENT: {
+				DescribableElement describableElement = (DescribableElement)theEObject;
+				T result = caseDescribableElement(describableElement);
+				if (result == null) result = caseIdentifiableElement(describableElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -76,17 +90,35 @@ public class sensidlSwitch<T> extends Switch<T> {
 				SensorInterface sensorInterface = (SensorInterface)theEObject;
 				T result = caseSensorInterface(sensorInterface);
 				if (result == null) result = caseNamedElement(sensorInterface);
+				if (result == null) result = caseDescribableElement(sensorInterface);
+				if (result == null) result = caseIdentifiableElement(sensorInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case sensidlPackage.SENSOR_META_INFORMATION: {
-				SensorMetaInformation sensorMetaInformation = (SensorMetaInformation)theEObject;
-				T result = caseSensorMetaInformation(sensorMetaInformation);
+			case sensidlPackage.ENCODING_SETTINGS: {
+				EncodingSettings encodingSettings = (EncodingSettings)theEObject;
+				T result = caseEncodingSettings(encodingSettings);
+				if (result == null) result = caseIdentifiableElement(encodingSettings);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			default: return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identifiable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiableElement(IdentifiableElement object) {
+		return null;
 	}
 
 	/**
@@ -101,6 +133,21 @@ public class sensidlSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedElement(NamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Describable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Describable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDescribableElement(DescribableElement object) {
 		return null;
 	}
 
@@ -120,17 +167,17 @@ public class sensidlSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Sensor Meta Information</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Encoding Settings</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Sensor Meta Information</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Encoding Settings</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSensorMetaInformation(SensorMetaInformation object) {
+	public T caseEncodingSettings(EncodingSettings object) {
 		return null;
 	}
 

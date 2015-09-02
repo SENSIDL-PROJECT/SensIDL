@@ -2,7 +2,7 @@
  */
 package de.fzi.sensidl.design.sensidl.dataRepresentation;
 
-import org.eclipse.emf.ecore.EObject;
+import de.fzi.sensidl.design.sensidl.IdentifiableElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface DataAdjustment extends EObject {
+public interface DataAdjustment extends IdentifiableElement {
 	/**
 	 * Returns the value of the '<em><b>Measurement Data</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData#getAdjustments <em>Adjustments</em>}'.

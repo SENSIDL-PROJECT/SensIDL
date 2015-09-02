@@ -1,31 +1,36 @@
 /**
  */
-package de.fzi.sensidl.design.sensidl.dataRepresentation.provider;
+package de.fzi.sensidl.design.sensidl.provider;
 
 
-import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion;
+import de.fzi.sensidl.design.sensidl.DescribableElement;
+import de.fzi.sensidl.design.sensidl.sensidlPackage;
+
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion} object.
+ * This is the item provider adapter for a {@link de.fzi.sensidl.design.sensidl.DescribableElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DataConversionItemProvider extends DataAdjustmentItemProvider {
+public class DescribableElementItemProvider extends IdentifiableElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataConversionItemProvider(AdapterFactory adapterFactory) {
+	public DescribableElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -40,19 +45,31 @@ public class DataConversionItemProvider extends DataAdjustmentItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns DataConversion.gif.
+	 * This adds a property descriptor for the Description feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DataConversion"));
+	protected void addDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DescribableElement_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DescribableElement_description_feature", "_UI_DescribableElement_type"),
+				 sensidlPackage.Literals.DESCRIBABLE_ELEMENT__DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -63,10 +80,10 @@ public class DataConversionItemProvider extends DataAdjustmentItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DataConversion)object).getID();
+		String label = ((DescribableElement)object).getID();
 		return label == null || label.length() == 0 ?
-			getString("_UI_DataConversion_type") :
-			getString("_UI_DataConversion_type") + " " + label;
+			getString("_UI_DescribableElement_type") :
+			getString("_UI_DescribableElement_type") + " " + label;
 	}
 	
 
@@ -80,6 +97,12 @@ public class DataConversionItemProvider extends DataAdjustmentItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(DescribableElement.class)) {
+			case sensidlPackage.DESCRIBABLE_ELEMENT__DESCRIPTION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

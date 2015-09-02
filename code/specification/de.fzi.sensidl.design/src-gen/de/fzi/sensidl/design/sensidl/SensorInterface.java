@@ -13,7 +13,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link de.fzi.sensidl.design.sensidl.SensorInterface#getMetaInformation <em>Meta Information</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.SensorInterface#getEncodingSettings <em>Encoding Settings</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.SensorInterface#getDataDescription <em>Data Description</em>}</li>
  * </ul>
  *
@@ -21,34 +21,34 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
  * @model
  * @generated
  */
-public interface SensorInterface extends NamedElement {
+public interface SensorInterface extends NamedElement, DescribableElement {
 	/**
-	 * Returns the value of the '<em><b>Meta Information</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation#getSensorInterface <em>Sensor Interface</em>}'.
+	 * Returns the value of the '<em><b>Encoding Settings</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.EncodingSettings#getSensorInterface <em>Sensor Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Meta Information</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Encoding Settings</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Meta Information</em>' containment reference.
-	 * @see #setMetaInformation(SensorMetaInformation)
-	 * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getSensorInterface_MetaInformation()
-	 * @see de.fzi.sensidl.design.sensidl.SensorMetaInformation#getSensorInterface
+	 * @return the value of the '<em>Encoding Settings</em>' containment reference.
+	 * @see #setEncodingSettings(EncodingSettings)
+	 * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getSensorInterface_EncodingSettings()
+	 * @see de.fzi.sensidl.design.sensidl.EncodingSettings#getSensorInterface
 	 * @model opposite="sensorInterface" containment="true" required="true"
 	 * @generated
 	 */
-	SensorMetaInformation getMetaInformation();
+	EncodingSettings getEncodingSettings();
 
 	/**
-	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.SensorInterface#getMetaInformation <em>Meta Information</em>}' containment reference.
+	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.SensorInterface#getEncodingSettings <em>Encoding Settings</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Meta Information</em>' containment reference.
-	 * @see #getMetaInformation()
+	 * @param value the new value of the '<em>Encoding Settings</em>' containment reference.
+	 * @see #getEncodingSettings()
 	 * @generated
 	 */
-	void setMetaInformation(SensorMetaInformation value);
+	void setEncodingSettings(EncodingSettings value);
 
 	/**
 	 * Returns the value of the '<em><b>Data Description</b></em>' containment reference.

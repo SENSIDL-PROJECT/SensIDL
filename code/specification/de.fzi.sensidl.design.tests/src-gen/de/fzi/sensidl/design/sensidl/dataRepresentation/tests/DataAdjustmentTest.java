@@ -3,8 +3,7 @@
 package de.fzi.sensidl.design.sensidl.dataRepresentation.tests;
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataAdjustment;
-
-import junit.framework.TestCase;
+import de.fzi.sensidl.design.sensidl.tests.IdentifiableElementTest;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,15 +11,7 @@ import junit.framework.TestCase;
  * <!-- end-user-doc -->
  * @generated
  */
-public abstract class DataAdjustmentTest extends TestCase {
-
-	/**
-	 * The fixture for this Data Adjustment test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DataAdjustment fixture = null;
+public abstract class DataAdjustmentTest extends IdentifiableElementTest {
 
 	/**
 	 * Constructs a new Data Adjustment test case with the given name.
@@ -33,23 +24,14 @@ public abstract class DataAdjustmentTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Data Adjustment test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(DataAdjustment fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Data Adjustment test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected DataAdjustment getFixture() {
-		return fixture;
+		return (DataAdjustment)fixture;
 	}
 
 } //DataAdjustmentTest

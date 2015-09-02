@@ -4,9 +4,7 @@ package de.fzi.sensidl.design.sensidl.dataRepresentation.tests;
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationFactory;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
-
-import de.fzi.sensidl.design.sensidl.tests.NamedElementTest;
-
+import de.fzi.sensidl.design.sensidl.tests.IdentifiableElementTest;
 import junit.textui.TestRunner;
 
 /**
@@ -15,7 +13,7 @@ import junit.textui.TestRunner;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SensorDataDescriptionTest extends NamedElementTest {
+public class SensorDataDescriptionTest extends IdentifiableElementTest {
 
 	/**
 	 * <!-- begin-user-doc -->

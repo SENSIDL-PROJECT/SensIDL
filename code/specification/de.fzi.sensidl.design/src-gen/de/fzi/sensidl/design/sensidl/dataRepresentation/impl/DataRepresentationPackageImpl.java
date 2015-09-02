@@ -609,14 +609,18 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		sensorDataDescriptionEClass.getESuperTypes().add(thesensidlPackage.getNamedElement());
+		sensorDataDescriptionEClass.getESuperTypes().add(thesensidlPackage.getIdentifiableElement());
 		dataSetEClass.getESuperTypes().add(thesensidlPackage.getNamedElement());
+		dataSetEClass.getESuperTypes().add(thesensidlPackage.getDescribableElement());
 		dataEClass.getESuperTypes().add(thesensidlPackage.getNamedElement());
+		dataEClass.getESuperTypes().add(thesensidlPackage.getDescribableElement());
 		measurementDataEClass.getESuperTypes().add(this.getData());
 		nonMeasurementDataEClass.getESuperTypes().add(this.getData());
+		dataAdjustmentEClass.getESuperTypes().add(thesensidlPackage.getIdentifiableElement());
 		dataRangeEClass.getESuperTypes().add(this.getDataAdjustment());
 		dataConversionEClass.getESuperTypes().add(this.getDataAdjustment());
 		linearDataConversionEClass.getESuperTypes().add(this.getDataConversion());
+		intervalEClass.getESuperTypes().add(thesensidlPackage.getIdentifiableElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(sensorDataDescriptionEClass, SensorDataDescription.class, "SensorDataDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

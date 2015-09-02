@@ -9,6 +9,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackag
 import de.fzi.sensidl.design.sensidl.provider.NamedElementItemProvider;
 import de.fzi.sensidl.design.sensidl.provider.SensIDLEditPlugin;
 
+import de.fzi.sensidl.design.sensidl.sensidlPackage;
 import java.util.Collection;
 import java.util.List;
 
@@ -50,9 +51,32 @@ public class DataItemProvider extends NamedElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addDescriptionPropertyDescriptor(object);
 			addDataTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DescribableElement_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DescribableElement_description_feature", "_UI_DescribableElement_type"),
+				 sensidlPackage.Literals.DESCRIBABLE_ELEMENT__DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -104,6 +128,7 @@ public class DataItemProvider extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Data.class)) {
+			case DataRepresentationPackage.DATA__DESCRIPTION:
 			case DataRepresentationPackage.DATA__DATA_TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

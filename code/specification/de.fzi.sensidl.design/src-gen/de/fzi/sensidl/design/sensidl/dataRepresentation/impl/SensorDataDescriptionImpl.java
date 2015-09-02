@@ -3,27 +3,18 @@
 package de.fzi.sensidl.design.sensidl.dataRepresentation.impl;
 
 import de.fzi.sensidl.design.sensidl.SensorInterface;
-
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
-
-import de.fzi.sensidl.design.sensidl.impl.NamedElementImpl;
-
+import de.fzi.sensidl.design.sensidl.impl.IdentifiableElementImpl;
 import de.fzi.sensidl.design.sensidl.sensidlPackage;
-
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -42,7 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class SensorDataDescriptionImpl extends NamedElementImpl implements SensorDataDescription {
+public class SensorDataDescriptionImpl extends IdentifiableElementImpl implements SensorDataDescription {
 	/**
 	 * The cached value of the '{@link #getDataSets() <em>Data Sets</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

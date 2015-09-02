@@ -2,7 +2,7 @@
  */
 package de.fzi.sensidl.design.sensidl.dataRepresentation;
 
-import org.eclipse.emf.ecore.EObject;
+import de.fzi.sensidl.design.sensidl.IdentifiableElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Interval extends EObject {
+public interface Interval extends IdentifiableElement {
 	/**
 	 * Returns the value of the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->

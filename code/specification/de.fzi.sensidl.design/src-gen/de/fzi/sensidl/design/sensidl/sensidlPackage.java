@@ -58,14 +58,14 @@ public interface sensidlPackage extends EPackage {
 	sensidlPackage eINSTANCE = de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.impl.NamedElementImpl <em>Named Element</em>}' class.
+	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.impl.IdentifiableElementImpl <em>Identifiable Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.fzi.sensidl.design.sensidl.impl.NamedElementImpl
-	 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getNamedElement()
+	 * @see de.fzi.sensidl.design.sensidl.impl.IdentifiableElementImpl
+	 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getIdentifiableElement()
 	 * @generated
 	 */
-	int NAMED_ELEMENT = 0;
+	int IDENTIFIABLE_ELEMENT = 0;
 
 	/**
 	 * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -74,7 +74,44 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__ID = 0;
+	int IDENTIFIABLE_ELEMENT__ID = 0;
+
+	/**
+	 * The number of structural features of the '<em>Identifiable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTIFIABLE_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Identifiable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTIFIABLE_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.impl.NamedElementImpl <em>Named Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.fzi.sensidl.design.sensidl.impl.NamedElementImpl
+	 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getNamedElement()
+	 * @generated
+	 */
+	int NAMED_ELEMENT = 1;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_ELEMENT__ID = IDENTIFIABLE_ELEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -83,16 +120,7 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT__NAME = 1;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT__DESCRIPTION = 2;
+	int NAMED_ELEMENT__NAME = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Named Element</em>' class.
@@ -101,7 +129,7 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_FEATURE_COUNT = 3;
+	int NAMED_ELEMENT_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Named Element</em>' class.
@@ -110,7 +138,53 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_ELEMENT_OPERATION_COUNT = 0;
+	int NAMED_ELEMENT_OPERATION_COUNT = IDENTIFIABLE_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.impl.DescribableElementImpl <em>Describable Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.fzi.sensidl.design.sensidl.impl.DescribableElementImpl
+	 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getDescribableElement()
+	 * @generated
+	 */
+	int DESCRIBABLE_ELEMENT = 2;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBABLE_ELEMENT__ID = IDENTIFIABLE_ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBABLE_ELEMENT__DESCRIPTION = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Describable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBABLE_ELEMENT_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Describable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESCRIBABLE_ELEMENT_OPERATION_COUNT = IDENTIFIABLE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.impl.SensorInterfaceImpl <em>Sensor Interface</em>}' class.
@@ -120,7 +194,7 @@ public interface sensidlPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getSensorInterface()
 	 * @generated
 	 */
-	int SENSOR_INTERFACE = 1;
+	int SENSOR_INTERFACE = 3;
 
 	/**
 	 * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -147,16 +221,16 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_INTERFACE__DESCRIPTION = NAMED_ELEMENT__DESCRIPTION;
+	int SENSOR_INTERFACE__DESCRIPTION = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Meta Information</b></em>' containment reference.
+	 * The feature id for the '<em><b>Encoding Settings</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_INTERFACE__META_INFORMATION = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int SENSOR_INTERFACE__ENCODING_SETTINGS = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Data Description</b></em>' containment reference.
@@ -165,7 +239,7 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_INTERFACE__DATA_DESCRIPTION = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int SENSOR_INTERFACE__DATA_DESCRIPTION = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Sensor Interface</em>' class.
@@ -174,7 +248,7 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_INTERFACE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int SENSOR_INTERFACE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Sensor Interface</em>' class.
@@ -186,14 +260,23 @@ public interface sensidlPackage extends EPackage {
 	int SENSOR_INTERFACE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.impl.SensorMetaInformationImpl <em>Sensor Meta Information</em>}' class.
+	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.impl.EncodingSettingsImpl <em>Encoding Settings</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.fzi.sensidl.design.sensidl.impl.SensorMetaInformationImpl
-	 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getSensorMetaInformation()
+	 * @see de.fzi.sensidl.design.sensidl.impl.EncodingSettingsImpl
+	 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getEncodingSettings()
 	 * @generated
 	 */
-	int SENSOR_META_INFORMATION = 2;
+	int ENCODING_SETTINGS = 4;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENCODING_SETTINGS__ID = IDENTIFIABLE_ELEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Sensor Interface</b></em>' container reference.
@@ -202,7 +285,7 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_META_INFORMATION__SENSOR_INTERFACE = 0;
+	int ENCODING_SETTINGS__SENSOR_INTERFACE = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Coding</b></em>' attribute.
@@ -211,7 +294,7 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_META_INFORMATION__CODING = 1;
+	int ENCODING_SETTINGS__CODING = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Endianness</b></em>' attribute.
@@ -220,7 +303,7 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_META_INFORMATION__ENDIANNESS = 2;
+	int ENCODING_SETTINGS__ENDIANNESS = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
@@ -229,25 +312,25 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_META_INFORMATION__ALIGNMENT = 3;
+	int ENCODING_SETTINGS__ALIGNMENT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the '<em>Sensor Meta Information</em>' class.
+	 * The number of structural features of the '<em>Encoding Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_META_INFORMATION_FEATURE_COUNT = 4;
+	int ENCODING_SETTINGS_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of operations of the '<em>Sensor Meta Information</em>' class.
+	 * The number of operations of the '<em>Encoding Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_META_INFORMATION_OPERATION_COUNT = 0;
+	int ENCODING_SETTINGS_OPERATION_COUNT = IDENTIFIABLE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.Coding <em>Coding</em>}' enum.
@@ -257,7 +340,7 @@ public interface sensidlPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getCoding()
 	 * @generated
 	 */
-	int CODING = 3;
+	int CODING = 5;
 
 	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.Endianness <em>Endianness</em>}' enum.
@@ -267,18 +350,28 @@ public interface sensidlPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getEndianness()
 	 * @generated
 	 */
-	int ENDIANNESS = 4;
+	int ENDIANNESS = 6;
 
 	/**
-	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.Alignment <em>Alignment</em>}' enum.
+	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.IdentifiableElement <em>Identifiable Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.fzi.sensidl.design.sensidl.Alignment
-	 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getAlignment()
+	 * @return the meta object for class '<em>Identifiable Element</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.IdentifiableElement
 	 * @generated
 	 */
-	int ALIGNMENT = 5;
+	EClass getIdentifiableElement();
 
+	/**
+	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.IdentifiableElement#getID <em>ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>ID</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.IdentifiableElement#getID()
+	 * @see #getIdentifiableElement()
+	 * @generated
+	 */
+	EAttribute getIdentifiableElement_ID();
 
 	/**
 	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.NamedElement <em>Named Element</em>}'.
@@ -289,17 +382,6 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getNamedElement();
-
-	/**
-	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.NamedElement#getID <em>ID</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>ID</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.NamedElement#getID()
-	 * @see #getNamedElement()
-	 * @generated
-	 */
-	EAttribute getNamedElement_ID();
 
 	/**
 	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.NamedElement#getName <em>Name</em>}'.
@@ -313,15 +395,25 @@ public interface sensidlPackage extends EPackage {
 	EAttribute getNamedElement_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.NamedElement#getDescription <em>Description</em>}'.
+	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.DescribableElement <em>Describable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Describable Element</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.DescribableElement
+	 * @generated
+	 */
+	EClass getDescribableElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.DescribableElement#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.NamedElement#getDescription()
-	 * @see #getNamedElement()
+	 * @see de.fzi.sensidl.design.sensidl.DescribableElement#getDescription()
+	 * @see #getDescribableElement()
 	 * @generated
 	 */
-	EAttribute getNamedElement_Description();
+	EAttribute getDescribableElement_Description();
 
 	/**
 	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.SensorInterface <em>Sensor Interface</em>}'.
@@ -334,15 +426,15 @@ public interface sensidlPackage extends EPackage {
 	EClass getSensorInterface();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link de.fzi.sensidl.design.sensidl.SensorInterface#getMetaInformation <em>Meta Information</em>}'.
+	 * Returns the meta object for the containment reference '{@link de.fzi.sensidl.design.sensidl.SensorInterface#getEncodingSettings <em>Encoding Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Meta Information</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.SensorInterface#getMetaInformation()
+	 * @return the meta object for the containment reference '<em>Encoding Settings</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.SensorInterface#getEncodingSettings()
 	 * @see #getSensorInterface()
 	 * @generated
 	 */
-	EReference getSensorInterface_MetaInformation();
+	EReference getSensorInterface_EncodingSettings();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link de.fzi.sensidl.design.sensidl.SensorInterface#getDataDescription <em>Data Description</em>}'.
@@ -356,58 +448,58 @@ public interface sensidlPackage extends EPackage {
 	EReference getSensorInterface_DataDescription();
 
 	/**
-	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation <em>Sensor Meta Information</em>}'.
+	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.EncodingSettings <em>Encoding Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Sensor Meta Information</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.SensorMetaInformation
+	 * @return the meta object for class '<em>Encoding Settings</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.EncodingSettings
 	 * @generated
 	 */
-	EClass getSensorMetaInformation();
+	EClass getEncodingSettings();
 
 	/**
-	 * Returns the meta object for the container reference '{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation#getSensorInterface <em>Sensor Interface</em>}'.
+	 * Returns the meta object for the container reference '{@link de.fzi.sensidl.design.sensidl.EncodingSettings#getSensorInterface <em>Sensor Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Sensor Interface</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.SensorMetaInformation#getSensorInterface()
-	 * @see #getSensorMetaInformation()
+	 * @see de.fzi.sensidl.design.sensidl.EncodingSettings#getSensorInterface()
+	 * @see #getEncodingSettings()
 	 * @generated
 	 */
-	EReference getSensorMetaInformation_SensorInterface();
+	EReference getEncodingSettings_SensorInterface();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation#getCoding <em>Coding</em>}'.
+	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.EncodingSettings#getCoding <em>Coding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Coding</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.SensorMetaInformation#getCoding()
-	 * @see #getSensorMetaInformation()
+	 * @see de.fzi.sensidl.design.sensidl.EncodingSettings#getCoding()
+	 * @see #getEncodingSettings()
 	 * @generated
 	 */
-	EAttribute getSensorMetaInformation_Coding();
+	EAttribute getEncodingSettings_Coding();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation#getEndianness <em>Endianness</em>}'.
+	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.EncodingSettings#getEndianness <em>Endianness</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Endianness</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.SensorMetaInformation#getEndianness()
-	 * @see #getSensorMetaInformation()
+	 * @see de.fzi.sensidl.design.sensidl.EncodingSettings#getEndianness()
+	 * @see #getEncodingSettings()
 	 * @generated
 	 */
-	EAttribute getSensorMetaInformation_Endianness();
+	EAttribute getEncodingSettings_Endianness();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation#getAlignment <em>Alignment</em>}'.
+	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.EncodingSettings#getAlignment <em>Alignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Alignment</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.SensorMetaInformation#getAlignment()
-	 * @see #getSensorMetaInformation()
+	 * @see de.fzi.sensidl.design.sensidl.EncodingSettings#getAlignment()
+	 * @see #getEncodingSettings()
 	 * @generated
 	 */
-	EAttribute getSensorMetaInformation_Alignment();
+	EAttribute getEncodingSettings_Alignment();
 
 	/**
 	 * Returns the meta object for enum '{@link de.fzi.sensidl.design.sensidl.Coding <em>Coding</em>}'.
@@ -428,16 +520,6 @@ public interface sensidlPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getEndianness();
-
-	/**
-	 * Returns the meta object for enum '{@link de.fzi.sensidl.design.sensidl.Alignment <em>Alignment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Alignment</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.Alignment
-	 * @generated
-	 */
-	EEnum getAlignment();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -463,6 +545,24 @@ public interface sensidlPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
+		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.impl.IdentifiableElementImpl <em>Identifiable Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.fzi.sensidl.design.sensidl.impl.IdentifiableElementImpl
+		 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getIdentifiableElement()
+		 * @generated
+		 */
+		EClass IDENTIFIABLE_ELEMENT = eINSTANCE.getIdentifiableElement();
+
+		/**
+		 * The meta object literal for the '<em><b>ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IDENTIFIABLE_ELEMENT__ID = eINSTANCE.getIdentifiableElement_ID();
+
+		/**
 		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.impl.NamedElementImpl <em>Named Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -473,14 +573,6 @@ public interface sensidlPackage extends EPackage {
 		EClass NAMED_ELEMENT = eINSTANCE.getNamedElement();
 
 		/**
-		 * The meta object literal for the '<em><b>ID</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NAMED_ELEMENT__ID = eINSTANCE.getNamedElement_ID();
-
-		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -489,12 +581,22 @@ public interface sensidlPackage extends EPackage {
 		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
 
 		/**
+		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.impl.DescribableElementImpl <em>Describable Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.fzi.sensidl.design.sensidl.impl.DescribableElementImpl
+		 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getDescribableElement()
+		 * @generated
+		 */
+		EClass DESCRIBABLE_ELEMENT = eINSTANCE.getDescribableElement();
+
+		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NAMED_ELEMENT__DESCRIPTION = eINSTANCE.getNamedElement_Description();
+		EAttribute DESCRIBABLE_ELEMENT__DESCRIPTION = eINSTANCE.getDescribableElement_Description();
 
 		/**
 		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.impl.SensorInterfaceImpl <em>Sensor Interface</em>}' class.
@@ -507,12 +609,12 @@ public interface sensidlPackage extends EPackage {
 		EClass SENSOR_INTERFACE = eINSTANCE.getSensorInterface();
 
 		/**
-		 * The meta object literal for the '<em><b>Meta Information</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Encoding Settings</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SENSOR_INTERFACE__META_INFORMATION = eINSTANCE.getSensorInterface_MetaInformation();
+		EReference SENSOR_INTERFACE__ENCODING_SETTINGS = eINSTANCE.getSensorInterface_EncodingSettings();
 
 		/**
 		 * The meta object literal for the '<em><b>Data Description</b></em>' containment reference feature.
@@ -523,14 +625,14 @@ public interface sensidlPackage extends EPackage {
 		EReference SENSOR_INTERFACE__DATA_DESCRIPTION = eINSTANCE.getSensorInterface_DataDescription();
 
 		/**
-		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.impl.SensorMetaInformationImpl <em>Sensor Meta Information</em>}' class.
+		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.impl.EncodingSettingsImpl <em>Encoding Settings</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.fzi.sensidl.design.sensidl.impl.SensorMetaInformationImpl
-		 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getSensorMetaInformation()
+		 * @see de.fzi.sensidl.design.sensidl.impl.EncodingSettingsImpl
+		 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getEncodingSettings()
 		 * @generated
 		 */
-		EClass SENSOR_META_INFORMATION = eINSTANCE.getSensorMetaInformation();
+		EClass ENCODING_SETTINGS = eINSTANCE.getEncodingSettings();
 
 		/**
 		 * The meta object literal for the '<em><b>Sensor Interface</b></em>' container reference feature.
@@ -538,7 +640,7 @@ public interface sensidlPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SENSOR_META_INFORMATION__SENSOR_INTERFACE = eINSTANCE.getSensorMetaInformation_SensorInterface();
+		EReference ENCODING_SETTINGS__SENSOR_INTERFACE = eINSTANCE.getEncodingSettings_SensorInterface();
 
 		/**
 		 * The meta object literal for the '<em><b>Coding</b></em>' attribute feature.
@@ -546,7 +648,7 @@ public interface sensidlPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SENSOR_META_INFORMATION__CODING = eINSTANCE.getSensorMetaInformation_Coding();
+		EAttribute ENCODING_SETTINGS__CODING = eINSTANCE.getEncodingSettings_Coding();
 
 		/**
 		 * The meta object literal for the '<em><b>Endianness</b></em>' attribute feature.
@@ -554,7 +656,7 @@ public interface sensidlPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SENSOR_META_INFORMATION__ENDIANNESS = eINSTANCE.getSensorMetaInformation_Endianness();
+		EAttribute ENCODING_SETTINGS__ENDIANNESS = eINSTANCE.getEncodingSettings_Endianness();
 
 		/**
 		 * The meta object literal for the '<em><b>Alignment</b></em>' attribute feature.
@@ -562,7 +664,7 @@ public interface sensidlPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SENSOR_META_INFORMATION__ALIGNMENT = eINSTANCE.getSensorMetaInformation_Alignment();
+		EAttribute ENCODING_SETTINGS__ALIGNMENT = eINSTANCE.getEncodingSettings_Alignment();
 
 		/**
 		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.Coding <em>Coding</em>}' enum.
@@ -583,16 +685,6 @@ public interface sensidlPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ENDIANNESS = eINSTANCE.getEndianness();
-
-		/**
-		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.Alignment <em>Alignment</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.fzi.sensidl.design.sensidl.Alignment
-		 * @see de.fzi.sensidl.design.sensidl.impl.sensidlPackageImpl#getAlignment()
-		 * @generated
-		 */
-		EEnum ALIGNMENT = eINSTANCE.getAlignment();
 
 	}
 

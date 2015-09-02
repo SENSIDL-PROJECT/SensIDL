@@ -68,16 +68,24 @@ public class sensidlAdapterFactory extends AdapterFactoryImpl {
 	protected sensidlSwitch<Adapter> modelSwitch =
 		new sensidlSwitch<Adapter>() {
 			@Override
+			public Adapter caseIdentifiableElement(IdentifiableElement object) {
+				return createIdentifiableElementAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
+			}
+			@Override
+			public Adapter caseDescribableElement(DescribableElement object) {
+				return createDescribableElementAdapter();
 			}
 			@Override
 			public Adapter caseSensorInterface(SensorInterface object) {
 				return createSensorInterfaceAdapter();
 			}
 			@Override
-			public Adapter caseSensorMetaInformation(SensorMetaInformation object) {
-				return createSensorMetaInformationAdapter();
+			public Adapter caseEncodingSettings(EncodingSettings object) {
+				return createEncodingSettingsAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -100,6 +108,20 @@ public class sensidlAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
+	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.IdentifiableElement <em>Identifiable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.fzi.sensidl.design.sensidl.IdentifiableElement
+	 * @generated
+	 */
+	public Adapter createIdentifiableElementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -110,6 +132,20 @@ public class sensidlAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.DescribableElement <em>Describable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.fzi.sensidl.design.sensidl.DescribableElement
+	 * @generated
+	 */
+	public Adapter createDescribableElementAdapter() {
 		return null;
 	}
 
@@ -128,16 +164,16 @@ public class sensidlAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.SensorMetaInformation <em>Sensor Meta Information</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.EncodingSettings <em>Encoding Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.fzi.sensidl.design.sensidl.SensorMetaInformation
+	 * @see de.fzi.sensidl.design.sensidl.EncodingSettings
 	 * @generated
 	 */
-	public Adapter createSensorMetaInformationAdapter() {
+	public Adapter createEncodingSettingsAdapter() {
 		return null;
 	}
 
