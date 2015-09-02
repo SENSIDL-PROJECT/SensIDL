@@ -10,7 +10,9 @@ import org.eclipse.xtext.conversion.ValueConverterException;
 import org.eclipse.xtext.nodemodel.INode;
 
 /**
- * @author scheerer
+ * Converter service für UNIT elements. Used to parse SI and non-SI labels.
+ * 
+ * @author Emre Taspolatoglu
  *
  */
 public class JScienceUnitValueConverter implements IValueConverter<Unit> {
@@ -21,7 +23,7 @@ public class JScienceUnitValueConverter implements IValueConverter<Unit> {
 		if (string == null || string == "") {
 			return null;
 		}
-		return ((Unit) node).valueOf(string);
+		return Unit.valueOf(string);
 	}
 
 	@Override

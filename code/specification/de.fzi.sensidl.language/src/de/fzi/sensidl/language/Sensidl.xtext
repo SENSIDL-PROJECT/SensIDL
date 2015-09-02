@@ -23,7 +23,7 @@ NamedElement returns sensidl::NamedElement:
 ;
 
 SensorInterface returns sensidl::SensorInterface: 
-	"sensorInterface" name=STRING (description=STRING)? ("with" "identifier" ID=STRING)? "{"
+	"sensorInterface" name=ID (description=STRING)? ("with" "identifier" ID=STRING)? "{"
 		metaInformation=SensorMetaInformation
 		dataDescription=SensorDataDescription
 	"}"";"
@@ -113,4 +113,4 @@ LinearDataConversion  returns dataRepresentation::LinearDataConversion:
 DOUBLE returns ecore::EDouble: INT ('.' INT)?;
 BOOLEAN returns ecore::EBoolean: 'true' | 'false';
 //UNIT returns dataRepresentation::Unit: STRING;
-terminal UNIT returns dataRepresentation::Unit : '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+terminal UNIT returns dataRepresentation::Unit : '^'?('a'..'z'|'A'..'Z'/**'_'*/) ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;

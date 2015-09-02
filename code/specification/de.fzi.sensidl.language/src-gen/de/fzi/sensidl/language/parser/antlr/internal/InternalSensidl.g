@@ -144,9 +144,9 @@ ruleSensorInterface returns [EObject current=null]
     }
 (
 (
-		lv_name_1_0=RULE_STRING
+		lv_name_1_0=RULE_ID
 		{
-			newLeafNode(lv_name_1_0, grammarAccess.getSensorInterfaceAccess().getNameSTRINGTerminalRuleCall_1_0()); 
+			newLeafNode(lv_name_1_0, grammarAccess.getSensorInterfaceAccess().getNameIDTerminalRuleCall_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -156,7 +156,7 @@ ruleSensorInterface returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"STRING");
+        		"ID");
 	    }
 
 )
@@ -1527,7 +1527,7 @@ ruleDataType returns [Enumerator current=null]
 
 
 
-RULE_UNIT : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+RULE_UNIT : '^'? ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

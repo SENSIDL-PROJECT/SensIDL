@@ -51,7 +51,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cSensorInterfaceKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameSTRINGTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Assignment cDescriptionAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cDescriptionSTRINGTerminalRuleCall_2_0 = (RuleCall)cDescriptionAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
@@ -68,22 +68,22 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//SensorInterface returns sensidl::SensorInterface:
-		//	"sensorInterface" name=STRING description=STRING? ("with" "identifier" ID=STRING)? "{"
+		//	"sensorInterface" name=ID description=STRING? ("with" "identifier" ID=STRING)? "{"
 		//	metaInformation=SensorMetaInformation dataDescription=SensorDataDescription "}" ";";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"sensorInterface" name=STRING description=STRING? ("with" "identifier" ID=STRING)? "{"
-		//metaInformation=SensorMetaInformation dataDescription=SensorDataDescription "}" ";"
+		//"sensorInterface" name=ID description=STRING? ("with" "identifier" ID=STRING)? "{" metaInformation=SensorMetaInformation
+		//dataDescription=SensorDataDescription "}" ";"
 		public Group getGroup() { return cGroup; }
 
 		//"sensorInterface"
 		public Keyword getSensorInterfaceKeyword_0() { return cSensorInterfaceKeyword_0; }
 
-		//name=STRING
+		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 
-		//STRING
-		public RuleCall getNameSTRINGTerminalRuleCall_1_0() { return cNameSTRINGTerminalRuleCall_1_0; }
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 
 		//description=STRING?
 		public Assignment getDescriptionAssignment_2() { return cDescriptionAssignment_2; }
@@ -1107,7 +1107,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SensorInterface returns sensidl::SensorInterface:
-	//	"sensorInterface" name=STRING description=STRING? ("with" "identifier" ID=STRING)? "{"
+	//	"sensorInterface" name=ID description=STRING? ("with" "identifier" ID=STRING)? "{"
 	//	metaInformation=SensorMetaInformation dataDescription=SensorDataDescription "}" ";";
 	public SensorInterfaceElements getSensorInterfaceAccess() {
 		return pSensorInterface;
@@ -1293,7 +1293,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 	////UNIT returns dataRepresentation::Unit: STRING;
 	//terminal UNIT returns dataRepresentation::Unit:
-	//	"^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
+	//	"^"? ("a".."z" / **'_'* / | "A".."Z") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
 	public TerminalRule getUNITRule() {
 		return tUNIT;
 	} 

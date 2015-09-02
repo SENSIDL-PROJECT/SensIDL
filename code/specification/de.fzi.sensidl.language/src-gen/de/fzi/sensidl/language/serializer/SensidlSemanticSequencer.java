@@ -147,7 +147,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name=STRING description=STRING? ID=STRING? metaInformation=SensorMetaInformation dataDescription=SensorDataDescription)
+	 *     (name=ID description=STRING? ID=STRING? metaInformation=SensorMetaInformation dataDescription=SensorDataDescription)
 	 */
 	protected void sequence_SensorInterface(EObject context, SensorInterface semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

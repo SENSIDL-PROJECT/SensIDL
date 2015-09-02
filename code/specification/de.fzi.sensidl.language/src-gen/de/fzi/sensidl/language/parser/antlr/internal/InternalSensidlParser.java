@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_UNIT", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'sensorInterface'", "'with'", "'identifier'", "'{'", "'}'", "';'", "'encoding'", "'alignment'", "'sensorData'", "'dataSet'", "'as'", "'in'", "'adjusted'", "'by'", "':'", "','", "'constant'", "'='", "'value'", "'range'", "'...'", "'scaling factor'", "'and'", "'offset'", "'linear mapping'", "'['", "']'", "'=>'", "'.'", "'true'", "'false'", "'_8BIT'", "'_16BIT'", "'_32BIT'", "'_64BIT'", "'SENSIDL_BINARY'", "'SENSIDL_JSON'", "'BIG_ENDIAN'", "'LITTLE_ENDIAN'", "'SIGNED_CHAR'", "'UNSIGNED_CHAR'", "'SIGNED_SHORT'", "'UNSIGNED_SHORT'", "'SIGNED_LONG'", "'UNSIGNED_LONG'", "'SIGNED_LONG_LONG'", "'UNSIGNED_LONG_LONG'", "'FLOAT'", "'DOUBLE'", "'LONG_DOUBLE'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_UNIT", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'sensorInterface'", "'with'", "'identifier'", "'{'", "'}'", "';'", "'encoding'", "'alignment'", "'sensorData'", "'dataSet'", "'as'", "'in'", "'adjusted'", "'by'", "':'", "','", "'constant'", "'='", "'value'", "'range'", "'...'", "'scaling factor'", "'and'", "'offset'", "'linear mapping'", "'['", "']'", "'=>'", "'.'", "'true'", "'false'", "'_8BIT'", "'_16BIT'", "'_32BIT'", "'_64BIT'", "'SENSIDL_BINARY'", "'SENSIDL_JSON'", "'BIG_ENDIAN'", "'LITTLE_ENDIAN'", "'SIGNED_CHAR'", "'UNSIGNED_CHAR'", "'SIGNED_SHORT'", "'UNSIGNED_SHORT'", "'SIGNED_LONG'", "'UNSIGNED_LONG'", "'SIGNED_LONG_LONG'", "'UNSIGNED_LONG_LONG'", "'FLOAT'", "'DOUBLE'", "'LONG_DOUBLE'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -44,7 +44,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final int T__54=54;
     public static final int T__60=60;
     public static final int T__61=61;
-    public static final int RULE_ID=5;
+    public static final int RULE_ID=4;
     public static final int T__26=26;
     public static final int T__27=27;
     public static final int T__28=28;
@@ -57,7 +57,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final int T__25=25;
     public static final int T__20=20;
     public static final int T__21=21;
-    public static final int RULE_STRING=4;
+    public static final int RULE_STRING=5;
     public static final int RULE_UNIT=6;
     public static final int RULE_SL_COMMENT=9;
     public static final int T__37=37;
@@ -338,7 +338,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSensorInterface"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:137:1: ruleSensorInterface returns [EObject current=null] : (otherlv_0= 'sensorInterface' ( (lv_name_1_0= RULE_STRING ) ) ( (lv_description_2_0= RULE_STRING ) )? (otherlv_3= 'with' otherlv_4= 'identifier' ( (lv_ID_5_0= RULE_STRING ) ) )? otherlv_6= '{' ( (lv_metaInformation_7_0= ruleSensorMetaInformation ) ) ( (lv_dataDescription_8_0= ruleSensorDataDescription ) ) otherlv_9= '}' otherlv_10= ';' ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:137:1: ruleSensorInterface returns [EObject current=null] : (otherlv_0= 'sensorInterface' ( (lv_name_1_0= RULE_ID ) ) ( (lv_description_2_0= RULE_STRING ) )? (otherlv_3= 'with' otherlv_4= 'identifier' ( (lv_ID_5_0= RULE_STRING ) ) )? otherlv_6= '{' ( (lv_metaInformation_7_0= ruleSensorMetaInformation ) ) ( (lv_dataDescription_8_0= ruleSensorDataDescription ) ) otherlv_9= '}' otherlv_10= ';' ) ;
     public final EObject ruleSensorInterface() throws RecognitionException {
         EObject current = null;
 
@@ -359,25 +359,25 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:140:28: ( (otherlv_0= 'sensorInterface' ( (lv_name_1_0= RULE_STRING ) ) ( (lv_description_2_0= RULE_STRING ) )? (otherlv_3= 'with' otherlv_4= 'identifier' ( (lv_ID_5_0= RULE_STRING ) ) )? otherlv_6= '{' ( (lv_metaInformation_7_0= ruleSensorMetaInformation ) ) ( (lv_dataDescription_8_0= ruleSensorDataDescription ) ) otherlv_9= '}' otherlv_10= ';' ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:141:1: (otherlv_0= 'sensorInterface' ( (lv_name_1_0= RULE_STRING ) ) ( (lv_description_2_0= RULE_STRING ) )? (otherlv_3= 'with' otherlv_4= 'identifier' ( (lv_ID_5_0= RULE_STRING ) ) )? otherlv_6= '{' ( (lv_metaInformation_7_0= ruleSensorMetaInformation ) ) ( (lv_dataDescription_8_0= ruleSensorDataDescription ) ) otherlv_9= '}' otherlv_10= ';' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:140:28: ( (otherlv_0= 'sensorInterface' ( (lv_name_1_0= RULE_ID ) ) ( (lv_description_2_0= RULE_STRING ) )? (otherlv_3= 'with' otherlv_4= 'identifier' ( (lv_ID_5_0= RULE_STRING ) ) )? otherlv_6= '{' ( (lv_metaInformation_7_0= ruleSensorMetaInformation ) ) ( (lv_dataDescription_8_0= ruleSensorDataDescription ) ) otherlv_9= '}' otherlv_10= ';' ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:141:1: (otherlv_0= 'sensorInterface' ( (lv_name_1_0= RULE_ID ) ) ( (lv_description_2_0= RULE_STRING ) )? (otherlv_3= 'with' otherlv_4= 'identifier' ( (lv_ID_5_0= RULE_STRING ) ) )? otherlv_6= '{' ( (lv_metaInformation_7_0= ruleSensorMetaInformation ) ) ( (lv_dataDescription_8_0= ruleSensorDataDescription ) ) otherlv_9= '}' otherlv_10= ';' )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:141:1: (otherlv_0= 'sensorInterface' ( (lv_name_1_0= RULE_STRING ) ) ( (lv_description_2_0= RULE_STRING ) )? (otherlv_3= 'with' otherlv_4= 'identifier' ( (lv_ID_5_0= RULE_STRING ) ) )? otherlv_6= '{' ( (lv_metaInformation_7_0= ruleSensorMetaInformation ) ) ( (lv_dataDescription_8_0= ruleSensorDataDescription ) ) otherlv_9= '}' otherlv_10= ';' )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:141:3: otherlv_0= 'sensorInterface' ( (lv_name_1_0= RULE_STRING ) ) ( (lv_description_2_0= RULE_STRING ) )? (otherlv_3= 'with' otherlv_4= 'identifier' ( (lv_ID_5_0= RULE_STRING ) ) )? otherlv_6= '{' ( (lv_metaInformation_7_0= ruleSensorMetaInformation ) ) ( (lv_dataDescription_8_0= ruleSensorDataDescription ) ) otherlv_9= '}' otherlv_10= ';'
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:141:1: (otherlv_0= 'sensorInterface' ( (lv_name_1_0= RULE_ID ) ) ( (lv_description_2_0= RULE_STRING ) )? (otherlv_3= 'with' otherlv_4= 'identifier' ( (lv_ID_5_0= RULE_STRING ) ) )? otherlv_6= '{' ( (lv_metaInformation_7_0= ruleSensorMetaInformation ) ) ( (lv_dataDescription_8_0= ruleSensorDataDescription ) ) otherlv_9= '}' otherlv_10= ';' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:141:3: otherlv_0= 'sensorInterface' ( (lv_name_1_0= RULE_ID ) ) ( (lv_description_2_0= RULE_STRING ) )? (otherlv_3= 'with' otherlv_4= 'identifier' ( (lv_ID_5_0= RULE_STRING ) ) )? otherlv_6= '{' ( (lv_metaInformation_7_0= ruleSensorMetaInformation ) ) ( (lv_dataDescription_8_0= ruleSensorDataDescription ) ) otherlv_9= '}' otherlv_10= ';'
             {
             otherlv_0=(Token)match(input,12,FOLLOW_12_in_ruleSensorInterface295); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getSensorInterfaceAccess().getSensorInterfaceKeyword_0());
                 
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:145:1: ( (lv_name_1_0= RULE_STRING ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:146:1: (lv_name_1_0= RULE_STRING )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:145:1: ( (lv_name_1_0= RULE_ID ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:146:1: (lv_name_1_0= RULE_ID )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:146:1: (lv_name_1_0= RULE_STRING )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:147:3: lv_name_1_0= RULE_STRING
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:146:1: (lv_name_1_0= RULE_ID )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:147:3: lv_name_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleSensorInterface312); 
+            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleSensorInterface312); 
 
-            			newLeafNode(lv_name_1_0, grammarAccess.getSensorInterfaceAccess().getNameSTRINGTerminalRuleCall_1_0()); 
+            			newLeafNode(lv_name_1_0, grammarAccess.getSensorInterfaceAccess().getNameIDTerminalRuleCall_1_0()); 
             		
 
             	        if (current==null) {
@@ -387,7 +387,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                    			current, 
                    			"name",
                     		lv_name_1_0, 
-                    		"STRING");
+                    		"ID");
             	    
 
             }
@@ -3752,9 +3752,9 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     static final String DFA11_eofS =
         "\20\uffff";
     static final String DFA11_minS =
-        "\1\5\1\26\1\63\13\27\2\uffff";
+        "\1\4\1\26\1\63\13\27\2\uffff";
     static final String DFA11_maxS =
-        "\1\5\1\26\1\75\13\34\2\uffff";
+        "\1\4\1\26\1\75\13\34\2\uffff";
     static final String DFA11_acceptS =
         "\16\uffff\1\2\1\1";
     static final String DFA11_specialS =
@@ -3822,10 +3822,10 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleSensorInterface_in_entryRuleSensorInterface248 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleSensorInterface258 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_12_in_ruleSensorInterface295 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleSensorInterface312 = new BitSet(new long[]{0x000000000000A010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleSensorInterface312 = new BitSet(new long[]{0x000000000000A020L});
     public static final BitSet FOLLOW_RULE_STRING_in_ruleSensorInterface334 = new BitSet(new long[]{0x000000000000A000L});
     public static final BitSet FOLLOW_13_in_ruleSensorInterface353 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_ruleSensorInterface365 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_14_in_ruleSensorInterface365 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_RULE_STRING_in_ruleSensorInterface382 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_15_in_ruleSensorInterface401 = new BitSet(new long[]{0x0000000000040000L});
     public static final BitSet FOLLOW_ruleSensorMetaInformation_in_ruleSensorInterface422 = new BitSet(new long[]{0x0000000000100000L});
@@ -3843,11 +3843,11 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_17_in_ruleSensorMetaInformation649 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSensorDataDescription_in_entryRuleSensorDataDescription685 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleSensorDataDescription695 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_ruleSensorDataDescription732 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleSensorDataDescription749 = new BitSet(new long[]{0x000000000000A010L});
+    public static final BitSet FOLLOW_20_in_ruleSensorDataDescription732 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleSensorDataDescription749 = new BitSet(new long[]{0x000000000000A020L});
     public static final BitSet FOLLOW_RULE_STRING_in_ruleSensorDataDescription771 = new BitSet(new long[]{0x000000000000A000L});
     public static final BitSet FOLLOW_13_in_ruleSensorDataDescription790 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_ruleSensorDataDescription802 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_14_in_ruleSensorDataDescription802 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_RULE_STRING_in_ruleSensorDataDescription819 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_15_in_ruleSensorDataDescription838 = new BitSet(new long[]{0x0000000000210000L});
     public static final BitSet FOLLOW_ruleDataSet_in_ruleSensorDataDescription859 = new BitSet(new long[]{0x0000000000210000L});
@@ -3855,15 +3855,15 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_17_in_ruleSensorDataDescription884 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDataSet_in_entryRuleDataSet920 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleDataSet930 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_ruleDataSet967 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleDataSet984 = new BitSet(new long[]{0x000000000000A010L});
+    public static final BitSet FOLLOW_21_in_ruleDataSet967 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleDataSet984 = new BitSet(new long[]{0x000000000000A020L});
     public static final BitSet FOLLOW_RULE_STRING_in_ruleDataSet1006 = new BitSet(new long[]{0x000000000000A000L});
     public static final BitSet FOLLOW_13_in_ruleDataSet1025 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_ruleDataSet1037 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_14_in_ruleDataSet1037 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_RULE_STRING_in_ruleDataSet1054 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_15_in_ruleDataSet1073 = new BitSet(new long[]{0x0000000000210020L});
-    public static final BitSet FOLLOW_ruleDataSet_in_ruleDataSet1094 = new BitSet(new long[]{0x0000000000010020L});
-    public static final BitSet FOLLOW_ruleData_in_ruleDataSet1116 = new BitSet(new long[]{0x0000000000010020L});
+    public static final BitSet FOLLOW_15_in_ruleDataSet1073 = new BitSet(new long[]{0x0000000000210010L});
+    public static final BitSet FOLLOW_ruleDataSet_in_ruleDataSet1094 = new BitSet(new long[]{0x0000000000010010L});
+    public static final BitSet FOLLOW_ruleData_in_ruleDataSet1116 = new BitSet(new long[]{0x0000000000010010L});
     public static final BitSet FOLLOW_16_in_ruleDataSet1129 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_17_in_ruleDataSet1141 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleData_in_entryRuleData1177 = new BitSet(new long[]{0x0000000000000000L});
@@ -3876,16 +3876,16 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_22_in_ruleMeasurementData1365 = new BitSet(new long[]{0x3FF8000000000000L});
     public static final BitSet FOLLOW_ruleDataType_in_ruleMeasurementData1386 = new BitSet(new long[]{0x0000000000800000L});
     public static final BitSet FOLLOW_23_in_ruleMeasurementData1398 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_UNIT_in_ruleMeasurementData1415 = new BitSet(new long[]{0x0000000001022010L});
+    public static final BitSet FOLLOW_RULE_UNIT_in_ruleMeasurementData1415 = new BitSet(new long[]{0x0000000001022020L});
     public static final BitSet FOLLOW_13_in_ruleMeasurementData1433 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_ruleMeasurementData1445 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleMeasurementData1462 = new BitSet(new long[]{0x0000000001020010L});
+    public static final BitSet FOLLOW_14_in_ruleMeasurementData1445 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleMeasurementData1462 = new BitSet(new long[]{0x0000000001020020L});
     public static final BitSet FOLLOW_24_in_ruleMeasurementData1482 = new BitSet(new long[]{0x0000000002000000L});
     public static final BitSet FOLLOW_25_in_ruleMeasurementData1494 = new BitSet(new long[]{0x0000000004000000L});
     public static final BitSet FOLLOW_26_in_ruleMeasurementData1506 = new BitSet(new long[]{0x0000001000002000L});
-    public static final BitSet FOLLOW_ruleDataAdjustement_in_ruleMeasurementData1527 = new BitSet(new long[]{0x0000000008020010L});
+    public static final BitSet FOLLOW_ruleDataAdjustement_in_ruleMeasurementData1527 = new BitSet(new long[]{0x0000000008020020L});
     public static final BitSet FOLLOW_27_in_ruleMeasurementData1540 = new BitSet(new long[]{0x0000001000002000L});
-    public static final BitSet FOLLOW_ruleDataAdjustement_in_ruleMeasurementData1561 = new BitSet(new long[]{0x0000000008020010L});
+    public static final BitSet FOLLOW_ruleDataAdjustement_in_ruleMeasurementData1561 = new BitSet(new long[]{0x0000000008020020L});
     public static final BitSet FOLLOW_RULE_STRING_in_ruleMeasurementData1582 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_17_in_ruleMeasurementData1600 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleNonMeasurementData_in_entryRuleNonMeasurementData1636 = new BitSet(new long[]{0x0000000000000000L});
@@ -3897,11 +3897,11 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_29_in_ruleNonMeasurementData1750 = new BitSet(new long[]{0x0000060000000000L});
     public static final BitSet FOLLOW_ruleBOOLEAN_in_ruleNonMeasurementData1771 = new BitSet(new long[]{0x0000000040000000L});
     public static final BitSet FOLLOW_30_in_ruleNonMeasurementData1783 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_ruleNonMeasurementData1795 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleNonMeasurementData1812 = new BitSet(new long[]{0x0000000000022010L});
+    public static final BitSet FOLLOW_29_in_ruleNonMeasurementData1795 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleNonMeasurementData1812 = new BitSet(new long[]{0x0000000000022020L});
     public static final BitSet FOLLOW_13_in_ruleNonMeasurementData1830 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_ruleNonMeasurementData1842 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleNonMeasurementData1859 = new BitSet(new long[]{0x0000000000020010L});
+    public static final BitSet FOLLOW_14_in_ruleNonMeasurementData1842 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleNonMeasurementData1859 = new BitSet(new long[]{0x0000000000020020L});
     public static final BitSet FOLLOW_RULE_STRING_in_ruleNonMeasurementData1883 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_17_in_ruleNonMeasurementData1901 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDataAdjustement_in_entryRuleDataAdjustement1937 = new BitSet(new long[]{0x0000000000000000L});

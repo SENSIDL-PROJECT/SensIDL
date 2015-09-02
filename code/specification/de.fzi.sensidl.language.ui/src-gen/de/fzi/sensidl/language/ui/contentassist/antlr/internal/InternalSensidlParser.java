@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_STRING", "RULE_ID", "RULE_UNIT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'true'", "'false'", "'_8BIT'", "'_16BIT'", "'_32BIT'", "'_64BIT'", "'SENSIDL_BINARY'", "'SENSIDL_JSON'", "'BIG_ENDIAN'", "'LITTLE_ENDIAN'", "'SIGNED_CHAR'", "'UNSIGNED_CHAR'", "'SIGNED_SHORT'", "'UNSIGNED_SHORT'", "'SIGNED_LONG'", "'UNSIGNED_LONG'", "'SIGNED_LONG_LONG'", "'UNSIGNED_LONG_LONG'", "'FLOAT'", "'DOUBLE'", "'LONG_DOUBLE'", "'sensorInterface'", "'{'", "'}'", "';'", "'with'", "'identifier'", "'encoding'", "'alignment'", "'sensorData'", "'dataSet'", "'as'", "'in'", "'adjusted'", "'by'", "':'", "','", "'constant'", "'='", "'value'", "'range'", "'...'", "'scaling factor'", "'and'", "'offset'", "'linear mapping'", "'['", "']'", "'=>'", "'.'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_STRING", "RULE_UNIT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'true'", "'false'", "'_8BIT'", "'_16BIT'", "'_32BIT'", "'_64BIT'", "'SENSIDL_BINARY'", "'SENSIDL_JSON'", "'BIG_ENDIAN'", "'LITTLE_ENDIAN'", "'SIGNED_CHAR'", "'UNSIGNED_CHAR'", "'SIGNED_SHORT'", "'UNSIGNED_SHORT'", "'SIGNED_LONG'", "'UNSIGNED_LONG'", "'SIGNED_LONG_LONG'", "'UNSIGNED_LONG_LONG'", "'FLOAT'", "'DOUBLE'", "'LONG_DOUBLE'", "'sensorInterface'", "'{'", "'}'", "';'", "'with'", "'identifier'", "'encoding'", "'alignment'", "'sensorData'", "'dataSet'", "'as'", "'in'", "'adjusted'", "'by'", "':'", "','", "'constant'", "'='", "'value'", "'range'", "'...'", "'scaling factor'", "'and'", "'offset'", "'linear mapping'", "'['", "']'", "'=>'", "'.'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -44,7 +44,7 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final int T__54=54;
     public static final int T__60=60;
     public static final int T__61=61;
-    public static final int RULE_ID=6;
+    public static final int RULE_ID=5;
     public static final int T__26=26;
     public static final int T__27=27;
     public static final int T__28=28;
@@ -57,7 +57,7 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final int T__25=25;
     public static final int T__20=20;
     public static final int T__21=21;
-    public static final int RULE_STRING=5;
+    public static final int RULE_STRING=6;
     public static final int RULE_UNIT=7;
     public static final int RULE_SL_COMMENT=9;
     public static final int T__37=37;
@@ -10813,21 +10813,21 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SensorInterface__NameAssignment_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4144:1: rule__SensorInterface__NameAssignment_1 : ( RULE_STRING ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4144:1: rule__SensorInterface__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__SensorInterface__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4148:1: ( ( RULE_STRING ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4149:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4148:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4149:1: ( RULE_ID )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4149:1: ( RULE_STRING )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4150:1: RULE_STRING
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4149:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4150:1: RULE_ID
             {
-             before(grammarAccess.getSensorInterfaceAccess().getNameSTRINGTerminalRuleCall_1_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__SensorInterface__NameAssignment_18317); 
-             after(grammarAccess.getSensorInterfaceAccess().getNameSTRINGTerminalRuleCall_1_0()); 
+             before(grammarAccess.getSensorInterfaceAccess().getNameIDTerminalRuleCall_1_0()); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SensorInterface__NameAssignment_18317); 
+             after(grammarAccess.getSensorInterfaceAccess().getNameIDTerminalRuleCall_1_0()); 
 
             }
 
@@ -12269,9 +12269,9 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     static final String DFA2_eofS =
         "\20\uffff";
     static final String DFA2_minS =
-        "\1\6\1\53\1\26\13\54\2\uffff";
+        "\1\5\1\53\1\26\13\54\2\uffff";
     static final String DFA2_maxS =
-        "\1\6\1\53\1\40\13\61\2\uffff";
+        "\1\5\1\53\1\40\13\61\2\uffff";
     static final String DFA2_acceptS =
         "\16\uffff\1\2\1\1";
     static final String DFA2_specialS =
@@ -12413,13 +12413,13 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__SensorInterface__Group__0__Impl_in_rule__SensorInterface__Group__01857 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_rule__SensorInterface__Group__1_in_rule__SensorInterface__Group__01860 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_33_in_rule__SensorInterface__Group__0__Impl1888 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SensorInterface__Group__1__Impl_in_rule__SensorInterface__Group__11919 = new BitSet(new long[]{0x0000002400000020L});
+    public static final BitSet FOLLOW_rule__SensorInterface__Group__1__Impl_in_rule__SensorInterface__Group__11919 = new BitSet(new long[]{0x0000002400000040L});
     public static final BitSet FOLLOW_rule__SensorInterface__Group__2_in_rule__SensorInterface__Group__11922 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SensorInterface__NameAssignment_1_in_rule__SensorInterface__Group__1__Impl1949 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SensorInterface__Group__2__Impl_in_rule__SensorInterface__Group__21979 = new BitSet(new long[]{0x0000002400000020L});
+    public static final BitSet FOLLOW_rule__SensorInterface__Group__2__Impl_in_rule__SensorInterface__Group__21979 = new BitSet(new long[]{0x0000002400000040L});
     public static final BitSet FOLLOW_rule__SensorInterface__Group__3_in_rule__SensorInterface__Group__21982 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SensorInterface__DescriptionAssignment_2_in_rule__SensorInterface__Group__2__Impl2009 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SensorInterface__Group__3__Impl_in_rule__SensorInterface__Group__32040 = new BitSet(new long[]{0x0000002400000020L});
+    public static final BitSet FOLLOW_rule__SensorInterface__Group__3__Impl_in_rule__SensorInterface__Group__32040 = new BitSet(new long[]{0x0000002400000040L});
     public static final BitSet FOLLOW_rule__SensorInterface__Group__4_in_rule__SensorInterface__Group__32043 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SensorInterface__Group_3__0_in_rule__SensorInterface__Group__3__Impl2070 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SensorInterface__Group__4__Impl_in_rule__SensorInterface__Group__42101 = new BitSet(new long[]{0x0000008000000000L});
@@ -12439,7 +12439,7 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__SensorInterface__Group_3__0__Impl_in_rule__SensorInterface__Group_3__02422 = new BitSet(new long[]{0x0000004000000000L});
     public static final BitSet FOLLOW_rule__SensorInterface__Group_3__1_in_rule__SensorInterface__Group_3__02425 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_37_in_rule__SensorInterface__Group_3__0__Impl2453 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SensorInterface__Group_3__1__Impl_in_rule__SensorInterface__Group_3__12484 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__SensorInterface__Group_3__1__Impl_in_rule__SensorInterface__Group_3__12484 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_rule__SensorInterface__Group_3__2_in_rule__SensorInterface__Group_3__12487 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_38_in_rule__SensorInterface__Group_3__1__Impl2515 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SensorInterface__Group_3__2__Impl_in_rule__SensorInterface__Group_3__22546 = new BitSet(new long[]{0x0000000000000002L});
@@ -12464,16 +12464,16 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__SensorMetaInformation__AlignmentAssignment_5_in_rule__SensorMetaInformation__Group__5__Impl2945 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SensorMetaInformation__Group__6__Impl_in_rule__SensorMetaInformation__Group__62975 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_36_in_rule__SensorMetaInformation__Group__6__Impl3003 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SensorDataDescription__Group__0__Impl_in_rule__SensorDataDescription__Group__03048 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_rule__SensorDataDescription__Group__0__Impl_in_rule__SensorDataDescription__Group__03048 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_rule__SensorDataDescription__Group__1_in_rule__SensorDataDescription__Group__03051 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_41_in_rule__SensorDataDescription__Group__0__Impl3079 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SensorDataDescription__Group__1__Impl_in_rule__SensorDataDescription__Group__13110 = new BitSet(new long[]{0x0000002400000020L});
+    public static final BitSet FOLLOW_rule__SensorDataDescription__Group__1__Impl_in_rule__SensorDataDescription__Group__13110 = new BitSet(new long[]{0x0000002400000040L});
     public static final BitSet FOLLOW_rule__SensorDataDescription__Group__2_in_rule__SensorDataDescription__Group__13113 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SensorDataDescription__NameAssignment_1_in_rule__SensorDataDescription__Group__1__Impl3140 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SensorDataDescription__Group__2__Impl_in_rule__SensorDataDescription__Group__23170 = new BitSet(new long[]{0x0000002400000020L});
+    public static final BitSet FOLLOW_rule__SensorDataDescription__Group__2__Impl_in_rule__SensorDataDescription__Group__23170 = new BitSet(new long[]{0x0000002400000040L});
     public static final BitSet FOLLOW_rule__SensorDataDescription__Group__3_in_rule__SensorDataDescription__Group__23173 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SensorDataDescription__DescriptionAssignment_2_in_rule__SensorDataDescription__Group__2__Impl3200 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SensorDataDescription__Group__3__Impl_in_rule__SensorDataDescription__Group__33231 = new BitSet(new long[]{0x0000002400000020L});
+    public static final BitSet FOLLOW_rule__SensorDataDescription__Group__3__Impl_in_rule__SensorDataDescription__Group__33231 = new BitSet(new long[]{0x0000002400000040L});
     public static final BitSet FOLLOW_rule__SensorDataDescription__Group__4_in_rule__SensorDataDescription__Group__33234 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SensorDataDescription__Group_3__0_in_rule__SensorDataDescription__Group__3__Impl3261 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SensorDataDescription__Group__4__Impl_in_rule__SensorDataDescription__Group__43292 = new BitSet(new long[]{0x0000040800000000L});
@@ -12490,32 +12490,32 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__SensorDataDescription__Group_3__0__Impl_in_rule__SensorDataDescription__Group_3__03552 = new BitSet(new long[]{0x0000004000000000L});
     public static final BitSet FOLLOW_rule__SensorDataDescription__Group_3__1_in_rule__SensorDataDescription__Group_3__03555 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_37_in_rule__SensorDataDescription__Group_3__0__Impl3583 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SensorDataDescription__Group_3__1__Impl_in_rule__SensorDataDescription__Group_3__13614 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__SensorDataDescription__Group_3__1__Impl_in_rule__SensorDataDescription__Group_3__13614 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_rule__SensorDataDescription__Group_3__2_in_rule__SensorDataDescription__Group_3__13617 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_38_in_rule__SensorDataDescription__Group_3__1__Impl3645 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SensorDataDescription__Group_3__2__Impl_in_rule__SensorDataDescription__Group_3__23676 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SensorDataDescription__IDAssignment_3_2_in_rule__SensorDataDescription__Group_3__2__Impl3703 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataSet__Group__0__Impl_in_rule__DataSet__Group__03739 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_rule__DataSet__Group__0__Impl_in_rule__DataSet__Group__03739 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_rule__DataSet__Group__1_in_rule__DataSet__Group__03742 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_42_in_rule__DataSet__Group__0__Impl3770 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataSet__Group__1__Impl_in_rule__DataSet__Group__13801 = new BitSet(new long[]{0x0000002400000020L});
+    public static final BitSet FOLLOW_rule__DataSet__Group__1__Impl_in_rule__DataSet__Group__13801 = new BitSet(new long[]{0x0000002400000040L});
     public static final BitSet FOLLOW_rule__DataSet__Group__2_in_rule__DataSet__Group__13804 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataSet__NameAssignment_1_in_rule__DataSet__Group__1__Impl3831 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataSet__Group__2__Impl_in_rule__DataSet__Group__23861 = new BitSet(new long[]{0x0000002400000020L});
+    public static final BitSet FOLLOW_rule__DataSet__Group__2__Impl_in_rule__DataSet__Group__23861 = new BitSet(new long[]{0x0000002400000040L});
     public static final BitSet FOLLOW_rule__DataSet__Group__3_in_rule__DataSet__Group__23864 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataSet__DescriptionAssignment_2_in_rule__DataSet__Group__2__Impl3891 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataSet__Group__3__Impl_in_rule__DataSet__Group__33922 = new BitSet(new long[]{0x0000002400000020L});
+    public static final BitSet FOLLOW_rule__DataSet__Group__3__Impl_in_rule__DataSet__Group__33922 = new BitSet(new long[]{0x0000002400000040L});
     public static final BitSet FOLLOW_rule__DataSet__Group__4_in_rule__DataSet__Group__33925 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataSet__Group_3__0_in_rule__DataSet__Group__3__Impl3952 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataSet__Group__4__Impl_in_rule__DataSet__Group__43983 = new BitSet(new long[]{0x0000040800000040L});
+    public static final BitSet FOLLOW_rule__DataSet__Group__4__Impl_in_rule__DataSet__Group__43983 = new BitSet(new long[]{0x0000040800000020L});
     public static final BitSet FOLLOW_rule__DataSet__Group__5_in_rule__DataSet__Group__43986 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_34_in_rule__DataSet__Group__4__Impl4014 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataSet__Group__5__Impl_in_rule__DataSet__Group__54045 = new BitSet(new long[]{0x0000040800000040L});
+    public static final BitSet FOLLOW_rule__DataSet__Group__5__Impl_in_rule__DataSet__Group__54045 = new BitSet(new long[]{0x0000040800000020L});
     public static final BitSet FOLLOW_rule__DataSet__Group__6_in_rule__DataSet__Group__54048 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataSet__SubDataSetsAssignment_5_in_rule__DataSet__Group__5__Impl4075 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataSet__Group__6__Impl_in_rule__DataSet__Group__64106 = new BitSet(new long[]{0x0000040800000040L});
+    public static final BitSet FOLLOW_rule__DataSet__Group__6__Impl_in_rule__DataSet__Group__64106 = new BitSet(new long[]{0x0000040800000020L});
     public static final BitSet FOLLOW_rule__DataSet__Group__7_in_rule__DataSet__Group__64109 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataSet__DataAssignment_6_in_rule__DataSet__Group__6__Impl4136 = new BitSet(new long[]{0x0000000000000042L});
+    public static final BitSet FOLLOW_rule__DataSet__DataAssignment_6_in_rule__DataSet__Group__6__Impl4136 = new BitSet(new long[]{0x0000000000000022L});
     public static final BitSet FOLLOW_rule__DataSet__Group__7__Impl_in_rule__DataSet__Group__74167 = new BitSet(new long[]{0x0000001000000000L});
     public static final BitSet FOLLOW_rule__DataSet__Group__8_in_rule__DataSet__Group__74170 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_35_in_rule__DataSet__Group__7__Impl4198 = new BitSet(new long[]{0x0000000000000002L});
@@ -12524,7 +12524,7 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__DataSet__Group_3__0__Impl_in_rule__DataSet__Group_3__04306 = new BitSet(new long[]{0x0000004000000000L});
     public static final BitSet FOLLOW_rule__DataSet__Group_3__1_in_rule__DataSet__Group_3__04309 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_37_in_rule__DataSet__Group_3__0__Impl4337 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataSet__Group_3__1__Impl_in_rule__DataSet__Group_3__14368 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__DataSet__Group_3__1__Impl_in_rule__DataSet__Group_3__14368 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_rule__DataSet__Group_3__2_in_rule__DataSet__Group_3__14371 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_38_in_rule__DataSet__Group_3__1__Impl4399 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataSet__Group_3__2__Impl_in_rule__DataSet__Group_3__24430 = new BitSet(new long[]{0x0000000000000002L});
@@ -12541,16 +12541,16 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__MeasurementData__Group__3__Impl_in_rule__MeasurementData__Group__34675 = new BitSet(new long[]{0x0000000000000080L});
     public static final BitSet FOLLOW_rule__MeasurementData__Group__4_in_rule__MeasurementData__Group__34678 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_44_in_rule__MeasurementData__Group__3__Impl4706 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MeasurementData__Group__4__Impl_in_rule__MeasurementData__Group__44737 = new BitSet(new long[]{0x0000203000000020L});
+    public static final BitSet FOLLOW_rule__MeasurementData__Group__4__Impl_in_rule__MeasurementData__Group__44737 = new BitSet(new long[]{0x0000203000000040L});
     public static final BitSet FOLLOW_rule__MeasurementData__Group__5_in_rule__MeasurementData__Group__44740 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MeasurementData__UnitAssignment_4_in_rule__MeasurementData__Group__4__Impl4767 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MeasurementData__Group__5__Impl_in_rule__MeasurementData__Group__54797 = new BitSet(new long[]{0x0000203000000020L});
+    public static final BitSet FOLLOW_rule__MeasurementData__Group__5__Impl_in_rule__MeasurementData__Group__54797 = new BitSet(new long[]{0x0000203000000040L});
     public static final BitSet FOLLOW_rule__MeasurementData__Group__6_in_rule__MeasurementData__Group__54800 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MeasurementData__Group_5__0_in_rule__MeasurementData__Group__5__Impl4827 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MeasurementData__Group__6__Impl_in_rule__MeasurementData__Group__64858 = new BitSet(new long[]{0x0000203000000020L});
+    public static final BitSet FOLLOW_rule__MeasurementData__Group__6__Impl_in_rule__MeasurementData__Group__64858 = new BitSet(new long[]{0x0000203000000040L});
     public static final BitSet FOLLOW_rule__MeasurementData__Group__7_in_rule__MeasurementData__Group__64861 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MeasurementData__Group_6__0_in_rule__MeasurementData__Group__6__Impl4888 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MeasurementData__Group__7__Impl_in_rule__MeasurementData__Group__74919 = new BitSet(new long[]{0x0000203000000020L});
+    public static final BitSet FOLLOW_rule__MeasurementData__Group__7__Impl_in_rule__MeasurementData__Group__74919 = new BitSet(new long[]{0x0000203000000040L});
     public static final BitSet FOLLOW_rule__MeasurementData__Group__8_in_rule__MeasurementData__Group__74922 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MeasurementData__DescriptionAssignment_7_in_rule__MeasurementData__Group__7__Impl4949 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MeasurementData__Group__8__Impl_in_rule__MeasurementData__Group__84980 = new BitSet(new long[]{0x0000000000000002L});
@@ -12558,7 +12558,7 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__MeasurementData__Group_5__0__Impl_in_rule__MeasurementData__Group_5__05057 = new BitSet(new long[]{0x0000004000000000L});
     public static final BitSet FOLLOW_rule__MeasurementData__Group_5__1_in_rule__MeasurementData__Group_5__05060 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_37_in_rule__MeasurementData__Group_5__0__Impl5088 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MeasurementData__Group_5__1__Impl_in_rule__MeasurementData__Group_5__15119 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__MeasurementData__Group_5__1__Impl_in_rule__MeasurementData__Group_5__15119 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_rule__MeasurementData__Group_5__2_in_rule__MeasurementData__Group_5__15122 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_38_in_rule__MeasurementData__Group_5__1__Impl5150 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MeasurementData__Group_5__2__Impl_in_rule__MeasurementData__Group_5__25181 = new BitSet(new long[]{0x0000000000000002L});
@@ -12603,16 +12603,16 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__NonMeasurementData__Group__6__Impl_in_rule__NonMeasurementData__Group__66047 = new BitSet(new long[]{0x0004000000000000L});
     public static final BitSet FOLLOW_rule__NonMeasurementData__Group__7_in_rule__NonMeasurementData__Group__66050 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_51_in_rule__NonMeasurementData__Group__6__Impl6078 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NonMeasurementData__Group__7__Impl_in_rule__NonMeasurementData__Group__76109 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__NonMeasurementData__Group__7__Impl_in_rule__NonMeasurementData__Group__76109 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_rule__NonMeasurementData__Group__8_in_rule__NonMeasurementData__Group__76112 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_50_in_rule__NonMeasurementData__Group__7__Impl6140 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NonMeasurementData__Group__8__Impl_in_rule__NonMeasurementData__Group__86171 = new BitSet(new long[]{0x0000003000000020L});
+    public static final BitSet FOLLOW_rule__NonMeasurementData__Group__8__Impl_in_rule__NonMeasurementData__Group__86171 = new BitSet(new long[]{0x0000003000000040L});
     public static final BitSet FOLLOW_rule__NonMeasurementData__Group__9_in_rule__NonMeasurementData__Group__86174 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NonMeasurementData__ValueAssignment_8_in_rule__NonMeasurementData__Group__8__Impl6201 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NonMeasurementData__Group__9__Impl_in_rule__NonMeasurementData__Group__96231 = new BitSet(new long[]{0x0000003000000020L});
+    public static final BitSet FOLLOW_rule__NonMeasurementData__Group__9__Impl_in_rule__NonMeasurementData__Group__96231 = new BitSet(new long[]{0x0000003000000040L});
     public static final BitSet FOLLOW_rule__NonMeasurementData__Group__10_in_rule__NonMeasurementData__Group__96234 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NonMeasurementData__Group_9__0_in_rule__NonMeasurementData__Group__9__Impl6261 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NonMeasurementData__Group__10__Impl_in_rule__NonMeasurementData__Group__106292 = new BitSet(new long[]{0x0000003000000020L});
+    public static final BitSet FOLLOW_rule__NonMeasurementData__Group__10__Impl_in_rule__NonMeasurementData__Group__106292 = new BitSet(new long[]{0x0000003000000040L});
     public static final BitSet FOLLOW_rule__NonMeasurementData__Group__11_in_rule__NonMeasurementData__Group__106295 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NonMeasurementData__DescriptionAssignment_10_in_rule__NonMeasurementData__Group__10__Impl6322 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NonMeasurementData__Group__11__Impl_in_rule__NonMeasurementData__Group__116353 = new BitSet(new long[]{0x0000000000000002L});
@@ -12620,7 +12620,7 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__NonMeasurementData__Group_9__0__Impl_in_rule__NonMeasurementData__Group_9__06436 = new BitSet(new long[]{0x0000004000000000L});
     public static final BitSet FOLLOW_rule__NonMeasurementData__Group_9__1_in_rule__NonMeasurementData__Group_9__06439 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_37_in_rule__NonMeasurementData__Group_9__0__Impl6467 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NonMeasurementData__Group_9__1__Impl_in_rule__NonMeasurementData__Group_9__16498 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__NonMeasurementData__Group_9__1__Impl_in_rule__NonMeasurementData__Group_9__16498 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_rule__NonMeasurementData__Group_9__2_in_rule__NonMeasurementData__Group_9__16501 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_38_in_rule__NonMeasurementData__Group_9__1__Impl6529 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NonMeasurementData__Group_9__2__Impl_in_rule__NonMeasurementData__Group_9__26560 = new BitSet(new long[]{0x0000000000000002L});
@@ -12700,7 +12700,7 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_61_in_rule__DOUBLE__Group_1__0__Impl8221 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DOUBLE__Group_1__1__Impl_in_rule__DOUBLE__Group_1__18252 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_INT_in_rule__DOUBLE__Group_1__1__Impl8279 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__SensorInterface__NameAssignment_18317 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__SensorInterface__NameAssignment_18317 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__SensorInterface__DescriptionAssignment_28348 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__SensorInterface__IDAssignment_3_28379 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSensorMetaInformation_in_rule__SensorInterface__MetaInformationAssignment_58410 = new BitSet(new long[]{0x0000000000000002L});

@@ -4147,8 +4147,8 @@ rule__SensorInterface__NameAssignment_1
     }
 :
 (
-{ before(grammarAccess.getSensorInterfaceAccess().getNameSTRINGTerminalRuleCall_1_0()); }
-	RULE_STRING{ after(grammarAccess.getSensorInterfaceAccess().getNameSTRINGTerminalRuleCall_1_0()); }
+{ before(grammarAccess.getSensorInterfaceAccess().getNameIDTerminalRuleCall_1_0()); }
+	RULE_ID{ after(grammarAccess.getSensorInterfaceAccess().getNameIDTerminalRuleCall_1_0()); }
 )
 
 ;
@@ -4697,7 +4697,7 @@ finally {
 }
 
 
-RULE_UNIT : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+RULE_UNIT : '^'? ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
