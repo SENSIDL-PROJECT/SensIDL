@@ -31,7 +31,7 @@ public interface DescribableElement extends IdentifiableElement {
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
 	 * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getDescribableElement_Description()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	String getDescription();
