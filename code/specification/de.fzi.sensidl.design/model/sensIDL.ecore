@@ -36,7 +36,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="endianness" lowerBound="1"
         eType="#//Endianness"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="alignment" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Coding">
     <eLiterals name="SENSIDL_BINARY"/>
