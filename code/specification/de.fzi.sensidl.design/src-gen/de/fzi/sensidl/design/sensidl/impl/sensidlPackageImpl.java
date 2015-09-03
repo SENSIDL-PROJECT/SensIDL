@@ -373,7 +373,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 		initEReference(getEncodingSettings_SensorInterface(), this.getSensorInterface(), this.getSensorInterface_EncodingSettings(), "sensorInterface", null, 1, 1, EncodingSettings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEncodingSettings_Coding(), this.getCoding(), "coding", null, 1, 1, EncodingSettings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEncodingSettings_Endianness(), this.getEndianness(), "endianness", null, 1, 1, EncodingSettings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEncodingSettings_Alignment(), ecorePackage.getEInt(), "alignment", null, 1, 1, EncodingSettings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEncodingSettings_Alignment(), ecorePackage.getEInt(), "alignment", "1", 1, 1, EncodingSettings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(codingEEnum, Coding.class, "Coding");

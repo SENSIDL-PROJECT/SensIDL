@@ -111,6 +111,7 @@ public interface EncodingSettings extends IdentifiableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Alignment</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Alignment</em>' attribute isn't clear,
@@ -120,7 +121,7 @@ public interface EncodingSettings extends IdentifiableElement {
 	 * @return the value of the '<em>Alignment</em>' attribute.
 	 * @see #setAlignment(int)
 	 * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getEncodingSettings_Alignment()
-	 * @model required="true"
+	 * @model default="1" required="true"
 	 * @generated
 	 */
 	int getAlignment();

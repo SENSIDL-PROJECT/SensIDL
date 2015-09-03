@@ -58,7 +58,7 @@ public interface NonMeasurementData extends Data {
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getNonMeasurementData_Value()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	String getValue();

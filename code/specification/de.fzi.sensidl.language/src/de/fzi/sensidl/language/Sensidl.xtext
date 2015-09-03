@@ -38,7 +38,7 @@ SensorInterface returns sensidl::SensorInterface:
 ;
 
 EncodingSettings returns sensidl::EncodingSettings: 
-	"encoding" coding=Coding "with" endianness=Endianness "alignment" alignment=INT ("with" "identifier" ":" ID=STRING)? ";"
+	"encoding" coding=Coding "with" endianness=Endianness "alignment" alignment=INT "BIT" ("with" "identifier" ":" ID=STRING)? ";"
 ;
 
 enum Coding returns sensidl::Coding:
@@ -73,7 +73,7 @@ MeasurementData returns dataRepresentation::MeasurementData:
 ;
 
 NonMeasurementData returns dataRepresentation::NonMeasurementData:
-	name=ID "as" dataType=DataType "constant" "=" constant=BOOLEAN "value" "=" value=STRING ("with" "identifier" ":" ID=STRING)? (description=STRING)? ";"
+	name=ID "as" dataType=DataType "constant" "=" constant=BOOLEAN ("value" "=" value=STRING)? ("with" "identifier" ":" ID=STRING)? (description=STRING)? ";"
 ;
 
 enum DataType returns dataRepresentation::DataType:

@@ -83,7 +83,7 @@ public class EncodingSettingsImpl extends IdentifiableElementImpl implements Enc
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int ALIGNMENT_EDEFAULT = 0;
+	protected static final int ALIGNMENT_EDEFAULT = 1;
 
 	/**
 	 * The cached value of the '{@link #getAlignment() <em>Alignment</em>}' attribute.

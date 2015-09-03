@@ -403,23 +403,27 @@ ruleEncodingSettings returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_6='with' 
+)	otherlv_6='BIT' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getEncodingSettingsAccess().getWithKeyword_6_0());
+    	newLeafNode(otherlv_6, grammarAccess.getEncodingSettingsAccess().getBITKeyword_6());
     }
-	otherlv_7='identifier' 
+(	otherlv_7='with' 
     {
-    	newLeafNode(otherlv_7, grammarAccess.getEncodingSettingsAccess().getIdentifierKeyword_6_1());
+    	newLeafNode(otherlv_7, grammarAccess.getEncodingSettingsAccess().getWithKeyword_7_0());
     }
-	otherlv_8=':' 
+	otherlv_8='identifier' 
     {
-    	newLeafNode(otherlv_8, grammarAccess.getEncodingSettingsAccess().getColonKeyword_6_2());
+    	newLeafNode(otherlv_8, grammarAccess.getEncodingSettingsAccess().getIdentifierKeyword_7_1());
+    }
+	otherlv_9=':' 
+    {
+    	newLeafNode(otherlv_9, grammarAccess.getEncodingSettingsAccess().getColonKeyword_7_2());
     }
 (
 (
-		lv_ID_9_0=RULE_STRING
+		lv_ID_10_0=RULE_STRING
 		{
-			newLeafNode(lv_ID_9_0, grammarAccess.getEncodingSettingsAccess().getIDSTRINGTerminalRuleCall_6_3_0()); 
+			newLeafNode(lv_ID_10_0, grammarAccess.getEncodingSettingsAccess().getIDSTRINGTerminalRuleCall_7_3_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -428,14 +432,14 @@ ruleEncodingSettings returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"ID",
-        		lv_ID_9_0, 
+        		lv_ID_10_0, 
         		"STRING");
 	    }
 
 )
-))?	otherlv_10=';' 
+))?	otherlv_11=';' 
     {
-    	newLeafNode(otherlv_10, grammarAccess.getEncodingSettingsAccess().getSemicolonKeyword_7());
+    	newLeafNode(otherlv_11, grammarAccess.getEncodingSettingsAccess().getSemicolonKeyword_8());
     }
 )
 ;
@@ -977,19 +981,19 @@ ruleNonMeasurementData returns [EObject current=null]
 	    }
 
 )
-)	otherlv_6='value' 
+)(	otherlv_6='value' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getNonMeasurementDataAccess().getValueKeyword_6());
+    	newLeafNode(otherlv_6, grammarAccess.getNonMeasurementDataAccess().getValueKeyword_6_0());
     }
 	otherlv_7='=' 
     {
-    	newLeafNode(otherlv_7, grammarAccess.getNonMeasurementDataAccess().getEqualsSignKeyword_7());
+    	newLeafNode(otherlv_7, grammarAccess.getNonMeasurementDataAccess().getEqualsSignKeyword_6_1());
     }
 (
 (
 		lv_value_8_0=RULE_STRING
 		{
-			newLeafNode(lv_value_8_0, grammarAccess.getNonMeasurementDataAccess().getValueSTRINGTerminalRuleCall_8_0()); 
+			newLeafNode(lv_value_8_0, grammarAccess.getNonMeasurementDataAccess().getValueSTRINGTerminalRuleCall_6_2_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1003,23 +1007,23 @@ ruleNonMeasurementData returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_9='with' 
+))?(	otherlv_9='with' 
     {
-    	newLeafNode(otherlv_9, grammarAccess.getNonMeasurementDataAccess().getWithKeyword_9_0());
+    	newLeafNode(otherlv_9, grammarAccess.getNonMeasurementDataAccess().getWithKeyword_7_0());
     }
 	otherlv_10='identifier' 
     {
-    	newLeafNode(otherlv_10, grammarAccess.getNonMeasurementDataAccess().getIdentifierKeyword_9_1());
+    	newLeafNode(otherlv_10, grammarAccess.getNonMeasurementDataAccess().getIdentifierKeyword_7_1());
     }
 	otherlv_11=':' 
     {
-    	newLeafNode(otherlv_11, grammarAccess.getNonMeasurementDataAccess().getColonKeyword_9_2());
+    	newLeafNode(otherlv_11, grammarAccess.getNonMeasurementDataAccess().getColonKeyword_7_2());
     }
 (
 (
 		lv_ID_12_0=RULE_STRING
 		{
-			newLeafNode(lv_ID_12_0, grammarAccess.getNonMeasurementDataAccess().getIDSTRINGTerminalRuleCall_9_3_0()); 
+			newLeafNode(lv_ID_12_0, grammarAccess.getNonMeasurementDataAccess().getIDSTRINGTerminalRuleCall_7_3_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1037,7 +1041,7 @@ ruleNonMeasurementData returns [EObject current=null]
 (
 		lv_description_13_0=RULE_STRING
 		{
-			newLeafNode(lv_description_13_0, grammarAccess.getNonMeasurementDataAccess().getDescriptionSTRINGTerminalRuleCall_10_0()); 
+			newLeafNode(lv_description_13_0, grammarAccess.getNonMeasurementDataAccess().getDescriptionSTRINGTerminalRuleCall_8_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1053,7 +1057,7 @@ ruleNonMeasurementData returns [EObject current=null]
 )
 )?	otherlv_14=';' 
     {
-    	newLeafNode(otherlv_14, grammarAccess.getNonMeasurementDataAccess().getSemicolonKeyword_11());
+    	newLeafNode(otherlv_14, grammarAccess.getNonMeasurementDataAccess().getSemicolonKeyword_9());
     }
 )
 ;

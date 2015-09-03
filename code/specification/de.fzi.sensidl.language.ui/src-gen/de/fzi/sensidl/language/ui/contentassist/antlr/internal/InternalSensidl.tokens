@@ -1,11 +1,12 @@
-','=44
-'.'=57
-'...'=49
+','=45
+'.'=58
+'...'=50
 ':'=35
 ';'=32
-'='=46
-'=>'=56
+'='=47
+'=>'=57
 'BIG_ENDIAN'=16
+'BIT'=38
 'DOUBLE'=27
 'FLOAT'=26
 'LITTLE_ENDIAN'=17
@@ -20,27 +21,27 @@
 'UNSIGNED_LONG'=23
 'UNSIGNED_LONG_LONG'=25
 'UNSIGNED_SHORT'=21
-'['=54
-']'=55
-'adjusted'=42
+'['=55
+']'=56
+'adjusted'=43
 'alignment'=37
-'and'=51
-'as'=40
-'by'=43
-'constant'=45
-'dataSet'=39
+'and'=52
+'as'=41
+'by'=44
+'constant'=46
+'dataSet'=40
 'encoding'=36
 'false'=13
 'identifier'=34
-'in'=41
-'linear mapping'=53
-'offset'=52
-'range'=48
-'scaling factor'=50
-'sensorData'=38
+'in'=42
+'linear mapping'=54
+'offset'=53
+'range'=49
+'scaling factor'=51
+'sensorData'=39
 'sensorInterface'=29
 'true'=12
-'value'=47
+'value'=48
 'with'=33
 '{'=30
 '}'=31
@@ -98,3 +99,4 @@ T__54=54
 T__55=55
 T__56=56
 T__57=57
+T__58=58

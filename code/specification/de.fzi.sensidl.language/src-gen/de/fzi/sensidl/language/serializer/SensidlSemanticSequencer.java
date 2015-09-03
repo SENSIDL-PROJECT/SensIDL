@@ -135,7 +135,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *         name=ID 
 	 *         dataType=DataType 
 	 *         constant=BOOLEAN 
-	 *         value=STRING 
+	 *         value=STRING? 
 	 *         ID=STRING? 
 	 *         description=STRING?
 	 *     )
