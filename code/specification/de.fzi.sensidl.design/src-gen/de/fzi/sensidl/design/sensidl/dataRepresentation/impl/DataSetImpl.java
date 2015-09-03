@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -36,7 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class DataSetImpl extends NamedElementImpl implements DataSet {
 	/**
-	 * The cached value of the '{@link #getSubDataSets() <em>Sub Data Sets</em>}' containment reference list.
+	 * The cached value of the '{@link #getSubDataSets() <em>Sub Data Sets</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSubDataSets()
@@ -54,6 +55,16 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * @ordered
 	 */
 	protected EList<Data> data;
+
+	/**
+	 * The cached value of the '{@link #getParentDataSet() <em>Parent Data Set</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParentDataSet()
+	 * @generated
+	 * @ordered
+	 */
+	protected DataSet parentDataSet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -122,7 +133,7 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 */
 	public EList<DataSet> getSubDataSets() {
 		if (subDataSets == null) {
-			subDataSets = new EObjectContainmentWithInverseEList<DataSet>(DataSet.class, this, DataRepresentationPackage.DATA_SET__SUB_DATA_SETS, DataRepresentationPackage.DATA_SET__PARENT_DATA_SET);
+			subDataSets = new EObjectWithInverseResolvingEList<DataSet>(DataSet.class, this, DataRepresentationPackage.DATA_SET__SUB_DATA_SETS, DataRepresentationPackage.DATA_SET__PARENT_DATA_SET);
 		}
 		return subDataSets;
 	}
@@ -145,8 +156,24 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * @generated
 	 */
 	public DataSet getParentDataSet() {
-		if (eContainerFeatureID() != DataRepresentationPackage.DATA_SET__PARENT_DATA_SET) return null;
-		return (DataSet)eInternalContainer();
+		if (parentDataSet != null && parentDataSet.eIsProxy()) {
+			InternalEObject oldParentDataSet = (InternalEObject)parentDataSet;
+			parentDataSet = (DataSet)eResolveProxy(oldParentDataSet);
+			if (parentDataSet != oldParentDataSet) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DataRepresentationPackage.DATA_SET__PARENT_DATA_SET, oldParentDataSet, parentDataSet));
+			}
+		}
+		return parentDataSet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DataSet basicGetParentDataSet() {
+		return parentDataSet;
 	}
 
 	/**
@@ -155,7 +182,12 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * @generated
 	 */
 	public NotificationChain basicSetParentDataSet(DataSet newParentDataSet, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newParentDataSet, DataRepresentationPackage.DATA_SET__PARENT_DATA_SET, msgs);
+		DataSet oldParentDataSet = parentDataSet;
+		parentDataSet = newParentDataSet;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DataRepresentationPackage.DATA_SET__PARENT_DATA_SET, oldParentDataSet, newParentDataSet);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
 		return msgs;
 	}
 
@@ -165,12 +197,10 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * @generated
 	 */
 	public void setParentDataSet(DataSet newParentDataSet) {
-		if (newParentDataSet != eInternalContainer() || (eContainerFeatureID() != DataRepresentationPackage.DATA_SET__PARENT_DATA_SET && newParentDataSet != null)) {
-			if (EcoreUtil.isAncestor(this, newParentDataSet))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+		if (newParentDataSet != parentDataSet) {
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
+			if (parentDataSet != null)
+				msgs = ((InternalEObject)parentDataSet).eInverseRemove(this, DataRepresentationPackage.DATA_SET__SUB_DATA_SETS, DataSet.class, msgs);
 			if (newParentDataSet != null)
 				msgs = ((InternalEObject)newParentDataSet).eInverseAdd(this, DataRepresentationPackage.DATA_SET__SUB_DATA_SETS, DataSet.class, msgs);
 			msgs = basicSetParentDataSet(newParentDataSet, msgs);
@@ -198,8 +228,8 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 			case DataRepresentationPackage.DATA_SET__DATA:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getData()).basicAdd(otherEnd, msgs);
 			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
+				if (parentDataSet != null)
+					msgs = ((InternalEObject)parentDataSet).eInverseRemove(this, DataRepresentationPackage.DATA_SET__SUB_DATA_SETS, DataSet.class, msgs);
 				return basicSetParentDataSet((DataSet)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -235,8 +265,6 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 		switch (eContainerFeatureID()) {
 			case DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION:
 				return eInternalContainer().eInverseRemove(this, DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__DATA_SETS, SensorDataDescription.class, msgs);
-			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
-				return eInternalContainer().eInverseRemove(this, DataRepresentationPackage.DATA_SET__SUB_DATA_SETS, DataSet.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -256,7 +284,8 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 			case DataRepresentationPackage.DATA_SET__DATA:
 				return getData();
 			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
-				return getParentDataSet();
+				if (resolve) return getParentDataSet();
+				return basicGetParentDataSet();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -327,7 +356,7 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 			case DataRepresentationPackage.DATA_SET__DATA:
 				return data != null && !data.isEmpty();
 			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
-				return getParentDataSet() != null;
+				return parentDataSet != null;
 		}
 		return super.eIsSet(featureID);
 	}

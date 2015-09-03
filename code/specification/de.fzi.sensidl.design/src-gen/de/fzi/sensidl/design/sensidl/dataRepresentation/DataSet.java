@@ -54,7 +54,7 @@ public interface DataSet extends NamedElement {
 	void setSensorDataDescription(SensorDataDescription value);
 
 	/**
-	 * Returns the value of the '<em><b>Sub Data Sets</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Sub Data Sets</b></em>' reference list.
 	 * The list contents are of type {@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet}.
 	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getParentDataSet <em>Parent Data Set</em>}'.
 	 * <!-- begin-user-doc -->
@@ -63,10 +63,10 @@ public interface DataSet extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sub Data Sets</em>' containment reference list.
+	 * @return the value of the '<em>Sub Data Sets</em>' reference list.
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getDataSet_SubDataSets()
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getParentDataSet
-	 * @model opposite="parentDataSet" containment="true"
+	 * @model opposite="parentDataSet"
 	 * @generated
 	 */
 	EList<DataSet> getSubDataSets();
@@ -90,7 +90,7 @@ public interface DataSet extends NamedElement {
 	EList<Data> getData();
 
 	/**
-	 * Returns the value of the '<em><b>Parent Data Set</b></em>' container reference.
+	 * Returns the value of the '<em><b>Parent Data Set</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getSubDataSets <em>Sub Data Sets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -98,20 +98,20 @@ public interface DataSet extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parent Data Set</em>' container reference.
+	 * @return the value of the '<em>Parent Data Set</em>' reference.
 	 * @see #setParentDataSet(DataSet)
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getDataSet_ParentDataSet()
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getSubDataSets
-	 * @model opposite="subDataSets" transient="false"
+	 * @model opposite="subDataSets"
 	 * @generated
 	 */
 	DataSet getParentDataSet();
 
 	/**
-	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getParentDataSet <em>Parent Data Set</em>}' container reference.
+	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getParentDataSet <em>Parent Data Set</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Parent Data Set</em>' container reference.
+	 * @param value the new value of the '<em>Parent Data Set</em>' reference.
 	 * @see #getParentDataSet()
 	 * @generated
 	 */

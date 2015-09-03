@@ -233,6 +233,29 @@ public class DataRepresentationItemProviderAdapterFactory extends DataRepresenta
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LinearDataConversionWithIntervalItemProvider linearDataConversionWithIntervalItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLinearDataConversionWithIntervalAdapter() {
+		if (linearDataConversionWithIntervalItemProvider == null) {
+			linearDataConversionWithIntervalItemProvider = new LinearDataConversionWithIntervalItemProvider(this);
+		}
+
+		return linearDataConversionWithIntervalItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -361,6 +384,7 @@ public class DataRepresentationItemProviderAdapterFactory extends DataRepresenta
 		if (dataRangeItemProvider != null) dataRangeItemProvider.dispose();
 		if (dataConversionItemProvider != null) dataConversionItemProvider.dispose();
 		if (linearDataConversionItemProvider != null) linearDataConversionItemProvider.dispose();
+		if (linearDataConversionWithIntervalItemProvider != null) linearDataConversionWithIntervalItemProvider.dispose();
 		if (intervalItemProvider != null) intervalItemProvider.dispose();
 	}
 

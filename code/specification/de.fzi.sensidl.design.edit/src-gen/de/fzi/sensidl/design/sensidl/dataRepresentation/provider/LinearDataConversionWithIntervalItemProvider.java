@@ -5,7 +5,7 @@ package de.fzi.sensidl.design.sensidl.dataRepresentation.provider;
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationFactory;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
-import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
 
 import java.util.Collection;
 import java.util.List;
@@ -15,25 +15,23 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData} object.
+ * This is the item provider adapter for a {@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MeasurementDataItemProvider extends DataItemProvider {
+public class LinearDataConversionWithIntervalItemProvider extends DataConversionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MeasurementDataItemProvider(AdapterFactory adapterFactory) {
+	public LinearDataConversionWithIntervalItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -48,31 +46,8 @@ public class MeasurementDataItemProvider extends DataItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addUnitPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Unit feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addUnitPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MeasurementData_unit_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MeasurementData_unit_feature", "_UI_MeasurementData_type"),
-				 DataRepresentationPackage.Literals.MEASUREMENT_DATA__UNIT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -87,7 +62,8 @@ public class MeasurementDataItemProvider extends DataItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DataRepresentationPackage.Literals.MEASUREMENT_DATA__ADJUSTMENTS);
+			childrenFeatures.add(DataRepresentationPackage.Literals.LINEAR_DATA_CONVERSION_WITH_INTERVAL__FROM_INTERVAL);
+			childrenFeatures.add(DataRepresentationPackage.Literals.LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL);
 		}
 		return childrenFeatures;
 	}
@@ -106,14 +82,14 @@ public class MeasurementDataItemProvider extends DataItemProvider {
 	}
 
 	/**
-	 * This returns MeasurementData.gif.
+	 * This returns LinearDataConversionWithInterval.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MeasurementData"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/LinearDataConversionWithInterval"));
 	}
 
 	/**
@@ -124,10 +100,10 @@ public class MeasurementDataItemProvider extends DataItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MeasurementData)object).getName();
+		String label = ((LinearDataConversionWithInterval)object).getID();
 		return label == null || label.length() == 0 ?
-			getString("_UI_MeasurementData_type") :
-			getString("_UI_MeasurementData_type") + " " + label;
+			getString("_UI_LinearDataConversionWithInterval_type") :
+			getString("_UI_LinearDataConversionWithInterval_type") + " " + label;
 	}
 	
 
@@ -142,11 +118,9 @@ public class MeasurementDataItemProvider extends DataItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MeasurementData.class)) {
-			case DataRepresentationPackage.MEASUREMENT_DATA__UNIT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case DataRepresentationPackage.MEASUREMENT_DATA__ADJUSTMENTS:
+		switch (notification.getFeatureID(LinearDataConversionWithInterval.class)) {
+			case DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__FROM_INTERVAL:
+			case DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -166,23 +140,36 @@ public class MeasurementDataItemProvider extends DataItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DataRepresentationPackage.Literals.MEASUREMENT_DATA__ADJUSTMENTS,
-				 DataRepresentationFactory.eINSTANCE.createDataRange()));
+				(DataRepresentationPackage.Literals.LINEAR_DATA_CONVERSION_WITH_INTERVAL__FROM_INTERVAL,
+				 DataRepresentationFactory.eINSTANCE.createInterval()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DataRepresentationPackage.Literals.MEASUREMENT_DATA__ADJUSTMENTS,
-				 DataRepresentationFactory.eINSTANCE.createDataConversion()));
+				(DataRepresentationPackage.Literals.LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL,
+				 DataRepresentationFactory.eINSTANCE.createInterval()));
+	}
 
-		newChildDescriptors.add
-			(createChildParameter
-				(DataRepresentationPackage.Literals.MEASUREMENT_DATA__ADJUSTMENTS,
-				 DataRepresentationFactory.eINSTANCE.createLinearDataConversion()));
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
 
-		newChildDescriptors.add
-			(createChildParameter
-				(DataRepresentationPackage.Literals.MEASUREMENT_DATA__ADJUSTMENTS,
-				 DataRepresentationFactory.eINSTANCE.createLinearDataConversionWithInterval()));
+		boolean qualify =
+			childFeature == DataRepresentationPackage.Literals.LINEAR_DATA_CONVERSION_WITH_INTERVAL__FROM_INTERVAL ||
+			childFeature == DataRepresentationPackage.Literals.LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL;
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

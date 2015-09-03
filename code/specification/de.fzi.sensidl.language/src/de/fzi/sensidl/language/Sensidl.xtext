@@ -57,7 +57,7 @@ SensorDataDescription returns dataRepresentation::SensorDataDescription:
 
 DataSet returns dataRepresentation::DataSet:
 	"dataSet" name=ID ("with" "identifier" ID=STRING)? (description=STRING)? "{"		
-		(subDataSets+=DataSet)?
+//		(subDataSets+=DataSet)?
 		(data+=Data)*
 	"}"";"
 ;
@@ -69,7 +69,7 @@ Data returns dataRepresentation::Data:
 
 MeasurementData returns dataRepresentation::MeasurementData:
 	name=ID "as" dataType=DataType "in" unit=UNIT ("with" "identifier" ":" ID=STRING)?
-	("adjusted" "by" ":" adjustments+=DataAdjustment ("," adjustments+=DataAdjustment)*)? (description=STRING)? ";"
+	("adjusted by" adjustments+=DataAdjustment ("," adjustments+=DataAdjustment)*)? (description=STRING)? ";"
 ;
 
 NonMeasurementData returns dataRepresentation::NonMeasurementData:
@@ -77,17 +77,16 @@ NonMeasurementData returns dataRepresentation::NonMeasurementData:
 ;
 
 enum DataType returns dataRepresentation::DataType:
-	SIGNED_CHAR |
-	UNSIGNED_CHAR |
-	SIGNED_SHORT |
-	UNSIGNED_SHORT |
-	SIGNED_LONG |
-	UNSIGNED_LONG |
-	SIGNED_LONG_LONG |
-	UNSIGNED_LONG_LONG |
+	INT8 |
+	UINT8 |
+	INT16 |
+	UINT16 |
+	INT32 |
+	UINT32 |
+	INT64 |
+	UINT64 |
 	FLOAT |
-	DOUBLE |
-	LONG_DOUBLE
+	DOUBLE
 ;
 
 DataAdjustment returns dataRepresentation::DataAdjustment:
@@ -96,23 +95,30 @@ DataAdjustment returns dataRepresentation::DataAdjustment:
 ;
 
 DataRange returns dataRepresentation::DataRange:
-	"with" "range" range=Interval ";"
+	"with range" range=Interval ";"
 ;
 
 Interval returns dataRepresentation::Interval:
-	lowerBound=DOUBLE"..."upperBound=DOUBLE
+	lowerBound=DOUBLE";"upperBound=DOUBLE
 ;
 
 DataConversion returns dataRepresentation::DataConversion:
-	LinearDataConversion
+	LinearDataConversion |
+	LinearDataConversionWithInterval
 ;
 
 LinearDataConversion returns dataRepresentation::LinearDataConversion:	
 	(
-		"with" "scaling factor"":" scalingFactor=DOUBLE "and" "offset"":"offset=DOUBLE |
+		"with" "scaling factor"":" scalingFactor=DOUBLE "and" "offset"":"offset=DOUBLE 
+	)
+;
+
+LinearDataConversionWithInterval returns dataRepresentation::LinearDataConversionWithInterval: 
+	(
 		"linear mapping" "[" fromInterval=Interval"]" "=>" "["toInterval=Interval"]" 
 	)
 ;
+
 
 DOUBLE returns ecore::EDouble: INT ('.' INT)?;
 BOOLEAN returns ecore::EBoolean: 'true' | 'false';

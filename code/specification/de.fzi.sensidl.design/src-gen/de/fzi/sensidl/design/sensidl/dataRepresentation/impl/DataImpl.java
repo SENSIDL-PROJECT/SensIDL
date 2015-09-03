@@ -37,7 +37,7 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final DataType DATA_TYPE_EDEFAULT = DataType.SIGNED_CHAR;
+	protected static final DataType DATA_TYPE_EDEFAULT = DataType.INT8;
 
 	/**
 	 * The cached value of the '{@link #getDataType() <em>Data Type</em>}' attribute.

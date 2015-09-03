@@ -41,7 +41,7 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNamedElementAccess().getAlternatives(), "rule__NamedElement__Alternatives");
 					put(grammarAccess.getDataAccess().getAlternatives(), "rule__Data__Alternatives");
 					put(grammarAccess.getDataAdjustmentAccess().getAlternatives(), "rule__DataAdjustment__Alternatives");
-					put(grammarAccess.getLinearDataConversionAccess().getAlternatives(), "rule__LinearDataConversion__Alternatives");
+					put(grammarAccess.getDataConversionAccess().getAlternatives(), "rule__DataConversion__Alternatives");
 					put(grammarAccess.getBOOLEANAccess().getAlternatives(), "rule__BOOLEAN__Alternatives");
 					put(grammarAccess.getCodingAccess().getAlternatives(), "rule__Coding__Alternatives");
 					put(grammarAccess.getEndiannessAccess().getAlternatives(), "rule__Endianness__Alternatives");
@@ -57,14 +57,14 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMeasurementDataAccess().getGroup(), "rule__MeasurementData__Group__0");
 					put(grammarAccess.getMeasurementDataAccess().getGroup_5(), "rule__MeasurementData__Group_5__0");
 					put(grammarAccess.getMeasurementDataAccess().getGroup_6(), "rule__MeasurementData__Group_6__0");
-					put(grammarAccess.getMeasurementDataAccess().getGroup_6_4(), "rule__MeasurementData__Group_6_4__0");
+					put(grammarAccess.getMeasurementDataAccess().getGroup_6_2(), "rule__MeasurementData__Group_6_2__0");
 					put(grammarAccess.getNonMeasurementDataAccess().getGroup(), "rule__NonMeasurementData__Group__0");
 					put(grammarAccess.getNonMeasurementDataAccess().getGroup_6(), "rule__NonMeasurementData__Group_6__0");
 					put(grammarAccess.getNonMeasurementDataAccess().getGroup_7(), "rule__NonMeasurementData__Group_7__0");
 					put(grammarAccess.getDataRangeAccess().getGroup(), "rule__DataRange__Group__0");
 					put(grammarAccess.getIntervalAccess().getGroup(), "rule__Interval__Group__0");
-					put(grammarAccess.getLinearDataConversionAccess().getGroup_0(), "rule__LinearDataConversion__Group_0__0");
-					put(grammarAccess.getLinearDataConversionAccess().getGroup_1(), "rule__LinearDataConversion__Group_1__0");
+					put(grammarAccess.getLinearDataConversionAccess().getGroup(), "rule__LinearDataConversion__Group__0");
+					put(grammarAccess.getLinearDataConversionWithIntervalAccess().getGroup(), "rule__LinearDataConversionWithInterval__Group__0");
 					put(grammarAccess.getDOUBLEAccess().getGroup(), "rule__DOUBLE__Group__0");
 					put(grammarAccess.getDOUBLEAccess().getGroup_1(), "rule__DOUBLE__Group_1__0");
 					put(grammarAccess.getSensorInterfaceAccess().getNameAssignment_1(), "rule__SensorInterface__NameAssignment_1");
@@ -81,14 +81,13 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDataSetAccess().getNameAssignment_1(), "rule__DataSet__NameAssignment_1");
 					put(grammarAccess.getDataSetAccess().getIDAssignment_2_2(), "rule__DataSet__IDAssignment_2_2");
 					put(grammarAccess.getDataSetAccess().getDescriptionAssignment_3(), "rule__DataSet__DescriptionAssignment_3");
-					put(grammarAccess.getDataSetAccess().getSubDataSetsAssignment_5(), "rule__DataSet__SubDataSetsAssignment_5");
-					put(grammarAccess.getDataSetAccess().getDataAssignment_6(), "rule__DataSet__DataAssignment_6");
+					put(grammarAccess.getDataSetAccess().getDataAssignment_5(), "rule__DataSet__DataAssignment_5");
 					put(grammarAccess.getMeasurementDataAccess().getNameAssignment_0(), "rule__MeasurementData__NameAssignment_0");
 					put(grammarAccess.getMeasurementDataAccess().getDataTypeAssignment_2(), "rule__MeasurementData__DataTypeAssignment_2");
 					put(grammarAccess.getMeasurementDataAccess().getUnitAssignment_4(), "rule__MeasurementData__UnitAssignment_4");
 					put(grammarAccess.getMeasurementDataAccess().getIDAssignment_5_3(), "rule__MeasurementData__IDAssignment_5_3");
-					put(grammarAccess.getMeasurementDataAccess().getAdjustmentsAssignment_6_3(), "rule__MeasurementData__AdjustmentsAssignment_6_3");
-					put(grammarAccess.getMeasurementDataAccess().getAdjustmentsAssignment_6_4_1(), "rule__MeasurementData__AdjustmentsAssignment_6_4_1");
+					put(grammarAccess.getMeasurementDataAccess().getAdjustmentsAssignment_6_1(), "rule__MeasurementData__AdjustmentsAssignment_6_1");
+					put(grammarAccess.getMeasurementDataAccess().getAdjustmentsAssignment_6_2_1(), "rule__MeasurementData__AdjustmentsAssignment_6_2_1");
 					put(grammarAccess.getMeasurementDataAccess().getDescriptionAssignment_7(), "rule__MeasurementData__DescriptionAssignment_7");
 					put(grammarAccess.getNonMeasurementDataAccess().getNameAssignment_0(), "rule__NonMeasurementData__NameAssignment_0");
 					put(grammarAccess.getNonMeasurementDataAccess().getDataTypeAssignment_2(), "rule__NonMeasurementData__DataTypeAssignment_2");
@@ -96,13 +95,13 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNonMeasurementDataAccess().getValueAssignment_6_2(), "rule__NonMeasurementData__ValueAssignment_6_2");
 					put(grammarAccess.getNonMeasurementDataAccess().getIDAssignment_7_3(), "rule__NonMeasurementData__IDAssignment_7_3");
 					put(grammarAccess.getNonMeasurementDataAccess().getDescriptionAssignment_8(), "rule__NonMeasurementData__DescriptionAssignment_8");
-					put(grammarAccess.getDataRangeAccess().getRangeAssignment_2(), "rule__DataRange__RangeAssignment_2");
+					put(grammarAccess.getDataRangeAccess().getRangeAssignment_1(), "rule__DataRange__RangeAssignment_1");
 					put(grammarAccess.getIntervalAccess().getLowerBoundAssignment_0(), "rule__Interval__LowerBoundAssignment_0");
 					put(grammarAccess.getIntervalAccess().getUpperBoundAssignment_2(), "rule__Interval__UpperBoundAssignment_2");
-					put(grammarAccess.getLinearDataConversionAccess().getScalingFactorAssignment_0_3(), "rule__LinearDataConversion__ScalingFactorAssignment_0_3");
-					put(grammarAccess.getLinearDataConversionAccess().getOffsetAssignment_0_7(), "rule__LinearDataConversion__OffsetAssignment_0_7");
-					put(grammarAccess.getLinearDataConversionAccess().getFromIntervalAssignment_1_2(), "rule__LinearDataConversion__FromIntervalAssignment_1_2");
-					put(grammarAccess.getLinearDataConversionAccess().getToIntervalAssignment_1_6(), "rule__LinearDataConversion__ToIntervalAssignment_1_6");
+					put(grammarAccess.getLinearDataConversionAccess().getScalingFactorAssignment_3(), "rule__LinearDataConversion__ScalingFactorAssignment_3");
+					put(grammarAccess.getLinearDataConversionAccess().getOffsetAssignment_7(), "rule__LinearDataConversion__OffsetAssignment_7");
+					put(grammarAccess.getLinearDataConversionWithIntervalAccess().getFromIntervalAssignment_2(), "rule__LinearDataConversionWithInterval__FromIntervalAssignment_2");
+					put(grammarAccess.getLinearDataConversionWithIntervalAccess().getToIntervalAssignment_6(), "rule__LinearDataConversionWithInterval__ToIntervalAssignment_6");
 				}
 			};
 		}

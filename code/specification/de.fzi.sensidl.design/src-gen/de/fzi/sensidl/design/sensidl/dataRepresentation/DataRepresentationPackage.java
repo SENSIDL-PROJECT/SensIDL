@@ -167,7 +167,7 @@ public interface DataRepresentationPackage extends EPackage {
 	int DATA_SET__SENSOR_DATA_DESCRIPTION = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Sub Data Sets</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Sub Data Sets</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -185,7 +185,7 @@ public interface DataRepresentationPackage extends EPackage {
 	int DATA_SET__DATA = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Parent Data Set</b></em>' container reference.
+	 * The feature id for the '<em><b>Parent Data Set</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -660,31 +660,13 @@ public interface DataRepresentationPackage extends EPackage {
 	int LINEAR_DATA_CONVERSION__OFFSET = DATA_CONVERSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>From Interval</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEAR_DATA_CONVERSION__FROM_INTERVAL = DATA_CONVERSION_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>To Interval</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LINEAR_DATA_CONVERSION__TO_INTERVAL = DATA_CONVERSION_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Linear Data Conversion</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINEAR_DATA_CONVERSION_FEATURE_COUNT = DATA_CONVERSION_FEATURE_COUNT + 4;
+	int LINEAR_DATA_CONVERSION_FEATURE_COUNT = DATA_CONVERSION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Linear Data Conversion</em>' class.
@@ -696,6 +678,70 @@ public interface DataRepresentationPackage extends EPackage {
 	int LINEAR_DATA_CONVERSION_OPERATION_COUNT = DATA_CONVERSION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.LinearDataConversionWithIntervalImpl <em>Linear Data Conversion With Interval</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.LinearDataConversionWithIntervalImpl
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getLinearDataConversionWithInterval()
+	 * @generated
+	 */
+	int LINEAR_DATA_CONVERSION_WITH_INTERVAL = 9;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_DATA_CONVERSION_WITH_INTERVAL__ID = DATA_CONVERSION__ID;
+
+	/**
+	 * The feature id for the '<em><b>Measurement Data</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_DATA_CONVERSION_WITH_INTERVAL__MEASUREMENT_DATA = DATA_CONVERSION__MEASUREMENT_DATA;
+
+	/**
+	 * The feature id for the '<em><b>From Interval</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_DATA_CONVERSION_WITH_INTERVAL__FROM_INTERVAL = DATA_CONVERSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>To Interval</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL = DATA_CONVERSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Linear Data Conversion With Interval</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_DATA_CONVERSION_WITH_INTERVAL_FEATURE_COUNT = DATA_CONVERSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Linear Data Conversion With Interval</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_DATA_CONVERSION_WITH_INTERVAL_OPERATION_COUNT = DATA_CONVERSION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.IntervalImpl <em>Interval</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -703,7 +749,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getInterval()
 	 * @generated
 	 */
-	int INTERVAL = 9;
+	int INTERVAL = 10;
 
 	/**
 	 * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -785,7 +831,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getDataType()
 	 * @generated
 	 */
-	int DATA_TYPE = 10;
+	int DATA_TYPE = 11;
 
 	/**
 	 * The meta object id for the '<em>Unit</em>' data type.
@@ -795,7 +841,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getUnit()
 	 * @generated
 	 */
-	int UNIT = 11;
+	int UNIT = 12;
 
 
 	/**
@@ -852,10 +898,10 @@ public interface DataRepresentationPackage extends EPackage {
 	EReference getDataSet_SensorDataDescription();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getSubDataSets <em>Sub Data Sets</em>}'.
+	 * Returns the meta object for the reference list '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getSubDataSets <em>Sub Data Sets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Sub Data Sets</em>'.
+	 * @return the meta object for the reference list '<em>Sub Data Sets</em>'.
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getSubDataSets()
 	 * @see #getDataSet()
 	 * @generated
@@ -874,10 +920,10 @@ public interface DataRepresentationPackage extends EPackage {
 	EReference getDataSet_Data();
 
 	/**
-	 * Returns the meta object for the container reference '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getParentDataSet <em>Parent Data Set</em>}'.
+	 * Returns the meta object for the reference '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getParentDataSet <em>Parent Data Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Parent Data Set</em>'.
+	 * @return the meta object for the reference '<em>Parent Data Set</em>'.
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getParentDataSet()
 	 * @see #getDataSet()
 	 * @generated
@@ -1065,26 +1111,36 @@ public interface DataRepresentationPackage extends EPackage {
 	EAttribute getLinearDataConversion_Offset();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getFromInterval <em>From Interval</em>}'.
+	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval <em>Linear Data Conversion With Interval</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Linear Data Conversion With Interval</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
+	 * @generated
+	 */
+	EClass getLinearDataConversionWithInterval();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval#getFromInterval <em>From Interval</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>From Interval</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getFromInterval()
-	 * @see #getLinearDataConversion()
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval#getFromInterval()
+	 * @see #getLinearDataConversionWithInterval()
 	 * @generated
 	 */
-	EReference getLinearDataConversion_FromInterval();
+	EReference getLinearDataConversionWithInterval_FromInterval();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getToInterval <em>To Interval</em>}'.
+	 * Returns the meta object for the containment reference '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval#getToInterval <em>To Interval</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>To Interval</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getToInterval()
-	 * @see #getLinearDataConversion()
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval#getToInterval()
+	 * @see #getLinearDataConversionWithInterval()
 	 * @generated
 	 */
-	EReference getLinearDataConversion_ToInterval();
+	EReference getLinearDataConversionWithInterval_ToInterval();
 
 	/**
 	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval <em>Interval</em>}'.
@@ -1240,7 +1296,7 @@ public interface DataRepresentationPackage extends EPackage {
 		EReference DATA_SET__SENSOR_DATA_DESCRIPTION = eINSTANCE.getDataSet_SensorDataDescription();
 
 		/**
-		 * The meta object literal for the '<em><b>Sub Data Sets</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Sub Data Sets</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1256,7 +1312,7 @@ public interface DataRepresentationPackage extends EPackage {
 		EReference DATA_SET__DATA = eINSTANCE.getDataSet_Data();
 
 		/**
-		 * The meta object literal for the '<em><b>Parent Data Set</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Parent Data Set</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1414,12 +1470,22 @@ public interface DataRepresentationPackage extends EPackage {
 		EAttribute LINEAR_DATA_CONVERSION__OFFSET = eINSTANCE.getLinearDataConversion_Offset();
 
 		/**
+		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.LinearDataConversionWithIntervalImpl <em>Linear Data Conversion With Interval</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.LinearDataConversionWithIntervalImpl
+		 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getLinearDataConversionWithInterval()
+		 * @generated
+		 */
+		EClass LINEAR_DATA_CONVERSION_WITH_INTERVAL = eINSTANCE.getLinearDataConversionWithInterval();
+
+		/**
 		 * The meta object literal for the '<em><b>From Interval</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LINEAR_DATA_CONVERSION__FROM_INTERVAL = eINSTANCE.getLinearDataConversion_FromInterval();
+		EReference LINEAR_DATA_CONVERSION_WITH_INTERVAL__FROM_INTERVAL = eINSTANCE.getLinearDataConversionWithInterval_FromInterval();
 
 		/**
 		 * The meta object literal for the '<em><b>To Interval</b></em>' containment reference feature.
@@ -1427,7 +1493,7 @@ public interface DataRepresentationPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LINEAR_DATA_CONVERSION__TO_INTERVAL = eINSTANCE.getLinearDataConversion_ToInterval();
+		EReference LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL = eINSTANCE.getLinearDataConversionWithInterval_ToInterval();
 
 		/**
 		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.IntervalImpl <em>Interval</em>}' class.

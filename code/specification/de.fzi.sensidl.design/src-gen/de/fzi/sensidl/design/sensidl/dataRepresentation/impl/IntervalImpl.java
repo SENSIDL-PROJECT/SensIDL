@@ -5,7 +5,7 @@ package de.fzi.sensidl.design.sensidl.dataRepresentation.impl;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Interval;
-import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
 import de.fzi.sensidl.design.sensidl.impl.IdentifiableElementImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -138,9 +138,9 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LinearDataConversion getLinearDataConversionFrom() {
+	public LinearDataConversionWithInterval getLinearDataConversionFrom() {
 		if (eContainerFeatureID() != DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM) return null;
-		return (LinearDataConversion)eInternalContainer();
+		return (LinearDataConversionWithInterval)eInternalContainer();
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLinearDataConversionFrom(LinearDataConversion newLinearDataConversionFrom, NotificationChain msgs) {
+	public NotificationChain basicSetLinearDataConversionFrom(LinearDataConversionWithInterval newLinearDataConversionFrom, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newLinearDataConversionFrom, DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM, msgs);
 		return msgs;
 	}
@@ -158,7 +158,7 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLinearDataConversionFrom(LinearDataConversion newLinearDataConversionFrom) {
+	public void setLinearDataConversionFrom(LinearDataConversionWithInterval newLinearDataConversionFrom) {
 		if (newLinearDataConversionFrom != eInternalContainer() || (eContainerFeatureID() != DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM && newLinearDataConversionFrom != null)) {
 			if (EcoreUtil.isAncestor(this, newLinearDataConversionFrom))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -166,7 +166,7 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newLinearDataConversionFrom != null)
-				msgs = ((InternalEObject)newLinearDataConversionFrom).eInverseAdd(this, DataRepresentationPackage.LINEAR_DATA_CONVERSION__FROM_INTERVAL, LinearDataConversion.class, msgs);
+				msgs = ((InternalEObject)newLinearDataConversionFrom).eInverseAdd(this, DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__FROM_INTERVAL, LinearDataConversionWithInterval.class, msgs);
 			msgs = basicSetLinearDataConversionFrom(newLinearDataConversionFrom, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -179,9 +179,9 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LinearDataConversion getLinearDataConversionTo() {
+	public LinearDataConversionWithInterval getLinearDataConversionTo() {
 		if (eContainerFeatureID() != DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO) return null;
-		return (LinearDataConversion)eInternalContainer();
+		return (LinearDataConversionWithInterval)eInternalContainer();
 	}
 
 	/**
@@ -189,7 +189,7 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLinearDataConversionTo(LinearDataConversion newLinearDataConversionTo, NotificationChain msgs) {
+	public NotificationChain basicSetLinearDataConversionTo(LinearDataConversionWithInterval newLinearDataConversionTo, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newLinearDataConversionTo, DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO, msgs);
 		return msgs;
 	}
@@ -199,7 +199,7 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLinearDataConversionTo(LinearDataConversion newLinearDataConversionTo) {
+	public void setLinearDataConversionTo(LinearDataConversionWithInterval newLinearDataConversionTo) {
 		if (newLinearDataConversionTo != eInternalContainer() || (eContainerFeatureID() != DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO && newLinearDataConversionTo != null)) {
 			if (EcoreUtil.isAncestor(this, newLinearDataConversionTo))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -207,7 +207,7 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newLinearDataConversionTo != null)
-				msgs = ((InternalEObject)newLinearDataConversionTo).eInverseAdd(this, DataRepresentationPackage.LINEAR_DATA_CONVERSION__TO_INTERVAL, LinearDataConversion.class, msgs);
+				msgs = ((InternalEObject)newLinearDataConversionTo).eInverseAdd(this, DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL, LinearDataConversionWithInterval.class, msgs);
 			msgs = basicSetLinearDataConversionTo(newLinearDataConversionTo, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -267,11 +267,11 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetLinearDataConversionFrom((LinearDataConversion)otherEnd, msgs);
+				return basicSetLinearDataConversionFrom((LinearDataConversionWithInterval)otherEnd, msgs);
 			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetLinearDataConversionTo((LinearDataConversion)otherEnd, msgs);
+				return basicSetLinearDataConversionTo((LinearDataConversionWithInterval)otherEnd, msgs);
 			case DataRepresentationPackage.INTERVAL__DATA_RANGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -307,9 +307,9 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM:
-				return eInternalContainer().eInverseRemove(this, DataRepresentationPackage.LINEAR_DATA_CONVERSION__FROM_INTERVAL, LinearDataConversion.class, msgs);
+				return eInternalContainer().eInverseRemove(this, DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__FROM_INTERVAL, LinearDataConversionWithInterval.class, msgs);
 			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO:
-				return eInternalContainer().eInverseRemove(this, DataRepresentationPackage.LINEAR_DATA_CONVERSION__TO_INTERVAL, LinearDataConversion.class, msgs);
+				return eInternalContainer().eInverseRemove(this, DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL, LinearDataConversionWithInterval.class, msgs);
 			case DataRepresentationPackage.INTERVAL__DATA_RANGE:
 				return eInternalContainer().eInverseRemove(this, DataRepresentationPackage.DATA_RANGE__RANGE, DataRange.class, msgs);
 		}
@@ -353,10 +353,10 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 				setUpperBound((Double)newValue);
 				return;
 			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM:
-				setLinearDataConversionFrom((LinearDataConversion)newValue);
+				setLinearDataConversionFrom((LinearDataConversionWithInterval)newValue);
 				return;
 			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO:
-				setLinearDataConversionTo((LinearDataConversion)newValue);
+				setLinearDataConversionTo((LinearDataConversionWithInterval)newValue);
 				return;
 			case DataRepresentationPackage.INTERVAL__DATA_RANGE:
 				setDataRange((DataRange)newValue);
@@ -380,10 +380,10 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 				setUpperBound(UPPER_BOUND_EDEFAULT);
 				return;
 			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM:
-				setLinearDataConversionFrom((LinearDataConversion)null);
+				setLinearDataConversionFrom((LinearDataConversionWithInterval)null);
 				return;
 			case DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO:
-				setLinearDataConversionTo((LinearDataConversion)null);
+				setLinearDataConversionTo((LinearDataConversionWithInterval)null);
 				return;
 			case DataRepresentationPackage.INTERVAL__DATA_RANGE:
 				setDataRange((DataRange)null);

@@ -12,6 +12,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackag
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Interval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
@@ -47,6 +48,9 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 			case DataRepresentationPackage.LINEAR_DATA_CONVERSION:
 				sequence_LinearDataConversion(context, (LinearDataConversion) semanticObject); 
 				return; 
+			case DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL:
+				sequence_LinearDataConversionWithInterval(context, (LinearDataConversionWithInterval) semanticObject); 
+				return; 
 			case DataRepresentationPackage.MEASUREMENT_DATA:
 				sequence_MeasurementData(context, (MeasurementData) semanticObject); 
 				return; 
@@ -79,7 +83,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name=ID ID=STRING? description=STRING? subDataSets+=DataSet? data+=Data*)
+	 *     (name=ID ID=STRING? description=STRING? data+=Data*)
 	 */
 	protected void sequence_DataSet(EObject context, DataSet semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -106,7 +110,16 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     ((scalingFactor=DOUBLE offset=DOUBLE) | (fromInterval=Interval toInterval=Interval))
+	 *     (fromInterval=Interval toInterval=Interval)
+	 */
+	protected void sequence_LinearDataConversionWithInterval(EObject context, LinearDataConversionWithInterval semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (scalingFactor=DOUBLE offset=DOUBLE)
 	 */
 	protected void sequence_LinearDataConversion(EObject context, LinearDataConversion semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

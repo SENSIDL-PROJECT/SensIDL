@@ -61,7 +61,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="sensorDataDescription"
           eType="#//dataRepresentation/SensorDataDescription" eOpposite="#//dataRepresentation/SensorDataDescription/dataSets"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="subDataSets" upperBound="-1"
-          eType="#//dataRepresentation/DataSet" containment="true" eOpposite="#//dataRepresentation/DataSet/parentDataSet"/>
+          eType="#//dataRepresentation/DataSet" eOpposite="#//dataRepresentation/DataSet/parentDataSet"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="data" upperBound="-1"
           eType="#//dataRepresentation/Data" containment="true" eOpposite="#//dataRepresentation/Data/dataSet"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parentDataSet" eType="#//dataRepresentation/DataSet"
@@ -101,26 +101,13 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LinearDataConversionWithInterval"
+        eSuperTypes="#//dataRepresentation/DataConversion">
       <eStructuralFeatures xsi:type="ecore:EReference" name="fromInterval" eType="#//dataRepresentation/Interval"
           containment="true" eOpposite="#//dataRepresentation/Interval/linearDataConversionFrom"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="toInterval" eType="#//dataRepresentation/Interval"
           containment="true" eOpposite="#//dataRepresentation/Interval/linearDataConversionTo"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EEnum" name="DataType">
-      <eLiterals name="SIGNED_CHAR"/>
-      <eLiterals name="UNSIGNED_CHAR" value="1"/>
-      <eLiterals name="SIGNED_SHORT" value="2"/>
-      <eLiterals name="UNSIGNED_SHORT" value="3"/>
-      <eLiterals name="SIGNED_LONG" value="4"/>
-      <eLiterals name="UNSIGNED_LONG" value="5"/>
-      <eLiterals name="SIGNED_LONG_LONG" value="6"/>
-      <eLiterals name="UNSIGNED_LONG_LONG" value="7"/>
-      <eLiterals name="FLOAT" value="8"/>
-      <eLiterals name="DOUBLE" value="9"/>
-      <eLiterals name="LONG_DOUBLE" value="10"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EDataType" name="Unit" instanceClassName="javax.measure.unit.Unit">
-      <eTypeParameters name="Q"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Interval" eSuperTypes="#//IdentifiableElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" lowerBound="1"
@@ -128,11 +115,26 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="linearDataConversionFrom"
-          eType="#//dataRepresentation/LinearDataConversion" eOpposite="#//dataRepresentation/LinearDataConversion/fromInterval"/>
+          eType="#//dataRepresentation/LinearDataConversionWithInterval" eOpposite="#//dataRepresentation/LinearDataConversionWithInterval/fromInterval"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="linearDataConversionTo"
-          eType="#//dataRepresentation/LinearDataConversion" eOpposite="#//dataRepresentation/LinearDataConversion/toInterval"/>
+          eType="#//dataRepresentation/LinearDataConversionWithInterval" eOpposite="#//dataRepresentation/LinearDataConversionWithInterval/toInterval"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dataRange" eType="#//dataRepresentation/DataRange"
           eOpposite="#//dataRepresentation/DataRange/range"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="DataType">
+      <eLiterals name="INT8"/>
+      <eLiterals name="UINT8" value="1"/>
+      <eLiterals name="INT16" value="2"/>
+      <eLiterals name="UINT16" value="3"/>
+      <eLiterals name="INT32" value="4"/>
+      <eLiterals name="UINT32" value="5"/>
+      <eLiterals name="INT64" value="6"/>
+      <eLiterals name="UINT64" value="7"/>
+      <eLiterals name="FLOAT" value="8"/>
+      <eLiterals name="DOUBLE" value="9"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EDataType" name="Unit" instanceClassName="javax.measure.unit.Unit">
+      <eTypeParameters name="Q"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

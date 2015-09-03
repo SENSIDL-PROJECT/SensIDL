@@ -85,6 +85,15 @@ public interface DataRepresentationFactory extends EFactory {
 	LinearDataConversion createLinearDataConversion();
 
 	/**
+	 * Returns a new object of class '<em>Linear Data Conversion With Interval</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Linear Data Conversion With Interval</em>'.
+	 * @generated
+	 */
+	LinearDataConversionWithInterval createLinearDataConversionWithInterval();
+
+	/**
 	 * Returns a new object of class '<em>Interval</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

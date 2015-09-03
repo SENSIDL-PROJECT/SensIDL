@@ -79,7 +79,7 @@ public interface Interval extends IdentifiableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Linear Data Conversion From</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getFromInterval <em>From Interval</em>}'.
+	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval#getFromInterval <em>From Interval</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Linear Data Conversion From</em>' container reference isn't clear,
@@ -87,13 +87,13 @@ public interface Interval extends IdentifiableElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Linear Data Conversion From</em>' container reference.
-	 * @see #setLinearDataConversionFrom(LinearDataConversion)
+	 * @see #setLinearDataConversionFrom(LinearDataConversionWithInterval)
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getInterval_LinearDataConversionFrom()
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getFromInterval
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval#getFromInterval
 	 * @model opposite="fromInterval" transient="false"
 	 * @generated
 	 */
-	LinearDataConversion getLinearDataConversionFrom();
+	LinearDataConversionWithInterval getLinearDataConversionFrom();
 
 	/**
 	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getLinearDataConversionFrom <em>Linear Data Conversion From</em>}' container reference.
@@ -103,11 +103,11 @@ public interface Interval extends IdentifiableElement {
 	 * @see #getLinearDataConversionFrom()
 	 * @generated
 	 */
-	void setLinearDataConversionFrom(LinearDataConversion value);
+	void setLinearDataConversionFrom(LinearDataConversionWithInterval value);
 
 	/**
 	 * Returns the value of the '<em><b>Linear Data Conversion To</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getToInterval <em>To Interval</em>}'.
+	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval#getToInterval <em>To Interval</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Linear Data Conversion To</em>' container reference isn't clear,
@@ -115,13 +115,13 @@ public interface Interval extends IdentifiableElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Linear Data Conversion To</em>' container reference.
-	 * @see #setLinearDataConversionTo(LinearDataConversion)
+	 * @see #setLinearDataConversionTo(LinearDataConversionWithInterval)
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getInterval_LinearDataConversionTo()
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion#getToInterval
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval#getToInterval
 	 * @model opposite="toInterval" transient="false"
 	 * @generated
 	 */
-	LinearDataConversion getLinearDataConversionTo();
+	LinearDataConversionWithInterval getLinearDataConversionTo();
 
 	/**
 	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getLinearDataConversionTo <em>Linear Data Conversion To</em>}' container reference.
@@ -131,7 +131,7 @@ public interface Interval extends IdentifiableElement {
 	 * @see #getLinearDataConversionTo()
 	 * @generated
 	 */
-	void setLinearDataConversionTo(LinearDataConversion value);
+	void setLinearDataConversionTo(LinearDataConversionWithInterval value);
 
 	/**
 	 * Returns the value of the '<em><b>Data Range</b></em>' container reference.

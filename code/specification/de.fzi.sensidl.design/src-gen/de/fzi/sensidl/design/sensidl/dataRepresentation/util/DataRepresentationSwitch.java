@@ -139,6 +139,15 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL: {
+				LinearDataConversionWithInterval linearDataConversionWithInterval = (LinearDataConversionWithInterval)theEObject;
+				T result = caseLinearDataConversionWithInterval(linearDataConversionWithInterval);
+				if (result == null) result = caseDataConversion(linearDataConversionWithInterval);
+				if (result == null) result = caseDataAdjustment(linearDataConversionWithInterval);
+				if (result == null) result = caseIdentifiableElement(linearDataConversionWithInterval);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case DataRepresentationPackage.INTERVAL: {
 				Interval interval = (Interval)theEObject;
 				T result = caseInterval(interval);
@@ -282,6 +291,21 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLinearDataConversion(LinearDataConversion object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Linear Data Conversion With Interval</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Linear Data Conversion With Interval</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLinearDataConversionWithInterval(LinearDataConversionWithInterval object) {
 		return null;
 	}
 
