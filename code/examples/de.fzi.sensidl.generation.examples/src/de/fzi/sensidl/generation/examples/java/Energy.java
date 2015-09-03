@@ -8,7 +8,8 @@ import java.io.Serializable;
 //import com.google.gson.Gson;
 
 /**
- * Implementation for the Energy stage of the E-Meter
+ * Implementation for the stage, which determines the amount of Energy needed
+ * for the first three stages.
  * 
  */
 public class Energy implements Serializable {
@@ -37,6 +38,13 @@ public class Energy implements Serializable {
 		this.energyL3 = energyL3;
 	}
 
+	/**
+	 * empty constructor of the class
+	 */
+	public Energy() {
+
+	}
+	
 	/**
 	 * @return the energyL1
 	 */

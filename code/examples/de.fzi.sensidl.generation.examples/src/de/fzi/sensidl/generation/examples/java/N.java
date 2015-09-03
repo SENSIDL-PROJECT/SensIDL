@@ -44,6 +44,13 @@ public class N  implements Serializable {
 		this.powerFactor = powerFactor;
 		this.identifier = identifier;
 	}
+	
+	/**
+	 * empty constructor of the class
+	 */
+	public N() {
+
+	}
 
 	/**
 	 * @return the deviceType

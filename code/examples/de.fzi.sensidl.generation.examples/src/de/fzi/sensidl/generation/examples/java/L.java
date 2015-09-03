@@ -55,6 +55,13 @@ public class L implements Serializable {
 	}
 
 	/**
+	 * empty constructor of the class
+	 */
+	public L() {
+
+	}
+	
+	/**
 	 * @return the deviceType
 	 */
 	public byte getDeviceType() {
