@@ -21,7 +21,10 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
  de.fzi.sensidl.design,
  org.jscience;bundle-version="4.3.1"
-Import-Package: org.apache.log4j
+Import-Package: org.apache.log4j,
+ org.eclipse.swt.graphics,
+ org.eclipse.xtext.ui.editor.syntaxcoloring,
+ org.eclipse.xtext.ui.editor.utils
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: de.fzi.sensidl.language.parser.antlr,
  de.fzi.sensidl.language.parser.antlr.internal,

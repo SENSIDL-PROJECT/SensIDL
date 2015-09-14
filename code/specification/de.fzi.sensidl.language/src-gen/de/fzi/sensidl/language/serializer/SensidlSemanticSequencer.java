@@ -83,7 +83,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name=ID ID=STRING? description=STRING? data+=Data*)
+	 *     (name=ID ID=STRING? description=DESCRIPTION? data+=Data*)
 	 */
 	protected void sequence_DataSet(EObject context, DataSet semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -134,7 +134,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *         unit=UNIT 
 	 *         ID=STRING? 
 	 *         (adjustments+=DataAdjustment adjustments+=DataAdjustment*)? 
-	 *         description=STRING?
+	 *         description=DESCRIPTION?
 	 *     )
 	 */
 	protected void sequence_MeasurementData(EObject context, MeasurementData semanticObject) {
@@ -147,10 +147,10 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     (
 	 *         name=ID 
 	 *         dataType=DataType 
-	 *         constant=BOOLEAN 
+	 *         constant?='constant'? 
 	 *         value=STRING? 
 	 *         ID=STRING? 
-	 *         description=STRING?
+	 *         description=DESCRIPTION?
 	 *     )
 	 */
 	protected void sequence_NonMeasurementData(EObject context, NonMeasurementData semanticObject) {
@@ -169,7 +169,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name=ID description=STRING? ID=STRING? encodingSettings=EncodingSettings dataDescription=SensorDataDescription)
+	 *     (name=ID description=DESCRIPTION? ID=STRING? encodingSettings=EncodingSettings dataDescription=SensorDataDescription)
 	 */
 	protected void sequence_SensorInterface(EObject context, SensorInterface semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
