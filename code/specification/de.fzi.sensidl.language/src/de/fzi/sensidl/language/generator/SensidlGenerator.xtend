@@ -42,6 +42,9 @@ class SensidlGenerator implements IGenerator {
 	 * @param fsa Dateizugriff für die Dateigeneration
 	 */
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
+		
+		new JavaGenerator(resource, fsa).generate //starts the Java Code Generator
+		
 		val dataModel = resource
 			.contents
 			.filter(SensorInterface)
