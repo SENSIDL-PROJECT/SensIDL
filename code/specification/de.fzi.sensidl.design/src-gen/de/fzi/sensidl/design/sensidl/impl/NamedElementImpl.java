@@ -14,11 +14,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.impl.NamedElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.impl.NamedElementImpl#getDescription <em>Description</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

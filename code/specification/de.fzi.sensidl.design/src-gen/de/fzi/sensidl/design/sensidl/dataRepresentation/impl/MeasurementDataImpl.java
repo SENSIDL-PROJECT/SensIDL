@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.MeasurementDataImpl#getAdjustments <em>Adjustments</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.MeasurementDataImpl#getUnit <em>Unit</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

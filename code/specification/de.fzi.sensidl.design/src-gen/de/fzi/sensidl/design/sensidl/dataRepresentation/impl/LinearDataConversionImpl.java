@@ -14,11 +14,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.LinearDataConversionImpl#getScalingFactor <em>Scaling Factor</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.LinearDataConversionImpl#getOffset <em>Offset</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

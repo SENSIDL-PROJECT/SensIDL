@@ -16,13 +16,19 @@ import org.eclipse.xtext.nodemodel.INode;
  *
  */
 public class JScienceUnitValueConverter implements IValueConverter<Unit> {
-
+	private final static String DIMENSIONLESS = "Dimensionless";
+	
 	@Override
 	public Unit toValue(String string, INode node)
 			throws ValueConverterException {
 		if (string == null || string == "") {
 			return null;
 		}
+		
+		if (string.equals(DIMENSIONLESS)) {
+			return Unit.ONE;
+		}
+		
 		return Unit.valueOf(string);
 	}
 
