@@ -8,6 +8,7 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 import java.util.ArrayList
 import de.fzi.sensidl.language.generator.java.JavaDTOGenerator
 import de.fzi.sensidl.language.generator.c.CGenerator
+import de.fzi.sensidl.language.generator.javascript.JavaScriptGenerator
 
 /**
  * Pseudocode generator für die SensIDL Sprache.
@@ -16,7 +17,7 @@ import de.fzi.sensidl.language.generator.c.CGenerator
  * @author Max Scheerer
  * @author Emre Taspolatoglu
  */
-class SensidlPseudoCodeGenerator implements ISensidlCodeGenerator {
+class SensidlCodeGenerationExecutor implements ISensidlCodeGenerator {
 	/**
 	 * Transforms a SensIDL primitive type to a representation
 	 * of a corresponding Java type name.
@@ -58,6 +59,7 @@ class SensidlPseudoCodeGenerator implements ISensidlCodeGenerator {
 		val executer = new ArrayList<IExecuter>
 		executer.add([new JavaGenerator(input, fsa).generateDTO])
 		executer.add([new CGenerator(input, fsa).generateDTO])
+		executer.add([new JavaScriptGenerator(input, fsa).generateDTO])
 		
 //		val executer = new HashMap();
 //		

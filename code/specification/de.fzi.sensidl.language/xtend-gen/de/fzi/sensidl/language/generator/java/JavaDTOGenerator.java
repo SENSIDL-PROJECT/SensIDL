@@ -45,6 +45,7 @@ public class JavaDTOGenerator implements IDTOGenerator {
   /**
    * Generates the .java Files
    */
+  @Override
   public void generate() {
     EList<EObject> _contents = this.input.getContents();
     Iterable<SensorInterface> _filter = Iterables.<SensorInterface>filter(_contents, SensorInterface.class);
@@ -398,6 +399,7 @@ public class JavaDTOGenerator implements IDTOGenerator {
   /**
    * returns the appropriate type name
    */
+  @Override
   public String toTypeName(final Data d) {
     String _switchResult = null;
     DataType _dataType = d.getDataType();
@@ -883,6 +885,7 @@ public class JavaDTOGenerator implements IDTOGenerator {
     return _builder;
   }
   
+  @Override
   public String addFileExtensionTo(final String ClassName) {
     return (ClassName + JavaDTOGenerator.JAVA_EXTENSION);
   }

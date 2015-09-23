@@ -27,9 +27,9 @@ class SensidlGenerator implements IGenerator {
 	 * Der Pseudocodegenerator, wird durch Guice gebunden.
 	 * @see SensidlRuntimeModule
 	 */
-	@Inject private SensidlPseudoCodeGenerator codeGenerator
+	@Inject private SensidlCodeGenerationExecutor codeGenerator
 	
-	private static String EXTENSION = "sidlecore"
+	private static String EXTENSION = "sensidl"
 	
 	/**
 	 * Der Einstiegspunkt für den Generator für SensIDL.

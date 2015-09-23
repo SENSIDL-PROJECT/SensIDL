@@ -6,7 +6,7 @@ package de.fzi.sensidl.language;
 import org.eclipse.xtext.conversion.IValueConverterService;
 
 import de.fzi.sensidl.language.generator.ISensidlCodeGenerator;
-import de.fzi.sensidl.language.generator.SensidlPseudoCodeGenerator;
+import de.fzi.sensidl.language.generator.SensidlCodeGenerationExecutor;
 import de.fzi.sensidl.language.converters.SensIDLValueConverterService;
 
 /**
@@ -27,6 +27,6 @@ public class SensidlRuntimeModule extends de.fzi.sensidl.language.AbstractSensid
 	 * @return {@link SensidlPseudoCodeGenerator}.class
 	 */
 	public Class<? extends ISensidlCodeGenerator> bindISensidlCodeGenerator() {
-		return SensidlPseudoCodeGenerator.class;
+		return SensidlCodeGenerationExecutor.class;
 	}
 }

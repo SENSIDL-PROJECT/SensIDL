@@ -41,6 +41,7 @@ public class CDTOGenerator implements IDTOGenerator {
   /**
    * Generates the .c Files with structs
    */
+  @Override
   public void generate() {
     EList<EObject> _contents = this.input.getContents();
     Iterable<SensorInterface> _filter = Iterables.<SensorInterface>filter(_contents, SensorInterface.class);
@@ -204,10 +205,12 @@ public class CDTOGenerator implements IDTOGenerator {
     return _builder;
   }
   
+  @Override
   public String addFileExtensionTo(final String ClassName) {
     return (ClassName + CDTOGenerator.C_EXTENSION);
   }
   
+  @Override
   public String toTypeName(final Data data) {
     String _switchResult = null;
     DataType _dataType = data.getDataType();
