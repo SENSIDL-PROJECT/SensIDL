@@ -1,11 +1,13 @@
 package de.fzi.sensidl.language.generator
 
-import java.util.ArrayList
+import de.fzi.sensidl.language.generator.java.JavaGenerator
 import java.util.HashMap
-import org.eclipse.emf.common.util.URI
-import org.eclipse.xtext.generator.IFileSystemAccess
 import javax.naming.OperationNotSupportedException
-import de.fzi.sensidl.design.sensidl.SensorInterface
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.generator.IFileSystemAccess
+import java.util.ArrayList
+import de.fzi.sensidl.language.generator.java.JavaDTOGenerator
+import de.fzi.sensidl.language.generator.c.CGenerator
 
 /**
  * Pseudocode generator für die SensIDL Sprache.
@@ -29,11 +31,9 @@ class SensidlPseudoCodeGenerator implements ISensidlCodeGenerator {
 	 * @author Dominik Werle - Base implementation
 	 * @author Max Scheerer	- refinement of the base implementation
 	 */
-	override doGenerate(SensorInterface input, URI uri, IFileSystemAccess fsa) {
+	override doGenerate(Resource input, IFileSystemAccess fsa) {
 		
-		val trimmed = uri.trimFileExtension.trimFragment.trimQuery
-		
-		val executer = initExecuter(input, trimmed.lastSegment.toFirstUpper, fsa);
+		val executer = initExecuter(input, fsa);
 		
 		try {
 			// Its possible that receiver and sensor language are different. for that reason 
@@ -41,38 +41,51 @@ class SensidlPseudoCodeGenerator implements ISensidlCodeGenerator {
 //			if(input.options.receiverLanguage != input.options.sensorLanguage) {
 //				executer.get(input.options.receiverLanguage).execute();
 //			}
-//			executer.get(input.options.sensorLanguage).execute();	
+//			executer.get(input.options.sensorLanguage).execute();
+			
+			//For test reasons all generators are launched
+			for (IExecuter exec : executer) {
+				exec.execute
+			}
 		}
 		catch (OperationNotSupportedException e) {
 			e.printStackTrace
 		}		
 	}
 	
-	def initExecuter(SensorInterface input, String classNameBase, IFileSystemAccess fsa) {
-		val executer = new HashMap();
+	def initExecuter(Resource input, IFileSystemAccess fsa) {
+		//for testing
+		val executer = new ArrayList<IExecuter>
+		executer.add([new JavaGenerator(input, fsa).generateDTO])
+		executer.add([new CGenerator(input, fsa).generateDTO])
 		
-//		executer.put(GenerationLanguage.JAVA, new IExecuter() { 
-//												override void execute() { 
-//													//Later: new JavaGenerator(input, classNameBase).generateEncoder(fsa); ...
-//													new JavaGenerator(input, classNameBase).generateDTO(fsa);
-//												}
-//											  });
-//		executer.put(GenerationLanguage.C, new IExecuter() { 
-//												override void execute() { 
-//													new CGenerator(input, classNameBase).generateDTO(fsa);
-//												}
-//											  });
-//		executer.put(GenerationLanguage.CSHARP, new IExecuter() { 
-//												override void execute() { 
-//													new CSharpGenerator(input, classNameBase).generateDTO(fsa);
-//												}
-//											  });
-//		executer.put(GenerationLanguage.CPP, new IExecuter() { 
-//												override void execute() { 
-//													new CppGenerator(input, classNameBase).generateDTO(fsa);
-//												}
-//											  })
-//											  
+//		val executer = new HashMap();
+//		
+//		executer.put(GenerationLanguage.JAVA, [
+//			val JavaGenerator generator = new JavaGenerator(input, fsa)
+//			generator.generateDTO
+//			generator.generateDecoder
+//			generator.generateEncoder
+//		]);
+//		executer.put(GenerationLanguage.C, [
+//			val CGenerator generator = new CGenerator(input, fsa)
+//			generator.generateDTO
+//			generator.generateDecoder
+//			generator.generateEncoder
+//		]);
+//		executer.put(GenerationLanguage.CSHARP, [
+//			val CSharpGenerator generator = new CSharpGenerator(input, fsa)
+//			generator.generateDTO
+//			generator.generateDecoder
+//			generator.generateEncoder
+//		]);
+//  	executer.put(GenerationLanguage.JavaScript, [
+//				val JavaScriptGenerator generator = JavaScriptGenerator(input, fsa)
+//				generator.generateDTO
+//				generator.generateDecoder
+//				generator.generateEncoder
+//		]);
+											  
 		return executer;
 	}
 	

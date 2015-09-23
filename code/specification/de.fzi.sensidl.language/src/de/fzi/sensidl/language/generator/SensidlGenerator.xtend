@@ -3,13 +3,14 @@
  */
 package de.fzi.sensidl.language.generator
 
+import com.google.inject.Inject
+import de.fzi.sensidl.design.sensidl.SensorInterface
+import de.fzi.sensidl.language.SensidlRuntimeModule
+import de.fzi.sensidl.language.generator.java.JavaDTOGenerator
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
-import com.google.inject.Inject
-import de.fzi.sensidl.language.SensidlRuntimeModule
-import de.fzi.sensidl.design.sensidl.SensorInterface
 
 /**
  * Der Generator für SensIDL.
@@ -43,7 +44,8 @@ class SensidlGenerator implements IGenerator {
 	 */
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		
-		new JavaGenerator(resource, fsa).generate //starts the Java Code Generator
+		//new JavaDTOGenerator(resource, fsa).generate //starts the Java Code Generator
+		codeGenerator.doGenerate(resource, fsa)
 		
 		val dataModel = resource
 			.contents
@@ -52,11 +54,11 @@ class SensidlGenerator implements IGenerator {
 			
 		if (dataModel == null)
 			return
+		
 			
 		val fileNameBase = resource.URI.trimQuery.trimFragment.trimFileExtension.lastSegment
 		val fileName = fileNameBase + "." + EXTENSION
 		
 		EcorePersistenceHelper.persistEcoreModel(dataModel, URI.createURI(fileName), fsa)
-		codeGenerator.doGenerate(dataModel, resource.URI, fsa)
 	}
 }

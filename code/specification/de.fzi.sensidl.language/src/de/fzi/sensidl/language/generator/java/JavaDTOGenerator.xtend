@@ -1,4 +1,4 @@
-package de.fzi.sensidl.language.generator
+package de.fzi.sensidl.language.generator.java
 
 import de.fzi.sensidl.design.sensidl.SensorInterface
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
@@ -8,6 +8,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData
 import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
+import de.fzi.sensidl.language.generator.IDTOGenerator
 
 /**
  * Java code generator for the SensIDL Model. 
@@ -17,7 +18,8 @@ import org.eclipse.xtext.generator.IFileSystemAccess
  * 
  */
  
-class JavaGenerator {
+class JavaDTOGenerator implements IDTOGenerator {
+	private final static String JAVA_EXTENSION = ".java";
 	private Resource input;
 	private IFileSystemAccess fsa;
 
@@ -29,13 +31,12 @@ class JavaGenerator {
 	/**
 	 * Generates the .java Files
 	 */
-	def generate() {
+	override generate() {
 		for (d : input.contents.filter(SensorInterface).head.eAllContents
 					.filter(SensorDataDescription).head.eAllContents.toIterable
 					.filter(DataSet)) {
 
-			fsa.generateFile(d.toNameUpper + ".java", d.compile)
-
+			fsa.generateFile(addFileExtensionTo(d.toNameUpper), d.compile)
 		}
 
 	}
@@ -166,7 +167,7 @@ class JavaGenerator {
 	/**
 	 * returns the appropriate type name 
 	 */
-	def toTypeName(Data d) {
+	override toTypeName(Data d) {
 		return switch (d.dataType) {
 			case INT8: Byte.name
 			case UINT8: Byte.name
@@ -341,6 +342,10 @@ class JavaGenerator {
 			return «d.toNameLower»;
 		}
 		'''
+	}
+	
+	override addFileExtensionTo(String ClassName) {
+		return ClassName + JAVA_EXTENSION
 	}
 
 }
