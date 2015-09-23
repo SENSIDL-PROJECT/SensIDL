@@ -29,7 +29,7 @@ class SensidlGenerator implements IGenerator {
 	 */
 	@Inject private SensidlPseudoCodeGenerator codeGenerator
 	
-	private static String EXTENSION = "sidlecore"
+	private static String EXTENSION = "sensidl"
 	
 	/**
 	 * Der Einstiegspunkt für den Generator für SensIDL.
