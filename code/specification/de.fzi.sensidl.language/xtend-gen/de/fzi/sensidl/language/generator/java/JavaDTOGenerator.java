@@ -11,8 +11,10 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
 import de.fzi.sensidl.language.generator.IDTOGenerator;
+import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
 import java.util.Iterator;
 import javax.measure.unit.Unit;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -31,6 +33,8 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
  */
 @SuppressWarnings("all")
 public class JavaDTOGenerator implements IDTOGenerator {
+  private static Logger logger = Logger.getLogger(JavaDTOGenerator.class);
+  
   private final static String JAVA_EXTENSION = ".java";
   
   private Resource input;
@@ -47,6 +51,7 @@ public class JavaDTOGenerator implements IDTOGenerator {
    */
   @Override
   public void generate() {
+    JavaDTOGenerator.logger.info("Start with code-generation of a java data transfer object.");
     EList<EObject> _contents = this.input.getContents();
     Iterable<SensorInterface> _filter = Iterables.<SensorInterface>filter(_contents, SensorInterface.class);
     SensorInterface _head = IterableExtensions.<SensorInterface>head(_filter);
@@ -57,10 +62,18 @@ public class JavaDTOGenerator implements IDTOGenerator {
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_eAllContents_1);
     Iterable<DataSet> _filter_2 = Iterables.<DataSet>filter(_iterable, DataSet.class);
     for (final DataSet d : _filter_2) {
-      String _nameUpper = this.toNameUpper(d);
-      String _addFileExtensionTo = this.addFileExtensionTo(_nameUpper);
-      CharSequence _compile = this.compile(d);
-      this.fsa.generateFile(_addFileExtensionTo, _compile);
+      {
+        String _nameUpper = this.toNameUpper(d);
+        String _addFileExtensionTo = this.addFileExtensionTo(_nameUpper);
+        CharSequence _compile = this.compile(d);
+        this.fsa.generateFile(_addFileExtensionTo, _compile);
+        String _nameUpper_1 = this.toNameUpper(d);
+        String _addFileExtensionTo_1 = this.addFileExtensionTo(_nameUpper_1);
+        String _plus = ("File: " + _addFileExtensionTo_1);
+        String _plus_1 = (_plus + " was generated in ");
+        String _plus_2 = (_plus_1 + SensIDLOutputConfigurationProvider.SENSIDL_GEN);
+        JavaDTOGenerator.logger.info(_plus_2);
+      }
     }
   }
   

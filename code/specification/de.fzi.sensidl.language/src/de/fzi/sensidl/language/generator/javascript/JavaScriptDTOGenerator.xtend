@@ -8,6 +8,8 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData
 import de.fzi.sensidl.language.generator.IDTOGenerator
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
+import org.apache.log4j.Logger
+import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider
 
 /**
  * JavaScript code generator for the SensIDL Model. 
@@ -16,6 +18,8 @@ import org.eclipse.xtext.generator.IFileSystemAccess
  * 
  */
 class JavaScriptDTOGenerator implements IDTOGenerator {
+	private static Logger logger = Logger.getLogger(typeof(JavaScriptDTOGenerator))
+	
 	private final static String JAVASCRIPT_EXTENSION = ".js"
 	private Resource input
 	private IFileSystemAccess fsa
@@ -29,8 +33,11 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 	 * Generates the .js files
 	 */
 	override generate() {
+		logger.info("Start with code-generation of a JavaScript data transfer object.")
+		
 		val sensorInterface = input.contents.filter(SensorInterface).head
 		fsa.generateFile(addFileExtensionTo(sensorInterface.name.toFirstUpper.concat("v1")), sensorInterface.compile)
+		logger.info("File: " + addFileExtensionTo(sensorInterface.name.toFirstUpper.concat("v1")) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
 	}
 
 	/**

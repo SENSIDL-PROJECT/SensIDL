@@ -1,14 +1,13 @@
 package de.fzi.sensidl.language.generator
 
+import de.fzi.sensidl.language.generator.c.CGenerator
 import de.fzi.sensidl.language.generator.java.JavaGenerator
-import java.util.HashMap
+import de.fzi.sensidl.language.generator.javascript.JavaScriptGenerator
+import java.util.ArrayList
 import javax.naming.OperationNotSupportedException
+import org.apache.log4j.Logger
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
-import java.util.ArrayList
-import de.fzi.sensidl.language.generator.java.JavaDTOGenerator
-import de.fzi.sensidl.language.generator.c.CGenerator
-import de.fzi.sensidl.language.generator.javascript.JavaScriptGenerator
 
 /**
  * Pseudocode generator für die SensIDL Sprache.
@@ -26,6 +25,8 @@ class SensidlCodeGenerationExecutor implements ISensidlCodeGenerator {
 	 * @param sensidlType the primitive {@link Type} from the SensIDL meta model
 	 */
 	
+	private static Logger logger = Logger.getLogger(typeof(SensidlCodeGenerationExecutor))
+	
 	/**
 	 * The entry point to the generation.
 	 * 
@@ -33,10 +34,10 @@ class SensidlCodeGenerationExecutor implements ISensidlCodeGenerator {
 	 * @author Max Scheerer	- refinement of the base implementation
 	 */
 	override doGenerate(Resource input, IFileSystemAccess fsa) {
-		
 		val executer = initExecuter(input, fsa);
 		
 		try {
+			logger.info("Start with code-generation.")
 			// Its possible that receiver and sensor language are different. for that reason 
 			// two code generations must be made.
 //			if(input.options.receiverLanguage != input.options.sensorLanguage) {
@@ -50,16 +51,16 @@ class SensidlCodeGenerationExecutor implements ISensidlCodeGenerator {
 			}
 		}
 		catch (OperationNotSupportedException e) {
-			e.printStackTrace
+			logger.error("Start to generate code-templates which does not exist.", e)
 		}		
 	}
 	
 	def initExecuter(Resource input, IFileSystemAccess fsa) {
 		//for testing
 		val executer = new ArrayList<IExecuter>
-		executer.add([new JavaGenerator(input, fsa).generateDTO])
-		executer.add([new CGenerator(input, fsa).generateDTO])
-		executer.add([new JavaScriptGenerator(input, fsa).generateDTO])
+		executer.add([|new JavaGenerator(input, fsa).generateDTO])
+		executer.add([|new CGenerator(input, fsa).generateDTO])
+		executer.add([|new JavaScriptGenerator(input, fsa).generateDTO])
 		
 //		val executer = new HashMap();
 //		

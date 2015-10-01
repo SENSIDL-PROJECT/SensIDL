@@ -42,3 +42,12 @@
 /.IDTOGenerator.java._trace
 /IDTOGenerator.java
 /.SensidlCodeGenerationExecutor.java._trace
+/.EcorePersistenceHelper.xtendbin
+/.ICodeGenerator.xtendbin
+/.IDTOGenerator.xtendbin
+/.IExecuter.xtendbin
+/.ISensidlCodeGenerator.xtendbin
+/.SensidlCodeGenerationExecutor.xtendbin
+/.SensidlGenerator.xtendbin
+/SensidlCodeGenerationExecutor.java
+/.SensIDLOutputConfigurationProvider.java._trace

@@ -4,8 +4,10 @@
 package de.fzi.sensidl.language;
 
 import org.eclipse.xtext.conversion.IValueConverterService;
+import org.eclipse.xtext.generator.IOutputConfigurationProvider;
 
 import de.fzi.sensidl.language.generator.ISensidlCodeGenerator;
+import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
 import de.fzi.sensidl.language.generator.SensidlCodeGenerationExecutor;
 import de.fzi.sensidl.language.converters.SensIDLValueConverterService;
 
@@ -28,5 +30,12 @@ public class SensidlRuntimeModule extends de.fzi.sensidl.language.AbstractSensid
 	 */
 	public Class<? extends ISensidlCodeGenerator> bindISensidlCodeGenerator() {
 		return SensidlCodeGenerationExecutor.class;
+	}
+	
+	/*
+	 * Binds the SensIDLOutputConfiguration.
+	 */
+	public Class<? extends IOutputConfigurationProvider> bindIOutputConfigurationProvider() {
+		return SensIDLOutputConfigurationProvider.class;
 	}
 }

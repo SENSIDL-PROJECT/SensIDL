@@ -315,13 +315,11 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//DataSet returns dataRepresentation::DataSet:
 		//	"dataSet" name=ID ("with" "identifier" ID=STRING)? description=DESCRIPTION? "{" //		(subDataSets+=DataSet)?
-		//
 		//	data+=Data* "}";
 		@Override public ParserRule getRule() { return rule; }
 
 		//"dataSet" name=ID ("with" "identifier" ID=STRING)? description=DESCRIPTION? "{" //		(subDataSets+=DataSet)?
-		// data+=Data*
-		//"}"
+		//data+=Data* "}"
 		public Group getGroup() { return cGroup; }
 
 		//"dataSet"
@@ -832,10 +830,8 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIDTerminalRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		////BOOLEAN returns ecore::EBoolean: 'true' | 'false';
-		// //UNIT returns dataRepresentation::Unit: STRING;
-		//
+		////UNIT returns dataRepresentation::Unit: STRING;
 		////terminal UNIT returns dataRepresentation::Unit : '^'?('a'..'z'|'A'..'Z'/ **'_'* /) ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
-		//
 		//UNIT returns dataRepresentation::Unit:
 		//	ID;
 		@Override public ParserRule getRule() { return rule; }
@@ -1151,7 +1147,6 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 	//DataSet returns dataRepresentation::DataSet:
 	//	"dataSet" name=ID ("with" "identifier" ID=STRING)? description=DESCRIPTION? "{" //		(subDataSets+=DataSet)?
-	//
 	//	data+=Data* "}";
 	public DataSetElements getDataSetAccess() {
 		return pDataSet;
@@ -1274,10 +1269,8 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////BOOLEAN returns ecore::EBoolean: 'true' | 'false';
-	// //UNIT returns dataRepresentation::Unit: STRING;
-	//
+	////UNIT returns dataRepresentation::Unit: STRING;
 	////terminal UNIT returns dataRepresentation::Unit : '^'?('a'..'z'|'A'..'Z'/ **'_'* /) ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
-	//
 	//UNIT returns dataRepresentation::Unit:
 	//	ID;
 	public UNITElements getUNITAccess() {
@@ -1289,7 +1282,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// multi-line comments can't start with '/ **'
-	// terminal ML_COMMENT:
+	//terminal ML_COMMENT:
 	//	"/ *" !"*"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return tML_COMMENT;

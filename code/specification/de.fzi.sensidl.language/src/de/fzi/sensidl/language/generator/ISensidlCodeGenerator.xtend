@@ -1,9 +1,7 @@
 package de.fzi.sensidl.language.generator
 
-import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.emf.common.util.URI
-import de.fzi.sensidl.design.sensidl.SensorInterface
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.generator.IFileSystemAccess
 
 /**
  * Interface for the SensIDL code generator.

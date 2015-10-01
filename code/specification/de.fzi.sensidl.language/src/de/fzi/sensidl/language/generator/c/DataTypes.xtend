@@ -1,5 +1,8 @@
 package de.fzi.sensidl.language.generator.c
 
+/**
+ * Contains the language specific c type strings.
+ */
 class DataTypes {
 	public final static String SIGNED_CHAR = "char";
 	public final static String UNSIGNED_CHAR = "unsigned char";

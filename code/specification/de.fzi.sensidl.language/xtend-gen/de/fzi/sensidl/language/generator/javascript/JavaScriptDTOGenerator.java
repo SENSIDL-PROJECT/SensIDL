@@ -8,7 +8,9 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData;
 import de.fzi.sensidl.language.generator.IDTOGenerator;
+import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
 import javax.measure.unit.Unit;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -26,6 +28,8 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
  */
 @SuppressWarnings("all")
 public class JavaScriptDTOGenerator implements IDTOGenerator {
+  private static Logger logger = Logger.getLogger(JavaScriptDTOGenerator.class);
+  
   private final static String JAVASCRIPT_EXTENSION = ".js";
   
   private Resource input;
@@ -42,6 +46,7 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
    */
   @Override
   public void generate() {
+    JavaScriptDTOGenerator.logger.info("Start with code-generation of a JavaScript data transfer object.");
     EList<EObject> _contents = this.input.getContents();
     Iterable<SensorInterface> _filter = Iterables.<SensorInterface>filter(_contents, SensorInterface.class);
     final SensorInterface sensorInterface = IterableExtensions.<SensorInterface>head(_filter);
@@ -51,6 +56,14 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
     String _addFileExtensionTo = this.addFileExtensionTo(_concat);
     CharSequence _compile = this.compile(sensorInterface);
     this.fsa.generateFile(_addFileExtensionTo, _compile);
+    String _name_1 = sensorInterface.getName();
+    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
+    String _concat_1 = _firstUpper_1.concat("v1");
+    String _addFileExtensionTo_1 = this.addFileExtensionTo(_concat_1);
+    String _plus = ("File: " + _addFileExtensionTo_1);
+    String _plus_1 = (_plus + " was generated in ");
+    String _plus_2 = (_plus_1 + SensIDLOutputConfigurationProvider.SENSIDL_GEN);
+    JavaScriptDTOGenerator.logger.info(_plus_2);
   }
   
   /**

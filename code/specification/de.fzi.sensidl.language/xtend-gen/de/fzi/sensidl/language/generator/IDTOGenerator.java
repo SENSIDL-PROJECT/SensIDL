@@ -2,6 +2,10 @@ package de.fzi.sensidl.language.generator;
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data;
 
+/**
+ * Interface which can be implemented for a language specific
+ * data transfer object.
+ */
 @SuppressWarnings("all")
 public interface IDTOGenerator {
   /**

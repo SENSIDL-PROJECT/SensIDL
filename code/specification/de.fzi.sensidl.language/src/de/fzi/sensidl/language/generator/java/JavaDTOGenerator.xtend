@@ -9,6 +9,8 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import de.fzi.sensidl.language.generator.IDTOGenerator
+import org.apache.log4j.Logger
+import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider
 
 /**
  * Java code generator for the SensIDL Model. 
@@ -19,6 +21,8 @@ import de.fzi.sensidl.language.generator.IDTOGenerator
  */
  
 class JavaDTOGenerator implements IDTOGenerator {
+	private static Logger logger = Logger.getLogger(typeof(JavaDTOGenerator))
+	
 	private final static String JAVA_EXTENSION = ".java";
 	private Resource input;
 	private IFileSystemAccess fsa;
@@ -32,11 +36,14 @@ class JavaDTOGenerator implements IDTOGenerator {
 	 * Generates the .java Files
 	 */
 	override generate() {
+		logger.info("Start with code-generation of a java data transfer object.")
+		
 		for (d : input.contents.filter(SensorInterface).head.eAllContents
 					.filter(SensorDataDescription).head.eAllContents.toIterable
 					.filter(DataSet)) {
 
 			fsa.generateFile(addFileExtensionTo(d.toNameUpper), d.compile)
+			logger.info("File: " + addFileExtensionTo(d.toNameUpper) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
 		}
 
 	}

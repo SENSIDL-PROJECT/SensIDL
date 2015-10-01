@@ -6,11 +6,12 @@ package de.fzi.sensidl.language.generator
 import com.google.inject.Inject
 import de.fzi.sensidl.design.sensidl.SensorInterface
 import de.fzi.sensidl.language.SensidlRuntimeModule
-import de.fzi.sensidl.language.generator.java.JavaDTOGenerator
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
+import org.apache.log4j.Logger
+import org.apache.log4j.Level
 
 /**
  * Der Generator für SensIDL.
@@ -18,16 +19,18 @@ import org.eclipse.xtext.generator.IGenerator
  * Stößt nacheinander zwei Generatoren an:
  * <ol>
  *   <li>{@link EcorePersistenceHelper} - persistiert das Modell.</li>
- *   <li>{@link SensidlPseudoCodeGenerator} - erzeugt Pseudocode für das Modell.</li>
+ *   <li>{@link SensidlCodeGenerationExecutor} - erzeugt Code für das Modell.</li>
  * </ol>
  * @author Dominik Werle
  */
 class SensidlGenerator implements IGenerator {
 	/**
-	 * Der Pseudocodegenerator, wird durch Guice gebunden.
+	 * Der SensidlCodeGenerationExecutor, wird durch Guice gebunden.
 	 * @see SensidlRuntimeModule
 	 */
 	@Inject private SensidlCodeGenerationExecutor codeGenerator
+	
+	private static Logger logger = Logger.getLogger(typeof(SensidlGenerator));
 	
 	private static String EXTENSION = "sensidl"
 	
@@ -43,9 +46,12 @@ class SensidlGenerator implements IGenerator {
 	 * @param fsa Dateizugriff für die Dateigeneration
 	 */
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
+		setUpLogger()
 		
 		//new JavaDTOGenerator(resource, fsa).generate //starts the Java Code Generator
 		codeGenerator.doGenerate(resource, fsa)
+		
+		logger.info("Code was generated")
 		
 		val dataModel = resource
 			.contents
@@ -60,5 +66,13 @@ class SensidlGenerator implements IGenerator {
 		val fileName = fileNameBase + "." + EXTENSION
 		
 		EcorePersistenceHelper.persistEcoreModel(dataModel, URI.createURI(fileName), fsa)
+		
+		logger.info("Model was successfully persisted.")
 	}
+	
+	def setUpLogger() {
+		var logger = Logger.getLogger(typeof(SensidlGenerator).package.name)
+		logger.setLevel(Level.ALL)
+	}
+	
 }
