@@ -3,6 +3,7 @@ package de.fzi.sensidl.language.generator.c
 import de.fzi.sensidl.language.generator.ICodeGenerator
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
+import java.util.ArrayList
 
 /**
 * The CGenerator represents a concrete  implementation
@@ -28,7 +29,13 @@ class CGenerator implements ICodeGenerator {
  	*@see ICodeGenerator#generateDTO()
  	*/
 	override generateDTO() {
-		new CDTOGenerator(this.input, this.fsa).generate
+		val generators = new ArrayList<CDTOGenerator>()
+		generators.add(new HeaderDTOGenerator(this.input, this.fsa))
+		generators.add(new ConcreteCDTOGenerator(this.input, this.fsa))
+		
+		for (CDTOGenerator generator : generators) {
+			generator.generate
+		}
 	}
 	
 	/**

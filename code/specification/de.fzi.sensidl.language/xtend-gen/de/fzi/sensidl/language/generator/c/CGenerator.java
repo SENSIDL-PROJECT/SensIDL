@@ -2,6 +2,9 @@ package de.fzi.sensidl.language.generator.c;
 
 import de.fzi.sensidl.language.generator.ICodeGenerator;
 import de.fzi.sensidl.language.generator.c.CDTOGenerator;
+import de.fzi.sensidl.language.generator.c.ConcreteCDTOGenerator;
+import de.fzi.sensidl.language.generator.c.HeaderDTOGenerator;
+import java.util.ArrayList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 
@@ -32,8 +35,14 @@ public class CGenerator implements ICodeGenerator {
    */
   @Override
   public void generateDTO() {
-    CDTOGenerator _cDTOGenerator = new CDTOGenerator(this.input, this.fsa);
-    _cDTOGenerator.generate();
+    final ArrayList<CDTOGenerator> generators = new ArrayList<CDTOGenerator>();
+    HeaderDTOGenerator _headerDTOGenerator = new HeaderDTOGenerator(this.input, this.fsa);
+    generators.add(_headerDTOGenerator);
+    ConcreteCDTOGenerator _concreteCDTOGenerator = new ConcreteCDTOGenerator(this.input, this.fsa);
+    generators.add(_concreteCDTOGenerator);
+    for (final CDTOGenerator generator : generators) {
+      generator.generate();
+    }
   }
   
   /**
