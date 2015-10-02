@@ -30,7 +30,7 @@ class SensidlGenerator implements IGenerator {
 	 */
 	@Inject private SensidlCodeGenerationExecutor codeGenerator
 	
-	private static Logger logger = Logger.getLogger(typeof(SensidlGenerator));
+	private static Logger logger = Logger.getLogger(SensidlGenerator);
 	
 	private static String EXTENSION = "sensidl"
 	

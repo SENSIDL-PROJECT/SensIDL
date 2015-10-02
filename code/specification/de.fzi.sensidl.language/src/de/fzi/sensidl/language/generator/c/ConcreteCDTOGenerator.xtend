@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 
 class ConcreteCDTOGenerator extends CDTOGenerator {
-	private static Logger logger = Logger.getLogger(typeof(ConcreteCDTOGenerator))
+	private static Logger logger = Logger.getLogger(ConcreteCDTOGenerator)
 	
 	new(Resource input, IFileSystemAccess fsa) {
 		super(input, fsa)

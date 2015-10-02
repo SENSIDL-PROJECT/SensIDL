@@ -30,12 +30,10 @@ class CGenerator implements ICodeGenerator {
  	*/
 	override generateDTO() {
 		val generators = new ArrayList<CDTOGenerator>()
-		generators.add(new HeaderDTOGenerator(this.input, this.fsa))
-		generators.add(new ConcreteCDTOGenerator(this.input, this.fsa))
+		generators += new HeaderDTOGenerator(this.input, this.fsa)
+		generators += new ConcreteCDTOGenerator(this.input, this.fsa)
 		
-		for (CDTOGenerator generator : generators) {
-			generator.generate
-		}
+		generators.forEach[generator | generator.generate]
 	}
 	
 	/**

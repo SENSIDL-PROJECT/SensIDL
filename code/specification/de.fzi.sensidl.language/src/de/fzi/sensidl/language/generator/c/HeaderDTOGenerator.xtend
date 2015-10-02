@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 
 class HeaderDTOGenerator extends CDTOGenerator {
-	private static Logger logger = Logger.getLogger(typeof(HeaderDTOGenerator))
+	private static Logger logger = Logger.getLogger(HeaderDTOGenerator)
 	
 	new(Resource input, IFileSystemAccess fsa) {
 		super(input, fsa)

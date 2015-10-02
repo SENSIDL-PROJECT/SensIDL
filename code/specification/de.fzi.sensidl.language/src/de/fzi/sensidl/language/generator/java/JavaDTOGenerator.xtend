@@ -21,7 +21,7 @@ import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider
  */
  
 class JavaDTOGenerator implements IDTOGenerator {
-	private static Logger logger = Logger.getLogger(typeof(JavaDTOGenerator))
+	private static Logger logger = Logger.getLogger(JavaDTOGenerator)
 	
 	private final static String JAVA_EXTENSION = ".java";
 	private Resource input;

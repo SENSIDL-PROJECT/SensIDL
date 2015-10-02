@@ -5,6 +5,7 @@ import de.fzi.sensidl.language.generator.c.CDTOGenerator;
 import de.fzi.sensidl.language.generator.c.ConcreteCDTOGenerator;
 import de.fzi.sensidl.language.generator.c.HeaderDTOGenerator;
 import java.util.ArrayList;
+import java.util.function.Consumer;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 
@@ -40,9 +41,13 @@ public class CGenerator implements ICodeGenerator {
     generators.add(_headerDTOGenerator);
     ConcreteCDTOGenerator _concreteCDTOGenerator = new ConcreteCDTOGenerator(this.input, this.fsa);
     generators.add(_concreteCDTOGenerator);
-    for (final CDTOGenerator generator : generators) {
-      generator.generate();
-    }
+    final Consumer<CDTOGenerator> _function = new Consumer<CDTOGenerator>() {
+      @Override
+      public void accept(final CDTOGenerator generator) {
+        generator.generate();
+      }
+    };
+    generators.forEach(_function);
   }
   
   /**

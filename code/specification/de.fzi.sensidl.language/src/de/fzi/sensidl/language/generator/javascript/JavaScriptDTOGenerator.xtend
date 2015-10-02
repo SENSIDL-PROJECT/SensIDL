@@ -18,7 +18,7 @@ import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider
  * 
  */
 class JavaScriptDTOGenerator implements IDTOGenerator {
-	private static Logger logger = Logger.getLogger(typeof(JavaScriptDTOGenerator))
+	private static Logger logger = Logger.getLogger(JavaScriptDTOGenerator)
 	
 	private final static String JAVASCRIPT_EXTENSION = ".js"
 	private Resource input
