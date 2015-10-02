@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Add new units</title>
+</head>
+<body>
+	<h1>Adjust Data</h1>
+	<p>There are three ways to adjust the data:</p>
+	<ul>
+		<li><a href="#data_range">Adjust Data Range</a></li>
+		<li><a href="#LinearDataConversion">Linear Data Conversion</a></li>
+		<li><a href="#LinearDataConversion">Linear Data Conversion
+				With Interval</a></li>
+	</ul>
+
+	<a name="data_range"></a>
+	<h3>Adjust Data Range</h3>
+	<p>
+		To adjust the Data Range the user has to extend the MeasurementData
+		with the keywords <code>with range :</code> followed by an Interval in
+		the format: <code>0.0;0.0</code>. (<code>0.0</code> can be replaced by
+		any other number)
+	</p>
+
+	<a name="LinearDataConversion"></a>
+	<h3>Linear Data Conversion</h3>
+	<p>
+		To adjust the data with a linear data conversion the user has to
+		extend the MeasurementData with the keywords <code>with scaling
+			factor: 0.0 and offset: 0.0</code>. (<code>0.0</code> can be replaced by any
+		other number)
+	</p>
+
+
+	<a name="LinearDataConversion"></a>
+	<h3>Linear Data Conversion With Interval</h3>
+	<p>
+		To adjust the data with a linear data conversion and an interval the
+		user hast to extend the MeasurementData with the keywords <code>linear
+			mapping [0.0;0.0] => [0.0;0.0]</code>. (<code>0.0</code> can be replaced by
+		any other number)
+	</p>
+</body>
+</html>
