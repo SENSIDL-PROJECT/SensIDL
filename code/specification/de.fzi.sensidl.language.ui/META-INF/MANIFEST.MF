@@ -17,7 +17,8 @@ Require-Bundle: de.fzi.sensidl.language;visibility:=reexport,
  org.eclipse.xtext.common.types.ui,
  org.eclipse.xtext.ui.codetemplates.ui,
  org.eclipse.compare
-Import-Package: org.apache.log4j
+Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: de.fzi.sensidl.language.ui.quickfix,
  de.fzi.sensidl.language.ui.contentassist,

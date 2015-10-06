@@ -49,7 +49,6 @@ public class JavaDTOGenerator implements IDTOGenerator {
   /**
    * Generates the .java Files
    */
-  @Override
   public void generate() {
     JavaDTOGenerator.logger.info("Start with code-generation of a java data transfer object.");
     EList<EObject> _contents = this.input.getContents();
@@ -412,7 +411,6 @@ public class JavaDTOGenerator implements IDTOGenerator {
   /**
    * returns the appropriate type name
    */
-  @Override
   public String toTypeName(final Data d) {
     String _switchResult = null;
     DataType _dataType = d.getDataType();
@@ -898,7 +896,6 @@ public class JavaDTOGenerator implements IDTOGenerator {
     return _builder;
   }
   
-  @Override
   public String addFileExtensionTo(final String ClassName) {
     return (ClassName + JavaDTOGenerator.JAVA_EXTENSION);
   }

@@ -15,17 +15,14 @@ public class CSharpGenerator implements ICodeGenerator {
     this.fsa = fsa;
   }
   
-  @Override
   public void generateDTO() {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
   
-  @Override
   public void generateEncoder() {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
   
-  @Override
   public void generateDecoder() {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }

@@ -21,18 +21,15 @@ public class JavaGenerator implements ICodeGenerator {
     this.fsa = fsa;
   }
   
-  @Override
   public void generateDTO() {
     JavaDTOGenerator _javaDTOGenerator = new JavaDTOGenerator(this.input, this.fsa);
     _javaDTOGenerator.generate();
   }
   
-  @Override
   public void generateEncoder() {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
   
-  @Override
   public void generateDecoder() {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }

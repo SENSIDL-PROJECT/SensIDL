@@ -1,8 +1,8 @@
 package de.fzi.sensidl.language.generator.c;
 
 import de.fzi.sensidl.language.generator.ICodeGenerator;
+import de.fzi.sensidl.language.generator.c.CDTOFileGenerator;
 import de.fzi.sensidl.language.generator.c.CDTOGenerator;
-import de.fzi.sensidl.language.generator.c.ConcreteCDTOGenerator;
 import de.fzi.sensidl.language.generator.c.HeaderDTOGenerator;
 import java.util.ArrayList;
 import java.util.function.Consumer;
@@ -34,15 +34,13 @@ public class CGenerator implements ICodeGenerator {
   /**
    * @see ICodeGenerator#generateDTO()
    */
-  @Override
   public void generateDTO() {
     final ArrayList<CDTOGenerator> generators = new ArrayList<CDTOGenerator>();
     HeaderDTOGenerator _headerDTOGenerator = new HeaderDTOGenerator(this.input, this.fsa);
     generators.add(_headerDTOGenerator);
-    ConcreteCDTOGenerator _concreteCDTOGenerator = new ConcreteCDTOGenerator(this.input, this.fsa);
-    generators.add(_concreteCDTOGenerator);
+    CDTOFileGenerator _cDTOFileGenerator = new CDTOFileGenerator(this.input, this.fsa);
+    generators.add(_cDTOFileGenerator);
     final Consumer<CDTOGenerator> _function = new Consumer<CDTOGenerator>() {
-      @Override
       public void accept(final CDTOGenerator generator) {
         generator.generate();
       }
@@ -53,7 +51,6 @@ public class CGenerator implements ICodeGenerator {
   /**
    * @see ICodeGenerator#generateEncoder()
    */
-  @Override
   public void generateEncoder() {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
@@ -61,7 +58,6 @@ public class CGenerator implements ICodeGenerator {
   /**
    * @see ICodeGenerator#generateDecoder()
    */
-  @Override
   public void generateDecoder() {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }

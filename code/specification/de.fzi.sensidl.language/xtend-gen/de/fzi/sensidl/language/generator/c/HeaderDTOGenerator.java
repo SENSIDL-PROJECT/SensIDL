@@ -28,6 +28,8 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 @SuppressWarnings("all")
 public class HeaderDTOGenerator extends CDTOGenerator {
+  private final static String HEADER_EXTENSION = ".h";
+  
   private static Logger logger = Logger.getLogger(HeaderDTOGenerator.class);
   
   public HeaderDTOGenerator(final Resource input, final IFileSystemAccess fsa) {
@@ -38,7 +40,6 @@ public class HeaderDTOGenerator extends CDTOGenerator {
    * Generates the .c files with structs
    * @see IDTOGenerator#generate()
    */
-  @Override
   public void generate() {
     HeaderDTOGenerator.logger.info("Start with code-generation of the data transfer object header-file.");
     EList<EObject> _contents = this.input.getContents();
@@ -78,7 +79,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
   }
   
   /**
-   * Generates a typedef struct.
+   * Generates a typedefinition of a struct.
    * @param structName
    * 			represents the name of the struct.
    * @param dataset
@@ -268,9 +269,8 @@ public class HeaderDTOGenerator extends CDTOGenerator {
    * Adds the file extension.
    * @see IDTOGenerator#addFileExtensionTo(String)
    */
-  @Override
-  public String addFileExtensionTo(final String ClassName) {
-    return (ClassName + CDTOGenerator.HEADER_EXTENSION);
+  public String addFileExtensionTo(final String className) {
+    return (className + HeaderDTOGenerator.HEADER_EXTENSION);
   }
   
   public CharSequence generateDescription(final Data data) {

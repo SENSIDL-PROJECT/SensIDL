@@ -24,7 +24,8 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
 Import-Package: org.apache.log4j,
  org.eclipse.swt.graphics,
  org.eclipse.xtext.ui.editor.syntaxcoloring,
- org.eclipse.xtext.ui.editor.utils
+ org.eclipse.xtext.ui.editor.utils,
+ org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: de.fzi.sensidl.language.parser.antlr,
  de.fzi.sensidl.language.parser.antlr.internal,
