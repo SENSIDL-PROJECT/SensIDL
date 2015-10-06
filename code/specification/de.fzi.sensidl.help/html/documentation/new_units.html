@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Add new units</title>
+</head>
+<body>
+	<h1>Add new Units to SensIDL</h1>
+
+	<p>
+		The Units System of SensIDL is based on <a href="http://jscience.org/">JScience</a>
+		and therefore contains many Units, probably all the user will ever
+		need. Nevertheless there is the Option to define new Units. To do so,
+		the user has to make changes in the Source Code.
+	</p>
+	<p>
+		First locate the <code>NonSILabels.java</code> Java-File. To find the class
+		open the <code>de.fzi.sensidl.desgin</code> Project and go into the <code>src-man</code>
+		Folder. The class is then contained in the <code>de.fzi.sensidl.design.util</code>
+		package. Locate the <code>public static void init()</code> Method.
+	</p>
+
+	<p>
+		To declare a new unit you can orientate yourself at the already
+		declared units. Other examples are the following as given as in the
+		JScience Documentation: <code>
+			UnitFormat.getInstance().label(DAY.multiply(365), "year");<br>
+			UnitFormat.getInstance().label(METER.multiply(0.3048), "ft");
+		</code>
+	</p>
+
+</body>
+</html>

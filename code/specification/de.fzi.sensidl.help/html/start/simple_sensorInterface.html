@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Simple SensorInterface</title>
+</head>
+
+<body>
+	<h1>A Simple Example SensorInterface</h1>
+	<code>
+		<p>
+			<strong>sensorInterface</strong> exampleInterface<em> /**This is
+				the Description for the Example Interface*/</em><strong> {</strong><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;<strong>encoding</strong> SENSIDL_BINARY <strong>with</strong>
+			BIG_ENDIAN <strong>alignment</strong> 1 <strong>BIT</strong><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;<strong>sensorData {</strong><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>dataSet</strong>
+			ExampleDataSet <strong>{</strong> <br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			firstData <strong>as</strong> UINT8 <strong>constant value =</strong>
+			"1" <em>/**This is the description for the NonMeasurementData*/</em>
+			<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			secondData <strong>as</strong> FLOAT <strong>in</strong>
+			Dimensionless <strong>adjusted by linear mapping</strong> [0;255]<strong>
+				=&gt;</strong> [0;1] <em>/**This is the description for the
+				MeasurementData*/</em> <br /> <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				} </strong><br />
+			<strong> &nbsp;&nbsp;&nbsp;&nbsp; } </strong><br />
+			<strong> }&nbsp;</strong>
+		</p>
+	</code>
+
+
+
+</body>
+</html>

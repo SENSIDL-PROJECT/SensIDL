@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="SensIDL Documentation" topic="html/toc.html">
+ <topic href="html/start/toc_start.html" label="Getting Started">
+    <topic href="html/start/tutorial.html" label="Tutorial">
+    </topic>
+    <topic href="html/start/simple_sensorInterface.html" label="Simple Example">
+    </topic>
+ </topic>
+ <topic href="html/documentation/toc_documentation.html" label="Documentation">
+    <topic href="html/documentation/typesystem.html" label="TypeSystem">
+    </topic>
+    <topic href="html/documentation/adjustdata.html" label="Adjust Data">
+    </topic>
+    <topic href="html/documentation/units.html" label="Units">
+    </topic>
+    <topic href="html/documentation/new_units.html" label="Add new units">
+    </topic>
+ </topic>
+ <topic href="html/examples/toc_examples.html" label="Examples">
+    <topic href="html/examples/emeter.html" label="E-Meter">
+    </topic>
+ </topic>
+ <topic href="html/about/toc_about.html" label="About SensIDL">
+ </topic>
+</toc>
