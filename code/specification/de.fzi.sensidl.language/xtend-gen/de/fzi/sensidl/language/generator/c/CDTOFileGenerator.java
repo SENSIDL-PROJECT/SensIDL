@@ -164,8 +164,8 @@ public class CDTOFileGenerator extends CDTOGenerator {
     _builder.append("#include \"");
     String _name = dataset.getName();
     String _firstUpper = StringExtensions.toFirstUpper(_name);
-    String _addFileExtensionTo = this.addFileExtensionTo(_firstUpper);
-    _builder.append(_addFileExtensionTo, "");
+    String _plus = (_firstUpper + CDTOGenerator.HEADER_EXTENSION);
+    _builder.append(_plus, "");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
     _builder.newLine();

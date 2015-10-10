@@ -103,7 +103,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 			«generateDescription(dataset)»
 			*/
 			
-			#include "«addFileExtensionTo(dataset.name.toFirstUpper)»"
+			#include "«dataset.name.toFirstUpper + HEADER_EXTENSION»"
 			
 			«dataset.name.toFirstUpper» «dataset.name.toFirstLower»;
 		'''

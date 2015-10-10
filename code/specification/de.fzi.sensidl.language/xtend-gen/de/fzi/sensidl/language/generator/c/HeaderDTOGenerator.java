@@ -28,8 +28,6 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 @SuppressWarnings("all")
 public class HeaderDTOGenerator extends CDTOGenerator {
-  private final static String HEADER_EXTENSION = ".h";
-  
   private static Logger logger = Logger.getLogger(HeaderDTOGenerator.class);
   
   public HeaderDTOGenerator(final Resource input, final IFileSystemAccess fsa) {
@@ -270,7 +268,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
    * @see IDTOGenerator#addFileExtensionTo(String)
    */
   public String addFileExtensionTo(final String className) {
-    return (className + HeaderDTOGenerator.HEADER_EXTENSION);
+    return (className + CDTOGenerator.HEADER_EXTENSION);
   }
   
   public CharSequence generateDescription(final Data data) {

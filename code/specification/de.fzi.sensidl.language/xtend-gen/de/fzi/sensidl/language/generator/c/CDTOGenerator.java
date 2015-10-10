@@ -17,6 +17,8 @@ public abstract class CDTOGenerator implements IDTOGenerator {
   
   protected IFileSystemAccess fsa;
   
+  protected final static String HEADER_EXTENSION = ".h";
+  
   /**
    * Defines the constructor of CGenerator.
    * @param input
