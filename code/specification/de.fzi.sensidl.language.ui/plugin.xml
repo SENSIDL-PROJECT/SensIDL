@@ -2,7 +2,62 @@
 <?eclipse version="3.0"?>
 
 <plugin>
-
+	<!-- Initialize View -->
+	<extension id="de.fzi.sensidl.language.ui.wizard"
+    name="SensIDL Tooling Wizard"
+   point="org.eclipse.ui.newWizards">
+  <category
+         name="SensIDL Wizards"
+         id="de.fzi.sensidl.language.ui.category1">
+   </category>
+   <wizard
+         name="SensIDL Tooling WIzard"
+         icon="images/SensIDL_logo.jpg"
+         category="de.fzi.sensidl.language.ui.category1"
+    class="de.fzi.sensidl.language.ui.wizard.SensidlWizard"
+         id="de.fzi.sensidl.language.ui.sesidlwizard1">
+   </wizard>
+</extension>
+      <!-- Initialize View -->
+      <!-- Context Menu Entry "Generate Code" -->
+       <extension
+        point="org.eclipse.ui.handlers">
+     <handler
+           class="de.fzi.sensidl.language.ui.SensidlExecutableExtensionFactory:de.fzi.sensidl.language.ui.handler.ContextMenuHandler"
+           commandId="de.fzi.sensidl.language.ui.handler.ContextMenuCommand">
+     </handler>
+      
+  </extension>
+   
+  <extension
+        point="org.eclipse.ui.commands">
+        <command name="SensIDL - Generate Code"
+              id="de.fzi.sensidl.language.ui.handler.ContextMenuCommand">
+        </command>
+        
+  </extension>
+   
+  <extension point="org.eclipse.ui.menus">
+    <menuContribution locationURI="popup:org.eclipse.jdt.ui.PackageExplorer">
+        <command
+            commandId="de.fzi.sensidl.language.ui.handler.ContextMenuCommand"
+            style="push">
+            <visibleWhen
+                  checkEnabled="false">
+                  <iterate>
+       <adapt type="org.eclipse.core.resources.IResource">
+          <test property="org.eclipse.core.resources.name" 
+                value="*.sidl"/>
+                
+       </adapt>
+    </iterate>
+            </visibleWhen>
+        </command>
+    </menuContribution>
+    </extension>
+     <!-- Context Menu Entry "Generate Code" -->
+    
+    <!-- -->
     <extension
             point="org.eclipse.ui.editors">
         <editor
@@ -246,7 +301,7 @@
 	    <super type="org.eclipse.xtext.ui.check.expensive"/>
 	    <persistent value="true"/>
 	</extension>
-
+	<!--
    <extension
          point="org.eclipse.xtext.builder.participant">
       <participant
@@ -255,6 +310,7 @@
             >
       </participant>
    </extension>
+   -->
    <extension
             point="org.eclipse.ui.preferencePages">
         <page
