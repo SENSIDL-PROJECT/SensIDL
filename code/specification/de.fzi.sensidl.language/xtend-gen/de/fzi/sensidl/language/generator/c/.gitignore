@@ -10,3 +10,5 @@
 /.ConcreteCDTOGenerator.java._trace
 /.HeaderDTOGenerator.java._trace
 /.CDTOFileGenerator.java._trace
+/CDTOFileGenerator.java
+/HeaderDTOGenerator.java

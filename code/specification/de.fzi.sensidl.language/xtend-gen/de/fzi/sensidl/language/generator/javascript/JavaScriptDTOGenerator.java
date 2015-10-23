@@ -44,6 +44,7 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
   /**
    * Generates the .js files
    */
+  @Override
   public void generate() {
     JavaScriptDTOGenerator.logger.info("Start with code-generation of a JavaScript data transfer object.");
     EList<EObject> _contents = this.input.getContents();
@@ -229,10 +230,12 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
     return _xblockexpression;
   }
   
+  @Override
   public String addFileExtensionTo(final String ClassName) {
     return (ClassName + JavaScriptDTOGenerator.JAVASCRIPT_EXTENSION);
   }
   
+  @Override
   public String toTypeName(final Data data) {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }

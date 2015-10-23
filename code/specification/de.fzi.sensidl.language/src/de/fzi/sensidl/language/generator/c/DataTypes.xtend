@@ -7,14 +7,14 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
  * Contains the language specific c type strings.
  */
 class DataTypes {
-	private static val String SIGNED_CHAR = "char";
-	private static val String UNSIGNED_CHAR = "unsigned char";
-	private static val String SIGNED_SHORT = "short";
-	private static val String UNSIGNED_SHORT = "unsigned short";
-	private static val String SIGNED_LONG = "long";
-	private static val String UNSIGEND_LONG = "unsigned long";
-	private static val String SIGNED_LONG_LONG = "long long";
-	private static val String UNSIGNED_LONG_LONG = "unsigned long long";
+	private static val String SIGNED_CHAR = "int8_t";
+	private static val String UNSIGNED_CHAR = "uint8_t";
+	private static val String SIGNED_SHORT = "int16_t";
+	private static val String UNSIGNED_SHORT = "uint16_t";
+	private static val String SIGNED_LONG = "int32_t";
+	private static val String UNSIGEND_LONG = "uint32_t";
+	private static val String SIGNED_LONG_LONG = "int64_t";
+	private static val String UNSIGNED_LONG_LONG = "uint64_t";
 	private static val String FLOAT = "float";
 	private static val String DOUBLE = "double";
 	

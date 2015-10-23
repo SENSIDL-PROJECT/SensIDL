@@ -35,6 +35,7 @@ public abstract class CDTOGenerator implements IDTOGenerator {
    * Maps to the corresponding language type.
    * @see IDTOGenerator#toTypeName(Data)
    */
+  @Override
   public String toTypeName(final Data data) {
     DataType _dataType = data.getDataType();
     return DataTypes.getDataTypeBy(_dataType);

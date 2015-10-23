@@ -38,6 +38,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
    * Generates the .c files with structs
    * @see IDTOGenerator#generate()
    */
+  @Override
   public void generate() {
     HeaderDTOGenerator.logger.info("Start with code-generation of the data transfer object header-file.");
     EList<EObject> _contents = this.input.getContents();
@@ -267,6 +268,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
    * Adds the file extension.
    * @see IDTOGenerator#addFileExtensionTo(String)
    */
+  @Override
   public String addFileExtensionTo(final String className) {
     return (className + CDTOGenerator.HEADER_EXTENSION);
   }

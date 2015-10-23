@@ -34,6 +34,7 @@ public class CGenerator implements ICodeGenerator {
   /**
    * @see ICodeGenerator#generateDTO()
    */
+  @Override
   public void generateDTO() {
     final ArrayList<CDTOGenerator> generators = new ArrayList<CDTOGenerator>();
     HeaderDTOGenerator _headerDTOGenerator = new HeaderDTOGenerator(this.input, this.fsa);
@@ -41,6 +42,7 @@ public class CGenerator implements ICodeGenerator {
     CDTOFileGenerator _cDTOFileGenerator = new CDTOFileGenerator(this.input, this.fsa);
     generators.add(_cDTOFileGenerator);
     final Consumer<CDTOGenerator> _function = new Consumer<CDTOGenerator>() {
+      @Override
       public void accept(final CDTOGenerator generator) {
         generator.generate();
       }
@@ -51,6 +53,7 @@ public class CGenerator implements ICodeGenerator {
   /**
    * @see ICodeGenerator#generateEncoder()
    */
+  @Override
   public void generateEncoder() {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
@@ -58,6 +61,7 @@ public class CGenerator implements ICodeGenerator {
   /**
    * @see ICodeGenerator#generateDecoder()
    */
+  @Override
   public void generateDecoder() {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }

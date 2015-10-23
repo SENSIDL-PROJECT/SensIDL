@@ -39,6 +39,7 @@ public class CDTOFileGenerator extends CDTOGenerator {
    * Generates the .c files with struct-declaration and the
    * marshalling-function.
    */
+  @Override
   public void generate() {
     final HashMap<String, String> filesToInclude = new HashMap<String, String>();
     CDTOFileGenerator.logger.info("Start with code-generation of a c data transfer object.");
@@ -64,10 +65,7 @@ public class CDTOFileGenerator extends CDTOGenerator {
       }
     }
     String _addFileExtensionTo = this.addFileExtensionTo(CDTOFileGenerator.MARSHAL_FILE);
-    CharSequence _compile = this.compile(filesToInclude);
-    this.fsa.generateFile(_addFileExtensionTo, _compile);
-    String _addFileExtensionTo_1 = this.addFileExtensionTo(CDTOFileGenerator.MARSHAL_FILE);
-    String _plus = ("File: " + _addFileExtensionTo_1);
+    String _plus = ("File: " + _addFileExtensionTo);
     String _plus_1 = (_plus + " was generated in ");
     String _plus_2 = (_plus_1 + SensIDLOutputConfigurationProvider.SENSIDL_GEN);
     CDTOFileGenerator.logger.info(_plus_2);
@@ -209,6 +207,7 @@ public class CDTOFileGenerator extends CDTOGenerator {
    * Adds the file extension.
    * @see IDTOGenerator#addFileExtensionTo(String)
    */
+  @Override
   public String addFileExtensionTo(final String ClassName) {
     return (ClassName + CDTOFileGenerator.C_EXTENSION);
   }

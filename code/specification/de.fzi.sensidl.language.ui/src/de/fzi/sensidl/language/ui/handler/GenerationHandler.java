@@ -29,7 +29,7 @@ public class GenerationHandler {
 	private static GenerationLanguage generationLanguage = GenerationLanguage.NONE;
 
 	private GenerationHandler() {
-		// private Constructor to prevent instantiation
+
 	}
 
 	/**
@@ -38,7 +38,7 @@ public class GenerationHandler {
 	 * @param path
 	 *            the path where the files will be saves
 	 * @param modelPath
-	 *            the path to the model form eith the code will be generated
+	 *            the path to the model form with the code will be generated
 	 * @param language
 	 *            the language in which the Code will be generated
 	 * @return true if the code was generated

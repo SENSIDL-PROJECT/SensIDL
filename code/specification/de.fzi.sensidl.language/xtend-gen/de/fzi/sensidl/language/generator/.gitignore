@@ -51,3 +51,4 @@
 /.SensidlGenerator.xtendbin
 /SensidlCodeGenerationExecutor.java
 /.SensIDLOutputConfigurationProvider.java._trace
+/SensIDLOutputConfigurationProvider.java

@@ -8,6 +8,14 @@
             file="toc.xml"
             primary="true">
       </toc>
-   </extension>
-
+  </extension>
+  
+  <extension 
+  	point = "org.eclipse.help.contexts">
+  	<contexts
+  		file = "contexts.xml"
+  		plugin = "de.fzi.sensidl.help">
+  	</contexts>
+  </extension>
+  
 </plugin>

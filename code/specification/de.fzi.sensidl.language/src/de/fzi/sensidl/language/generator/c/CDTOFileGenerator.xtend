@@ -42,7 +42,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 			filesToInclude.put(fileName, dataset.description);
 		}
 		
-		fsa.generateFile(addFileExtensionTo(MARSHAL_FILE), filesToInclude.compile)
+//		fsa.generateFile(addFileExtensionTo(MARSHAL_FILE), filesToInclude.compile)
 		logger.info("File: " + addFileExtensionTo(MARSHAL_FILE) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)	
 	}
 	

@@ -16,9 +16,11 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 public class SensIDLOutputConfigurationProvider extends OutputConfigurationProvider {
   public final static String SENSIDL_GEN = "./src-gen";
   
+  @Override
   public Set<OutputConfiguration> getOutputConfigurations() {
     Set<OutputConfiguration> _outputConfigurations = super.getOutputConfigurations();
     final Procedure1<Set<OutputConfiguration>> _function = new Procedure1<Set<OutputConfiguration>>() {
+      @Override
       public void apply(final Set<OutputConfiguration> it) {
         OutputConfiguration _head = IterableExtensions.<OutputConfiguration>head(it);
         _head.setOutputDirectory(SensIDLOutputConfigurationProvider.SENSIDL_GEN);

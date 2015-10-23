@@ -16,15 +16,18 @@ public class JavaScriptGenerator implements ICodeGenerator {
     this.fsa = fsa;
   }
   
+  @Override
   public void generateDTO() {
     JavaScriptDTOGenerator _javaScriptDTOGenerator = new JavaScriptDTOGenerator(this.input, this.fsa);
     _javaScriptDTOGenerator.generate();
   }
   
+  @Override
   public void generateEncoder() {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
   
+  @Override
   public void generateDecoder() {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }

@@ -10,27 +10,28 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
  */
 @SuppressWarnings("all")
 public class DataTypes {
-  private final static String SIGNED_CHAR = "char";
+  private final static String SIGNED_CHAR = "int8_t";
   
-  private final static String UNSIGNED_CHAR = "unsigned char";
+  private final static String UNSIGNED_CHAR = "uint8_t";
   
-  private final static String SIGNED_SHORT = "short";
+  private final static String SIGNED_SHORT = "int16_t";
   
-  private final static String UNSIGNED_SHORT = "unsigned short";
+  private final static String UNSIGNED_SHORT = "uint16_t";
   
-  private final static String SIGNED_LONG = "long";
+  private final static String SIGNED_LONG = "int32_t";
   
-  private final static String UNSIGEND_LONG = "unsigned long";
+  private final static String UNSIGEND_LONG = "uint32_t";
   
-  private final static String SIGNED_LONG_LONG = "long long";
+  private final static String SIGNED_LONG_LONG = "int64_t";
   
-  private final static String UNSIGNED_LONG_LONG = "unsigned long long";
+  private final static String UNSIGNED_LONG_LONG = "uint64_t";
   
   private final static String FLOAT = "float";
   
   private final static String DOUBLE = "double";
   
   private final static HashMap<DataType, String> dataTypesMap = ObjectExtensions.<HashMap<DataType, String>>operator_doubleArrow(new HashMap<DataType, String>(), new Procedure1<HashMap<DataType, String>>() {
+    @Override
     public void apply(final HashMap<DataType, String> it) {
       it.put(DataType.INT8, DataTypes.SIGNED_CHAR);
       it.put(DataType.UINT8, DataTypes.UNSIGNED_CHAR);
