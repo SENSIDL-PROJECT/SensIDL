@@ -1,0 +1,11 @@
+<contexts>
+	<context id="sensidl_wizard_help_documentation" title="SensIDL Wizard Documentation">
+		<descritpion>The SensIDL Help Documentation</descritpion>
+		<topic href="html/documentation/wizard.html" label="SensIDL Wizard Documentation" />
+	</context>
+
+	<context id="sensidl_help_documentation" title="SensIDL Documentation">
+		<descritpion>The SensIDL Help Documentation</descritpion>
+		<topic href="html/toc.html" label="SensIDL Documentation" />
+	</context>
+</contexts>	
