@@ -31,6 +31,18 @@
         <h1> <a id="sensidl" class="anchor" href="#sensidl" aria-hidden="true"><span class="octicon octicon-link"></span></a>SensIDL Outlook</h1> <br>
         The following graphic gives an outlook regarding the general usage and application process.<br>
         <embed src="images/SensIDL_Kurzfassung.pdf" width="800px" height="800px">
+               <ol>
+          <li><strong>Toolchain</strong><br>
+            SensIDL toolchain is mainly comprised of the underlying metamodel (description language), the textual editor allowing user-friendly usage and the specific code generators. </li>
+         <li><strong>Stakeholders</strong><br>
+            SensIDL addresses two directions of sensor-based network systems development. Both the sensor and receiver developers are able to use the SensIDL toolchain to profit from it. 
+            As the sensor developer uses the dedicated editor to describe and document sensor-specific data structures and later generates the requested executable code, that runs on actual devices;
+             the receiver developer can resort to already formaly documented sensor descriptions and by using necessary generators generate the necessary executable code. </li>
+         <li><strong>Physical devices</strong><br>
+            There is no direct limit to the physical devices, that can run the executable code, that is generated, as long as they are able to understand the defined data structures and speak the same language.
+            A sensor developer can define a complex data structure for his C-based sensor device, and lets the corresponding code generator generate the necessary code, e.g. "structs".
+            The receiver developer can use the same sensor data description to generate e.g. Java code for the Android application, that uses the information gathered from the sensor.</li>
+        </ol>
       </section>
     </div>
     <!-- FOOTER  -->
