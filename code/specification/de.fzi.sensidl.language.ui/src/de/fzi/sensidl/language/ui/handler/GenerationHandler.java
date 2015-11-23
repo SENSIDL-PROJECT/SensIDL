@@ -7,7 +7,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.parser.IEncodingProvider;
 import org.eclipse.xtext.service.AbstractGenericModule;
@@ -16,6 +15,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import de.fzi.sensidl.language.SensidlStandaloneSetup;
+import de.fzi.sensidl.language.generator.SensidlGenerator;
 
 /**
  * The Generation Handler to handle the generation process and call the
@@ -25,7 +25,7 @@ import de.fzi.sensidl.language.SensidlStandaloneSetup;
  *
  */
 public class GenerationHandler {
-	private static IGenerator generator;
+	private static SensidlGenerator generator;
 	private static GenerationLanguage generationLanguage = GenerationLanguage.NONE;
 
 	private GenerationHandler() {
@@ -58,8 +58,9 @@ public class GenerationHandler {
 		final JavaIoFileSystemAccess fsa = new JavaIoFileSystemAccess();
 		fsa.setOutputPath(path);
 
-		generator = injector.getInstance(IGenerator.class); // set up the
-															// generator
+		generator = injector.getInstance(SensidlGenerator.class); // set up the
+		// generator
+		generator.setGenerationLanguage(generationLanguage.toString());
 
 		// inject fsa
 		Guice.createInjector(new AbstractGenericModule() {

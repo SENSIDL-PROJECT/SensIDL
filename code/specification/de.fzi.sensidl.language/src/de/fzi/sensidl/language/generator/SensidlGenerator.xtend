@@ -34,6 +34,8 @@ class SensidlGenerator implements IGenerator {
 	
 	private static String EXTENSION = "sensidl"
 	
+	private String generationLanguage = "ALL"
+	
 	/**
 	 * Der Einstiegspunkt für den Generator für SensIDL.
 	 * <p>
@@ -48,7 +50,7 @@ class SensidlGenerator implements IGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		setUpLogger()
 		
-		//new JavaDTOGenerator(resource, fsa).generate //starts the Java Code Generator
+		codeGenerator.generationLanguage = generationLanguage
 		codeGenerator.doGenerate(resource, fsa)
 		
 		logger.info("Code was generated")
@@ -68,6 +70,10 @@ class SensidlGenerator implements IGenerator {
 		EcorePersistenceHelper.persistEcoreModel(dataModel, URI.createURI(fileName), fsa)
 		
 		logger.info("Model was successfully persisted.")
+	}
+	
+	def setGenerationLanguage(String generationLanguage) {
+		this.generationLanguage = generationLanguage
 	}
 	
 	def setUpLogger() {

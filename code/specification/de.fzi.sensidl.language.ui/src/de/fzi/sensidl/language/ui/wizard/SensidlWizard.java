@@ -60,7 +60,6 @@ public class SensidlWizard extends Wizard {
 		if (sensidlWizardPage.getTextModelPath().startsWith("platform:/resource")) {
 			modelPath = sensidlWizardPage.getTextModelPath().replace("platform:/resource",
 					ResourcesPlugin.getWorkspace().getRoot().getLocation().toString());
-			System.out.println(modelPath);
 		} else {
 			modelPath = sensidlWizardPage.getTextModelPath();
 		}

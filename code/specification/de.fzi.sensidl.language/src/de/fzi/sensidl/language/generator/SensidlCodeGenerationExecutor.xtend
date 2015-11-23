@@ -10,9 +10,6 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import de.fzi.sensidl.language.generator.csharp.CSharpGenerator
 
-import de.fzi.sensidl.language.ui.handler.GenerationLanguage
-import de.fzi.sensidl.language.ui.handler.GenerationHandler
-
 /**
  * Code generator für die SensIDL Sprache.
  * 
@@ -23,7 +20,8 @@ import de.fzi.sensidl.language.ui.handler.GenerationHandler
 class SensidlCodeGenerationExecutor implements ISensidlCodeGenerator {
 
 	private static Logger logger = Logger.getLogger(SensidlCodeGenerationExecutor)
-
+	private String generationLanguage
+	
 	/**
 	 * The entry point to the generation.
 	 * 
@@ -50,26 +48,33 @@ class SensidlCodeGenerationExecutor implements ISensidlCodeGenerator {
 
 	def initExecuter(Resource input, IFileSystemAccess fsa) {
 		// select Generator depending on the User input.
-		if (GenerationHandler.getGenerationLanguage.equals(GenerationLanguage.JAVA.toString())) {
+		if (generationLanguage.equals("JAVA")) {
 			return new ArrayList<IExecuter> => [add([|new JavaGenerator(input, fsa).generateDTO])]
 
-		} else if (GenerationHandler.getGenerationLanguage().equals(GenerationLanguage.JAVASCRIPT.toString())) {
-			return new ArrayList<IExecuter> => [add([|new JavaScriptGenerator(input, fsa).generateDTO])] 
+		} else if (generationLanguage.equals("JAVASCRIPT")) {
+			return new ArrayList<IExecuter> => [add([|new JavaScriptGenerator(input, fsa).generateDTO])]
 
-		} else if (GenerationHandler.getGenerationLanguage().equals(GenerationLanguage.C.toString())) {
+		} else if (generationLanguage.equals("C")) {
 			return new ArrayList<IExecuter> => [add([|new CGenerator(input, fsa).generateDTO])]
-			
-		} else if (GenerationHandler.getGenerationLanguage().equals(GenerationLanguage.C_SHARP.toString())) {
+
+		} else if (generationLanguage.equals("C_SHARP")) {
 			return new ArrayList<IExecuter> => [add([|new CSharpGenerator(input, fsa).generateDTO])]
 
-		} else if (GenerationHandler.getGenerationLanguage().equals(GenerationLanguage.ALL.toString())) {
+		} else if (generationLanguage.equals("ALL")) {
 			return new ArrayList<IExecuter> => [
 				add([|new JavaGenerator(input, fsa).generateDTO])
 				add([|new CGenerator(input, fsa).generateDTO])
 				add([|new JavaScriptGenerator(input, fsa).generateDTO])
 			]
 		}
+	}
 
+	/**
+	 * set the language to generate the code in
+	 */
+	def setGenerationLanguage(String generationLanguage) {
+		this.generationLanguage = generationLanguage
+	}
 		// for testing
 //		return new ArrayList<IExecuter> => [
 //			add([|new JavaGenerator(input, fsa).generateDTO])
@@ -104,7 +109,6 @@ class SensidlCodeGenerationExecutor implements ISensidlCodeGenerator {
 //			])
 //		]
 	}
-
 //	/**
 //	 * Creates a name for a decode method for an {@link Interpetation}.
 //	 * @param ip the {@link Interpetation} to create a decode name for
@@ -116,4 +120,3 @@ class SensidlCodeGenerationExecutor implements ISensidlCodeGenerator {
 //	 * @param ip the {@link Interpetation} to create a encode name for
 //	 */
 //	def static encodeName(Datafield datafield) { '''encode«datafield.name.toFirstUpper»''' }
-}
