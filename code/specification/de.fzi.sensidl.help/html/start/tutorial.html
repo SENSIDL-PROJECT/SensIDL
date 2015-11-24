@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Table of Contents</title>
+</head>
+
+<body>
+	<h1>A Short Introduction to the SensIDL Editor</h1>
+
+	<a name="start"></a>
+
+	<p>
+		The specification of your sensor starts with the keyword <code>sensorInterface</code>
+		followed by a name and an optional description which starts with <code>/**</code>
+		and ends with <code>*/</code> . After that there can be an optional
+		identifier marked by the keywords <code>with identifier :</code> and
+		followed by a String. The Sensor begins with an <code>{</code> and
+		ends with an <code>}</code>
+	</p>
+
+	<p>
+		<b>Example:</b> <br> <code> <b>sensorInterface</b>
+			exampleInterface /**This is the Description for the Example
+			Interface*/ <b>{</b><br> // This is a single line comment <br>
+			/* This is a multi-<br> line comment*/ <br> // The sensor
+			contains encoding settings and the data description <br> <b>}</b>
+
+		</code>
+	</p>
+
+	<p>
+		The sensor has to contain <a href="#encoding_settings"> encoding
+			settings</a> and the <a href="#data_description">data description</a> .
+	</p>
+
+
+	<!-- Start Encoding Settings paragraph -->
+	<a name="encoding_settings"></a>
+	<br>
+	<h3>Encoding Settings</h3>
+
+	<p>
+		The Encoding settings are declared in the following format: <br>
+		<code> <b>encoding</b> (SENSIDL_BINARY || SENSIDL_JSON) <b>with</b>
+			(BIG_ENDIAN || LITTLE_ENDIAN) <b>alignment</b> (1..N) <b>BIT</b> (<b>with
+				identifier :</b> "identifier"))
+		</code>
+	</p>
+	<p>The identifier is optional. Keywords are bold.</p>
+
+
+	<!-- Start Data Description paragraph -->
+	<a name="data_description"></a>
+	<br>
+
+	<h3>Data Description</h3>
+	<p>
+		The DataDescription starts with the keyword <code>sensorData</code>
+		and an optional identifier. After that the dataSets are declared. The
+		sensorData can contain any number of dataSets. A DataSet contains
+		NonMeasurementData and MeasurementData.
+	</p>
+
+	<p>
+		<b>Example:</b> <br> <code> <b>sensorData</b> { <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;<b>dataSet</b> exampleDataSet <b>with
+				identifier :</b> "1" {<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//The DataSet
+			contains MeasurementData and NonMeasurementData <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;} <br> }
+		</code>
+	</p>
+
+	<p>
+		The DataSet contains <a href="#measurementdata">MeasurementData</a>
+		and <a href="#nonmeasurementdata">NonMeasurementData</a>.
+	</p>
+
+	<!-- Start Measurement Data paragraph -->
+	<a name="measurementdata"></a>
+	<br>
+	<h3>Measurement Data</h3>
+	<p>
+		The MeasurementData starts with a name and the declaration which
+		datatype and which Unit the data has. There is also the option for an
+		optional identifier and description. Furthermore the data can be
+		adjusted, either by range by giving a specific interval or by
+		conversion by scaling or mapping the data. For further information see
+		<a href="../documentation/adjustdata.html">Data Adjustment</a>
+	</p>
+
+	<p>
+		The format of the MeasuremntDats is the following:<br> <code>
+			DataName <b>as</b> DataType <b>in</b> Unit (<b>with identifier :</b>
+			"identifier"")(<b>adjusted by</b> (<b>with range</b> 0.0;0.0 || <b>with
+				scaling factor :</b> 0.0 <b>and offset:</b> 0.0 || <b>linear mapping
+				[</b>0.0<b>;</b>0.0<b>] => [</b>0.0<b>;</b>0.0<b>]</b>))(<b>/**</b>optional
+			description<b>*/</b>)
+		</code>
+	</p>
+
+	<p>
+		Keywords are bold and brackets signalize optional arguments. DataName
+		can be any name given by the user and DataType is a type from the <a
+			href="../documentation/typesystem.html">TypeSystem</a>. Unit is a
+		Unit from the Unit System and "<code>0.0</code>"; can be replaced by
+		any number.
+	</p>
+
+	<!-- Start non Measurement Data paragraph -->
+	<a name="nonmeasurementdata"></a>
+	<br>
+	<h3>Non MeasurementData</h3>
+	<p>The NonMeasurementData has a name and a datatype. Also the data
+		can be a constant and can have a value, an identifier and/or a
+		description.</p>
+
+	<p>
+		The format for the NonMeasurementData is the following: <br> <code>
+			DataName <strong>as</strong> DataType (<strong>constant</strong>)(<strong>value
+				= </strong>"value")(<strong>with identifier : </strong>"identifier")(<strong>/**
+		</strong>optional description<strong>*/</strong>)
+		</code>
+	</p>
+	<p>
+		Keywords are bold and brackets signalize optional arguments. DataName
+		can be any name given by the user and DataType is a type from the <a
+			href="../documentation/typesystem.html">TypeSystem</a>.
+	</p>
+
+</body>
+</html>

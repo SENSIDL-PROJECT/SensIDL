@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Sensidl : A generic framework for implementing sensor communication interfaces">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> 
+    <title>Sensidl</title>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+      <header class="inner"> <a id="project_logo" href="http://sensidl.de"> <img
+
+            id="logo" src="images/sensidl_logo.png"> </a>
+        <h2 id="project_tagline">A generic framework for implementing<br>
+          sensor communication interfaces</h2>
+        <section id="menu" class="outer"> <a class="menu_link" href="index.html">Home</a>
+          <a class="menu_link" href="publications.html">Publications</a> <a class="menu_link" href="documentation.html">Documentation</a> <a class="menu_link"
+
+            href="download.html">Download</a> <a class="menu_link" href="aboutus.html">About
+            Us</a> <a class="menu_link" href="contact.html">Contact</a> </section>
+        <!--  <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/SENSIDL-PROJECT/SensIDL/zipball/master">Download this project as a .zip file</a>              <a class="tar_download_link" href="https://github.com/SENSIDL-PROJECT/SensIDL/tarball/master">Download this project as a tar.gz file</a>            </section> -->
+      </header>
+    </div>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1> <a id="sensidl" class="anchor" href="#sensidl" aria-hidden="true"><span class="octicon octicon-link"></span></a>SensIDL Overview</h1> <br>
+        The following figure provides an overview on the SensIDL artifacts and their relations. The elements are described in the following.<br>
+        <embed src="images/SensIDL_Kurzfassung.pdf" width="800px" height="600px">
+        <ul>
+         <li><strong>SensIDL Toolchain</strong></li>
+            The SensIDL toolchain consist of a metamodel for the description language, a textual editor allowing user-friendly sensor description specifications, and code generators for different target programming languages. </li>
+         <li><strong>Stakeholders</strong><br>
+            SensIDL supports both, sensor and receiver developers. Sensor developers can use the editor to describe and document sensor-specific data structures and generate code for their sensor device.
+             Receiver developers use sensor descriptions and generate code for the receiver device. </li>
+         <li><strong>Physical devices</strong><br>
+         	Physical devices communicate using the data structures defined in the sensor descriptions. By doing so, sensors and receivers can use different programming languages. A typical example would be a C-based sensor implementation and a Java-based Android application.
+         	The SensIDL generators create data structures for all platforms, e.g. structs for C or classes for Java. Generated encoders and decoders handle the conversion to transmitted and exchanged information.
+         </li>
+        </ul>
+      </section>
+    </div>
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner"> <a id="forkme_banner" href="https://github.com/SENSIDL-PROJECT/SensIDL">View
+          on GitHub</a>
+        <p class="copyright">SensIDL maintained by <a href="https://github.com/SENSIDL-PROJECT">SENSIDL-PROJECT</a><br>
+          Published with <a href="https://pages.github.com">GitHub Pages</a><br>
+          <a href="imprint.html">Imprint</a></p>
+      </footer>
+    </div>
+    <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+    <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-58640009-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+  </body>
+</html>
+
