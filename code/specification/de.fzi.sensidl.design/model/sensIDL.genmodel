@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.fzi.sensidl.design/src-gen" editDirectory="/de.fzi.sensidl.design.edit/src-gen"
+    editorDirectory="/de.fzi.sensidl.design.editor/src-gen" modelPluginID="de.fzi.sensidl.design"
+    modelName="SensIDL" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    testsDirectory="/de.fzi.sensidl.design.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>sensIDL.ecore</foreignModel>
+  <genPackages prefix="sensidl" basePackage="de.fzi.sensidl.design" disposableProviderFactory="true"
+      ecorePackage="sensIDL.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="sensIDL.ecore#//Coding">
+      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Coding/SENSIDL_BINARY"/>
+      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Coding/SENSIDL_JSON"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="sensIDL.ecore#//Endianness">
+      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Endianness/BIG_ENDIAN"/>
+      <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//Endianness/LITTLE_ENDIAN"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="sensIDL.ecore#//IdentifiableElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//IdentifiableElement/ID"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="sensIDL.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//NamedElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//NamedElement/description"/>
+    </genClasses>
+    <genClasses ecoreClass="sensIDL.ecore#//SensorInterface">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//SensorInterface/encodingSettings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//SensorInterface/dataDescription"/>
+    </genClasses>
+    <genClasses ecoreClass="sensIDL.ecore#//EncodingSettings">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//EncodingSettings/sensorInterface"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//EncodingSettings/coding"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//EncodingSettings/endianness"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//EncodingSettings/alignment"/>
+    </genClasses>
+    <nestedGenPackages prefix="DataRepresentation" basePackage="de.fzi.sensidl.design.sensidl"
+        disposableProviderFactory="true" ecorePackage="sensIDL.ecore#//dataRepresentation">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="sensIDL.ecore#//dataRepresentation/DataType">
+        <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//dataRepresentation/DataType/INT8"/>
+        <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//dataRepresentation/DataType/UINT8"/>
+        <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//dataRepresentation/DataType/INT16"/>
+        <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//dataRepresentation/DataType/UINT16"/>
+        <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//dataRepresentation/DataType/INT32"/>
+        <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//dataRepresentation/DataType/UINT32"/>
+        <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//dataRepresentation/DataType/INT64"/>
+        <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//dataRepresentation/DataType/UINT64"/>
+        <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//dataRepresentation/DataType/FLOAT"/>
+        <genEnumLiterals ecoreEnumLiteral="sensIDL.ecore#//dataRepresentation/DataType/DOUBLE"/>
+      </genEnums>
+      <genDataTypes ecoreDataType="sensIDL.ecore#//dataRepresentation/Unit">
+        <genTypeParameters ecoreTypeParameter="sensIDL.ecore#//dataRepresentation/Unit/Q"/>
+      </genDataTypes>
+      <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/SensorDataDescription">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/SensorDataDescription/dataSets"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/SensorDataDescription/sensorInterface"/>
+      </genClasses>
+      <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/DataSet">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/DataSet/sensorDataDescription"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/DataSet/subDataSets"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/DataSet/data"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/DataSet/parentDataSet"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="sensIDL.ecore#//dataRepresentation/Data">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/Data/dataSet"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/Data/dataType"/>
+      </genClasses>
+      <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/MeasurementData">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/MeasurementData/adjustments"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/MeasurementData/unit"/>
+      </genClasses>
+      <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/NonMeasurementData">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/NonMeasurementData/constant"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/NonMeasurementData/value"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="sensIDL.ecore#//dataRepresentation/DataAdjustment">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/DataAdjustment/measurementData"/>
+      </genClasses>
+      <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/DataRange">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/DataRange/range"/>
+      </genClasses>
+      <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/DataConversion"/>
+      <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/LinearDataConversion">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/LinearDataConversion/scalingFactor"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/LinearDataConversion/offset"/>
+      </genClasses>
+      <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/LinearDataConversionWithInterval">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/LinearDataConversionWithInterval/fromInterval"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/LinearDataConversionWithInterval/toInterval"/>
+      </genClasses>
+      <genClasses ecoreClass="sensIDL.ecore#//dataRepresentation/Interval">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/Interval/lowerBound"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sensIDL.ecore#//dataRepresentation/Interval/upperBound"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/Interval/linearDataConversionFrom"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/Interval/linearDataConversionTo"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sensIDL.ecore#//dataRepresentation/Interval/dataRange"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

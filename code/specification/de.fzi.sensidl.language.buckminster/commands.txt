@@ -1,0 +1,6 @@
+setpref targetPlatformPath="${target.platform}"
+resolve "${projects.location}/de.fzi.sensidl.language.buckminster/projects-platform.cquery"
+resolve "${projects.location}/de.fzi.sensidl.language.buckminster/project.cquery"
+build
+junit -l "de.fzi.sensidl.language.tests/de.fzi.sensidl.langage.tests.launch"  --flatXML --output "${buckminster.output.root}/test.results/de.fzi.sensidl.langage.tests.launch.xml"
+perform "de.fzi.sensidl.language.site#site.p2"
