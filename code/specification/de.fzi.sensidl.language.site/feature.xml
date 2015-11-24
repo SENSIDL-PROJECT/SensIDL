@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<feature id="de.fzi.sensidl.language.site"
-	label="de.fzi.sensidl.language.site Feature"
-	version="1.0.0.qualifier">
-	<includes
-		id="de.fzi.sensidl.language.sdk"
-		version="0.0.0"/>
+<feature
+      id="de.fzi.sensidl.language.site"
+      label="de.fzi.sensidl.language.site Feature"
+      version="1.0.0.qualifier">
+
+   <includes
+         id="de.fzi.sensidl.language.sdk"
+         version="0.0.0"/>
+
+   <plugin
+         id="de.fzi.sensidl.design.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
