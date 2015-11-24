@@ -1,17 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<feature id="de.fzi.sensidl.language.sdk"
-	label="Sensidl SDK Feature "
-	version="1.0.0.qualifier">
-	<plugin
-			id="de.fzi.sensidl.language"
-			download-size="0"
-			install-size="0"
-			version="0.0.0"
-			unpack="false"/>
-	<plugin
-			id="de.fzi.sensidl.language.ui"
-			download-size="0"
-			install-size="0"
-			version="0.0.0"
-			unpack="false"/>
+<feature
+      id="de.fzi.sensidl.language.sdk"
+      label="Sensidl SDK Feature "
+      version="1.0.0.qualifier">
+
+   <description>
+      SensIDL SDK to generate code from sensidl files.
+   </description>
+
+   <plugin
+         id="de.fzi.sensidl.language"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="de.fzi.sensidl.language.ui"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="de.fzi.sensidl.design"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="de.fzi.sensidl.design.edit"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="de.fzi.sensidl.design.editor"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="de.fzi.sensidl.design.tests"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="de.fzi.sensidl.generation.examples"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="de.fzi.sensidl.help"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="de.fzi.sensidl.language.tests"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.jscience"
+         download-size="0"
+         install-size="0"
+         version="4.3.1"
+         unpack="false"/>
+
 </feature>
