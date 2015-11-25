@@ -7,8 +7,9 @@
   
   <rm:locator pattern="^de\.fzi\.sensidl\.language(?:\..+)?$" searchPathRef="project"/>
   <rm:locator pattern="^de\.fzi\.sensidl\.design(?:\..+)?$" searchPathRef="project"/>
+  <rm:locator pattern="^de\.fzi\.sensidl\.generation\.examples" searchPathRef="gen_ex_project"/>
   <rm:locator pattern="^de\.fzi\.sensidl(?:\..+)?$" searchPathRef="project" />
-  <rm:locator pattern="org\.jscience" searchPathRef="project" />
+  <rm:locator pattern="^org\.jscience" searchPathRef="project" />
   
   <rm:locator pattern="^org\.eclipse\.(?:xtext|xpand|xtend|xtend2|emf\.mwe|emf\.mwe2)(?:\..+)?$" searchPathRef="xtext"/>
   <rm:locator pattern="^com\.google.*" searchPathRef="xtext"/>
@@ -21,6 +22,16 @@
     <rm:provider componentTypes="eclipse.feature,osgi.bundle,buckminster" readerType="local" mutable="false">
       <rm:property key="buckminster.mutable" value="false"/>
       <rm:uri format="{0}/code/specification/{1}">
+        <bc:propertyRef key="projects.location"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  
+  <rm:searchPath name="gen_ex_project">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle,buckminster" readerType="local" mutable="false">
+      <rm:property key="buckminster.mutable" value="false"/>
+      <rm:uri format="{0}/code/examples/{1}">
         <bc:propertyRef key="projects.location"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
