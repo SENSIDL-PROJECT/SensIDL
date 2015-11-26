@@ -79,7 +79,7 @@ public class SensidlWizardPage extends WizardPage {
 
 	@Override
 	public void performHelp() {
-		PlatformUI.getWorkbench().getHelpSystem().displayHelp("de.fzi.sensidl.help.sensidl_wizard_help_documentation");
+		//PlatformUI.getWorkbench().getHelpSystem().displayHelp("de.fzi.sensidl.help.sensidl_wizard_help_documentation");
 	}
 
 	@Override
