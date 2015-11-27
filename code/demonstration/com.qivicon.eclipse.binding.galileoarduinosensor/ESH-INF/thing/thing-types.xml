@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="galileoarduinosensor"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+	<!-- Sample Thing Type -->
+	<thing-type id="galileothing">
+		<label>Gallileo Arduino Sensor</label>
+		<description>Binding for a Intel Galileo with Temperature and Light Sensors and a LED.</description>
+
+		<channels>
+			<channel id="channel_led" typeId="led-channel" />
+			<channel id="temperature" typeId="temp-channel" />
+			<channel id="lightning" typeId="light-channel" />
+		</channels>
+
+		<config-description>
+			<parameter name="host" type="text" required="true">
+				<label>Sensor-IP</label>
+				<description>Die IP des Arduinos im lokalen Netzwerks.</description>
+				<default>141.21.51.6</default>
+			</parameter>
+			<parameter name="port" type="integer" required="true">
+				<label>Port</label>
+				<description>Der Port auf dem das Gerät angesprochen werden soll.</description>
+				<default>80</default>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+	<!-- Channel definitions -->
+	<channel-type id="led-channel">
+		<item-type>Switch</item-type>
+		<label>LED</label>
+		<description>Turn LED on or off.</description>
+	</channel-type>
+	<channel-type id="temp-channel">
+		<item-type>Number</item-type>
+		<label>Temperatur</label>
+		<description>Die vom Sensor gemessenen aktuelle Temperatur.</description>
+		<state readOnly="true" pattern="%s °C"></state>
+	</channel-type>
+	<channel-type id="light-channel">
+		<item-type>Number</item-type>
+		<label>Licht</label>
+		<description>Die vom Sensor gemessene Helligkeit. Große Werte stehen für wenig Licht und geringe für viel.</description>
+		<state readOnly="true"></state>
+	</channel-type>
+
+</thing:thing-descriptions>

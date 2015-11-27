@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qivicon:manifest version="1.1.0"
+	xmlns:qivicon="http://schemas.qivicon.com/sdk/qivicon/v1.1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<application id="com.qivicon.eclipse.binding.galileoarduinosensor"></application>
+	<permissions>
+		<uses-permission name="PROVIDE_BINDING"
+			reason="Required for basic Binding functionalities">
+		</uses-permission>
+		<!-- <uses-permission name="CONNECT_NETWORK" 
+			reason="Required external NETWORK Access">
+			<property value="*.yourURL.com" />
+		</uses-permission> -->
+		<uses-permission name="CONNECT_LOCAL_NETWORK"
+			reason="Required for local Network e.g. 192.168.0.10">
+		</uses-permission>
+	</permissions>
+</qivicon:manifest>
