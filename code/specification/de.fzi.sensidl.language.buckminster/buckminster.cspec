@@ -3,5 +3,6 @@
     <cs:dependencies>
         <cs:dependency name="org.eclipse.platform" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.xtext.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="com.google.guava" componentType="osgi.bundle" versionDesignator="[10.0.0,18.0.0)"/>
     </cs:dependencies>
 </cs:cspec>
