@@ -15,5 +15,7 @@ Export-Package: de.fzi.sensidl.design.sensidl,
  de.fzi.sensidl.design.sensidl.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.jscience;bundle-version="4.3.1"
+ org.jscience;bundle-version="4.3.1",
+ com.google.guava;bundle-version="15.0.0",
+ com.google.inject;bundle-version="3.0.0"
 Bundle-ActivationPolicy: lazy
