@@ -8,6 +8,13 @@
          id="de.fzi.sensidl.language.sdk"
          version="0.0.0"/>
 
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="de.fzi.sensidl.design"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.junit"/>
+   </requires>
+
    <plugin
          id="de.fzi.sensidl.design.tests"
          download-size="0"
