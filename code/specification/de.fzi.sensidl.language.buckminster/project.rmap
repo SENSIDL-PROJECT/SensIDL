@@ -10,6 +10,7 @@
   <rm:locator pattern="^de\.fzi\.sensidl\.generation\.examples" searchPathRef="gen_ex_project"/>
   <rm:locator pattern="^de\.fzi\.sensidl(?:\..+)?$" searchPathRef="project" />
   <rm:locator pattern="^org\.jscience" searchPathRef="project" />
+  <rm:locator pattern="^com\.google\.guava" searchPathRef="project" />
   
   <rm:locator pattern="^org\.eclipse\.(?:xtext|xpand|xtend|xtend2|emf\.mwe|emf\.mwe2)(?:\..+)?$" searchPathRef="xtext"/>
   <rm:locator pattern="^com\.google.*" searchPathRef="xtext"/>
