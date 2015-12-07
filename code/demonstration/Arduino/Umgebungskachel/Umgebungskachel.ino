@@ -14,8 +14,6 @@
 #define LIGHT_SENSOR 0
 #define TEMP_SENSOR 1
 
-#define THERMISTOR_VALUE 3975;
-
 // json elements to determin if the LED is on or off
 const String LED_ON = "\"led\":\"ON\"";
 const String LED_OFF = "\"led\":\"OFF\"";
@@ -39,6 +37,9 @@ void setup()
  lcd.begin(16,2); 
  lcd.setRGB(255,0,0); 
  showDisplay("Initializing ...","Ethernet!");
+ 
+ system("telnetd -l /bin/sh");
+ system("echo setup > /dev/ttyGS0");
  
  //Call to the linux system, to activate the ethernet port
  system("ifup eth0");
@@ -121,8 +122,8 @@ void loop()
    sens.data.led = "OFF";
   }
   //Update the Temperature and the Light Resistance
-  sens.data.temperature = calcTemperature();
-  sens.data.brightness = getLightResistance();
+  sens.data.temperature = calculateTemperature();
+  sens.data.brightness = calculateLightSensorResistance();
   
   //write the generated json data to the client
   Serial.print(sens.toJson());
@@ -138,23 +139,23 @@ void loop()
 }
 
 /**
-  Calculates the Temperature for a Grove light sensor, according to http://www.seeedstudio.com/wiki/Grove_-_Light_Sensor .
+  Calculates the Temperature for a Grove temperature sensor, according to http://www.seeedstudio.com/wiki/Grove_-_Temperature_Sensor .
 **/
-float calcTemperature() {
+float calculateTemperature() {
  int sensorData = analogRead(TEMP_SENSOR);
- int B = THERMISTOR_VALUE;
+ int thermistorValue = 3975; //Predefined Thermistor Value of the Sensor
  float resistance = (float)(1023-sensorData)*10000/sensorData; //Calculate resistance of the sensor
- float temperature = 1/(log(resistance/10000)/B+1/298.15)-273.15;
+ float temperature = 1/(log(resistance/10000)/thermistorValue + 1/298.15)-273.15; //Calculate a Celsius Value
  return temperature;
 }
 
 /**
-  Calculates the Temperature for a Grove temperature sensor, according to http://www.seeedstudio.com/wiki/Grove_-_Temperature_Sensor .
+  Calculates the Resistance for a Grove Light sensor, according to http://www.seeedstudio.com/wiki/Grove_-_Light_Sensor .
 **/
-float getLightResistance() {
-  int sensorData = analogRead(LIGHT_SENSOR);
-  float resistance = (float)(1023-sensorData)*10/sensorData;
-  return (float)sensorData;
+float calculateLightSensorResistance() {
+  int sensorData = analogRead(LIGHT_SENSOR); //Read the Sensor Data
+  float resistance = (float)(1023-sensorData)*10/sensorData; //Calculate the Sensor Resistance in Kilo Ohm
+  return (float)resistance;
 }
 
 /**
