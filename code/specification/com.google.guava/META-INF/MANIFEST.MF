@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Guava
-Bundle-SymbolicName: com.google.guava;singleton:=true
-Bundle-Version: 15.0.0
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-SymbolicName: com.google.guava
+Bundle-Version: 15.0.3
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: com.google.common.annotations,
  com.google.common.base,
