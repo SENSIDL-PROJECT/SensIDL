@@ -20,7 +20,7 @@ class JavaGenerator implements ICodeGenerator {
 	}
 	
 	override generateDTO() {
-//		new JavaDTOGenerator(input, fsa).generate();
+		new JavaDTOGenerator(input, fsa).generate();
 	}
 	
 	override generateEncoder() {
