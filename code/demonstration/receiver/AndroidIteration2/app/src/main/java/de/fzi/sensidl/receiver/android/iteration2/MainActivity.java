@@ -16,8 +16,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.fzi.sensidl.R;
-
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SensorEventListener {
 
 	private Spinner  availableSensorsSpinner;
