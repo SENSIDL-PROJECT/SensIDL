@@ -4,6 +4,7 @@ Arduino Board Demonstrator 'Umgebungskachel'
 This is an Arduino Sketch that is used with the [Arduino Qivicon Binding](https://github.com/SENSIDL-PROJECT/SensIDL/tree/master/code/demonstration/QIVICON/com.qivicon.eclipse.binding.galileoarduinosensor)
 to communicate sensor data with a Qivicon Home Base<sup>*1</sup> over _Ethernet_. 
 It has been tested on an Intel Galileo Board (Gen 2) with a [Seeed Grove BaseShield](http://www.seeedstudio.com/wiki/Grove_-_Base_shield_v2) and the following components:
+
 | Component  | Port used on Board |
 | ------------- | ------------- |
 | [LCD - RGB Display](http://www.seeedstudio.com/wiki/Grove_-_LCD_RGB_Backlight)  | I2C  |
