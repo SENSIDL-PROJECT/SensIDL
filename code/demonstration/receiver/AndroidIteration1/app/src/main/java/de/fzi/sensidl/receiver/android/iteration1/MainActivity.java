@@ -8,8 +8,6 @@ import android.widget.TextView;
 
 import java.util.Random;
 
-import de.fzi.sensidl.R;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 	/** String for a clear key to save the shown random number on orientation change */
