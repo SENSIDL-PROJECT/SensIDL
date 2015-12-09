@@ -14,7 +14,7 @@ class JavaScriptGenerator implements ICodeGenerator {
 	}
 
 	override generateDTO() {
-//		new JavaScriptDTOGenerator(this.input, this.fsa).generate
+		new JavaScriptDTOGenerator(this.input, this.fsa).generate
 		//new JavaScriptDTOGenerator2(this.input, this.fsa).generate
 	}
 
