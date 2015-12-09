@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/de.fzi.sensidl.language.sdk_1.0.0.qualifier.jar" id="de.fzi.sensidl.language.sdk" version="1.0.0.qualifier">
+      <category name="sensidl"/>
+   </feature>
+   <category-def name="sensidl" label="SensIDL"/>
+</site>
