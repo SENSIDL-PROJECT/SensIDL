@@ -1,0 +1,77 @@
+sensorInterface EddyStone_TLM /**Eddystone protocol specification with frame-type: Eddystone-TLM*/ {
+      encoding SENSIDL_BINARY with BIG_ENDIAN  alignment 1 BIT
+      sensorData {
+      	  // Problem: The core Bluetooth data types are defined in the standard as little-endian, eddystones mulit-
+      	  // value bytes defined in the service data (see ServiceData_UID) are all big-endian.
+      	  
+      	  //The message starts with bluetooth data types like specified in the bluetooth core specification. 
+      	  //DATA_TYPE_SERVICE_UUIDS_16_BIT_COMPLETE and DATA_TYPE_SERVICE_DATA are mandatory (little-endian).
+      	  //Other data types are optional.
+           dataSet DATA_TYPE_SERVICE_UUIDS_16_BIT_COMPLETE {
+          	LENGTH as UINT8 constant value = "3"
+          	SERVICE_UUIDS_16_BIT_COMPLETE_DATA_TYPE as UINT8 constant value = "3" /**Default value for identification*/
+          	EDDYSTONE_16_BIT_UUID as UINT16 constant value = "65194" /**fixed uuid to identify the service. Hex: 0xFEAA*/
+          }
+          
+          //The length consists of the length of the service data type and the length of the actual service data.
+          dataSet DATA_TYPE_SERVICE_DATA {
+          	LENGTH as UINT8 constant value = "17"
+          	SERVICE_DATA_DATA_TYPE_VALUE as UINT8 constant value = "22" /**Default value for identification*/
+          	EDDYSTONE_16_BIT_UUID as UINT16 constant value = "65194" /**fixed uuid to identify the service. Hex: 0xFEAA*/
+          }
+          
+          //The following service data is defined as big-endian. The transmitted data indicates
+          //the internal state of the beacon device with data like battery charge. The 
+          //byte-sequence is fix and arranged as shown below. 
+          dataSet SERVICE_DATA_TLM {
+          	//ServiceData consist of 1 byte tlm-frame type, 1 byte version, 2 bytes battery voltage, 
+          	//2 bytes beacon temperature, 4 bytes advertising PDU count, 4 bytes value of time since
+          	//power-on or reboot.
+          	TLM_FRAME_TYPE as UINT8 constant value = "32" //Hex: 0x20.
+          	
+          	TLM_VERSION as UINT8 constant value = "0" //Hex: 0x00 by default.
+          	
+          	//Defined as measurement. Battery voltage is the current battery charge in volts. 
+          	TLM_VBATT as UINT16 in V 
+          	
+          	//Defined as measurement. The unit actually has to be °C.
+          	//At the moment there is a bug so that °C can not be used.
+          	TLM_TEMP as UINT16 in C 
+          	
+          	TLM_ADC_CNT as UINT64 //Defined as non-measurement.
+          	
+          	//Defined as measurement. This value has to be measured in sec.
+          	//Instead we use minute with double as data type. For that, 
+          	//seconds can be described as 0,... min.
+          	TLM_SEC_CNT as DOUBLE in min 
+          	
+          	
+          	//Hard-coded option:
+          	/*
+          	TLM_VBATT_BYTE_2 as UINT8
+          	TLM_VBATT_BYTE_3 as UINT8
+          	//Alternatively
+          	//TML_VBATT as UINT16
+          	  	
+          	TLM_TEMP_BYTE_4 as UINT8
+          	TLM_TEMP_BYTE_5 as UINT8
+          	//Alternatively
+          	//TML_TEMP as UINT16
+          	
+          	TLM_ADV_CNT_BYTE_6 as UINT8
+          	TLM_ADV_CNT_BYTE_7 as UINT8
+          	TLM_ADV_CNT_BYTE_8 as UINT8
+          	TLM_ADV_CNT_BYTE_9 as UINT8
+          	//Alternatively
+          	//TLM_ADV_CNT as UINT64
+          	
+          	TLM_SEC_CNT_BYTE_10 as UINT8
+          	TLM_SEC_CNT_BYTE_11 as UINT8
+          	TLM_SEC_CNT_BYTE_12 as UINT8
+          	TLM_SEC_CNT_BYTE_13 as UINT8
+          	//Alternatively
+          	//TLM_SEC_CNT as UINT64
+          	*/
+          }
+     }
+}

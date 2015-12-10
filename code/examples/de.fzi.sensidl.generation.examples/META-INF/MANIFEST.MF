@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Examples
-Bundle-SymbolicName: de.fzi.sensidl.generation.examples
-Bundle-Version: 1.0.0.qualifier
-Export-Package: de.fzi.sensidl.generation.examples.java
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
