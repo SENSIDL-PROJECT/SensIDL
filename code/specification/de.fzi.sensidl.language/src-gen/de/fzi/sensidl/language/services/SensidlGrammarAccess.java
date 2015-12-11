@@ -827,17 +827,33 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class UNITElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UNIT");
-		private final RuleCall cIDTerminalRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cANY_OTHERTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		////BOOLEAN returns ecore::EBoolean: 'true' | 'false';
 		////UNIT returns dataRepresentation::Unit: STRING;
 		////terminal UNIT returns dataRepresentation::Unit : '^'?('a'..'z'|'A'..'Z'/ **'_'* /) ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 		//UNIT returns dataRepresentation::Unit:
-		//	ID;
+		//	ID* (ANY_OTHER ID*)*;
 		@Override public ParserRule getRule() { return rule; }
 
-		//ID
-		public RuleCall getIDTerminalRuleCall() { return cIDTerminalRuleCall; }
+		//ID* (ANY_OTHER ID*)*
+		public Group getGroup() { return cGroup; }
+
+		//ID*
+		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
+
+		//(ANY_OTHER ID*)*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//ANY_OTHER
+		public RuleCall getANY_OTHERTerminalRuleCall_1_0() { return cANY_OTHERTerminalRuleCall_1_0; }
+
+		//ID*
+		public RuleCall getIDTerminalRuleCall_1_1() { return cIDTerminalRuleCall_1_1; }
 	}
 	
 	
@@ -1272,7 +1288,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	////UNIT returns dataRepresentation::Unit: STRING;
 	////terminal UNIT returns dataRepresentation::Unit : '^'?('a'..'z'|'A'..'Z'/ **'_'* /) ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 	//UNIT returns dataRepresentation::Unit:
-	//	ID;
+	//	ID* (ANY_OTHER ID*)*;
 	public UNITElements getUNITAccess() {
 		return pUNIT;
 	}

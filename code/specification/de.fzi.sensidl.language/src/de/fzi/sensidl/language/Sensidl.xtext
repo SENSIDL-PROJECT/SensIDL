@@ -125,7 +125,9 @@ DOUBLE returns ecore::EDouble: INT ('.' INT)?;
 //UNIT returns dataRepresentation::Unit: STRING;
 //terminal UNIT returns dataRepresentation::Unit : '^'?('a'..'z'|'A'..'Z'/**'_'*/) ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
-UNIT returns dataRepresentation::Unit: ID;
+UNIT returns dataRepresentation::Unit:
+	ID* ((ANY_OTHER) ID*)*
+;
 
 terminal ML_COMMENT: '/*'!('*') -> '*/'; // multi-line comments can't start with '/**'
 
