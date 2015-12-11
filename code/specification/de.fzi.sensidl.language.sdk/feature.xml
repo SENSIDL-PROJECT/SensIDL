@@ -88,13 +88,6 @@
          unpack="false"/>
 
    <plugin
-         id="de.fzi.sensidl.generation.examples"
-         download-size="0"
-         install-size="0"
-         version="1.0.0.qualifier"
-         unpack="false"/>
-
-   <plugin
          id="de.fzi.sensidl.help"
          download-size="0"
          install-size="0"
