@@ -1,8 +1,9 @@
 package de.fzi.sensidl.language.ui.handler;
 
 import java.io.File;
-import java.io.IOException;
+import java.io.FileNotFoundException;
 
+import org.apache.commons.io.FilenameUtils;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -16,6 +17,7 @@ import com.google.inject.Injector;
 
 import de.fzi.sensidl.language.SensidlStandaloneSetup;
 import de.fzi.sensidl.language.generator.SensidlGenerator;
+import de.fzi.sensidl.language.ui.exception.NoSidlFileException;
 
 /**
  * The Generation Handler to handle the generation process and call the
@@ -42,21 +44,37 @@ public class GenerationHandler {
 	 * @param language
 	 *            the language in which the Code will be generated
 	 * @return true if the code was generated
-	 * @throws IOException
-	 *             If there is no file at the given modelPath
+	 * @throws NoSidlFileException
+	 *             Throws this Exception when the given file is not a sidl file
+	 * @throws FileNotFoundException
+	 *             Throws this Exception when there is no file at the given path
+	 * 
 	 */
-	public static boolean generate(String path, String modelPath, String language) throws IOException {
+	public static boolean generate(String path, String modelPath, String language)
+			throws NoSidlFileException, FileNotFoundException {
 		setGenerationLanguage(language);
 		Injector injector = new SensidlStandaloneSetup().createInjectorAndDoEMFRegistration();
 
 		// get resource
 		ResourceSet rs = new ResourceSetImpl();
+
+		Resource resource = null;
 		File file = new File(modelPath);
-		Resource resource = rs.getResource(URI.createURI(file.toURI().toString()), true);
+
+		// Exception handling for not existing input files
+		if (!file.exists()) {
+			throw new FileNotFoundException("File not found");
+		}
+		// Exception handling for input files in the wrong format
+		if (!FilenameUtils.getExtension(modelPath).equals("sidl")) {
+			throw new NoSidlFileException("No SIDL file found");
+		}
+
+		resource = rs.getResource(URI.createURI(file.toURI().toString()), true);
 
 		// Use the JavaIoFileSystemAccess and set the path
 		final JavaIoFileSystemAccess fsa = new JavaIoFileSystemAccess();
-		fsa.setOutputPath(path);
+		fsa.setOutputPath(path/* + "\\JavaProject\\src" */);
 
 		generator = injector.getInstance(SensidlGenerator.class); // set up the
 		// generator
@@ -64,7 +82,7 @@ public class GenerationHandler {
 
 		// inject fsa
 		Guice.createInjector(new AbstractGenericModule() {
-			@SuppressWarnings("unused") // but necessary
+			@SuppressWarnings("unused")
 			public Class<? extends IEncodingProvider> bindIEncodingProvider() {
 				return IEncodingProvider.Runtime.class;
 			}
