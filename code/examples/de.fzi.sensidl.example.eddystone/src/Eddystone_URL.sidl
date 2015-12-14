@@ -29,7 +29,7 @@ sensorInterface EddyStone_URL /**Eddystone protocol specification with frame-typ
           	URL_FRAME_TYPE as UINT8 constant value = "16" //Hex: 0x10
           	
           	//Tx power is the received power at 0 meters measured in dBm.
-          	URL_TX_POWER as UINT8 c
+          	URL_TX_POWER as UINT8 in dB
           	
           	//Hex: 0x00 -> http://www.
           	//Hex: 0x01 -> https://www.
