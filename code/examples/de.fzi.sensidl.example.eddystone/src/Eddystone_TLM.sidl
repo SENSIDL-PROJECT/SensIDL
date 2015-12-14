@@ -34,9 +34,8 @@ sensorInterface EddyStone_TLM /**Eddystone protocol specification with frame-typ
           	//Defined as measurement. Battery voltage is the current battery charge in volts. 
           	TLM_VBATT as UINT16 in V 
           	
-          	//Defined as measurement. The unit actually has to be °C.
-          	//At the moment there is a bug so that °C can not be used.
-          	TLM_TEMP as UINT16 in C 
+          	//Defined as measurement. Corresponds to the current temperature measured in Â°C.
+          	TLM_TEMP as UINT16 in Â°C 
           	
           	TLM_ADC_CNT as UINT64 //Defined as non-measurement.
           	
