@@ -1,0 +1,29 @@
+sensorInterface eMeter /**Interface for eMeter device measuring electronic current.*/ {
+      encoding SENSIDL_BINARY with BIG_ENDIAN alignment 1 BIT
+      sensorData {
+          dataSet Conductor {
+              deviceType as UINT8 constant value= "40" /**Type 40 denotes eMeter.*/
+              recordType as UINT8 value= "1" /**Distinct type for this data set.*/
+              voltage as INT16 in V 
+              current as FLOAT in A
+              power as FLOAT in W 
+              powerFactor as UINT16 in Dimensionless /**Power factor for this conductor. 0 if not available.*/
+              identicator as UINT8 /**Identifier to correlate measurements for different conductors.*/
+          }
+
+          dataSet NeutralConductor /**Data description of NeutralConductor*/ {
+              deviceType as UINT8 constant value= "40" /**Type 40 denotes eMeter.*/
+              recordType as UINT8 value= "4" /**Distinct type for this data set.*/
+              current as FLOAT in A
+              powerFactor as UINT16 in Dimensionless
+          }
+
+          dataSet Energy /**Data description of Energy*/ {
+              deviceType as UINT8 constant value= "40" /**Type 40 denotes eMeter.*/
+              recordType as UINT8 value= "5" /**Distinct type for this data set.*/
+              l1 as INT16 in kW /**Energy amount for conductor L1.*/
+              l2 as FLOAT in kW /**Energy amount for conductor L2.*/
+              l3 as FLOAT in kW /**Energy amount for conductor L3.*/
+         }
+     }
+} 
