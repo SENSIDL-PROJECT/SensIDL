@@ -1,0 +1,4 @@
+<resources>
+	<string name="app_name">Android Iteration1</string>
+	<string name="calculate_random_number">Zufällige Zahl erzeugen</string>
+</resources>
