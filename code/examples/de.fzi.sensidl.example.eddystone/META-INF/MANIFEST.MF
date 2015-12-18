@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Eddystone
+Bundle-SymbolicName: de.fzi.sensidl.example.eddystone
+Bundle-Version: 1.0.0.qualifier
