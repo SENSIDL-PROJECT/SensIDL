@@ -1,5 +1,7 @@
 package de.fzi.sensidl.language.generator.plaintext;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -54,32 +56,82 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 	 */
 	public CharSequence compile(final SensorInterface sensorInterface) {
 		StringConcatenation _builder = new StringConcatenation();
-		_builder.append(sensorInterface.getName());
-		_builder.append(" [CODING: " + sensorInterface.getEncodingSettings().getCoding().getName());
-		_builder.append(", ENDIANNESS: " + sensorInterface.getEncodingSettings().getEndianness());
-		_builder.append(", ALIGNMENT: " + sensorInterface.getEncodingSettings().getAlignment());
-		if (sensorInterface.getDescription() != null) {
-			_builder.append(", DESCRIPTION: " + sensorInterface.getDescription() + "]");
+		TreeIterator<EObject> _eAllContents = sensorInterface.eAllContents();
+		Iterable<EObject> _iterable = IteratorExtensions.<EObject> toIterable(_eAllContents);
+		Iterable<DataSet> _filter = Iterables.<DataSet> filter(_iterable, DataSet.class);
+		List<DataSet> dataSetList = new ArrayList<DataSet>();
+		String dataSetsString = "";
+		String dataString;
+		for (DataSet dataSet : _filter) {
+			dataSetList.add(dataSet);
 		}
-		else {
-			_builder.append("]");
-		}
+		_builder.append("This is the documentation for the sensor interface \"" + sensorInterface.getName() + "\".");
 		_builder.newLineIfNotEmpty();
-		{
-			TreeIterator<EObject> _eAllContents = sensorInterface.eAllContents();
-			Iterable<EObject> _iterable = IteratorExtensions.<EObject> toIterable(_eAllContents);
-			Iterable<DataSet> _filter = Iterables.<DataSet> filter(_iterable, DataSet.class);
-			for (final DataSet dataset : _filter) {
-				_builder.append(" - " + dataset.getName());
+		_builder.append("The encoding is " + sensorInterface.getEncodingSettings().getCoding().getName().toLowerCase().replace("_", " ") + " and ");
+		_builder.append("the endianness is " + sensorInterface.getEncodingSettings().getEndianness().getName().toLowerCase().replace("_", " ") + ". ");
+		_builder.append("It is aligned by "+ sensorInterface.getEncodingSettings().getAlignment()
+						+ (sensorInterface.getEncodingSettings().getAlignment() > 1 ? " bits" : " bit") + ".");
+		_builder.newLineIfNotEmpty();
+		if (sensorInterface.getID() != null) {
+			_builder.append("Its ID is \"" + sensorInterface.getID() + "\".");
+			_builder.newLineIfNotEmpty();
+		}
+		if (sensorInterface.getDescription() != null) {
+			_builder.append("The user added this description: \"" + sensorInterface.getDescription() + "\".");
+			_builder.newLineIfNotEmpty();
+		}
+		_builder.append("The sensor data of \"" + sensorInterface.getName() + "\" consists of " + dataSetList.size() + " data sets: ");
+		for (int i = 0; i < dataSetList.size(); i++) {
+			dataSetsString += ("\"" + dataSetList.get(i).getName() + "\"");
+			if (i < dataSetList.size() - 2) {
+				dataSetsString += ", ";
+			}
+			else if (i == dataSetList.size() - 2) {
+				dataSetsString += " and ";
+			}
+		}
+		_builder.append(dataSetsString + ".");
+		_builder.newLineIfNotEmpty();
+		_builder.newLine();
+		_builder.newLine();
+		for (DataSet dataSet : dataSetList) {
+			_builder.append("The data set \"" + dataSet.getName() + "\"" + (dataSet.getID() != null ? " with ID \"" + dataSet.getID() + "\"" : ""));
+			_builder.append(" contains "+ dataSet.getData().size()
+							+ (dataSet.getData().size() > 1 ? " datas: " : (dataSet.getData().size() == 0 ? " data. " : " data: ")));
+			dataString = "";
+			for (int i = 0; i < dataSet.getData().size(); i++) {
+				dataString += ("\"" + dataSet.getData().get(i).getName() + "\"");
+				if (i < dataSet.getData().size() - 2) {
+					dataString += ", ";
+				}
+				else if (i == dataSet.getData().size() - 2) {
+					dataString += " and ";
+				}
+			}
+			_builder.append(dataString + ".");
+			_builder.newLine();
+			if (dataSet.getDescription() != null) {
+				_builder.append("The user added this description: \"" + dataSet.getDescription() + "\".");
 				_builder.newLineIfNotEmpty();
-				for (Data data : dataset.getData()) {
-					_builder.append("	 + " + data.getDataType().getName() + " : " + data.getName());
-					if (data.getDescription() != null) {
-						_builder.append(" [DESCRIPTION: " + data.getDescription() + "]");
-					}
+			}
+			for (Data data : dataSet.getData()) {
+				_builder.newLineIfNotEmpty();
+				_builder.newLine();
+				_builder.append("The data \"" + data.getName() + "\" has the unit " + data.getDataType().getName() + ".");
+				// _builder.append(" and is initialised with " + data.getDataType().getValue() + ".");
+				_builder.newLineIfNotEmpty();
+				if (data.getID() != null) {
+					_builder.append("Its ID is \"" + data.getID() + "\".");
+					_builder.newLineIfNotEmpty();
+				}
+				if (data.getDescription() != null) {
+					_builder.append("The user added this description: \"" + data.getDescription() + "\".");
 					_builder.newLineIfNotEmpty();
 				}
 			}
+			_builder.newLineIfNotEmpty();
+			_builder.newLine();
+			_builder.newLine();
 		}
 		return _builder;
 	}
