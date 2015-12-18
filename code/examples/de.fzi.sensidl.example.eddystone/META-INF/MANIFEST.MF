@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Eddystone
+Bundle-Name: SensIDL Example Eddystone
 Bundle-SymbolicName: de.fzi.sensidl.example.eddystone
 Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: FZI Forschungszentrum Informatik

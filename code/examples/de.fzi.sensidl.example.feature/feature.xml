@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="de.fzi.sensidl.example.feature"
-      label="Feature"
-      version="1.0.0.qualifier">
+      label="SensIDL Examples"
+      version="1.0.0.qualifier"
+      provider-name="FZI Forschungszentrum Informatik">
 
    <description>
       SensIDL Examples

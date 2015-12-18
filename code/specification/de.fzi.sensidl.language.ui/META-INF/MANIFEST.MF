@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: de.fzi.sensidl.language.ui
-Bundle-Vendor: My Company
+Bundle-Name: SensIDL Language UI
+Bundle-Vendor: FZI Forschungszentrum Informatik
 Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: de.fzi.sensidl.language.ui;singleton:=true
 Bundle-ActivationPolicy: lazy
