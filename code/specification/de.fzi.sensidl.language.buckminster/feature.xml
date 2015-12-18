@@ -5,11 +5,11 @@
       version="1.0.0.qualifier">
 
    <includes
-         id="de.fzi.sensidl.language.sdk"
+         id="de.fzi.sensidl.language.feature.example"
          version="0.0.0"/>
 
    <includes
-         id="de.fzi.sensidl.example.feature"
+         id="de.fzi.sensidl.language.feature.sdk"
          version="0.0.0"/>
 
    <requires>
