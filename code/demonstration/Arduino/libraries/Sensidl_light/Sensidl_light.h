@@ -6,15 +6,20 @@
 class Sensidl_light
 {
   private:
+	String element;
+	String value;
 	String dtostrf (double val, signed char width, unsigned char prec, char *sout);
+	double stringToDouble(String s);
+	float stringToFloat(String s);
+	int parsetoNextElement(String json,int position);
   public:
 	struct {
 		String led;
-		double temperature;
-		double brightness;
+		float temperature;
+		float brightness;
 	} data;	
 	String toJson();
-	void parseJson(String json);
+	void parseFromJson(String json);
 };
 
 #endif
