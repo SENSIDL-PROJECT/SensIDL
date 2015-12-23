@@ -1,35 +1,40 @@
-sensorInterface EddyStone_UID /**Eddystone protocol specification with frame-type: Eddystone-UID*/ {
+/* 
+ * Challenge: The core Bluetooth data types are defined in the standard as little-endian, 
+ * but Eddystone's multi-value bytes defined in the service data (see ServiceData_UID) are all big-endian.
+ */
+ sensorInterface EddyStone_UID /**Eddystone protocol specification with frame-type: Eddystone-UID*/ {
       encoding SENSIDL_BINARY with BIG_ENDIAN  alignment 1 BIT
       sensorData {
-      	  // Problem: The core Bluetooth data types are defined in the standard as little-endian, eddystones mulit-
-      	  // value bytes defined in the Service data (see ServiceData_UID) are all big-endian.
-      	  
-		  //The message starts with bluetooth data types like specified in the bluetooth core specification. 
-      	  //DATA_TYPE_SERVICE_UUIDS_16_BIT_COMPLETE and DATA_TYPE_SERVICE_DATA are mandatory (little-endian).
-      	  //Other data types are optional.
+
+      	  /* 
+      	   * The message starts with bluetooth data types as specified in the bluetooth core specification. 
+      	   * DATA_TYPE_SERVICE_UUIDS_16_BIT_COMPLETE and DATA_TYPE_SERVICE_DATA are mandatory (and little-endian).
+      	   * Other data types are optional.
+      	   */
           dataSet DATA_TYPE_SERVICE_UUIDS_16_BIT_COMPLETE {
           	LENGTH as UINT8 constant value = "3"
-          	SERVICE_UUIDS_16_BIT_COMPLETE_DATA_TYPE as UINT8 constant value = "3" /**Default value for identification*/
-          	EDDYSTONE_16_BIT_UUID as UINT16 constant value = "65194" /**fixed uuid to identify the service. Hex: 0xFEAA*/
+          	SERVICE_UUIDS_16_BIT_COMPLETE_DATA_TYPE as UINT8 constant value = "3" /** Default value for identification. */
+          	EDDYSTONE_16_BIT_UUID as UINT16 constant value = "65194" /** Fixed UUID to identify the service. Hex: 0xFEAA */
           }
           
-          //The length consists of the length of the service data type and the length of the actual service data.
           dataSet DATA_TYPE_SERVICE_DATA {
-          	LENGTH as UINT8 constant value = "23"
-          	SERVICE_DATA_DATA_TYPE_VALUE as UINT8 constant value = "22" /**Default value for identification*/
-          	EDDYSTONE_16_BIT_UUID as UINT16 constant value = "65194" /**fixed uuid to identify the service. Hex: 0xFEAA*/
+          	LENGTH as UINT8 constant value = "23" /** The length consists of the length of the service data type and the length of the actual service data. */
+          	SERVICE_DATA_DATA_TYPE_VALUE as UINT8 constant value = "22" /** Default value for identification. */
+          	EDDYSTONE_16_BIT_UUID as UINT16 constant value = "65194" /** Fixed UUID for service identification. Hex: 0xFEAA*/
           }
           
-          //The following service data is defined as big-endian. The UID-eddytone-type is intended 
-          //to be an identifier for beacon-devices. For instance the namespace can be seen as a set
-          //which includes a couple of beacon devices. The instance number identifies a specific
-          //device in the namespace. The byte-sequence is fix and arranged as shown below.
+          /*
+           * The following service data is defined as big-endian. 
+           * The UID-Eddystone-type is intended to be an identifier for beacon devices. 
+           * For instance the namespace can be seen as a set which includes a couple of beacon devices. 
+           * The instance number identifies a specific device in the namespace. 
+           * The byte-sequence is fix and arranged as shown below.
+           */
           dataSet SERVICE_DATA_UID {
-          	//ServiceData consist of 1 byte uid-frame type, 1 byte tx-power, 10 byte namespace, 
-          	//6 byte instance, 2 byte rfu
-          	UID_FRAME_TYPE as UINT8 constant value = "0" /**Hex: 0x00*/
+          	// Service data consists of 1 byte for UID-frame type, 1 byte for TX-power, 10 bytes for the namespace, 6 bytes for instance and 2 bytes RFU.
+          	UID_FRAME_TYPE as UINT8 constant value = "0" // Hex: 0x00
           	
-          	//Tx power is the received power at 0 meters measured in dBm.
+          	// TX power is the received power at 0 meters measured in dBm.
           	UID_TX_POWER as UINT8 in dB
           	
           	UID_NAMESPACE_BYTE_0 as UINT8
@@ -50,8 +55,8 @@ sensorInterface EddyStone_UID /**Eddystone protocol specification with frame-typ
           	UID_INSTANCE_BYTE_4 as UINT8
           	UID_INSTANCE_BYTE_5 as UINT8
           	
-          	//Reserved for future use
-          	UID_RFU as UINT16 constant value = "0" /**By default Hex = {0x00, 0x00} */
+          	// Reserved for future use
+          	UID_RFU as UINT16 constant value = "0" /** By default Hex = {0x00, 0x00} */
           }
      }
 }

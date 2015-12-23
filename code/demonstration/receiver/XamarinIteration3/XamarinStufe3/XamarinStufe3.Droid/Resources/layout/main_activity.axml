@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/normal_margin"
+    tools:context=".MainActivity">
+    <Spinner
+        android:id="@+id/near_devices"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/normal_margin" />
+    <Switch
+        android:id="@+id/search_for_devices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/near_devices"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/normal_margin" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/search_for_devices"
+        android:layout_marginBottom="@dimen/normal_margin"
+        android:gravity="center"
+        android:text="Nach externen Sensoren suchen:" />
+    <Button
+        android:id="@+id/connect_to_device"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/near_devices"
+        android:text="Verbinden" />
+</RelativeLayout>

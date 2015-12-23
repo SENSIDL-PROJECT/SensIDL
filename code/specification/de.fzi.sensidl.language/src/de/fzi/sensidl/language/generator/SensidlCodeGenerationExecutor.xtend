@@ -9,6 +9,7 @@ import org.apache.log4j.Logger
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import de.fzi.sensidl.language.generator.csharp.CSharpGenerator
+import de.fzi.sensidl.language.generator.plaintext.PlaintextGenerator
 
 /**
  * Code generator für die SensIDL Sprache.
@@ -47,26 +48,30 @@ class SensidlCodeGenerationExecutor implements ISensidlCodeGenerator {
 	}
 
 	def initExecuter(Resource input, IFileSystemAccess fsa) {
-		// select Generator depending on the User input.
+		// select generator depending on the user input
+		// allways add plaintext generator
+		var iExecuterList = new ArrayList<IExecuter>
+		iExecuterList  => [add([|new PlaintextGenerator(input, fsa).generateDTO])]
 		if (generationLanguage.equals("JAVA")) {
-			return new ArrayList<IExecuter> => [add([|new JavaGenerator(input, fsa).generateDTO])]
+			iExecuterList  => [add([|new JavaGenerator(input, fsa).generateDTO])]
 
 		} else if (generationLanguage.equals("JAVASCRIPT")) {
-			return new ArrayList<IExecuter> => [add([|new JavaScriptGenerator(input, fsa).generateDTO])]
+			iExecuterList  => [add([|new JavaScriptGenerator(input, fsa).generateDTO])]
 
 		} else if (generationLanguage.equals("C")) {
-			return new ArrayList<IExecuter> => [add([|new CGenerator(input, fsa).generateDTO])]
+			iExecuterList  => [add([|new CGenerator(input, fsa).generateDTO])]
 
 		} else if (generationLanguage.equals("C_SHARP")) {
-			return new ArrayList<IExecuter> => [add([|new CSharpGenerator(input, fsa).generateDTO])]
+			iExecuterList  => [add([|new CSharpGenerator(input, fsa).generateDTO])]
 
 		} else if (generationLanguage.equals("ALL")) {
-			return new ArrayList<IExecuter> => [
+			iExecuterList  => [
 				add([|new JavaGenerator(input, fsa).generateDTO])
 				add([|new CGenerator(input, fsa).generateDTO])
 				add([|new JavaScriptGenerator(input, fsa).generateDTO])
 			]
 		}
+		return iExecuterList
 	}
 
 	/**

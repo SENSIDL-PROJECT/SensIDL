@@ -1,43 +1,49 @@
-sensorInterface EddyStone_URL /**Eddystone protocol specification with frame-type: Eddystone-URL*/ {
-      encoding SENSIDL_BINARY with BIG_ENDIAN  alignment 1 BIT
+/* 
+ * Challenge: The core Bluetooth data types are defined in the standard as little-endian, 
+ * but Eddystone's multi-value bytes defined in the service data (see ServiceData_UID) are all big-endian.
+ */
+sensorInterface EddyStone_URL /** Eddystone protocol specification with frame type: Eddystone-URL */ {
+      encoding SENSIDL_BINARY with BIG_ENDIAN alignment 1 BIT
       sensorData {
-      	  // Problem: The core Bluetooth data types are defined in the standard as little-endian, eddystones mulit-
-      	  // value bytes defined in the service data (see ServiceData_UID) are all big-endian.
       	  
-      	  //The message starts with bluetooth data types like specified in the bluetooth core specification. 
-      	  //DATA_TYPE_SERVICE_UUIDS_16_BIT_COMPLETE and DATA_TYPE_SERVICE_DATA are mandatory (little-endian).
-      	  //Other data types are optional.
+      	  /* 
+      	   * The message starts with bluetooth data types as specified in the bluetooth core specification. 
+      	   * DATA_TYPE_SERVICE_UUIDS_16_BIT_COMPLETE and DATA_TYPE_SERVICE_DATA are mandatory (and little-endian).
+      	   * Other data types are optional.
+      	   */
           dataSet DATA_TYPE_SERVICE_UUIDS_16_BIT_COMPLETE {
           	LENGTH as UINT8 constant value = "3"
-          	SERVICE_UUIDS_16_BIT_COMPLETE_DATA_TYPE as UINT8 constant value = "3" /**Default value for identification*/
-          	EDDYSTONE_16_BIT_UUID as UINT16 constant value = "65194" /**fixed uuid to identify the service. Hex: 0xFEAA*/
+          	SERVICE_UUIDS_16_BIT_COMPLETE_DATA_TYPE as UINT8 constant value = "3" /** Default value for identification */
+          	EDDYSTONE_16_BIT_UUID as UINT16 constant value = "65194" /** Fixed UUID for service identification. Hex: 0xFEAA */
           }
-          
-          //The length consists of the length of the service data type and the length of the actual service data.
+         
           dataSet DATA_TYPE_SERVICE_DATA {
-          	LENGTH as UINT8 constant value = "23"
-          	SERVICE_DATA_DATA_TYPE_VALUE as UINT8 constant value = "22" /**Default value for identification*/
-          	EDDYSTONE_16_BIT_UUID as UINT16 constant value = "65194" /**fixed uuid to identify the service. Hex: 0xFEAA*/
+          	LENGTH as UINT8 constant value = "23" /** The length consists of the length of the service data type and the length of the actual service data. */
+          	SERVICE_DATA_DATA_TYPE_VALUE as UINT8 constant value = "22" /** Default value for identification */
+          	EDDYSTONE_16_BIT_UUID as UINT16 constant value = "65194" /** Fixed UUID for service identification. Hex: 0xFEAA*/
           }
           
-          //The following service data is defined as big-endian. The Eddystone-URL frame broadcasts 
-          //a URL using a compressed encoding format in order to fit more within the limited advertisement 
-          //packet. The byte-sequence is fix and arranged as shown below.   
+          /*
+           * The following service data is defined as big-endian. The Eddystone-URL frame broadcasts an URL 
+           * using a compressed encoding format in order to fit more within the limited advertisement packet.
+           * The byte-sequence is fix and arranged as shown below.
+           */
           dataSet SERVICE_DATA_URL {
-          	//ServiceData consist of 1 byte url-frame type, 1 byte tx-power, 1 byte url scheme, 
-          	//0-17 bytes encoded url
-          	URL_FRAME_TYPE as UINT8 constant value = "16" //Hex: 0x10
+          	// Service data consists of 1 byte for URL-frame type, 1 byte for TX-power and 1 byte for URL scheme. 
+          	// Latter bytes (numbered from 0-17) are encoded for URL.
+          	URL_FRAME_TYPE as UINT8 constant value = "16" // Hex: 0x10
           	
-          	//Tx power is the received power at 0 meters measured in dBm.
+          	// TX power is the received power at 0 meters measured in dBm.
           	URL_TX_POWER as UINT8 in dB
           	
-          	//Hex: 0x00 -> http://www.
-          	//Hex: 0x01 -> https://www.
-          	//Hex: 0x02 -> http://
-          	//Hex: 0x03 -> https://
-          	URL_SCHEME as UINT8 /**value = "2" -> http://*/
+          	// Hex: 0x00 -> http://www.
+          	// Hex: 0x01 -> https://www.
+          	// Hex: 0x02 -> http://
+          	// Hex: 0x03 -> https://
+          	URL_SCHEME as UINT8 /** E.g. value = "2" -> http:// */
           	
-          	// The rest consist of the URL encoded by RFC 1738
+          	// The rest consist of the URL encoded by RFC-1738.
+          	// It might be a better idea to provide re-use in future.
           	URL_ENCODED_BYTE_0 as UINT8    
           	URL_ENCODED_BYTE_1 as UINT8
           	URL_ENCODED_BYTE_2 as UINT8

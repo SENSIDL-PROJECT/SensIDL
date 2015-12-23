@@ -1,6 +1,5 @@
 package de.fzi.sensidl.language.generator.javascript
 
-
 import de.fzi.sensidl.design.sensidl.SensorInterface
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
@@ -11,16 +10,19 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.apache.log4j.Logger
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
 
 /**
  * JavaScript code generator for the SensIDL Model. 
  * 
  * @author Sven Eckhardt
+ * @author Pawel Bielski
  * 
  */
 class JavaScriptDTOGenerator implements IDTOGenerator {
-	
-	
 	private static Logger logger = Logger.getLogger(JavaScriptDTOGenerator)
 	
 	private final static String JAVASCRIPT_EXTENSION = ".js"
@@ -39,8 +41,8 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 		logger.info("Start with code-generation of a JavaScript data transfer object.")
 		
 		val sensorInterface = input.contents.filter(SensorInterface).head
-		fsa.generateFile(addFileExtensionTo(sensorInterface.name.toFirstUpper.concat("v1")), sensorInterface.compile)
-		logger.info("File: " + addFileExtensionTo(sensorInterface.name.toFirstUpper.concat("v1")) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
+		fsa.generateFile(addFileExtensionTo(sensorInterface.name.toFirstUpper), sensorInterface.compile)
+		logger.info("File: " + addFileExtensionTo(sensorInterface.name.toFirstUpper) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
 	}
 
 	/**
@@ -49,29 +51,40 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 	def compile(SensorInterface sensorInterface) {
 		'''
 		«FOR  dataset : sensorInterface.eAllContents.toIterable.filter(DataSet)»
-			«generateVariable(dataset.name.toFirstLower, dataset)»
+			«generateClass(dataset.toNameLower, dataset)»
 		«ENDFOR»
+
 		'''
 	}
 	/**
-	 * generates the variable for a dataset object
+	 * generates the Classes
 	 */
-	def generateVariable(String name, DataSet dataset){
+	def generateClass(String name, DataSet dataset){
 		val nmdatalast = dataset.eAllContents.toIterable.filter(NonMeasurementData).last
 		val mdatalast = dataset.eAllContents.toIterable.filter(MeasurementData).last
 		'''
 		«IF dataset.description != null»/* «dataset.description» */«ENDIF»
 		var «name» = {
 		 
-			«FOR nmdata : dataset.eAllContents.toIterable.filter(NonMeasurementData)»
-				«IF nmdata.constant»
-					«nmdata.name.toUpperCase»«IF nmdata.value != null» : «nmdata.value»«IF !nmdata.equals(nmdatalast)»,«ENDIF»«ENDIF»«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
-				«ELSE»
-					«nmdata.name.toFirstLower»«IF nmdata.value != null» : «nmdata.value»«IF !nmdata.equals(nmdatalast)»,«ENDIF»«ENDIF»«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
-				«ENDIF»
-			«ENDFOR»
+			«FOR nmdata : dataset.eAllContents.toIterable.filter(NonMeasurementData)»	
+			«IF nmdata.constant»
+				_«nmdata.name.toUpperCase»«IF nmdata.value != null» : «nmdata.value»,«ENDIF»«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
+			«ELSE»
+				_«nmdata.toNameLower»«IF nmdata.value != null» : «nmdata.value»«ELSE» : 0«ENDIF»,«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
+			«ENDIF»
+			«ENDFOR»			
+			
 			«FOR mdata : dataset.eAllContents.toIterable.filter(MeasurementData)»
-				«mdata.name.toFirstLower»«IF !mdata.equals(mdatalast)»,«ENDIF» /*«mdata.description» Measured in Unit: «mdata.unit» */ 
+				_«mdata.toNameLower» : 0, /*«mdata.description» Measured in Unit: «mdata.unit» */ 
+			«ENDFOR»
+			
+			«FOR  data : dataset.eAllContents.toIterable.filter(NonMeasurementData)»
+				«generateGetter(data)»,
+				«generateSetter(data)»«IF !data.constant»«IF !data.equals(nmdatalast) || mdatalast != null »,«ENDIF»«ENDIF»
+			«ENDFOR»
+			«FOR  data : dataset.eAllContents.toIterable.filter(MeasurementData)»
+				«generateGetter(data)»,
+				«generateSetter(data)»«IF !data.equals(mdatalast)»,«ENDIF»
 			«ENDFOR»
 		 
 		};
@@ -79,6 +92,154 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 		'''
 		
 	}
+	
+	/** 
+	 * Generates the Getter Method for the measurement data
+	 */
+	def generateGetter(MeasurementData d) {
+		'''
+		
+		/**
+		 * @return the «d.toNameLower»
+		 */
+		«d.toGetterName» : function(){
+			return this._«d.toNameLower»;
+		}'''
+	}
+	
+	/** 
+	 * Generates the Getter Method for the non measurement data
+	 */
+	def generateGetter(NonMeasurementData d) {
+		'''
+		
+		/**
+		 * @return the «d.toNameLower»
+		 */
+		«d.toGetterName» : function(){
+			return this._«IF d.constant»«d.name.toUpperCase»«ELSE»«d.toNameLower»«ENDIF»;
+		}'''
+	}	
+	
+	def toGetterName(Data d) {
+		'''get«d.name.replaceAll("[^a-zA-Z0-9]", "").toFirstUpper»'''
+	}
+	
+	/** 
+	 * Generates the Setter Method for the non measurement data
+	 */
+	def generateSetter(NonMeasurementData d) {
+	'''
+	
+	«IF d.constant »
+		// no setter for constant value
+	«ELSE»
+		/**
+		 * @param «d.toNameLower»
+		 *			the «d.toNameLower» to set
+		 */
+		«d.toSetterName» : function(«d.toNameLower»){
+			this._«d.toNameLower» = «d.toNameLower»;
+		} 
+	«ENDIF»	'''
+	}
+	
+/** 
+	 * Generates the Setter Method for the measurement data
+	 */
+	def generateSetter(MeasurementData d) {
+			'''
+			
+			«IF d.adjustments.empty == false»
+			«FOR dataAdj : d.adjustments»
+			«IF dataAdj instanceof DataRange»
+				/**
+				 * @param «d.toNameLower»
+				 *			the «d.toNameLower» to set
+				 */
+				«d.toSetterName» : function(«d.toNameLower»){
+					if («d.toNameLower» >= «dataAdj.range.lowerBound» && «d.toNameLower» <= «dataAdj.range.upperBound»)
+						this._«d.toNameLower» = «d.toNameLower»;
+					else
+						alert("value «d.toNameLower» is out of defined range");
+				} 
+			«ENDIF»	
+			«IF dataAdj instanceof DataConversion»						
+				«IF dataAdj instanceof LinearDataConversion»
+				/**
+				 * @param «d.toNameLower»
+				 *			the «d.toNameLower» to set
+				 */
+				«d.toSetterName» : function(«d.toNameLower»){
+					this._«d.toNameLower» = «d.toNameLower» *  «dataAdj.scalingFactor» +  «dataAdj.offset»;
+				}  
+				«ELSE»
+					«IF dataAdj instanceof LinearDataConversionWithInterval»
+					/**
+					 * @param «d.toNameLower»  
+					 *			the «d.toNameLower» to set
+					 */
+					«d.toSetterName» : function(«d.toNameLower»){
+						if («d.toNameLower» >= «dataAdj.fromInterval.lowerBound» && «d.toNameLower» <= «dataAdj.fromInterval.upperBound»){												
+							
+							var oldMin =  «dataAdj.fromInterval.lowerBound»;
+							var oldMax =  «dataAdj.fromInterval.upperBound»;
+							var newMin =  «dataAdj.toInterval.lowerBound»;
+							var newMax =  «dataAdj.toInterval.upperBound»;
+							
+							this._«d.toNameLower» =  ((((«d.toNameLower» - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin);
+						}
+						else
+							alert("value «d.toNameLower» is out of defined source Interval");
+					} 		
+					«ENDIF»
+				«ENDIF»
+			«ENDIF»				
+			«ENDFOR»	
+			«ELSE»
+				/**
+				 * @param «d.toNameLower»
+				 *			the «d.toNameLower» to set
+				 */
+				«d.toSetterName» : function(«d.toNameLower»){
+					this._«d.toNameLower» = «d.toNameLower»;
+				} 
+			«ENDIF»''' 
+
+	}
+	
+	def toSetterName(Data d) {
+		'''set«d.name.replaceAll("[^a-zA-Z0-9]", "").toFirstUpper»'''
+	}
+	
+		/**
+	 * @return the name of the data with a lower first letter
+	 */
+	def toNameLower(Data d) {
+		d.name.toFirstLower
+	}
+
+	/**
+	 * @return the name of the DataSet with a lower first letter
+	 */
+	def toNameLower(DataSet d) {
+		d.name.toFirstLower
+	}
+
+	/**
+	 * @return the name of the data with an upper first letter 
+	 */
+	def toNameUpper(Data d) {
+		d.name.toFirstUpper
+	}
+
+	/**
+	 * @return the name of the DataSet with an upper first letter
+	 */
+	def toNameUpper(DataSet d) {
+		d.name.toFirstUpper
+	}
+		
 
 	override addFileExtensionTo(String ClassName) {
 		return ClassName + JAVASCRIPT_EXTENSION

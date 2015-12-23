@@ -7,7 +7,7 @@
   
   <rm:locator pattern="^de\.fzi\.sensidl\.language(?:\..+)?$" searchPathRef="project"/>
   <rm:locator pattern="^de\.fzi\.sensidl\.design(?:\..+)?$" searchPathRef="project"/>
-  <rm:locator pattern="^de\.fzi\.sensidl\.example\.eddystone" searchPathRef="ex_project"/>
+  <rm:locator pattern="^de\.fzi\.sensidl\.example(?:\..+)?$" searchPathRef="ex_project"/>
   <rm:locator pattern="^de\.fzi\.sensidl(?:\..+)?$" searchPathRef="project" />
   <rm:locator pattern="^org\.jscience" searchPathRef="project" />
   
