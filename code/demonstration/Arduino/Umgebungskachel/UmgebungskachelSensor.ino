@@ -2,7 +2,6 @@
     *** UmgebungskachelSensor.ino ***
     This file holds all methods that are necessary for communication with the sensors of the Umgebungskachel sketch
 **/
-boolean beep;
 
 /**
   Reads the most recent data from the Umgebungskachel sensors and inserts it into the sensidl data structure
