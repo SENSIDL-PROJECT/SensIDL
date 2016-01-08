@@ -8,12 +8,14 @@
 #include "rgb_lcd.h"
 #include <Ethernet.h>
 #include <math.h>
+#include <TimerOne.h>
 
 //Define Sensor And Output Pins
 #define LED 8
 #define LIGHT_SENSOR 0
 #define TEMP_SENSOR 1
 #define TOUCH_SENSOR 2
+#define BUZZER 3
 
 //LCD Display
 rgb_lcd lcd;
@@ -45,6 +47,8 @@ void setup()
  // set LED pin on OUTPUT and turn it off
  pinMode(LED, OUTPUT);
  digitalWrite(LED, LOW);
+ //set Buzzer pin to OUTPUT
+ pinMode(BUZZER, OUTPUT);
 
  // open the serial port at 9600 baud 
  updateLowerDisplay("Serial port!");
@@ -60,6 +64,10 @@ void setup()
  
  //setup an interrupt for a touch event
  attachInterrupt(2, touchEvent, CHANGE);
+ 
+ //Initialize the TimerOne Library with a 1s Period
+ Timer1.initialize(1000000);
+ Timer1.attachInterrupt(isr,1000000); //attach a TimerInterrupt to call the isr method every 1 seconds
 }
 
 /**
@@ -67,6 +75,7 @@ void setup()
 **/
 void loop()
 {
+  
  // listen for incoming clients
  EthernetClient client = server.available();
  

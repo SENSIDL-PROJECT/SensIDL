@@ -15,9 +15,11 @@ class Sensidl_light
   public:
 	struct {
 		String led;
-		float temperature;
-		float brightness;
-	} data;	
+		double temperature;
+		double brightness;
+		double threshold_brightness;
+		double threshold_temperature;
+	} data;
 	String toJson();
 	void parseFromJson(String json);
 };

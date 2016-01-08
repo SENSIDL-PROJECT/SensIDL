@@ -2,7 +2,7 @@
     *** UmgebungskachelSensor.ino ***
     This file holds all methods that are necessary for communication with the sensors of the Umgebungskachel sketch
 **/
-
+boolean beep;
 
 /**
   Reads the most recent data from the Umgebungskachel sensors and inserts it into the sensidl data structure
@@ -10,6 +10,21 @@
 void updateSensorData() {
     sens.data.temperature = calculateTemperature();
     sens.data.brightness = calculateLightSensorResistance();
+}
+
+/**
+  This is the Interrupt Service Routine for the TimerOne Library that is called each 1000000 µs (1s).
+  It updates the sensor data, refreshes the display and eventually toggles the buzzer.
+**/
+void isr() {
+  updateSensorData();
+  refreshDisplay();
+  if(sens.data.brightness < sens.data.threshold_brightness &&
+      sens.data.temperature < sens.data.threshold_temperature) return;
+  //Buzz if it is too warm or too dark
+  digitalWrite(BUZZER,HIGH);
+  delay(1);
+  digitalWrite(BUZZER,LOW);
 }
 
 /**

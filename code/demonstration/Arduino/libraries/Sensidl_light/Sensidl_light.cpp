@@ -10,7 +10,9 @@ String Sensidl_light::toJson() {
 	String json = "{";
 	json += "\"led\":\"" + data.led + "\",";
 	json += "\"temperature\":"+ dtostrf(data.temperature,0,4,tmp) + ",";
-	json += "\"brightness\":" + dtostrf(data.brightness,0,4,tmp);
+	json += "\"brightness\":" + dtostrf(data.brightness,0,4,tmp) + ",";
+	json += "\"threshold_brightness\":"+ dtostrf(data.threshold_brightness,0,4,tmp) + ",";
+	json += "\"threshold_temperature\":"+ dtostrf(data.threshold_temperature,0,4,tmp);
 	json += "}";
 	return json;
 }
@@ -28,6 +30,12 @@ void Sensidl_light::parseFromJson(String json) {
 		} else 
 		if (element == "brightness") {
 			data.brightness = stringToDouble(value);
+		} else
+		if (element == "threshold_brightness") {
+			data.threshold_brightness = stringToDouble(value);
+		} else
+		if (element == "threshold_temperature") {
+			data.threshold_temperature = stringToDouble(value);
 		}
 		pos = parsetoNextElement(json,pos);
 	}
