@@ -13,9 +13,18 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import com.google.common.collect.Iterables;
+import de.fzi.sensidl.design.sensidl.IdentifiableElement;
+import de.fzi.sensidl.design.sensidl.NamedElement;
 import de.fzi.sensidl.design.sensidl.SensorInterface;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataAdjustment;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData;
 import de.fzi.sensidl.language.generator.IDTOGenerator;
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
 
@@ -65,22 +74,21 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 		for (DataSet dataSet : _filter) {
 			dataSetList.add(dataSet);
 		}
-		_builder.append("This is the documentation for the sensor interface \"" + sensorInterface.getName() + "\".");
+		_builder.append("This is the documentation for the sensor interface \"" + sensorInterface.getName());
+		addID(sensorInterface, _builder);
+		_builder.append("\".");
 		_builder.newLineIfNotEmpty();
-		_builder.append("The encoding is " + sensorInterface.getEncodingSettings().getCoding().getName().toLowerCase().replace("_", " ") + " and ");
+		_builder.append("The encoding");
+		addID(sensorInterface.getEncodingSettings(), _builder);
+		_builder.append(" is " + sensorInterface.getEncodingSettings().getCoding().getName().toLowerCase().replace("_", " ") + " and ");
 		_builder.append("the endianness is " + sensorInterface.getEncodingSettings().getEndianness().getName().toLowerCase().replace("_", " ") + ". ");
 		_builder.append("It is aligned by "+ sensorInterface.getEncodingSettings().getAlignment()
 						+ (sensorInterface.getEncodingSettings().getAlignment() > 1 ? " bits" : " bit") + ".");
 		_builder.newLineIfNotEmpty();
-		if (sensorInterface.getID() != null) {
-			_builder.append("Its ID is \"" + sensorInterface.getID() + "\".");
-			_builder.newLineIfNotEmpty();
-		}
-		if (sensorInterface.getDescription() != null) {
-			_builder.append("The user added this description: \"" + sensorInterface.getDescription() + "\".");
-			_builder.newLineIfNotEmpty();
-		}
-		_builder.append("The sensor data of \"" + sensorInterface.getName() + "\" consists of " + dataSetList.size() + " data sets: ");
+		addDescription(sensorInterface, _builder);
+		_builder.append("The sensor data");
+		addID(sensorInterface.getDataDescription(), _builder);
+		_builder.append(" of \"" + sensorInterface.getName() + "\" consists of " + dataSetList.size() + " data sets: ");
 		for (int i = 0; i < dataSetList.size(); i++) {
 			dataSetsString += ("\"" + dataSetList.get(i).getName() + "\"");
 			if (i < dataSetList.size() - 2) {
@@ -95,7 +103,8 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 		_builder.newLine();
 		_builder.newLine();
 		for (DataSet dataSet : dataSetList) {
-			_builder.append("The data set \"" + dataSet.getName() + "\"" + (dataSet.getID() != null ? " with ID \"" + dataSet.getID() + "\"" : ""));
+			_builder.append("The data set \"" + dataSet.getName() + "\"");
+			addID(dataSet, _builder);
 			_builder.append(" contains "+ dataSet.getData().size()
 							+ (dataSet.getData().size() > 1 ? " datas: " : (dataSet.getData().size() == 0 ? " data. " : " data: ")));
 			dataString = "";
@@ -110,24 +119,64 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 			}
 			_builder.append(dataString + ".");
 			_builder.newLine();
-			if (dataSet.getDescription() != null) {
-				_builder.append("The user added this description: \"" + dataSet.getDescription() + "\".");
-				_builder.newLineIfNotEmpty();
-			}
+			addDescription(dataSet, _builder);
 			for (Data data : dataSet.getData()) {
 				_builder.newLineIfNotEmpty();
 				_builder.newLine();
-				_builder.append("The data \"" + data.getName() + "\" has the unit " + data.getDataType().getName() + ".");
-				// _builder.append(" and is initialised with " + data.getDataType().getValue() + ".");
+				if (data instanceof MeasurementData) {
+					_builder.append("The measurement data \"" + data.getName() + "\"");
+				}
+				else if (data instanceof NonMeasurementData) {
+					_builder.append("The non measurement data \"" + data.getName() + "\"");
+				}
+				addID(data, _builder);
+				_builder.append(" has the data type " + data.getDataType().getName() + ".");
 				_builder.newLineIfNotEmpty();
-				if (data.getID() != null) {
-					_builder.append("Its ID is \"" + data.getID() + "\".");
-					_builder.newLineIfNotEmpty();
+				if (data instanceof MeasurementData) {
+					if (!((MeasurementData) data).getUnit().toString().isEmpty()) {
+						_builder.append("It has the unit " + ((MeasurementData) data).getUnit());
+					}
+					else {
+						_builder.append("It is dimensionless");
+					}
+					for (DataAdjustment dataAdjustment : ((MeasurementData) data).getAdjustments()) {
+						_builder.append(" and it is adjusted by ");
+						if (dataAdjustment instanceof DataRange) {
+							if (((DataRange) dataAdjustment).getRange() != null) {
+								_builder.append("data range");
+								addID(dataAdjustment, _builder);
+								_builder.append(" from ");
+								_builder.append(((DataRange) dataAdjustment).getRange().getLowerBound()+ " to "
+												+ ((DataRange) dataAdjustment).getRange().getUpperBound());
+							}
+						}
+						else if (dataAdjustment instanceof DataConversion) {
+							_builder.append("linear data conversion");
+							addID(dataAdjustment, _builder);
+							if (dataAdjustment instanceof LinearDataConversion) {
+								if (((LinearDataConversion) dataAdjustment).getOffset() != 0) {
+									_builder.append(" with offset: " + ((LinearDataConversion) dataAdjustment).getOffset());
+									if (((LinearDataConversion) dataAdjustment).getScalingFactor() != 0) {
+										_builder.append(" and");
+									}
+								}
+								if (((LinearDataConversion) dataAdjustment).getScalingFactor() != 0) {
+									_builder.append(" with scaling factor: " + ((LinearDataConversion) dataAdjustment).getScalingFactor());
+								}
+							}
+							else if (dataAdjustment instanceof LinearDataConversionWithInterval) {
+								_builder.append(" with interval from ["+ ((LinearDataConversionWithInterval) dataAdjustment).getFromInterval().getLowerBound()
+												+ " , " + ((LinearDataConversionWithInterval) dataAdjustment).getFromInterval().getUpperBound() + "] to ["
+												+ ((LinearDataConversionWithInterval) dataAdjustment).getToInterval().getLowerBound() + " , "
+												+ ((LinearDataConversionWithInterval) dataAdjustment).getToInterval().getUpperBound() + "]");
+							}
+						}
+					}
+					_builder.append(".");
+					_builder.newLine();
 				}
-				if (data.getDescription() != null) {
-					_builder.append("The user added this description: \"" + data.getDescription() + "\".");
-					_builder.newLineIfNotEmpty();
-				}
+				else if (data instanceof NonMeasurementData) {}
+				addDescription(data, _builder);
 			}
 			_builder.newLineIfNotEmpty();
 			_builder.newLine();
@@ -142,5 +191,18 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 
 	@Override public String toTypeName(final Data data) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub");
+	}
+
+	private void addID(IdentifiableElement element, StringConcatenation _builder) {
+		if (element.getID() != null) {
+			_builder.append(" (ID: " + element.getID() + ")");
+		}
+	}
+
+	private void addDescription(NamedElement element, StringConcatenation _builder) {
+		if (element.getDescription() != null) {
+			_builder.append("The user added this description: \"" + element.getDescription() + "\".");
+			_builder.newLineIfNotEmpty();
+		}
 	}
 }
