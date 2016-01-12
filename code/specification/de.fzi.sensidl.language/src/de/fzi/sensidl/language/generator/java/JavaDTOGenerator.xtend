@@ -12,6 +12,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData
 import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription
 import de.fzi.sensidl.language.generator.IDTOGenerator
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider
+import java.util.ArrayList
 import org.apache.log4j.Logger
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
@@ -31,6 +32,8 @@ class JavaDTOGenerator implements IDTOGenerator {
 	private final static String JAVA_EXTENSION = ".java";
 	private Resource input;
 	private IFileSystemAccess fsa;
+	
+	private boolean createEmptyConstructor = true
 
 	new(Resource input, IFileSystemAccess fsa) {
 		this.input = input;
@@ -99,16 +102,15 @@ class JavaDTOGenerator implements IDTOGenerator {
 						«ENDIF»
 					«ENDFOR»
 					
-					
 				}
-				
+				«IF createEmptyConstructor»
 				/**
 				 * empty constructor for the Data transfer object
 				 */
 				public «className»(){
 				
 				}
-				
+				«ENDIF»
 				
 				«FOR data : d.eContents.filter(MeasurementData)»
 					«generateGetter(data)»
@@ -205,11 +207,28 @@ class JavaDTOGenerator implements IDTOGenerator {
 	 * Generates the Constructor arguments
 	 */
 	def generateConstructorArguments(DataSet d) {
-		if (d.eContents.filter(Data).head != null) {
-			'''«d.eContents.filter(MeasurementData).head.toTypeName» «d.eContents.filter(MeasurementData).head.toNameLower»«FOR data : d.eContents.filter(MeasurementData).tail», «data.toTypeName» «data.toNameLower»«ENDFOR» «FOR data : d.eContents.filter(NonMeasurementData).tail» «IF !data.constant», «data.toTypeName» «data.toNameLower» «ENDIF»«ENDFOR»'''
-					
-		} 
+		// create an ArrayList with all data that is not a constant NonMeasurementData (which will not be constructor arguments)
+		var dataList = new ArrayList<Data>();
 
+		for (data : d.eContents.filter(Data)) {
+			if (data instanceof NonMeasurementData) {
+				var nmdata = data as NonMeasurementData
+				if (!nmdata.constant) {
+					dataList.add(data)
+				}
+			} else {
+				dataList.add(data)
+			}
+		}
+
+		if (dataList.size > 0) {
+			var firstElement = dataList.get(0).toTypeName + " " + dataList.get(0).toNameLower
+			dataList.remove(0)
+			'''«firstElement»«FOR data : dataList», «data.toTypeName» «data.toNameLower»«ENDFOR»'''
+		} else {
+			createEmptyConstructor = false;
+			''''''
+		}
 	}
 
 	/** 
