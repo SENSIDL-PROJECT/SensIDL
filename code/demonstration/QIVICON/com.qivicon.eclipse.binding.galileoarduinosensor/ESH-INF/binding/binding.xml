@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://eclipse.org/smarthome/schemas/binding/v1.0.0 http://eclipse.org/smarthome/schemas/binding-1.0.0.xsd">
 
     <name>GalileoArduinoSensor Binding</name>
-    <description>This is the binding for GalileoArduinoSensor.</description>
+    <description>This is the binding for the GalileoArduinoSensor Demonstrator.</description>
     <author>Fabian Scheytt</author>
 
 </binding:binding>

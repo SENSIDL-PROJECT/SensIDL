@@ -7,10 +7,10 @@
 		<uses-permission name="PROVIDE_BINDING"
 			reason="Required for basic Binding functionalities">
 		</uses-permission>
-		<!-- <uses-permission name="CONNECT_NETWORK" 
+		<uses-permission name="CONNECT_NETWORK" 
 			reason="Required external NETWORK Access">
-			<property value="*.yourURL.com" />
-		</uses-permission> -->
+			<property value="141.21.51.6:80" />
+		</uses-permission>
 		<uses-permission name="CONNECT_LOCAL_NETWORK"
 			reason="Required for local Network e.g. 192.168.0.10">
 		</uses-permission>

@@ -36,24 +36,40 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 	private ScheduledFuture<?> updateJob;
 
 	/**
-	 * The Data Structure that is Sent to the Device with a new LED state
-	 * 
+	 * The Data Structure that is Sent to the Device with a new LED state 
 	 * @author Fabian Scheytt
 	 */
 	private class SendState {
 		@SuppressWarnings("unused")
 		public OnOffType led;
 	}
+	
+	/**
+	 * The Data Structure that is Sent to the Device with a new Temperature Threshold
+	 */	
+	private class SendStateTemperature {
+		@SuppressWarnings("unused")
+		public double threshold_temperature;	
+	}
 
 	/**
-	 * The Data structure that is received from the Sensor Device
-	 * 
+	 * The Data Structure that is Sent to the Device with a new Brightness Threshold
+	 */	
+	private class SendStateLight {
+		@SuppressWarnings("unused")
+		public double threshold_brightness;	
+	}
+
+	/**
+	 * The Data structure that is received from the Sensor Device 
 	 * @author Fabian Scheytt
 	 */
 	private class GetState {
 		OnOffType led;
 		double temperature;
 		double brightness;
+		double threshold_temperature;
+		double threshold_brightness;
 	}
 
 	/**
@@ -89,6 +105,7 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 	 */
 	@Override
 	public void handleCommand(ChannelUID channelUID, Command command) {
+		
 		// Check if the LED On/Off switch has been toggled
 		if (channelUID.getId().equals(CHANNEL_LED)) {
 			// Check if the Command is of the right Type for a cast.
@@ -97,9 +114,27 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 				s.led = (OnOffType) command;
 				// Send the changed state to the Device
 				sendState(s);
-			} else {
-				log.error("Unhandled command {} on {} : {}", command.toString(), this.getThing().getUID(), CHANNEL_LED);
 			}
+		}	// Else Check if the Temperature Threshold changed
+		else if (channelUID.getId().equals(TEMP_THRESHOLD_CHANNEL)) {
+				if (command instanceof DecimalType) {
+					//Send the changed state
+					SendStateTemperature s = new SendStateTemperature();
+					DecimalType number = (DecimalType)command;
+					s.threshold_temperature = number.floatValue();
+					sendState(s);
+				}
+		} //Else Check if the Light Threshold changed
+		else if (channelUID.getId().equals(LIGHT_THRESHOLD_CHANNEL)) {
+				if (command instanceof DecimalType) {
+					//Send the changed state
+					SendStateLight s = new SendStateLight();
+					DecimalType number = (DecimalType)command;
+					s.threshold_brightness = number.floatValue();
+					sendState(s);
+				}
+		}	else {
+				log.error("Unhandled command {} on {} : {}", command.toString(), this.getThing().getUID(), CHANNEL_LED);
 		}
 
 	}
@@ -111,7 +146,6 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 	private void getState() {
 		try {
 			String path = "http://" + deviceIP + ":" + devicePort;
-
 			//Connect to the device via http and read the Data from the REST API
 			URL url = new URL(path);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -124,10 +158,13 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 			Gson gson = new Gson();
 			GetState state = gson.fromJson(reader, GetState.class);
 			connection.disconnect();
+			
 			//Update the Channels according to the received Data and update the Device State to ONLINE
 			updateState(CHANNEL_LED, state.led);
 			updateState(TEMP_CHANNEL, new DecimalType(state.temperature));
 			updateState(LIGHT_CHANNEL, new DecimalType(state.brightness));
+			updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(state.threshold_brightness));
+			updateState(TEMP_THRESHOLD_CHANNEL, new DecimalType(state.threshold_temperature));
 			updateStatus(ThingStatus.ONLINE);
 			
 		} catch (Exception e) {			
@@ -138,12 +175,12 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 	}
 
 	/**
-	 * This method sends a updated state of the Data to the Device and waits for
+	 * This method sends updated value of the Data to the Device and waits for
 	 * the Device to return an updated State.
 	 * 
-	 * @param newState An object of the SendState class that represents a changed State (e.g. toggled switch)
+	 * @param newState An object that represents a changed State (e.g. toggled switch)
 	 */
-	private void sendState(SendState newState) {
+	private void sendState(Object newState) {
 		try {
 			String path = "http://" + deviceIP + ":" + devicePort;
 			String json = new Gson().toJson(newState);
@@ -169,6 +206,8 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 			updateState(CHANNEL_LED, state.led);
 			updateState(TEMP_CHANNEL, new DecimalType(state.temperature));
 			updateState(LIGHT_CHANNEL, new DecimalType(state.brightness));
+			updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(state.threshold_brightness));
+			updateState(TEMP_THRESHOLD_CHANNEL, new DecimalType(state.threshold_temperature));
 			updateStatus(ThingStatus.ONLINE);
 
 		} catch (Exception e) {

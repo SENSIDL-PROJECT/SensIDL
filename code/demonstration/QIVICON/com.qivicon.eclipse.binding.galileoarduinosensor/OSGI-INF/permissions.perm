@@ -7,6 +7,9 @@
 (org.osgi.framework.ServicePermission "org.eclipse.smarthome.core.thing.type.ThingTypeRegistry" "get")
 (org.osgi.framework.ServicePermission "org.eclipse.smarthome.config.core.ConfigDescriptionRegistry" "get")
 (org.osgi.framework.ServicePermission "org.eclipse.smarthome.core.thing.binding.ThingHandler" "get")
+# Required external NETWORK Access
+(java.net.SocketPermission "141.21.51.6:80" "connect")
+(java.net.SocketPermission "141.21.51.6:80" "resolve")
 # Required for local Network e.g. 192.168.0.10
 (java.net.SocketPermission "*" "connect")
 (java.net.SocketPermission "*" "resolve")
