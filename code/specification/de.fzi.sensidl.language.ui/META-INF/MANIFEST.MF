@@ -30,6 +30,7 @@ Import-Package: org.apache.commons.io,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: de.fzi.sensidl.language.ui.contentassist,
  de.fzi.sensidl.language.ui.contentassist.antlr,
+ de.fzi.sensidl.language.ui.exception,
  de.fzi.sensidl.language.ui.handler,
  de.fzi.sensidl.language.ui.internal,
  de.fzi.sensidl.language.ui.quickfix,
