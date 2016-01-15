@@ -1,6 +1,7 @@
 package de.fzi.sensidl.language.generator.plaintext;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
@@ -71,9 +72,18 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 		List<DataSet> dataSetList = new ArrayList<DataSet>();
 		String dataSetsString = "";
 		String dataString;
+		Calendar cal = Calendar.getInstance();
 		for (DataSet dataSet : _filter) {
 			dataSetList.add(dataSet);
 		}
+		_builder.append("----------------------------------------");
+		_builder.newLine();
+		_builder.append("name: " + sensorInterface.getName());
+		_builder.newLine();
+		_builder.append("time: " + cal.getTime());
+		_builder.newLine();
+		_builder.append("----------------------------------------");
+		_builder.newLine();
 		_builder.append("This is the documentation for the sensor interface \"" + sensorInterface.getName());
 		addID(sensorInterface, _builder);
 		_builder.append("\".");
@@ -100,6 +110,8 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 		}
 		_builder.append(dataSetsString + ".");
 		_builder.newLineIfNotEmpty();
+		_builder.newLine();
+		_builder.append("====================================================================================================");
 		_builder.newLine();
 		_builder.newLine();
 		for (DataSet dataSet : dataSetList) {
@@ -179,6 +191,8 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 				addDescription(data, _builder);
 			}
 			_builder.newLineIfNotEmpty();
+			_builder.newLine();
+			_builder.append("----------------------------------------------------------------------------------------------------");
 			_builder.newLine();
 			_builder.newLine();
 		}
