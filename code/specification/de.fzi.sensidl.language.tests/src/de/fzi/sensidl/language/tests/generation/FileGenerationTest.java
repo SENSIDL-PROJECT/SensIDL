@@ -57,7 +57,7 @@ public class FileGenerationTest {
 		boolean containsJSFile = false;
 		GenerationHandler.generate(testGenDir.getPath(), "resource/semantic/sidlTestCode.sidl", "JavaScript");
 		for (String file : testGenDir.list()) {
-			if (file.equals(sensorInterfaceName + "v1.js")) {
+			if (file.equals(sensorInterfaceName + ".js")) {
 				containsJSFile = true;
 			}
 			else if (checkFile(file, "sidlTestCode")) {}
