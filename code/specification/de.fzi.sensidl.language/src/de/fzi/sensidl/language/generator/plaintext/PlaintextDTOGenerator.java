@@ -165,7 +165,7 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 							_builder.append(" and it is adjusted ");
 						}
 						else {
-							_builder.append("Additional it is adjusted ");
+							_builder.append("Additionally it is adjusted ");
 						}
 						if (dataAdjustment instanceof DataRange) {
 							if (((DataRange) dataAdjustment).getRange() != null) {
