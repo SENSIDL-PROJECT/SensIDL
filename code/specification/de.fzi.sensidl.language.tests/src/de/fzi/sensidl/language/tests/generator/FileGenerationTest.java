@@ -1,4 +1,4 @@
-package de.fzi.sensidl.language.tests.generation;
+package de.fzi.sensidl.language.tests.generator;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +23,7 @@ public class FileGenerationTest {
 
 	@BeforeClass static public void setUp() throws IOException {
 		DataRepresentationPackageImpl.init();
-		testGenDir = new File("test-gen/semantics");
+		testGenDir = new File("test-gen/generator");
 		if (!testGenDir.exists()) {
 			testGenDir.mkdir();
 		}
@@ -37,7 +37,7 @@ public class FileGenerationTest {
 		for (int i = 0; i < dataSets.length; i++) {
 			map.put(dataSets[i] + ".java", false);
 		}
-		GenerationHandler.generate(testGenDir.getPath(), "resource/semantic/sidlTestCode.sidl", "Java");
+		GenerationHandler.generate(testGenDir.getPath(), "resource/generator/sidlTestCode.sidl", "Java");
 		for (String file : testGenDir.list()) {
 			if (map.containsKey(file)) {
 				map.put(file, true);
@@ -55,7 +55,7 @@ public class FileGenerationTest {
 
 	@Test public void javascriptFilesGenerationTest() throws IOException, NoSidlFileException {
 		boolean containsJSFile = false;
-		GenerationHandler.generate(testGenDir.getPath(), "resource/semantic/sidlTestCode.sidl", "JavaScript");
+		GenerationHandler.generate(testGenDir.getPath(), "resource/generator/sidlTestCode.sidl", "JavaScript");
 		for (String file : testGenDir.list()) {
 			if (file.equals(sensorInterfaceName + ".js")) {
 				containsJSFile = true;
@@ -74,7 +74,7 @@ public class FileGenerationTest {
 			map.put(dataSets[i] + ".c", false);
 			map.put(dataSets[i] + ".h", false);
 		}
-		GenerationHandler.generate(testGenDir.getPath(), "resource/semantic/sidlTestCode.sidl", "C");
+		GenerationHandler.generate(testGenDir.getPath(), "resource/generator/sidlTestCode.sidl", "C");
 		for (String file : testGenDir.list()) {
 			if (map.containsKey(file)) {
 				map.put(file, true);
