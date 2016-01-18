@@ -137,11 +137,20 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 				_builder.newLine();
 				if (data instanceof MeasurementData) {
 					_builder.append("The measurement data \"" + data.getName() + "\"");
+					addID(data, _builder);
 				}
 				else if (data instanceof NonMeasurementData) {
 					_builder.append("The non measurement data \"" + data.getName() + "\"");
+					addID(data, _builder);
+					if (((NonMeasurementData) data).isConstant()) {
+						_builder.append(" is constant and");
+					}
+					if (((NonMeasurementData) data).getValue() != null) {
+						_builder.append(" has the value: \"" + ((NonMeasurementData) data).getValue() + "\".");
+						_builder.newLine();
+						_builder.append("It");
+					}
 				}
-				addID(data, _builder);
 				_builder.append(" has the data type " + data.getDataType().getName() + ".");
 				_builder.newLineIfNotEmpty();
 				if (data instanceof MeasurementData) {
@@ -152,10 +161,15 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 						_builder.append("It is dimensionless");
 					}
 					for (DataAdjustment dataAdjustment : ((MeasurementData) data).getAdjustments()) {
-						_builder.append(" and it is adjusted by ");
+						if (((MeasurementData) data).getAdjustments().indexOf(dataAdjustment) == 0) {
+							_builder.append(" and it is adjusted ");
+						}
+						else {
+							_builder.append("Additional it is adjusted ");
+						}
 						if (dataAdjustment instanceof DataRange) {
 							if (((DataRange) dataAdjustment).getRange() != null) {
-								_builder.append("data range");
+								_builder.append("with data range");
 								addID(dataAdjustment, _builder);
 								_builder.append(" from ");
 								_builder.append(((DataRange) dataAdjustment).getRange().getLowerBound()+ " to "
@@ -163,7 +177,7 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 							}
 						}
 						else if (dataAdjustment instanceof DataConversion) {
-							_builder.append("linear data conversion");
+							_builder.append("by linear data conversion");
 							addID(dataAdjustment, _builder);
 							if (dataAdjustment instanceof LinearDataConversion) {
 								if (((LinearDataConversion) dataAdjustment).getOffset() != 0) {
@@ -183,9 +197,13 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 												+ ((LinearDataConversionWithInterval) dataAdjustment).getToInterval().getUpperBound() + "]");
 							}
 						}
+						_builder.append(".");
+						_builder.newLine();
 					}
-					_builder.append(".");
-					_builder.newLine();
+					if (((MeasurementData) data).getAdjustments().isEmpty()) {
+						_builder.append(".");
+						_builder.newLine();
+					}
 				}
 				else if (data instanceof NonMeasurementData) {}
 				addDescription(data, _builder);
