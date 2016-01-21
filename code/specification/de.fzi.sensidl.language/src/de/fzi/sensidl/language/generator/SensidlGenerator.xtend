@@ -12,6 +12,7 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
 import org.apache.log4j.Logger
 import org.apache.log4j.Level
+import de.fzi.sensidl.language.generator.SensIDLConstants.GenerationLanguage
 
 /**
  * Der Generator für SensIDL.
@@ -34,7 +35,7 @@ class SensidlGenerator implements IGenerator {
 	
 	private static String EXTENSION = "sensidl"
 	
-	private String generationLanguage = "ALL"
+	private GenerationLanguage generationLanguage = GenerationLanguage.ALL
 //	
 	/**
 	 * Der Einstiegspunkt für den Generator für SensIDL.
@@ -72,7 +73,7 @@ class SensidlGenerator implements IGenerator {
 		logger.info("Model was successfully persisted.")
 	}
 	
-	def setGenerationLanguage(String generationLanguage) {
+	def setGenerationLanguage(GenerationLanguage generationLanguage) {
 		this.generationLanguage = generationLanguage
 	}
 	
