@@ -16,6 +16,8 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import de.fzi.sensidl.language.SensidlStandaloneSetup;
+import de.fzi.sensidl.language.generator.SensIDLConstants;
+import de.fzi.sensidl.language.generator.SensIDLConstants.GenerationLanguage;
 import de.fzi.sensidl.language.generator.SensidlGenerator;
 import de.fzi.sensidl.language.ui.exception.NoSidlFileException;
 
@@ -28,7 +30,7 @@ import de.fzi.sensidl.language.ui.exception.NoSidlFileException;
  */
 public class GenerationHandler {
 	private static SensidlGenerator generator;
-	private static GenerationLanguage generationLanguage = GenerationLanguage.NONE;
+	private static GenerationLanguage generationLanguage = SensIDLConstants.GenerationLanguage.NONE;
 
 	private GenerationHandler() {
 
@@ -78,7 +80,7 @@ public class GenerationHandler {
 
 		generator = injector.getInstance(SensidlGenerator.class); // set up the
 		// generator
-		generator.setGenerationLanguage(generationLanguage.toString());
+		generator.setGenerationLanguage(generationLanguage);
 
 		// inject fsa
 		Guice.createInjector(new AbstractGenericModule() {
@@ -119,7 +121,7 @@ public class GenerationHandler {
 			generationLanguage = GenerationLanguage.JAVASCRIPT;
 			break;
 		case "C#":
-			generationLanguage = GenerationLanguage.C_SHARP;
+			generationLanguage = GenerationLanguage.CSHARP;
 			break;
 		case "C":
 			generationLanguage = GenerationLanguage.C;
