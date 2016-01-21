@@ -10,6 +10,7 @@ import de.fzi.sensidl.language.generator.factory.javascript.JavaScriptGenerator
 import de.fzi.sensidl.language.generator.generationstep.GenerationStep
 import java.util.HashMap
 import java.util.List
+import de.fzi.sensidl.language.generator.factory.plaintext.PlaintextGenerator
 
 class SkeletonGenerationStep extends GenerationStep {
 	private List<DataSet> dataSet
@@ -44,6 +45,12 @@ class SkeletonGenerationStep extends GenerationStep {
 			])
 			put(GenerationLanguage.JAVASCRIPT, [
 				val JavaScriptGenerator generator = new JavaScriptGenerator()
+				filesToGenerate => [putAll(generator.generateDTO(this.dataSet))]
+//				generator.generateDecoder
+//				generator.generateEncoder
+			])
+			put(GenerationLanguage.PLAINTEXT, [
+				val PlaintextGenerator generator = new PlaintextGenerator()
 				filesToGenerate => [putAll(generator.generateDTO(this.dataSet))]
 //				generator.generateDecoder
 //				generator.generateEncoder

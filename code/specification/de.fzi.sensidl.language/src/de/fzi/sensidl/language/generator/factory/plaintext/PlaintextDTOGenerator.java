@@ -1,19 +1,20 @@
-package de.fzi.sensidl.language.generator.plaintext;
+package de.fzi.sensidl.language.generator.factory.plaintext;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+
 import org.apache.log4j.Logger;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
+
 import com.google.common.collect.Iterables;
+
 import de.fzi.sensidl.design.sensidl.IdentifiableElement;
 import de.fzi.sensidl.design.sensidl.NamedElement;
 import de.fzi.sensidl.design.sensidl.SensorInterface;
@@ -26,8 +27,8 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData;
-import de.fzi.sensidl.language.generator.IDTOGenerator;
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
+import de.fzi.sensidl.language.generator.factory.IDTOGenerator;
 
 /**
  * Plaintext generator for the SensIDL Model.
@@ -38,25 +39,34 @@ import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
 public class PlaintextDTOGenerator implements IDTOGenerator {
 	private static Logger		logger			= Logger.getLogger(PlaintextDTOGenerator.class);
 	private final static String	TEXT_EXTENSION	= ".txt";
-	private Resource			input;
-	private IFileSystemAccess	fsa;
-
-	public PlaintextDTOGenerator(final Resource input, final IFileSystemAccess fsa) {
-		this.input = input;
-		this.fsa = fsa;
+	private List<DataSet> dataSet;
+	
+	public PlaintextDTOGenerator(List<DataSet> newDataSet) {
+		this.dataSet = newDataSet;
 	}
-
+	
 	/**
 	 * Generates the .txt files
+	 * @return 
 	 */
-	@Override public void generate() {
+	@Override
+	public HashMap<String, CharSequence> generate() {
 		PlaintextDTOGenerator.logger.info("Start with text generation.");
-		EList<EObject> _contents = this.input.getContents();
-		Iterable<SensorInterface> _filter = Iterables.<SensorInterface> filter(_contents, SensorInterface.class);
-		final SensorInterface sensorInterface = IterableExtensions.<SensorInterface> head(_filter);
-		this.fsa.generateFile(this.addFileExtensionTo(StringExtensions.toFirstUpper(sensorInterface.getName())), compile(sensorInterface));
+		
+		HashMap<String, CharSequence> filesToGenerate = new HashMap<String, CharSequence>();
+
+		SensorInterface sensorInterface = getSensorInterfaceName((EObject) this.dataSet.get(0).eContainer());
+		filesToGenerate.put(this.addFileExtensionTo(StringExtensions.toFirstUpper(sensorInterface.getName())), generateDocumentation(sensorInterface));
 		PlaintextDTOGenerator.logger.info("File: "+ this.addFileExtensionTo(StringExtensions.toFirstUpper(sensorInterface.getName())) + " was generated in "
 											+ SensIDLOutputConfigurationProvider.SENSIDL_GEN);
+		return filesToGenerate;
+	}
+	
+	private SensorInterface getSensorInterfaceName(EObject currentElement) {
+		if(currentElement instanceof SensorInterface) {
+			return ((SensorInterface) currentElement);
+		}
+		return getSensorInterfaceName(currentElement.eContainer());
 	}
 
 	/**
@@ -64,7 +74,7 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 	 * 
 	 * @param sensor interface
 	 */
-	public CharSequence compile(final SensorInterface sensorInterface) {
+	public CharSequence generateDocumentation(final SensorInterface sensorInterface) {
 		StringConcatenation _builder = new StringConcatenation();
 		TreeIterator<EObject> _eAllContents = sensorInterface.eAllContents();
 		Iterable<EObject> _iterable = IteratorExtensions.<EObject> toIterable(_eAllContents);

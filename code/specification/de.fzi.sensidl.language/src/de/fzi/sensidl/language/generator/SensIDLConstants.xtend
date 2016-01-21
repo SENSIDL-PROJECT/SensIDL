@@ -17,6 +17,7 @@ class SensIDLConstants {
 		JAVA,
 		JAVASCRIPT,
 		CSHARP,
-		C
+		C,
+		PLAINTEXT
 	}
 }
