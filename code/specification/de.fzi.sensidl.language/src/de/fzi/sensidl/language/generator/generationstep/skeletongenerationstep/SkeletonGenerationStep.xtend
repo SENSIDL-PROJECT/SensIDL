@@ -31,6 +31,12 @@ class SkeletonGenerationStep extends GenerationStep {
 //				generator.generateDecoder
 //				generator.generateEncoder
 			])
+			put(GenerationLanguage.JAVA_PLUGIN_PROJECT, [
+				val JavaGenerator generator = new JavaGenerator()
+				filesToGenerate => [putAll(generator.generatePluginProject(this.dataSet))]
+//				generator.generateDecoder
+//				generator.generateEncoder
+			])
 			put(GenerationLanguage.C, [
 				val CGenerator generator = new CGenerator()
 				filesToGenerate => [putAll(generator.generateDTO(this.dataSet))]

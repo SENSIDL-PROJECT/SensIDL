@@ -19,6 +19,7 @@ import de.fzi.sensidl.language.SensidlStandaloneSetup;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
 import de.fzi.sensidl.language.generator.SensIDLConstants.GenerationLanguage;
 import de.fzi.sensidl.language.generator.SensidlGenerator;
+import de.fzi.sensidl.language.generator.factory.java.JavaPluginProjectGenerator;
 import de.fzi.sensidl.language.ui.exception.NoSidlFileException;
 
 /**
@@ -56,6 +57,11 @@ public class GenerationHandler {
 			throws NoSidlFileException, FileNotFoundException {
 		setGenerationLanguage(language);
 		Injector injector = new SensidlStandaloneSetup().createInjectorAndDoEMFRegistration();
+
+		// Set JavaprojectGenerator variables if needed
+		if (generationLanguage == GenerationLanguage.JAVA_PLUGIN_PROJECT) {
+			JavaPluginProjectGenerator.setProjectName(path.substring(path.lastIndexOf('/') + 1));
+		}
 
 		// get resource
 		ResourceSet rs = new ResourceSetImpl();
@@ -116,6 +122,9 @@ public class GenerationHandler {
 		switch (language) {
 		case "Java":
 			generationLanguage = GenerationLanguage.JAVA;
+			break;
+		case "Java Plug-in Project":
+			generationLanguage = GenerationLanguage.JAVA_PLUGIN_PROJECT;
 			break;
 		case "JavaScript":
 			generationLanguage = GenerationLanguage.JAVASCRIPT;

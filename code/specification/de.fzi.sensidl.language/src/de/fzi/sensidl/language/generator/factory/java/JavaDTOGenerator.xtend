@@ -32,8 +32,15 @@ class JavaDTOGenerator implements IDTOGenerator {
 
 	private List<DataSet> dataSet
 	
+	private boolean createProject = false
+	
 	new(List<DataSet> newDataSet) {
 		this.dataSet = newDataSet
+	}
+	
+	new(List<DataSet> newDataSet,boolean createProject) {
+		this.dataSet = newDataSet
+		this.createProject = createProject
 	}
 
 	/**
@@ -43,11 +50,17 @@ class JavaDTOGenerator implements IDTOGenerator {
 		logger.info("Start with code-generation of a java data transfer object.")
 		val filesToGenerate = new HashMap
 		
-		for (d : this.dataSet) {
-
-			filesToGenerate.put(addFileExtensionTo(d.toNameUpper), generateClassBody(d.toNameUpper, d))
-			
-			logger.info("File: " + addFileExtensionTo(d.toNameUpper) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
+		if (createProject) {
+			for (d : this.dataSet) {
+				filesToGenerate.put("src/de/fzi/sensidl/example/" + addFileExtensionTo(d.toNameUpper), generateClassBody(d.toNameUpper, d))
+				logger.info("File: " + addFileExtensionTo(d.toNameUpper) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
+			}
+		
+		} else{
+			for (d : this.dataSet) {
+				filesToGenerate.put(addFileExtensionTo(d.toNameUpper), generateClassBody(d.toNameUpper, d))
+				logger.info("File: " + addFileExtensionTo(d.toNameUpper) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
+			}
 		}
 		
 		filesToGenerate
@@ -58,7 +71,10 @@ class JavaDTOGenerator implements IDTOGenerator {
 	 */
 	def generateClassBody(String className, DataSet d) {
 		'''
+			«IF createProject»
+			package de.fzi.sensidl.example;
 			 
+			«ENDIF» 
 			import java.io.BufferedReader;
 			import java.io.ByteArrayInputStream;
 			import java.io.IOException;

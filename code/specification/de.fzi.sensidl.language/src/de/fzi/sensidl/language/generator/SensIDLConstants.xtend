@@ -10,11 +10,12 @@ class SensIDLConstants {
 	public static val UTILITY_CLASS_NAME = "Utility"
 	public static val LINEAR_CONVERSION_METHOD_NAME = "linearConversion"
 	public static val LINEAR_CONVERSION_WITH_INTERVAL_METHOD_NAME = "linearConversionWithInterval"
-	
+
 	public enum GenerationLanguage {
 		NONE,
 		ALL,
 		JAVA,
+		JAVA_PLUGIN_PROJECT,
 		JAVASCRIPT,
 		CSHARP,
 		C,
