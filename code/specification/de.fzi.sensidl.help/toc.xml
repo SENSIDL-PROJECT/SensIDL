@@ -23,6 +23,8 @@
  <topic href="html/examples/toc_examples.html" label="Examples">
     <topic href="html/examples/emeter.html" label="E-Meter">
     </topic>
+    <topic href="html/examples/eddystone.html" label="Eddystone">
+    </topic>
  </topic>
  <topic href="html/about/toc_about.html" label="About SensIDL">
  </topic>

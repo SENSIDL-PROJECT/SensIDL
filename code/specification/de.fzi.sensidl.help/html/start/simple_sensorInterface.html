@@ -10,27 +10,17 @@
 	<h1>A Simple Example SensorInterface</h1>
 	<code>
 
-		<strong>sensorInterface</strong> exampleInterface<em> /**This is
-			the Description for the Example Interface*/</em><strong> {</strong><br />
-		&nbsp;&nbsp;&nbsp;&nbsp;<strong>encoding</strong> SENSIDL_BINARY <strong>with</strong>
-		BIG_ENDIAN <strong>alignment</strong> 1 <strong>BIT</strong><br />
-		&nbsp;&nbsp;&nbsp;&nbsp;<strong>sensorData {</strong><br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>dataSet</strong>
-		ExampleDataSet <strong>{</strong> <br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		firstData <strong>as</strong> UINT8 <strong>constant value =</strong>
-		"1" <em>/**This is the description for the NonMeasurementData*/</em> <br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		secondData <strong>as</strong> FLOAT <strong>in</strong> Dimensionless
-		<strong>adjusted by linear mapping</strong> [0;255]<strong>
-			=&gt;</strong> [0;1] <em>/**This is the description for the
-			MeasurementData*/</em> <br /> <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			} </strong><br /> <strong> &nbsp;&nbsp;&nbsp;&nbsp; } </strong><br /> <strong>
-			}&nbsp;</strong>
+		<nobr><b>sensorInterface</b> exampleInterface <em>/**This is the description for the Example Interface*/</em> <b>{</b></nobr> <br>		
+		<nobr>&nbsp;&nbsp;&nbsp;&nbsp;<b>encoding</b> SENSIDL_BINARY <b>with</b> BIG_ENDIAN <b>alignment</b> 1 <b>BIT</b></nobr> <br>
+		<nobr>&nbsp;&nbsp;&nbsp;&nbsp;<b>sensorData {</b></nobr> <br>
+		<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>dataSet</b> ExampleDataSet <b>{</b> <br> </nobr>
+		<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;firstData <b>as</b> UINT8 <b>constant value =</b>"1" <em>/**This is the description for the NonMeasurementData*/</em> </nobr> <br >
+		<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;secondData <b>as</b> FLOAT <b>in</b> Dimensionless <b>adjusted by linear mapping</b> [0;255]<b>=&gt;</b> [0;1] <em>/**This is the description for the	MeasurementData*/</em> <br /> </nobr>
+		<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>}</b><br></nobr>             
+		<nobr>&nbsp;&nbsp;&nbsp;&nbsp;<b>}</b><br> </nobr>            
+		<nobr><b>}</b></nobr>
 
 	</code>
-
-
 
 </body>
 </html>
