@@ -35,8 +35,9 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 
 		// if a Plug-in Project is generated the file has to be generated to another path
 		if (createProject) {
-			filesToGenerate.put("src/de/fzi/sensidl/example/" + addFileExtensionTo(fileName),
-				generateClassBody(fileName))
+			filesToGenerate.put(
+				"src/de/fzi/sensidl/" + this.data.get(0).eContainer.getSensorInterfaceName + "/" +
+					addFileExtensionTo(fileName), generateClassBody(fileName))
 		} else {
 			filesToGenerate.put(addFileExtensionTo(fileName), generateClassBody(fileName))
 		}
@@ -57,7 +58,7 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 	def generateClassBody(String className) {
 		'''
 			«IF createProject»
-				package de.fzi.sensidl.example;
+				package de.fzi.sensidl.«this.data.get(0).eContainer.getSensorInterfaceName»;
 				 
 			«ENDIF» 
 			/**

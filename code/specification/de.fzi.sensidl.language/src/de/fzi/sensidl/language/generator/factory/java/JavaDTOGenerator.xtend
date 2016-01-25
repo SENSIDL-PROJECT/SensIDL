@@ -15,6 +15,8 @@ import java.util.ArrayList
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
+import org.eclipse.emf.ecore.EObject
+import de.fzi.sensidl.design.sensidl.SensorInterface
 
 /**
  * Java code generator for the SensIDL Model. 
@@ -52,7 +54,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 		
 		if (createProject) {
 			for (d : this.dataSet) {
-				filesToGenerate.put("src/de/fzi/sensidl/example/" + addFileExtensionTo(d.toNameUpper), generateClassBody(d.toNameUpper, d))
+				filesToGenerate.put("src/de/fzi/sensidl/" + this.dataSet.get(0).eContents.filter(Data).get(0).eContainer.getSensorInterfaceName +"/" + addFileExtensionTo(d.toNameUpper), generateClassBody(d.toNameUpper, d))
 				logger.info("File: " + addFileExtensionTo(d.toNameUpper) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
 			}
 		
@@ -72,7 +74,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 	def generateClassBody(String className, DataSet d) {
 		'''
 			«IF createProject»
-			package de.fzi.sensidl.example;
+			package de.fzi.sensidl.«d.eContents.filter(Data).get(0).eContainer.getSensorInterfaceName»;
 			 
 			«ENDIF» 
 			import java.io.BufferedReader;
@@ -204,7 +206,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			case DOUBLE: Double.name
 		}
 	}
-	
+
 	/**
 	 * returns the appropriate simple type name suitable for casting
 	 */
@@ -357,7 +359,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			final double offset = «conversion.offset»;
 			final double scalingFactor = «conversion.scalingFactor»;
 			
-			this.«data.toNameLower» = («data.toTypeName») «SensIDLConstants.UTILITY_CLASS_NAME».«SensIDLConstants.LINEAR_CONVERSION_METHOD_NAME»(«data.toNameLower», scalingFactor, offset);
+			this.«data.toNameLower» = («data.toSimpleTypeName») «data.eContainer.getSensorInterfaceName»«SensIDLConstants.UTILITY_CLASS_NAME».«SensIDLConstants.LINEAR_CONVERSION_METHOD_NAME»(«data.toNameLower», scalingFactor, offset);
 		'''
 	}
 	
@@ -368,7 +370,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			«data.toTypeName» newMin = («data.toSimpleTypeName») «conversion.toInterval.lowerBound»;
 			«data.toTypeName» newMax = («data.toSimpleTypeName») «conversion.toInterval.upperBound»;
 			
-			this.«data.toNameLower» = («data.toTypeName») «SensIDLConstants.UTILITY_CLASS_NAME».«SensIDLConstants.LINEAR_CONVERSION_WITH_INTERVAL_METHOD_NAME»(«data.toNameLower», oldMin, oldMax, newMin, newMax);
+			this.«data.toNameLower» = («data.toSimpleTypeName») «data.eContainer.getSensorInterfaceName»«SensIDLConstants.UTILITY_CLASS_NAME».«SensIDLConstants.LINEAR_CONVERSION_WITH_INTERVAL_METHOD_NAME»(«data.toNameLower», oldMin, oldMax, newMin, newMax);
 		'''
 	}
 
@@ -478,6 +480,16 @@ class JavaDTOGenerator implements IDTOGenerator {
 	
 	override addFileExtensionTo(String ClassName) {
 		return ClassName + SensIDLConstants.JAVA_EXTENSION
+	}
+	
+	/**
+	 * get the sensorInterface Name
+	 */
+	def String getSensorInterfaceName(EObject currentElement) {
+		if (currentElement instanceof SensorInterface) {
+			return (currentElement as SensorInterface).name
+		}
+		return currentElement.eContainer.sensorInterfaceName
 	}
 
 }
