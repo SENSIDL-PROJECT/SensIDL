@@ -14,32 +14,44 @@ import de.fzi.sensidl.language.generator.factory.plaintext.PlaintextGenerator
 
 class SkeletonGenerationStep extends GenerationStep {
 	private List<DataSet> dataSet
-		
+
 	new(ElementFilter filter) {
 		this.dataSet = filter.filterData()
 	}
-	
+
 	override startGenerationTask() {
 		this.startGenerationTask(initExecuter)
 	}
-	
+
 	private def initExecuter() {
-				return new HashMap<GenerationLanguage, IExecuter> => [
+		return new HashMap<GenerationLanguage, IExecuter> => [
 			put(GenerationLanguage.JAVA, [
 				val JavaGenerator generator = new JavaGenerator()
-				filesToGenerate => [putAll(generator.generateDTO(this.dataSet))]
+				val PlaintextGenerator generator2 = new PlaintextGenerator()
+				filesToGenerate => [
+					putAll(generator.generateDTO(this.dataSet))
+					putAll(generator2.generateDTO(this.dataSet))
+				]
 //				generator.generateDecoder
 //				generator.generateEncoder
 			])
 			put(GenerationLanguage.JAVA_PLUGIN_PROJECT, [
 				val JavaGenerator generator = new JavaGenerator()
-				filesToGenerate => [putAll(generator.generatePluginProject(this.dataSet))]
+				val PlaintextGenerator generator2 = new PlaintextGenerator()
+				filesToGenerate => [
+					putAll(generator.generatePluginProject(this.dataSet))
+					putAll(generator2.generateDTO(this.dataSet))
+				]
 //				generator.generateDecoder
 //				generator.generateEncoder
 			])
 			put(GenerationLanguage.C, [
 				val CGenerator generator = new CGenerator()
-				filesToGenerate => [putAll(generator.generateDTO(this.dataSet))]
+				val PlaintextGenerator generator2 = new PlaintextGenerator()
+				filesToGenerate => [
+					putAll(generator.generateDTO(this.dataSet))
+					putAll(generator2.generateDTO(this.dataSet))
+				]
 //				generator.generateDecoder
 //				generator.generateEncoder
 			])
@@ -51,17 +63,25 @@ class SkeletonGenerationStep extends GenerationStep {
 			])
 			put(GenerationLanguage.JAVASCRIPT, [
 				val JavaScriptGenerator generator = new JavaScriptGenerator()
-				filesToGenerate => [putAll(generator.generateDTO(this.dataSet))]
+				val PlaintextGenerator generator2 = new PlaintextGenerator()
+				filesToGenerate => [
+					putAll(generator.generateDTO(this.dataSet))
+					putAll(generator2.generateDTO(this.dataSet))
+				]
 //				generator.generateDecoder
 //				generator.generateEncoder
 			])
 			put(GenerationLanguage.PLAINTEXT, [
 				val PlaintextGenerator generator = new PlaintextGenerator()
-				filesToGenerate => [putAll(generator.generateDTO(this.dataSet))]
+				val PlaintextGenerator generator2 = new PlaintextGenerator()
+				filesToGenerate => [
+					putAll(generator.generateDTO(this.dataSet))
+					putAll(generator2.generateDTO(this.dataSet))
+				]
 //				generator.generateDecoder
 //				generator.generateEncoder
 			])
 		]
 	}
-	
+
 }
