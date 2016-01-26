@@ -17,6 +17,7 @@ import java.util.List
 import org.apache.log4j.Logger
 import org.eclipse.emf.ecore.EObject
 import de.fzi.sensidl.design.sensidl.SensorInterface
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 
 /**
  * Java code generator for the SensIDL Model. 
@@ -105,11 +106,11 @@ class JavaDTOGenerator implements IDTOGenerator {
 				 */
 				public «className» («d.generateConstructorArguments»){  
 					«FOR data : d.eContents.filter(MeasurementData)»
-						this.«data.toNameLower» = «data.toNameLower»;
+						this.«data.toNameLower» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («data.toNameLower» - «data.toTypeName».MAX_VALUE)«ELSE»«data.toNameLower»«ENDIF»;
 					«ENDFOR»
 					«FOR data : d.eContents.filter(NonMeasurementData)»
 						«IF !data.constant»
-							this.«data.toNameLower» = «data.toNameLower»;
+							this.«data.toNameLower» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («data.toNameLower» - «data.toTypeName».MAX_VALUE)«ELSE»«data.toNameLower»«ENDIF»;
 						«ENDIF»
 					«ENDFOR»
 					
@@ -170,9 +171,14 @@ class JavaDTOGenerator implements IDTOGenerator {
 				«IF d.description != null»
 				 /*
 				  *«d.description»
-				  */
+				 «IF d.dataType.isUnsigned» 
+				   * (Java has no option for unsigned data types, so if the data has an unsigned 
+				   * data type the value is calculated by subtracting the max value from the 
+				   * signed data type and adding it again, if it is used.) 
+				«ENDIF»
+				*/
 				«ENDIF» 
-				private static final «d.toTypeName» «d.name.toUpperCase» = «d.value»;
+				private static final «d.toTypeName» «d.name.toUpperCase» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («d.value» - «d.toTypeName».MAX_VALUE)«ELSE»«d.value»«ENDIF»;
 			'''
 		} else {
 			'''
@@ -205,6 +211,15 @@ class JavaDTOGenerator implements IDTOGenerator {
 			case FLOAT: Float.name
 			case DOUBLE: Double.name
 		}
+	}
+	/**
+	 * returns true if the DataType is an unsigned DataType
+	 */
+	def isUnsigned(DataType d){
+		if (d == DataType.UINT8 || d == DataType.UINT16 || d == DataType.UINT32 ||d == DataType.UINT64 ){
+			return true
+		}
+		return false
 	}
 
 	/**
@@ -248,10 +263,15 @@ class JavaDTOGenerator implements IDTOGenerator {
 	def generateGetter(MeasurementData d) {
 		'''
 			/**
+			«IF d.dataType.isUnsigned» 
+				* (Java has no option for unsigned data types, so if the data has an unsigned 
+				* data type the value is calculated by subtracting the max value from the 
+				* signed data type and adding it again, if it is used.)
+			«ENDIF»
 			 * @return the «d.toNameLower»
 			 */
 			public «d.toTypeName» «d.toGetterName»(){
-				return this.«d.toNameLower»;
+				return «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») (this.«d.toNameLower» + «d.toTypeName».MAX_VALUE)«ELSE»this.«d.toNameLower»«ENDIF»;
 			}
 		'''
 	}
@@ -262,10 +282,15 @@ class JavaDTOGenerator implements IDTOGenerator {
 	def generateGetter(NonMeasurementData d) {
 		'''
 			/**
+			«IF d.dataType.isUnsigned» 
+				* (Java has no option for unsigned data types, so if the data has an unsigned 
+				* data type the value is calculated by subtracting the max value from the 
+				* signed data type and adding it again, if it is used.)
+			«ENDIF»
 			 * @return the «d.toNameLower»
 			 */
 			public «d.toTypeName» «d.toGetterName»(){
-				return this.«IF d.constant»«d.name.toUpperCase»«ELSE»«d.toNameLower»«ENDIF»;
+				return «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («IF d.constant»«d.name.toUpperCase»«ELSE»this.«d.toNameLower»«ENDIF» + «d.toTypeName».MAX_VALUE)«ELSE»this.«IF d.constant»«d.name.toUpperCase»«ELSE»«d.toNameLower»«ENDIF»«ENDIF»;
 			}
 		'''
 	}
@@ -347,7 +372,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 					 */
 					public void «d.toSetterName»(«d.toTypeName» «d.toNameLower»){
 						
-						this.«d.toNameLower» = «d.toNameLower»;
+						this.«d.toNameLower» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («d.toNameLower» - «d.toTypeName».MAX_VALUE)«ELSE»«d.toNameLower»«ENDIF»;
 					} 
 				«ENDIF»
 				''' 
@@ -385,11 +410,16 @@ class JavaDTOGenerator implements IDTOGenerator {
 		} else {
 			'''
 				/**
+				«IF d.dataType.isUnsigned» 
+				 * (Java has no option for unsigned data types, so if the data has an unsigned 
+				 * data type the value is calculated by subtracting the max value from the 
+				 * signed data type and adding it again, if it is used.)
+				«ENDIF»
 				 * @param «d.toNameLower»
 				 *			the «d.toNameLower» to set
 				 */
 				public void «d.toSetterName»(«d.toTypeName» «d.toNameLower»){
-					this.«d.toNameLower» = «d.toNameLower»;
+					this.«d.toNameLower» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («d.toNameLower» - «d.toTypeName».MAX_VALUE)«ELSE»«d.toNameLower»«ENDIF»;
 				} 
 			'''
 		}
