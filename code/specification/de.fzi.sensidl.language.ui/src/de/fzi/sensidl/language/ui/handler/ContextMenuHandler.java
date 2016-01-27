@@ -45,7 +45,9 @@ public class ContextMenuHandler extends AbstractHandler implements IHandler {
 		return null;
 	}
 
-	// Load the Settings that are the path and the generation language
+	/*
+	 *  Load the Settings that are the path and the generation language
+	 */
 	private void loadSettings() {
 		path = SettingsHandler.loadPathSettings();
 		language = SettingsHandler.loadLanguageSettings();

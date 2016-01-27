@@ -17,7 +17,6 @@ import com.google.inject.Injector;
 
 import de.fzi.sensidl.language.SensidlStandaloneSetup;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
-import de.fzi.sensidl.language.generator.SensIDLConstants.GenerationLanguage;
 import de.fzi.sensidl.language.generator.SensidlGenerator;
 import de.fzi.sensidl.language.generator.factory.java.JavaPluginProjectGenerator;
 import de.fzi.sensidl.language.ui.exception.NoSidlFileException;
@@ -31,7 +30,7 @@ import de.fzi.sensidl.language.ui.exception.NoSidlFileException;
  */
 public class GenerationHandler {
 	private static SensidlGenerator generator;
-	private static GenerationLanguage generationLanguage = SensIDLConstants.GenerationLanguage.NONE;
+	private static SensIDLConstants.GenerationLanguage generationLanguage = SensIDLConstants.GenerationLanguage.NONE;
 
 	private GenerationHandler() {
 
@@ -59,7 +58,7 @@ public class GenerationHandler {
 		Injector injector = new SensidlStandaloneSetup().createInjectorAndDoEMFRegistration();
 
 		// Set JavaprojectGenerator variables if needed
-		if (generationLanguage == GenerationLanguage.JAVA_PLUGIN_PROJECT) {
+		if (generationLanguage == SensIDLConstants.GenerationLanguage.JAVA_PLUGIN_PROJECT) {
 			JavaPluginProjectGenerator.setProjectName(path.substring(path.lastIndexOf('/') + 1));
 		}
 
@@ -82,7 +81,7 @@ public class GenerationHandler {
 
 		// Use the JavaIoFileSystemAccess and set the path
 		final JavaIoFileSystemAccess fsa = new JavaIoFileSystemAccess();
-		fsa.setOutputPath(path/* + "\\JavaProject\\src" */);
+		fsa.setOutputPath(path);
 
 		generator = injector.getInstance(SensidlGenerator.class); // set up the
 		// generator
@@ -108,8 +107,8 @@ public class GenerationHandler {
 	 * 
 	 * @return the language
 	 */
-	public static String getGenerationLanguage() {
-		return generationLanguage.toString();
+	public static SensIDLConstants.GenerationLanguage getGenerationLanguage() {
+		return generationLanguage;
 	}
 
 	/**
@@ -121,25 +120,25 @@ public class GenerationHandler {
 	private static void setGenerationLanguage(String language) {
 		switch (language) {
 		case "Java":
-			generationLanguage = GenerationLanguage.JAVA;
+			generationLanguage = SensIDLConstants.GenerationLanguage.JAVA;
 			break;
 		case "Java Plug-in Project":
-			generationLanguage = GenerationLanguage.JAVA_PLUGIN_PROJECT;
+			generationLanguage = SensIDLConstants.GenerationLanguage.JAVA_PLUGIN_PROJECT;
 			break;
 		case "JavaScript":
-			generationLanguage = GenerationLanguage.JAVASCRIPT;
+			generationLanguage = SensIDLConstants.GenerationLanguage.JAVASCRIPT;
 			break;
 		case "C#":
-			generationLanguage = GenerationLanguage.CSHARP;
+			generationLanguage = SensIDLConstants.GenerationLanguage.CSHARP;
 			break;
 		case "C":
-			generationLanguage = GenerationLanguage.C;
+			generationLanguage = SensIDLConstants.GenerationLanguage.C;
 			break;
 		case "All":
-			generationLanguage = GenerationLanguage.ALL;
+			generationLanguage = SensIDLConstants.GenerationLanguage.ALL;
 			break;
 		default:
-			generationLanguage = GenerationLanguage.NONE;
+			generationLanguage = SensIDLConstants.GenerationLanguage.NONE;
 			break;
 		}
 

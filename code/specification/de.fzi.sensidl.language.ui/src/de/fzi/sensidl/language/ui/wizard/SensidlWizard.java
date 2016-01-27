@@ -93,7 +93,8 @@ public class SensidlWizard extends Wizard {
 			return false;
 		}
 
-		SettingsHandler.saveSettings(sensidlWizardPage.getTextPath(), sensidlWizardPage.getLanguage());
+		SettingsHandler.saveSettings(sensidlWizardPage.getTextModelPath(), sensidlWizardPage.getTextPath(),
+				sensidlWizardPage.getLanguage());
 		return true;
 	}
 
