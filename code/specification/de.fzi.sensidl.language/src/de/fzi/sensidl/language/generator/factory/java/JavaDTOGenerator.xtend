@@ -25,7 +25,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
  * 
  * @author Sven Eckhardt
  * @author Pawel Bielski 
- * 
+ * @author Max Peters 
  */
  
 class JavaDTOGenerator implements IDTOGenerator {
@@ -94,25 +94,12 @@ class JavaDTOGenerator implements IDTOGenerator {
 				
 				private static final long serialVersionUID = 1L;
 				
-				«FOR data : d.eContents.filter(NonMeasurementData)»
-					«generateDataFields(data)»
-				«ENDFOR»
-				«FOR data : d.eContents.filter(MeasurementData)»
-					«generateDataFields(data)»
-				«ENDFOR»
-				
+				«generateDataFieldsIncludeParentDataSet(d)»
+			
 				/**
 				 * Constructor for the Data transfer object
 				 */
-				public «className» («d.generateConstructorArguments»){  
-					«FOR data : d.eContents.filter(MeasurementData)»
-						this.«data.toNameLower» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («data.toNameLower» - «data.toTypeName».MAX_VALUE)«ELSE»«data.toNameLower»«ENDIF»;
-					«ENDFOR»
-					«FOR data : d.eContents.filter(NonMeasurementData)»
-						«IF !data.constant»
-							this.«data.toNameLower» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («data.toNameLower» - «data.toTypeName».MAX_VALUE)«ELSE»«data.toNameLower»«ENDIF»;
-						«ENDIF»
-					«ENDFOR»
+				«generateConstructorIncludeParentDataSet(d, className)»
 					
 				}
 				«IF createEmptyConstructor»
@@ -124,19 +111,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 				}
 				«ENDIF»
 				
-				«FOR data : d.eContents.filter(MeasurementData)»
-					«generateGetter(data)»
-					
-					«generateSetter(data)»
-					
-				«ENDFOR»
-				
-				«FOR data : d.eContents.filter(NonMeasurementData)»
-					«generateGetter(data)»
-					
-					«generateSetter(data)»
-					
-				«ENDFOR»
+				«generateDataMethodsIncludeParentDataSet(d)»
 					
 				«d.generateJsonUnmarshal»	
 				
@@ -144,13 +119,102 @@ class JavaDTOGenerator implements IDTOGenerator {
 			}
 		 '''
 	}
+	
+	/**
+	 * Generates the data fields for this data set including used data sets.
+	 */
+	def generateDataFieldsIncludeParentDataSet(DataSet d) {
+		var dataSet = d
+		var dataFieldsString =''''''
+		
+		while (dataSet!==null) {
+			for (data : dataSet.eContents.filter(NonMeasurementData)) {
+				dataFieldsString += generateDataFields(data)
+				dataFieldsString += System.getProperty("line.separator");
+				}
+			for (data : dataSet.eContents.filter(MeasurementData)) {
+				dataFieldsString += generateDataFields(data)
+				dataFieldsString += System.getProperty("line.separator");
+				}
+			dataSet = dataSet.parentDataSet
+		}
+		return dataFieldsString
+	}
+	
+	
+	/**
+	 * Generates the constructor for this data set including used data sets.
+	 */
+	def generateConstructorIncludeParentDataSet(DataSet d,String className) {
+		var dataSet = d
+		var constructorString ='''public «className» ('''
+		while (dataSet!==null) {
+			if(dataSet.parentDataSet!==null) {
+				constructorString +='''«dataSet.generateConstructorArguments», '''
+			}
+			else {
+				constructorString +='''«dataSet.generateConstructorArguments»)'''
+			}
+			dataSet = dataSet.parentDataSet
+		}
+		dataSet = d
+		constructorString += System.getProperty("line.separator");
+		var measurementDataList = new ArrayList<MeasurementData>
+		var nonMeasurementDataList = new ArrayList<NonMeasurementData>
+		while (dataSet!==null) {
+			measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
+			nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
+			dataSet = dataSet.parentDataSet
+		}
+		for (data : measurementDataList) {
+			constructorString += '''	this.«data.toNameLower» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («data.toNameLower» - «data.toTypeName».MAX_VALUE)«ELSE»«data.toNameLower»«ENDIF»;
+			'''
+			}
+		for (data : nonMeasurementDataList) {
+			if (!data.constant) {
+				constructorString += '''	this.«data.toNameLower» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («data.toNameLower» - «data.toTypeName».MAX_VALUE)«ELSE»«data.toNameLower»«ENDIF»;
+				'''
+			}
+		}
+		return constructorString
+	}
+
+	/**
+	 * Generates the getter and setter methods for the data of this data set including used data sets.
+	 */
+	def generateDataMethodsIncludeParentDataSet(DataSet d) {
+		var dataSet = d
+		var methodsString =''''''
+		var measurementDataList = new ArrayList<MeasurementData>
+		var nonMeasurementDataList = new ArrayList<NonMeasurementData>
+		while (dataSet!==null) {
+			measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
+			nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
+			dataSet = dataSet.parentDataSet
+		}
+	
+	
+			for (data : measurementDataList) {
+				methodsString += generateGetter(data)
+				methodsString += System.getProperty("line.separator");
+				methodsString += generateSetter(data)
+				methodsString += System.getProperty("line.separator");
+			}
+			for (data : nonMeasurementDataList) {
+				methodsString += generateGetter(data)
+				methodsString += System.getProperty("line.separator");
+				methodsString += generateSetter(data)
+				methodsString += System.getProperty("line.separator");
+			}
+		return methodsString
+	}
+
 
 	/**
 	 * Generates the fields for the measurement data
 	 */
 	def generateDataFields(MeasurementData d) {
 		'''
-			 
 			/*
 			«IF d.description != null» * «d.description»
 			 * 
@@ -167,7 +231,6 @@ class JavaDTOGenerator implements IDTOGenerator {
 	def generateDataFields(NonMeasurementData d) {
 		if (d.constant) {
 			'''
-				 
 				«IF d.description != null»
 				 /*
 				  *«d.description»
@@ -182,7 +245,6 @@ class JavaDTOGenerator implements IDTOGenerator {
 			'''
 		} else {
 			'''
-				 
 				«IF d.description != null»
 				 /*
 				  *«d.description»
