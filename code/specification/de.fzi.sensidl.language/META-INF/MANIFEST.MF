@@ -25,13 +25,14 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  com.google.inject;bundle-version="3.0.0",
  org.eclipse.jdt.launching
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: de.fzi.sensidl.language.parser.antlr,
- de.fzi.sensidl.language.parser.antlr.internal,
- de.fzi.sensidl.language.serializer,
- de.fzi.sensidl.language.services,
- de.fzi.sensidl.language,
+Export-Package: de.fzi.sensidl.language,
  de.fzi.sensidl.language.formatting,
  de.fzi.sensidl.language.generator,
+ de.fzi.sensidl.language.generator.factory.java,
+ de.fzi.sensidl.language.parser.antlr,
+ de.fzi.sensidl.language.parser.antlr.internal,
  de.fzi.sensidl.language.scoping,
+ de.fzi.sensidl.language.serializer,
+ de.fzi.sensidl.language.services,
  de.fzi.sensidl.language.validation
 Import-Package: org.apache.log4j

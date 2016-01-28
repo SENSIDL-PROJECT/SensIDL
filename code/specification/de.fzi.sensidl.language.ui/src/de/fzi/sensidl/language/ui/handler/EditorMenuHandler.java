@@ -18,7 +18,6 @@ import de.fzi.sensidl.language.ui.wizard.SensidlWizardDialog;
  * @author Sven Eckhardt
  *
  */
-
 public class EditorMenuHandler extends AbstractHandler implements IHandler {
 	private String path;
 	private String language;
@@ -44,7 +43,9 @@ public class EditorMenuHandler extends AbstractHandler implements IHandler {
 		return null;
 	}
 
-	// Load the Settings that are the path and the generation language
+	/*
+	 * Load the Settings that are the path and the generation language
+	 */
 	private void loadSettings() {
 		path = SettingsHandler.loadPathSettings();
 		language = SettingsHandler.loadLanguageSettings();

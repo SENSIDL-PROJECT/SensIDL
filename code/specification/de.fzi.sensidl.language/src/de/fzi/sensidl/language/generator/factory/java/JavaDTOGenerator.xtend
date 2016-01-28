@@ -15,6 +15,9 @@ import java.util.ArrayList
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
+import org.eclipse.emf.ecore.EObject
+import de.fzi.sensidl.design.sensidl.SensorInterface
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 
 /**
  * Java code generator for the SensIDL Model. 
@@ -22,7 +25,7 @@ import org.apache.log4j.Logger
  * 
  * @author Sven Eckhardt
  * @author Pawel Bielski 
- * 
+ * @author Max Peters 
  */
  
 class JavaDTOGenerator implements IDTOGenerator {
@@ -32,8 +35,15 @@ class JavaDTOGenerator implements IDTOGenerator {
 
 	private List<DataSet> dataSet
 	
+	private boolean createProject = false
+	
 	new(List<DataSet> newDataSet) {
 		this.dataSet = newDataSet
+	}
+	
+	new(List<DataSet> newDataSet,boolean createProject) {
+		this.dataSet = newDataSet
+		this.createProject = createProject
 	}
 
 	/**
@@ -43,11 +53,17 @@ class JavaDTOGenerator implements IDTOGenerator {
 		logger.info("Start with code-generation of a java data transfer object.")
 		val filesToGenerate = new HashMap
 		
-		for (d : this.dataSet) {
-
-			filesToGenerate.put(addFileExtensionTo(d.toNameUpper), generateClassBody(d.toNameUpper, d))
-			
-			logger.info("File: " + addFileExtensionTo(d.toNameUpper) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
+		if (createProject) {
+			for (d : this.dataSet) {
+				filesToGenerate.put("src/de/fzi/sensidl/" + this.dataSet.get(0).eContents.filter(Data).get(0).eContainer.getSensorInterfaceName +"/" + addFileExtensionTo(d.toNameUpper), generateClassBody(d.toNameUpper, d))
+				logger.info("File: " + addFileExtensionTo(d.toNameUpper) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
+			}
+		
+		} else{
+			for (d : this.dataSet) {
+				filesToGenerate.put(addFileExtensionTo(d.toNameUpper), generateClassBody(d.toNameUpper, d))
+				logger.info("File: " + addFileExtensionTo(d.toNameUpper) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
+			}
 		}
 		
 		filesToGenerate
@@ -58,7 +74,10 @@ class JavaDTOGenerator implements IDTOGenerator {
 	 */
 	def generateClassBody(String className, DataSet d) {
 		'''
+			«IF createProject»
+			package de.fzi.sensidl.«d.eContents.filter(Data).get(0).eContainer.getSensorInterfaceName»;
 			 
+			«ENDIF» 
 			import java.io.BufferedReader;
 			import java.io.ByteArrayInputStream;
 			import java.io.IOException;
@@ -75,25 +94,12 @@ class JavaDTOGenerator implements IDTOGenerator {
 				
 				private static final long serialVersionUID = 1L;
 				
-				«FOR data : d.eContents.filter(NonMeasurementData)»
-					«generateDataFields(data)»
-				«ENDFOR»
-				«FOR data : d.eContents.filter(MeasurementData)»
-					«generateDataFields(data)»
-				«ENDFOR»
-				
+				«generateDataFieldsIncludeParentDataSet(d)»
+			
 				/**
 				 * Constructor for the Data transfer object
 				 */
-				public «className» («d.generateConstructorArguments»){  
-					«FOR data : d.eContents.filter(MeasurementData)»
-						this.«data.toNameLower» = «data.toNameLower»;
-					«ENDFOR»
-					«FOR data : d.eContents.filter(NonMeasurementData)»
-						«IF !data.constant»
-							this.«data.toNameLower» = «data.toNameLower»;
-						«ENDIF»
-					«ENDFOR»
+				«generateConstructorIncludeParentDataSet(d, className)»
 					
 				}
 				«IF createEmptyConstructor»
@@ -105,19 +111,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 				}
 				«ENDIF»
 				
-				«FOR data : d.eContents.filter(MeasurementData)»
-					«generateGetter(data)»
-					
-					«generateSetter(data)»
-					
-				«ENDFOR»
-				
-				«FOR data : d.eContents.filter(NonMeasurementData)»
-					«generateGetter(data)»
-					
-					«generateSetter(data)»
-					
-				«ENDFOR»
+				«generateDataMethodsIncludeParentDataSet(d)»
 					
 				«d.generateJsonUnmarshal»	
 				
@@ -125,13 +119,102 @@ class JavaDTOGenerator implements IDTOGenerator {
 			}
 		 '''
 	}
+	
+	/**
+	 * Generates the data fields for this data set including used data sets.
+	 */
+	def generateDataFieldsIncludeParentDataSet(DataSet d) {
+		var dataSet = d
+		var dataFieldsString =''''''
+		
+		while (dataSet!==null) {
+			for (data : dataSet.eContents.filter(NonMeasurementData)) {
+				dataFieldsString += generateDataFields(data)
+				dataFieldsString += System.getProperty("line.separator");
+				}
+			for (data : dataSet.eContents.filter(MeasurementData)) {
+				dataFieldsString += generateDataFields(data)
+				dataFieldsString += System.getProperty("line.separator");
+				}
+			dataSet = dataSet.parentDataSet
+		}
+		return dataFieldsString
+	}
+	
+	
+	/**
+	 * Generates the constructor for this data set including used data sets.
+	 */
+	def generateConstructorIncludeParentDataSet(DataSet d,String className) {
+		var dataSet = d
+		var constructorString ='''public «className» ('''
+		while (dataSet!==null) {
+			if(dataSet.parentDataSet!==null) {
+				constructorString +='''«dataSet.generateConstructorArguments», '''
+			}
+			else {
+				constructorString +='''«dataSet.generateConstructorArguments»)'''
+			}
+			dataSet = dataSet.parentDataSet
+		}
+		dataSet = d
+		constructorString += System.getProperty("line.separator");
+		var measurementDataList = new ArrayList<MeasurementData>
+		var nonMeasurementDataList = new ArrayList<NonMeasurementData>
+		while (dataSet!==null) {
+			measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
+			nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
+			dataSet = dataSet.parentDataSet
+		}
+		for (data : measurementDataList) {
+			constructorString += '''	this.«data.toNameLower» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («data.toNameLower» - «data.toTypeName».MAX_VALUE)«ELSE»«data.toNameLower»«ENDIF»;
+			'''
+			}
+		for (data : nonMeasurementDataList) {
+			if (!data.constant) {
+				constructorString += '''	this.«data.toNameLower» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («data.toNameLower» - «data.toTypeName».MAX_VALUE)«ELSE»«data.toNameLower»«ENDIF»;
+				'''
+			}
+		}
+		return constructorString
+	}
+
+	/**
+	 * Generates the getter and setter methods for the data of this data set including used data sets.
+	 */
+	def generateDataMethodsIncludeParentDataSet(DataSet d) {
+		var dataSet = d
+		var methodsString =''''''
+		var measurementDataList = new ArrayList<MeasurementData>
+		var nonMeasurementDataList = new ArrayList<NonMeasurementData>
+		while (dataSet!==null) {
+			measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
+			nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
+			dataSet = dataSet.parentDataSet
+		}
+	
+	
+			for (data : measurementDataList) {
+				methodsString += generateGetter(data)
+				methodsString += System.getProperty("line.separator");
+				methodsString += generateSetter(data)
+				methodsString += System.getProperty("line.separator");
+			}
+			for (data : nonMeasurementDataList) {
+				methodsString += generateGetter(data)
+				methodsString += System.getProperty("line.separator");
+				methodsString += generateSetter(data)
+				methodsString += System.getProperty("line.separator");
+			}
+		return methodsString
+	}
+
 
 	/**
 	 * Generates the fields for the measurement data
 	 */
 	def generateDataFields(MeasurementData d) {
 		'''
-			 
 			/*
 			«IF d.description != null» * «d.description»
 			 * 
@@ -148,17 +231,20 @@ class JavaDTOGenerator implements IDTOGenerator {
 	def generateDataFields(NonMeasurementData d) {
 		if (d.constant) {
 			'''
-				 
 				«IF d.description != null»
 				 /*
 				  *«d.description»
-				  */
+				 «IF d.dataType.isUnsigned» 
+				   * (Java has no option for unsigned data types, so if the data has an unsigned 
+				   * data type the value is calculated by subtracting the max value from the 
+				   * signed data type and adding it again, if it is used.) 
+				«ENDIF»
+				*/
 				«ENDIF» 
-				private static final «d.toTypeName» «d.name.toUpperCase» = «d.value»;
+				private static final «d.toTypeName» «d.name.toUpperCase» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («d.value» - «d.toTypeName».MAX_VALUE)«ELSE»«d.value»«ENDIF»;
 			'''
 		} else {
 			'''
-				 
 				«IF d.description != null»
 				 /*
 				  *«d.description»
@@ -188,7 +274,16 @@ class JavaDTOGenerator implements IDTOGenerator {
 			case DOUBLE: Double.name
 		}
 	}
-	
+	/**
+	 * returns true if the DataType is an unsigned DataType
+	 */
+	def isUnsigned(DataType d){
+		if (d == DataType.UINT8 || d == DataType.UINT16 || d == DataType.UINT32 ||d == DataType.UINT64 ){
+			return true
+		}
+		return false
+	}
+
 	/**
 	 * returns the appropriate simple type name suitable for casting
 	 */
@@ -230,10 +325,15 @@ class JavaDTOGenerator implements IDTOGenerator {
 	def generateGetter(MeasurementData d) {
 		'''
 			/**
+			«IF d.dataType.isUnsigned» 
+				* (Java has no option for unsigned data types, so if the data has an unsigned 
+				* data type the value is calculated by subtracting the max value from the 
+				* signed data type and adding it again, if it is used.)
+			«ENDIF»
 			 * @return the «d.toNameLower»
 			 */
 			public «d.toTypeName» «d.toGetterName»(){
-				return this.«d.toNameLower»;
+				return «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») (this.«d.toNameLower» + «d.toTypeName».MAX_VALUE)«ELSE»this.«d.toNameLower»«ENDIF»;
 			}
 		'''
 	}
@@ -244,10 +344,15 @@ class JavaDTOGenerator implements IDTOGenerator {
 	def generateGetter(NonMeasurementData d) {
 		'''
 			/**
+			«IF d.dataType.isUnsigned» 
+				* (Java has no option for unsigned data types, so if the data has an unsigned 
+				* data type the value is calculated by subtracting the max value from the 
+				* signed data type and adding it again, if it is used.)
+			«ENDIF»
 			 * @return the «d.toNameLower»
 			 */
 			public «d.toTypeName» «d.toGetterName»(){
-				return this.«IF d.constant»«d.name.toUpperCase»«ELSE»«d.toNameLower»«ENDIF»;
+				return «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («IF d.constant»«d.name.toUpperCase»«ELSE»this.«d.toNameLower»«ENDIF» + «d.toTypeName».MAX_VALUE)«ELSE»this.«IF d.constant»«d.name.toUpperCase»«ELSE»«d.toNameLower»«ENDIF»«ENDIF»;
 			}
 		'''
 	}
@@ -329,7 +434,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 					 */
 					public void «d.toSetterName»(«d.toTypeName» «d.toNameLower»){
 						
-						this.«d.toNameLower» = «d.toNameLower»;
+						this.«d.toNameLower» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («d.toNameLower» - «d.toTypeName».MAX_VALUE)«ELSE»«d.toNameLower»«ENDIF»;
 					} 
 				«ENDIF»
 				''' 
@@ -341,7 +446,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			final double offset = «conversion.offset»;
 			final double scalingFactor = «conversion.scalingFactor»;
 			
-			this.«data.toNameLower» = («data.toTypeName») «SensIDLConstants.UTILITY_CLASS_NAME».«SensIDLConstants.LINEAR_CONVERSION_METHOD_NAME»(«data.toNameLower», scalingFactor, offset);
+			this.«data.toNameLower» = («data.toSimpleTypeName») «data.eContainer.getSensorInterfaceName»«SensIDLConstants.UTILITY_CLASS_NAME».«SensIDLConstants.LINEAR_CONVERSION_METHOD_NAME»(«data.toNameLower», scalingFactor, offset);
 		'''
 	}
 	
@@ -352,7 +457,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			«data.toTypeName» newMin = («data.toSimpleTypeName») «conversion.toInterval.lowerBound»;
 			«data.toTypeName» newMax = («data.toSimpleTypeName») «conversion.toInterval.upperBound»;
 			
-			this.«data.toNameLower» = («data.toTypeName») «SensIDLConstants.UTILITY_CLASS_NAME».«SensIDLConstants.LINEAR_CONVERSION_WITH_INTERVAL_METHOD_NAME»(«data.toNameLower», oldMin, oldMax, newMin, newMax);
+			this.«data.toNameLower» = («data.toSimpleTypeName») «data.eContainer.getSensorInterfaceName»«SensIDLConstants.UTILITY_CLASS_NAME».«SensIDLConstants.LINEAR_CONVERSION_WITH_INTERVAL_METHOD_NAME»(«data.toNameLower», oldMin, oldMax, newMin, newMax);
 		'''
 	}
 
@@ -367,11 +472,16 @@ class JavaDTOGenerator implements IDTOGenerator {
 		} else {
 			'''
 				/**
+				«IF d.dataType.isUnsigned» 
+				 * (Java has no option for unsigned data types, so if the data has an unsigned 
+				 * data type the value is calculated by subtracting the max value from the 
+				 * signed data type and adding it again, if it is used.)
+				«ENDIF»
 				 * @param «d.toNameLower»
 				 *			the «d.toNameLower» to set
 				 */
 				public void «d.toSetterName»(«d.toTypeName» «d.toNameLower»){
-					this.«d.toNameLower» = «d.toNameLower»;
+					this.«d.toNameLower» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («d.toNameLower» - «d.toTypeName».MAX_VALUE)«ELSE»«d.toNameLower»«ENDIF»;
 				} 
 			'''
 		}
@@ -462,6 +572,16 @@ class JavaDTOGenerator implements IDTOGenerator {
 	
 	override addFileExtensionTo(String ClassName) {
 		return ClassName + SensIDLConstants.JAVA_EXTENSION
+	}
+	
+	/**
+	 * get the sensorInterface Name
+	 */
+	def String getSensorInterfaceName(EObject currentElement) {
+		if (currentElement instanceof SensorInterface) {
+			return (currentElement as SensorInterface).name
+		}
+		return currentElement.eContainer.sensorInterfaceName
 	}
 
 }

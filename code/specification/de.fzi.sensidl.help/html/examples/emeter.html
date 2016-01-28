@@ -8,67 +8,71 @@
 
 <body>
 	<h1>E-Meter Example</h1>
-
+	
+	<p> This example demonstrates how SensIDL can be used to describe the eMeter-sensor. </p>
+	
+	<p> Example Code (The code can also be installed at New > Example... > SensIDL Examples > 
+		Emeter Example): </p>
+	
 	<p>
 		<code>
-			<strong>sensorInterface</strong> eMeter<em> /**Interface for
-				devices measuring electronic current.*/</em> <strong>{</strong><br />
-			&nbsp;&nbsp;&nbsp;&nbsp; <strong>encoding</strong> SENSIDL_BINARY <strong>with</strong>
-			BIG_ENDIAN&nbsp; <strong>alignment</strong> 1 <strong>BIT</strong><br />
-			&nbsp;&nbsp;&nbsp;&nbsp; <strong>sensorData {</strong><br /> <strong>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dataSet</strong> Conductor <strong>{</strong><br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			deviceType <strong>as</strong> UINT8 <strong>constant</strong> <strong>value=</strong>
-			"40" <em>/**Type 40 denotes eMeter.*/</em><br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			recordType <strong>as</strong> UINT8 <strong>value=</strong> "1"<em>
-				/**Distinct type for this data set.*/</em><br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			voltage <strong>as</strong> INT16 <strong>in</strong> V <br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			current <strong>as</strong> FLOAT <strong>in</strong> A<br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			power <strong>as</strong> FLOAT <strong>in</strong> W <br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			powerFactor <strong>as</strong> UINT16 <strong>in</strong>
-			Dimensionless <strong>adjusted by linear mapping</strong> [0;255]<strong>
-				=&gt;</strong> [0;1]<em> /**Power factor for this conductor. 0 if not
-				available.*/</em><br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			identicator <strong>as</strong> UINT8 <em>/**Identifier to
-				correlate measurements for different conductors.*/</em><br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong> }</strong><br />
-			<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>dataSet</strong>
-			NeutralConductor<em> /**Data description of NeutralConductor*/</em> <strong>{</strong><br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			deviceType <strong>as</strong> UINT8 <strong>constant value=</strong>
-			"40" <em>/**Type 40 denotes eMeter.*/</em><br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			recordType <strong>as</strong> UINT8 <strong>value=</strong> "4" <em>/**Distinct
-				type for this data set.*/</em><br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			current <strong>as</strong> FLOAT <strong>in</strong> A<br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			powerFactor <strong>as</strong> UINT16 <strong>in</strong>
-			Dimensionless<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>
-				}</strong><br /> <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>dataSet</strong>
-			Energy <em>/**Data description of Energy*/</em> <strong>{</strong><br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			deviceType <strong>as</strong> UINT8 <strong>constant value=</strong>
-			"40" <em>/**Type 40 denotes eMeter.*/</em><br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			recordType <strong>as</strong> UINT8 <strong>value</strong>= "5" <em>/**Distinct
-				type for this data set.*/</em><br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			l1 <strong>as</strong> INT16 <strong>in</strong> kW <em>/**Energy
-				amount for conductor L1.*/</em><br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			l2 <strong>as</strong> FLOAT <strong>in</strong> kW <em>/**Energy
-				amount for conductor L2.*/</em><br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			l3 <strong>as</strong> FLOAT <strong>in</strong> kW <em>/**Energy
-				amount for conductor L3.*/</em><br /> <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				}</strong><br /> <strong> &nbsp;&nbsp;&nbsp;&nbsp;}</strong><br /> <strong>}</strong>
+			<nobr><b>sensorInterface</b> eMeter<em> /**Interface for devices measuring electronic current.*/</em> <b>{</b><br> </nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp; <b>encoding</b> SENSIDL_BINARY <b>with</b> BIG_ENDIAN&nbsp; <b>alignment</b> 1 <b>BIT</b><br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp; <b>sensorData {</b><br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>dataSet</b> Conductor <b>{</b><br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deviceType <b>as</b> UINT8 <b>constant</b> <b>value=</b>"40" <em>/**Type 40 denotes eMeter.*/</em><br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;recordType <b>as</b> UINT8 <b>value=</b> "1"<em>/**Distinct type for this data set.*/</em><br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;voltage <b>as</b> INT16 <b>in</b> V <br></nobr>
+			
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;current <b>as</b> FLOAT <b>in</b> A<br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;power <b>as</b> FLOAT <b>in</b> W <br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;powerFactor <b>as</b> UINT16 <b>in</b> Dimensionless <b>adjusted by linear mapping</b> [0;255]<b>=&gt;</b> [0;1]<em> /**Power factor for this conductor. 0 if not available.*/</em><br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identicator <b>as</b> UINT8 <em>/**Identifier to correlate measurements for different conductors.*/</em><br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> }</b><br></nobr>
+
+			<br>
+			
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>dataSet</b> NeutralConductor<em> /**Data description of NeutralConductor*/</em> <b>{</b><br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deviceType <b>as</b> UINT8 <b>constant value=</b>"40" <em>/**Type 40 denotes eMeter.*/</em><br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;recordType <b>as</b> UINT8 <b>value=</b> "4" <em>/**Distinct type for this data set.*/</em><br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;current <b>as</b> FLOAT <b>in</b> A<br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;powerFactor <b>as</b> UINT16 <b>in</b>Dimensionless<br></nobr>
+ 
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>}</b><br></nobr>
+ 
+			<br>
+			
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>dataSet</b> Energy <em>/**Data description of Energy*/</em> <b>{</b><br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deviceType <b>as</b> UINT8 <b>constant value=</b>"40" <em>/**Type 40 denotes eMeter.*/</em><br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;recordType <b>as</b> UINT8 <b>value</b>= "5" <em>/**Distinct type for this data set.*/</em><br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l1 <b>as</b> INT16 <b>in</b> kW <em>/**Energy amount for conductor L1.*/</em><br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l2 <b>as</b> FLOAT <b>in</b> kW <em>/**Energy amount for conductor L2.*/</em><br></nobr>
+
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l3 <b>as</b> FLOAT <b>in</b> kW <em>/**Energy amount for conductor L3.*/</em><br></nobr>
+			
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>}</b><br></nobr>
+			
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;<b>}</b><br></nobr>
+			
+			<b>}</b>
 		</code>
 	</p>
 

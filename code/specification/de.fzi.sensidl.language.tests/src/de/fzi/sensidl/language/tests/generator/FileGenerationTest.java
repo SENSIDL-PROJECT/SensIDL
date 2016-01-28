@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import org.apache.commons.io.FileDeleteStrategy;
 import org.junit.After;
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -15,17 +15,27 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationP
 import de.fzi.sensidl.language.ui.exception.NoSidlFileException;
 import de.fzi.sensidl.language.ui.handler.GenerationHandler;
 
+/**
+ * This class checks, if the generators generate just the desired files.
+ * 
+ * @author Max Peters
+ * 
+ */
 public class FileGenerationTest {
-	private static File			testGenDir;
-	static Map<String, Boolean>	map;
-	private static String[]		dataSets			= { "Conductor", "NeutralConductor", "Energy" };
-	private static String		sensorInterfaceName	= "EMeter";
+	private static File					generationDirectory;
+	private static Map<String, Boolean>	map;
+	private static String[]				dataSets	= { "Conductor", "NeutralConductor", "Energy" };
 
+	/**
+	 * Creates or empties the test generation directory.
+	 * 
+	 * @throws IOException
+	 */
 	@BeforeClass static public void setUp() throws IOException {
 		DataRepresentationPackageImpl.init();
-		testGenDir = new File("test-gen/generator");
-		if (!testGenDir.exists()) {
-			testGenDir.mkdir();
+		generationDirectory = new File("test-gen/generator");
+		if (!generationDirectory.exists()) {
+			generationDirectory.mkdir();
 		}
 		else {
 			deleteGen();
@@ -33,63 +43,61 @@ public class FileGenerationTest {
 		map = new HashMap<String, Boolean>();
 	}
 
+	@Before public void addFiles() {
+		map.put("sidlTestCode.sensidl", false);
+		map.put("EMeter.txt", false);
+	}
+
+	/**
+	 * test class for java generator
+	 * 
+	 * @throws IOException
+	 * @throws NoSidlFileException
+	 */
 	@Test public void javaFilesGenerationTest() throws IOException, NoSidlFileException {
 		for (int i = 0; i < dataSets.length; i++) {
 			map.put(dataSets[i] + ".java", false);
 		}
-		GenerationHandler.generate(testGenDir.getPath(), "resource/generator/sidlTestCode.sidl", "Java");
-		for (String file : testGenDir.list()) {
-			if (map.containsKey(file)) {
-				map.put(file, true);
-			}
-			else if (checkFile(file, "sidlTestCode")) {}
-			else {
-				throw new AssertionError(file + " should not get generated");
-			}
-		}
-		for (Entry<String, Boolean> entry : map.entrySet()) {
-			Assert.assertTrue(entry.getValue());
-		}
-		Assert.assertTrue(containsTextAndSensidl("sidlTestCode"));
+		map.put("eMeterUtility.java", false);
+		GenerationHandler.generate(generationDirectory.getPath(), "resource/generator/sidlTestCode.sidl", "Java");
+		checkGeneratedFiles();
 	}
 
+	/**
+	 * test class for javasript generator
+	 * 
+	 * @throws IOException
+	 * @throws NoSidlFileException
+	 */
 	@Test public void javascriptFilesGenerationTest() throws IOException, NoSidlFileException {
-		boolean containsJSFile = false;
-		GenerationHandler.generate(testGenDir.getPath(), "resource/generator/sidlTestCode.sidl", "JavaScript");
-		for (String file : testGenDir.list()) {
-			if (file.equals(sensorInterfaceName + ".js")) {
-				containsJSFile = true;
-			}
-			else if (checkFile(file, "sidlTestCode")) {}
-			else {
-				throw new AssertionError(file + " should not get generated");
-			}
+		for (int i = 0; i < dataSets.length; i++) {
+			map.put(dataSets[i] + ".js", false);
 		}
-		Assert.assertTrue(containsJSFile);
-		Assert.assertTrue(containsTextAndSensidl("sidlTestCode"));
+		GenerationHandler.generate(generationDirectory.getPath(), "resource/generator/sidlTestCode.sidl", "JavaScript");
+		checkGeneratedFiles();
 	}
 
+	/**
+	 * test class for c generator
+	 * 
+	 * @throws IOException
+	 * @throws NoSidlFileException
+	 */
 	@Test public void CFilesGenerationTest() throws IOException, NoSidlFileException {
 		for (int i = 0; i < dataSets.length; i++) {
 			map.put(dataSets[i] + ".c", false);
 			map.put(dataSets[i] + ".h", false);
 		}
-		GenerationHandler.generate(testGenDir.getPath(), "resource/generator/sidlTestCode.sidl", "C");
-		for (String file : testGenDir.list()) {
-			if (map.containsKey(file)) {
-				map.put(file, true);
-			}
-			else if (checkFile(file, "sidlTestCode")) {}
-			else {
-				throw new AssertionError(file + " should not get generated");
-			}
-		}
-		for (Entry<String, Boolean> entry : map.entrySet()) {
-			Assert.assertTrue(entry.getValue());
-		}
-		Assert.assertTrue(containsTextAndSensidl("sidlTestCode"));
+		GenerationHandler.generate(generationDirectory.getPath(), "resource/generator/sidlTestCode.sidl", "C");
+		checkGeneratedFiles();
 	}
 
+	/**
+	 * test class for c# generator
+	 * 
+	 * @throws IOException
+	 * @throws NoSidlFileException
+	 */
 	@Test @Ignore public void CSharpFilesGenerationTest() throws IOException {
 		// not yet implemented
 	}
@@ -99,33 +107,32 @@ public class FileGenerationTest {
 		map.clear();
 	}
 
-	private boolean checkFile(String file, String sidlFileName) {
-		if (file.equals(sensorInterfaceName + ".txt")) {
-			return true;
-		}
-		else if (file.equals(sidlFileName + ".sensidl")) {
-			return true;
-		}
-		else
-			return false;
-	}
-
-	private boolean containsTextAndSensidl(String sidlFileName) {
-		boolean containsText = false;
-		boolean containsSensidl = false;
-		for (String file : testGenDir.list()) {
-			if (file.equals(sensorInterfaceName + ".txt")) {
-				containsText = true;
+	/**
+	 * Checks if the generators generated just the desired files.
+	 */
+	private void checkGeneratedFiles() {
+		for (String file : generationDirectory.list()) {
+			if (map.containsKey(file)) {
+				map.put(file, true);
 			}
-			else if (file.equals(sidlFileName + ".sensidl")) {
-				containsSensidl = true;
+			else {
+				throw new AssertionError(file + " should not get generated");
 			}
 		}
-		return containsText & containsSensidl;
+		for (Entry<String, Boolean> entry : map.entrySet()) {
+			if (!entry.getValue()) {
+				throw new AssertionError(entry.getKey() + " is missing");
+			}
+		}
 	}
 
+	/**
+	 * Removes all files in the test generation directory.
+	 * 
+	 * @throws IOException
+	 */
 	private static void deleteGen() throws IOException {
-		for (File file : testGenDir.listFiles()) {
+		for (File file : generationDirectory.listFiles()) {
 			FileDeleteStrategy.FORCE.delete(file);
 		}
 	}

@@ -4,17 +4,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
-
 import com.google.common.collect.Iterables;
-
 import de.fzi.sensidl.design.sensidl.IdentifiableElement;
 import de.fzi.sensidl.design.sensidl.NamedElement;
 import de.fzi.sensidl.design.sensidl.SensorInterface;
@@ -39,31 +35,29 @@ import de.fzi.sensidl.language.generator.factory.IDTOGenerator;
 public class PlaintextDTOGenerator implements IDTOGenerator {
 	private static Logger		logger			= Logger.getLogger(PlaintextDTOGenerator.class);
 	private final static String	TEXT_EXTENSION	= ".txt";
-	private List<DataSet> dataSet;
-	
+	private List<DataSet>		dataSet;
+
 	public PlaintextDTOGenerator(List<DataSet> newDataSet) {
 		this.dataSet = newDataSet;
 	}
-	
+
 	/**
 	 * Generates the .txt files
-	 * @return 
+	 * 
+	 * @return
 	 */
-	@Override
-	public HashMap<String, CharSequence> generate() {
+	@Override public HashMap<String, CharSequence> generate() {
 		PlaintextDTOGenerator.logger.info("Start with text generation.");
-		
 		HashMap<String, CharSequence> filesToGenerate = new HashMap<String, CharSequence>();
-
-		SensorInterface sensorInterface = getSensorInterfaceName((EObject) this.dataSet.get(0).eContainer());
+		SensorInterface sensorInterface = getSensorInterfaceName(this.dataSet.get(0).eContainer());
 		filesToGenerate.put(this.addFileExtensionTo(StringExtensions.toFirstUpper(sensorInterface.getName())), generateDocumentation(sensorInterface));
 		PlaintextDTOGenerator.logger.info("File: "+ this.addFileExtensionTo(StringExtensions.toFirstUpper(sensorInterface.getName())) + " was generated in "
 											+ SensIDLOutputConfigurationProvider.SENSIDL_GEN);
 		return filesToGenerate;
 	}
-	
+
 	private SensorInterface getSensorInterfaceName(EObject currentElement) {
-		if(currentElement instanceof SensorInterface) {
+		if (currentElement instanceof SensorInterface) {
 			return ((SensorInterface) currentElement);
 		}
 		return getSensorInterfaceName(currentElement.eContainer());
@@ -141,6 +135,10 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 			}
 			_builder.append(dataString + ".");
 			_builder.newLine();
+			if (dataSet.getParentDataSet() != null) {
+				_builder.append("This data set uses the data set \"" + dataSet.getParentDataSet().getName() + "\".");
+				_builder.newLine();
+			}
 			addDescription(dataSet, _builder);
 			for (Data data : dataSet.getData()) {
 				_builder.newLineIfNotEmpty();

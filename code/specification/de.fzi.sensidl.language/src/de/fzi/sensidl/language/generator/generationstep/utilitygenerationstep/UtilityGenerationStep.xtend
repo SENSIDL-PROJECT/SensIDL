@@ -30,6 +30,10 @@ class UtilityGenerationStep extends GenerationStep {
 				val generator = new JavaGenerator
 				filesToGenerate => [putAll(generator.generateUtilityClass(this.data))]
 			])
+			put(GenerationLanguage.JAVA_PLUGIN_PROJECT, [
+				val generator = new JavaGenerator
+				filesToGenerate => [putAll(generator.generateUtilityClass(this.data, true))]
+			])
 			put(GenerationLanguage.C, [
 				//filesToGenerate => [putAll(generator.generateDTO)]
 			])

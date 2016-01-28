@@ -50,7 +50,7 @@ public class SensidlWizard extends Wizard {
 	public void addPages() {
 		Bundle bundle = Platform.getBundle("de.fzi.sensidl.language.ui");
 		URL fullPathString = BundleUtility.find(bundle, "images/SensIDL_logo.jpg");
-		sensidlWizardPage = new SensidlWizardPage("SensIDL Tooling Wizard", "SensIDL Tooling Wizard",
+		sensidlWizardPage = new SensidlWizardPage("SensIDL - Code Generation", "SensIDL - Code Generation",
 				ImageDescriptor.createFromURL(fullPathString), modelPath, path, language);
 
 		addPage(sensidlWizardPage);
@@ -93,7 +93,8 @@ public class SensidlWizard extends Wizard {
 			return false;
 		}
 
-		SettingsHandler.saveSettings(sensidlWizardPage.getTextPath(), sensidlWizardPage.getLanguage());
+		SettingsHandler.saveSettings(sensidlWizardPage.getTextModelPath(), sensidlWizardPage.getTextPath(),
+				sensidlWizardPage.getLanguage());
 		return true;
 	}
 

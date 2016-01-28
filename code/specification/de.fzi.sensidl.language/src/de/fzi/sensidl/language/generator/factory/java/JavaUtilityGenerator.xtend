@@ -15,56 +15,74 @@ import org.eclipse.emf.ecore.EObject
 class JavaUtilityGenerator implements IUtilityGenerator {
 	private static Logger logger = Logger.getLogger(JavaUtilityGenerator)
 	private List<MeasurementData> data
-	
+
+	private boolean createProject = false
+
 	new(List<MeasurementData> newData) {
 		this.data = newData
 	}
-	
-	
+
+	new(List<MeasurementData> newData, boolean createProject) {
+		this.data = newData
+		this.createProject = createProject
+	}
+
 	override generate() {
 		logger.info("Start with code-generation of the java utility class.")
-		
+
 		val filesToGenerate = new HashMap
 		val fileName = this.data.get(0).eContainer.getSensorInterfaceName + SensIDLConstants.UTILITY_CLASS_NAME
-			
-		filesToGenerate.put(addFileExtensionTo(fileName), generateClassBody(fileName))
-		
-		logger.info("File: " + addFileExtensionTo(fileName) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
-		
+
+		// if a Plug-in Project is generated the file has to be generated to another path
+		if (createProject) {
+			filesToGenerate.put(
+				"src/de/fzi/sensidl/" + this.data.get(0).eContainer.getSensorInterfaceName + "/" +
+					addFileExtensionTo(fileName), generateClassBody(fileName))
+		} else {
+			filesToGenerate.put(addFileExtensionTo(fileName), generateClassBody(fileName))
+		}
+
+		logger.info("File: " + addFileExtensionTo(fileName) + " was generated in " +
+			SensIDLOutputConfigurationProvider.SENSIDL_GEN)
+
 		filesToGenerate
 	}
-	
+
 	def String getSensorInterfaceName(EObject currentElement) {
-		if(currentElement instanceof SensorInterface) {
+		if (currentElement instanceof SensorInterface) {
 			return (currentElement as SensorInterface).name
 		}
 		return currentElement.eContainer.sensorInterfaceName
 	}
-	
+
 	def generateClassBody(String className) {
 		'''
-		/**
+			«IF createProject»
+				package de.fzi.sensidl.«this.data.get(0).eContainer.getSensorInterfaceName»;
+				 
+			«ENDIF» 
+			/**
 			 * Data transfer object for «className»
 			 *
 			 * @generated
 			 */
 			class «className» {
 				«IF this.data.exists[data | data.adjustments.get(0) instanceof LinearDataConversion]»
-				«generateLinearDataConversionMethod»
-				«generateGetMaxValueOfMethod»
+					«generateLinearDataConversionMethod»
+					«generateGetMaxValueOfMethod»
 				«ENDIF»
 				
 				«IF this.data.exists[data | data.adjustments.get(0) instanceof LinearDataConversionWithInterval]»
-				«generateLinearDataConversionWithIntervalMethod»
+					«generateLinearDataConversionWithIntervalMethod»
 				«ENDIF»
 			}
 		'''
 	}
-	
-	def generateLinearDataConversionWithIntervalMethod() {
+
+	def generateLinearDataConversionMethod() {
 		val dataType = "double"
 		'''
-		public static «dataType» «SensIDLConstants.LINEAR_CONVERSION_METHOD_NAME»(Number independentVariable, «dataType» scalingFactor, «dataType» offset) throws IllegalArgumentException {
+			public static «dataType» «SensIDLConstants.LINEAR_CONVERSION_METHOD_NAME»(Number independentVariable, «dataType» scalingFactor, «dataType» offset) throws IllegalArgumentException {
 				// Conversion is calculated by the linear-function f(x) = m*x + b
 				double calculatedValue = (scalingFactor * independentVariable.doubleValue()) + offset;
 				
@@ -76,8 +94,8 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 			}
 		'''
 	}
-	
-	def generateLinearDataConversionMethod() {
+
+	def generateLinearDataConversionWithIntervalMethod() {
 		val dataType = "double"
 		'''
 			public static «dataType» «SensIDLConstants.LINEAR_CONVERSION_WITH_INTERVAL_METHOD_NAME»(Number independentVariable, «dataType» x_min, «dataType» x_max, «dataType» y_min, «dataType» y_max) throws IllegalArgumentException {
@@ -90,7 +108,7 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 			}
 		'''
 	}
-	
+
 	private def generateGetMaxValueOfMethod() {
 		'''
 			private static double getMaxValueOf(Number number) {
@@ -110,9 +128,9 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 			}
 		'''
 	}
-	
+
 	override addFileExtensionTo(String ClassName) {
 		ClassName + SensIDLConstants.JAVA_EXTENSION
 	}
-	
+
 }

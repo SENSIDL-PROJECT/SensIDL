@@ -10,24 +10,38 @@ import java.util.List
  * 
  * @author Max Scheerer
  */
+class JavaGenerator implements ICodeGenerator {
 
-class JavaGenerator implements ICodeGenerator {	
-	
 	override generateDTO(List<DataSet> dataSet) {
 		new JavaDTOGenerator(dataSet).generate
 	}
-	
+
+	/**
+	 * starts the JavaPluginProjectGenerator and afterwards the JavaDTOGenerator
+	 */
+	def generatePluginProject(List<DataSet> dataSet) {
+		JavaPluginProjectGenerator.createPluginProject
+		new JavaDTOGenerator(dataSet, true).generate
+	}
+
 	override generateEncoder() {
-		//TODO has to be implemented
+		// TODO has to be implemented
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
-	
+
 	override generateDecoder() {
-		//TODO has to be implemented
+		// TODO has to be implemented
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
-	
+
 	override generateUtilityClass(List<MeasurementData> data) {
 		new JavaUtilityGenerator(data).generate
+	}
+
+	/**
+	 * if a Java Plug-in Project is generated the JavaUtilityGenerator needs a parameter that indicates so 
+	 */
+	def generateUtilityClass(List<MeasurementData> data, boolean createProject) {
+		new JavaUtilityGenerator(data, createProject).generate
 	}
 }
