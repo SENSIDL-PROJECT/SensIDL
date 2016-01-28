@@ -23,6 +23,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData;
+import de.fzi.sensidl.language.generator.GenerationUtil;
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
 import de.fzi.sensidl.language.generator.factory.IDTOGenerator;
 
@@ -49,18 +50,11 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 	@Override public HashMap<String, CharSequence> generate() {
 		PlaintextDTOGenerator.logger.info("Start with text generation.");
 		HashMap<String, CharSequence> filesToGenerate = new HashMap<String, CharSequence>();
-		SensorInterface sensorInterface = getSensorInterfaceName(this.dataSet.get(0).eContainer());
+		SensorInterface sensorInterface = GenerationUtil.getSensorInterface(this.dataSet.get(0).eContainer());
 		filesToGenerate.put(this.addFileExtensionTo(StringExtensions.toFirstUpper(sensorInterface.getName())), generateDocumentation(sensorInterface));
 		PlaintextDTOGenerator.logger.info("File: "+ this.addFileExtensionTo(StringExtensions.toFirstUpper(sensorInterface.getName())) + " was generated in "
 											+ SensIDLOutputConfigurationProvider.SENSIDL_GEN);
 		return filesToGenerate;
-	}
-
-	private SensorInterface getSensorInterfaceName(EObject currentElement) {
-		if (currentElement instanceof SensorInterface) {
-			return ((SensorInterface) currentElement);
-		}
-		return getSensorInterfaceName(currentElement.eContainer());
 	}
 
 	/**

@@ -14,6 +14,7 @@ import de.fzi.sensidl.language.generator.factory.IDTOGenerator
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
+import de.fzi.sensidl.language.generator.GenerationUtil
 
 /**
  * JavaScript code generator for the SensIDL Model. 
@@ -41,9 +42,9 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 		
 		for (d : this.dataSet) {
 
-			filesToGenerate.put(addFileExtensionTo(d.toNameUpper), generateClass(d.toNameUpper, d))
+			filesToGenerate.put(addFileExtensionTo(GenerationUtil.toNameUpper(d)), generateClass(GenerationUtil.toNameUpper(d), d))
 			
-			logger.info("File: " + addFileExtensionTo(d.toNameUpper) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
+			logger.info("File: " + addFileExtensionTo(GenerationUtil.toNameUpper(d)) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
 		}
 		
 		filesToGenerate
@@ -63,12 +64,12 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 			«IF nmdata.constant»
 				_«nmdata.name.toUpperCase»«IF nmdata.value != null» : «nmdata.value»,«ENDIF»«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
 			«ELSE»
-				_«nmdata.toNameLower»«IF nmdata.value != null» : «nmdata.value»«ELSE» : 0«ENDIF»,«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
+				_«GenerationUtil.toNameLower(nmdata)»«IF nmdata.value != null» : «nmdata.value»«ELSE» : 0«ENDIF»,«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
 			«ENDIF»
 			«ENDFOR»			
 			
 			«FOR mdata : dataset.eAllContents.toIterable.filter(MeasurementData)»
-				_«mdata.toNameLower» : 0, /*«mdata.description» Measured in Unit: «mdata.unit» */ 
+				_«GenerationUtil.toNameLower(mdata)» : 0, /*«mdata.description» Measured in Unit: «mdata.unit» */ 
 			«ENDFOR»
 			
 			«FOR  data : dataset.eAllContents.toIterable.filter(NonMeasurementData)»
@@ -93,10 +94,10 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 		'''
 		
 		/**
-		 * @return the «d.toNameLower»
+		 * @return the «GenerationUtil.toNameLower(d)»
 		 */
 		«d.toGetterName» : function(){
-			return this._«d.toNameLower»;
+			return this._«GenerationUtil.toNameLower(d)»;
 		}'''
 	}
 	
@@ -107,10 +108,10 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 		'''
 		
 		/**
-		 * @return the «d.toNameLower»
+		 * @return the «GenerationUtil.toNameLower(d)»
 		 */
 		«d.toGetterName» : function(){
-			return this._«IF d.constant»«d.name.toUpperCase»«ELSE»«d.toNameLower»«ENDIF»;
+			return this._«IF d.constant»«d.name.toUpperCase»«ELSE»«GenerationUtil.toNameLower(d)»«ENDIF»;
 		}'''
 	}	
 	
@@ -128,11 +129,11 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 		// no setter for constant value
 	«ELSE»
 		/**
-		 * @param «d.toNameLower»
-		 *			the «d.toNameLower» to set
+		 * @param «GenerationUtil.toNameLower(d)»
+		 *			the «GenerationUtil.toNameLower(d)» to set
 		 */
-		«d.toSetterName» : function(«d.toNameLower»){
-			this._«d.toNameLower» = «d.toNameLower»;
+		«d.toSetterName» : function(«GenerationUtil.toNameLower(d)»){
+			this._«GenerationUtil.toNameLower(d)» = «GenerationUtil.toNameLower(d)»;
 		} 
 	«ENDIF»	'''
 	}
@@ -147,43 +148,43 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 			«FOR dataAdj : d.adjustments»
 			«IF dataAdj instanceof DataRange»
 				/**
-				 * @param «d.toNameLower»
-				 *			the «d.toNameLower» to set
+				 * @param «GenerationUtil.toNameLower(d)»
+				 *			the «GenerationUtil.toNameLower(d)» to set
 				 */
-				«d.toSetterName» : function(«d.toNameLower»){
-					if («d.toNameLower» >= «dataAdj.range.lowerBound» && «d.toNameLower» <= «dataAdj.range.upperBound»)
-						this._«d.toNameLower» = «d.toNameLower»;
+				«d.toSetterName» : function(«GenerationUtil.toNameLower(d)»){
+					if («GenerationUtil.toNameLower(d)» >= «dataAdj.range.lowerBound» && «GenerationUtil.toNameLower(d)» <= «dataAdj.range.upperBound»)
+						this._«GenerationUtil.toNameLower(d)» = «GenerationUtil.toNameLower(d)»;
 					else
-						alert("value «d.toNameLower» is out of defined range");
+						alert("value «GenerationUtil.toNameLower(d)» is out of defined range");
 				} 
 			«ENDIF»	
 			«IF dataAdj instanceof DataConversion»						
 				«IF dataAdj instanceof LinearDataConversion»
 				/**
-				 * @param «d.toNameLower»
-				 *			the «d.toNameLower» to set
+				 * @param «GenerationUtil.toNameLower(d)»
+				 *			the «GenerationUtil.toNameLower(d)» to set
 				 */
-				«d.toSetterName» : function(«d.toNameLower»){
-					this._«d.toNameLower» = «d.toNameLower» *  «dataAdj.scalingFactor» +  «dataAdj.offset»;
+				«d.toSetterName» : function(«GenerationUtil.toNameLower(d)»){
+					this._«GenerationUtil.toNameLower(d)» = «GenerationUtil.toNameLower(d)» *  «dataAdj.scalingFactor» +  «dataAdj.offset»;
 				}  
 				«ELSE»
 					«IF dataAdj instanceof LinearDataConversionWithInterval»
 					/**
-					 * @param «d.toNameLower»  
-					 *			the «d.toNameLower» to set
+					 * @param «GenerationUtil.toNameLower(d)»  
+					 *			the «GenerationUtil.toNameLower(d)» to set
 					 */
-					«d.toSetterName» : function(«d.toNameLower»){
-						if («d.toNameLower» >= «dataAdj.fromInterval.lowerBound» && «d.toNameLower» <= «dataAdj.fromInterval.upperBound»){												
+					«d.toSetterName» : function(«GenerationUtil.toNameLower(d)»){
+						if («GenerationUtil.toNameLower(d)» >= «dataAdj.fromInterval.lowerBound» && «GenerationUtil.toNameLower(d)» <= «dataAdj.fromInterval.upperBound»){												
 							
 							var oldMin =  «dataAdj.fromInterval.lowerBound»;
 							var oldMax =  «dataAdj.fromInterval.upperBound»;
 							var newMin =  «dataAdj.toInterval.lowerBound»;
 							var newMax =  «dataAdj.toInterval.upperBound»;
 							
-							this._«d.toNameLower» =  ((((«d.toNameLower» - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin);
+							this._«GenerationUtil.toNameLower(d)» =  ((((«GenerationUtil.toNameLower(d)» - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin);
 						}
 						else
-							alert("value «d.toNameLower» is out of defined source Interval");
+							alert("value «GenerationUtil.toNameLower(d)» is out of defined source Interval");
 					} 		
 					«ENDIF»
 				«ENDIF»
@@ -191,11 +192,11 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 			«ENDFOR»	
 			«ELSE»
 				/**
-				 * @param «d.toNameLower»
-				 *			the «d.toNameLower» to set
+				 * @param «GenerationUtil.toNameLower(d)»
+				 *			the «GenerationUtil.toNameLower(d)» to set
 				 */
-				«d.toSetterName» : function(«d.toNameLower»){
-					this._«d.toNameLower» = «d.toNameLower»;
+				«d.toSetterName» : function(«GenerationUtil.toNameLower(d)»){
+					this._«GenerationUtil.toNameLower(d)» = «GenerationUtil.toNameLower(d)»;
 				} 
 			«ENDIF»''' 
 
@@ -203,36 +204,7 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 	
 	def toSetterName(Data d) {
 		'''set«d.name.replaceAll("[^a-zA-Z0-9]", "").toFirstUpper»'''
-	}
-	
-		/**
-	 * @return the name of the data with a lower first letter
-	 */
-	def toNameLower(Data d) {
-		d.name.toFirstLower
-	}
-
-	/**
-	 * @return the name of the DataSet with a lower first letter
-	 */
-	def toNameLower(DataSet d) {
-		d.name.toFirstLower
-	}
-
-	/**
-	 * @return the name of the data with an upper first letter 
-	 */
-	def toNameUpper(Data d) {
-		d.name.toFirstUpper
-	}
-
-	/**
-	 * @return the name of the DataSet with an upper first letter
-	 */
-	def toNameUpper(DataSet d) {
-		d.name.toFirstUpper
-	}
-		
+	}	
 
 	override addFileExtensionTo(String ClassName) {
 		return ClassName + SensIDLConstants.JAVASCRIPT_EXTENSION

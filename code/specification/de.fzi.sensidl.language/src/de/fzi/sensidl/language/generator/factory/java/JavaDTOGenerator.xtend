@@ -18,6 +18,7 @@ import org.apache.log4j.Logger
 import org.eclipse.emf.ecore.EObject
 import de.fzi.sensidl.design.sensidl.SensorInterface
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
+import de.fzi.sensidl.language.generator.GenerationUtil
 
 /**
  * Java code generator for the SensIDL Model. 
@@ -55,14 +56,14 @@ class JavaDTOGenerator implements IDTOGenerator {
 		
 		if (createProject) {
 			for (d : this.dataSet) {
-				filesToGenerate.put("src/de/fzi/sensidl/" + this.dataSet.get(0).eContents.filter(Data).get(0).eContainer.getSensorInterfaceName +"/" + addFileExtensionTo(d.toNameUpper), generateClassBody(d.toNameUpper, d))
-				logger.info("File: " + addFileExtensionTo(d.toNameUpper) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
+				filesToGenerate.put("src/de/fzi/sensidl/" + GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContents.filter(Data).get(0).eContainer) +"/" + addFileExtensionTo(GenerationUtil.toNameUpper(d)), generateClassBody(GenerationUtil.toNameUpper(d), d))
+				logger.info("File: " + addFileExtensionTo(GenerationUtil.toNameUpper(d)) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
 			}
 		
 		} else{
 			for (d : this.dataSet) {
-				filesToGenerate.put(addFileExtensionTo(d.toNameUpper), generateClassBody(d.toNameUpper, d))
-				logger.info("File: " + addFileExtensionTo(d.toNameUpper) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
+				filesToGenerate.put(addFileExtensionTo(GenerationUtil.toNameUpper(d)), generateClassBody(GenerationUtil.toNameUpper(d), d))
+				logger.info("File: " + addFileExtensionTo(GenerationUtil.toNameUpper(d)) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
 			}
 		}
 		
@@ -75,7 +76,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 	def generateClassBody(String className, DataSet d) {
 		'''
 			«IF createProject»
-			package de.fzi.sensidl.«d.eContents.filter(Data).get(0).eContainer.getSensorInterfaceName»;
+			package de.fzi.sensidl.«GenerationUtil.getSensorInterfaceName(d.eContents.filter(Data).get(0).eContainer)»;
 			 
 			«ENDIF» 
 			import java.io.BufferedReader;
@@ -167,12 +168,12 @@ class JavaDTOGenerator implements IDTOGenerator {
 			dataSet = dataSet.parentDataSet
 		}
 		for (data : measurementDataList) {
-			constructorString += '''	this.«data.toNameLower» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («data.toNameLower» - «data.toTypeName».MAX_VALUE)«ELSE»«data.toNameLower»«ENDIF»;
+			constructorString += '''	this.«GenerationUtil.toNameLower(data)» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («GenerationUtil.toNameLower(data)» - «data.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(data)»«ENDIF»;
 			'''
 			}
 		for (data : nonMeasurementDataList) {
 			if (!data.constant) {
-				constructorString += '''	this.«data.toNameLower» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («data.toNameLower» - «data.toTypeName».MAX_VALUE)«ELSE»«data.toNameLower»«ENDIF»;
+				constructorString += '''	this.«GenerationUtil.toNameLower(data)» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («GenerationUtil.toNameLower(data)» - «data.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(data)»«ENDIF»;
 				'''
 			}
 		}
@@ -221,7 +222,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			«ENDIF» 
 			 * Unit: «d.unit»
 			 */
-			private «d.toTypeName» «d.toNameLower»;
+			private «d.toTypeName» «GenerationUtil.toNameLower(d)»;
 		'''
 	}
 
@@ -250,7 +251,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 				  *«d.description»
 				  */
 				«ENDIF» 
-				private «d.toTypeName» «d.toNameLower»;
+				private «d.toTypeName» «GenerationUtil.toNameLower(d)»;
 			'''
 		}
 
@@ -272,6 +273,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			case UINT64: Long.name
 			case FLOAT: Float.name
 			case DOUBLE: Double.name
+			case BOOLEAN: Boolean.name
 		}
 	}
 	/**
@@ -310,9 +312,9 @@ class JavaDTOGenerator implements IDTOGenerator {
 		}
 
 		if (dataList.size > 0) {
-			var firstElement = dataList.get(0).toTypeName + " " + dataList.get(0).toNameLower
+			var firstElement = dataList.get(0).toTypeName + " " + GenerationUtil.toNameLower(dataList.get(0))
 			dataList.remove(0)
-			'''«firstElement»«FOR data : dataList», «data.toTypeName» «data.toNameLower»«ENDFOR»'''
+			'''«firstElement»«FOR data : dataList», «data.toTypeName» «GenerationUtil.toNameLower(data)»«ENDFOR»'''
 		} else {
 			createEmptyConstructor = false;
 			''''''
@@ -330,10 +332,10 @@ class JavaDTOGenerator implements IDTOGenerator {
 				* data type the value is calculated by subtracting the max value from the 
 				* signed data type and adding it again, if it is used.)
 			«ENDIF»
-			 * @return the «d.toNameLower»
+			 * @return the «GenerationUtil.toNameLower(d)»
 			 */
 			public «d.toTypeName» «d.toGetterName»(){
-				return «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») (this.«d.toNameLower» + «d.toTypeName».MAX_VALUE)«ELSE»this.«d.toNameLower»«ENDIF»;
+				return «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») (this.«GenerationUtil.toNameLower(d)» + «d.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(d)»«ENDIF»;
 			}
 		'''
 	}
@@ -349,10 +351,10 @@ class JavaDTOGenerator implements IDTOGenerator {
 				* data type the value is calculated by subtracting the max value from the 
 				* signed data type and adding it again, if it is used.)
 			«ENDIF»
-			 * @return the «d.toNameLower»
+			 * @return the «GenerationUtil.toNameLower(d)»
 			 */
 			public «d.toTypeName» «d.toGetterName»(){
-				return «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («IF d.constant»«d.name.toUpperCase»«ELSE»this.«d.toNameLower»«ENDIF» + «d.toTypeName».MAX_VALUE)«ELSE»this.«IF d.constant»«d.name.toUpperCase»«ELSE»«d.toNameLower»«ENDIF»«ENDIF»;
+				return «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («IF d.constant»«d.name.toUpperCase»«ELSE»this.«GenerationUtil.toNameLower(d)»«ENDIF» + «d.toTypeName».MAX_VALUE)«ELSE»this.«IF d.constant»«d.name.toUpperCase»«ELSE»«GenerationUtil.toNameLower(d)»«ENDIF»«ENDIF»;
 			}
 		'''
 	}
@@ -371,22 +373,22 @@ class JavaDTOGenerator implements IDTOGenerator {
 				«FOR dataAdj : d.adjustments»
 				«IF dataAdj instanceof DataRange»
 				/**
-				 * @param «d.toNameLower»
-				 *			the «d.toNameLower» to set
+				 * @param «GenerationUtil.toNameLower(d)»
+				 *			the «GenerationUtil.toNameLower(d)» to set
 				 */
-				public void «d.toSetterName»(«d.toTypeName» «d.toNameLower»){
-					if («d.toNameLower» >= «dataAdj.range.lowerBound» && «d.toNameLower» <= «dataAdj.range.upperBound»)
-						this.«d.toNameLower» = «d.toNameLower»;
+				public void «d.toSetterName»(«d.toTypeName» «GenerationUtil.toNameLower(d)»){
+					if («GenerationUtil.toNameLower(d)» >= «dataAdj.range.lowerBound» && «GenerationUtil.toNameLower(d)» <= «dataAdj.range.upperBound»)
+						this.«GenerationUtil.toNameLower(d)» = «GenerationUtil.toNameLower(d)»;
 					else
 						throw new IllegalArgumentException("value is out of defined range");	
 				} 
 				«ELSEIF dataAdj instanceof DataConversion»	
 				
 				/**
-				* @param «d.toNameLower»
-				*			the «d.toNameLower» to set
+				* @param «GenerationUtil.toNameLower(d)»
+				*			the «GenerationUtil.toNameLower(d)» to set
 				*/
-				public void «d.toSetterName»(«d.toTypeName» «d.toNameLower») {
+				public void «d.toSetterName»(«d.toTypeName» «GenerationUtil.toNameLower(d)») {
 					try {
 						«d.generateSetterBodyForMeasurementData(dataAdj as DataConversion)»
 					} catch (IllegalArgumentException e) {
@@ -396,28 +398,28 @@ class JavaDTOGenerator implements IDTOGenerator {
 «««				«IF dataAdj instanceof DataConversion»						
 «««					«IF dataAdj instanceof LinearDataConversion»
 «««					/**
-«««					 * @param «d.toNameLower»  
-«««					 *			the «d.toNameLower» to set
+«««					 * @param «GenerationUtil.toNameLower(d)»  
+«««					 *			the «GenerationUtil.toNameLower(d)» to set
 «««					 */
-«««					public void «d.toSetterName»(«d.toTypeName» «d.toNameLower»){
+«««					public void «d.toSetterName»(«d.toTypeName» «GenerationUtil.toNameLower(d)»){
 «««						
-«««						this.«d.toNameLower» =  «d.toNameLower» * («d.toSimpleTypeName») «dataAdj.scalingFactor» + («d.toSimpleTypeName») «dataAdj.offset»;
+«««						this.«GenerationUtil.toNameLower(d)» =  «GenerationUtil.toNameLower(d)» * («d.toSimpleTypeName») «dataAdj.scalingFactor» + («d.toSimpleTypeName») «dataAdj.offset»;
 «««					} 
 «««					«ELSE»
 «««						«IF dataAdj instanceof LinearDataConversionWithInterval»
 «««						/**
-«««						 * @param «d.toNameLower»  
-«««						 *			the «d.toNameLower» to set
+«««						 * @param «GenerationUtil.toNameLower(d)»  
+«««						 *			the «GenerationUtil.toNameLower(d)» to set
 «««						 */
-«««						public void «d.toSetterName»(«d.toTypeName» «d.toNameLower»){
-«««							if («d.toNameLower» >= «dataAdj.fromInterval.lowerBound» && «d.toNameLower» <= «dataAdj.fromInterval.upperBound»){												
+«««						public void «d.toSetterName»(«d.toTypeName» «GenerationUtil.toNameLower(d)»){
+«««							if («GenerationUtil.toNameLower(d)» >= «dataAdj.fromInterval.lowerBound» && «GenerationUtil.toNameLower(d)» <= «dataAdj.fromInterval.upperBound»){												
 «««								
 «««								«d.toTypeName» oldMin = («d.toSimpleTypeName») «dataAdj.fromInterval.lowerBound»;
 «««								«d.toTypeName» oldMax = («d.toSimpleTypeName») «dataAdj.fromInterval.upperBound»;
 «««								«d.toTypeName» newMin = («d.toSimpleTypeName») «dataAdj.toInterval.lowerBound»;
 «««								«d.toTypeName» newMax = («d.toSimpleTypeName») «dataAdj.toInterval.upperBound»;
 «««								
-«««								this.«d.toNameLower» = («d.toSimpleTypeName») ((((«d.toNameLower» - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin);
+«««								this.«GenerationUtil.toNameLower(d)» = («d.toSimpleTypeName») ((((«GenerationUtil.toNameLower(d)» - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin);
 «««							}
 «««							else
 «««								throw new IllegalArgumentException("value is out of defined source Interval");
@@ -429,12 +431,12 @@ class JavaDTOGenerator implements IDTOGenerator {
 					
 				«ELSE»
 					/**
-					 * @param «d.toNameLower»  
-					 *			the «d.toNameLower» to set
+					 * @param «GenerationUtil.toNameLower(d)»  
+					 *			the «GenerationUtil.toNameLower(d)» to set
 					 */
-					public void «d.toSetterName»(«d.toTypeName» «d.toNameLower»){
+					public void «d.toSetterName»(«d.toTypeName» «GenerationUtil.toNameLower(d)»){
 						
-						this.«d.toNameLower» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («d.toNameLower» - «d.toTypeName».MAX_VALUE)«ELSE»«d.toNameLower»«ENDIF»;
+						this.«GenerationUtil.toNameLower(d)» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («GenerationUtil.toNameLower(d)» - «d.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(d)»«ENDIF»;
 					} 
 				«ENDIF»
 				''' 
@@ -446,7 +448,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			final double offset = «conversion.offset»;
 			final double scalingFactor = «conversion.scalingFactor»;
 			
-			this.«data.toNameLower» = («data.toSimpleTypeName») «data.eContainer.getSensorInterfaceName»«SensIDLConstants.UTILITY_CLASS_NAME».«SensIDLConstants.LINEAR_CONVERSION_METHOD_NAME»(«data.toNameLower», scalingFactor, offset);
+			this.«GenerationUtil.toNameLower(data)» = («data.toSimpleTypeName») «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».«SensIDLConstants.LINEAR_CONVERSION_METHOD_NAME»(«GenerationUtil.toNameLower(data)», scalingFactor, offset);
 		'''
 	}
 	
@@ -457,7 +459,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			«data.toTypeName» newMin = («data.toSimpleTypeName») «conversion.toInterval.lowerBound»;
 			«data.toTypeName» newMax = («data.toSimpleTypeName») «conversion.toInterval.upperBound»;
 			
-			this.«data.toNameLower» = («data.toSimpleTypeName») «data.eContainer.getSensorInterfaceName»«SensIDLConstants.UTILITY_CLASS_NAME».«SensIDLConstants.LINEAR_CONVERSION_WITH_INTERVAL_METHOD_NAME»(«data.toNameLower», oldMin, oldMax, newMin, newMax);
+			this.«GenerationUtil.toNameLower(data)» = («data.toSimpleTypeName») «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».«SensIDLConstants.LINEAR_CONVERSION_WITH_INTERVAL_METHOD_NAME»(«GenerationUtil.toNameLower(data)», oldMin, oldMax, newMin, newMax);
 		'''
 	}
 
@@ -477,11 +479,11 @@ class JavaDTOGenerator implements IDTOGenerator {
 				 * data type the value is calculated by subtracting the max value from the 
 				 * signed data type and adding it again, if it is used.)
 				«ENDIF»
-				 * @param «d.toNameLower»
-				 *			the «d.toNameLower» to set
+				 * @param «GenerationUtil.toNameLower(d)»
+				 *			the «GenerationUtil.toNameLower(d)» to set
 				 */
-				public void «d.toSetterName»(«d.toTypeName» «d.toNameLower»){
-					this.«d.toNameLower» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («d.toNameLower» - «d.toTypeName».MAX_VALUE)«ELSE»«d.toNameLower»«ENDIF»;
+				public void «d.toSetterName»(«d.toTypeName» «GenerationUtil.toNameLower(d)»){
+					this.«GenerationUtil.toNameLower(d)» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («GenerationUtil.toNameLower(d)» - «d.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(d)»«ENDIF»;
 				} 
 			'''
 		}
@@ -489,35 +491,6 @@ class JavaDTOGenerator implements IDTOGenerator {
 
 	def toSetterName(Data d) {
 		'''set«d.name.replaceAll("[^a-zA-Z0-9]", "").toFirstUpper»'''
-	}
-
-
-	/**
-	 * @return the name of the data with a lower first letter
-	 */
-	def toNameLower(Data d) {
-		d.name.toFirstLower
-	}
-
-	/**
-	 * @return the name of the DataSet with a lower first letter
-	 */
-	def toNameLower(DataSet d) {
-		d.name.toFirstLower
-	}
-
-	/**
-	 * @return the name of the data with an upper first letter 
-	 */
-	def toNameUpper(Data d) {
-		d.name.toFirstUpper
-	}
-
-	/**
-	 * @return the name of the DataSet with an upper first letter
-	 */
-	def toNameUpper(DataSet d) {
-		d.name.toFirstUpper
 	}
 	
 	def generateJsonUnmarshal(DataSet d){
@@ -531,11 +504,11 @@ class JavaDTOGenerator implements IDTOGenerator {
 		 *            format
 		 * @return L unmarshalled L structure
 		 */
-		public «d.toNameUpper» unmarshal«d.toNameUpper» (BufferedReader dataset) { 
+		public «GenerationUtil.toNameUpper(d)» unmarshal«GenerationUtil.toNameUpper(d)» (BufferedReader dataset) { 
 			
 			Gson gson = new Gson();
 			BufferedReader br = dataset;
-			«d.toNameUpper» obj = gson.fromJson(br, «d.toNameUpper».class);
+			«GenerationUtil.toNameUpper(d)» obj = gson.fromJson(br, «GenerationUtil.toNameUpper(d)».class);
 			return obj;
 		}
 		'''
@@ -554,18 +527,18 @@ class JavaDTOGenerator implements IDTOGenerator {
 		 * @throws IOException
 		 * @throws ClassNotFoundException
 		 */
-		public «d.toNameUpper» unmarshal«d.toNameUpper»(byte[] dataset) throws IOException, ClassNotFoundException {
+		public «GenerationUtil.toNameUpper(d)» unmarshal«GenerationUtil.toNameUpper(d)»(byte[] dataset) throws IOException, ClassNotFoundException {
 			
 			ByteArrayInputStream in = new ByteArrayInputStream(dataset);
 			ObjectInputStream ois = null;
 			ois = new ObjectInputStream(in);
 			Object o = ois.readObject();
-			«d.toNameUpper» «d.toNameLower» = («d.toNameUpper») o; // TODO: Ensure the type conversion is valid
+			«GenerationUtil.toNameUpper(d)» «GenerationUtil.toNameLower(d)» = («GenerationUtil.toNameUpper(d)») o; // TODO: Ensure the type conversion is valid
 			in.close();
 			if (in != null) {
 				ois.close();
 			}
-			return «d.toNameLower»;
+			return «GenerationUtil.toNameLower(d)»;
 		}
 		'''
 	}
@@ -573,15 +546,4 @@ class JavaDTOGenerator implements IDTOGenerator {
 	override addFileExtensionTo(String ClassName) {
 		return ClassName + SensIDLConstants.JAVA_EXTENSION
 	}
-	
-	/**
-	 * get the sensorInterface Name
-	 */
-	def String getSensorInterfaceName(EObject currentElement) {
-		if (currentElement instanceof SensorInterface) {
-			return (currentElement as SensorInterface).name
-		}
-		return currentElement.eContainer.sensorInterfaceName
-	}
-
 }

@@ -11,6 +11,7 @@ import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
 import org.eclipse.emf.ecore.EObject
+import de.fzi.sensidl.language.generator.GenerationUtil
 
 class JavaUtilityGenerator implements IUtilityGenerator {
 	private static Logger logger = Logger.getLogger(JavaUtilityGenerator)
@@ -31,12 +32,12 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 		logger.info("Start with code-generation of the java utility class.")
 
 		val filesToGenerate = new HashMap
-		val fileName = this.data.get(0).eContainer.getSensorInterfaceName + SensIDLConstants.UTILITY_CLASS_NAME
+		val fileName = GenerationUtil.getSensorInterfaceName(this.data.get(0).eContainer) + SensIDLConstants.UTILITY_CLASS_NAME
 
 		// if a Plug-in Project is generated the file has to be generated to another path
 		if (createProject) {
 			filesToGenerate.put(
-				"src/de/fzi/sensidl/" + this.data.get(0).eContainer.getSensorInterfaceName + "/" +
+				"src/de/fzi/sensidl/" + GenerationUtil.getSensorInterfaceName(this.data.get(0).eContainer) + "/" +
 					addFileExtensionTo(fileName), generateClassBody(fileName))
 		} else {
 			filesToGenerate.put(addFileExtensionTo(fileName), generateClassBody(fileName))
@@ -48,17 +49,10 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 		filesToGenerate
 	}
 
-	def String getSensorInterfaceName(EObject currentElement) {
-		if (currentElement instanceof SensorInterface) {
-			return (currentElement as SensorInterface).name
-		}
-		return currentElement.eContainer.sensorInterfaceName
-	}
-
 	def generateClassBody(String className) {
 		'''
 			«IF createProject»
-				package de.fzi.sensidl.«this.data.get(0).eContainer.getSensorInterfaceName»;
+				package de.fzi.sensidl.«GenerationUtil.getSensorInterfaceName(this.data.get(0).eContainer)»;
 				 
 			«ENDIF» 
 			/**

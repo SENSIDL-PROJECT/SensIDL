@@ -8,6 +8,7 @@ import de.fzi.sensidl.language.generator.factory.IDTOGenerator
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
+import de.fzi.sensidl.language.generator.GenerationUtil
 
 class CDTOFileGenerator extends CDTOGenerator {
 	
@@ -28,7 +29,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 		
 		for (dataset : this.dataSet) {
 
-			val fileName = addFileExtensionTo(dataset.name.toFirstUpper)
+			val fileName = addFileExtensionTo(GenerationUtil.toNameUpper(dataset))
 			
 			filesToGenerate.put(fileName, dataset.generateStructDeclaration)
 			//logger.info("File: " + fileName + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
@@ -89,9 +90,9 @@ class CDTOFileGenerator extends CDTOGenerator {
 			«generateDescription(dataset)»
 			*/
 			
-			#include "«dataset.name.toFirstUpper + SensIDLConstants.HEADER_EXTENSION»"
+			#include "«GenerationUtil.toNameUpper(dataset) + SensIDLConstants.HEADER_EXTENSION»"
 			
-			«dataset.name.toFirstUpper» «dataset.name.toFirstLower»;
+			«GenerationUtil.toNameUpper(dataset)» «GenerationUtil.toNameLower(dataset)»;
 		'''
 	}
 	

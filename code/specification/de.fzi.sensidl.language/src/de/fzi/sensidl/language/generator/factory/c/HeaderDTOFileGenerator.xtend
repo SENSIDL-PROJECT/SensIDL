@@ -11,6 +11,7 @@ import de.fzi.sensidl.language.generator.factory.IDTOGenerator
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
+import de.fzi.sensidl.language.generator.GenerationUtil
 
 class HeaderDTOGenerator extends CDTOGenerator {
 
@@ -30,7 +31,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 
 		for (dataset : this.dataSet) {
 
-			val fileName = addFileExtensionTo(dataset.name.toFirstUpper)
+			val fileName = addFileExtensionTo(GenerationUtil.toNameUpper(dataset))
 
 			filesToGenerate.put(fileName, generateStruct(dataset.name.toFirstUpper, dataset))
 			logger.info("File: " + fileName + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
@@ -46,7 +47,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 * 			represents the model element for the struct.
 	 */
 	def compile(DataSet dataset) {
-		'''«generateStruct(dataset.name.toFirstUpper, dataset)»'''
+		'''«generateStruct(GenerationUtil.toNameUpper(dataset), dataset)»'''
 	}
 
 	/**
@@ -74,9 +75,9 @@ class HeaderDTOGenerator extends CDTOGenerator {
 				«FOR data : dataset.eContents.filter(Data)»
 					«generateVariable(data)»
 				«ENDFOR»
-			} «dataset.name.toFirstUpper»;
+			} «GenerationUtil.toNameUpper(dataset)»;
 			
-			extern «dataset.name.toFirstUpper» «dataset.name.toFirstLower»;
+			extern «GenerationUtil.toNameUpper(dataset)» «GenerationUtil.toNameLower(dataset)»;
 			
 			#endif
 		'''
@@ -111,7 +112,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 * 			represents data which was measured by a sensor.
 	 */
 	dispatch def generateVariable(MeasurementData data) {
-		'''«data.toTypeName» «data.name.toFirstLower»;'''
+		'''«data.toTypeName» «GenerationUtil.toNameLower(data)»;'''
 	}
 
 	/**
@@ -120,7 +121,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 * 			represents variable or constant non-measured data.
 	 */
 	dispatch def generateVariable(NonMeasurementData data) {
-		'''«IF data.constant»const «ENDIF»«data.toTypeName» «data.name.toFirstLower»«IF !Strings.isNullOrEmpty(data.value)» = «data.value»«ENDIF»;'''
+		'''«IF data.constant»const «ENDIF»«data.toTypeName» «GenerationUtil.toNameLower(data)»«IF !Strings.isNullOrEmpty(data.value)» = «data.value»«ENDIF»;'''
 	}
 
 	/**
