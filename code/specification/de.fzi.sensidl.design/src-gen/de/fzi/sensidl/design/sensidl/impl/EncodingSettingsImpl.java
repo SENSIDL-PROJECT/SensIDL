@@ -24,13 +24,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.impl.EncodingSettingsImpl#getSensorInterface <em>Sensor Interface</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.impl.EncodingSettingsImpl#getCoding <em>Coding</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.impl.EncodingSettingsImpl#getEndianness <em>Endianness</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.impl.EncodingSettingsImpl#getAlignment <em>Alignment</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

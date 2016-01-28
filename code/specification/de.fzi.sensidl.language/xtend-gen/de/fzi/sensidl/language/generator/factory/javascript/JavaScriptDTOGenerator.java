@@ -12,6 +12,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData;
+import de.fzi.sensidl.language.generator.GenerationUtil;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
 import de.fzi.sensidl.language.generator.factory.IDTOGenerator;
@@ -54,12 +55,12 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
       final HashMap<String, CharSequence> filesToGenerate = new HashMap<String, CharSequence>();
       for (final DataSet d : this.dataSet) {
         {
-          String _nameUpper = this.toNameUpper(d);
+          String _nameUpper = GenerationUtil.toNameUpper(d);
           String _addFileExtensionTo = this.addFileExtensionTo(_nameUpper);
-          String _nameUpper_1 = this.toNameUpper(d);
+          String _nameUpper_1 = GenerationUtil.toNameUpper(d);
           CharSequence _generateClass = this.generateClass(_nameUpper_1, d);
           filesToGenerate.put(_addFileExtensionTo, _generateClass);
-          String _nameUpper_2 = this.toNameUpper(d);
+          String _nameUpper_2 = GenerationUtil.toNameUpper(d);
           String _addFileExtensionTo_1 = this.addFileExtensionTo(_nameUpper_2);
           String _plus = ("File: " + _addFileExtensionTo_1);
           String _plus_1 = (_plus + " was generated in ");
@@ -141,7 +142,7 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
             } else {
               _builder.append("\t");
               _builder.append("_");
-              String _nameLower = this.toNameLower(nmdata);
+              String _nameLower = GenerationUtil.toNameLower(nmdata);
               _builder.append(_nameLower, "\t");
               {
                 String _value_2 = nmdata.getValue();
@@ -179,7 +180,7 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
         for(final MeasurementData mdata : _filter_3) {
           _builder.append("\t");
           _builder.append("_");
-          String _nameLower_1 = this.toNameLower(mdata);
+          String _nameLower_1 = GenerationUtil.toNameLower(mdata);
           _builder.append(_nameLower_1, "\t");
           _builder.append(" : 0, /*");
           String _description_6 = mdata.getDescription();
@@ -273,7 +274,7 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
     _builder.newLine();
     _builder.append(" ");
     _builder.append("* @return the ");
-    String _nameLower = this.toNameLower(d);
+    String _nameLower = GenerationUtil.toNameLower(d);
     _builder.append(_nameLower, " ");
     _builder.newLineIfNotEmpty();
     _builder.append(" ");
@@ -285,7 +286,7 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("return this._");
-    String _nameLower_1 = this.toNameLower(d);
+    String _nameLower_1 = GenerationUtil.toNameLower(d);
     _builder.append(_nameLower_1, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
@@ -303,7 +304,7 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
     _builder.newLine();
     _builder.append(" ");
     _builder.append("* @return the ");
-    String _nameLower = this.toNameLower(d);
+    String _nameLower = GenerationUtil.toNameLower(d);
     _builder.append(_nameLower, " ");
     _builder.newLineIfNotEmpty();
     _builder.append(" ");
@@ -322,7 +323,7 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
         String _upperCase = _name.toUpperCase();
         _builder.append(_upperCase, "\t");
       } else {
-        String _nameLower_1 = this.toNameLower(d);
+        String _nameLower_1 = GenerationUtil.toNameLower(d);
         _builder.append(_nameLower_1, "\t");
       }
     }
@@ -358,12 +359,12 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
         _builder.newLine();
         _builder.append(" ");
         _builder.append("* @param ");
-        String _nameLower = this.toNameLower(d);
+        String _nameLower = GenerationUtil.toNameLower(d);
         _builder.append(_nameLower, " ");
         _builder.newLineIfNotEmpty();
         _builder.append(" ");
         _builder.append("*\t\t\tthe ");
-        String _nameLower_1 = this.toNameLower(d);
+        String _nameLower_1 = GenerationUtil.toNameLower(d);
         _builder.append(_nameLower_1, " ");
         _builder.append(" to set");
         _builder.newLineIfNotEmpty();
@@ -373,16 +374,16 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
         CharSequence _setterName = this.toSetterName(d);
         _builder.append(_setterName, "");
         _builder.append(" : function(");
-        String _nameLower_2 = this.toNameLower(d);
+        String _nameLower_2 = GenerationUtil.toNameLower(d);
         _builder.append(_nameLower_2, "");
         _builder.append("){");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("this._");
-        String _nameLower_3 = this.toNameLower(d);
+        String _nameLower_3 = GenerationUtil.toNameLower(d);
         _builder.append(_nameLower_3, "\t");
         _builder.append(" = ");
-        String _nameLower_4 = this.toNameLower(d);
+        String _nameLower_4 = GenerationUtil.toNameLower(d);
         _builder.append(_nameLower_4, "\t");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
@@ -415,12 +416,12 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
                 _builder.newLine();
                 _builder.append(" ");
                 _builder.append("* @param ");
-                String _nameLower = this.toNameLower(d);
+                String _nameLower = GenerationUtil.toNameLower(d);
                 _builder.append(_nameLower, " ");
                 _builder.newLineIfNotEmpty();
                 _builder.append(" ");
                 _builder.append("*\t\t\tthe ");
-                String _nameLower_1 = this.toNameLower(d);
+                String _nameLower_1 = GenerationUtil.toNameLower(d);
                 _builder.append(_nameLower_1, " ");
                 _builder.append(" to set");
                 _builder.newLineIfNotEmpty();
@@ -430,20 +431,20 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
                 CharSequence _setterName = this.toSetterName(d);
                 _builder.append(_setterName, "");
                 _builder.append(" : function(");
-                String _nameLower_2 = this.toNameLower(d);
+                String _nameLower_2 = GenerationUtil.toNameLower(d);
                 _builder.append(_nameLower_2, "");
                 _builder.append("){");
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t");
                 _builder.append("if (");
-                String _nameLower_3 = this.toNameLower(d);
+                String _nameLower_3 = GenerationUtil.toNameLower(d);
                 _builder.append(_nameLower_3, "\t");
                 _builder.append(" >= ");
                 Interval _range = ((DataRange)dataAdj).getRange();
                 double _lowerBound = _range.getLowerBound();
                 _builder.append(_lowerBound, "\t");
                 _builder.append(" && ");
-                String _nameLower_4 = this.toNameLower(d);
+                String _nameLower_4 = GenerationUtil.toNameLower(d);
                 _builder.append(_nameLower_4, "\t");
                 _builder.append(" <= ");
                 Interval _range_1 = ((DataRange)dataAdj).getRange();
@@ -453,10 +454,10 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t\t");
                 _builder.append("this._");
-                String _nameLower_5 = this.toNameLower(d);
+                String _nameLower_5 = GenerationUtil.toNameLower(d);
                 _builder.append(_nameLower_5, "\t\t");
                 _builder.append(" = ");
-                String _nameLower_6 = this.toNameLower(d);
+                String _nameLower_6 = GenerationUtil.toNameLower(d);
                 _builder.append(_nameLower_6, "\t\t");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
@@ -465,7 +466,7 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
                 _builder.newLine();
                 _builder.append("\t\t");
                 _builder.append("alert(\"value ");
-                String _nameLower_7 = this.toNameLower(d);
+                String _nameLower_7 = GenerationUtil.toNameLower(d);
                 _builder.append(_nameLower_7, "\t\t");
                 _builder.append(" is out of defined range\");");
                 _builder.newLineIfNotEmpty();
@@ -481,12 +482,12 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
                     _builder.newLine();
                     _builder.append(" ");
                     _builder.append("* @param ");
-                    String _nameLower_8 = this.toNameLower(d);
+                    String _nameLower_8 = GenerationUtil.toNameLower(d);
                     _builder.append(_nameLower_8, " ");
                     _builder.newLineIfNotEmpty();
                     _builder.append(" ");
                     _builder.append("*\t\t\tthe ");
-                    String _nameLower_9 = this.toNameLower(d);
+                    String _nameLower_9 = GenerationUtil.toNameLower(d);
                     _builder.append(_nameLower_9, " ");
                     _builder.append(" to set");
                     _builder.newLineIfNotEmpty();
@@ -496,16 +497,16 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
                     CharSequence _setterName_1 = this.toSetterName(d);
                     _builder.append(_setterName_1, "");
                     _builder.append(" : function(");
-                    String _nameLower_10 = this.toNameLower(d);
+                    String _nameLower_10 = GenerationUtil.toNameLower(d);
                     _builder.append(_nameLower_10, "");
                     _builder.append("){");
                     _builder.newLineIfNotEmpty();
                     _builder.append("\t");
                     _builder.append("this._");
-                    String _nameLower_11 = this.toNameLower(d);
+                    String _nameLower_11 = GenerationUtil.toNameLower(d);
                     _builder.append(_nameLower_11, "\t");
                     _builder.append(" = ");
-                    String _nameLower_12 = this.toNameLower(d);
+                    String _nameLower_12 = GenerationUtil.toNameLower(d);
                     _builder.append(_nameLower_12, "\t");
                     _builder.append(" *  ");
                     double _scalingFactor = ((LinearDataConversion)dataAdj).getScalingFactor();
@@ -524,13 +525,13 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
                         _builder.newLine();
                         _builder.append(" ");
                         _builder.append("* @param ");
-                        String _nameLower_13 = this.toNameLower(d);
+                        String _nameLower_13 = GenerationUtil.toNameLower(d);
                         _builder.append(_nameLower_13, " ");
                         _builder.append("  ");
                         _builder.newLineIfNotEmpty();
                         _builder.append(" ");
                         _builder.append("*\t\t\tthe ");
-                        String _nameLower_14 = this.toNameLower(d);
+                        String _nameLower_14 = GenerationUtil.toNameLower(d);
                         _builder.append(_nameLower_14, " ");
                         _builder.append(" to set");
                         _builder.newLineIfNotEmpty();
@@ -540,20 +541,20 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
                         CharSequence _setterName_2 = this.toSetterName(d);
                         _builder.append(_setterName_2, "");
                         _builder.append(" : function(");
-                        String _nameLower_15 = this.toNameLower(d);
+                        String _nameLower_15 = GenerationUtil.toNameLower(d);
                         _builder.append(_nameLower_15, "");
                         _builder.append("){");
                         _builder.newLineIfNotEmpty();
                         _builder.append("\t");
                         _builder.append("if (");
-                        String _nameLower_16 = this.toNameLower(d);
+                        String _nameLower_16 = GenerationUtil.toNameLower(d);
                         _builder.append(_nameLower_16, "\t");
                         _builder.append(" >= ");
                         Interval _fromInterval = ((LinearDataConversionWithInterval)dataAdj).getFromInterval();
                         double _lowerBound_1 = _fromInterval.getLowerBound();
                         _builder.append(_lowerBound_1, "\t");
                         _builder.append(" && ");
-                        String _nameLower_17 = this.toNameLower(d);
+                        String _nameLower_17 = GenerationUtil.toNameLower(d);
                         _builder.append(_nameLower_17, "\t");
                         _builder.append(" <= ");
                         Interval _fromInterval_1 = ((LinearDataConversionWithInterval)dataAdj).getFromInterval();
@@ -595,10 +596,10 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
                         _builder.newLine();
                         _builder.append("\t\t");
                         _builder.append("this._");
-                        String _nameLower_18 = this.toNameLower(d);
+                        String _nameLower_18 = GenerationUtil.toNameLower(d);
                         _builder.append(_nameLower_18, "\t\t");
                         _builder.append(" =  ((((");
-                        String _nameLower_19 = this.toNameLower(d);
+                        String _nameLower_19 = GenerationUtil.toNameLower(d);
                         _builder.append(_nameLower_19, "\t\t");
                         _builder.append(" - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin);");
                         _builder.newLineIfNotEmpty();
@@ -610,7 +611,7 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
                         _builder.newLine();
                         _builder.append("\t\t");
                         _builder.append("alert(\"value ");
-                        String _nameLower_20 = this.toNameLower(d);
+                        String _nameLower_20 = GenerationUtil.toNameLower(d);
                         _builder.append(_nameLower_20, "\t\t");
                         _builder.append(" is out of defined source Interval\");");
                         _builder.newLineIfNotEmpty();
@@ -629,12 +630,12 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
         _builder.newLine();
         _builder.append(" ");
         _builder.append("* @param ");
-        String _nameLower_21 = this.toNameLower(d);
+        String _nameLower_21 = GenerationUtil.toNameLower(d);
         _builder.append(_nameLower_21, " ");
         _builder.newLineIfNotEmpty();
         _builder.append(" ");
         _builder.append("*\t\t\tthe ");
-        String _nameLower_22 = this.toNameLower(d);
+        String _nameLower_22 = GenerationUtil.toNameLower(d);
         _builder.append(_nameLower_22, " ");
         _builder.append(" to set");
         _builder.newLineIfNotEmpty();
@@ -644,16 +645,16 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
         CharSequence _setterName_3 = this.toSetterName(d);
         _builder.append(_setterName_3, "");
         _builder.append(" : function(");
-        String _nameLower_23 = this.toNameLower(d);
+        String _nameLower_23 = GenerationUtil.toNameLower(d);
         _builder.append(_nameLower_23, "");
         _builder.append("){");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("this._");
-        String _nameLower_24 = this.toNameLower(d);
+        String _nameLower_24 = GenerationUtil.toNameLower(d);
         _builder.append(_nameLower_24, "\t");
         _builder.append(" = ");
-        String _nameLower_25 = this.toNameLower(d);
+        String _nameLower_25 = GenerationUtil.toNameLower(d);
         _builder.append(_nameLower_25, "\t");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
@@ -673,38 +674,6 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
     String _firstUpper = StringExtensions.toFirstUpper(_replaceAll);
     _builder.append(_firstUpper, "");
     return _builder;
-  }
-  
-  /**
-   * @return the name of the data with a lower first letter
-   */
-  public String toNameLower(final Data d) {
-    String _name = d.getName();
-    return StringExtensions.toFirstLower(_name);
-  }
-  
-  /**
-   * @return the name of the DataSet with a lower first letter
-   */
-  public String toNameLower(final DataSet d) {
-    String _name = d.getName();
-    return StringExtensions.toFirstLower(_name);
-  }
-  
-  /**
-   * @return the name of the data with an upper first letter
-   */
-  public String toNameUpper(final Data d) {
-    String _name = d.getName();
-    return StringExtensions.toFirstUpper(_name);
-  }
-  
-  /**
-   * @return the name of the DataSet with an upper first letter
-   */
-  public String toNameUpper(final DataSet d) {
-    String _name = d.getName();
-    return StringExtensions.toFirstUpper(_name);
   }
   
   @Override

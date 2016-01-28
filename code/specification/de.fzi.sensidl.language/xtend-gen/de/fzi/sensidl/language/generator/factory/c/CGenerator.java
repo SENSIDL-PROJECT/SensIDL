@@ -5,6 +5,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.language.generator.factory.ICodeGenerator;
 import de.fzi.sensidl.language.generator.factory.c.CDTOFileGenerator;
 import de.fzi.sensidl.language.generator.factory.c.CDTOGenerator;
+import de.fzi.sensidl.language.generator.factory.c.CUtilityGenerator;
 import de.fzi.sensidl.language.generator.factory.c.HeaderDTOGenerator;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,6 +62,7 @@ public class CGenerator implements ICodeGenerator {
   
   @Override
   public HashMap<String, CharSequence> generateUtilityClass(final List<MeasurementData> data) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    CUtilityGenerator _cUtilityGenerator = new CUtilityGenerator(data);
+    return _cUtilityGenerator.generate();
   }
 }

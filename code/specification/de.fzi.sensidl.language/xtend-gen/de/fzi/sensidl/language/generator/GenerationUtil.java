@@ -3,6 +3,7 @@ package de.fzi.sensidl.language.generator;
 import de.fzi.sensidl.design.sensidl.SensorInterface;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
+import de.fzi.sensidl.language.generator.SensIDLConstants;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 
@@ -54,5 +55,15 @@ public class GenerationUtil {
   public static String toNameUpper(final DataSet d) {
     String _name = d.getName();
     return StringExtensions.toFirstUpper(_name);
+  }
+  
+  public static String getUtilityFileName(final EObject object, final String fileExtension) {
+    String _utilityName = GenerationUtil.getUtilityName(object);
+    return (_utilityName + fileExtension);
+  }
+  
+  public static String getUtilityName(final EObject object) {
+    String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(object);
+    return (_sensorInterfaceName + SensIDLConstants.UTILITY_CLASS_NAME);
   }
 }

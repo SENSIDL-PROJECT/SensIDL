@@ -251,7 +251,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 				  *«d.description»
 				  */
 				«ENDIF» 
-				private «d.toTypeName» «GenerationUtil.toNameLower(d)»;
+				private «d.toTypeName» «GenerationUtil.toNameLower(d)»«IF !d.value.nullOrEmpty» = «d.value»«ENDIF»;
 			'''
 		}
 

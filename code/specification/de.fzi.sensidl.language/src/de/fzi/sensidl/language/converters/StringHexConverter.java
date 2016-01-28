@@ -17,11 +17,17 @@ public class StringHexConverter implements IValueConverter<String>{
 	
 	@Override
 	public String toValue(String string, INode node) throws ValueConverterException {
+		if (string == null || string == "") {
+			return null;
+		}
+		
+		string = string.replaceAll(QUOTATION_MARK, "");
+		
 		if (!string.contains(HEX_INDICATOR) || !(node.getSemanticElement() instanceof NonMeasurementData)) {
 			return string;
 		}
 		
-		string = string.replaceAll(HEX_INDICATOR, "").replaceAll(QUOTATION_MARK, "");
+		string = string.replaceAll(HEX_INDICATOR, "");
 		NonMeasurementData data = (NonMeasurementData) node.getSemanticElement();
 		Object value;
 		

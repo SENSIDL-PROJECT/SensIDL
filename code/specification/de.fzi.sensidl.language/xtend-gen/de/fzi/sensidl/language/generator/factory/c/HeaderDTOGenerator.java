@@ -6,6 +6,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.Data;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData;
+import de.fzi.sensidl.language.generator.GenerationUtil;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
 import de.fzi.sensidl.language.generator.factory.IDTOGenerator;
@@ -40,12 +41,11 @@ public class HeaderDTOGenerator extends CDTOGenerator {
       final HashMap<String, CharSequence> filesToGenerate = new HashMap<String, CharSequence>();
       for (final DataSet dataset : this.dataSet) {
         {
+          String _nameUpper = GenerationUtil.toNameUpper(dataset);
+          final String fileName = this.addFileExtensionTo(_nameUpper);
           String _name = dataset.getName();
           String _firstUpper = StringExtensions.toFirstUpper(_name);
-          final String fileName = this.addFileExtensionTo(_firstUpper);
-          String _name_1 = dataset.getName();
-          String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
-          CharSequence _generateStruct = this.generateStruct(_firstUpper_1, dataset);
+          CharSequence _generateStruct = this.generateStruct(_firstUpper, dataset);
           filesToGenerate.put(fileName, _generateStruct);
           HeaderDTOGenerator.logger.info(((("File: " + fileName) + " was generated in ") + SensIDLOutputConfigurationProvider.SENSIDL_GEN));
         }
@@ -63,9 +63,8 @@ public class HeaderDTOGenerator extends CDTOGenerator {
    */
   public CharSequence compile(final DataSet dataset) {
     StringConcatenation _builder = new StringConcatenation();
-    String _name = dataset.getName();
-    String _firstUpper = StringExtensions.toFirstUpper(_name);
-    CharSequence _generateStruct = this.generateStruct(_firstUpper, dataset);
+    String _nameUpper = GenerationUtil.toNameUpper(dataset);
+    CharSequence _generateStruct = this.generateStruct(_nameUpper, dataset);
     _builder.append(_generateStruct, "");
     return _builder;
   }
@@ -116,6 +115,11 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.newLine();
     _builder.append("#include <stdint.h>");
     _builder.newLine();
+    _builder.append("#include \"");
+    String _utilityFileName = GenerationUtil.getUtilityFileName(dataset, SensIDLConstants.HEADER_EXTENSION);
+    _builder.append(_utilityFileName, "");
+    _builder.append("\"");
+    _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("typedef struct");
     _builder.newLine();
@@ -132,20 +136,17 @@ public class HeaderDTOGenerator extends CDTOGenerator {
       }
     }
     _builder.append("} ");
-    String _name = dataset.getName();
-    String _firstUpper = StringExtensions.toFirstUpper(_name);
-    _builder.append(_firstUpper, "");
+    String _nameUpper = GenerationUtil.toNameUpper(dataset);
+    _builder.append(_nameUpper, "");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("extern ");
-    String _name_1 = dataset.getName();
-    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
-    _builder.append(_firstUpper_1, "");
+    String _nameUpper_1 = GenerationUtil.toNameUpper(dataset);
+    _builder.append(_nameUpper_1, "");
     _builder.append(" ");
-    String _name_2 = dataset.getName();
-    String _firstLower = StringExtensions.toFirstLower(_name_2);
-    _builder.append(_firstLower, "");
+    String _nameLower = GenerationUtil.toNameLower(dataset);
+    _builder.append(_nameLower, "");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -217,9 +218,8 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     String _typeName = this.toTypeName(data);
     _builder.append(_typeName, "");
     _builder.append(" ");
-    String _name = data.getName();
-    String _firstLower = StringExtensions.toFirstLower(_name);
-    _builder.append(_firstLower, "");
+    String _nameLower = GenerationUtil.toNameLower(data);
+    _builder.append(_nameLower, "");
     _builder.append(";");
     return _builder;
   }
@@ -240,9 +240,8 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     String _typeName = this.toTypeName(data);
     _builder.append(_typeName, "");
     _builder.append(" ");
-    String _name = data.getName();
-    String _firstLower = StringExtensions.toFirstLower(_name);
-    _builder.append(_firstLower, "");
+    String _nameLower = GenerationUtil.toNameLower(data);
+    _builder.append(_nameLower, "");
     {
       String _value = data.getValue();
       boolean _isNullOrEmpty = Strings.isNullOrEmpty(_value);

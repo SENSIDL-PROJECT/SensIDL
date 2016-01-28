@@ -17,10 +17,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.impl.IdentifiableElementImpl#getID <em>ID</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

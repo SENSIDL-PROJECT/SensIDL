@@ -69,6 +69,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 			#define «structName.toUpperCase»_H
 			
 			#include <stdint.h>
+			#include "«GenerationUtil.getUtilityFileName(dataset, SensIDLConstants.HEADER_EXTENSION)»"
 			
 			typedef struct
 			{

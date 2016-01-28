@@ -1,17 +1,15 @@
 package de.fzi.sensidl.language.generator.factory.java
 
-import de.fzi.sensidl.design.sensidl.SensorInterface
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
+import de.fzi.sensidl.language.generator.GenerationUtil
 import de.fzi.sensidl.language.generator.SensIDLConstants
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider
 import de.fzi.sensidl.language.generator.factory.IUtilityGenerator
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
-import org.eclipse.emf.ecore.EObject
-import de.fzi.sensidl.language.generator.GenerationUtil
 
 class JavaUtilityGenerator implements IUtilityGenerator {
 	private static Logger logger = Logger.getLogger(JavaUtilityGenerator)
@@ -32,18 +30,18 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 		logger.info("Start with code-generation of the java utility class.")
 
 		val filesToGenerate = new HashMap
-		val fileName = GenerationUtil.getSensorInterfaceName(this.data.get(0).eContainer) + SensIDLConstants.UTILITY_CLASS_NAME
+		val utilityName = GenerationUtil.getUtilityName(this.data.get(0))
 
 		// if a Plug-in Project is generated the file has to be generated to another path
 		if (createProject) {
 			filesToGenerate.put(
 				"src/de/fzi/sensidl/" + GenerationUtil.getSensorInterfaceName(this.data.get(0).eContainer) + "/" +
-					addFileExtensionTo(fileName), generateClassBody(fileName))
+					addFileExtensionTo(utilityName), generateClassBody(utilityName))
 		} else {
-			filesToGenerate.put(addFileExtensionTo(fileName), generateClassBody(fileName))
+			filesToGenerate.put(addFileExtensionTo(utilityName), generateClassBody(utilityName))
 		}
 
-		logger.info("File: " + addFileExtensionTo(fileName) + " was generated in " +
+		logger.info("File: " + addFileExtensionTo(utilityName) + " was generated in " +
 			SensIDLOutputConfigurationProvider.SENSIDL_GEN)
 
 		filesToGenerate

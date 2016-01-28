@@ -10,11 +10,11 @@ package de.fzi.sensidl.design.sensidl.dataRepresentation;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval#getFromInterval <em>From Interval</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval#getToInterval <em>To Interval</em>}</li>
  * </ul>
- * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getLinearDataConversionWithInterval()
  * @model

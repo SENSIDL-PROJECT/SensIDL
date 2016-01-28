@@ -2,6 +2,7 @@ package de.fzi.sensidl.language.generator.factory.c;
 
 import com.google.common.base.Strings;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
+import de.fzi.sensidl.language.generator.GenerationUtil;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
 import de.fzi.sensidl.language.generator.factory.IDTOGenerator;
@@ -10,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 @SuppressWarnings("all")
 public class CDTOFileGenerator extends CDTOGenerator {
@@ -32,9 +32,8 @@ public class CDTOFileGenerator extends CDTOGenerator {
       CDTOFileGenerator.logger.info("Start with code-generation of a c data transfer object.");
       for (final DataSet dataset : this.dataSet) {
         {
-          String _name = dataset.getName();
-          String _firstUpper = StringExtensions.toFirstUpper(_name);
-          final String fileName = this.addFileExtensionTo(_firstUpper);
+          String _nameUpper = GenerationUtil.toNameUpper(dataset);
+          final String fileName = this.addFileExtensionTo(_nameUpper);
           CharSequence _generateStructDeclaration = this.generateStructDeclaration(dataset);
           filesToGenerate.put(fileName, _generateStructDeclaration);
         }
@@ -66,20 +65,17 @@ public class CDTOFileGenerator extends CDTOGenerator {
     _builder.newLine();
     _builder.newLine();
     _builder.append("#include \"");
-    String _name = dataset.getName();
-    String _firstUpper = StringExtensions.toFirstUpper(_name);
-    String _plus = (_firstUpper + SensIDLConstants.HEADER_EXTENSION);
+    String _nameUpper = GenerationUtil.toNameUpper(dataset);
+    String _plus = (_nameUpper + SensIDLConstants.HEADER_EXTENSION);
     _builder.append(_plus, "");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
-    String _name_1 = dataset.getName();
-    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
-    _builder.append(_firstUpper_1, "");
+    String _nameUpper_1 = GenerationUtil.toNameUpper(dataset);
+    _builder.append(_nameUpper_1, "");
     _builder.append(" ");
-    String _name_2 = dataset.getName();
-    String _firstLower = StringExtensions.toFirstLower(_name_2);
-    _builder.append(_firstLower, "");
+    String _nameLower = GenerationUtil.toNameLower(dataset);
+    _builder.append(_nameLower, "");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     return _builder;

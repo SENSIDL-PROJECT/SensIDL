@@ -48,4 +48,12 @@ class GenerationUtil {
 	static def toNameUpper(DataSet d) {
 		d.name.toFirstUpper
 	}
+	
+	static def getUtilityFileName(EObject object, String fileExtension) {
+		GenerationUtil.getUtilityName(object) + fileExtension
+	}
+	
+	static def getUtilityName(EObject object) {
+		GenerationUtil.getSensorInterfaceName(object) + SensIDLConstants.UTILITY_CLASS_NAME
+	}
 }

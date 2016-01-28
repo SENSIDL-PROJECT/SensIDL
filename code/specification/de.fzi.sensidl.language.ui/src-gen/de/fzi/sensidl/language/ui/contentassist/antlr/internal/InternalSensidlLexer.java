@@ -24,6 +24,7 @@ public class InternalSensidlLexer extends Lexer {
     public static final int T__51=51;
     public static final int T__52=52;
     public static final int T__53=53;
+    public static final int T__54=54;
     public static final int RULE_ID=5;
     public static final int RULE_DESCRIPTION=7;
     public static final int T__26=26;
@@ -376,10 +377,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:25:7: ( 'sensorInterface' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:25:9: 'sensorInterface'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:25:7: ( 'BOOLEAN' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:25:9: 'BOOLEAN'
             {
-            match("sensorInterface"); 
+            match("BOOLEAN"); 
 
 
             }
@@ -397,10 +398,11 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:26:7: ( '{' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:26:9: '{'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:26:7: ( 'sensorInterface' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:26:9: 'sensorInterface'
             {
-            match('{'); 
+            match("sensorInterface"); 
+
 
             }
 
@@ -417,10 +419,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:27:7: ( '}' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:27:9: '}'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:27:7: ( '{' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:27:9: '{'
             {
-            match('}'); 
+            match('{'); 
 
             }
 
@@ -437,11 +439,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:28:7: ( 'with' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:28:9: 'with'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:28:7: ( '}' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:28:9: '}'
             {
-            match("with"); 
-
+            match('}'); 
 
             }
 
@@ -458,10 +459,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:29:7: ( 'identifier' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:29:9: 'identifier'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:29:7: ( 'with identifier' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:29:9: 'with identifier'
             {
-            match("identifier"); 
+            match("with identifier"); 
 
 
             }
@@ -520,11 +521,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:32:7: ( 'alignment' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:32:9: 'alignment'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:32:7: ( ',' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:32:9: ','
             {
-            match("alignment"); 
-
+            match(','); 
 
             }
 
@@ -541,10 +541,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:33:7: ( 'BIT' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:33:9: 'BIT'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:33:7: ( 'endianness' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:33:9: 'endianness'
             {
-            match("BIT"); 
+            match("endianness"); 
 
 
             }
@@ -562,10 +562,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:34:7: ( 'sensorData' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:34:9: 'sensorData'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:34:7: ( 'alignment' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:34:9: 'alignment'
             {
-            match("sensorData"); 
+            match("alignment"); 
 
 
             }
@@ -583,10 +583,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:35:7: ( 'dataSet' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:35:9: 'dataSet'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:35:7: ( 'BIT' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:35:9: 'BIT'
             {
-            match("dataSet"); 
+            match("BIT"); 
 
 
             }
@@ -604,10 +604,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:36:7: ( 'as' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:36:9: 'as'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:36:7: ( 'sensorData' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:36:9: 'sensorData'
             {
-            match("as"); 
+            match("sensorData"); 
 
 
             }
@@ -625,10 +625,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:37:7: ( 'in' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:37:9: 'in'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:37:7: ( 'dataSet' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:37:9: 'dataSet'
             {
-            match("in"); 
+            match("dataSet"); 
 
 
             }
@@ -646,10 +646,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:38:7: ( 'adjusted by' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:38:9: 'adjusted by'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:38:7: ( 'uses' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:38:9: 'uses'
             {
-            match("adjusted by"); 
+            match("uses"); 
 
 
             }
@@ -667,10 +667,11 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:39:7: ( ',' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:39:9: ','
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:39:7: ( 'as' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:39:9: 'as'
             {
-            match(','); 
+            match("as"); 
+
 
             }
 
@@ -687,10 +688,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:40:7: ( 'value' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:40:9: 'value'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:40:7: ( 'in' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:40:9: 'in'
             {
-            match("value"); 
+            match("in"); 
 
 
             }
@@ -708,10 +709,11 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:41:7: ( '=' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:41:9: '='
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:41:7: ( 'adjusted' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:41:9: 'adjusted'
             {
-            match('='); 
+            match("adjusted"); 
+
 
             }
 
@@ -728,10 +730,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:42:7: ( 'range' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:42:9: 'range'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:42:7: ( 'value' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:42:9: 'value'
             {
-            match("range"); 
+            match("value"); 
 
 
             }
@@ -749,10 +751,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:43:7: ( ';' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:43:9: ';'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:43:7: ( '=' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:43:9: '='
             {
-            match(';'); 
+            match('='); 
 
             }
 
@@ -769,10 +771,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:44:7: ( 'scaling factor' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:44:9: 'scaling factor'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:44:7: ( 'with range' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:44:9: 'with range'
             {
-            match("scaling factor"); 
+            match("with range"); 
 
 
             }
@@ -790,11 +792,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:45:7: ( 'and' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:45:9: 'and'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:45:7: ( '[' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:45:9: '['
             {
-            match("and"); 
-
+            match('['); 
 
             }
 
@@ -811,11 +812,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:46:7: ( 'offset' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:46:9: 'offset'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:46:7: ( ';' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:46:9: ';'
             {
-            match("offset"); 
-
+            match(';'); 
 
             }
 
@@ -832,11 +832,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:47:7: ( 'linear mapping' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:47:9: 'linear mapping'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:47:7: ( ']' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:47:9: ']'
             {
-            match("linear mapping"); 
-
+            match(']'); 
 
             }
 
@@ -853,10 +852,11 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:48:7: ( '[' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:48:9: '['
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:48:7: ( 'with scaling factor' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:48:9: 'with scaling factor'
             {
-            match('['); 
+            match("with scaling factor"); 
+
 
             }
 
@@ -873,10 +873,11 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:49:7: ( ']' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:49:9: ']'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:49:7: ( 'and offset' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:49:9: 'and offset'
             {
-            match(']'); 
+            match("and offset"); 
+
 
             }
 
@@ -893,10 +894,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:50:7: ( '=>' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:50:9: '=>'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:50:7: ( 'by linear mapping' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:50:9: 'by linear mapping'
             {
-            match("=>"); 
+            match("by linear mapping"); 
 
 
             }
@@ -914,10 +915,11 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:51:7: ( '.' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:51:9: '.'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:51:7: ( '=>' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:51:9: '=>'
             {
-            match('.'); 
+            match("=>"); 
+
 
             }
 
@@ -934,8 +936,28 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:52:7: ( 'constant' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:52:9: 'constant'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:52:7: ( '.' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:52:9: '.'
+            {
+            match('.'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__53"
+
+    // $ANTLR start "T__54"
+    public final void mT__54() throws RecognitionException {
+        try {
+            int _type = T__54;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:53:7: ( 'constant' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:53:9: 'constant'
             {
             match("constant"); 
 
@@ -948,15 +970,15 @@ public class InternalSensidlLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "T__53"
+    // $ANTLR end "T__54"
 
     // $ANTLR start "RULE_ML_COMMENT"
     public final void mRULE_ML_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4765:17: ( '/*' ~ ( '*' ) ( options {greedy=false; } : . )* '*/' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4765:19: '/*' ~ ( '*' ) ( options {greedy=false; } : . )* '*/'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4563:17: ( '/*' ~ ( '*' ) ( options {greedy=false; } : . )* '*/' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4563:19: '/*' ~ ( '*' ) ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
@@ -969,7 +991,7 @@ public class InternalSensidlLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4765:31: ( options {greedy=false; } : . )*
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4563:31: ( options {greedy=false; } : . )*
             loop1:
             do {
                 int alt1=2;
@@ -994,7 +1016,7 @@ public class InternalSensidlLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4765:59: .
+            	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4563:59: .
             	    {
             	    matchAny(); 
 
@@ -1024,12 +1046,12 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = RULE_DESCRIPTION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4767:18: ( '/**' ( options {greedy=false; } : . )* '*/' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4767:20: '/**' ( options {greedy=false; } : . )* '*/'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4565:18: ( '/**' ( options {greedy=false; } : . )* '*/' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4565:20: '/**' ( options {greedy=false; } : . )* '*/'
             {
             match("/**"); 
 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4767:26: ( options {greedy=false; } : . )*
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4565:26: ( options {greedy=false; } : . )*
             loop2:
             do {
                 int alt2=2;
@@ -1054,7 +1076,7 @@ public class InternalSensidlLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4767:54: .
+            	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4565:54: .
             	    {
             	    matchAny(); 
 
@@ -1084,10 +1106,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4769:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4769:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4567:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4567:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4769:11: ( '^' )?
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4567:11: ( '^' )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -1096,7 +1118,7 @@ public class InternalSensidlLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4769:11: '^'
+                    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4567:11: '^'
                     {
                     match('^'); 
 
@@ -1114,7 +1136,7 @@ public class InternalSensidlLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4769:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4567:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop4:
             do {
                 int alt4=2;
@@ -1163,10 +1185,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4771:10: ( ( '0' .. '9' )+ )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4771:12: ( '0' .. '9' )+
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4569:10: ( ( '0' .. '9' )+ )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4569:12: ( '0' .. '9' )+
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4771:12: ( '0' .. '9' )+
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4569:12: ( '0' .. '9' )+
             int cnt5=0;
             loop5:
             do {
@@ -1180,7 +1202,7 @@ public class InternalSensidlLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4771:13: '0' .. '9'
+            	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4569:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1212,10 +1234,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4773:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4773:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4571:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4571:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4773:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4571:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1233,10 +1255,10 @@ public class InternalSensidlLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4773:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4571:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4773:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4571:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop6:
                     do {
                         int alt6=3;
@@ -1252,7 +1274,7 @@ public class InternalSensidlLexer extends Lexer {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4773:21: '\\\\' .
+                    	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4571:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1260,7 +1282,7 @@ public class InternalSensidlLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4773:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4571:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1285,10 +1307,10 @@ public class InternalSensidlLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4773:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4571:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4773:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4571:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop7:
                     do {
                         int alt7=3;
@@ -1304,7 +1326,7 @@ public class InternalSensidlLexer extends Lexer {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4773:54: '\\\\' .
+                    	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4571:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1312,7 +1334,7 @@ public class InternalSensidlLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4773:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4571:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1355,12 +1377,12 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4775:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4775:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4573:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4573:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4775:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4573:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop9:
             do {
                 int alt9=2;
@@ -1373,7 +1395,7 @@ public class InternalSensidlLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4775:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4573:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1393,7 +1415,7 @@ public class InternalSensidlLexer extends Lexer {
                 }
             } while (true);
 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4775:40: ( ( '\\r' )? '\\n' )?
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4573:40: ( ( '\\r' )? '\\n' )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -1402,9 +1424,9 @@ public class InternalSensidlLexer extends Lexer {
             }
             switch (alt11) {
                 case 1 :
-                    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4775:41: ( '\\r' )? '\\n'
+                    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4573:41: ( '\\r' )? '\\n'
                     {
-                    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4775:41: ( '\\r' )?
+                    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4573:41: ( '\\r' )?
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -1413,7 +1435,7 @@ public class InternalSensidlLexer extends Lexer {
                     }
                     switch (alt10) {
                         case 1 :
-                            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4775:41: '\\r'
+                            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4573:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1445,10 +1467,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4777:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4777:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4575:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4575:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4777:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4575:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt12=0;
             loop12:
             do {
@@ -1502,8 +1524,8 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4779:16: ( . )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4779:18: .
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4577:16: ( . )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:4577:18: .
             {
             matchAny(); 
 
@@ -1518,8 +1540,8 @@ public class InternalSensidlLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:8: ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | RULE_ML_COMMENT | RULE_DESCRIPTION | RULE_ID | RULE_INT | RULE_STRING | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt13=50;
+        // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:8: ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | RULE_ML_COMMENT | RULE_DESCRIPTION | RULE_ID | RULE_INT | RULE_STRING | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt13=51;
         alt13 = dfa13.predict(input);
         switch (alt13) {
             case 1 :
@@ -1817,56 +1839,63 @@ public class InternalSensidlLexer extends Lexer {
                 }
                 break;
             case 43 :
-                // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:262: RULE_ML_COMMENT
+                // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:262: T__54
+                {
+                mT__54(); 
+
+                }
+                break;
+            case 44 :
+                // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:268: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 44 :
-                // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:278: RULE_DESCRIPTION
+            case 45 :
+                // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:284: RULE_DESCRIPTION
                 {
                 mRULE_DESCRIPTION(); 
 
                 }
                 break;
-            case 45 :
-                // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:295: RULE_ID
+            case 46 :
+                // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:301: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 46 :
-                // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:303: RULE_INT
+            case 47 :
+                // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:309: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 47 :
-                // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:312: RULE_STRING
+            case 48 :
+                // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:318: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 48 :
-                // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:324: RULE_SL_COMMENT
+            case 49 :
+                // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:330: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 49 :
-                // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:340: RULE_WS
+            case 50 :
+                // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:346: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 50 :
-                // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:348: RULE_ANY_OTHER
+            case 51 :
+                // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:1:354: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1880,329 +1909,317 @@ public class InternalSensidlLexer extends Lexer {
 
     protected DFA13 dfa13 = new DFA13(this);
     static final String DFA13_eotS =
-        "\1\uffff\10\45\2\uffff\2\45\1\uffff\3\45\1\uffff\1\45\1\75\1\45"+
-        "\1\uffff\2\45\3\uffff\1\45\2\43\2\uffff\2\43\2\uffff\1\45\1\uffff"+
-        "\10\45\2\uffff\2\45\1\127\1\uffff\2\45\1\132\3\45\1\uffff\1\45\2"+
-        "\uffff\1\45\1\uffff\2\45\3\uffff\1\45\5\uffff\2\45\1\147\11\45\1"+
-        "\uffff\2\45\1\uffff\1\45\1\167\6\45\2\uffff\2\45\1\uffff\1\45\1"+
-        "\u0081\10\45\1\u008d\4\45\1\uffff\11\45\1\uffff\1\u009b\1\u009c"+
-        "\1\u009d\1\u009e\3\45\1\u00a2\3\45\1\uffff\5\45\1\u00ab\1\u00ac"+
-        "\6\45\4\uffff\1\u00b3\1\u00b4\1\u00b5\1\uffff\1\u00b6\7\45\2\uffff"+
-        "\1\u00bf\5\45\4\uffff\7\45\1\u00cc\2\uffff\6\45\1\uffff\1\45\1\u00d5"+
-        "\2\45\1\uffff\1\u00d8\7\45\1\uffff\1\u00e0\2\uffff\2\45\1\u00e3"+
-        "\2\45\1\u00e6\1\u00e7\1\uffff\2\45\1\uffff\2\45\2\uffff\1\45\1\u00ed"+
-        "\3\45\1\uffff\1\u00f1\1\45\1\u00f3\1\uffff\1\45\1\uffff\1\u00f5"+
-        "\1\uffff";
+        "\1\uffff\10\44\2\uffff\1\44\1\uffff\1\44\1\uffff\5\44\1\74\3\uffff"+
+        "\1\44\1\uffff\1\44\2\42\2\uffff\2\42\2\uffff\1\44\1\uffff\10\44"+
+        "\2\uffff\1\44\1\uffff\1\44\1\uffff\1\44\1\126\4\44\1\133\1\44\5"+
+        "\uffff\1\44\1\uffff\1\44\5\uffff\2\44\1\143\13\44\1\uffff\4\44\1"+
+        "\uffff\1\44\1\uffff\1\44\2\uffff\2\44\1\uffff\2\44\1\174\14\44\1"+
+        "\uffff\1\44\1\u008d\6\44\1\uffff\1\u0094\1\u0095\1\u0096\1\u0097"+
+        "\3\44\1\u009b\2\44\1\uffff\5\44\1\uffff\1\u00a6\5\44\4\uffff\1\u00ac"+
+        "\1\u00ad\1\u00ae\1\uffff\1\u00af\1\44\3\uffff\5\44\1\uffff\3\44"+
+        "\1\u00ba\1\44\4\uffff\6\44\1\u00c2\3\44\1\uffff\3\44\1\u00ca\2\44"+
+        "\1\u00cd\1\uffff\1\u00ce\6\44\1\uffff\1\44\1\u00d6\2\uffff\2\44"+
+        "\1\u00d9\2\44\1\u00dc\1\u00dd\1\uffff\2\44\1\uffff\2\44\2\uffff"+
+        "\1\44\1\u00e3\3\44\1\uffff\1\u00e7\1\44\1\u00e9\1\uffff\1\44\1\uffff"+
+        "\1\u00eb\1\uffff";
     static final String DFA13_eofS =
-        "\u00f6\uffff";
+        "\u00ec\uffff";
     static final String DFA13_minS =
-        "\1\0\1\105\2\111\1\116\1\111\1\114\1\117\1\143\2\uffff\1\151\1"+
-        "\144\1\uffff\1\156\1\144\1\141\1\uffff\1\141\1\76\1\141\1\uffff"+
-        "\1\146\1\151\3\uffff\1\157\1\52\1\101\2\uffff\2\0\2\uffff\1\116"+
-        "\1\uffff\1\107\2\124\1\116\1\117\1\125\1\156\1\141\2\uffff\1\164"+
-        "\1\145\1\60\1\uffff\1\143\1\151\1\60\1\152\1\144\1\164\1\uffff\1"+
-        "\154\2\uffff\1\156\1\uffff\1\146\1\156\3\uffff\1\156\1\0\4\uffff"+
-        "\1\123\1\137\1\60\1\124\1\61\1\124\1\101\1\102\1\163\1\154\1\150"+
-        "\1\156\1\uffff\1\157\1\147\1\uffff\1\165\1\60\1\141\1\165\1\147"+
-        "\1\163\1\145\1\163\2\uffff\1\111\1\105\1\uffff\1\114\1\60\1\66\1"+
-        "\62\1\64\1\61\1\124\1\114\1\157\1\151\1\60\1\164\1\144\1\156\1\163"+
-        "\1\uffff\1\123\3\145\1\141\1\164\1\104\1\116\1\105\1\uffff\4\60"+
-        "\1\66\1\62\1\64\1\60\1\105\1\162\1\156\1\uffff\2\151\1\155\1\164"+
-        "\1\145\2\60\1\164\1\162\1\141\1\114\1\104\1\137\4\uffff\3\60\1\uffff"+
-        "\1\60\1\104\1\147\1\146\1\156\2\145\1\164\2\uffff\1\60\1\40\1\156"+
-        "\1\137\1\111\1\105\4\uffff\1\156\1\141\1\40\1\151\1\147\1\156\1"+
-        "\144\1\60\2\uffff\1\164\1\102\1\101\1\116\2\164\1\uffff\1\145\1"+
-        "\60\1\164\1\40\1\uffff\1\60\1\111\1\123\1\116\1\104\1\145\1\141"+
-        "\1\162\1\uffff\1\60\2\uffff\1\116\1\117\1\60\1\111\1\162\2\60\1"+
-        "\uffff\1\101\1\116\1\uffff\1\101\1\146\2\uffff\1\122\1\60\1\116"+
-        "\1\141\1\131\1\uffff\1\60\1\143\1\60\1\uffff\1\145\1\uffff\1\60"+
-        "\1\uffff";
+        "\1\0\1\105\2\111\1\116\1\111\1\114\1\117\1\145\2\uffff\1\151\1"+
+        "\uffff\1\156\1\uffff\1\144\1\141\1\163\1\156\1\141\1\76\3\uffff"+
+        "\1\171\1\uffff\1\157\1\52\1\101\2\uffff\2\0\2\uffff\1\116\1\uffff"+
+        "\1\107\1\117\2\124\1\116\1\117\1\125\1\156\2\uffff\1\164\1\uffff"+
+        "\1\143\1\uffff\1\151\1\60\1\152\1\144\1\164\1\145\1\60\1\154\5\uffff"+
+        "\1\40\1\uffff\1\156\1\0\4\uffff\1\123\1\137\1\60\1\114\1\124\1\61"+
+        "\1\124\1\101\1\102\1\163\1\150\1\157\1\151\1\147\1\uffff\1\165\1"+
+        "\40\1\141\1\163\1\uffff\1\165\1\uffff\1\163\2\uffff\1\111\1\105"+
+        "\1\uffff\1\105\1\114\1\60\1\66\1\62\1\64\1\61\1\124\1\114\1\157"+
+        "\1\40\1\144\1\141\1\156\1\163\1\uffff\1\123\1\60\1\145\1\164\1\104"+
+        "\1\116\1\101\1\105\1\uffff\4\60\1\66\1\62\1\64\1\60\1\105\1\162"+
+        "\2\151\1\156\1\155\1\164\1\145\1\uffff\1\60\1\141\1\114\1\104\1"+
+        "\116\1\137\4\uffff\3\60\1\uffff\1\60\1\104\3\uffff\2\156\2\145\1"+
+        "\164\1\uffff\1\156\1\137\1\111\1\60\1\105\4\uffff\1\156\1\141\1"+
+        "\147\1\145\1\156\1\144\1\60\1\164\1\102\1\101\1\uffff\1\116\2\164"+
+        "\1\60\1\163\1\164\1\60\1\uffff\1\60\1\111\1\123\1\116\1\104\1\145"+
+        "\1\141\1\uffff\1\163\1\60\2\uffff\1\116\1\117\1\60\1\111\1\162\2"+
+        "\60\1\uffff\1\101\1\116\1\uffff\1\101\1\146\2\uffff\1\122\1\60\1"+
+        "\116\1\141\1\131\1\uffff\1\60\1\143\1\60\1\uffff\1\145\1\uffff\1"+
+        "\60\1\uffff";
     static final String DFA13_maxS =
-        "\1\uffff\1\105\2\111\1\116\1\111\1\114\1\117\1\145\2\uffff\1\151"+
-        "\1\156\1\uffff\1\156\1\163\1\141\1\uffff\1\141\1\76\1\141\1\uffff"+
-        "\1\146\1\151\3\uffff\1\157\1\57\1\172\2\uffff\2\uffff\2\uffff\1"+
-        "\116\1\uffff\3\124\1\116\1\117\1\125\1\156\1\141\2\uffff\1\164\1"+
-        "\145\1\172\1\uffff\1\143\1\151\1\172\1\152\1\144\1\164\1\uffff\1"+
-        "\154\2\uffff\1\156\1\uffff\1\146\1\156\3\uffff\1\156\1\uffff\4\uffff"+
-        "\1\123\1\137\1\172\1\124\1\70\1\124\1\101\1\102\1\163\1\154\1\150"+
-        "\1\156\1\uffff\1\157\1\147\1\uffff\1\165\1\172\1\141\1\165\1\147"+
-        "\1\163\1\145\1\163\2\uffff\1\111\1\105\1\uffff\1\114\1\172\1\66"+
-        "\1\62\1\64\1\70\1\124\1\114\1\157\1\151\1\172\1\164\1\144\1\156"+
-        "\1\163\1\uffff\1\123\3\145\1\141\1\164\1\104\1\116\1\105\1\uffff"+
-        "\4\172\1\66\1\62\1\64\1\172\1\105\1\162\1\156\1\uffff\2\151\1\155"+
-        "\1\164\1\145\2\172\1\164\1\162\1\141\1\114\1\104\1\137\4\uffff\3"+
-        "\172\1\uffff\1\172\1\111\1\147\1\146\1\156\2\145\1\164\2\uffff\1"+
-        "\172\1\40\1\156\1\137\1\111\1\105\4\uffff\1\156\1\141\1\40\1\151"+
-        "\1\147\1\156\1\144\1\172\2\uffff\1\164\1\112\1\101\1\116\2\164\1"+
-        "\uffff\1\145\1\172\1\164\1\40\1\uffff\1\172\1\111\1\123\1\116\1"+
-        "\104\1\145\1\141\1\162\1\uffff\1\172\2\uffff\1\116\1\117\1\172\1"+
-        "\111\1\162\2\172\1\uffff\1\101\1\116\1\uffff\1\101\1\146\2\uffff"+
-        "\1\122\1\172\1\116\1\141\1\131\1\uffff\1\172\1\143\1\172\1\uffff"+
-        "\1\145\1\uffff\1\172\1\uffff";
+        "\1\uffff\1\105\1\117\1\111\1\116\1\111\1\114\1\117\1\145\2\uffff"+
+        "\1\151\1\uffff\1\156\1\uffff\1\163\1\141\1\163\1\156\1\141\1\76"+
+        "\3\uffff\1\171\1\uffff\1\157\1\57\1\172\2\uffff\2\uffff\2\uffff"+
+        "\1\116\1\uffff\1\124\1\117\2\124\1\116\1\117\1\125\1\156\2\uffff"+
+        "\1\164\1\uffff\1\144\1\uffff\1\151\1\172\1\152\1\144\1\164\1\145"+
+        "\1\172\1\154\5\uffff\1\40\1\uffff\1\156\1\uffff\4\uffff\1\123\1"+
+        "\137\1\172\1\114\1\124\1\70\1\124\1\101\1\102\1\163\1\150\1\157"+
+        "\1\151\1\147\1\uffff\1\165\1\40\1\141\1\163\1\uffff\1\165\1\uffff"+
+        "\1\163\2\uffff\1\111\1\105\1\uffff\1\105\1\114\1\172\1\66\1\62\1"+
+        "\64\1\70\1\124\1\114\1\157\1\40\1\144\1\141\1\156\1\163\1\uffff"+
+        "\1\123\1\172\1\145\1\164\1\104\1\116\1\101\1\105\1\uffff\4\172\1"+
+        "\66\1\62\1\64\1\172\1\105\1\162\1\163\1\151\1\156\1\155\1\164\1"+
+        "\145\1\uffff\1\172\1\141\1\114\1\104\1\116\1\137\4\uffff\3\172\1"+
+        "\uffff\1\172\1\111\3\uffff\2\156\2\145\1\164\1\uffff\1\156\1\137"+
+        "\1\111\1\172\1\105\4\uffff\1\156\1\141\1\147\1\145\1\156\1\144\1"+
+        "\172\1\164\1\112\1\101\1\uffff\1\116\2\164\1\172\1\163\1\164\1\172"+
+        "\1\uffff\1\172\1\111\1\123\1\116\1\104\1\145\1\141\1\uffff\1\163"+
+        "\1\172\2\uffff\1\116\1\117\1\172\1\111\1\162\2\172\1\uffff\1\101"+
+        "\1\116\1\uffff\1\101\1\146\2\uffff\1\122\1\172\1\116\1\141\1\131"+
+        "\1\uffff\1\172\1\143\1\172\1\uffff\1\145\1\uffff\1\172\1\uffff";
     static final String DFA13_acceptS =
-        "\11\uffff\1\20\1\21\2\uffff\1\24\3\uffff\1\35\3\uffff\1\41\2\uffff"+
-        "\1\46\1\47\1\51\3\uffff\1\55\1\56\2\uffff\1\61\1\62\1\uffff\1\55"+
-        "\10\uffff\1\20\1\21\3\uffff\1\24\6\uffff\1\35\1\uffff\1\50\1\37"+
-        "\1\uffff\1\41\2\uffff\1\46\1\47\1\51\2\uffff\1\60\1\56\1\57\1\61"+
-        "\14\uffff\1\33\2\uffff\1\32\10\uffff\1\53\1\54\2\uffff\1\27\17\uffff"+
-        "\1\43\11\uffff\1\5\13\uffff\1\22\15\uffff\1\7\1\11\1\13\1\6\3\uffff"+
-        "\1\15\10\uffff\1\36\1\40\6\uffff\1\10\1\12\1\14\1\16\10\uffff\1"+
-        "\44\1\45\6\uffff\1\42\4\uffff\1\31\10\uffff\1\25\1\uffff\1\34\1"+
-        "\52\7\uffff\1\26\2\uffff\1\3\2\uffff\1\30\1\23\5\uffff\1\2\3\uffff"+
-        "\1\4\1\uffff\1\1\1\uffff\1\17";
+        "\11\uffff\1\21\1\22\1\uffff\1\24\1\uffff\1\26\6\uffff\1\43\1\44"+
+        "\1\45\1\uffff\1\52\3\uffff\1\56\1\57\2\uffff\1\62\1\63\1\uffff\1"+
+        "\56\10\uffff\1\21\1\22\1\uffff\1\24\1\uffff\1\26\10\uffff\1\51\1"+
+        "\41\1\43\1\44\1\45\1\uffff\1\52\2\uffff\1\61\1\57\1\60\1\62\16\uffff"+
+        "\1\35\4\uffff\1\36\1\uffff\1\50\1\uffff\1\54\1\55\2\uffff\1\31\17"+
+        "\uffff\1\47\10\uffff\1\5\20\uffff\1\34\6\uffff\1\7\1\11\1\13\1\6"+
+        "\3\uffff\1\15\2\uffff\1\23\1\42\1\46\5\uffff\1\40\5\uffff\1\10\1"+
+        "\12\1\14\1\16\12\uffff\1\17\7\uffff\1\33\7\uffff\1\25\2\uffff\1"+
+        "\37\1\53\7\uffff\1\30\2\uffff\1\3\2\uffff\1\32\1\27\5\uffff\1\2"+
+        "\3\uffff\1\4\1\uffff\1\1\1\uffff\1\20";
     static final String DFA13_specialS =
-        "\1\2\37\uffff\1\0\1\1\44\uffff\1\3\u00af\uffff}>";
+        "\1\1\36\uffff\1\3\1\2\42\uffff\1\0\u00a8\uffff}>";
     static final String[] DFA13_transitionS = {
-            "\11\43\2\42\2\43\1\42\22\43\1\42\1\43\1\40\4\43\1\41\4\43\1"+
-            "\21\1\43\1\32\1\34\12\37\1\15\1\25\1\43\1\23\3\43\1\36\1\2\1"+
-            "\36\1\7\1\36\1\6\2\36\1\4\2\36\1\3\6\36\1\1\1\36\1\5\5\36\1"+
-            "\30\1\43\1\31\1\35\1\36\1\43\1\17\1\36\1\33\1\20\1\16\3\36\1"+
-            "\14\2\36\1\27\2\36\1\26\2\36\1\24\1\10\2\36\1\22\1\13\3\36\1"+
-            "\11\1\43\1\12\uff82\43",
-            "\1\44",
-            "\1\46",
+            "\11\42\2\41\2\42\1\41\22\42\1\41\1\42\1\37\4\42\1\40\4\42\1"+
+            "\16\1\42\1\31\1\33\12\36\1\14\1\26\1\42\1\24\3\42\1\35\1\2\1"+
+            "\35\1\7\1\35\1\6\2\35\1\4\2\35\1\3\6\35\1\1\1\35\1\5\5\35\1"+
+            "\25\1\42\1\27\1\34\1\35\1\42\1\17\1\30\1\32\1\20\1\15\3\35\1"+
+            "\22\11\35\1\10\1\35\1\21\1\23\1\13\3\35\1\11\1\42\1\12\uff82"+
+            "\42",
+            "\1\43",
+            "\1\45\5\uffff\1\46",
             "\1\47",
             "\1\50",
             "\1\51",
             "\1\52",
             "\1\53",
-            "\1\55\1\uffff\1\54",
+            "\1\54",
             "",
             "",
-            "\1\60",
-            "\1\61\11\uffff\1\62",
+            "\1\57",
             "",
-            "\1\64",
-            "\1\67\7\uffff\1\65\1\uffff\1\70\4\uffff\1\66",
+            "\1\61",
+            "",
+            "\1\65\7\uffff\1\63\1\uffff\1\66\4\uffff\1\64",
+            "\1\67",
+            "\1\70",
             "\1\71",
-            "",
+            "\1\72",
             "\1\73",
-            "\1\74",
-            "\1\76",
+            "",
+            "",
             "",
             "\1\100",
-            "\1\101",
+            "",
+            "\1\102",
+            "\1\103\4\uffff\1\104",
+            "\32\44\4\uffff\1\44\1\uffff\32\44",
             "",
             "",
-            "",
-            "\1\105",
-            "\1\106\4\uffff\1\107",
-            "\32\45\4\uffff\1\45\1\uffff\32\45",
+            "\0\106",
+            "\0\106",
             "",
             "",
-            "\0\111",
-            "\0\111",
+            "\1\110",
             "",
-            "",
+            "\1\111\14\uffff\1\112",
             "\1\113",
-            "",
-            "\1\114\14\uffff\1\115",
+            "\1\114",
+            "\1\115",
             "\1\116",
             "\1\117",
             "\1\120",
             "\1\121",
-            "\1\122",
-            "\1\123",
-            "\1\124",
             "",
+            "",
+            "\1\122",
+            "",
+            "\1\123\1\124",
             "",
             "\1\125",
-            "\1\126",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
+            "\1\127",
             "\1\130",
             "\1\131",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\1\133",
+            "\1\132",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "\1\134",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\135",
             "",
             "\1\136",
+            "\52\137\1\140\uffd5\137",
             "",
             "",
-            "\1\137",
             "",
-            "\1\140",
+            "",
             "\1\141",
-            "",
-            "",
-            "",
             "\1\142",
-            "\52\143\1\144\uffd5\143",
-            "",
-            "",
-            "",
-            "",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
+            "\1\144",
             "\1\145",
-            "\1\146",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\1\150",
-            "\1\152\1\uffff\1\153\2\uffff\1\154\1\uffff\1\151",
+            "\1\147\1\uffff\1\150\2\uffff\1\151\1\uffff\1\146",
+            "\1\152",
+            "\1\153",
+            "\1\154",
             "\1\155",
             "\1\156",
             "\1\157",
             "\1\160",
             "\1\161",
+            "",
             "\1\162",
             "\1\163",
-            "",
             "\1\164",
             "\1\165",
             "",
             "\1\166",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
+            "",
+            "\1\167",
+            "",
+            "",
             "\1\170",
             "\1\171",
+            "",
             "\1\172",
             "\1\173",
-            "\1\174",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "\1\175",
-            "",
-            "",
             "\1\176",
             "\1\177",
-            "",
-            "\1\u0080",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\1\u0082",
-            "\1\u0083",
+            "\1\u0081\1\uffff\1\u0082\2\uffff\1\u0083\1\uffff\1\u0080",
             "\1\u0084",
-            "\1\u0086\1\uffff\1\u0087\2\uffff\1\u0088\1\uffff\1\u0085",
+            "\1\u0085",
+            "\1\u0086",
+            "\1\u0087",
+            "\1\u0088",
             "\1\u0089",
             "\1\u008a",
             "\1\u008b",
+            "",
             "\1\u008c",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "\1\u008e",
             "\1\u008f",
             "\1\u0090",
             "\1\u0091",
-            "",
             "\1\u0092",
             "\1\u0093",
-            "\1\u0094",
-            "\1\u0095",
-            "\1\u0096",
-            "\1\u0097",
+            "",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "\1\u0098",
             "\1\u0099",
             "\1\u009a",
-            "",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\1\u009f",
-            "\1\u00a0",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
+            "\1\u009c",
+            "\1\u009d",
+            "\1\u009e\10\uffff\1\u009f\1\u00a0",
             "\1\u00a1",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
+            "\1\u00a2",
             "\1\u00a3",
             "\1\u00a4",
             "\1\u00a5",
             "",
-            "\1\u00a6",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "\1\u00a7",
             "\1\u00a8",
             "\1\u00a9",
             "\1\u00aa",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\1\u00ad",
-            "\1\u00ae",
-            "\1\u00af",
-            "\1\u00b0",
-            "\1\u00b1",
+            "\1\u00ab",
+            "",
+            "",
+            "",
+            "",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
+            "",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
+            "\1\u00b1\4\uffff\1\u00b0",
+            "",
+            "",
+            "",
             "\1\u00b2",
+            "\1\u00b3",
+            "\1\u00b4",
+            "\1\u00b5",
+            "\1\u00b6",
             "",
-            "",
-            "",
-            "",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\1\u00b8\4\uffff\1\u00b7",
+            "\1\u00b7",
+            "\1\u00b8",
             "\1\u00b9",
-            "\1\u00ba",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "\1\u00bb",
+            "",
+            "",
+            "",
+            "",
             "\1\u00bc",
             "\1\u00bd",
             "\1\u00be",
-            "",
-            "",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
+            "\1\u00bf",
             "\1\u00c0",
             "\1\u00c1",
-            "\1\u00c2",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "\1\u00c3",
-            "\1\u00c4",
-            "",
-            "",
-            "",
-            "",
-            "\1\u00c5",
+            "\1\u00c4\7\uffff\1\u00c5",
             "\1\u00c6",
+            "",
             "\1\u00c7",
             "\1\u00c8",
             "\1\u00c9",
-            "\1\u00ca",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "\1\u00cb",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
+            "\1\u00cc",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "",
-            "",
-            "\1\u00cd",
-            "\1\u00ce\7\uffff\1\u00cf",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
+            "\1\u00cf",
             "\1\u00d0",
             "\1\u00d1",
             "\1\u00d2",
             "\1\u00d3",
-            "",
             "\1\u00d4",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\1\u00d6",
-            "\1\u00d7",
             "",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\1\u00d9",
+            "\1\u00d5",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
+            "",
+            "",
+            "\1\u00d7",
+            "\1\u00d8",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "\1\u00da",
             "\1\u00db",
-            "\1\u00dc",
-            "\1\u00dd",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
+            "",
             "\1\u00de",
             "\1\u00df",
             "",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "",
-            "",
+            "\1\u00e0",
             "\1\u00e1",
+            "",
+            "",
             "\1\u00e2",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "\1\u00e4",
             "\1\u00e5",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
+            "\1\u00e6",
             "",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "\1\u00e8",
-            "\1\u00e9",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "",
             "\1\u00ea",
-            "\1\u00eb",
             "",
-            "",
-            "\1\u00ec",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\1\u00ee",
-            "\1\u00ef",
-            "\1\u00f0",
-            "",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "\1\u00f2",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
-            "",
-            "\1\u00f4",
-            "",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             ""
     };
 
@@ -2236,33 +2253,23 @@ public class InternalSensidlLexer extends Lexer {
             this.transition = DFA13_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | RULE_ML_COMMENT | RULE_DESCRIPTION | RULE_ID | RULE_INT | RULE_STRING | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | RULE_ML_COMMENT | RULE_DESCRIPTION | RULE_ID | RULE_INT | RULE_STRING | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA13_32 = input.LA(1);
+                        int LA13_67 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA13_32>='\u0000' && LA13_32<='\uFFFF')) ) {s = 73;}
+                        if ( ((LA13_67>='\u0000' && LA13_67<=')')||(LA13_67>='+' && LA13_67<='\uFFFF')) ) {s = 95;}
 
-                        else s = 35;
+                        else if ( (LA13_67=='*') ) {s = 96;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA13_33 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA13_33>='\u0000' && LA13_33<='\uFFFF')) ) {s = 73;}
-
-                        else s = 35;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
                         int LA13_0 = input.LA(1);
 
                         s = -1;
@@ -2288,63 +2295,71 @@ public class InternalSensidlLexer extends Lexer {
 
                         else if ( (LA13_0=='w') ) {s = 11;}
 
-                        else if ( (LA13_0=='i') ) {s = 12;}
+                        else if ( (LA13_0==':') ) {s = 12;}
 
-                        else if ( (LA13_0==':') ) {s = 13;}
+                        else if ( (LA13_0=='e') ) {s = 13;}
 
-                        else if ( (LA13_0=='e') ) {s = 14;}
+                        else if ( (LA13_0==',') ) {s = 14;}
 
                         else if ( (LA13_0=='a') ) {s = 15;}
 
                         else if ( (LA13_0=='d') ) {s = 16;}
 
-                        else if ( (LA13_0==',') ) {s = 17;}
+                        else if ( (LA13_0=='u') ) {s = 17;}
 
-                        else if ( (LA13_0=='v') ) {s = 18;}
+                        else if ( (LA13_0=='i') ) {s = 18;}
 
-                        else if ( (LA13_0=='=') ) {s = 19;}
+                        else if ( (LA13_0=='v') ) {s = 19;}
 
-                        else if ( (LA13_0=='r') ) {s = 20;}
+                        else if ( (LA13_0=='=') ) {s = 20;}
 
-                        else if ( (LA13_0==';') ) {s = 21;}
+                        else if ( (LA13_0=='[') ) {s = 21;}
 
-                        else if ( (LA13_0=='o') ) {s = 22;}
+                        else if ( (LA13_0==';') ) {s = 22;}
 
-                        else if ( (LA13_0=='l') ) {s = 23;}
+                        else if ( (LA13_0==']') ) {s = 23;}
 
-                        else if ( (LA13_0=='[') ) {s = 24;}
+                        else if ( (LA13_0=='b') ) {s = 24;}
 
-                        else if ( (LA13_0==']') ) {s = 25;}
+                        else if ( (LA13_0=='.') ) {s = 25;}
 
-                        else if ( (LA13_0=='.') ) {s = 26;}
+                        else if ( (LA13_0=='c') ) {s = 26;}
 
-                        else if ( (LA13_0=='c') ) {s = 27;}
+                        else if ( (LA13_0=='/') ) {s = 27;}
 
-                        else if ( (LA13_0=='/') ) {s = 28;}
+                        else if ( (LA13_0=='^') ) {s = 28;}
 
-                        else if ( (LA13_0=='^') ) {s = 29;}
+                        else if ( (LA13_0=='A'||LA13_0=='C'||LA13_0=='E'||(LA13_0>='G' && LA13_0<='H')||(LA13_0>='J' && LA13_0<='K')||(LA13_0>='M' && LA13_0<='R')||LA13_0=='T'||(LA13_0>='V' && LA13_0<='Z')||LA13_0=='_'||(LA13_0>='f' && LA13_0<='h')||(LA13_0>='j' && LA13_0<='r')||LA13_0=='t'||(LA13_0>='x' && LA13_0<='z')) ) {s = 29;}
 
-                        else if ( (LA13_0=='A'||LA13_0=='C'||LA13_0=='E'||(LA13_0>='G' && LA13_0<='H')||(LA13_0>='J' && LA13_0<='K')||(LA13_0>='M' && LA13_0<='R')||LA13_0=='T'||(LA13_0>='V' && LA13_0<='Z')||LA13_0=='_'||LA13_0=='b'||(LA13_0>='f' && LA13_0<='h')||(LA13_0>='j' && LA13_0<='k')||(LA13_0>='m' && LA13_0<='n')||(LA13_0>='p' && LA13_0<='q')||(LA13_0>='t' && LA13_0<='u')||(LA13_0>='x' && LA13_0<='z')) ) {s = 30;}
+                        else if ( ((LA13_0>='0' && LA13_0<='9')) ) {s = 30;}
 
-                        else if ( ((LA13_0>='0' && LA13_0<='9')) ) {s = 31;}
+                        else if ( (LA13_0=='\"') ) {s = 31;}
 
-                        else if ( (LA13_0=='\"') ) {s = 32;}
+                        else if ( (LA13_0=='\'') ) {s = 32;}
 
-                        else if ( (LA13_0=='\'') ) {s = 33;}
+                        else if ( ((LA13_0>='\t' && LA13_0<='\n')||LA13_0=='\r'||LA13_0==' ') ) {s = 33;}
 
-                        else if ( ((LA13_0>='\t' && LA13_0<='\n')||LA13_0=='\r'||LA13_0==' ') ) {s = 34;}
+                        else if ( ((LA13_0>='\u0000' && LA13_0<='\b')||(LA13_0>='\u000B' && LA13_0<='\f')||(LA13_0>='\u000E' && LA13_0<='\u001F')||LA13_0=='!'||(LA13_0>='#' && LA13_0<='&')||(LA13_0>='(' && LA13_0<='+')||LA13_0=='-'||LA13_0=='<'||(LA13_0>='>' && LA13_0<='@')||LA13_0=='\\'||LA13_0=='`'||LA13_0=='|'||(LA13_0>='~' && LA13_0<='\uFFFF')) ) {s = 34;}
 
-                        else if ( ((LA13_0>='\u0000' && LA13_0<='\b')||(LA13_0>='\u000B' && LA13_0<='\f')||(LA13_0>='\u000E' && LA13_0<='\u001F')||LA13_0=='!'||(LA13_0>='#' && LA13_0<='&')||(LA13_0>='(' && LA13_0<='+')||LA13_0=='-'||LA13_0=='<'||(LA13_0>='>' && LA13_0<='@')||LA13_0=='\\'||LA13_0=='`'||LA13_0=='|'||(LA13_0>='~' && LA13_0<='\uFFFF')) ) {s = 35;}
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA13_32 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA13_32>='\u0000' && LA13_32<='\uFFFF')) ) {s = 70;}
+
+                        else s = 34;
 
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA13_70 = input.LA(1);
+                        int LA13_31 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA13_70>='\u0000' && LA13_70<=')')||(LA13_70>='+' && LA13_70<='\uFFFF')) ) {s = 99;}
+                        if ( ((LA13_31>='\u0000' && LA13_31<='\uFFFF')) ) {s = 70;}
 
-                        else if ( (LA13_70=='*') ) {s = 100;}
+                        else s = 34;
 
                         if ( s>=0 ) return s;
                         break;

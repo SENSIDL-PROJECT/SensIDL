@@ -44,6 +44,6 @@ class CGenerator implements ICodeGenerator {
 	}
 	
 	override generateUtilityClass(List<MeasurementData> data) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		new CUtilityGenerator(data).generate
 	}
 }

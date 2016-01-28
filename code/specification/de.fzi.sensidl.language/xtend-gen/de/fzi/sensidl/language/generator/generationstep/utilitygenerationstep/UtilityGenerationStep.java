@@ -4,6 +4,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.language.generator.IExecuter;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
 import de.fzi.sensidl.language.generator.elementfilter.ElementFilter;
+import de.fzi.sensidl.language.generator.factory.c.CGenerator;
 import de.fzi.sensidl.language.generator.factory.java.JavaGenerator;
 import de.fzi.sensidl.language.generator.generationstep.GenerationStep;
 import java.util.HashMap;
@@ -55,21 +56,47 @@ public class UtilityGenerationStep extends GenerationStep {
         final IExecuter _function_1 = new IExecuter() {
           @Override
           public void execute() {
+            final JavaGenerator generator = new JavaGenerator();
+            final Procedure1<HashMap<String, CharSequence>> _function = new Procedure1<HashMap<String, CharSequence>>() {
+              @Override
+              public void apply(final HashMap<String, CharSequence> it) {
+                HashMap<String, CharSequence> _generateUtilityClass = generator.generateUtilityClass(UtilityGenerationStep.this.data, true);
+                it.putAll(_generateUtilityClass);
+              }
+            };
+            ObjectExtensions.<HashMap<String, CharSequence>>operator_doubleArrow(
+              GenerationStep.filesToGenerate, _function);
           }
         };
-        it.put(SensIDLConstants.GenerationLanguage.C, _function_1);
+        it.put(SensIDLConstants.GenerationLanguage.JAVA_PLUGIN_PROJECT, _function_1);
         final IExecuter _function_2 = new IExecuter() {
           @Override
           public void execute() {
+            final CGenerator generator = new CGenerator();
+            final Procedure1<HashMap<String, CharSequence>> _function = new Procedure1<HashMap<String, CharSequence>>() {
+              @Override
+              public void apply(final HashMap<String, CharSequence> it) {
+                HashMap<String, CharSequence> _generateUtilityClass = generator.generateUtilityClass(UtilityGenerationStep.this.data);
+                it.putAll(_generateUtilityClass);
+              }
+            };
+            ObjectExtensions.<HashMap<String, CharSequence>>operator_doubleArrow(
+              GenerationStep.filesToGenerate, _function);
           }
         };
-        it.put(SensIDLConstants.GenerationLanguage.CSHARP, _function_2);
+        it.put(SensIDLConstants.GenerationLanguage.C, _function_2);
         final IExecuter _function_3 = new IExecuter() {
           @Override
           public void execute() {
           }
         };
-        it.put(SensIDLConstants.GenerationLanguage.JAVASCRIPT, _function_3);
+        it.put(SensIDLConstants.GenerationLanguage.CSHARP, _function_3);
+        final IExecuter _function_4 = new IExecuter() {
+          @Override
+          public void execute() {
+          }
+        };
+        it.put(SensIDLConstants.GenerationLanguage.JAVASCRIPT, _function_4);
       }
     };
     return ObjectExtensions.<HashMap<SensIDLConstants.GenerationLanguage, IExecuter>>operator_doubleArrow(_hashMap, _function);

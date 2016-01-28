@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.IntervalImpl#getLowerBound <em>Lower Bound</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.IntervalImpl#getUpperBound <em>Upper Bound</em>}</li>
@@ -27,7 +28,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.IntervalImpl#getLinearDataConversionTo <em>Linear Data Conversion To</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.IntervalImpl#getDataRange <em>Data Range</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

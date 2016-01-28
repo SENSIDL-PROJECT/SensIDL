@@ -8,6 +8,7 @@ import de.fzi.sensidl.language.generator.factory.java.JavaGenerator
 import de.fzi.sensidl.language.generator.generationstep.GenerationStep
 import java.util.HashMap
 import java.util.List
+import de.fzi.sensidl.language.generator.factory.c.CGenerator
 
 class UtilityGenerationStep extends GenerationStep {
 	private val List<MeasurementData> data;
@@ -35,7 +36,8 @@ class UtilityGenerationStep extends GenerationStep {
 				filesToGenerate => [putAll(generator.generateUtilityClass(this.data, true))]
 			])
 			put(GenerationLanguage.C, [
-				//filesToGenerate => [putAll(generator.generateDTO)]
+				val generator = new CGenerator
+				filesToGenerate => [putAll(generator.generateUtilityClass(this.data))]
 			])
 			put(GenerationLanguage.CSHARP, [
 				//filesToGenerate => [putAll(generator.generateDTO)]

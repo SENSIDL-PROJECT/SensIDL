@@ -17,6 +17,7 @@ class DataTypes {
 	private static val String UNSIGNED_LONG_LONG = "uint64_t";
 	private static val String FLOAT = "float";
 	private static val String DOUBLE = "double";
+	private static val String BOOLEAN = "bool";
 	
 	private static val dataTypesMap = new HashMap() => [
 		put(DataType.INT8, SIGNED_CHAR)
@@ -29,6 +30,7 @@ class DataTypes {
 		put(DataType.UINT64, UNSIGNED_LONG_LONG)
 		put(DataType.FLOAT, FLOAT)
 		put(DataType.DOUBLE, DOUBLE)
+		put(DataType.BOOLEAN, BOOLEAN)
 	] 
 	
 	def static String getDataTypeBy(DataType dataType) {

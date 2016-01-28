@@ -1,10 +1,10 @@
 package de.fzi.sensidl.language.generator.factory.java;
 
-import de.fzi.sensidl.design.sensidl.SensorInterface;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataAdjustment;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
+import de.fzi.sensidl.language.generator.GenerationUtil;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
 import de.fzi.sensidl.language.generator.factory.IUtilityGenerator;
@@ -23,8 +23,15 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
   
   private List<MeasurementData> data;
   
+  private boolean createProject = false;
+  
   public JavaUtilityGenerator(final List<MeasurementData> newData) {
     this.data = newData;
+  }
+  
+  public JavaUtilityGenerator(final List<MeasurementData> newData, final boolean createProject) {
+    this.data = newData;
+    this.createProject = createProject;
   }
   
   @Override
@@ -34,50 +41,65 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
       JavaUtilityGenerator.logger.info("Start with code-generation of the java utility class.");
       final HashMap<String, CharSequence> filesToGenerate = new HashMap<String, CharSequence>();
       MeasurementData _get = this.data.get(0);
-      EObject _eContainer = _get.eContainer();
-      String _sensorInterfaceName = this.getSensorInterfaceName(_eContainer);
-      final String fileName = (_sensorInterfaceName + SensIDLConstants.UTILITY_CLASS_NAME);
-      String _addFileExtensionTo = this.addFileExtensionTo(fileName);
-      CharSequence _generateClassBody = this.generateClassBody(fileName);
-      filesToGenerate.put(_addFileExtensionTo, _generateClassBody);
-      String _addFileExtensionTo_1 = this.addFileExtensionTo(fileName);
-      String _plus = ("File: " + _addFileExtensionTo_1);
-      String _plus_1 = (_plus + " was generated in ");
-      String _plus_2 = (_plus_1 + SensIDLOutputConfigurationProvider.SENSIDL_GEN);
-      JavaUtilityGenerator.logger.info(_plus_2);
+      final String utilityName = GenerationUtil.getUtilityName(_get);
+      if (this.createProject) {
+        MeasurementData _get_1 = this.data.get(0);
+        EObject _eContainer = _get_1.eContainer();
+        String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(_eContainer);
+        String _plus = ("src/de/fzi/sensidl/" + _sensorInterfaceName);
+        String _plus_1 = (_plus + "/");
+        String _addFileExtensionTo = this.addFileExtensionTo(utilityName);
+        String _plus_2 = (_plus_1 + _addFileExtensionTo);
+        CharSequence _generateClassBody = this.generateClassBody(utilityName);
+        filesToGenerate.put(_plus_2, _generateClassBody);
+      } else {
+        String _addFileExtensionTo_1 = this.addFileExtensionTo(utilityName);
+        CharSequence _generateClassBody_1 = this.generateClassBody(utilityName);
+        filesToGenerate.put(_addFileExtensionTo_1, _generateClassBody_1);
+      }
+      String _addFileExtensionTo_2 = this.addFileExtensionTo(utilityName);
+      String _plus_3 = ("File: " + _addFileExtensionTo_2);
+      String _plus_4 = (_plus_3 + " was generated in ");
+      String _plus_5 = (_plus_4 + 
+        SensIDLOutputConfigurationProvider.SENSIDL_GEN);
+      JavaUtilityGenerator.logger.info(_plus_5);
       _xblockexpression = filesToGenerate;
     }
     return _xblockexpression;
   }
   
-  public String getSensorInterfaceName(final EObject currentElement) {
-    if ((currentElement instanceof SensorInterface)) {
-      return ((SensorInterface) currentElement).getName();
-    }
-    EObject _eContainer = currentElement.eContainer();
-    return this.getSensorInterfaceName(_eContainer);
-  }
-  
   public CharSequence generateClassBody(final String className) {
     StringConcatenation _builder = new StringConcatenation();
+    {
+      if (this.createProject) {
+        _builder.append("package de.fzi.sensidl.");
+        MeasurementData _get = this.data.get(0);
+        EObject _eContainer = _get.eContainer();
+        String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(_eContainer);
+        _builder.append(_sensorInterfaceName, "");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append(" ");
+        _builder.newLine();
+      }
+    }
     _builder.append("/**");
     _builder.newLine();
-    _builder.append("\t ");
+    _builder.append(" ");
     _builder.append("* Data transfer object for ");
-    _builder.append(className, "\t ");
+    _builder.append(className, " ");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t ");
+    _builder.append(" ");
     _builder.append("*");
     _builder.newLine();
-    _builder.append("\t ");
+    _builder.append(" ");
     _builder.append("* @generated");
     _builder.newLine();
-    _builder.append("\t ");
+    _builder.append(" ");
     _builder.append("*/");
     _builder.newLine();
-    _builder.append("\t");
     _builder.append("class ");
-    _builder.append(className, "\t");
+    _builder.append(className, "");
     _builder.append(" {");
     _builder.newLineIfNotEmpty();
     {
@@ -91,17 +113,17 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
       };
       boolean _exists = IterableExtensions.<MeasurementData>exists(this.data, _function);
       if (_exists) {
-        _builder.append("\t\t");
+        _builder.append("\t");
         CharSequence _generateLinearDataConversionMethod = this.generateLinearDataConversionMethod();
-        _builder.append(_generateLinearDataConversionMethod, "\t\t");
+        _builder.append(_generateLinearDataConversionMethod, "\t");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t\t");
+        _builder.append("\t");
         CharSequence _generateGetMaxValueOfMethod = this.generateGetMaxValueOfMethod();
-        _builder.append(_generateGetMaxValueOfMethod, "\t\t");
+        _builder.append(_generateGetMaxValueOfMethod, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("\t\t");
+    _builder.append("\t");
     _builder.newLine();
     {
       final Function1<MeasurementData, Boolean> _function_1 = new Function1<MeasurementData, Boolean>() {
@@ -114,19 +136,18 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
       };
       boolean _exists_1 = IterableExtensions.<MeasurementData>exists(this.data, _function_1);
       if (_exists_1) {
-        _builder.append("\t\t");
+        _builder.append("\t");
         CharSequence _generateLinearDataConversionWithIntervalMethod = this.generateLinearDataConversionWithIntervalMethod();
-        _builder.append(_generateLinearDataConversionWithIntervalMethod, "\t\t");
+        _builder.append(_generateLinearDataConversionWithIntervalMethod, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
     return _builder;
   }
   
-  public CharSequence generateLinearDataConversionWithIntervalMethod() {
+  public CharSequence generateLinearDataConversionMethod() {
     CharSequence _xblockexpression = null;
     {
       final String dataType = "double";
@@ -141,30 +162,29 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
       _builder.append(dataType, "");
       _builder.append(" offset) throws IllegalArgumentException {");
       _builder.newLineIfNotEmpty();
-      _builder.append("\t\t");
+      _builder.append("\t");
       _builder.append("// Conversion is calculated by the linear-function f(x) = m*x + b");
       _builder.newLine();
-      _builder.append("\t\t");
+      _builder.append("\t");
       _builder.append("double calculatedValue = (scalingFactor * independentVariable.doubleValue()) + offset;");
       _builder.newLine();
-      _builder.append("\t\t");
-      _builder.newLine();
-      _builder.append("\t\t");
-      _builder.append("if (getMaxValueOf(independentVariable) >= calculatedValue) {");
-      _builder.newLine();
-      _builder.append("\t\t\t");
-      _builder.append("return calculatedValue;");
-      _builder.newLine();
-      _builder.append("\t\t");
-      _builder.append("} else {");
-      _builder.newLine();
-      _builder.append("\t\t\t");
-      _builder.append("throw new IllegalArgumentException(\"The value is larger than the range of the data type.\");");
-      _builder.newLine();
-      _builder.append("\t\t");
-      _builder.append("}");
+      _builder.append("\t");
       _builder.newLine();
       _builder.append("\t");
+      _builder.append("if (getMaxValueOf(independentVariable) >= calculatedValue) {");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("return calculatedValue;");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("} else {");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("throw new IllegalArgumentException(\"The value is larger than the range of the data type.\");");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("}");
+      _builder.newLine();
       _builder.append("}");
       _builder.newLine();
       _xblockexpression = _builder;
@@ -172,7 +192,7 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
     return _xblockexpression;
   }
   
-  public CharSequence generateLinearDataConversionMethod() {
+  public CharSequence generateLinearDataConversionWithIntervalMethod() {
     CharSequence _xblockexpression = null;
     {
       final String dataType = "double";

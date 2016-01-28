@@ -9,11 +9,15 @@ public class SensIDLConstants {
     
     JAVA,
     
+    JAVA_PLUGIN_PROJECT,
+    
     JAVASCRIPT,
     
     CSHARP,
     
-    C;
+    C,
+    
+    PLAINTEXT;
   }
   
   public final static String C_EXTENSION = ".c";

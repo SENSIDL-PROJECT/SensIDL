@@ -74,7 +74,8 @@ enum DataType returns dataRepresentation::DataType:
 	INT64 |
 	UINT64 |
 	FLOAT |
-	DOUBLE
+	DOUBLE |
+	BOOLEAN
 ;
 
 DataAdjustment returns dataRepresentation::DataAdjustment:
