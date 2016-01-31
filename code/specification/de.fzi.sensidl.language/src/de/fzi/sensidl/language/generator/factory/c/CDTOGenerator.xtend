@@ -10,10 +10,10 @@ import java.util.List
 * of @see IDTOGenerator
 */
 abstract class CDTOGenerator implements IDTOGenerator {
-	protected List<DataSet> dataSet
+	protected List<DataSet> dataSets
 	
 	new(List<DataSet> newDataSet) {
-		this.dataSet = newDataSet
+		this.dataSets = newDataSet
 	}
 	
 	/**

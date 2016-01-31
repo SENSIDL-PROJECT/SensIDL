@@ -27,7 +27,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 		
 		logger.info("Start with code-generation of a c data transfer object.")
 		
-		for (dataset : this.dataSet) {
+		for (dataset : this.dataSets) {
 
 			val fileName = addFileExtensionTo(GenerationUtil.toNameUpper(dataset))
 			

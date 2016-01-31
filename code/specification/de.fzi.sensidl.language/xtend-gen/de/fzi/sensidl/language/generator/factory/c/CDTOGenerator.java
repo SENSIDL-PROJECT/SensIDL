@@ -13,10 +13,10 @@ import java.util.List;
  */
 @SuppressWarnings("all")
 public abstract class CDTOGenerator implements IDTOGenerator {
-  protected List<DataSet> dataSet;
+  protected List<DataSet> dataSets;
   
   public CDTOGenerator(final List<DataSet> newDataSet) {
-    this.dataSet = newDataSet;
+    this.dataSets = newDataSet;
   }
   
   /**

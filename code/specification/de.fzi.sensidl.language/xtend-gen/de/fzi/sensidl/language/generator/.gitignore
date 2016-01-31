@@ -57,3 +57,5 @@
 /.SensIDLConstants.xtendbin
 /SensIDLConstants.java
 /.GenerationUtil.java._trace
+/.GenerationUtil.xtendbin
+/GenerationUtil.java

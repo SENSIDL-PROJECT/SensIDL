@@ -39,7 +39,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     {
       HeaderDTOGenerator.logger.info("Start with code-generation of the data transfer object header-file.");
       final HashMap<String, CharSequence> filesToGenerate = new HashMap<String, CharSequence>();
-      for (final DataSet dataset : this.dataSet) {
+      for (final DataSet dataset : this.dataSets) {
         {
           String _nameUpper = GenerationUtil.toNameUpper(dataset);
           final String fileName = this.addFileExtensionTo(_nameUpper);
@@ -53,20 +53,6 @@ public class HeaderDTOGenerator extends CDTOGenerator {
       _xblockexpression = filesToGenerate;
     }
     return _xblockexpression;
-  }
-  
-  /**
-   * Triggers the code-generation for the
-   * c struct type definition.
-   * @param dataset
-   * 			represents the model element for the struct.
-   */
-  public CharSequence compile(final DataSet dataset) {
-    StringConcatenation _builder = new StringConcatenation();
-    String _nameUpper = GenerationUtil.toNameUpper(dataset);
-    CharSequence _generateStruct = this.generateStruct(_nameUpper, dataset);
-    _builder.append(_generateStruct, "");
-    return _builder;
   }
   
   /**

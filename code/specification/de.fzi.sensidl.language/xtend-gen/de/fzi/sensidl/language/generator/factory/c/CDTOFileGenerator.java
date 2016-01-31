@@ -30,7 +30,7 @@ public class CDTOFileGenerator extends CDTOGenerator {
     {
       final HashMap<String, CharSequence> filesToGenerate = new HashMap<String, CharSequence>();
       CDTOFileGenerator.logger.info("Start with code-generation of a c data transfer object.");
-      for (final DataSet dataset : this.dataSet) {
+      for (final DataSet dataset : this.dataSets) {
         {
           String _nameUpper = GenerationUtil.toNameUpper(dataset);
           final String fileName = this.addFileExtensionTo(_nameUpper);

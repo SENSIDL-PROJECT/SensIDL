@@ -7,6 +7,7 @@ import de.fzi.sensidl.language.generator.factory.c.CDTOFileGenerator;
 import de.fzi.sensidl.language.generator.factory.c.CDTOGenerator;
 import de.fzi.sensidl.language.generator.factory.c.CUtilityGenerator;
 import de.fzi.sensidl.language.generator.factory.c.HeaderDTOGenerator;
+import de.fzi.sensidl.language.generator.factory.c.MainDTOHeaderFileGenerator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +29,8 @@ public class CGenerator implements ICodeGenerator {
       final ArrayList<CDTOGenerator> generators = new ArrayList<CDTOGenerator>();
       HeaderDTOGenerator _headerDTOGenerator = new HeaderDTOGenerator(dataSet);
       generators.add(_headerDTOGenerator);
+      MainDTOHeaderFileGenerator _mainDTOHeaderFileGenerator = new MainDTOHeaderFileGenerator(dataSet);
+      generators.add(_mainDTOHeaderFileGenerator);
       CDTOFileGenerator _cDTOFileGenerator = new CDTOFileGenerator(dataSet);
       generators.add(_cDTOFileGenerator);
       final HashMap<String, CharSequence> filesToGenerate = new HashMap<String, CharSequence>();

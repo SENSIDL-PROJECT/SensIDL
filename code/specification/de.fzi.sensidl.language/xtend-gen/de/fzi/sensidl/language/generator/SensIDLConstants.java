@@ -37,4 +37,6 @@ public class SensIDLConstants {
   public final static String LINEAR_CONVERSION_METHOD_NAME = "linearConversion";
   
   public final static String LINEAR_CONVERSION_WITH_INTERVAL_METHOD_NAME = "linearConversionWithInterval";
+  
+  public final static String MAIN_HEADER_FILE_NAME = "DTOs";
 }

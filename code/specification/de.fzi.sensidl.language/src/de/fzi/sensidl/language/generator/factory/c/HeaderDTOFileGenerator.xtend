@@ -29,7 +29,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 		logger.info("Start with code-generation of the data transfer object header-file.")
 		val filesToGenerate = new HashMap()
 
-		for (dataset : this.dataSet) {
+		for (dataset : this.dataSets) {
 
 			val fileName = addFileExtensionTo(GenerationUtil.toNameUpper(dataset))
 
@@ -38,16 +38,6 @@ class HeaderDTOGenerator extends CDTOGenerator {
 		}
 		
 		filesToGenerate
-	}
-
-	/**
-	 * Triggers the code-generation for the
-	 * c struct type definition.
-	 * @param dataset
-	 * 			represents the model element for the struct.
-	 */
-	def compile(DataSet dataset) {
-		'''«generateStruct(GenerationUtil.toNameUpper(dataset), dataset)»'''
 	}
 
 	/**

@@ -14,3 +14,6 @@
 /.DataTypes.xtendbin
 /DataTypes.java
 /.CUtilityGenerator.java._trace
+/.CUtilityGenerator.xtendbin
+/CUtilityGenerator.java
+/.MainDTOHeaderFileGenerator.java._trace
