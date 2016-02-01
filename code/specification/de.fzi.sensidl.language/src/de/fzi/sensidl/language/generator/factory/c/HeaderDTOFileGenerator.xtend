@@ -22,6 +22,16 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	}
 
 	/**
+	 * Triggers the code-generation for the
+	 * c struct type definition.
+	 * @param dataset
+	 * 			represents the model element for the struct.
+	 */
+	def compile(DataSet dataset) {
+		'''«generateStruct(dataset.name.toFirstUpper, dataset)»'''
+	}
+
+	/**
 	 * Generates the .c files with structs
 	 * @see IDTOGenerator#generate()
 	 */
@@ -61,6 +71,16 @@ class HeaderDTOGenerator extends CDTOGenerator {
 			#include <stdint.h>
 			#include "«GenerationUtil.getUtilityFileName(dataset, SensIDLConstants.HEADER_EXTENSION)»"
 			
+			«FOR data : dataset.eContents.filter(NonMeasurementData)»				
+			«IF data.constant && data.name == "bDeviceType"»
+			#ifndef RADIO_DEVICE_TYPE_VALUE
+			#define RADIO_DEVICE_TYPE_VALUE «data.value»
+			#endif
+			«ENDIF»
+			«ENDFOR»			
+			
+			#include "bsp.h"			
+			
 			typedef struct
 			{
 				«FOR data : dataset.eContents.filter(Data)»
@@ -69,11 +89,86 @@ class HeaderDTOGenerator extends CDTOGenerator {
 			} «GenerationUtil.toNameUpper(dataset)»;
 			
 			extern «GenerationUtil.toNameUpper(dataset)» «GenerationUtil.toNameLower(dataset)»;
+
+			«generateInitDatasetPrototype(dataset)»
+						
+			«FOR data : dataset.eContents.filter(Data)»				
+				«generateGetterPrototype(data, dataset)»
+				«generateSetterPrototype(data, dataset)»
+			«ENDFOR»
 			
 			#endif
 		'''
 	}
-
+	
+	/** 
+	 * Generates the Init Method for the dataset initialization
+	 */	
+	def generateInitDatasetPrototype(DataSet dataset) {
+		'''
+		/**
+		* @Initialization of the «dataset.name.toFirstUpper» dataset
+		*/
+		void init«dataset.name.toFirstUpper»(«dataset.name.toFirstUpper»* p);
+		
+		'''		
+	}
+	/** 
+	 * Generates the Getter Method for the measurement data
+	 */
+	dispatch def generateGetterPrototype(MeasurementData d, DataSet dataset) {
+		'''
+		/**
+		* @return the «d.name.toFirstUpper»
+		*/
+		«d.toTypeName» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p);
+		
+		'''
+	}
+	
+	/** 
+	 * Generates the Setter Method for the measurement data
+	 */	
+	dispatch def generateSetterPrototype(MeasurementData d, DataSet dataset) {
+		'''
+		/**
+		 * @param pointer to dataset, «d.name.toFirstLower»
+		 *			the «d.name.toFirstLower» to set
+		 */
+		void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» );
+		
+		'''
+	}
+		
+	/** 
+	 * Generates the Getter Method for the non measurement data
+	 */
+	dispatch def generateGetterPrototype(NonMeasurementData d, DataSet dataset) {
+		'''
+		/**
+		* @return the «d.name.toFirstUpper»
+		*/
+		«d.toTypeName» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p);
+		
+		'''
+	}
+	
+	/** 
+	 * Generates the Setter Method for the non measurement data
+	 */	
+	dispatch def generateSetterPrototype(NonMeasurementData d, DataSet dataset) {
+		'''
+		«IF !d.constant»
+		/**
+		 * @param pointer to dataset, «d.name.toFirstLower»
+		 *			the «d.name.toFirstLower» to set
+		 */
+		void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» );
+		
+		«ENDIF»
+		'''
+	}		
+	
 	/**
 	 * Generates a description for measured data.
 	 * @param data

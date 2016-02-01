@@ -9,6 +9,13 @@ import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
 import de.fzi.sensidl.language.generator.GenerationUtil
+import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
+import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange
+import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 
 class CDTOFileGenerator extends CDTOGenerator {
 	
@@ -93,9 +100,97 @@ class CDTOFileGenerator extends CDTOGenerator {
 			#include "«GenerationUtil.toNameUpper(dataset) + SensIDLConstants.HEADER_EXTENSION»"
 			
 			«GenerationUtil.toNameUpper(dataset)» «GenerationUtil.toNameLower(dataset)»;
-		'''
+			
+			«generateInitDatasetDeclaration(dataset)»
+			
+			«FOR data : dataset.eContents.filter(Data)»				
+				«generateGetterDeclaration(data, dataset)»
+				«generateSetterDeclaration(data, dataset)»				
+			«ENDFOR»			
+		'''	
 	}
 	
+	def generateInitDatasetDeclaration(DataSet dataset) {
+		'''
+
+		void init«dataset.name.toFirstUpper»(«dataset.name.toFirstUpper»* p) {
+		
+			«FOR data : dataset.eContents.filter(NonMeasurementData)»
+			«IF data.value != null»  
+			 p->«data.name.replaceAll("[^a-zA-Z0-9]", "")» = «data.value»;
+			«ENDIF»
+			«ENDFOR»
+			
+		}
+		'''			
+	}
+	
+	def generateGetterDeclaration(Data d, DataSet dataset) {
+		'''
+
+		«d.toTypeName» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p) { return p->«d.name»; }
+		'''
+	}	
+	
+	dispatch def generateSetterDeclaration(MeasurementData d, DataSet dataset) {
+			'''
+				«IF d.adjustments.empty == false»
+				
+				«FOR dataAdj : d.adjustments»
+				«IF dataAdj instanceof DataRange»
+					void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ){
+						if («d.name.toFirstLower» >= «dataAdj.range.lowerBound» && «d.name.toFirstLower» <= «dataAdj.range.upperBound»)
+							 p->«d.name.toFirstLower» = «d.name.toFirstLower»;
+						else{
+								//Do something
+							}
+					}
+				«ENDIF»	
+				
+				«IF dataAdj instanceof DataConversion»						
+					«IF dataAdj instanceof LinearDataConversion»
+					
+					void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ){						
+						p->«d.name.toFirstLower» =  «d.name.toFirstLower» *  «dataAdj.scalingFactor» +  «dataAdj.offset»;
+					} 
+					«ELSE»
+						«IF dataAdj instanceof LinearDataConversionWithInterval»
+						void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ){						
+							if («d.name.toFirstLower» >= «dataAdj.fromInterval.lowerBound» && «d.name.toFirstLower» <= «dataAdj.fromInterval.upperBound»){												
+								
+								«d.toTypeName» oldMin =  «dataAdj.fromInterval.lowerBound.intValue»;
+								«d.toTypeName» oldMax =  «dataAdj.fromInterval.upperBound.intValue»;
+								«d.toTypeName» newMin =  «dataAdj.toInterval.lowerBound.intValue»;
+								«d.toTypeName» newMax =  «dataAdj.toInterval.upperBound.intValue»;
+								
+								p->«d.name.toFirstLower» =  ((((«d.name.toFirstLower» - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin);
+							}
+							else{
+								//Do something
+							}
+						} 		
+						«ENDIF»
+					«ENDIF»
+				«ENDIF»				
+				«ENDFOR»	
+				«ELSE»
+					void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ) { p->«d.name.toFirstLower» = «d.name.toFirstLower»; }
+				«ENDIF»
+				''' 
+	}	
+	
+	dispatch def generateSetterDeclaration(NonMeasurementData d, DataSet dataset) {
+		if (d.constant) {
+			'''
+				// no setter for constant value
+			'''
+		} else {
+			'''
+				void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ) { p->«d.name.toFirstLower» = «d.name.toFirstLower»; }
+			'''
+		}
+	}
+		
 	/**
 	 * Generates a description for a dataset.
 	 * @param dataset
