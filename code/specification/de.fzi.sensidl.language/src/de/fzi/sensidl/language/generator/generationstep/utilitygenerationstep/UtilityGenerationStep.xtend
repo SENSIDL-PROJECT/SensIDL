@@ -27,6 +27,13 @@ class UtilityGenerationStep extends GenerationStep {
 	
 	private def initExecuter() {
 				return new HashMap<GenerationLanguage, IExecuter> => [
+			put(GenerationLanguage.ALL, [
+				val jgenerator = new JavaGenerator
+				val cgenerator = new CGenerator
+				filesToGenerate => [putAll(jgenerator.generateUtilityClass(this.data))]
+				filesToGenerate => [putAll(cgenerator.generateUtilityClass(this.data))]
+			])
+			
 			put(GenerationLanguage.JAVA, [
 				val generator = new JavaGenerator
 				filesToGenerate => [putAll(generator.generateUtilityClass(this.data))]

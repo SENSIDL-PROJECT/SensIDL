@@ -24,10 +24,10 @@ abstract class GenerationStep {
 			return
 		}
 		
-		if (generationLanguage.equals(GenerationLanguage.ALL)) {
-			executer.values.forEach[IExecuter exec | exec.execute]
-			return
-		}
+//		if (generationLanguage.equals(GenerationLanguage.ALL)) {
+//			executer.values.forEach[IExecuter exec | exec.execute]
+//			return
+//		}
 		
 		executer.get(generationLanguage).execute
 	}

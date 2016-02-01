@@ -25,6 +25,20 @@ class SkeletonGenerationStep extends GenerationStep {
 
 	private def initExecuter() {
 		return new HashMap<GenerationLanguage, IExecuter> => [
+			put(GenerationLanguage.ALL, [
+				val JavaGenerator jgenerator = new JavaGenerator()
+				val CGenerator cgenerator = new CGenerator()
+				val JavaScriptGenerator jsgenerator = new JavaScriptGenerator()
+				val PlaintextGenerator generator = new PlaintextGenerator()
+				filesToGenerate => [
+					putAll(jgenerator.generateDTO(this.dataSet))
+					putAll(cgenerator.generateDTO(this.dataSet))
+					putAll(jsgenerator.generateDTO(this.dataSet))
+					putAll(generator.generateDTO(this.dataSet))
+				]
+//				generator.generateDecoder
+//				generator.generateEncoder
+			])
 			put(GenerationLanguage.JAVA, [
 				val JavaGenerator generator = new JavaGenerator()
 				val PlaintextGenerator generator2 = new PlaintextGenerator()
