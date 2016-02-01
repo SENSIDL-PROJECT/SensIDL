@@ -148,17 +148,17 @@ class JavaDTOGenerator implements IDTOGenerator {
 	 */
 	def generateConstructorIncludeParentDataSet(DataSet d,String className) {
 		var dataSet = d
-		var constructorString ='''public «className» ('''
-		while (dataSet!==null) {
-			if(dataSet.parentDataSet!==null) {
-				constructorString +='''«dataSet.generateConstructorArguments», '''
-			}
-			else {
-				constructorString +='''«dataSet.generateConstructorArguments»)'''
-			}
-			dataSet = dataSet.parentDataSet
-		}
-		dataSet = d
+		var constructorString ='''public «className» («d.generateConstructorArgumentsIncludeParentDataSets»){'''
+//		while (dataSet!==null) {
+//			if(dataSet.parentDataSet!==null) {
+//				constructorString +='''«dataSet.generateConstructorArguments», '''
+//			}
+//			else {
+//				constructorString +='''«dataSet.generateConstructorArguments»)'''
+//			}
+//			dataSet = dataSet.parentDataSet
+//		}
+//		dataSet = d
 		constructorString += System.getProperty("line.separator");
 		var measurementDataList = new ArrayList<MeasurementData>
 		var nonMeasurementDataList = new ArrayList<NonMeasurementData>
@@ -296,19 +296,23 @@ class JavaDTOGenerator implements IDTOGenerator {
 	/**
 	 * Generates the Constructor arguments
 	 */
-	def generateConstructorArguments(DataSet d) {
+	def generateConstructorArgumentsIncludeParentDataSets(DataSet d) {
 		// create an ArrayList with all data that is not a constant NonMeasurementData (which will not be constructor arguments)
 		var dataList = new ArrayList<Data>();
-
-		for (data : d.eContents.filter(Data)) {
-			if (data instanceof NonMeasurementData) {
-				var nmdata = data as NonMeasurementData
-				if (!nmdata.constant) {
+		var dataSet = d
+		
+		while (dataSet != null){
+			for (data : dataSet.eContents.filter(Data)) {
+				if (data instanceof NonMeasurementData) {
+					var nmdata = data as NonMeasurementData
+					if (!nmdata.constant) {
+						dataList.add(data)
+					}
+				} else {
 					dataList.add(data)
 				}
-			} else {
-				dataList.add(data)
 			}
+			dataSet = dataSet.parentDataSet
 		}
 
 		if (dataList.size > 0) {
