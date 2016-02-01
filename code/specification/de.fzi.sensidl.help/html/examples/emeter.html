@@ -18,13 +18,11 @@
 		<code>
 			<nobr><b>sensorInterface</b> eMeter<em> /**Interface for devices measuring electronic current.*/</em> <b>{</b><br> </nobr>
 
-			<nobr>&nbsp;&nbsp;&nbsp;&nbsp; <b>encoding</b> SENSIDL_BINARY <b>with</b> BIG_ENDIAN&nbsp; <b>alignment</b> 1 <b>BIT</b><br></nobr>
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp; <b>encoding</b>: SENSIDL_BINARY, <b>endianness</b>: BIG_ENDIAN, <b>alignment</b>: 1 <b>BIT</b><br></nobr>
 
 			<nobr>&nbsp;&nbsp;&nbsp;&nbsp; <b>sensorData {</b><br></nobr>
 
-			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>dataSet</b> Conductor <b>{</b><br></nobr>
-
-			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deviceType <b>as</b> UINT8 <b>constant</b> <b>value=</b>"40" <em>/**Type 40 denotes eMeter.*/</em><br></nobr>
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>dataSet</b> Conductor <b>uses</b> Info<em> /**Data description of Conductor*/</em> <b>{</b><br></nobr>
 
 			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;recordType <b>as</b> UINT8 <b>value=</b> "1"<em>/**Distinct type for this data set.*/</em><br></nobr>
 
@@ -42,23 +40,19 @@
 
 			<br>
 			
-			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>dataSet</b> NeutralConductor<em> /**Data description of NeutralConductor*/</em> <b>{</b><br></nobr>
-
-			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deviceType <b>as</b> UINT8 <b>constant value=</b>"40" <em>/**Type 40 denotes eMeter.*/</em><br></nobr>
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>dataSet</b> NeutralConductor <b>uses</b> Info<em> /**Data description of NeutralConductor*/</em> <b>{</b><br></nobr>
 
 			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;recordType <b>as</b> UINT8 <b>value=</b> "4" <em>/**Distinct type for this data set.*/</em><br></nobr>
 
 			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;current <b>as</b> FLOAT <b>in</b> A<br></nobr>
 
-			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;powerFactor <b>as</b> UINT16 <b>in</b>Dimensionless<br></nobr>
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;powerFactor <b>as</b> UINT16 <b>in</b> Dimensionless<br></nobr>
  
 			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>}</b><br></nobr>
  
 			<br>
 			
-			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>dataSet</b> Energy <em>/**Data description of Energy*/</em> <b>{</b><br></nobr>
-
-			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deviceType <b>as</b> UINT8 <b>constant value=</b>"40" <em>/**Type 40 denotes eMeter.*/</em><br></nobr>
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>dataSet</b> Energy <b>uses</b> Info <em>/**Data description of Energy*/</em> <b>{</b><br></nobr>
 
 			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;recordType <b>as</b> UINT8 <b>value</b>= "5" <em>/**Distinct type for this data set.*/</em><br></nobr>
 
@@ -67,6 +61,14 @@
 			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l2 <b>as</b> FLOAT <b>in</b> kW <em>/**Energy amount for conductor L2.*/</em><br></nobr>
 
 			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;l3 <b>as</b> FLOAT <b>in</b> kW <em>/**Energy amount for conductor L3.*/</em><br></nobr>
+			
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>}</b><br></nobr>
+			
+			<br>
+			
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>dataSet</b> Info <b>{</b><br></nobr>
+			
+			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deviceType <b>as</b> UINT8 <b>constant</b> <b>value=</b>"40" <em>/**Type 40 denotes eMeter.*/</em><br></nobr>
 			
 			<nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>}</b><br></nobr>
 			

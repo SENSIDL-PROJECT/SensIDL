@@ -9,39 +9,51 @@
 
 	<!-- =================== emeter example =================== -->
 	<extension point="org.eclipse.ui.newWizards">
-		<wizard id="de.fzi.sensidl.example.emeter"
-			name="Emeter Example"
-			class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
-			category="org.eclipse.ui.Examples/de.fzi.sensidl.examples"
-			icon="icons/SensIDL_logo.jpg"
-			project="true">
+		<wizard 
+			 id="de.fzi.sensidl.example.emeter"
+			 name="Emeter Example"
+			 class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+			 category="org.eclipse.ui.Examples/de.fzi.sensidl.examples"
+			 icon="icons/SensIDL_logo.jpg"
+			 project="true">
 			<description>SensIDL Emeter Example</description>
 		</wizard>
 	</extension>
 		
 	<extension point="org.eclipse.emf.common.ui.examples">
-		<example wizardID="de.fzi.sensidl.example.emeter" pageImage="icons/SensIDL_logo.jpg">
-		<projectDescriptor name="de.fzi.sensidl.example.emeter" contentURI="examples/de.fzi.sensidl.example.emeter.zip" description="Emeter Example"/>
-		<fileToOpen location="de.fzi.sensidl.example.emeter/src/emeter.sidl"/>		
+		<example 
+			 wizardID="de.fzi.sensidl.example.emeter" 
+			 pageImage="icons/SensIDL_logo.jpg">
+		<fileToOpen location="de.fzi.sensidl.example.emeter/src/emeter.sidl"/>	
+		<projectDescriptor 
+			 name="de.fzi.sensidl.example.emeter" 
+			 contentURI="platform:/plugin/de.fzi.sensidl.example.emeter/" 
+			 description="Emeter Example"/>
 		</example>
 	</extension>
 	
 	<!-- =================== eddystone example =================== -->
 	<extension point="org.eclipse.ui.newWizards">
-		<wizard id="de.fzi.sensidl.example.eddystone"
-			name="Eddystone Example"
-			class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
-			category="org.eclipse.ui.Examples/de.fzi.sensidl.examples"
-			icon="icons/SensIDL_logo.jpg"
-			project="true">
+		<wizard 
+			 id="de.fzi.sensidl.example.eddystone"
+			 name="Eddystone Example"
+			 class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+			 category="org.eclipse.ui.Examples/de.fzi.sensidl.examples"
+			 icon="icons/SensIDL_logo.jpg"
+			 project="true">
 			<description>SensIDL Eddystone Example</description>
 		</wizard>
 	</extension>
 		
 	<extension point="org.eclipse.emf.common.ui.examples">
-		<example wizardID="de.fzi.sensidl.example.eddystone" pageImage="icons/SensIDL_logo.jpg">
-		<projectDescriptor name="de.fzi.sensidl.example.eddystone" contentURI="examples/de.fzi.sensidl.example.eddystone.zip" description="Eddystone Example"/>
-		<fileToOpen location="de.fzi.sensidl.example.eddystone/src/Eddystone_TLM.sidl"/>				
+		<example 
+			 wizardID="de.fzi.sensidl.example.eddystone" 
+			 pageImage="icons/SensIDL_logo.jpg">
+		<fileToOpen location="de.fzi.sensidl.example.eddystone/src/Eddystone_TLM.sidl"/>
+		<projectDescriptor 
+			 name="de.fzi.sensidl.example.eddystone" 
+			 contentURI="platform:/plugin/de.fzi.sensidl.example.eddystone/" 
+			 description="Eddystone Example"/>			
 		</example>
 	</extension>
 </plugin>

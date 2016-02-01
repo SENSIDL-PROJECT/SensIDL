@@ -3,7 +3,7 @@
  * but Eddystone's multi-value bytes defined in the service data (see ServiceData_UID) are all big-endian.
  */
 sensorInterface EddyStone_TLM /** Eddystone protocol specification with frame-type: Eddystone-TLM */ {
-      encoding SENSIDL_BINARY with BIG_ENDIAN alignment 1 BIT
+      encoding: SENSIDL_BINARY, endianness: BIG_ENDIAN, alignment: 1 BIT
       sensorData {
 
       	  /* 
@@ -45,7 +45,7 @@ sensorInterface EddyStone_TLM /** Eddystone protocol specification with frame-ty
           	
           	// Defined as measurement. This value has to be measured in seconds.
           	// Instead we use minute with double as data type. For that, the measured second are adjusted with scaling factor and offset.
-          	TLM_SEC_CNT as DOUBLE in s adjusted by with scaling factor : 0.017 and offset : 0
+          	TLM_SEC_CNT as DOUBLE in s adjusted with scaling factor : 0.017 and offset : 0
           	
           	// Hard-coded option:
           	/*

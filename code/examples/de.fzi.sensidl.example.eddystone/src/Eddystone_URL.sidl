@@ -3,7 +3,7 @@
  * but Eddystone's multi-value bytes defined in the service data (see ServiceData_UID) are all big-endian.
  */
 sensorInterface EddyStone_URL /** Eddystone protocol specification with frame type: Eddystone-URL */ {
-      encoding SENSIDL_BINARY with BIG_ENDIAN alignment 1 BIT
+      encoding: SENSIDL_BINARY, endianness: BIG_ENDIAN, alignment: 1 BIT
       sensorData {
       	  
       	  /* 
