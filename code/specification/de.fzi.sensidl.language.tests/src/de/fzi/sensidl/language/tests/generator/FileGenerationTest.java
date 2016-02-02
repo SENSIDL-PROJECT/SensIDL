@@ -88,6 +88,8 @@ public class FileGenerationTest {
 			map.put(dataSets[i] + ".c", false);
 			map.put(dataSets[i] + ".h", false);
 		}
+		map.put("DTOs.h", false);
+		map.put("eMeterUtility.h", false);
 		GenerationHandler.generate(generationDirectory.getPath(), "resource/generator/sidlTestCode.sidl", "C");
 		checkGeneratedFiles();
 	}
