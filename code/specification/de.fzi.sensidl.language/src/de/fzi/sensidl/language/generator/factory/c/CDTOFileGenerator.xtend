@@ -103,27 +103,83 @@ class CDTOFileGenerator extends CDTOGenerator {
 			
 			«generateInitDatasetDeclaration(dataset)»
 			
-			«FOR data : dataset.eContents.filter(Data)»				
-				«generateGetterDeclaration(data, dataset)»
-				«generateSetterDeclaration(data, dataset)»				
-			«ENDFOR»			
+			«generateSetterDeclarationIncludeParentDataSet(dataset)»
+			
+«««			«FOR data : dataset.eContents.filter(Data)»				
+«««				«generateGetterDeclaration(data, dataset)»
+«««				«generateSetterDeclaration(data, dataset)»				
+«««			«ENDFOR»			
 		'''	
 	}
 	
-	def generateInitDatasetDeclaration(DataSet dataset) {
-		'''
-
-		void init«dataset.name.toFirstUpper»(«dataset.name.toFirstUpper»* p) {
+	
+	def generateInitDatasetDeclaration(DataSet d) {
 		
+		var dataSet = d
+		var methodsString =''''''
+		methodsString += generateInitTemplateStart(dataSet)
+		
+		while (dataSet!==null) {
+	
+			methodsString += generateInit(dataSet)
+			dataSet = dataSet.parentDataSet
+		}
+		methodsString += generateInitTemplateEnd(dataSet)
+		
+		return methodsString		
+	}	
+	
+	
+	def generateInit(DataSet dataset) {
+		'''
 			«FOR data : dataset.eContents.filter(NonMeasurementData)»
 			«IF data.value != null»  
 			 p->«data.name.replaceAll("[^a-zA-Z0-9]", "")» = «data.value»;
 			«ENDIF»
 			«ENDFOR»
-			
-		}
 		'''			
 	}
+	
+	def generateInitTemplateStart(DataSet dataset){
+		'''
+
+		void init«dataset.name.toFirstUpper»(«dataset.name.toFirstUpper»* p) {
+
+		'''				
+	}
+	
+	def generateInitTemplateEnd(DataSet dataset){
+		'''
+		
+		}
+		'''				
+	}			
+	
+	/**
+	 * Generates the getter and setter methods prototypes for the data of this data set including used data sets.
+	 */
+	def generateSetterDeclarationIncludeParentDataSet(DataSet d) {
+		var dataSet = d
+		var methodsString =''''''
+		var parentDataSet = dataSet
+		while (dataSet!==null) {
+	
+			for (data : dataSet.eContents.filter(NonMeasurementData)) {
+				methodsString += generateGetterDeclaration(data, parentDataSet)
+				methodsString += System.getProperty("line.separator");
+				methodsString += generateSetterDeclaration(data, parentDataSet)
+				methodsString += System.getProperty("line.separator");
+			}
+			for (data : dataSet.eContents.filter(MeasurementData)) {
+				methodsString += generateGetterDeclaration(data, parentDataSet)
+				methodsString += System.getProperty("line.separator");
+				methodsString += generateSetterDeclaration(data, parentDataSet)
+				methodsString += System.getProperty("line.separator");
+			}
+			dataSet = dataSet.parentDataSet
+		}
+		return methodsString
+	}		
 	
 	def generateGetterDeclaration(Data d, DataSet dataset) {
 		'''

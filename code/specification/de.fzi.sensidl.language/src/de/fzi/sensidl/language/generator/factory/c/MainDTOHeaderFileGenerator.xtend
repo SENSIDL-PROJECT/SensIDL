@@ -40,7 +40,7 @@ class MainDTOHeaderFileGenerator extends CDTOGenerator {
 	def generateStruct() {
 		'''
 		«FOR dataset : this.dataSets»
-			#include «addFileExtensionTo(GenerationUtil.toNameUpper(dataset))»
+			#include "«addFileExtensionTo(GenerationUtil.toNameUpper(dataset))»"
 		«ENDFOR»
 		'''
 	}

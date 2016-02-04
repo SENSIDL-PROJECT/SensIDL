@@ -12,6 +12,7 @@ import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
 import de.fzi.sensidl.language.generator.GenerationUtil
+import java.util.ArrayList
 
 class HeaderDTOGenerator extends CDTOGenerator {
 
@@ -68,7 +69,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 			#ifndef «structName.toUpperCase»_H
 			#define «structName.toUpperCase»_H
 			
-			#include <stdint.h>
+			#include <stdint.h> 
 			#include "«GenerationUtil.getUtilityFileName(dataset, SensIDLConstants.HEADER_EXTENSION)»"
 			
 			«FOR data : dataset.eContents.filter(NonMeasurementData)»				
@@ -78,28 +79,44 @@ class HeaderDTOGenerator extends CDTOGenerator {
 			#endif
 			«ENDIF»
 			«ENDFOR»			
-			
-			#include "bsp.h"			
-			
+						
 			typedef struct
 			{
-				«FOR data : dataset.eContents.filter(Data)»
-					«generateVariable(data)»
-				«ENDFOR»
+					«generateVariablesIncludeParentDataSet(dataset)»
+							
 			} «GenerationUtil.toNameUpper(dataset)»;
 			
 			extern «GenerationUtil.toNameUpper(dataset)» «GenerationUtil.toNameLower(dataset)»;
 
 			«generateInitDatasetPrototype(dataset)»
-						
-			«FOR data : dataset.eContents.filter(Data)»				
-				«generateGetterPrototype(data, dataset)»
-				«generateSetterPrototype(data, dataset)»
-			«ENDFOR»
 			
+			«generateDataMethodsPrototypesIncludeParentDataSet(dataset)»
+						
+
 			#endif
 		'''
 	}
+	
+	/**
+	 * Generates the data fields for this data set including used data sets.
+	 */
+	def generateVariablesIncludeParentDataSet(DataSet d) {
+		var dataSet = d
+		var dataFieldsString =''''''
+		
+		while (dataSet!==null) {
+			for (data : dataSet.eContents.filter(NonMeasurementData)) {
+				dataFieldsString += generateVariable(data)
+				dataFieldsString += System.getProperty("line.separator");
+				}
+			for (data : dataSet.eContents.filter(MeasurementData)) {
+				dataFieldsString += generateVariable(data)
+				dataFieldsString += System.getProperty("line.separator");
+				}
+			dataSet = dataSet.parentDataSet
+		}
+		return dataFieldsString
+	}	
 	
 	/** 
 	 * Generates the Init Method for the dataset initialization
@@ -110,9 +127,35 @@ class HeaderDTOGenerator extends CDTOGenerator {
 		* @Initialization of the «dataset.name.toFirstUpper» dataset
 		*/
 		void init«dataset.name.toFirstUpper»(«dataset.name.toFirstUpper»* p);
-		
 		'''		
 	}
+	
+	/**
+	 * Generates the getter and setter methods prototypes for the data of this data set including used data sets.
+	 */
+	def generateDataMethodsPrototypesIncludeParentDataSet(DataSet d) {
+		var dataSet = d
+		var methodsString =''''''
+		var parentDataSet = dataSet		
+		while (dataSet!==null) {
+	
+			for (data : dataSet.eContents.filter(NonMeasurementData)) {
+				methodsString += generateGetterPrototype(data, parentDataSet)
+				methodsString += System.getProperty("line.separator");
+				methodsString += generateSetterPrototype(data, parentDataSet)
+				methodsString += System.getProperty("line.separator");
+			}
+			for (data : dataSet.eContents.filter(MeasurementData)) {
+				methodsString += generateGetterPrototype(data, parentDataSet)
+				methodsString += System.getProperty("line.separator");
+				methodsString += generateSetterPrototype(data, parentDataSet)
+				methodsString += System.getProperty("line.separator");
+			}
+			dataSet = dataSet.parentDataSet
+		}
+		return methodsString
+	}	
+	
 	/** 
 	 * Generates the Getter Method for the measurement data
 	 */
@@ -122,6 +165,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 		* @return the «d.name.toFirstUpper»
 		*/
 		«d.toTypeName» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p);
+		
 		
 		'''
 	}
@@ -207,7 +251,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 * 			represents variable or constant non-measured data.
 	 */
 	dispatch def generateVariable(NonMeasurementData data) {
-		'''«IF data.constant»const «ENDIF»«data.toTypeName» «GenerationUtil.toNameLower(data)»«IF !Strings.isNullOrEmpty(data.value)» = «data.value»«ENDIF»;'''
+		'''«data.toTypeName» «GenerationUtil.toNameLower(data)»;'''
 	}
 
 	/**
