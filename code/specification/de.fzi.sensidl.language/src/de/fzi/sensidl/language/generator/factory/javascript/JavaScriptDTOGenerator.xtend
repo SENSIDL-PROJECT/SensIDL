@@ -15,12 +15,14 @@ import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
 import de.fzi.sensidl.language.generator.GenerationUtil
+import java.util.ArrayList
 
 /**
  * JavaScript code generator for the SensIDL Model. 
  * 
  * @author Sven Eckhardt
  * @author Pawel Bielski
+ * @author Max Peters
  * 
  */
 class JavaScriptDTOGenerator implements IDTOGenerator {
@@ -54,37 +56,71 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 	 * generates the Classes
 	 */
 	def generateClass(String name, DataSet dataset){
-		val nmdatalast = dataset.eAllContents.toIterable.filter(NonMeasurementData).last
-		val mdatalast = dataset.eAllContents.toIterable.filter(MeasurementData).last
+
 		'''
 		«IF dataset.description != null»/* «dataset.description» */«ENDIF»
 		var «name» = {
 		 
-			«FOR nmdata : dataset.eAllContents.toIterable.filter(NonMeasurementData)»	
-			«IF nmdata.constant»
-				_«nmdata.name.toUpperCase»«IF nmdata.value != null» : «nmdata.value»,«ENDIF»«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
-			«ELSE»
-				_«GenerationUtil.toNameLower(nmdata)»«IF nmdata.value != null» : «nmdata.value»«ELSE» : 0«ENDIF»,«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
-			«ENDIF»
-			«ENDFOR»			
-			
-			«FOR mdata : dataset.eAllContents.toIterable.filter(MeasurementData)»
-				_«GenerationUtil.toNameLower(mdata)» : 0, /*«mdata.description» Measured in Unit: «mdata.unit» */ 
-			«ENDFOR»
-			
-			«FOR  data : dataset.eAllContents.toIterable.filter(NonMeasurementData)»
-				«generateGetter(data)»,
-				«generateSetter(data)»«IF !data.constant»«IF !data.equals(nmdatalast) || mdatalast != null »,«ENDIF»«ENDIF»
-			«ENDFOR»
-			«FOR  data : dataset.eAllContents.toIterable.filter(MeasurementData)»
-				«generateGetter(data)»,
-				«generateSetter(data)»«IF !data.equals(mdatalast)»,«ENDIF»
-			«ENDFOR»
+			«generateBodyIncludeParentDataSet(dataset)»
 		 
 		};
 		 
 		'''
 		
+	}
+	
+
+	/**
+	 * Generates the body with the data of this data set including used data sets.
+	 */
+	def generateBodyIncludeParentDataSet(DataSet d) {
+		var dataSet = d
+		var bodyString = ''''''
+		var measurementDataList = new ArrayList<MeasurementData>
+		var nonMeasurementDataList = new ArrayList<NonMeasurementData>
+
+		while (dataSet!==null) {
+			measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
+			nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
+			dataSet = dataSet.parentDataSet
+		}	
+			
+		val mdatalast = measurementDataList.last
+		val nmdatalast = nonMeasurementDataList.last
+		
+		for (nmdata : nonMeasurementDataList) {
+			bodyString += 
+			'''
+			«IF nmdata.constant»
+				_«nmdata.name.toUpperCase»«IF nmdata.value != null» : «nmdata.value»,«ENDIF»«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
+			«ELSE»
+				_«GenerationUtil.toNameLower(nmdata)»«IF nmdata.value != null» : «nmdata.value»«ELSE» : 0«ENDIF»,«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
+			«ENDIF»
+			'''
+		}
+		bodyString += System.getProperty("line.separator");
+		for (mdata : measurementDataList) {
+			bodyString +=
+			''' 	
+			_«GenerationUtil.toNameLower(mdata)» : 0, /*«mdata.description» Measured in Unit: «mdata.unit» */ 
+			'''
+		}
+		bodyString += System.getProperty("line.separator");
+		for (nmdata : nonMeasurementDataList) {
+			bodyString +=
+			'''
+			«generateGetter(nmdata)»,
+			«generateSetter(nmdata,nmdatalast)»
+			'''
+		}
+		for (mdata : measurementDataList) {
+			bodyString += 
+			'''
+			«generateGetter(mdata)»,
+			«generateSetter(mdata,mdatalast)»
+			'''
+		}
+		return bodyString
 	}
 	
 	/** 
@@ -122,7 +158,7 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 	/** 
 	 * Generates the Setter Method for the non measurement data
 	 */
-	def generateSetter(NonMeasurementData d) {
+	def generateSetter(NonMeasurementData d, NonMeasurementData last) {
 	'''
 	
 	«IF d.constant »
@@ -134,14 +170,14 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 		 */
 		«d.toSetterName» : function(«GenerationUtil.toNameLower(d)»){
 			this._«GenerationUtil.toNameLower(d)» = «GenerationUtil.toNameLower(d)»;
-		} 
+		}«IF !d.constant»«IF !d.equals(last) || last != null »,«ENDIF»«ENDIF» 
 	«ENDIF»	'''
 	}
 	
-/** 
+    /** 
 	 * Generates the Setter Method for the measurement data
 	 */
-	def generateSetter(MeasurementData d) {
+	def generateSetter(MeasurementData d, MeasurementData last) {
 			'''
 			
 			«IF d.adjustments.empty == false»
@@ -156,7 +192,7 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 						this._«GenerationUtil.toNameLower(d)» = «GenerationUtil.toNameLower(d)»;
 					else
 						alert("value «GenerationUtil.toNameLower(d)» is out of defined range");
-				} 
+				}«IF !d.equals(last)»,«ENDIF»  
 			«ENDIF»	
 			«IF dataAdj instanceof DataConversion»						
 				«IF dataAdj instanceof LinearDataConversion»
@@ -166,7 +202,7 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 				 */
 				«d.toSetterName» : function(«GenerationUtil.toNameLower(d)»){
 					this._«GenerationUtil.toNameLower(d)» = «GenerationUtil.toNameLower(d)» *  «dataAdj.scalingFactor» +  «dataAdj.offset»;
-				}  
+				}«IF !d.equals(last)»,«ENDIF»   
 				«ELSE»
 					«IF dataAdj instanceof LinearDataConversionWithInterval»
 					/**
@@ -185,7 +221,7 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 						}
 						else
 							alert("value «GenerationUtil.toNameLower(d)» is out of defined source Interval");
-					} 		
+					}«IF !d.equals(last)»,«ENDIF»  		
 					«ENDIF»
 				«ENDIF»
 			«ENDIF»				
@@ -197,7 +233,7 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 				 */
 				«d.toSetterName» : function(«GenerationUtil.toNameLower(d)»){
 					this._«GenerationUtil.toNameLower(d)» = «GenerationUtil.toNameLower(d)»;
-				} 
+				}«IF !d.equals(last)»,«ENDIF» 
 			«ENDIF»''' 
 
 	}
