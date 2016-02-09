@@ -62,6 +62,10 @@ void setup()
  showDisplay("Server is at:",getLocalIP());
  lcd.setRGB(150,255,0);
  
+ //initial values for the thresholds
+ sens.data.threshold_brightness = 15;
+ sens.data.threshold_temperature = 29;
+ 
  //setup an interrupt for a touch event
  attachInterrupt(2, touchEvent, CHANGE);
  
