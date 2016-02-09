@@ -90,13 +90,13 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 	def generateLinearDataConversionWithIntervalMethod() {
 		val dataType = "double"
 		'''
-			public static «dataType» «SensIDLConstants.LINEAR_CONVERSION_WITH_INTERVAL_METHOD_NAME»(Number independentVariable, «dataType» x_min, «dataType» x_max, «dataType» y_min, «dataType» y_max) throws IllegalArgumentException {
-				// Conversion is calculated by the mapping rule f(x) = (x_max - x_min)*((x - y_min)/(y_max - y_min))
-				if (independentVariable.doubleValue() < x_min || independentVariable.doubleValue() > x_max) {
+			public static «dataType» «SensIDLConstants.LINEAR_CONVERSION_WITH_INTERVAL_METHOD_NAME»(Number independentVariable, «dataType» oldMin, «dataType» oldMax, «dataType» newMin, «dataType» newMax) throws IllegalArgumentException {
+				// Conversion is calculated by the mapping rule f(x) = (((x - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin
+				if (independentVariable.doubleValue() < oldMin || independentVariable.doubleValue() > oldMax) {
 					throw new IllegalArgumentException("The value is larger than specified minimal and maximal range.");
 				}
 			
-				return (y_max - y_min)*((independentVariable.doubleValue() - x_min)/(x_max - x_min));
+				return (((independentVariable.doubleValue() - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin;
 			}
 		'''
 	}
