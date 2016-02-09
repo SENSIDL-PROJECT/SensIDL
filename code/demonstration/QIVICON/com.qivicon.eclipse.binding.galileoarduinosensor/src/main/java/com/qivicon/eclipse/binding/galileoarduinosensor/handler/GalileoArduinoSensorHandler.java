@@ -22,6 +22,8 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 
+import com.qivicon.eclipse.binding.galileoarduinosensor.dataobjects.*;
+
 /**
  * The {@link GalileoArduinoSensorHandler} is responsible for handling commands,
  * which are sent to one of the channels.
@@ -34,44 +36,7 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 	private String deviceIP;
 	private int devicePort;
 	private ScheduledFuture<?> updateJob;
-
-	/**
-	 * The Data Structure that is Sent to the Device with a new LED state 
-	 * @author Fabian Scheytt
-	 */
-	private class SendState {
-		@SuppressWarnings("unused")
-		public OnOffType led;
-	}
 	
-	/**
-	 * The Data Structure that is Sent to the Device with a new Temperature Threshold
-	 */	
-	private class SendStateTemperature {
-		@SuppressWarnings("unused")
-		public double threshold_temperature;	
-	}
-
-	/**
-	 * The Data Structure that is Sent to the Device with a new Brightness Threshold
-	 */	
-	private class SendStateLight {
-		@SuppressWarnings("unused")
-		public double threshold_brightness;	
-	}
-
-	/**
-	 * The Data structure that is received from the Sensor Device 
-	 * @author Fabian Scheytt
-	 */
-	private class GetState {
-		OnOffType led;
-		double temperature;
-		double brightness;
-		double threshold_temperature;
-		double threshold_brightness;
-	}
-
 	/**
 	 * Constructor called by QIVICON
 	 * 
@@ -82,7 +47,7 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 	}
 
 	/**
-	 * This method called when the handler starts.
+	 * This method is called when the handler starts.
 	 */
 	@Override
 	public void initialize() {
@@ -102,16 +67,18 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 	/**
 	 * This method is called if a command is sent from the UI e.g. if a switch is
 	 * toggled.
+	 * @param channelUID The Id of the channel the command originates from
+	 * @param command the command (e.g changed Value/Toggle)
 	 */
 	@Override
 	public void handleCommand(ChannelUID channelUID, Command command) {
 		
 		// Check if the LED On/Off switch has been toggled
-		if (channelUID.getId().equals(CHANNEL_LED)) {
+		if (channelUID.getId().equals(LED_CHANNEL)) {
 			// Check if the Command is of the right Type for a cast.
 			if (command instanceof OnOffType) {
-				SendState s = new SendState();
-				s.led = (OnOffType) command;
+				LedToggle s = new LedToggle();
+				s.setLed(((OnOffType) command).toString());
 				// Send the changed state to the Device
 				sendState(s);
 			}
@@ -119,22 +86,22 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 		else if (channelUID.getId().equals(TEMP_THRESHOLD_CHANNEL)) {
 				if (command instanceof DecimalType) {
 					//Send the changed state
-					SendStateTemperature s = new SendStateTemperature();
+					AlertThresholdTemperature s = new AlertThresholdTemperature();
 					DecimalType number = (DecimalType)command;
-					s.threshold_temperature = number.floatValue();
+					s.setThresholdtemperature(number.doubleValue());
 					sendState(s);
 				}
 		} //Else Check if the Light Threshold changed
 		else if (channelUID.getId().equals(LIGHT_THRESHOLD_CHANNEL)) {
 				if (command instanceof DecimalType) {
 					//Send the changed state
-					SendStateLight s = new SendStateLight();
+					AlertThresholdBrightness s = new AlertThresholdBrightness();					
 					DecimalType number = (DecimalType)command;
-					s.threshold_brightness = number.floatValue();
+					s.setThresholdbrightness(number.doubleValue());
 					sendState(s);
 				}
 		}	else {
-				log.error("Unhandled command {} on {} : {}", command.toString(), this.getThing().getUID(), CHANNEL_LED);
+				log.error("Unhandled command {} on {} : {}", command.toString(), this.getThing().getUID(), LED_CHANNEL);
 		}
 
 	}
@@ -153,19 +120,11 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Content-Type", "application/json");
 			
-			//Wait for device response and convert it from Json to a GetState class 
+		//Wait for an update reply from the Sensor Device, parse it and update the Channel States. 
 			InputStreamReader reader = new InputStreamReader(connection.getInputStream());
-			Gson gson = new Gson();
-			GetState state = gson.fromJson(reader, GetState.class);
+			parseSensorData(reader);
 			connection.disconnect();
-			
-			//Update the Channels according to the received Data and update the Device State to ONLINE
-			updateState(CHANNEL_LED, state.led);
-			updateState(TEMP_CHANNEL, new DecimalType(state.temperature));
-			updateState(LIGHT_CHANNEL, new DecimalType(state.brightness));
-			updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(state.threshold_brightness));
-			updateState(TEMP_THRESHOLD_CHANNEL, new DecimalType(state.threshold_temperature));
-			updateStatus(ThingStatus.ONLINE);
+
 			
 		} catch (Exception e) {			
 			//If something went wrong during the process change the device state to OFFLINE
@@ -175,7 +134,7 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 	}
 
 	/**
-	 * This method sends updated value of the Data to the Device and waits for
+	 * This method sends updated values of the Data to the Device and waits for
 	 * the Device to return an updated State.
 	 * 
 	 * @param newState An object that represents a changed State (e.g. toggled switch)
@@ -185,7 +144,7 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 			String path = "http://" + deviceIP + ":" + devicePort;
 			String json = new Gson().toJson(newState);
 
-			//Connect to the device via http and send the sendState class as Json string
+			//Connect to the device via http and send a Java class containing the Data as a Json string.
 			URL url = new URL(path);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setDoOutput(true);
@@ -196,25 +155,35 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 			out.write(json);
 			out.close();
 
-			//Wait for a update response from the Sensor Device
+			//Wait for an update response from the Sensor Device, parse it and update the Channel States.
 			InputStreamReader reader = new InputStreamReader(connection.getInputStream());
-			Gson gson = new Gson();
-			GetState state = gson.fromJson(reader, GetState.class);
+			parseSensorData(reader);
 			connection.disconnect();
-			
-			//Update the Channels and the Device according to the received data
-			updateState(CHANNEL_LED, state.led);
-			updateState(TEMP_CHANNEL, new DecimalType(state.temperature));
-			updateState(LIGHT_CHANNEL, new DecimalType(state.brightness));
-			updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(state.threshold_brightness));
-			updateState(TEMP_THRESHOLD_CHANNEL, new DecimalType(state.threshold_temperature));
-			updateStatus(ThingStatus.ONLINE);
+
 
 		} catch (Exception e) {
 			//If something went wrong during the process change the device state to OFFLINE
 			log.info("Couldnt update Gallileo Sensor: " + e.getMessage());
 			updateStatus(ThingStatus.OFFLINE);
 		}
+	}
+	
+	/**
+	 * This method takes an Input Stream Reader containing json formated data and tries to parse it 
+	 * with Gson to the Qivicon Data Fields.
+	 * @param reader
+	 */
+	private void parseSensorData(InputStreamReader reader) {
+		Gson gson = new Gson();
+		SensorState state = gson.fromJson(reader, SensorState.class);
+		
+		//Update the Channels according to the received Data and update the Device State to ONLINE
+		updateState(LED_CHANNEL, OnOffType.valueOf(state.getLed()));
+		updateState(TEMP_CHANNEL, new DecimalType(state.getTemperature()));
+		updateState(LIGHT_CHANNEL, new DecimalType(state.getBrightness()));
+		updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(state.getThresholdbrightness()));
+		updateState(TEMP_THRESHOLD_CHANNEL, new DecimalType(state.getThresholdtemperature()));
+		updateStatus(ThingStatus.ONLINE);
 	}
 
 	/**

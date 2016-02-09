@@ -4,7 +4,7 @@
 	xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
 	xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
 
-	<!-- Sample Thing Type -->
+	<!-- Galileo Thing Type -->
 	<thing-type id="galileothing">
 		<label>Gallileo Arduino Sensor</label>
 		<description>Binding for a Intel Galileo with Temperature and Light Sensors and a LED.</description>
