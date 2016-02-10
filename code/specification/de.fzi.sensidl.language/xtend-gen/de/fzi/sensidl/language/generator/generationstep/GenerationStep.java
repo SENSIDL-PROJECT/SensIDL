@@ -3,9 +3,7 @@ package de.fzi.sensidl.language.generator.generationstep;
 import com.google.common.base.Objects;
 import de.fzi.sensidl.language.generator.IExecuter;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.function.Consumer;
 
 @SuppressWarnings("all")
 public abstract class GenerationStep {
@@ -27,18 +25,6 @@ public abstract class GenerationStep {
   protected void startGenerationTask(final HashMap<SensIDLConstants.GenerationLanguage, IExecuter> executer) {
     boolean _equals = GenerationStep.generationLanguage.equals(SensIDLConstants.GenerationLanguage.NONE);
     if (_equals) {
-      return;
-    }
-    boolean _equals_1 = GenerationStep.generationLanguage.equals(SensIDLConstants.GenerationLanguage.ALL);
-    if (_equals_1) {
-      Collection<IExecuter> _values = executer.values();
-      final Consumer<IExecuter> _function = new Consumer<IExecuter>() {
-        @Override
-        public void accept(final IExecuter exec) {
-          exec.execute();
-        }
-      };
-      _values.forEach(_function);
       return;
     }
     IExecuter _get = executer.get(GenerationStep.generationLanguage);

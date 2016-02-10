@@ -133,6 +133,7 @@
       <eLiterals name="FLOAT" value="8"/>
       <eLiterals name="DOUBLE" value="9"/>
       <eLiterals name="BOOLEAN" value="10"/>
+      <eLiterals name="STRING" value="11"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="Unit" instanceClassName="javax.measure.unit.Unit">
       <eTypeParameters name="Q"/>

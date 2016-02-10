@@ -7,6 +7,7 @@
  * @author Emre Taspolatoglu
  * @author Sven Eckhardt
  * @author Max Peters
+ * @author Fabian Scheytt
  * 
  */
 
@@ -75,7 +76,8 @@ enum DataType returns dataRepresentation::DataType:
 	UINT64 |
 	FLOAT |
 	DOUBLE |
-	BOOLEAN
+	BOOLEAN |
+	STRING
 ;
 
 DataAdjustment returns dataRepresentation::DataAdjustment:

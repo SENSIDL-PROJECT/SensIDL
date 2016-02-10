@@ -16,16 +16,15 @@ import de.fzi.sensidl.language.generator.GenerationUtil;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
 import de.fzi.sensidl.language.generator.factory.IDTOGenerator;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.measure.unit.Unit;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 /**
@@ -33,6 +32,7 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
  * 
  * @author Sven Eckhardt
  * @author Pawel Bielski
+ * @author Max Peters
  */
 @SuppressWarnings("all")
 public class JavaScriptDTOGenerator implements IDTOGenerator {
@@ -77,191 +77,169 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
    * generates the Classes
    */
   public CharSequence generateClass(final String name, final DataSet dataset) {
-    CharSequence _xblockexpression = null;
+    StringConcatenation _builder = new StringConcatenation();
     {
-      TreeIterator<EObject> _eAllContents = dataset.eAllContents();
-      Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_eAllContents);
-      Iterable<NonMeasurementData> _filter = Iterables.<NonMeasurementData>filter(_iterable, NonMeasurementData.class);
-      final NonMeasurementData nmdatalast = IterableExtensions.<NonMeasurementData>last(_filter);
-      TreeIterator<EObject> _eAllContents_1 = dataset.eAllContents();
-      Iterable<EObject> _iterable_1 = IteratorExtensions.<EObject>toIterable(_eAllContents_1);
-      Iterable<MeasurementData> _filter_1 = Iterables.<MeasurementData>filter(_iterable_1, MeasurementData.class);
-      final MeasurementData mdatalast = IterableExtensions.<MeasurementData>last(_filter_1);
-      StringConcatenation _builder = new StringConcatenation();
-      {
-        String _description = dataset.getDescription();
-        boolean _notEquals = (!Objects.equal(_description, null));
-        if (_notEquals) {
-          _builder.append("/* ");
-          String _description_1 = dataset.getDescription();
-          _builder.append(_description_1, "");
-          _builder.append(" */");
-        }
+      String _description = dataset.getDescription();
+      boolean _notEquals = (!Objects.equal(_description, null));
+      if (_notEquals) {
+        _builder.append("/* ");
+        String _description_1 = dataset.getDescription();
+        _builder.append(_description_1, "");
+        _builder.append(" */");
       }
-      _builder.newLineIfNotEmpty();
-      _builder.append("var ");
-      _builder.append(name, "");
-      _builder.append(" = {");
-      _builder.newLineIfNotEmpty();
-      _builder.append(" ");
-      _builder.newLine();
-      {
-        TreeIterator<EObject> _eAllContents_2 = dataset.eAllContents();
-        Iterable<EObject> _iterable_2 = IteratorExtensions.<EObject>toIterable(_eAllContents_2);
-        Iterable<NonMeasurementData> _filter_2 = Iterables.<NonMeasurementData>filter(_iterable_2, NonMeasurementData.class);
-        for(final NonMeasurementData nmdata : _filter_2) {
-          {
-            boolean _isConstant = nmdata.isConstant();
-            if (_isConstant) {
-              _builder.append("\t");
-              _builder.append("_");
-              String _name = nmdata.getName();
-              String _upperCase = _name.toUpperCase();
-              _builder.append(_upperCase, "\t");
-              {
-                String _value = nmdata.getValue();
-                boolean _notEquals_1 = (!Objects.equal(_value, null));
-                if (_notEquals_1) {
-                  _builder.append(" : ");
-                  String _value_1 = nmdata.getValue();
-                  _builder.append(_value_1, "\t");
-                  _builder.append(",");
-                }
-              }
-              {
-                String _description_2 = nmdata.getDescription();
-                boolean _notEquals_2 = (!Objects.equal(_description_2, null));
-                if (_notEquals_2) {
-                  _builder.append("/*");
-                  String _description_3 = nmdata.getDescription();
-                  _builder.append(_description_3, "\t");
-                  _builder.append(" */");
-                }
-              }
-              _builder.newLineIfNotEmpty();
-            } else {
-              _builder.append("\t");
-              _builder.append("_");
-              String _nameLower = GenerationUtil.toNameLower(nmdata);
-              _builder.append(_nameLower, "\t");
-              {
-                String _value_2 = nmdata.getValue();
-                boolean _notEquals_3 = (!Objects.equal(_value_2, null));
-                if (_notEquals_3) {
-                  _builder.append(" : ");
-                  String _value_3 = nmdata.getValue();
-                  _builder.append(_value_3, "\t");
-                } else {
-                  _builder.append(" : 0");
-                }
-              }
-              _builder.append(",");
-              {
-                String _description_4 = nmdata.getDescription();
-                boolean _notEquals_4 = (!Objects.equal(_description_4, null));
-                if (_notEquals_4) {
-                  _builder.append("/*");
-                  String _description_5 = nmdata.getDescription();
-                  _builder.append(_description_5, "\t");
-                  _builder.append(" */");
-                }
-              }
-              _builder.newLineIfNotEmpty();
-            }
-          }
-        }
-      }
-      _builder.append("\t");
-      _builder.newLine();
-      {
-        TreeIterator<EObject> _eAllContents_3 = dataset.eAllContents();
-        Iterable<EObject> _iterable_3 = IteratorExtensions.<EObject>toIterable(_eAllContents_3);
-        Iterable<MeasurementData> _filter_3 = Iterables.<MeasurementData>filter(_iterable_3, MeasurementData.class);
-        for(final MeasurementData mdata : _filter_3) {
-          _builder.append("\t");
-          _builder.append("_");
-          String _nameLower_1 = GenerationUtil.toNameLower(mdata);
-          _builder.append(_nameLower_1, "\t");
-          _builder.append(" : 0, /*");
-          String _description_6 = mdata.getDescription();
-          _builder.append(_description_6, "\t");
-          _builder.append(" Measured in Unit: ");
-          Unit<?> _unit = mdata.getUnit();
-          _builder.append(_unit, "\t");
-          _builder.append(" */ ");
-          _builder.newLineIfNotEmpty();
-        }
-      }
-      _builder.append("\t");
-      _builder.newLine();
-      {
-        TreeIterator<EObject> _eAllContents_4 = dataset.eAllContents();
-        Iterable<EObject> _iterable_4 = IteratorExtensions.<EObject>toIterable(_eAllContents_4);
-        Iterable<NonMeasurementData> _filter_4 = Iterables.<NonMeasurementData>filter(_iterable_4, NonMeasurementData.class);
-        for(final NonMeasurementData data : _filter_4) {
-          _builder.append("\t");
-          CharSequence _generateGetter = this.generateGetter(data);
-          _builder.append(_generateGetter, "\t");
-          _builder.append(",");
-          _builder.newLineIfNotEmpty();
-          _builder.append("\t");
-          CharSequence _generateSetter = this.generateSetter(data);
-          _builder.append(_generateSetter, "\t");
-          {
-            boolean _isConstant_1 = data.isConstant();
-            boolean _not = (!_isConstant_1);
-            if (_not) {
-              {
-                boolean _or = false;
-                boolean _equals = data.equals(nmdatalast);
-                boolean _not_1 = (!_equals);
-                if (_not_1) {
-                  _or = true;
-                } else {
-                  boolean _notEquals_5 = (!Objects.equal(mdatalast, null));
-                  _or = _notEquals_5;
-                }
-                if (_or) {
-                  _builder.append(",");
-                }
-              }
-            }
-          }
-          _builder.newLineIfNotEmpty();
-        }
-      }
-      {
-        TreeIterator<EObject> _eAllContents_5 = dataset.eAllContents();
-        Iterable<EObject> _iterable_5 = IteratorExtensions.<EObject>toIterable(_eAllContents_5);
-        Iterable<MeasurementData> _filter_5 = Iterables.<MeasurementData>filter(_iterable_5, MeasurementData.class);
-        for(final MeasurementData data_1 : _filter_5) {
-          _builder.append("\t");
-          CharSequence _generateGetter_1 = this.generateGetter(data_1);
-          _builder.append(_generateGetter_1, "\t");
-          _builder.append(",");
-          _builder.newLineIfNotEmpty();
-          _builder.append("\t");
-          CharSequence _generateSetter_1 = this.generateSetter(data_1);
-          _builder.append(_generateSetter_1, "\t");
-          {
-            boolean _equals_1 = data_1.equals(mdatalast);
-            boolean _not_2 = (!_equals_1);
-            if (_not_2) {
-              _builder.append(",");
-            }
-          }
-          _builder.newLineIfNotEmpty();
-        }
-      }
-      _builder.append(" ");
-      _builder.newLine();
-      _builder.append("};");
-      _builder.newLine();
-      _builder.append(" ");
-      _builder.newLine();
-      _xblockexpression = _builder;
     }
-    return _xblockexpression;
+    _builder.newLineIfNotEmpty();
+    _builder.append("var ");
+    _builder.append(name, "");
+    _builder.append(" = {");
+    _builder.newLineIfNotEmpty();
+    _builder.append(" ");
+    _builder.newLine();
+    _builder.append("\t");
+    String _generateBodyIncludeParentDataSet = this.generateBodyIncludeParentDataSet(dataset);
+    _builder.append(_generateBodyIncludeParentDataSet, "\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append(" ");
+    _builder.newLine();
+    _builder.append("};");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  /**
+   * Generates the body with the data of this data set including used data sets.
+   */
+  public String generateBodyIncludeParentDataSet(final DataSet d) {
+    DataSet dataSet = d;
+    StringConcatenation _builder = new StringConcatenation();
+    String bodyString = _builder.toString();
+    ArrayList<MeasurementData> measurementDataList = new ArrayList<MeasurementData>();
+    ArrayList<NonMeasurementData> nonMeasurementDataList = new ArrayList<NonMeasurementData>();
+    while ((dataSet != null)) {
+      {
+        EList<EObject> _eContents = dataSet.eContents();
+        Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(_eContents, MeasurementData.class);
+        Iterables.<MeasurementData>addAll(measurementDataList, _filter);
+        EList<EObject> _eContents_1 = dataSet.eContents();
+        Iterable<NonMeasurementData> _filter_1 = Iterables.<NonMeasurementData>filter(_eContents_1, NonMeasurementData.class);
+        Iterables.<NonMeasurementData>addAll(nonMeasurementDataList, _filter_1);
+        DataSet _parentDataSet = dataSet.getParentDataSet();
+        dataSet = _parentDataSet;
+      }
+    }
+    final MeasurementData mdatalast = IterableExtensions.<MeasurementData>last(measurementDataList);
+    final NonMeasurementData nmdatalast = IterableExtensions.<NonMeasurementData>last(nonMeasurementDataList);
+    for (final NonMeasurementData nmdata : nonMeasurementDataList) {
+      String _bodyString = bodyString;
+      StringConcatenation _builder_1 = new StringConcatenation();
+      {
+        boolean _isConstant = nmdata.isConstant();
+        if (_isConstant) {
+          _builder_1.append("_");
+          String _name = nmdata.getName();
+          String _upperCase = _name.toUpperCase();
+          _builder_1.append(_upperCase, "");
+          {
+            String _value = nmdata.getValue();
+            boolean _notEquals = (!Objects.equal(_value, null));
+            if (_notEquals) {
+              _builder_1.append(" : ");
+              String _value_1 = nmdata.getValue();
+              _builder_1.append(_value_1, "");
+              _builder_1.append(",");
+            }
+          }
+          {
+            String _description = nmdata.getDescription();
+            boolean _notEquals_1 = (!Objects.equal(_description, null));
+            if (_notEquals_1) {
+              _builder_1.append("/*");
+              String _description_1 = nmdata.getDescription();
+              _builder_1.append(_description_1, "");
+              _builder_1.append(" */");
+            }
+          }
+          _builder_1.newLineIfNotEmpty();
+        } else {
+          _builder_1.append("_");
+          String _nameLower = GenerationUtil.toNameLower(nmdata);
+          _builder_1.append(_nameLower, "");
+          {
+            String _value_2 = nmdata.getValue();
+            boolean _notEquals_2 = (!Objects.equal(_value_2, null));
+            if (_notEquals_2) {
+              _builder_1.append(" : ");
+              String _value_3 = nmdata.getValue();
+              _builder_1.append(_value_3, "");
+            } else {
+              _builder_1.append(" : 0");
+            }
+          }
+          _builder_1.append(",");
+          {
+            String _description_2 = nmdata.getDescription();
+            boolean _notEquals_3 = (!Objects.equal(_description_2, null));
+            if (_notEquals_3) {
+              _builder_1.append("/*");
+              String _description_3 = nmdata.getDescription();
+              _builder_1.append(_description_3, "");
+              _builder_1.append(" */");
+            }
+          }
+          _builder_1.newLineIfNotEmpty();
+        }
+      }
+      bodyString = (_bodyString + _builder_1);
+    }
+    String _bodyString_1 = bodyString;
+    String _property = System.getProperty("line.separator");
+    bodyString = (_bodyString_1 + _property);
+    for (final MeasurementData mdata : measurementDataList) {
+      String _bodyString_2 = bodyString;
+      StringConcatenation _builder_2 = new StringConcatenation();
+      _builder_2.append("_");
+      String _nameLower_1 = GenerationUtil.toNameLower(mdata);
+      _builder_2.append(_nameLower_1, "");
+      _builder_2.append(" : 0, /*");
+      String _description_4 = mdata.getDescription();
+      _builder_2.append(_description_4, "");
+      _builder_2.append(" Measured in Unit: ");
+      Unit<?> _unit = mdata.getUnit();
+      _builder_2.append(_unit, "");
+      _builder_2.append(" */ ");
+      _builder_2.newLineIfNotEmpty();
+      bodyString = (_bodyString_2 + _builder_2);
+    }
+    String _bodyString_3 = bodyString;
+    String _property_1 = System.getProperty("line.separator");
+    bodyString = (_bodyString_3 + _property_1);
+    for (final NonMeasurementData nmdata_1 : nonMeasurementDataList) {
+      String _bodyString_4 = bodyString;
+      StringConcatenation _builder_3 = new StringConcatenation();
+      CharSequence _generateGetter = this.generateGetter(nmdata_1);
+      _builder_3.append(_generateGetter, "");
+      _builder_3.append(",");
+      _builder_3.newLineIfNotEmpty();
+      CharSequence _generateSetter = this.generateSetter(nmdata_1, nmdatalast);
+      _builder_3.append(_generateSetter, "");
+      _builder_3.newLineIfNotEmpty();
+      bodyString = (_bodyString_4 + _builder_3);
+    }
+    for (final MeasurementData mdata_1 : measurementDataList) {
+      String _bodyString_5 = bodyString;
+      StringConcatenation _builder_4 = new StringConcatenation();
+      CharSequence _generateGetter_1 = this.generateGetter(mdata_1);
+      _builder_4.append(_generateGetter_1, "");
+      _builder_4.append(",");
+      _builder_4.newLineIfNotEmpty();
+      CharSequence _generateSetter_1 = this.generateSetter(mdata_1, mdatalast);
+      _builder_4.append(_generateSetter_1, "");
+      _builder_4.newLineIfNotEmpty();
+      bodyString = (_bodyString_5 + _builder_4);
+    }
+    return bodyString;
   }
   
   /**
@@ -346,7 +324,7 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
   /**
    * Generates the Setter Method for the non measurement data
    */
-  public CharSequence generateSetter(final NonMeasurementData d) {
+  public CharSequence generateSetter(final NonMeasurementData d, final NonMeasurementData last) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     {
@@ -387,8 +365,29 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
         _builder.append(_nameLower_4, "\t");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
-        _builder.append("} ");
-        _builder.newLine();
+        _builder.append("}");
+        {
+          boolean _isConstant_1 = d.isConstant();
+          boolean _not = (!_isConstant_1);
+          if (_not) {
+            {
+              boolean _or = false;
+              boolean _equals = d.equals(last);
+              boolean _not_1 = (!_equals);
+              if (_not_1) {
+                _or = true;
+              } else {
+                boolean _notEquals = (!Objects.equal(last, null));
+                _or = _notEquals;
+              }
+              if (_or) {
+                _builder.append(",");
+              }
+            }
+          }
+        }
+        _builder.append(" ");
+        _builder.newLineIfNotEmpty();
         _builder.append("\t");
       }
     }
@@ -399,7 +398,7 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
   /**
    * Generates the Setter Method for the measurement data
    */
-  public CharSequence generateSetter(final MeasurementData d) {
+  public CharSequence generateSetter(final MeasurementData d, final MeasurementData last) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
     {
@@ -470,8 +469,16 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
                 _builder.append(_nameLower_7, "\t\t");
                 _builder.append(" is out of defined range\");");
                 _builder.newLineIfNotEmpty();
-                _builder.append("} ");
-                _builder.newLine();
+                _builder.append("}");
+                {
+                  boolean _equals_1 = d.equals(last);
+                  boolean _not = (!_equals_1);
+                  if (_not) {
+                    _builder.append(",");
+                  }
+                }
+                _builder.append("  ");
+                _builder.newLineIfNotEmpty();
               }
             }
             {
@@ -516,8 +523,16 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
                     _builder.append(_offset, "\t");
                     _builder.append(";");
                     _builder.newLineIfNotEmpty();
-                    _builder.append("}  ");
-                    _builder.newLine();
+                    _builder.append("}");
+                    {
+                      boolean _equals_2 = d.equals(last);
+                      boolean _not_1 = (!_equals_2);
+                      if (_not_1) {
+                        _builder.append(",");
+                      }
+                    }
+                    _builder.append("   ");
+                    _builder.newLineIfNotEmpty();
                   } else {
                     {
                       if ((dataAdj instanceof LinearDataConversionWithInterval)) {
@@ -615,8 +630,16 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
                         _builder.append(_nameLower_20, "\t\t");
                         _builder.append(" is out of defined source Interval\");");
                         _builder.newLineIfNotEmpty();
-                        _builder.append("} \t\t");
-                        _builder.newLine();
+                        _builder.append("}");
+                        {
+                          boolean _equals_3 = d.equals(last);
+                          boolean _not_2 = (!_equals_3);
+                          if (_not_2) {
+                            _builder.append(",");
+                          }
+                        }
+                        _builder.append("  \t\t");
+                        _builder.newLineIfNotEmpty();
                       }
                     }
                   }
@@ -658,8 +681,16 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
         _builder.append(_nameLower_25, "\t");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
-        _builder.append("} ");
-        _builder.newLine();
+        _builder.append("}");
+        {
+          boolean _equals_4 = d.equals(last);
+          boolean _not_3 = (!_equals_4);
+          if (_not_3) {
+            _builder.append(",");
+          }
+        }
+        _builder.append(" ");
+        _builder.newLineIfNotEmpty();
         _builder.append("\t\t\t");
       }
     }

@@ -878,12 +878,14 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cDOUBLEDOUBLEKeyword_9_0 = (Keyword)cDOUBLEEnumLiteralDeclaration_9.eContents().get(0);
 		private final EnumLiteralDeclaration cBOOLEANEnumLiteralDeclaration_10 = (EnumLiteralDeclaration)cAlternatives.eContents().get(10);
 		private final Keyword cBOOLEANBOOLEANKeyword_10_0 = (Keyword)cBOOLEANEnumLiteralDeclaration_10.eContents().get(0);
+		private final EnumLiteralDeclaration cSTRINGEnumLiteralDeclaration_11 = (EnumLiteralDeclaration)cAlternatives.eContents().get(11);
+		private final Keyword cSTRINGSTRINGKeyword_11_0 = (Keyword)cSTRINGEnumLiteralDeclaration_11.eContents().get(0);
 		
 		//enum DataType returns dataRepresentation::DataType:
-		//	INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE | BOOLEAN;
+		//	INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE | BOOLEAN | STRING;
 		public EnumRule getRule() { return rule; }
 
-		//INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE | BOOLEAN
+		//INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE | BOOLEAN | STRING
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//INT8
@@ -951,6 +953,12 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"BOOLEAN"
 		public Keyword getBOOLEANBOOLEANKeyword_10_0() { return cBOOLEANBOOLEANKeyword_10_0; }
+
+		//STRING
+		public EnumLiteralDeclaration getSTRINGEnumLiteralDeclaration_11() { return cSTRINGEnumLiteralDeclaration_11; }
+
+		//"STRING"
+		public Keyword getSTRINGSTRINGKeyword_11_0() { return cSTRINGSTRINGKeyword_11_0; }
 	}
 	
 	private final SensorInterfaceElements pSensorInterface;
@@ -1129,7 +1137,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum DataType returns dataRepresentation::DataType:
-	//	INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE | BOOLEAN;
+	//	INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE | BOOLEAN | STRING;
 	public DataTypeElements getDataTypeAccess() {
 		return unknownRuleDataType;
 	}

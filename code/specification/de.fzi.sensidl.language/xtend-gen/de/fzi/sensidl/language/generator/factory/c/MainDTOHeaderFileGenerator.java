@@ -47,10 +47,11 @@ public class MainDTOHeaderFileGenerator extends CDTOGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       for(final DataSet dataset : this.dataSets) {
-        _builder.append("#include ");
+        _builder.append("#include \"");
         String _nameUpper = GenerationUtil.toNameUpper(dataset);
         String _addFileExtensionTo = this.addFileExtensionTo(_nameUpper);
         _builder.append(_addFileExtensionTo, "");
+        _builder.append("\"");
         _builder.newLineIfNotEmpty();
       }
     }

@@ -36,6 +36,7 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
  * @author Sven Eckhardt
  * @author Pawel Bielski
  * @author Max Peters
+ * @author Fabian Scheytt
  */
 @SuppressWarnings("all")
 public class JavaDTOGenerator implements IDTOGenerator {
@@ -294,31 +295,10 @@ public class JavaDTOGenerator implements IDTOGenerator {
     _builder.append("public ");
     _builder.append(className, "");
     _builder.append(" (");
+    CharSequence _generateConstructorArgumentsIncludeParentDataSets = this.generateConstructorArgumentsIncludeParentDataSets(d);
+    _builder.append(_generateConstructorArgumentsIncludeParentDataSets, "");
+    _builder.append("){");
     String constructorString = _builder.toString();
-    while ((dataSet != null)) {
-      {
-        DataSet _parentDataSet = dataSet.getParentDataSet();
-        boolean _tripleNotEquals = (_parentDataSet != null);
-        if (_tripleNotEquals) {
-          String _constructorString = constructorString;
-          StringConcatenation _builder_1 = new StringConcatenation();
-          CharSequence _generateConstructorArguments = this.generateConstructorArguments(dataSet);
-          _builder_1.append(_generateConstructorArguments, "");
-          _builder_1.append(", ");
-          constructorString = (_constructorString + _builder_1);
-        } else {
-          String _constructorString_1 = constructorString;
-          StringConcatenation _builder_2 = new StringConcatenation();
-          CharSequence _generateConstructorArguments_1 = this.generateConstructorArguments(dataSet);
-          _builder_2.append(_generateConstructorArguments_1, "");
-          _builder_2.append(")");
-          constructorString = (_constructorString_1 + _builder_2);
-        }
-        DataSet _parentDataSet_1 = dataSet.getParentDataSet();
-        dataSet = _parentDataSet_1;
-      }
-    }
-    dataSet = d;
     String _constructorString = constructorString;
     String _property = System.getProperty("line.separator");
     constructorString = (_constructorString + _property);
@@ -652,6 +632,9 @@ public class JavaDTOGenerator implements IDTOGenerator {
         case BOOLEAN:
           _switchResult = Boolean.class.getName();
           break;
+        case STRING:
+          _switchResult = String.class.getName();
+          break;
         default:
           break;
       }
@@ -706,22 +689,29 @@ public class JavaDTOGenerator implements IDTOGenerator {
   /**
    * Generates the Constructor arguments
    */
-  public CharSequence generateConstructorArguments(final DataSet d) {
+  public CharSequence generateConstructorArgumentsIncludeParentDataSets(final DataSet d) {
     CharSequence _xblockexpression = null;
     {
       ArrayList<Data> dataList = new ArrayList<Data>();
-      EList<EObject> _eContents = d.eContents();
-      Iterable<Data> _filter = Iterables.<Data>filter(_eContents, Data.class);
-      for (final Data data : _filter) {
-        if ((data instanceof NonMeasurementData)) {
-          NonMeasurementData nmdata = ((NonMeasurementData) data);
-          boolean _isConstant = nmdata.isConstant();
-          boolean _not = (!_isConstant);
-          if (_not) {
-            dataList.add(data);
+      DataSet dataSet = d;
+      while ((!Objects.equal(dataSet, null))) {
+        {
+          EList<EObject> _eContents = dataSet.eContents();
+          Iterable<Data> _filter = Iterables.<Data>filter(_eContents, Data.class);
+          for (final Data data : _filter) {
+            if ((data instanceof NonMeasurementData)) {
+              NonMeasurementData nmdata = ((NonMeasurementData) data);
+              boolean _isConstant = nmdata.isConstant();
+              boolean _not = (!_isConstant);
+              if (_not) {
+                dataList.add(data);
+              }
+            } else {
+              dataList.add(data);
+            }
           }
-        } else {
-          dataList.add(data);
+          DataSet _parentDataSet = dataSet.getParentDataSet();
+          dataSet = _parentDataSet;
         }
       }
       CharSequence _xifexpression = null;
@@ -740,12 +730,12 @@ public class JavaDTOGenerator implements IDTOGenerator {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append(firstElement, "");
           {
-            for(final Data data_1 : dataList) {
+            for(final Data data : dataList) {
               _builder.append(", ");
-              String _typeName_1 = this.toTypeName(data_1);
+              String _typeName_1 = this.toTypeName(data);
               _builder.append(_typeName_1, "");
               _builder.append(" ");
-              String _nameLower_1 = GenerationUtil.toNameLower(data_1);
+              String _nameLower_1 = GenerationUtil.toNameLower(data);
               _builder.append(_nameLower_1, "");
             }
           }

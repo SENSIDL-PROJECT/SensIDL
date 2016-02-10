@@ -1422,6 +1422,12 @@ ruleDataType returns [Enumerator current=null]
         $current = grammarAccess.getDataTypeAccess().getBOOLEANEnumLiteralDeclaration_10().getEnumLiteral().getInstance();
         newLeafNode(enumLiteral_10, grammarAccess.getDataTypeAccess().getBOOLEANEnumLiteralDeclaration_10()); 
     }
+)
+    |(	enumLiteral_11='STRING' 
+	{
+        $current = grammarAccess.getDataTypeAccess().getSTRINGEnumLiteralDeclaration_11().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_11, grammarAccess.getDataTypeAccess().getSTRINGEnumLiteralDeclaration_11()); 
+    }
 ));
 
 

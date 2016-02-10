@@ -108,7 +108,15 @@ public enum DataType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BOOLEAN(10, "BOOLEAN", "BOOLEAN");
+	BOOLEAN(10, "BOOLEAN", "BOOLEAN"), /**
+	 * The '<em><b>STRING</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #STRING_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	STRING(11, "STRING", "STRING");
 
 	/**
 	 * The '<em><b>INT8</b></em>' literal value.
@@ -276,6 +284,21 @@ public enum DataType implements Enumerator {
 	public static final int BOOLEAN_VALUE = 10;
 
 	/**
+	 * The '<em><b>STRING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>STRING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STRING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STRING_VALUE = 11;
+
+	/**
 	 * An array of all the '<em><b>Data Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -294,6 +317,7 @@ public enum DataType implements Enumerator {
 			FLOAT,
 			DOUBLE,
 			BOOLEAN,
+			STRING,
 		};
 
 	/**
@@ -361,6 +385,7 @@ public enum DataType implements Enumerator {
 			case FLOAT_VALUE: return FLOAT;
 			case DOUBLE_VALUE: return DOUBLE;
 			case BOOLEAN_VALUE: return BOOLEAN;
+			case STRING_VALUE: return STRING;
 		}
 		return null;
 	}

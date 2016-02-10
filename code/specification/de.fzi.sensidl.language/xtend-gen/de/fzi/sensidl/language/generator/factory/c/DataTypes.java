@@ -32,6 +32,8 @@ public class DataTypes {
   
   private final static String BOOLEAN = "bool";
   
+  private final static String STRING = "char *";
+  
   private final static HashMap<DataType, String> dataTypesMap = ObjectExtensions.<HashMap<DataType, String>>operator_doubleArrow(new HashMap<DataType, String>(), new Procedure1<HashMap<DataType, String>>() {
     @Override
     public void apply(final HashMap<DataType, String> it) {
@@ -46,6 +48,7 @@ public class DataTypes {
       it.put(DataType.FLOAT, DataTypes.FLOAT);
       it.put(DataType.DOUBLE, DataTypes.DOUBLE);
       it.put(DataType.BOOLEAN, DataTypes.BOOLEAN);
+      it.put(DataType.STRING, DataTypes.STRING);
     }
   });
   

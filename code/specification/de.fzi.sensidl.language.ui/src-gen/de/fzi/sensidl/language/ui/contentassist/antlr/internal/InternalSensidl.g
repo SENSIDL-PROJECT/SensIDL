@@ -730,6 +730,13 @@ rule__DataType__Alternatives
 { after(grammarAccess.getDataTypeAccess().getBOOLEANEnumLiteralDeclaration_10()); }
 )
 
+    |(
+{ before(grammarAccess.getDataTypeAccess().getSTRINGEnumLiteralDeclaration_11()); }
+(	'STRING' 
+)
+{ after(grammarAccess.getDataTypeAccess().getSTRINGEnumLiteralDeclaration_11()); }
+)
+
 ;
 finally {
 	restoreStackSize(stackSize);

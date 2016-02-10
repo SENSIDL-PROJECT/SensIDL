@@ -26,7 +26,8 @@ import de.fzi.sensidl.language.generator.GenerationUtil
  * 
  * @author Sven Eckhardt
  * @author Pawel Bielski 
- * @author Max Peters 
+ * @author Max Peters
+ * @author Fabian Scheytt 
  */
  
 class JavaDTOGenerator implements IDTOGenerator {
@@ -274,6 +275,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			case FLOAT: Float.name
 			case DOUBLE: Double.name
 			case BOOLEAN: Boolean.name
+			case STRING: String.name
 		}
 	}
 	/**
