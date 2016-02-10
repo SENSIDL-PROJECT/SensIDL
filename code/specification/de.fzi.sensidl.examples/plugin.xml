@@ -56,4 +56,29 @@
 			 description="Eddystone Example"/>			
 		</example>
 	</extension>
+	
+	<!-- =================== umgebungskachel example =================== -->
+	<extension point="org.eclipse.ui.newWizards">
+		<wizard 
+			 id="de.fzi.sensidl.example.umgebungskachel"
+			 name="Umgebungskachel Example"
+			 class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+			 category="org.eclipse.ui.Examples/de.fzi.sensidl.examples"
+			 icon="icons/SensIDL_logo.jpg"
+			 project="true">
+			<description>SensIDL Umgebungskachel Example</description>
+		</wizard>
+	</extension>
+		
+	<extension point="org.eclipse.emf.common.ui.examples">
+		<example 
+			 wizardID="de.fzi.sensidl.example.umgebungskachel" 
+			 pageImage="icons/SensIDL_logo.jpg">
+		<fileToOpen location="de.fzi.sensidl.example.umgebungskachel/src/umgebungskachel.sidl"/>
+		<projectDescriptor 
+			 name="de.fzi.sensidl.example.umgebungskachel" 
+			 contentURI="platform:/plugin/de.fzi.sensidl.example.umgebungskachel/" 
+			 description="Umgebungskachel Example"/>			
+		</example>
+	</extension>
 </plugin>
