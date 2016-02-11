@@ -16,6 +16,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 
 class CDTOFileGenerator extends CDTOGenerator {
 	
@@ -134,7 +135,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 		'''
 			«FOR data : dataset.eContents.filter(NonMeasurementData)»
 			«IF data.value != null»  
-			 p->«data.name.replaceAll("[^a-zA-Z0-9]", "")» = «data.value»;
+			 p->«data.name.replaceAll("[^a-zA-Z0-9]", "")» = «IF data.dataType == DataType.STRING»"«data.value»"«ELSE»«data.value»«ENDIF»;
 			«ENDIF»
 			«ENDFOR»
 		'''			

@@ -8,6 +8,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataAdjustment;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Interval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
@@ -142,8 +143,19 @@ public class CDTOFileGenerator extends CDTOGenerator {
             String _replaceAll = _name.replaceAll("[^a-zA-Z0-9]", "");
             _builder.append(_replaceAll, "");
             _builder.append(" = ");
-            String _value_1 = data.getValue();
-            _builder.append(_value_1, "");
+            {
+              DataType _dataType = data.getDataType();
+              boolean _equals = Objects.equal(_dataType, DataType.STRING);
+              if (_equals) {
+                _builder.append("\"");
+                String _value_1 = data.getValue();
+                _builder.append(_value_1, "");
+                _builder.append("\"");
+              } else {
+                String _value_2 = data.getValue();
+                _builder.append(_value_2, "");
+              }
+            }
             _builder.append(";");
             _builder.newLineIfNotEmpty();
           }

@@ -542,8 +542,19 @@ public class JavaDTOGenerator implements IDTOGenerator {
           _builder.append(_typeName_1, "");
           _builder.append(".MAX_VALUE)");
         } else {
-          String _value_1 = d.getValue();
-          _builder.append(_value_1, "");
+          {
+            DataType _dataType_2 = d.getDataType();
+            boolean _equals = Objects.equal(_dataType_2, DataType.STRING);
+            if (_equals) {
+              _builder.append("\"");
+              String _value_1 = d.getValue();
+              _builder.append(_value_1, "");
+              _builder.append("\"");
+            } else {
+              String _value_2 = d.getValue();
+              _builder.append(_value_2, "");
+            }
+          }
         }
       }
       _builder.append(";");
@@ -574,13 +585,24 @@ public class JavaDTOGenerator implements IDTOGenerator {
       String _nameLower = GenerationUtil.toNameLower(d);
       _builder_1.append(_nameLower, "");
       {
-        String _value_2 = d.getValue();
-        boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_value_2);
+        String _value_3 = d.getValue();
+        boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_value_3);
         boolean _not = (!_isNullOrEmpty);
         if (_not) {
           _builder_1.append(" = ");
-          String _value_3 = d.getValue();
-          _builder_1.append(_value_3, "");
+          {
+            DataType _dataType_3 = d.getDataType();
+            boolean _equals_1 = Objects.equal(_dataType_3, DataType.STRING);
+            if (_equals_1) {
+              _builder_1.append("\"");
+              String _value_4 = d.getValue();
+              _builder_1.append(_value_4, "");
+              _builder_1.append("\"");
+            } else {
+              String _value_5 = d.getValue();
+              _builder_1.append(_value_5, "");
+            }
+          }
         }
       }
       _builder_1.append(";");

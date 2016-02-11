@@ -7,6 +7,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataAdjustment;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Interval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
@@ -146,11 +147,22 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
             boolean _notEquals = (!Objects.equal(_value, null));
             if (_notEquals) {
               _builder_1.append(" : ");
-              String _value_1 = nmdata.getValue();
-              _builder_1.append(_value_1, "");
-              _builder_1.append(",");
+              {
+                DataType _dataType = nmdata.getDataType();
+                boolean _equals = Objects.equal(_dataType, DataType.STRING);
+                if (_equals) {
+                  _builder_1.append("\"");
+                  String _value_1 = nmdata.getValue();
+                  _builder_1.append(_value_1, "");
+                  _builder_1.append("\"");
+                } else {
+                  String _value_2 = nmdata.getValue();
+                  _builder_1.append(_value_2, "");
+                }
+              }
             }
           }
+          _builder_1.append(",");
           {
             String _description = nmdata.getDescription();
             boolean _notEquals_1 = (!Objects.equal(_description, null));
@@ -166,15 +178,34 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
           _builder_1.append("_");
           String _nameLower = GenerationUtil.toNameLower(nmdata);
           _builder_1.append(_nameLower, "");
+          _builder_1.append(" : ");
           {
-            String _value_2 = nmdata.getValue();
-            boolean _notEquals_2 = (!Objects.equal(_value_2, null));
+            String _value_3 = nmdata.getValue();
+            boolean _notEquals_2 = (!Objects.equal(_value_3, null));
             if (_notEquals_2) {
-              _builder_1.append(" : ");
-              String _value_3 = nmdata.getValue();
-              _builder_1.append(_value_3, "");
+              {
+                DataType _dataType_1 = nmdata.getDataType();
+                boolean _equals_1 = Objects.equal(_dataType_1, DataType.STRING);
+                if (_equals_1) {
+                  _builder_1.append("\"");
+                  String _value_4 = nmdata.getValue();
+                  _builder_1.append(_value_4, "");
+                  _builder_1.append("\"");
+                } else {
+                  String _value_5 = nmdata.getValue();
+                  _builder_1.append(_value_5, "");
+                }
+              }
             } else {
-              _builder_1.append(" : 0");
+              {
+                DataType _dataType_2 = nmdata.getDataType();
+                boolean _equals_2 = Objects.equal(_dataType_2, DataType.STRING);
+                if (_equals_2) {
+                  _builder_1.append("\"\"");
+                } else {
+                  _builder_1.append("0");
+                }
+              }
             }
           }
           _builder_1.append(",");
@@ -202,7 +233,17 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
       _builder_2.append("_");
       String _nameLower_1 = GenerationUtil.toNameLower(mdata);
       _builder_2.append(_nameLower_1, "");
-      _builder_2.append(" : 0, /*");
+      _builder_2.append(" : ");
+      {
+        DataType _dataType_3 = mdata.getDataType();
+        boolean _equals_3 = Objects.equal(_dataType_3, DataType.STRING);
+        if (_equals_3) {
+          _builder_2.append("\"\"");
+        } else {
+          _builder_2.append("0");
+        }
+      }
+      _builder_2.append(", /*");
       String _description_4 = mdata.getDescription();
       _builder_2.append(_description_4, "");
       _builder_2.append(" Measured in Unit: ");

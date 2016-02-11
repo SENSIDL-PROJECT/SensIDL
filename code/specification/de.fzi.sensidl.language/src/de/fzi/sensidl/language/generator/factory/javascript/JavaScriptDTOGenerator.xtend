@@ -16,6 +16,7 @@ import java.util.List
 import org.apache.log4j.Logger
 import de.fzi.sensidl.language.generator.GenerationUtil
 import java.util.ArrayList
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 
 /**
  * JavaScript code generator for the SensIDL Model. 
@@ -92,9 +93,9 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 			bodyString += 
 			'''
 			«IF nmdata.constant»
-				_«nmdata.name.toUpperCase»«IF nmdata.value != null» : «nmdata.value»,«ENDIF»«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
+				_«nmdata.name.toUpperCase»«IF nmdata.value != null» : «IF nmdata.dataType == DataType.STRING»"«nmdata.value»"«ELSE»«nmdata.value»«ENDIF»«ENDIF»,«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
 			«ELSE»
-				_«GenerationUtil.toNameLower(nmdata)»«IF nmdata.value != null» : «nmdata.value»«ELSE» : 0«ENDIF»,«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
+				_«GenerationUtil.toNameLower(nmdata)» : «IF nmdata.value != null»«IF nmdata.dataType == DataType.STRING»"«nmdata.value»"«ELSE»«nmdata.value»«ENDIF»«ELSE»«IF nmdata.dataType == DataType.STRING»""«ELSE»0«ENDIF»«ENDIF»,«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
 			«ENDIF»
 			'''
 		}
@@ -102,7 +103,7 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 		for (mdata : measurementDataList) {
 			bodyString +=
 			''' 	
-			_«GenerationUtil.toNameLower(mdata)» : 0, /*«mdata.description» Measured in Unit: «mdata.unit» */ 
+			_«GenerationUtil.toNameLower(mdata)» : «IF mdata.dataType == DataType.STRING»""«ELSE»0«ENDIF», /*«mdata.description» Measured in Unit: «mdata.unit» */ 
 			'''
 		}
 		bodyString += System.getProperty("line.separator");
