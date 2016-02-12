@@ -5,7 +5,6 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.Serializable;
 import com.google.gson.Gson;
  
 /**
@@ -15,6 +14,7 @@ import com.google.gson.Gson;
  */
 public class LedToggle {
 	
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 	
 	 
