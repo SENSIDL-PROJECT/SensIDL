@@ -53,7 +53,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 	 */
 	override generate() {
 		logger.info("Start with code-generation of a java data transfer object.")
-		val filesToGenerate = new HashMap
+		val filesToGenerate = new HashMap		
 		
 		if (createProject) {
 			for (d : this.dataSet) {
@@ -114,7 +114,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 				«ENDIF»
 				
 				«generateDataMethodsIncludeParentDataSet(d)»
-					
+				
 				«d.generateJsonUnmarshal»	
 				
 				«d.generateByteArrayUnmarshal»	

@@ -227,7 +227,7 @@ public class JavaDTOGenerator implements IDTOGenerator {
     String _generateDataMethodsIncludeParentDataSet = this.generateDataMethodsIncludeParentDataSet(d);
     _builder.append(_generateDataMethodsIncludeParentDataSet, "\t");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
+    _builder.append("\t");
     _builder.newLine();
     _builder.append("\t");
     CharSequence _generateJsonUnmarshal = this.generateJsonUnmarshal(d);

@@ -52,8 +52,19 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 				sequence_LinearDataConversionWithInterval(context, (LinearDataConversionWithInterval) semanticObject); 
 				return; 
 			case DataRepresentationPackage.MEASUREMENT_DATA:
-				sequence_MeasurementData(context, (MeasurementData) semanticObject); 
-				return; 
+				if(context == grammarAccess.getDataRule()) {
+					sequence_Data_MeasurementData_MeasurementDataNotAdjustable(context, (MeasurementData) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getMeasurementDataNotAdjustableRule()) {
+					sequence_MeasurementDataNotAdjustable(context, (MeasurementData) semanticObject); 
+					return; 
+				}
+				else if(context == grammarAccess.getMeasurementDataRule()) {
+					sequence_MeasurementData(context, (MeasurementData) semanticObject); 
+					return; 
+				}
+				else break;
 			case DataRepresentationPackage.NON_MEASUREMENT_DATA:
 				sequence_NonMeasurementData(context, (NonMeasurementData) semanticObject); 
 				return; 
@@ -86,6 +97,25 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     (name=ID parentDataSet=[DataSet|ID]? ID=STRING? description=DESCRIPTION? data+=Data*)
 	 */
 	protected void sequence_DataSet(EObject context, DataSet semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (
+	 *         (
+	 *             name=ID 
+	 *             dataType=DataType 
+	 *             unit=UNIT 
+	 *             ID=STRING? 
+	 *             (adjustments+=DataAdjustment adjustments+=DataAdjustment*)? 
+	 *             description=DESCRIPTION?
+	 *         ) | 
+	 *         (name=ID dataType=DataTypeNotAdjustable unit=UNIT ID=STRING? description=DESCRIPTION?)
+	 *     )
+	 */
+	protected void sequence_Data_MeasurementData_MeasurementDataNotAdjustable(EObject context, MeasurementData semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -128,6 +158,15 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
+	 *     (name=ID dataType=DataTypeNotAdjustable unit=UNIT ID=STRING? description=DESCRIPTION?)
+	 */
+	protected void sequence_MeasurementDataNotAdjustable(EObject context, MeasurementData semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (
 	 *         name=ID 
 	 *         dataType=DataType 
@@ -146,7 +185,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 * Constraint:
 	 *     (
 	 *         name=ID 
-	 *         dataType=DataType 
+	 *         (dataType=DataType | dataType=DataTypeNotAdjustable) 
 	 *         constant?='constant'? 
 	 *         value=STRING? 
 	 *         ID=STRING? 
