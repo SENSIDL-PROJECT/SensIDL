@@ -1,5 +1,6 @@
 package de.fzi.sensidl.language.generator.factory.java
 
+import de.fzi.sensidl.design.sensidl.Endianness
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange
@@ -37,6 +38,8 @@ class JavaDTOGenerator implements IDTOGenerator {
 	
 	private boolean createProject = false
 	
+	private boolean bigEndian
+	
 	
 	new(List<DataSet> newDataSet) {
 		this.dataSet = newDataSet
@@ -54,6 +57,12 @@ class JavaDTOGenerator implements IDTOGenerator {
 		logger.info("Start with code-generation of a java data transfer object.")
 		val filesToGenerate = new HashMap		
 		
+		if (GenerationUtil.getSensorInterface(this.dataSet.get(0).eContents.filter(Data).get(0).eContainer).encodingSettings.endianness == Endianness.BIG_ENDIAN){
+			bigEndian = true;
+		} else {
+			bigEndian = false;
+		}
+		
 		if (createProject) {
 			for (d : this.dataSet) {
 				filesToGenerate.put("src/de/fzi/sensidl/" + GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContents.filter(Data).get(0).eContainer) +"/" + addFileExtensionTo(GenerationUtil.toNameUpper(d)), generateClassBody(GenerationUtil.toNameUpper(d), d))
@@ -66,7 +75,6 @@ class JavaDTOGenerator implements IDTOGenerator {
 				logger.info("File: " + addFileExtensionTo(GenerationUtil.toNameUpper(d)) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
 			}
 		}
-		
 		filesToGenerate
 	}
 
@@ -85,6 +93,8 @@ class JavaDTOGenerator implements IDTOGenerator {
 			import java.io.ObjectInputStream;
 			import java.io.Serializable;
 			import com.google.gson.Gson;
+			import java.nio.ByteBuffer;
+			import java.nio.ByteOrder;
 			 
 			/**
 			 * Data transfer object for «className»
@@ -108,10 +118,17 @@ class JavaDTOGenerator implements IDTOGenerator {
 				«ENDIF»
 				«generateDataMethodsIncludeParentDataSet(d)»
 				
-				«d.generateJsonUnmarshal»	
+				«d.generateJsonUnmarshal»
 				
-				«d.generateByteArrayUnmarshal»	
+				«d.generateJsonMarshal»
 				
+				«d.generateByteArrayUnmarshal»
+				
+				«d.generateByteArrayMarshal»
+				
+				«IF !bigEndian»
+				«d.generateConverterMethods»
+				«ENDIF»
 			}
 		 '''
 	}
@@ -175,7 +192,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 				«ENDIF»
 				 */
 				«ENDIF» 
-				private static final «d.toTypeName» «d.name.toUpperCase» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («d.value» - «d.toTypeName».MAX_VALUE)«ELSE»«IF d.dataType == DataType.STRING»"«d.value»"«ELSE»«d.value»«ENDIF»«ENDIF»;
+				private «d.toTypeName» «d.name.toUpperCase» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («d.value» - «d.toTypeName».MAX_VALUE)«ELSE»«IF d.dataType == DataType.STRING»"«d.value»"«ELSE»«d.value»«ENDIF»«ENDIF»;
 			'''
 		} else {
 			'''
@@ -505,12 +522,37 @@ class JavaDTOGenerator implements IDTOGenerator {
 		 *            format
 		 * @return L unmarshalled L structure
 		 */
-		public «GenerationUtil.toNameUpper(d)» unmarshal«GenerationUtil.toNameUpper(d)»(BufferedReader dataset) { 
+		public «GenerationUtil.toNameUpper(d)» unmarshal«GenerationUtil.toNameUpper(d)»JSON(BufferedReader dataset) { 
 			
 			Gson gson = new Gson();
 			BufferedReader br = dataset;
 			«GenerationUtil.toNameUpper(d)» obj = gson.fromJson(br, «GenerationUtil.toNameUpper(d)».class);
+			«IF !bigEndian»
+			// use little endianness 
+			obj.convertAllToLittleEndian();
+			«ENDIF»
 			return obj;
+		}
+		'''
+	}
+	
+	def generateJsonMarshal(DataSet d){
+		'''
+		/**
+		 * Alternative method responsible for serializing JSON
+		 * 
+		 * @return Json String
+		 */
+		public String marshal«GenerationUtil.toNameUpper(d)»JSON() { 
+			«IF bigEndian»
+			Gson gson = new Gson();
+			return gson.toJson(this);
+			«ELSE»
+			Gson gson = new Gson();
+			// use little endianness
+			«GenerationUtil.toNameUpper(d)» «GenerationUtil.toNameLower(d)» = new «GenerationUtil.toNameUpper(d)»(«d.generateConstructorArgumentsForMarshal»);
+			return gson.toJson(«GenerationUtil.toNameLower(d)»);
+			«ENDIF»
 		}
 		'''
 	}
@@ -528,7 +570,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 		 * @throws IOException
 		 * @throws ClassNotFoundException
 		 */
-		public «GenerationUtil.toNameUpper(d)» unmarshal«GenerationUtil.toNameUpper(d)»(byte[] dataset) throws IOException, ClassNotFoundException {
+		public «GenerationUtil.toNameUpper(d)» unmarshal«GenerationUtil.toNameUpper(d)»ByteArray(byte[] dataset) throws IOException, ClassNotFoundException {
 			
 			ByteArrayInputStream in = new ByteArrayInputStream(dataset);
 			ObjectInputStream ois = null;
@@ -543,6 +585,46 @@ class JavaDTOGenerator implements IDTOGenerator {
 		}
 		'''
 	}
+	
+	def generateByteArrayMarshal(DataSet d){
+		'''
+		/**
+		 * Method responsible for serializing Byte-Array
+		 */
+		public «GenerationUtil.toNameUpper(d)» marshal«GenerationUtil.toNameUpper(d)»ByteArray() {
+			//TODO: implement Method
+			return null;
+		}
+		'''
+	}
+	
+	def generateConstructorArgumentsForMarshal(DataSet d) {
+		// create an ArrayList with all data that is not a constant NonMeasurementData (which will not be constructor arguments)
+		var dataList = new ArrayList<Data>();
+		var dataSet = d
+		
+		for (data : dataSet.eContents.filter(Data)) {
+			if (data instanceof NonMeasurementData) {
+				var nmdata = data as NonMeasurementData
+				if (!nmdata.constant) {
+					dataList.add(data)
+				}
+			} else {
+				dataList.add(data)
+			}
+		}
+
+		if (dataList.size > 0) {
+			var firstElement = dataList.get(0).toGetterName
+			dataList.remove(0)
+			if(d.parentDataSet != null){
+				'''convertToLittleEndian(this.«firstElement»())«FOR data : dataList», convertToLittleEndian(this.«data.toGetterName»()) «ENDFOR», convertToLittleEndian(this.get«GenerationUtil.toNameUpper(d.parentDataSet)»())'''
+			} else {
+				'''convertToLittleEndian(this.«firstElement»())«FOR data : dataList», convertToLittleEndian(this.«data.toGetterName»()) «ENDFOR»'''
+			}
+		}
+	}
+	
 
 // ------------------------------ Other Methods ------------------------------
 	/**
@@ -584,5 +666,142 @@ class JavaDTOGenerator implements IDTOGenerator {
 
 	override addFileExtensionTo(String ClassName) {
 		return ClassName + SensIDLConstants.JAVA_EXTENSION
+	}
+	
+// ------------------------------ Little Endian Converter Methods ------------------------------
+
+def generateConverterMethods(DataSet d) {
+	'''
+		/**
+		 * Converts a big endian float into a little endian float
+		 *	
+		 * @param the float to convert
+		 * @return float the converted float
+		 *
+		 */
+		public float convertToLittleEndian(float num) {
+			byte[] bytes = new byte[4];
+			ByteBuffer.wrap(bytes).putFloat(num);
+			return ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).getFloat();
+		}
+		
+		/**
+		 * Converts a big endian double into a little endian double
+		 *	
+		 * @param the double to convert
+		 * @return double the converted double
+		 *
+		 */
+		public double convertToLittleEndian(double num) {
+			byte[] bytes = new byte[8];
+			ByteBuffer.wrap(bytes).putDouble(num);
+			return ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).getDouble();
+		}
+		
+		/**
+		 * Converts a big endian byte into a little endian byte
+		 *	
+		 * @param the byte to convert
+		 * @return byte the converted byte
+		 *
+		 */
+		public byte convertToLittleEndian(byte num) {
+			return num;
+		}
+		
+		/**
+		 * Converts a big endian short into a little endian short
+		 *	
+		 * @param the short to convert
+		 * @return short the converted short
+		 *
+		 */
+		public short convertToLittleEndian(short num) {
+			return Short.reverseBytes(num);
+		}
+		
+		/**
+		 * Converts a big endian int into a little endian int
+		 *	
+		 * @param the int to convert
+		 * @return int the converted int
+		 *
+		 */
+		public int convertToLittleEndian(int num) {
+			return Integer.reverseBytes(num);
+		}
+		
+		/**
+		 * Converts a big endian long into a little endian long
+		 *	
+		 * @param the long to convert
+		 * @return long the converted long
+		 *
+		 */
+		public long convertToLittleEndian(long num) {
+			return Long.reverseBytes(num);
+		}
+		«IF d.parentDataSet != null»
+		/**
+		 * Converts a big endian «GenerationUtil.toNameUpper(d.parentDataSet)» Object into a little endian «GenerationUtil.toNameUpper(d.parentDataSet)» Object
+		 *	
+		 * @param the «GenerationUtil.toNameUpper(d.parentDataSet)» Object to convert
+		 * @return «GenerationUtil.toNameUpper(d.parentDataSet)» the converted «GenerationUtil.toNameUpper(d.parentDataSet)» Object
+		 *
+		 */
+		public «GenerationUtil.toNameUpper(d.parentDataSet)» convertToLittleEndian(«GenerationUtil.toNameUpper(d.parentDataSet)» «GenerationUtil.toNameLower(d.parentDataSet)»){
+			//TODO: implement Method
+			return null;
+		}
+		«ENDIF»
+		
+		/**
+		 * Converts a big endian String into a little endian String
+		 *	
+		 * @param the String to convert
+		 * @return String the converted String
+		 *
+		 */
+		public String convertToLittleEndian(String str) {
+			//TODO: implement Method
+			return null;
+		}
+		
+		/**
+		 * Converts a big endian boolean into a little endian boolean
+		 *	
+		 * @param the boolean to convert
+		 * @return boolean the converted boolean
+		 *
+		 */
+		public boolean convertToLittleEndian(boolean bool) {
+			//TODO: implement Method
+			return !bool;
+		}
+		
+		«convertAllToTLitteEndian(d)»
+		
+	'''
+	}
+	
+	def convertAllToTLitteEndian(DataSet d){
+		'''
+		public void convertAllToLittleEndian(){
+			«FOR data : d.eContents.filter(MeasurementData)»
+			«GenerationUtil.toNameLower(data)» = convertToLittleEndian(«GenerationUtil.toNameLower(data)»);
+			«ENDFOR»
+			«FOR data : d.eContents.filter(NonMeasurementData)»
+				«IF data.isConstant»
+					«data.name.toUpperCase» = convertToLittleEndian(«data.name.toUpperCase»);
+				«ELSE»
+					«GenerationUtil.toNameLower(data)» = convertToLittleEndian(«GenerationUtil.toNameLower(data)»);
+				«ENDIF»
+			«ENDFOR»
+			«IF d.parentDataSet != null»
+				«GenerationUtil.toNameLower(d.parentDataSet)» =convertToLittleEndian(«GenerationUtil.toNameLower(d.parentDataSet)»);
+			«ENDIF»
+		}
+		
+		'''
 	}
 }
