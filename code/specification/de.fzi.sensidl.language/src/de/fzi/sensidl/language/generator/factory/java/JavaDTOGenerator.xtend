@@ -652,9 +652,9 @@ class JavaDTOGenerator implements IDTOGenerator {
 			var firstElement = dataList.get(0)
 			dataList.remove(0)
 			if(d.parentDataSet != null){
-				'''convertToLittleEndian(«IF firstElement.dataType.isUnsigned»(«firstElement.toSimpleTypeName») (this.«GenerationUtil.toNameLower(firstElement)» + «firstElement.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(firstElement)»«ENDIF»)«FOR data : dataList», convertToLittleEndian(«IF data.dataType.isUnsigned»(«data.toSimpleTypeName») (this.«GenerationUtil.toNameLower(data)» + «data.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(data)»«ENDIF») «ENDFOR», convertToLittleEndian(this.«GenerationUtil.toNameLower(d.parentDataSet)»)'''
+				'''«GenerationUtil.getSensorInterfaceName(firstElement.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«IF firstElement.dataType.isUnsigned»(«firstElement.toSimpleTypeName») (this.«GenerationUtil.toNameLower(firstElement)» + «firstElement.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(firstElement)»«ENDIF»)«FOR data : dataList», «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«IF data.dataType.isUnsigned»(«data.toSimpleTypeName») (this.«GenerationUtil.toNameLower(data)» + «data.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(data)»«ENDIF») «ENDFOR», convertToLittleEndian(this.«GenerationUtil.toNameLower(d.parentDataSet)»)'''
 			} else {
-				'''convertToLittleEndian(«IF firstElement.dataType.isUnsigned»(«firstElement.toSimpleTypeName») (this.«GenerationUtil.toNameLower(firstElement)» + «firstElement.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(firstElement)»«ENDIF»)«FOR data : dataList», convertToLittleEndian(«IF data.dataType.isUnsigned»(«data.toSimpleTypeName») (this.«GenerationUtil.toNameLower(data)» + «data.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(data)»«ENDIF») «ENDFOR»'''
+				'''«GenerationUtil.getSensorInterfaceName(firstElement.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«IF firstElement.dataType.isUnsigned»(«firstElement.toSimpleTypeName») (this.«GenerationUtil.toNameLower(firstElement)» + «firstElement.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(firstElement)»«ENDIF»)«FOR data : dataList», «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«IF data.dataType.isUnsigned»(«data.toSimpleTypeName») (this.«GenerationUtil.toNameLower(data)» + «data.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(data)»«ENDIF») «ENDFOR»'''
 			}
 		}
 	}
@@ -758,75 +758,6 @@ class JavaDTOGenerator implements IDTOGenerator {
 
 def generateConverterMethods(DataSet d) {
 	'''
-		/**
-		 * Converts a big endian float into a little endian float
-		 *	
-		 * @param the float to convert
-		 * @return float the converted float
-		 *
-		 */
-		public float convertToLittleEndian(float num) {
-			byte[] bytes = new byte[4];
-			ByteBuffer.wrap(bytes).putFloat(num);
-			return ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).getFloat();
-		}
-		
-		/**
-		 * Converts a big endian double into a little endian double
-		 *	
-		 * @param the double to convert
-		 * @return double the converted double
-		 *
-		 */
-		public double convertToLittleEndian(double num) {
-			byte[] bytes = new byte[8];
-			ByteBuffer.wrap(bytes).putDouble(num);
-			return ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).getDouble();
-		}
-		
-		/**
-		 * Converts a big endian byte into a little endian byte
-		 *	
-		 * @param the byte to convert
-		 * @return byte the converted byte
-		 *
-		 */
-		public byte convertToLittleEndian(byte num) {
-			return num;
-		}
-		
-		/**
-		 * Converts a big endian short into a little endian short
-		 *	
-		 * @param the short to convert
-		 * @return short the converted short
-		 *
-		 */
-		public short convertToLittleEndian(short num) {
-			return Short.reverseBytes(num);
-		}
-		
-		/**
-		 * Converts a big endian int into a little endian int
-		 *	
-		 * @param the int to convert
-		 * @return int the converted int
-		 *
-		 */
-		public int convertToLittleEndian(int num) {
-			return Integer.reverseBytes(num);
-		}
-		
-		/**
-		 * Converts a big endian long into a little endian long
-		 *	
-		 * @param the long to convert
-		 * @return long the converted long
-		 *
-		 */
-		public long convertToLittleEndian(long num) {
-			return Long.reverseBytes(num);
-		}
 		«IF d.parentDataSet != null»
 		/**
 		 * Converts a big endian «GenerationUtil.toNameUpper(d.parentDataSet)» Object into a little endian «GenerationUtil.toNameUpper(d.parentDataSet)» Object
@@ -841,30 +772,6 @@ def generateConverterMethods(DataSet d) {
 		}
 		«ENDIF»
 		
-		/**
-		 * Converts a big endian String into a little endian String
-		 *	
-		 * @param the String to convert
-		 * @return String the converted String
-		 *
-		 */
-		public String convertToLittleEndian(String str) {
-			//TODO: implement Method
-			return null;
-		}
-		
-		/**
-		 * Converts a big endian boolean into a little endian boolean
-		 *	
-		 * @param the boolean to convert
-		 * @return boolean the converted boolean
-		 *
-		 */
-		public boolean convertToLittleEndian(boolean bool) {
-			//TODO: implement Method
-			return !bool;
-		}
-		
 		«convertAllToTLitteEndian(d)»
 		
 	'''
@@ -874,17 +781,17 @@ def convertAllToTLitteEndian(DataSet d){
 		'''
 		public void convertAllToLittleEndian(){
 			«FOR data : d.eContents.filter(MeasurementData)»
-			«GenerationUtil.toNameLower(data)» = convertToLittleEndian(«GenerationUtil.toNameLower(data)»);
+				«GenerationUtil.toNameLower(data)» = «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«GenerationUtil.toNameLower(data)»);
 			«ENDFOR»
 			«FOR data : d.eContents.filter(NonMeasurementData)»
 				«IF data.isConstant»
-					«data.name.toUpperCase» = convertToLittleEndian(«data.name.toUpperCase»);
+					«data.name.toUpperCase» = «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«data.name.toUpperCase»);
 				«ELSE»
-					«GenerationUtil.toNameLower(data)» = convertToLittleEndian(«GenerationUtil.toNameLower(data)»);
+					«GenerationUtil.toNameLower(data)» = «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«GenerationUtil.toNameLower(data)»);
 				«ENDIF»
 			«ENDFOR»
 			«IF d.parentDataSet != null»
-				«GenerationUtil.toNameLower(d.parentDataSet)» =convertToLittleEndian(«GenerationUtil.toNameLower(d.parentDataSet)»);
+				«GenerationUtil.toNameLower(d.parentDataSet)» = convertToLittleEndian(«GenerationUtil.toNameLower(d.parentDataSet)»);
 			«ENDIF»
 		}
 		
