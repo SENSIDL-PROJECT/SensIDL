@@ -724,13 +724,22 @@ public interface DataRepresentationPackage extends EPackage {
 	int LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL = DATA_CONVERSION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Data Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINEAR_DATA_CONVERSION_WITH_INTERVAL__DATA_TYPE = DATA_CONVERSION_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Linear Data Conversion With Interval</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LINEAR_DATA_CONVERSION_WITH_INTERVAL_FEATURE_COUNT = DATA_CONVERSION_FEATURE_COUNT + 2;
+	int LINEAR_DATA_CONVERSION_WITH_INTERVAL_FEATURE_COUNT = DATA_CONVERSION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Linear Data Conversion With Interval</em>' class.
@@ -1143,6 +1152,17 @@ public interface DataRepresentationPackage extends EPackage {
 	EReference getLinearDataConversionWithInterval_ToInterval();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval#getDataType <em>Data Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data Type</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval#getDataType()
+	 * @see #getLinearDataConversionWithInterval()
+	 * @generated
+	 */
+	EAttribute getLinearDataConversionWithInterval_DataType();
+
+	/**
 	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval <em>Interval</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1494,6 +1514,14 @@ public interface DataRepresentationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL = eINSTANCE.getLinearDataConversionWithInterval_ToInterval();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LINEAR_DATA_CONVERSION_WITH_INTERVAL__DATA_TYPE = eINSTANCE.getLinearDataConversionWithInterval_DataType();
 
 		/**
 		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.IntervalImpl <em>Interval</em>}' class.

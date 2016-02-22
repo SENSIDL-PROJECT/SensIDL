@@ -114,7 +114,7 @@ LinearDataConversion returns dataRepresentation::LinearDataConversion:
 
 LinearDataConversionWithInterval returns dataRepresentation::LinearDataConversionWithInterval: 
 	(
-		"by linear mapping"  fromInterval=Interval "=>" toInterval=Interval
+		"by linear mapping"  fromInterval=Interval "=>" toInterval=Interval "as" dataType=DataType
 	)
 ;
 

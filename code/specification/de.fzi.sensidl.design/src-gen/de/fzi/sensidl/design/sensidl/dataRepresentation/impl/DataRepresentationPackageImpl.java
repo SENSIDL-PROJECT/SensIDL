@@ -449,6 +449,15 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getLinearDataConversionWithInterval_DataType() {
+		return (EAttribute)linearDataConversionWithIntervalEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInterval() {
 		return intervalEClass;
 	}
@@ -581,6 +590,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 		linearDataConversionWithIntervalEClass = createEClass(LINEAR_DATA_CONVERSION_WITH_INTERVAL);
 		createEReference(linearDataConversionWithIntervalEClass, LINEAR_DATA_CONVERSION_WITH_INTERVAL__FROM_INTERVAL);
 		createEReference(linearDataConversionWithIntervalEClass, LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL);
+		createEAttribute(linearDataConversionWithIntervalEClass, LINEAR_DATA_CONVERSION_WITH_INTERVAL__DATA_TYPE);
 
 		intervalEClass = createEClass(INTERVAL);
 		createEAttribute(intervalEClass, INTERVAL__LOWER_BOUND);
@@ -681,6 +691,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 		initEClass(linearDataConversionWithIntervalEClass, LinearDataConversionWithInterval.class, "LinearDataConversionWithInterval", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLinearDataConversionWithInterval_FromInterval(), this.getInterval(), this.getInterval_LinearDataConversionFrom(), "fromInterval", null, 0, 1, LinearDataConversionWithInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLinearDataConversionWithInterval_ToInterval(), this.getInterval(), this.getInterval_LinearDataConversionTo(), "toInterval", null, 0, 1, LinearDataConversionWithInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLinearDataConversionWithInterval_DataType(), this.getDataType(), "dataType", null, 1, 1, LinearDataConversionWithInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(intervalEClass, Interval.class, "Interval", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getInterval_LowerBound(), ecorePackage.getEDouble(), "lowerBound", null, 1, 1, Interval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -93,8 +93,10 @@ class JavaDTOGenerator implements IDTOGenerator {
 			import java.io.ObjectInputStream;
 			import java.io.Serializable;
 			import com.google.gson.Gson;
-			import java.nio.ByteBuffer;
-			import java.nio.ByteOrder;
+			«IF !bigEndian»
+				import java.nio.ByteBuffer;
+				import java.nio.ByteOrder;
+			«ENDIF» 
 			 
 			/**
 			 * Data transfer object for «className»
@@ -171,6 +173,17 @@ class JavaDTOGenerator implements IDTOGenerator {
 			 * Unit: «d.unit»
 			 */
 			private «d.toTypeName» «GenerationUtil.toNameLower(d)»;
+			
+			«IF d.hasLinearDataConversionWithInterval»
+			/*
+			«IF d.description != null» * «d.description»
+			 * 
+			«ENDIF» 
+			 * Unit: «d.unit»
+			 * Adjusted
+			 */
+			private «d.getDataConversionType.toTypeName» «GenerationUtil.toNameLower(d)»Adjusted;
+			«ENDIF»
 		'''
 	}
 
@@ -219,7 +232,11 @@ class JavaDTOGenerator implements IDTOGenerator {
 		 */
 		public «className»(«d.generateConstructorArgumentsIncludeParentDataSets») {
 			«FOR data : d.eContents.filter(MeasurementData)»
-				this.«GenerationUtil.toNameLower(data)» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («GenerationUtil.toNameLower(data)» - «data.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(data)»«ENDIF»;
+				«IF data.hasLinearDataConversionWithInterval»
+					set«GenerationUtil.toNameUpper(data)»(«GenerationUtil.toNameLower(data)»);
+				«ELSE»
+					this.«GenerationUtil.toNameLower(data)» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («GenerationUtil.toNameLower(data)» - «data.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(data)»«ENDIF»;
+				«ENDIF»
 			«ENDFOR»
 			«FOR data : d.eContents.filter(NonMeasurementData)»
 				«IF !data.constant»
@@ -333,18 +350,34 @@ class JavaDTOGenerator implements IDTOGenerator {
 	 */
 	def generateGetter(MeasurementData d) {
 		'''
-			/**
-			 «IF d.dataType.isUnsigned» 
-			 * Java has no option for unsigned data types, so if the data has an 
-			 * unsigned data type the value is calculated by subtracting the maximum 
-			 * value from the signed data type and adding it again, if it is used.
-			 *
-			 «ENDIF»
-			 * @return the «GenerationUtil.toNameLower(d)»
-			 */
-			public «d.toTypeName» «d.toGetterName»() {
-				return «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») (this.«GenerationUtil.toNameLower(d)» + «d.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(d)»«ENDIF»;
-			}
+			«IF !d.hasLinearDataConversionWithInterval»
+				/**
+				 «IF d.dataType.isUnsigned» 
+				 * Java has no option for unsigned data types, so if the data has an 
+				 * unsigned data type the value is calculated by subtracting the maximum 
+				 * value from the signed data type and adding it again, if it is used.
+				 *
+				 «ENDIF»
+				 * @return the «GenerationUtil.toNameLower(d)»
+				 */
+				public «d.toTypeName» «d.toGetterName»() {
+					return «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») (this.«GenerationUtil.toNameLower(d)» + «d.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(d)»«ENDIF»;
+				}
+			«ELSE»
+				/**
+				 * @return the «GenerationUtil.toNameLower(d)»
+				 */
+				public «d.dataConversionType.toTypeName» «d.toGetterName»(){
+					return this.«GenerationUtil.toNameLower(d)»Adjusted;
+				}
+				
+				/**
+				 * @return the «GenerationUtil.toNameLower(d)»
+				 */
+				public «d.toTypeName» «d.toGetterName»NotAdjusted(){
+					return «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») (this.«GenerationUtil.toNameLower(d)» + «d.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(d)»«ENDIF»;
+				}
+			«ENDIF»
 		'''
 	}
 
@@ -473,12 +506,13 @@ class JavaDTOGenerator implements IDTOGenerator {
 	
 	dispatch def generateSetterBodyForMeasurementData(MeasurementData data, LinearDataConversionWithInterval conversion) {
 		'''
-			«data.toTypeName» oldMin = («data.toSimpleTypeName») «conversion.fromInterval.lowerBound»;
-			«data.toTypeName» oldMax = («data.toSimpleTypeName») «conversion.fromInterval.upperBound»;
-			«data.toTypeName» newMin = («data.toSimpleTypeName») «conversion.toInterval.lowerBound»;
-			«data.toTypeName» newMax = («data.toSimpleTypeName») «conversion.toInterval.upperBound»;
+			«conversion.dataType.toTypeName» oldMin = («conversion.dataType.toSimpleTypeName») «conversion.fromInterval.lowerBound»;
+			«conversion.dataType.toTypeName» oldMax = («conversion.dataType.toSimpleTypeName») «conversion.fromInterval.upperBound»;
+			«conversion.dataType.toTypeName» newMin = («conversion.dataType.toSimpleTypeName») «conversion.toInterval.lowerBound»;
+			«conversion.dataType.toTypeName» newMax = («conversion.dataType.toSimpleTypeName») «conversion.toInterval.upperBound»;
 			
-			this.«GenerationUtil.toNameLower(data)» = («data.toSimpleTypeName») «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».«SensIDLConstants.LINEAR_CONVERSION_WITH_INTERVAL_METHOD_NAME»(«GenerationUtil.toNameLower(data)», oldMin, oldMax, newMin, newMax);
+			this.«GenerationUtil.toNameLower(data)» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («GenerationUtil.toNameLower(data)» - «data.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(data)»«ENDIF»;
+			this.«GenerationUtil.toNameLower(data)»Adjusted = («conversion.dataType.toSimpleTypeName») «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».«SensIDLConstants.LINEAR_CONVERSION_WITH_INTERVAL_METHOD_NAME»(«GenerationUtil.toNameLower(data)», oldMin, oldMax, newMin, newMax);
 		'''
 	}
 
@@ -615,12 +649,12 @@ class JavaDTOGenerator implements IDTOGenerator {
 		}
 
 		if (dataList.size > 0) {
-			var firstElement = dataList.get(0).toGetterName
+			var firstElement = dataList.get(0)
 			dataList.remove(0)
 			if(d.parentDataSet != null){
-				'''convertToLittleEndian(this.«firstElement»())«FOR data : dataList», convertToLittleEndian(this.«data.toGetterName»()) «ENDFOR», convertToLittleEndian(this.get«GenerationUtil.toNameUpper(d.parentDataSet)»())'''
+				'''convertToLittleEndian(«IF firstElement.dataType.isUnsigned»(«firstElement.toSimpleTypeName») (this.«GenerationUtil.toNameLower(firstElement)» + «firstElement.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(firstElement)»«ENDIF»)«FOR data : dataList», convertToLittleEndian(«IF data.dataType.isUnsigned»(«data.toSimpleTypeName») (this.«GenerationUtil.toNameLower(data)» + «data.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(data)»«ENDIF») «ENDFOR», convertToLittleEndian(this.«GenerationUtil.toNameLower(d.parentDataSet)»)'''
 			} else {
-				'''convertToLittleEndian(this.«firstElement»())«FOR data : dataList», convertToLittleEndian(this.«data.toGetterName»()) «ENDFOR»'''
+				'''convertToLittleEndian(«IF firstElement.dataType.isUnsigned»(«firstElement.toSimpleTypeName») (this.«GenerationUtil.toNameLower(firstElement)» + «firstElement.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(firstElement)»«ENDIF»)«FOR data : dataList», convertToLittleEndian(«IF data.dataType.isUnsigned»(«data.toSimpleTypeName») (this.«GenerationUtil.toNameLower(data)» + «data.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(data)»«ENDIF») «ENDFOR»'''
 			}
 		}
 	}
@@ -628,10 +662,30 @@ class JavaDTOGenerator implements IDTOGenerator {
 
 // ------------------------------ Other Methods ------------------------------
 	/**
-	 * returns the appropriate type name 
+	 * returns the appropriate type name for Data objects
 	 */
 	override toTypeName(Data d) {
 		return switch (d.dataType) {
+			case INT8: Byte.name
+			case UINT8: Byte.name
+			case INT16: Short.name
+			case UINT16: Short.name
+			case INT32: Integer.name
+			case UINT32: Integer.name
+			case INT64: Long.name
+			case UINT64: Long.name
+			case FLOAT: Float.name
+			case DOUBLE: Double.name
+			case BOOLEAN: Boolean.name
+			case STRING: String.name
+		}
+	}
+	
+	/**
+	 * returns the appropriate type name for DataType
+	 */
+	def toTypeName(DataType d) {
+		return switch (d) {
 			case INT8: Byte.name
 			case UINT8: Byte.name
 			case INT16: Short.name
@@ -663,6 +717,38 @@ class JavaDTOGenerator implements IDTOGenerator {
 	def toSimpleTypeName(Data d){
 		return d.toTypeName.substring(d.toTypeName.lastIndexOf('.')+1).toLowerCase();
 	}
+	
+	/**
+	 * returns the appropriate simple type name suitable for casting for dataType
+	 */
+	def toSimpleTypeName(DataType d){
+		return d.toTypeName.substring(d.toTypeName.lastIndexOf('.')+1).toLowerCase();
+	}
+	
+	/** 
+	 * returns the Data Conversion type (at the moment 
+	 * only LinearDataConversionWithIntervall has a type)
+	 * 
+	 */
+	def getDataConversionType(MeasurementData d){
+		if (d.adjustments.empty){
+			return null
+		}
+		var conversion = d.adjustments.filter(LinearDataConversionWithInterval);
+		if (conversion.empty || conversion == null){
+			return null
+		}
+		return conversion.head.dataType
+	}
+	
+	/**
+	 * @return true if the MeasurementData is adjusted 
+	 * with linear data conversion with interval
+	 */
+	def hasLinearDataConversionWithInterval(MeasurementData data){
+		return !data.adjustments.filter(LinearDataConversionWithInterval).empty
+	}
+	
 
 	override addFileExtensionTo(String ClassName) {
 		return ClassName + SensIDLConstants.JAVA_EXTENSION
@@ -784,7 +870,7 @@ def generateConverterMethods(DataSet d) {
 	'''
 	}
 	
-	def convertAllToTLitteEndian(DataSet d){
+def convertAllToTLitteEndian(DataSet d){
 		'''
 		public void convertAllToLittleEndian(){
 			«FOR data : d.eContents.filter(MeasurementData)»

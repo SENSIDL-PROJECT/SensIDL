@@ -1381,6 +1381,28 @@ ruleLinearDataConversionWithInterval returns [EObject current=null]
 	    }
 
 )
+)	otherlv_4='as' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getLinearDataConversionWithIntervalAccess().getAsKeyword_4());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getLinearDataConversionWithIntervalAccess().getDataTypeDataTypeEnumRuleCall_5_0()); 
+	    }
+		lv_dataType_5_0=ruleDataType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getLinearDataConversionWithIntervalRule());
+	        }
+       		set(
+       			$current, 
+       			"dataType",
+        		lv_dataType_5_0, 
+        		"DataType");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
 ))
 ;
 

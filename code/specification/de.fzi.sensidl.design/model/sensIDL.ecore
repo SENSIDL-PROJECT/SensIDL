@@ -108,6 +108,8 @@
           containment="true" eOpposite="#//dataRepresentation/Interval/linearDataConversionFrom"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="toInterval" eType="#//dataRepresentation/Interval"
           containment="true" eOpposite="#//dataRepresentation/Interval/linearDataConversionTo"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" lowerBound="1"
+          eType="#//dataRepresentation/DataType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Interval" eSuperTypes="#//IdentifiableElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerBound" lowerBound="1"

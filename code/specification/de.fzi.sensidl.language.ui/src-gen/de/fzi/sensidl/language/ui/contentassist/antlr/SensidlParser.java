@@ -112,6 +112,7 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLinearDataConversionAccess().getOffsetAssignment_5(), "rule__LinearDataConversion__OffsetAssignment_5");
 					put(grammarAccess.getLinearDataConversionWithIntervalAccess().getFromIntervalAssignment_1(), "rule__LinearDataConversionWithInterval__FromIntervalAssignment_1");
 					put(grammarAccess.getLinearDataConversionWithIntervalAccess().getToIntervalAssignment_3(), "rule__LinearDataConversionWithInterval__ToIntervalAssignment_3");
+					put(grammarAccess.getLinearDataConversionWithIntervalAccess().getDataTypeAssignment_5(), "rule__LinearDataConversionWithInterval__DataTypeAssignment_5");
 				}
 			};
 		}

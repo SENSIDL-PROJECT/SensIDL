@@ -799,12 +799,15 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEqualsSignGreaterThanSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cToIntervalAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cToIntervalIntervalParserRuleCall_3_0 = (RuleCall)cToIntervalAssignment_3.eContents().get(0);
+		private final Keyword cAsKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cDataTypeAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cDataTypeDataTypeEnumRuleCall_5_0 = (RuleCall)cDataTypeAssignment_5.eContents().get(0);
 		
 		//LinearDataConversionWithInterval returns dataRepresentation::LinearDataConversionWithInterval:
-		//	"by linear mapping" fromInterval=Interval "=>" toInterval=Interval;
+		//	"by linear mapping" fromInterval=Interval "=>" toInterval=Interval "as" dataType=DataType;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"by linear mapping" fromInterval=Interval "=>" toInterval=Interval
+		//"by linear mapping" fromInterval=Interval "=>" toInterval=Interval "as" dataType=DataType
 		public Group getGroup() { return cGroup; }
 
 		//"by linear mapping"
@@ -824,6 +827,15 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Interval
 		public RuleCall getToIntervalIntervalParserRuleCall_3_0() { return cToIntervalIntervalParserRuleCall_3_0; }
+
+		//"as"
+		public Keyword getAsKeyword_4() { return cAsKeyword_4; }
+
+		//dataType=DataType
+		public Assignment getDataTypeAssignment_5() { return cDataTypeAssignment_5; }
+
+		//DataType
+		public RuleCall getDataTypeDataTypeEnumRuleCall_5_0() { return cDataTypeDataTypeEnumRuleCall_5_0; }
 	}
 
 	public class DOUBLEElements extends AbstractParserRuleElementFinder {
@@ -1319,7 +1331,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LinearDataConversionWithInterval returns dataRepresentation::LinearDataConversionWithInterval:
-	//	"by linear mapping" fromInterval=Interval "=>" toInterval=Interval;
+	//	"by linear mapping" fromInterval=Interval "=>" toInterval=Interval "as" dataType=DataType;
 	public LinearDataConversionWithIntervalElements getLinearDataConversionWithIntervalAccess() {
 		return pLinearDataConversionWithInterval;
 	}

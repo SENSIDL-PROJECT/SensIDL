@@ -140,7 +140,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (fromInterval=Interval toInterval=Interval)
+	 *     (fromInterval=Interval toInterval=Interval dataType=DataType)
 	 */
 	protected void sequence_LinearDataConversionWithInterval(EObject context, LinearDataConversionWithInterval semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

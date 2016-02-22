@@ -4122,6 +4122,7 @@ rule__LinearDataConversionWithInterval__Group__3
     }
 :
 	rule__LinearDataConversionWithInterval__Group__3__Impl
+	rule__LinearDataConversionWithInterval__Group__4
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -4142,6 +4143,69 @@ rule__LinearDataConversionWithInterval__Group__3__Impl
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+rule__LinearDataConversionWithInterval__Group__4
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__LinearDataConversionWithInterval__Group__4__Impl
+	rule__LinearDataConversionWithInterval__Group__5
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__LinearDataConversionWithInterval__Group__4__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getLinearDataConversionWithIntervalAccess().getAsKeyword_4()); }
+
+	'as' 
+
+{ after(grammarAccess.getLinearDataConversionWithIntervalAccess().getAsKeyword_4()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__LinearDataConversionWithInterval__Group__5
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__LinearDataConversionWithInterval__Group__5__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__LinearDataConversionWithInterval__Group__5__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getLinearDataConversionWithIntervalAccess().getDataTypeAssignment_5()); }
+(rule__LinearDataConversionWithInterval__DataTypeAssignment_5)
+{ after(grammarAccess.getLinearDataConversionWithIntervalAccess().getDataTypeAssignment_5()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+
 
 
 
@@ -5034,6 +5098,21 @@ rule__LinearDataConversionWithInterval__ToIntervalAssignment_3
 (
 { before(grammarAccess.getLinearDataConversionWithIntervalAccess().getToIntervalIntervalParserRuleCall_3_0()); }
 	ruleInterval{ after(grammarAccess.getLinearDataConversionWithIntervalAccess().getToIntervalIntervalParserRuleCall_3_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__LinearDataConversionWithInterval__DataTypeAssignment_5
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getLinearDataConversionWithIntervalAccess().getDataTypeDataTypeEnumRuleCall_5_0()); }
+	ruleDataType{ after(grammarAccess.getLinearDataConversionWithIntervalAccess().getDataTypeDataTypeEnumRuleCall_5_0()); }
 )
 
 ;
