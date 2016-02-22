@@ -550,10 +550,9 @@ ruleDataTypeNotAdjustable
     }
 :
 (
-{ before(grammarAccess.getDataTypeNotAdjustableAccess().getSTRINGEnumLiteralDeclaration()); }
-(	'STRING' 
-)
-{ after(grammarAccess.getDataTypeNotAdjustableAccess().getSTRINGEnumLiteralDeclaration()); }
+{ before(grammarAccess.getDataTypeNotAdjustableAccess().getAlternatives()); }
+(rule__DataTypeNotAdjustable__Alternatives)
+{ after(grammarAccess.getDataTypeNotAdjustableAccess().getAlternatives()); }
 )
 
 ;
@@ -724,6 +723,30 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__DataTypeNotAdjustable__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getDataTypeNotAdjustableAccess().getSTRINGEnumLiteralDeclaration_0()); }
+(	'STRING' 
+)
+{ after(grammarAccess.getDataTypeNotAdjustableAccess().getSTRINGEnumLiteralDeclaration_0()); }
+)
+
+    |(
+{ before(grammarAccess.getDataTypeNotAdjustableAccess().getBOOLEANEnumLiteralDeclaration_1()); }
+(	'BOOLEAN' 
+)
+{ after(grammarAccess.getDataTypeNotAdjustableAccess().getBOOLEANEnumLiteralDeclaration_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__DataType__Alternatives
     @init {
 		int stackSize = keepStackSize();
@@ -797,13 +820,6 @@ rule__DataType__Alternatives
 (	'DOUBLE' 
 )
 { after(grammarAccess.getDataTypeAccess().getDOUBLEEnumLiteralDeclaration_9()); }
-)
-
-    |(
-{ before(grammarAccess.getDataTypeAccess().getBOOLEANEnumLiteralDeclaration_10()); }
-(	'BOOLEAN' 
-)
-{ after(grammarAccess.getDataTypeAccess().getBOOLEANEnumLiteralDeclaration_10()); }
 )
 
 ;

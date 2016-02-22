@@ -956,18 +956,30 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class DataTypeNotAdjustableElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "DataTypeNotAdjustable");
-		private final EnumLiteralDeclaration cSTRINGEnumLiteralDeclaration = (EnumLiteralDeclaration)rule.eContents().get(1);
-		private final Keyword cSTRINGSTRINGKeyword_0 = (Keyword)cSTRINGEnumLiteralDeclaration.eContents().get(0);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cSTRINGEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cSTRINGSTRINGKeyword_0_0 = (Keyword)cSTRINGEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cBOOLEANEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cBOOLEANBOOLEANKeyword_1_0 = (Keyword)cBOOLEANEnumLiteralDeclaration_1.eContents().get(0);
 		
 		//enum DataTypeNotAdjustable returns dataRepresentation::DataType:
-		//	STRING;
+		//	STRING | BOOLEAN;
 		public EnumRule getRule() { return rule; }
 
+		//STRING | BOOLEAN
+		public Alternatives getAlternatives() { return cAlternatives; }
+
 		//STRING
-		public EnumLiteralDeclaration getSTRINGEnumLiteralDeclaration() { return cSTRINGEnumLiteralDeclaration; }
+		public EnumLiteralDeclaration getSTRINGEnumLiteralDeclaration_0() { return cSTRINGEnumLiteralDeclaration_0; }
 
 		//"STRING"
-		public Keyword getSTRINGSTRINGKeyword_0() { return cSTRINGSTRINGKeyword_0; }
+		public Keyword getSTRINGSTRINGKeyword_0_0() { return cSTRINGSTRINGKeyword_0_0; }
+
+		//BOOLEAN
+		public EnumLiteralDeclaration getBOOLEANEnumLiteralDeclaration_1() { return cBOOLEANEnumLiteralDeclaration_1; }
+
+		//"BOOLEAN"
+		public Keyword getBOOLEANBOOLEANKeyword_1_0() { return cBOOLEANBOOLEANKeyword_1_0; }
 	}
 
 	public class DataTypeElements extends AbstractEnumRuleElementFinder {
@@ -993,14 +1005,12 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFLOATFLOATKeyword_8_0 = (Keyword)cFLOATEnumLiteralDeclaration_8.eContents().get(0);
 		private final EnumLiteralDeclaration cDOUBLEEnumLiteralDeclaration_9 = (EnumLiteralDeclaration)cAlternatives.eContents().get(9);
 		private final Keyword cDOUBLEDOUBLEKeyword_9_0 = (Keyword)cDOUBLEEnumLiteralDeclaration_9.eContents().get(0);
-		private final EnumLiteralDeclaration cBOOLEANEnumLiteralDeclaration_10 = (EnumLiteralDeclaration)cAlternatives.eContents().get(10);
-		private final Keyword cBOOLEANBOOLEANKeyword_10_0 = (Keyword)cBOOLEANEnumLiteralDeclaration_10.eContents().get(0);
 		
 		//enum DataType returns dataRepresentation::DataType:
-		//	INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE | BOOLEAN;
+		//	INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE;
 		public EnumRule getRule() { return rule; }
 
-		//INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE | BOOLEAN
+		//INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//INT8
@@ -1062,12 +1072,6 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"DOUBLE"
 		public Keyword getDOUBLEDOUBLEKeyword_9_0() { return cDOUBLEDOUBLEKeyword_9_0; }
-
-		//BOOLEAN
-		public EnumLiteralDeclaration getBOOLEANEnumLiteralDeclaration_10() { return cBOOLEANEnumLiteralDeclaration_10; }
-
-		//"BOOLEAN"
-		public Keyword getBOOLEANBOOLEANKeyword_10_0() { return cBOOLEANBOOLEANKeyword_10_0; }
 	}
 	
 	private final SensorInterfaceElements pSensorInterface;
@@ -1261,7 +1265,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum DataTypeNotAdjustable returns dataRepresentation::DataType:
-	//	STRING;
+	//	STRING | BOOLEAN;
 	public DataTypeNotAdjustableElements getDataTypeNotAdjustableAccess() {
 		return unknownRuleDataTypeNotAdjustable;
 	}
@@ -1271,7 +1275,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum DataType returns dataRepresentation::DataType:
-	//	INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE | BOOLEAN;
+	//	INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE;
 	public DataTypeElements getDataTypeAccess() {
 		return unknownRuleDataType;
 	}

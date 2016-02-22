@@ -768,10 +768,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:44:7: ( 'INT8' )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:44:9: 'INT8'
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:44:7: ( 'BOOLEAN' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:44:9: 'BOOLEAN'
             {
-            match("INT8"); 
+            match("BOOLEAN"); 
 
 
             }
@@ -789,10 +789,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:45:7: ( 'UINT8' )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:45:9: 'UINT8'
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:45:7: ( 'INT8' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:45:9: 'INT8'
             {
-            match("UINT8"); 
+            match("INT8"); 
 
 
             }
@@ -810,10 +810,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:46:7: ( 'INT16' )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:46:9: 'INT16'
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:46:7: ( 'UINT8' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:46:9: 'UINT8'
             {
-            match("INT16"); 
+            match("UINT8"); 
 
 
             }
@@ -831,10 +831,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:47:7: ( 'UINT16' )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:47:9: 'UINT16'
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:47:7: ( 'INT16' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:47:9: 'INT16'
             {
-            match("UINT16"); 
+            match("INT16"); 
 
 
             }
@@ -852,10 +852,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:48:7: ( 'INT32' )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:48:9: 'INT32'
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:48:7: ( 'UINT16' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:48:9: 'UINT16'
             {
-            match("INT32"); 
+            match("UINT16"); 
 
 
             }
@@ -873,10 +873,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:49:7: ( 'UINT32' )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:49:9: 'UINT32'
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:49:7: ( 'INT32' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:49:9: 'INT32'
             {
-            match("UINT32"); 
+            match("INT32"); 
 
 
             }
@@ -894,10 +894,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:50:7: ( 'INT64' )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:50:9: 'INT64'
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:50:7: ( 'UINT32' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:50:9: 'UINT32'
             {
-            match("INT64"); 
+            match("UINT32"); 
 
 
             }
@@ -915,10 +915,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:51:7: ( 'UINT64' )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:51:9: 'UINT64'
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:51:7: ( 'INT64' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:51:9: 'INT64'
             {
-            match("UINT64"); 
+            match("INT64"); 
 
 
             }
@@ -936,10 +936,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:52:7: ( 'FLOAT' )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:52:9: 'FLOAT'
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:52:7: ( 'UINT64' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:52:9: 'UINT64'
             {
-            match("FLOAT"); 
+            match("UINT64"); 
 
 
             }
@@ -957,10 +957,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:53:7: ( 'DOUBLE' )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:53:9: 'DOUBLE'
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:53:7: ( 'FLOAT' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:53:9: 'FLOAT'
             {
-            match("DOUBLE"); 
+            match("FLOAT"); 
 
 
             }
@@ -978,10 +978,10 @@ public class InternalSensidlLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:54:7: ( 'BOOLEAN' )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:54:9: 'BOOLEAN'
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:54:7: ( 'DOUBLE' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:54:9: 'DOUBLE'
             {
-            match("BOOLEAN"); 
+            match("DOUBLE"); 
 
 
             }
@@ -2000,9 +2000,9 @@ public class InternalSensidlLexer extends Lexer {
         "\1\3\1\4\1\5\1\uffff\1\7\13\uffff\1\33\1\23\1\25\1\26\1\27\1\uffff"+
         "\1\34\10\uffff\1\62\1\60\1\61\1\63\5\uffff\1\16\7\uffff\1\17\2\uffff"+
         "\1\32\7\uffff\1\55\1\56\6\uffff\1\31\1\12\31\uffff\1\15\5\uffff"+
-        "\1\42\12\uffff\1\2\1\24\1\30\10\uffff\1\22\3\uffff\1\44\1\46\1\50"+
-        "\1\43\3\uffff\1\52\14\uffff\1\41\1\uffff\1\45\1\47\1\51\1\53\7\uffff"+
-        "\1\54\1\14\5\uffff\1\6\2\uffff\1\20\1\uffff\1\21\6\uffff\1\11\5"+
+        "\1\43\12\uffff\1\2\1\24\1\30\10\uffff\1\22\3\uffff\1\45\1\47\1\51"+
+        "\1\44\3\uffff\1\53\14\uffff\1\41\1\uffff\1\46\1\50\1\52\1\54\7\uffff"+
+        "\1\42\1\14\5\uffff\1\6\2\uffff\1\20\1\uffff\1\21\6\uffff\1\11\5"+
         "\uffff\1\13\1\10\1\37\11\uffff\1\36\3\uffff\1\40\1\uffff\1\35\1"+
         "\1";
     static final String DFA13_specialS =

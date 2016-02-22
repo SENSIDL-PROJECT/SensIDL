@@ -71,7 +71,8 @@ MeasurementDataNotAdjustable returns dataRepresentation::MeasurementData:
 ;
 
 enum DataTypeNotAdjustable returns dataRepresentation::DataType: 
-	STRING
+	STRING |
+	BOOLEAN
 ;
 
 enum DataType returns dataRepresentation::DataType:
@@ -84,8 +85,7 @@ enum DataType returns dataRepresentation::DataType:
 	INT64 |
 	UINT64 |
 	FLOAT |
-	DOUBLE |
-	BOOLEAN
+	DOUBLE
 ;
 
 DataAdjustment returns dataRepresentation::DataAdjustment:

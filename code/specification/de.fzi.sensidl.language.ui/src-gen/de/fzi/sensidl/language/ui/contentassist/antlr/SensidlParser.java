@@ -43,6 +43,7 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDataConversionAccess().getAlternatives(), "rule__DataConversion__Alternatives");
 					put(grammarAccess.getCodingAccess().getAlternatives(), "rule__Coding__Alternatives");
 					put(grammarAccess.getEndiannessAccess().getAlternatives(), "rule__Endianness__Alternatives");
+					put(grammarAccess.getDataTypeNotAdjustableAccess().getAlternatives(), "rule__DataTypeNotAdjustable__Alternatives");
 					put(grammarAccess.getDataTypeAccess().getAlternatives(), "rule__DataType__Alternatives");
 					put(grammarAccess.getSensorInterfaceAccess().getGroup(), "rule__SensorInterface__Group__0");
 					put(grammarAccess.getSensorInterfaceAccess().getGroup_3(), "rule__SensorInterface__Group_3__0");

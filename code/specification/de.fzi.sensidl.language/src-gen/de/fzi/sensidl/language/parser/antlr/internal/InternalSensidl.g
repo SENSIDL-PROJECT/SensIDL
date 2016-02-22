@@ -1535,12 +1535,18 @@ ruleEndianness returns [Enumerator current=null]
 ruleDataTypeNotAdjustable returns [Enumerator current=null] 
     @init { enterRule(); }
     @after { leaveRule(); }:
-(	enumLiteral_0='STRING' 
+((	enumLiteral_0='STRING' 
 	{
-        $current = grammarAccess.getDataTypeNotAdjustableAccess().getSTRINGEnumLiteralDeclaration().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_0, grammarAccess.getDataTypeNotAdjustableAccess().getSTRINGEnumLiteralDeclaration()); 
+        $current = grammarAccess.getDataTypeNotAdjustableAccess().getSTRINGEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_0, grammarAccess.getDataTypeNotAdjustableAccess().getSTRINGEnumLiteralDeclaration_0()); 
     }
-);
+)
+    |(	enumLiteral_1='BOOLEAN' 
+	{
+        $current = grammarAccess.getDataTypeNotAdjustableAccess().getBOOLEANEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_1, grammarAccess.getDataTypeNotAdjustableAccess().getBOOLEANEnumLiteralDeclaration_1()); 
+    }
+));
 
 
 
@@ -1606,12 +1612,6 @@ ruleDataType returns [Enumerator current=null]
 	{
         $current = grammarAccess.getDataTypeAccess().getDOUBLEEnumLiteralDeclaration_9().getEnumLiteral().getInstance();
         newLeafNode(enumLiteral_9, grammarAccess.getDataTypeAccess().getDOUBLEEnumLiteralDeclaration_9()); 
-    }
-)
-    |(	enumLiteral_10='BOOLEAN' 
-	{
-        $current = grammarAccess.getDataTypeAccess().getBOOLEANEnumLiteralDeclaration_10().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_10, grammarAccess.getDataTypeAccess().getBOOLEANEnumLiteralDeclaration_10()); 
     }
 ));
 

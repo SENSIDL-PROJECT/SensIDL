@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_DESCRIPTION", "RULE_STRING", "RULE_INT", "RULE_ANY_OTHER", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'sensorInterface'", "'with identifier'", "':'", "'{'", "'}'", "'encoding'", "','", "'endianness'", "'alignment'", "'BIT'", "'sensorData'", "'dataSet'", "'uses'", "'as'", "'in'", "'adjusted'", "'constant'", "'value'", "'='", "'with range'", "'['", "';'", "']'", "'with scaling factor'", "'and offset'", "'by linear mapping'", "'=>'", "'.'", "'SENSIDL_BINARY'", "'SENSIDL_JSON'", "'BIG_ENDIAN'", "'LITTLE_ENDIAN'", "'STRING'", "'INT8'", "'UINT8'", "'INT16'", "'UINT16'", "'INT32'", "'UINT32'", "'INT64'", "'UINT64'", "'FLOAT'", "'DOUBLE'", "'BOOLEAN'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_DESCRIPTION", "RULE_STRING", "RULE_INT", "RULE_ANY_OTHER", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'sensorInterface'", "'with identifier'", "':'", "'{'", "'}'", "'encoding'", "','", "'endianness'", "'alignment'", "'BIT'", "'sensorData'", "'dataSet'", "'uses'", "'as'", "'in'", "'adjusted'", "'constant'", "'value'", "'='", "'with range'", "'['", "';'", "']'", "'with scaling factor'", "'and offset'", "'by linear mapping'", "'=>'", "'.'", "'SENSIDL_BINARY'", "'SENSIDL_JSON'", "'BIG_ENDIAN'", "'LITTLE_ENDIAN'", "'STRING'", "'BOOLEAN'", "'INT8'", "'UINT8'", "'INT16'", "'UINT16'", "'INT32'", "'UINT32'", "'INT64'", "'UINT64'", "'FLOAT'", "'DOUBLE'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -1766,10 +1766,10 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
             int alt15=2;
             int LA15_0 = input.LA(1);
 
-            if ( ((LA15_0>=45 && LA15_0<=55)) ) {
+            if ( ((LA15_0>=46 && LA15_0<=55)) ) {
                 alt15=1;
             }
-            else if ( (LA15_0==44) ) {
+            else if ( ((LA15_0>=44 && LA15_0<=45)) ) {
                 alt15=2;
             }
             else {
@@ -3625,25 +3625,69 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDataTypeNotAdjustable"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1535:1: ruleDataTypeNotAdjustable returns [Enumerator current=null] : (enumLiteral_0= 'STRING' ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1535:1: ruleDataTypeNotAdjustable returns [Enumerator current=null] : ( (enumLiteral_0= 'STRING' ) | (enumLiteral_1= 'BOOLEAN' ) ) ;
     public final Enumerator ruleDataTypeNotAdjustable() throws RecognitionException {
         Enumerator current = null;
 
         Token enumLiteral_0=null;
+        Token enumLiteral_1=null;
 
          enterRule(); 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1537:28: ( (enumLiteral_0= 'STRING' ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1538:1: (enumLiteral_0= 'STRING' )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1537:28: ( ( (enumLiteral_0= 'STRING' ) | (enumLiteral_1= 'BOOLEAN' ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1538:1: ( (enumLiteral_0= 'STRING' ) | (enumLiteral_1= 'BOOLEAN' ) )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1538:1: (enumLiteral_0= 'STRING' )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1538:3: enumLiteral_0= 'STRING'
-            {
-            enumLiteral_0=(Token)match(input,44,FOLLOW_44_in_ruleDataTypeNotAdjustable3281); 
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1538:1: ( (enumLiteral_0= 'STRING' ) | (enumLiteral_1= 'BOOLEAN' ) )
+            int alt30=2;
+            int LA30_0 = input.LA(1);
 
-                    current = grammarAccess.getDataTypeNotAdjustableAccess().getSTRINGEnumLiteralDeclaration().getEnumLiteral().getInstance();
-                    newLeafNode(enumLiteral_0, grammarAccess.getDataTypeNotAdjustableAccess().getSTRINGEnumLiteralDeclaration()); 
-                
+            if ( (LA30_0==44) ) {
+                alt30=1;
+            }
+            else if ( (LA30_0==45) ) {
+                alt30=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 30, 0, input);
+
+                throw nvae;
+            }
+            switch (alt30) {
+                case 1 :
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1538:2: (enumLiteral_0= 'STRING' )
+                    {
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1538:2: (enumLiteral_0= 'STRING' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1538:4: enumLiteral_0= 'STRING'
+                    {
+                    enumLiteral_0=(Token)match(input,44,FOLLOW_44_in_ruleDataTypeNotAdjustable3282); 
+
+                            current = grammarAccess.getDataTypeNotAdjustableAccess().getSTRINGEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+                            newLeafNode(enumLiteral_0, grammarAccess.getDataTypeNotAdjustableAccess().getSTRINGEnumLiteralDeclaration_0()); 
+                        
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1544:6: (enumLiteral_1= 'BOOLEAN' )
+                    {
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1544:6: (enumLiteral_1= 'BOOLEAN' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1544:8: enumLiteral_1= 'BOOLEAN'
+                    {
+                    enumLiteral_1=(Token)match(input,45,FOLLOW_45_in_ruleDataTypeNotAdjustable3299); 
+
+                            current = grammarAccess.getDataTypeNotAdjustableAccess().getBOOLEANEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+                            newLeafNode(enumLiteral_1, grammarAccess.getDataTypeNotAdjustableAccess().getBOOLEANEnumLiteralDeclaration_1()); 
+                        
+
+                    }
+
+
+                    }
+                    break;
 
             }
 
@@ -3665,7 +3709,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDataType"
-    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1548:1: ruleDataType returns [Enumerator current=null] : ( (enumLiteral_0= 'INT8' ) | (enumLiteral_1= 'UINT8' ) | (enumLiteral_2= 'INT16' ) | (enumLiteral_3= 'UINT16' ) | (enumLiteral_4= 'INT32' ) | (enumLiteral_5= 'UINT32' ) | (enumLiteral_6= 'INT64' ) | (enumLiteral_7= 'UINT64' ) | (enumLiteral_8= 'FLOAT' ) | (enumLiteral_9= 'DOUBLE' ) | (enumLiteral_10= 'BOOLEAN' ) ) ;
+    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1554:1: ruleDataType returns [Enumerator current=null] : ( (enumLiteral_0= 'INT8' ) | (enumLiteral_1= 'UINT8' ) | (enumLiteral_2= 'INT16' ) | (enumLiteral_3= 'UINT16' ) | (enumLiteral_4= 'INT32' ) | (enumLiteral_5= 'UINT32' ) | (enumLiteral_6= 'INT64' ) | (enumLiteral_7= 'UINT64' ) | (enumLiteral_8= 'FLOAT' ) | (enumLiteral_9= 'DOUBLE' ) ) ;
     public final Enumerator ruleDataType() throws RecognitionException {
         Enumerator current = null;
 
@@ -3679,86 +3723,80 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
         Token enumLiteral_7=null;
         Token enumLiteral_8=null;
         Token enumLiteral_9=null;
-        Token enumLiteral_10=null;
 
          enterRule(); 
         try {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1550:28: ( ( (enumLiteral_0= 'INT8' ) | (enumLiteral_1= 'UINT8' ) | (enumLiteral_2= 'INT16' ) | (enumLiteral_3= 'UINT16' ) | (enumLiteral_4= 'INT32' ) | (enumLiteral_5= 'UINT32' ) | (enumLiteral_6= 'INT64' ) | (enumLiteral_7= 'UINT64' ) | (enumLiteral_8= 'FLOAT' ) | (enumLiteral_9= 'DOUBLE' ) | (enumLiteral_10= 'BOOLEAN' ) ) )
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1551:1: ( (enumLiteral_0= 'INT8' ) | (enumLiteral_1= 'UINT8' ) | (enumLiteral_2= 'INT16' ) | (enumLiteral_3= 'UINT16' ) | (enumLiteral_4= 'INT32' ) | (enumLiteral_5= 'UINT32' ) | (enumLiteral_6= 'INT64' ) | (enumLiteral_7= 'UINT64' ) | (enumLiteral_8= 'FLOAT' ) | (enumLiteral_9= 'DOUBLE' ) | (enumLiteral_10= 'BOOLEAN' ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1556:28: ( ( (enumLiteral_0= 'INT8' ) | (enumLiteral_1= 'UINT8' ) | (enumLiteral_2= 'INT16' ) | (enumLiteral_3= 'UINT16' ) | (enumLiteral_4= 'INT32' ) | (enumLiteral_5= 'UINT32' ) | (enumLiteral_6= 'INT64' ) | (enumLiteral_7= 'UINT64' ) | (enumLiteral_8= 'FLOAT' ) | (enumLiteral_9= 'DOUBLE' ) ) )
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1557:1: ( (enumLiteral_0= 'INT8' ) | (enumLiteral_1= 'UINT8' ) | (enumLiteral_2= 'INT16' ) | (enumLiteral_3= 'UINT16' ) | (enumLiteral_4= 'INT32' ) | (enumLiteral_5= 'UINT32' ) | (enumLiteral_6= 'INT64' ) | (enumLiteral_7= 'UINT64' ) | (enumLiteral_8= 'FLOAT' ) | (enumLiteral_9= 'DOUBLE' ) )
             {
-            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1551:1: ( (enumLiteral_0= 'INT8' ) | (enumLiteral_1= 'UINT8' ) | (enumLiteral_2= 'INT16' ) | (enumLiteral_3= 'UINT16' ) | (enumLiteral_4= 'INT32' ) | (enumLiteral_5= 'UINT32' ) | (enumLiteral_6= 'INT64' ) | (enumLiteral_7= 'UINT64' ) | (enumLiteral_8= 'FLOAT' ) | (enumLiteral_9= 'DOUBLE' ) | (enumLiteral_10= 'BOOLEAN' ) )
-            int alt30=11;
+            // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1557:1: ( (enumLiteral_0= 'INT8' ) | (enumLiteral_1= 'UINT8' ) | (enumLiteral_2= 'INT16' ) | (enumLiteral_3= 'UINT16' ) | (enumLiteral_4= 'INT32' ) | (enumLiteral_5= 'UINT32' ) | (enumLiteral_6= 'INT64' ) | (enumLiteral_7= 'UINT64' ) | (enumLiteral_8= 'FLOAT' ) | (enumLiteral_9= 'DOUBLE' ) )
+            int alt31=10;
             switch ( input.LA(1) ) {
-            case 45:
-                {
-                alt30=1;
-                }
-                break;
             case 46:
                 {
-                alt30=2;
+                alt31=1;
                 }
                 break;
             case 47:
                 {
-                alt30=3;
+                alt31=2;
                 }
                 break;
             case 48:
                 {
-                alt30=4;
+                alt31=3;
                 }
                 break;
             case 49:
                 {
-                alt30=5;
+                alt31=4;
                 }
                 break;
             case 50:
                 {
-                alt30=6;
+                alt31=5;
                 }
                 break;
             case 51:
                 {
-                alt30=7;
+                alt31=6;
                 }
                 break;
             case 52:
                 {
-                alt30=8;
+                alt31=7;
                 }
                 break;
             case 53:
                 {
-                alt30=9;
+                alt31=8;
                 }
                 break;
             case 54:
                 {
-                alt30=10;
+                alt31=9;
                 }
                 break;
             case 55:
                 {
-                alt30=11;
+                alt31=10;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 30, 0, input);
+                    new NoViableAltException("", 31, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt30) {
+            switch (alt31) {
                 case 1 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1551:2: (enumLiteral_0= 'INT8' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1557:2: (enumLiteral_0= 'INT8' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1551:2: (enumLiteral_0= 'INT8' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1551:4: enumLiteral_0= 'INT8'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1557:2: (enumLiteral_0= 'INT8' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1557:4: enumLiteral_0= 'INT8'
                     {
-                    enumLiteral_0=(Token)match(input,45,FOLLOW_45_in_ruleDataType3325); 
+                    enumLiteral_0=(Token)match(input,46,FOLLOW_46_in_ruleDataType3344); 
 
                             current = grammarAccess.getDataTypeAccess().getINT8EnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getDataTypeAccess().getINT8EnumLiteralDeclaration_0()); 
@@ -3770,12 +3808,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1557:6: (enumLiteral_1= 'UINT8' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1563:6: (enumLiteral_1= 'UINT8' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1557:6: (enumLiteral_1= 'UINT8' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1557:8: enumLiteral_1= 'UINT8'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1563:6: (enumLiteral_1= 'UINT8' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1563:8: enumLiteral_1= 'UINT8'
                     {
-                    enumLiteral_1=(Token)match(input,46,FOLLOW_46_in_ruleDataType3342); 
+                    enumLiteral_1=(Token)match(input,47,FOLLOW_47_in_ruleDataType3361); 
 
                             current = grammarAccess.getDataTypeAccess().getUINT8EnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getDataTypeAccess().getUINT8EnumLiteralDeclaration_1()); 
@@ -3787,12 +3825,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1563:6: (enumLiteral_2= 'INT16' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1569:6: (enumLiteral_2= 'INT16' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1563:6: (enumLiteral_2= 'INT16' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1563:8: enumLiteral_2= 'INT16'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1569:6: (enumLiteral_2= 'INT16' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1569:8: enumLiteral_2= 'INT16'
                     {
-                    enumLiteral_2=(Token)match(input,47,FOLLOW_47_in_ruleDataType3359); 
+                    enumLiteral_2=(Token)match(input,48,FOLLOW_48_in_ruleDataType3378); 
 
                             current = grammarAccess.getDataTypeAccess().getINT16EnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getDataTypeAccess().getINT16EnumLiteralDeclaration_2()); 
@@ -3804,12 +3842,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1569:6: (enumLiteral_3= 'UINT16' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1575:6: (enumLiteral_3= 'UINT16' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1569:6: (enumLiteral_3= 'UINT16' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1569:8: enumLiteral_3= 'UINT16'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1575:6: (enumLiteral_3= 'UINT16' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1575:8: enumLiteral_3= 'UINT16'
                     {
-                    enumLiteral_3=(Token)match(input,48,FOLLOW_48_in_ruleDataType3376); 
+                    enumLiteral_3=(Token)match(input,49,FOLLOW_49_in_ruleDataType3395); 
 
                             current = grammarAccess.getDataTypeAccess().getUINT16EnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_3, grammarAccess.getDataTypeAccess().getUINT16EnumLiteralDeclaration_3()); 
@@ -3821,12 +3859,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1575:6: (enumLiteral_4= 'INT32' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1581:6: (enumLiteral_4= 'INT32' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1575:6: (enumLiteral_4= 'INT32' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1575:8: enumLiteral_4= 'INT32'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1581:6: (enumLiteral_4= 'INT32' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1581:8: enumLiteral_4= 'INT32'
                     {
-                    enumLiteral_4=(Token)match(input,49,FOLLOW_49_in_ruleDataType3393); 
+                    enumLiteral_4=(Token)match(input,50,FOLLOW_50_in_ruleDataType3412); 
 
                             current = grammarAccess.getDataTypeAccess().getINT32EnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_4, grammarAccess.getDataTypeAccess().getINT32EnumLiteralDeclaration_4()); 
@@ -3838,12 +3876,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1581:6: (enumLiteral_5= 'UINT32' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1587:6: (enumLiteral_5= 'UINT32' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1581:6: (enumLiteral_5= 'UINT32' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1581:8: enumLiteral_5= 'UINT32'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1587:6: (enumLiteral_5= 'UINT32' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1587:8: enumLiteral_5= 'UINT32'
                     {
-                    enumLiteral_5=(Token)match(input,50,FOLLOW_50_in_ruleDataType3410); 
+                    enumLiteral_5=(Token)match(input,51,FOLLOW_51_in_ruleDataType3429); 
 
                             current = grammarAccess.getDataTypeAccess().getUINT32EnumLiteralDeclaration_5().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_5, grammarAccess.getDataTypeAccess().getUINT32EnumLiteralDeclaration_5()); 
@@ -3855,12 +3893,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1587:6: (enumLiteral_6= 'INT64' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1593:6: (enumLiteral_6= 'INT64' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1587:6: (enumLiteral_6= 'INT64' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1587:8: enumLiteral_6= 'INT64'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1593:6: (enumLiteral_6= 'INT64' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1593:8: enumLiteral_6= 'INT64'
                     {
-                    enumLiteral_6=(Token)match(input,51,FOLLOW_51_in_ruleDataType3427); 
+                    enumLiteral_6=(Token)match(input,52,FOLLOW_52_in_ruleDataType3446); 
 
                             current = grammarAccess.getDataTypeAccess().getINT64EnumLiteralDeclaration_6().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_6, grammarAccess.getDataTypeAccess().getINT64EnumLiteralDeclaration_6()); 
@@ -3872,12 +3910,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1593:6: (enumLiteral_7= 'UINT64' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1599:6: (enumLiteral_7= 'UINT64' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1593:6: (enumLiteral_7= 'UINT64' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1593:8: enumLiteral_7= 'UINT64'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1599:6: (enumLiteral_7= 'UINT64' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1599:8: enumLiteral_7= 'UINT64'
                     {
-                    enumLiteral_7=(Token)match(input,52,FOLLOW_52_in_ruleDataType3444); 
+                    enumLiteral_7=(Token)match(input,53,FOLLOW_53_in_ruleDataType3463); 
 
                             current = grammarAccess.getDataTypeAccess().getUINT64EnumLiteralDeclaration_7().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_7, grammarAccess.getDataTypeAccess().getUINT64EnumLiteralDeclaration_7()); 
@@ -3889,12 +3927,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 9 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1599:6: (enumLiteral_8= 'FLOAT' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1605:6: (enumLiteral_8= 'FLOAT' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1599:6: (enumLiteral_8= 'FLOAT' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1599:8: enumLiteral_8= 'FLOAT'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1605:6: (enumLiteral_8= 'FLOAT' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1605:8: enumLiteral_8= 'FLOAT'
                     {
-                    enumLiteral_8=(Token)match(input,53,FOLLOW_53_in_ruleDataType3461); 
+                    enumLiteral_8=(Token)match(input,54,FOLLOW_54_in_ruleDataType3480); 
 
                             current = grammarAccess.getDataTypeAccess().getFLOATEnumLiteralDeclaration_8().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_8, grammarAccess.getDataTypeAccess().getFLOATEnumLiteralDeclaration_8()); 
@@ -3906,32 +3944,15 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 10 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1605:6: (enumLiteral_9= 'DOUBLE' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1611:6: (enumLiteral_9= 'DOUBLE' )
                     {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1605:6: (enumLiteral_9= 'DOUBLE' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1605:8: enumLiteral_9= 'DOUBLE'
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1611:6: (enumLiteral_9= 'DOUBLE' )
+                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1611:8: enumLiteral_9= 'DOUBLE'
                     {
-                    enumLiteral_9=(Token)match(input,54,FOLLOW_54_in_ruleDataType3478); 
+                    enumLiteral_9=(Token)match(input,55,FOLLOW_55_in_ruleDataType3497); 
 
                             current = grammarAccess.getDataTypeAccess().getDOUBLEEnumLiteralDeclaration_9().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_9, grammarAccess.getDataTypeAccess().getDOUBLEEnumLiteralDeclaration_9()); 
-                        
-
-                    }
-
-
-                    }
-                    break;
-                case 11 :
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1611:6: (enumLiteral_10= 'BOOLEAN' )
-                    {
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1611:6: (enumLiteral_10= 'BOOLEAN' )
-                    // ../de.fzi.sensidl.language/src-gen/de/fzi/sensidl/language/parser/antlr/internal/InternalSensidl.g:1611:8: enumLiteral_10= 'BOOLEAN'
-                    {
-                    enumLiteral_10=(Token)match(input,55,FOLLOW_55_in_ruleDataType3495); 
-
-                            current = grammarAccess.getDataTypeAccess().getBOOLEANEnumLiteralDeclaration_10().getEnumLiteral().getInstance();
-                            newLeafNode(enumLiteral_10, grammarAccess.getDataTypeAccess().getBOOLEANEnumLiteralDeclaration_10()); 
                         
 
                     }
@@ -3979,7 +4000,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
             "\1\2",
             "\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16",
             "\2\17\7\uffff\1\17\2\uffff\1\17\11\uffff\1\20\1\uffff\2\17",
-            "\2\17\7\uffff\1\17\2\uffff\1\17\11\uffff\1\21\1\uffff\2\17",
+            "\2\17\7\uffff\1\17\2\uffff\1\17\11\uffff\1\20\1\uffff\2\17",
             "\2\17\7\uffff\1\17\2\uffff\1\17\11\uffff\1\21\1\uffff\2\17",
             "\2\17\7\uffff\1\17\2\uffff\1\17\11\uffff\1\21\1\uffff\2\17",
             "\2\17\7\uffff\1\17\2\uffff\1\17\11\uffff\1\21\1\uffff\2\17",
@@ -4089,7 +4110,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleMeasurementData_in_entryRuleMeasurementData1201 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleMeasurementData1211 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleMeasurementData1253 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_ruleMeasurementData1270 = new BitSet(new long[]{0x00FFE00000000000L});
+    public static final BitSet FOLLOW_25_in_ruleMeasurementData1270 = new BitSet(new long[]{0x00FFC00000000000L});
     public static final BitSet FOLLOW_ruleDataType_in_ruleMeasurementData1291 = new BitSet(new long[]{0x0000000004000000L});
     public static final BitSet FOLLOW_26_in_ruleMeasurementData1303 = new BitSet(new long[]{0x0000000008002130L});
     public static final BitSet FOLLOW_ruleUNIT_in_ruleMeasurementData1324 = new BitSet(new long[]{0x0000000008002022L});
@@ -4159,7 +4180,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleInterval_in_ruleLinearDataConversionWithInterval2763 = new BitSet(new long[]{0x0000004000000000L});
     public static final BitSet FOLLOW_38_in_ruleLinearDataConversionWithInterval2775 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_ruleInterval_in_ruleLinearDataConversionWithInterval2796 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_ruleLinearDataConversionWithInterval2808 = new BitSet(new long[]{0x00FFE00000000000L});
+    public static final BitSet FOLLOW_25_in_ruleLinearDataConversionWithInterval2808 = new BitSet(new long[]{0x00FFC00000000000L});
     public static final BitSet FOLLOW_ruleDataType_in_ruleLinearDataConversionWithInterval2829 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDOUBLE_in_entryRuleDOUBLE2866 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleDOUBLE2877 = new BitSet(new long[]{0x0000000000000002L});
@@ -4175,17 +4196,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_41_in_ruleCoding3175 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_42_in_ruleEndianness3220 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_43_in_ruleEndianness3237 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_ruleDataTypeNotAdjustable3281 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_ruleDataType3325 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_ruleDataType3342 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_ruleDataType3359 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_ruleDataType3376 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_ruleDataType3393 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_ruleDataType3410 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_ruleDataType3427 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_ruleDataType3444 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_ruleDataType3461 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_ruleDataType3478 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_55_in_ruleDataType3495 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_ruleDataTypeNotAdjustable3282 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_ruleDataTypeNotAdjustable3299 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_ruleDataType3344 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_ruleDataType3361 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_ruleDataType3378 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_ruleDataType3395 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_ruleDataType3412 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_ruleDataType3429 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_ruleDataType3446 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_ruleDataType3463 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_ruleDataType3480 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_55_in_ruleDataType3497 = new BitSet(new long[]{0x0000000000000002L});
 
 }
