@@ -6,7 +6,7 @@ sensorInterface eMeter /**Interface for devices measuring electronic current.*/ 
              voltage as INT16 in V 
              current as FLOAT in A
              power as FLOAT in W 
-             powerFactor as UINT16 in Dimensionless adjusted by linear mapping [0;255]=> [0;1] /**Power factor for this conductor. 0 if not available.*/
+             powerFactor as UINT16 in Dimensionless adjusted by linear mapping [0;255] => [0;1] as FLOAT /**Power factor for this conductor. 0 if not available.*/
              identicator as UINT8 /**Identifier to correlate measurements for different conductors.*/
           }
  
