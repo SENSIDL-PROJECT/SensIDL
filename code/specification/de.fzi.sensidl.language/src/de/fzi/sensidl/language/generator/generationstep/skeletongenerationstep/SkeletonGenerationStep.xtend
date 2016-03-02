@@ -12,17 +12,35 @@ import java.util.HashMap
 import java.util.List
 import de.fzi.sensidl.language.generator.factory.plaintext.PlaintextGenerator
 
+/**
+ * The SkeletonGenerationStep is a concrete subclass of the GenerationStep class. The main
+ * task of the class is to generate the base structure (code-skeletons) of all files. 
+ */
 class SkeletonGenerationStep extends GenerationStep {
 	private List<DataSet> dataSet
 
+	/**
+	 * The constructor calls the needed data filtered by a
+	 * concrete element-filter.
+	 * @param filter - represents a base filter which can be substituted by a specific
+	 * 				   subclass that filters a particular set of elements.	
+	 */
 	new(ElementFilter filter) {
 		this.dataSet = filter.filterData()
 	}
 
+	/**
+	 * @see GenerationStep#startGenerationTask()
+	 */
 	override startGenerationTask() {
 		this.startGenerationTask(initExecuter)
 	}
 
+	/**
+	 * The initExecuter-method initializes a HashMap that maps each @see GenerationLanguage to a
+	 * @see IExecuter object.
+	 * @return the HashMap @see GenerationLanguage to @see IExecuter
+	 */
 	private def initExecuter() {
 		return new HashMap<GenerationLanguage, IExecuter> => [
 			put(GenerationLanguage.ALL, [

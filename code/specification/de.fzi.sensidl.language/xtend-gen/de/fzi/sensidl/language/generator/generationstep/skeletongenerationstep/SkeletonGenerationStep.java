@@ -3,6 +3,7 @@ package de.fzi.sensidl.language.generator.generationstep.skeletongenerationstep;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.language.generator.IExecuter;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
+import de.fzi.sensidl.language.generator.SensIDLConstants.GenerationLanguage;
 import de.fzi.sensidl.language.generator.elementfilter.ElementFilter;
 import de.fzi.sensidl.language.generator.factory.c.CGenerator;
 import de.fzi.sensidl.language.generator.factory.java.JavaGenerator;
@@ -14,21 +15,39 @@ import java.util.List;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
+/**
+ * The SkeletonGenerationStep is a concrete subclass of the GenerationStep class. The main
+ * task of the class is to generate the base structure (code-skeletons) of all files.
+ */
 @SuppressWarnings("all")
 public class SkeletonGenerationStep extends GenerationStep {
   private List<DataSet> dataSet;
   
+  /**
+   * The constructor calls the needed data filtered by a
+   * concrete element-filter.
+   * @param filter - represents a base filter which can be substituted by a specific
+   * 				   subclass that filters a particular set of elements.
+   */
   public SkeletonGenerationStep(final ElementFilter filter) {
     List<DataSet> _filterData = filter.<DataSet>filterData();
     this.dataSet = _filterData;
   }
   
+  /**
+   * @see GenerationStep#startGenerationTask()
+   */
   @Override
   public void startGenerationTask() {
     HashMap<SensIDLConstants.GenerationLanguage, IExecuter> _initExecuter = this.initExecuter();
     this.startGenerationTask(_initExecuter);
   }
   
+  /**
+   * The initExecuter-method initializes a HashMap that maps each @see GenerationLanguage to a
+   * @see IExecuter object.
+   * @return the HashMap @see GenerationLanguage to @see IExecuter
+   */
   private HashMap<SensIDLConstants.GenerationLanguage, IExecuter> initExecuter() {
     HashMap<SensIDLConstants.GenerationLanguage, IExecuter> _hashMap = new HashMap<SensIDLConstants.GenerationLanguage, IExecuter>();
     final Procedure1<HashMap<SensIDLConstants.GenerationLanguage, IExecuter>> _function = new Procedure1<HashMap<SensIDLConstants.GenerationLanguage, IExecuter>>() {
