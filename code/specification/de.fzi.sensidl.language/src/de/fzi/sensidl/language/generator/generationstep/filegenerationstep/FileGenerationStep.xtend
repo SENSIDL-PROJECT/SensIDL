@@ -22,6 +22,8 @@ class FileGenerationStep extends GenerationStep {
 	}
 	
 	/**
+	 * Generates all files of the {@link GenerationStep#filesToGenerate}-map which was filled
+	 * by each generation step.
 	 * @see GenerationStep#startGenerationTask()
 	 */
 	override startGenerationTask() {
