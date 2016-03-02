@@ -18,17 +18,26 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 
+/**
+ * This class implements a part of the CDTOGenerator. This class is responsible for the
+ * generation of the c-files.
+ */
 class CDTOFileGenerator extends CDTOGenerator {
 	
 	private static Logger logger = Logger.getLogger(CDTOFileGenerator)
 	
+	/**
+	 * The constructor calls the constructor of the superclass to set a
+	 * list of DataSet-elements.
+	 * @param newDataSet - represents the list of DataSet-elements.
+	 */
 	new(List<DataSet> newDataSet) {
 		super(newDataSet)
 	}
 	
 	/**
-	 * Generates the .c files with struct-declaration and the
-	 * marshalling-function.
+	 * Generates the .c and .h files for each data transfer object.
+	 * @see IDTOGenerator#generate()
 	 */
 	override generate() {
 		val filesToGenerate = new HashMap();
@@ -89,8 +98,8 @@ class CDTOFileGenerator extends CDTOGenerator {
 
 	/**
 	 * Generates a struct-declaration.
-	 * @param dataset
-	 * 			represents the model element for the struct.
+	 * @param dataset - represents the model element for the struct.
+	 * @return the generation-code represented as CharSequence.
 	 */
 	def generateStructDeclaration(DataSet dataset) {
 		'''
@@ -157,7 +166,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 	}			
 	
 	/**
-	 * Generates the getter and setter methods prototypes for the data of this data set including used data sets.
+	 * Generates the getter and setter prototype-methods for the data of this data set including used data sets.
 	 */
 	def generateSetterDeclarationIncludeParentDataSet(DataSet d) {
 		var dataSet = d
@@ -250,8 +259,8 @@ class CDTOFileGenerator extends CDTOGenerator {
 		
 	/**
 	 * Generates a description for a dataset.
-	 * @param dataset
-	 * 			represents the dataset.
+	 * @param dataset - represents the dataset.
+	 * @return the description for the code-comment.
 	 */
 	def generateDescription(DataSet dataset) {
 		'''

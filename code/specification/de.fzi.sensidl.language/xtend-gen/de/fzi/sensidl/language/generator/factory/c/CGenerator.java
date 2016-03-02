@@ -14,8 +14,9 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
- * The CGenerator represents a concrete  implementation
- * of @see ICodeGenerator
+ * The CGenerator represents a concrete implementation of The ICodeGenerator
+ * and implements the code-generator for the language C.
+ * @see ICodeGenerator
  */
 @SuppressWarnings("all")
 public class CGenerator implements ICodeGenerator {
@@ -63,6 +64,9 @@ public class CGenerator implements ICodeGenerator {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
   
+  /**
+   * @see ICodeGenerator#generateUtilityClass()
+   */
   @Override
   public HashMap<String, CharSequence> generateUtilityClass(final List<MeasurementData> data) {
     CUtilityGenerator _cUtilityGenerator = new CUtilityGenerator(data);

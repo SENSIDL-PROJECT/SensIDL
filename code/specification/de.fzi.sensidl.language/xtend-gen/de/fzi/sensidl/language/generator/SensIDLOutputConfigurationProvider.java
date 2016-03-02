@@ -8,7 +8,7 @@ import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
 /**
- * By now this class implements the same behaviour like the default
+ * By now this class implements the same behavior like the default
  * implementation of the OutputConfigurationProvider. It defines the
  * an entry to specify a different generation location.
  */

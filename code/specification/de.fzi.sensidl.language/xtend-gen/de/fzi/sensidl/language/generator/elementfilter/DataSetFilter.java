@@ -14,8 +14,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 
+/**
+ * Implements the ElementFilter-class.
+ */
 @SuppressWarnings("all")
 public class DataSetFilter extends ElementFilter {
+  /**
+   * Implements the abstract method of the base-class and filters all
+   * DataSet-elements.
+   * @see ElementFilter#filterData()
+   */
   @Override
   public List<DataSet> filterData() {
     EList<EObject> _contents = ElementFilter.input.getContents();

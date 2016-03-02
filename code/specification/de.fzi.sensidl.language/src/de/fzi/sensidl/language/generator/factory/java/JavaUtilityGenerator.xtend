@@ -1,17 +1,17 @@
 package de.fzi.sensidl.language.generator.factory.java
 
+import de.fzi.sensidl.design.sensidl.Endianness
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
-import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
 import de.fzi.sensidl.language.generator.GenerationUtil
 import de.fzi.sensidl.language.generator.SensIDLConstants
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider
+import de.fzi.sensidl.language.generator.factory.IDTOGenerator
 import de.fzi.sensidl.language.generator.factory.IUtilityGenerator
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
-import de.fzi.sensidl.design.sensidl.Endianness
 
 class JavaUtilityGenerator implements IUtilityGenerator {
 	private static Logger logger = Logger.getLogger(JavaUtilityGenerator)
@@ -20,15 +20,30 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 	private boolean createProject = false
 	private boolean bigEndian
 
+	/**
+	 * The constructor calls the constructor of the superclass to set a
+	 * list of Data-elements.
+	 * @param newData - represents the list of DataSet-elements.
+	 */
 	new(List<MeasurementData> newData) {
 		this.data = newData
 	}
 
+	/**
+	 * The constructor calls the constructor of the superclass to set a
+	 * list of Data-elements and a member-variable.
+	 * @param newData - represents the list of DataSet-elements.
+	 * @param createProject - indicates if a project should be created.
+	 */
 	new(List<MeasurementData> newData, boolean createProject) {
 		this.data = newData
 		this.createProject = createProject
 	}
 
+	/**
+	 * Generates the .java file for the utility-class.
+	 * @see IDTOGenerator#generate()
+	 */
 	override generate() {
 		logger.info("Start with code-generation of the java utility class.")
 

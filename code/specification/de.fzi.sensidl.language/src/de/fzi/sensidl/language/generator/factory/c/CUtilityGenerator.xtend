@@ -14,10 +14,19 @@ class CUtilityGenerator implements IUtilityGenerator{
 	private static Logger logger = Logger.getLogger(CUtilityGenerator)
 	private List<MeasurementData> data
 
+	/**
+	 * The constructor calls the constructor of the superclass to set a
+	 * list of Data-elements.
+	 * @param newData - represents the list of DataSet-elements.
+	 */
 	new(List<MeasurementData> newData) {
 		this.data = newData
 	}
 	
+	/**
+	 * Generates the .h file for the utility-class.
+	 * @see IDTOGenerator#generate()
+	 */
 	override generate() {
 		logger.info("Start with code-generation of the java utility class.")
 
@@ -32,13 +41,19 @@ class CUtilityGenerator implements IUtilityGenerator{
 		filesToGenerate	
 	}
 	
-	//TODO implement the utility class.
+	/**
+	 * At this stage the utility-file is just used to include the "stdbool" header-file.
+	 */
 	def generateUtility(String string) {
 		'''
 			#include <stdbool.h>
 		'''
 	}
 	
+	/**
+	 * Adds the file extension to the specified string.
+	 * @see IUtilityGenerator#addFileExtensionTo(String)
+	 */
 	override addFileExtensionTo(String ClassName) {
 		ClassName + SensIDLConstants.HEADER_EXTENSION
 	}

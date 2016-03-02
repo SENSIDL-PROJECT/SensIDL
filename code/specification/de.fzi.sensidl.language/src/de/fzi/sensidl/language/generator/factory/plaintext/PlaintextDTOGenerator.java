@@ -38,14 +38,18 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 	private final static String	TEXT_EXTENSION	= ".txt";
 	private List<DataSet>		dataSet;
 
+	/**
+	 * The constructor calls the constructor of the superclass to set a
+	 * list of DataSet-elements.
+	 * @param newDataSet - represents the list of DataSet-elements.
+	 */
 	public PlaintextDTOGenerator(List<DataSet> newDataSet) {
 		this.dataSet = newDataSet;
 	}
 
 	/**
-	 * Generates the .txt files
-	 * 
-	 * @return
+	 * Generates the .txt file for each data transfer object.
+	 * @see IDTOGenerator#generate()
 	 */
 	@Override public HashMap<String, CharSequence> generate() {
 		PlaintextDTOGenerator.logger.info("Start with text generation.");

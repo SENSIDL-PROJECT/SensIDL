@@ -17,8 +17,16 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 
+/**
+ * Implements the ElementFilter-class.
+ */
 @SuppressWarnings("all")
 public class DataAdjustementFilter extends ElementFilter {
+  /**
+   * Implements the abstract method of the base-class and filters all
+   * MeasurementData-elements.
+   * @see ElementFilter#filterData()
+   */
   @Override
   public List<MeasurementData> filterData() {
     EList<EObject> _contents = ElementFilter.input.getContents();
@@ -40,6 +48,9 @@ public class DataAdjustementFilter extends ElementFilter {
     return IterableExtensions.<MeasurementData>toList(_filter_3);
   }
   
+  /**
+   * Checks if a specific MeasurementData-object is adjusted.
+   */
   private boolean isAdjusted(final MeasurementData data) {
     boolean _and = false;
     EList<DataAdjustment> _adjustments = data.getAdjustments();

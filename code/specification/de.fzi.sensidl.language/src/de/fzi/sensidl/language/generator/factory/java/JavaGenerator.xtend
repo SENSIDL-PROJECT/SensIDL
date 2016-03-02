@@ -6,12 +6,16 @@ import de.fzi.sensidl.language.generator.factory.ICodeGenerator
 import java.util.List
 
 /**
- * Implementation of the ICodeGenerator interface. The JavaGenerator represents a specific code-generator. 
- * 
+ * The JavaGenerator represents a concrete implementation of The ICodeGenerator
+ * and implements the code-generator for the language Java.
+ * @see ICodeGenerator
  * @author Max Scheerer
  */
 class JavaGenerator implements ICodeGenerator {
 
+	/** 
+ 	* @see ICodeGenerator#generateDTO()
+ 	*/
 	override generateDTO(List<DataSet> dataSet) {
 		new JavaDTOGenerator(dataSet).generate
 	}
@@ -24,16 +28,25 @@ class JavaGenerator implements ICodeGenerator {
 		new JavaDTOGenerator(dataSet, true).generate
 	}
 
+	/**
+ 	* @see ICodeGenerator#generateEncoder()
+ 	*/
 	override generateEncoder() {
 		// TODO has to be implemented
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 
+	/**
+ 	* @see ICodeGenerator#generateDecoder()
+ 	*/
 	override generateDecoder() {
 		// TODO has to be implemented
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 
+	/**
+ 	*@see ICodeGenerator#generateUtilityClass()
+ 	*/
 	override generateUtilityClass(List<MeasurementData> data) {
 		new JavaUtilityGenerator(data).generate
 	}

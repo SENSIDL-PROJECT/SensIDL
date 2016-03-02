@@ -5,19 +5,27 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData
+import de.fzi.sensidl.language.generator.GenerationUtil
 import de.fzi.sensidl.language.generator.SensIDLConstants
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider
 import de.fzi.sensidl.language.generator.factory.IDTOGenerator
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
-import de.fzi.sensidl.language.generator.GenerationUtil
-import java.util.ArrayList
 
+/**
+ * This class implements a part of the CDTOGenerator. This class is responsible for the
+ * generation of the header-files.
+ */
 class HeaderDTOGenerator extends CDTOGenerator {
 
 	private static Logger logger = Logger.getLogger(HeaderDTOGenerator)
 
+	/**
+	 * The constructor calls the constructor of the superclass to set a
+	 * list of DataSet-elements.
+	 * @param newDataSet - represents the list of DataSet-elements.
+	 */
 	new(List<DataSet> newDataSet) {
 		super(newDataSet)
 	}
@@ -25,15 +33,14 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	/**
 	 * Triggers the code-generation for the
 	 * c struct type definition.
-	 * @param dataset
-	 * 			represents the model element for the struct.
+	 * @param dataset - represents the model element for the struct.
 	 */
 	def compile(DataSet dataset) {
 		'''«generateStruct(dataset.name.toFirstUpper, dataset)»'''
 	}
 
 	/**
-	 * Generates the .c files with structs
+	 * Generates the .c files with structs.
 	 * @see IDTOGenerator#generate()
 	 */
 	override HashMap<String,CharSequence> generate() {

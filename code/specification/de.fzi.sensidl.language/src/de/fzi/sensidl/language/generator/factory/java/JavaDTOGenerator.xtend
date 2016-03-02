@@ -40,18 +40,29 @@ class JavaDTOGenerator implements IDTOGenerator {
 	
 	private boolean bigEndian
 	
-	
+	/**
+	 * The constructor calls the constructor of the superclass to set a
+	 * list of DataSet-elements.
+	 * @param newDataSet - represents the list of DataSet-elements.
+	 */
 	new(List<DataSet> newDataSet) {
 		this.dataSet = newDataSet
 	}
 	
+	/**
+	 * The constructor calls the constructor of the superclass to set a
+	 * list of DataSet-elements and a member-variable.
+	 * @param newDataSet - represents the list of DataSet-elements.
+	 * @param createProject - indicates if a project should be created.
+	 */
 	new(List<DataSet> newDataSet,boolean createProject) {
 		this.dataSet = newDataSet
 		this.createProject = createProject
 	}
 
 	/**
-	 * Generates the .java Files
+	 * Generates the .java file for each data transfer object.
+	 * @see IDTOGenerator#generate()
 	 */
 	override generate() {
 		logger.info("Start with code-generation of a java data transfer object.")
@@ -662,7 +673,8 @@ class JavaDTOGenerator implements IDTOGenerator {
 
 // ------------------------------ Other Methods ------------------------------
 	/**
-	 * returns the appropriate type name for Data objects
+	 * Maps to the corresponding language data type.
+	 * @see IDTOGenerator#toTypeName(Data)
 	 */
 	override toTypeName(Data d) {
 		return switch (d.dataType) {

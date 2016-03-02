@@ -16,10 +16,19 @@ public class CUtilityGenerator implements IUtilityGenerator {
   
   private List<MeasurementData> data;
   
+  /**
+   * The constructor calls the constructor of the superclass to set a
+   * list of Data-elements.
+   * @param newData - represents the list of DataSet-elements.
+   */
   public CUtilityGenerator(final List<MeasurementData> newData) {
     this.data = newData;
   }
   
+  /**
+   * Generates the .h file for the utility-class.
+   * @see IDTOGenerator#generate()
+   */
   @Override
   public HashMap<String, CharSequence> generate() {
     HashMap<String, CharSequence> _xblockexpression = null;
@@ -42,6 +51,9 @@ public class CUtilityGenerator implements IUtilityGenerator {
     return _xblockexpression;
   }
   
+  /**
+   * At this stage the utility-file is just used to include the "stdbool" header-file.
+   */
   public CharSequence generateUtility(final String string) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("#include <stdbool.h>");
@@ -49,6 +61,10 @@ public class CUtilityGenerator implements IUtilityGenerator {
     return _builder;
   }
   
+  /**
+   * Adds the file extension to the specified string.
+   * @see IUtilityGenerator#addFileExtensionTo(String)
+   */
   @Override
   public String addFileExtensionTo(final String ClassName) {
     return (ClassName + SensIDLConstants.HEADER_EXTENSION);

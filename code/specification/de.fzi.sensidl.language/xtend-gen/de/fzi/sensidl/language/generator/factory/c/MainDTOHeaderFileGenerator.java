@@ -12,8 +12,8 @@ import org.apache.log4j.Logger;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 /**
- * This Generator generates the main header file which includes all header files of
- * all generated DTO structs.
+ * This class implements a part of the CDTOGenerator. This class is responsible for
+ * the main header file which includes all header files of all generated DTO structs.
  */
 @SuppressWarnings("all")
 public class MainDTOHeaderFileGenerator extends CDTOGenerator {
@@ -43,6 +43,9 @@ public class MainDTOHeaderFileGenerator extends CDTOGenerator {
     return _xblockexpression;
   }
   
+  /**
+   * Generates the C-include-statements.
+   */
   public CharSequence generateStruct() {
     StringConcatenation _builder = new StringConcatenation();
     {
@@ -58,6 +61,10 @@ public class MainDTOHeaderFileGenerator extends CDTOGenerator {
     return _builder;
   }
   
+  /**
+   * Adds the file extension.
+   * @see IDTOGenerator#addFileExtensionTo(String)
+   */
   @Override
   public String addFileExtensionTo(final String ClassName) {
     return (ClassName + SensIDLConstants.HEADER_EXTENSION);

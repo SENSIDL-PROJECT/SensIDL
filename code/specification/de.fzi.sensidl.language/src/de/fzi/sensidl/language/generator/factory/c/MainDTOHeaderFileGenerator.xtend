@@ -10,8 +10,8 @@ import java.util.List
 import org.apache.log4j.Logger
 
 /**
- * This Generator generates the main header file which includes all header files of 
- * all generated DTO structs.
+ * This class implements a part of the CDTOGenerator. This class is responsible for 
+ * the main header file which includes all header files of all generated DTO structs.
  */
 class MainDTOHeaderFileGenerator extends CDTOGenerator {
 	
@@ -37,6 +37,9 @@ class MainDTOHeaderFileGenerator extends CDTOGenerator {
 		filesToGenerate
 	}
 	
+	/**
+	 * Generates the C-include-statements.
+	 */
 	def generateStruct() {
 		'''
 		«FOR dataset : this.dataSets»
@@ -45,6 +48,10 @@ class MainDTOHeaderFileGenerator extends CDTOGenerator {
 		'''
 	}
 	
+	/**
+	 * Adds the file extension.
+	 * @see IDTOGenerator#addFileExtensionTo(String)
+	 */
 	override addFileExtensionTo(String ClassName) {
 		ClassName + SensIDLConstants.HEADER_EXTENSION
 	}

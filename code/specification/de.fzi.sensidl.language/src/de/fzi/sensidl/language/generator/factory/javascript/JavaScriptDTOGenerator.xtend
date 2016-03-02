@@ -31,12 +31,18 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 	
 	private List<DataSet> dataSet
 	
+	/**
+	 * The constructor calls the constructor of the superclass to set a
+	 * list of DataSet-elements.
+	 * @param newDataSet - represents the list of DataSet-elements.
+	 */
 	new(List<DataSet> newDataSet) {
 		this.dataSet = newDataSet
 	}
 
 	/**
-	 * Generates the .js files
+	 * Generates the .js file for each data transfer object.
+	 * @see IDTOGenerator#generate()
 	 */
 	override generate() {
 		logger.info("Start with code-generation of a JavaScript data transfer object.")

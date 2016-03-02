@@ -10,13 +10,14 @@ import java.util.HashMap;
 public interface IUtilityGenerator {
   /**
    * Main generation method for the utility class.
+   * @return a HashMap which maps the filename to generation-code represented as CharSequence.
    */
   public abstract HashMap<String, CharSequence> generate();
   
   /**
    * Adds the corresponding extension to the generated file.
-   * @param ClassName - name of the file (equivalent to class name)
-   * @return the filename with extension
+   * @param ClassName - name of the file (equivalent to class name).
+   * @return the filename with extension.
    */
   public abstract String addFileExtensionTo(final String ClassName);
 }

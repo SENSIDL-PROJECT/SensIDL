@@ -5,8 +5,18 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
 import org.eclipse.emf.ecore.EObject
 
+/**
+ * The GenerationUtil-class is used to implement common methods, which are used in different
+ * generation-classes.
+ */
 class GenerationUtil {
 	
+	/**
+	 * Given a current element of the sensidl-element-tree, the getSensorInterface-method compares
+	 * recursively the high-level elements of the tree until it finds the SensorInterface-element.
+	 * @param currentElement - corresponds to the current element in the sensidl-element-tree.
+	 * @return the high-level SensorInterface-element.
+	 */
 	static def SensorInterface getSensorInterface(EObject currentElement) {
 		if (currentElement instanceof SensorInterface) {
 			return (currentElement as SensorInterface);
@@ -15,44 +25,66 @@ class GenerationUtil {
 	}
 	
 	/**
-	 * get the sensorInterface Name
+	 * Returns the name instead of the SensorInterface-object.
+	 * @param currentElement - corresponds to the current element in the sensidl-element-tree.
+	 * @return the name of the high-level SensorInterface-element.
 	 */
 	static def String getSensorInterfaceName(EObject currentElement) {
 		return getSensorInterface(currentElement).name
 	}
 	
 	/**
-	 * @return the name of the data with a lower first letter
+	 * Ensures that the first letter of the Data-object is lower case.
+	 * @param d - represents the Data-object.
+	 * @return the name of the data with a lower first letter.
 	 */
 	static def toNameLower(Data d) {
 		d.name.toFirstLower
 	}
 
 	/**
-	 * @return the name of the DataSet with a lower first letter
+	 * Ensures that the first letter of the DataSet-object is lower case.
+	 * @param d - represents the DataSet-object.
+	 * @return the name of the DataSet with a lower first letter.
 	 */
 	static def toNameLower(DataSet d) {
 		d.name.toFirstLower
 	}
 
 	/**
-	 * @return the name of the data with an upper first letter 
+	 * Ensures that the first letter is capitalized.
+	 * @param d - represents the Data-object.
+	 * @return the name of the Data-object with an upper first letter .
 	 */
 	static def toNameUpper(Data d) {
 		d.name.toFirstUpper
 	}
 
 	/**
-	 * @return the name of the DataSet with an upper first letter
+	 * Ensures that the first letter is capitalized.
+	 * @param d - represents the DataSet-object.
+	 * @return the name of the DataSet-object with an upper first letter .
 	 */
 	static def toNameUpper(DataSet d) {
 		d.name.toFirstUpper
 	}
 	
+	/**
+	 * Gets the filename for a particular utility-file with file extension.
+	 * @param object - current object, which is used to get the SensorInterface-name.
+	 * @param fileExtension - corresponds to the desired file extension that is going to be appended.
+	 * @return the utility-filename with extension.
+	 */
 	static def getUtilityFileName(EObject object, String fileExtension) {
 		GenerationUtil.getUtilityName(object) + fileExtension
 	}
 	
+	/**
+	 * Gets the name for a particular utility-class.
+	 * @param object - current object, which is used to concatenate the SensorInterface-name
+	 * 				   and the default utility-class-name.
+	 * @return the utility-filename with extension.
+	 */
 	static def getUtilityName(EObject object) {
 		GenerationUtil.getSensorInterfaceName(object) + SensIDLConstants.UTILITY_CLASS_NAME
 	}

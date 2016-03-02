@@ -22,10 +22,19 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 
+/**
+ * This class implements a part of the CDTOGenerator. This class is responsible for the
+ * generation of the header-files.
+ */
 @SuppressWarnings("all")
 public class HeaderDTOGenerator extends CDTOGenerator {
   private static Logger logger = Logger.getLogger(HeaderDTOGenerator.class);
   
+  /**
+   * The constructor calls the constructor of the superclass to set a
+   * list of DataSet-elements.
+   * @param newDataSet - represents the list of DataSet-elements.
+   */
   public HeaderDTOGenerator(final List<DataSet> newDataSet) {
     super(newDataSet);
   }
@@ -33,8 +42,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
   /**
    * Triggers the code-generation for the
    * c struct type definition.
-   * @param dataset
-   * 			represents the model element for the struct.
+   * @param dataset - represents the model element for the struct.
    */
   public CharSequence compile(final DataSet dataset) {
     StringConcatenation _builder = new StringConcatenation();
@@ -46,7 +54,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
   }
   
   /**
-   * Generates the .c files with structs
+   * Generates the .c files with structs.
    * @see IDTOGenerator#generate()
    */
   @Override

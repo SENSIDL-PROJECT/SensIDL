@@ -1,5 +1,8 @@
 package de.fzi.sensidl.language.generator;
 
+/**
+ * This class should provide a common place for specific sensidl constants.
+ */
 @SuppressWarnings("all")
 public class SensIDLConstants {
   public enum GenerationLanguage {

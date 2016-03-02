@@ -3,7 +3,7 @@ package de.fzi.sensidl.language.generator
 import org.eclipse.xtext.generator.OutputConfigurationProvider
 
 /*
- * By now this class implements the same behaviour like the default
+ * By now this class implements the same behavior like the default
  * implementation of the OutputConfigurationProvider. It defines the
  * an entry to specify a different generation location. 
  */
