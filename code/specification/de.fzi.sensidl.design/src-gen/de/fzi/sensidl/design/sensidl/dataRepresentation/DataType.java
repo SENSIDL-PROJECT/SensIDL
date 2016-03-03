@@ -100,7 +100,23 @@ public enum DataType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE(9, "DOUBLE", "DOUBLE");
+	DOUBLE(9, "DOUBLE", "DOUBLE"), /**
+	 * The '<em><b>BOOLEAN</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #BOOLEAN_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	BOOLEAN(10, "BOOLEAN", "BOOLEAN"), /**
+	 * The '<em><b>STRING</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #STRING_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	STRING(11, "STRING", "STRING");
 
 	/**
 	 * The '<em><b>INT8</b></em>' literal value.
@@ -253,6 +269,36 @@ public enum DataType implements Enumerator {
 	public static final int DOUBLE_VALUE = 9;
 
 	/**
+	 * The '<em><b>BOOLEAN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>BOOLEAN</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BOOLEAN
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BOOLEAN_VALUE = 10;
+
+	/**
+	 * The '<em><b>STRING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>STRING</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #STRING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int STRING_VALUE = 11;
+
+	/**
 	 * An array of all the '<em><b>Data Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -270,6 +316,8 @@ public enum DataType implements Enumerator {
 			UINT64,
 			FLOAT,
 			DOUBLE,
+			BOOLEAN,
+			STRING,
 		};
 
 	/**
@@ -284,6 +332,8 @@ public enum DataType implements Enumerator {
 	 * Returns the '<em><b>Data Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static DataType get(String literal) {
@@ -300,6 +350,8 @@ public enum DataType implements Enumerator {
 	 * Returns the '<em><b>Data Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static DataType getByName(String name) {
@@ -316,6 +368,8 @@ public enum DataType implements Enumerator {
 	 * Returns the '<em><b>Data Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static DataType get(int value) {
@@ -330,6 +384,8 @@ public enum DataType implements Enumerator {
 			case UINT64_VALUE: return UINT64;
 			case FLOAT_VALUE: return FLOAT;
 			case DOUBLE_VALUE: return DOUBLE;
+			case BOOLEAN_VALUE: return BOOLEAN;
+			case STRING_VALUE: return STRING;
 		}
 		return null;
 	}

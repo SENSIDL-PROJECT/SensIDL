@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="de.fzi.sensidl.language.buckminster"
+      label="de.fzi.sensidl.language.buckminster Feature"
+      version="1.0.0.qualifier">
+
+   <includes
+         id="de.fzi.sensidl.language.feature.example"
+         version="0.0.0"/>
+
+   <includes
+         id="de.fzi.sensidl.language.feature.sdk"
+         version="0.0.0"/>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="de.fzi.sensidl.design"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.junit"/>
+   </requires>
+
+   <plugin
+         id="de.fzi.sensidl.design.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

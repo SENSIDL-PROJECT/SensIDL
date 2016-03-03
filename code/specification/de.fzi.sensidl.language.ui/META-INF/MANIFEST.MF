@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: de.fzi.sensidl.language.ui
-Bundle-Vendor: My Company
+Bundle-Name: SensIDL Language UI
+Bundle-Vendor: FZI Forschungszentrum Informatik
 Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: de.fzi.sensidl.language.ui;singleton:=true
 Bundle-ActivationPolicy: lazy
@@ -19,12 +19,18 @@ Require-Bundle: de.fzi.sensidl.language;visibility:=reexport,
  org.eclipse.compare,
  org.eclipse.core.resources,
  de.fzi.sensidl.help;bundle-version="1.0.0",
- org.eclipse.core.filesystem;bundle-version="1.5.0"
-Import-Package: org.apache.log4j,
+ org.eclipse.core.filesystem;bundle-version="1.5.0",
+ com.google.guava;bundle-version="1.0.0",
+ com.google.inject;bundle-version="3.0.0",
+ org.eclipse.jdt.launching;bundle-version="3.8.0",
+ org.eclipse.help;bundle-version="3.6.0"
+Import-Package: org.apache.commons.io,
+ org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: de.fzi.sensidl.language.ui.contentassist,
  de.fzi.sensidl.language.ui.contentassist.antlr,
+ de.fzi.sensidl.language.ui.exception,
  de.fzi.sensidl.language.ui.handler,
  de.fzi.sensidl.language.ui.internal,
  de.fzi.sensidl.language.ui.quickfix,

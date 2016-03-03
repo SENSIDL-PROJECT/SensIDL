@@ -52,5 +52,10 @@ public class SensIDLValueConverterService extends DefaultTerminalConverters {
 
 		};
 	}
+    
+    @ValueConverter(rule = "STRING")
+	public IValueConverter<String> STRING() {
+    	return new StringHexConverter();
+    }
 }
 

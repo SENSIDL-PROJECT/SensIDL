@@ -18,62 +18,6 @@ import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
 public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
-	public class IdentifiableElementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IdentifiableElement");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cNamedElementParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cEncodingSettingsParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cSensorDataDescriptionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cDataAdjustmentParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cIntervalParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		
-		//IdentifiableElement returns sensidl::IdentifiableElement:
-		//	NamedElement | EncodingSettings | SensorDataDescription | DataAdjustment | Interval;
-		@Override public ParserRule getRule() { return rule; }
-
-		//NamedElement | EncodingSettings | SensorDataDescription | DataAdjustment | Interval
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//NamedElement
-		public RuleCall getNamedElementParserRuleCall_0() { return cNamedElementParserRuleCall_0; }
-
-		//EncodingSettings
-		public RuleCall getEncodingSettingsParserRuleCall_1() { return cEncodingSettingsParserRuleCall_1; }
-
-		//SensorDataDescription
-		public RuleCall getSensorDataDescriptionParserRuleCall_2() { return cSensorDataDescriptionParserRuleCall_2; }
-
-		//DataAdjustment
-		public RuleCall getDataAdjustmentParserRuleCall_3() { return cDataAdjustmentParserRuleCall_3; }
-
-		//Interval
-		public RuleCall getIntervalParserRuleCall_4() { return cIntervalParserRuleCall_4; }
-	}
-
-	public class NamedElementElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NamedElement");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cSensorInterfaceParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cDataSetParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cDataParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		
-		//NamedElement returns sensidl::NamedElement:
-		//	SensorInterface | DataSet | Data;
-		@Override public ParserRule getRule() { return rule; }
-
-		//SensorInterface | DataSet | Data
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//SensorInterface
-		public RuleCall getSensorInterfaceParserRuleCall_0() { return cSensorInterfaceParserRuleCall_0; }
-
-		//DataSet
-		public RuleCall getDataSetParserRuleCall_1() { return cDataSetParserRuleCall_1; }
-
-		//Data
-		public RuleCall getDataParserRuleCall_2() { return cDataParserRuleCall_2; }
-	}
-
 	public class SensorInterfaceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SensorInterface");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -83,11 +27,10 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDescriptionAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cDescriptionDESCRIPTIONTerminalRuleCall_2_0 = (RuleCall)cDescriptionAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cWithKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Keyword cIdentifierKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
-		private final Keyword cColonKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
-		private final Assignment cIDAssignment_3_3 = (Assignment)cGroup_3.eContents().get(3);
-		private final RuleCall cIDSTRINGTerminalRuleCall_3_3_0 = (RuleCall)cIDAssignment_3_3.eContents().get(0);
+		private final Keyword cWithIdentifierKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Keyword cColonKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Assignment cIDAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
+		private final RuleCall cIDSTRINGTerminalRuleCall_3_2_0 = (RuleCall)cIDAssignment_3_2.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cEncodingSettingsAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cEncodingSettingsEncodingSettingsParserRuleCall_5_0 = (RuleCall)cEncodingSettingsAssignment_5.eContents().get(0);
@@ -96,11 +39,11 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//SensorInterface returns sensidl::SensorInterface:
-		//	"sensorInterface" name=ID description=DESCRIPTION? ("with" "identifier" ":" ID=STRING)? "{"
+		//	"sensorInterface" name=ID description=DESCRIPTION? ("with identifier" ":" ID=STRING)? "{"
 		//	encodingSettings=EncodingSettings dataDescription=SensorDataDescription "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"sensorInterface" name=ID description=DESCRIPTION? ("with" "identifier" ":" ID=STRING)? "{"
+		//"sensorInterface" name=ID description=DESCRIPTION? ("with identifier" ":" ID=STRING)? "{"
 		//encodingSettings=EncodingSettings dataDescription=SensorDataDescription "}"
 		public Group getGroup() { return cGroup; }
 
@@ -119,23 +62,20 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		//DESCRIPTION
 		public RuleCall getDescriptionDESCRIPTIONTerminalRuleCall_2_0() { return cDescriptionDESCRIPTIONTerminalRuleCall_2_0; }
 
-		//("with" "identifier" ":" ID=STRING)?
+		//("with identifier" ":" ID=STRING)?
 		public Group getGroup_3() { return cGroup_3; }
 
-		//"with"
-		public Keyword getWithKeyword_3_0() { return cWithKeyword_3_0; }
-
-		//"identifier"
-		public Keyword getIdentifierKeyword_3_1() { return cIdentifierKeyword_3_1; }
+		//"with identifier"
+		public Keyword getWithIdentifierKeyword_3_0() { return cWithIdentifierKeyword_3_0; }
 
 		//":"
-		public Keyword getColonKeyword_3_2() { return cColonKeyword_3_2; }
+		public Keyword getColonKeyword_3_1() { return cColonKeyword_3_1; }
 
 		//ID=STRING
-		public Assignment getIDAssignment_3_3() { return cIDAssignment_3_3; }
+		public Assignment getIDAssignment_3_2() { return cIDAssignment_3_2; }
 
 		//STRING
-		public RuleCall getIDSTRINGTerminalRuleCall_3_3_0() { return cIDSTRINGTerminalRuleCall_3_3_0; }
+		public RuleCall getIDSTRINGTerminalRuleCall_3_2_0() { return cIDSTRINGTerminalRuleCall_3_2_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
@@ -160,78 +100,94 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EncodingSettings");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cEncodingKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cCodingAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cCodingCodingEnumRuleCall_1_0 = (RuleCall)cCodingAssignment_1.eContents().get(0);
-		private final Keyword cWithKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cEndiannessAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cEndiannessEndiannessEnumRuleCall_3_0 = (RuleCall)cEndiannessAssignment_3.eContents().get(0);
-		private final Keyword cAlignmentKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cAlignmentAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cAlignmentINTTerminalRuleCall_5_0 = (RuleCall)cAlignmentAssignment_5.eContents().get(0);
-		private final Keyword cBITKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
-		private final Keyword cWithKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
-		private final Keyword cIdentifierKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
-		private final Keyword cColonKeyword_7_2 = (Keyword)cGroup_7.eContents().get(2);
-		private final Assignment cIDAssignment_7_3 = (Assignment)cGroup_7.eContents().get(3);
-		private final RuleCall cIDSTRINGTerminalRuleCall_7_3_0 = (RuleCall)cIDAssignment_7_3.eContents().get(0);
+		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cCodingAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cCodingCodingEnumRuleCall_2_0 = (RuleCall)cCodingAssignment_2.eContents().get(0);
+		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cEndiannessKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cColonKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cEndiannessAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cEndiannessEndiannessEnumRuleCall_6_0 = (RuleCall)cEndiannessAssignment_6.eContents().get(0);
+		private final Keyword cCommaKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cAlignmentKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Keyword cColonKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Assignment cAlignmentAssignment_10 = (Assignment)cGroup.eContents().get(10);
+		private final RuleCall cAlignmentINTTerminalRuleCall_10_0 = (RuleCall)cAlignmentAssignment_10.eContents().get(0);
+		private final Keyword cBITKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Group cGroup_12 = (Group)cGroup.eContents().get(12);
+		private final Keyword cWithIdentifierKeyword_12_0 = (Keyword)cGroup_12.eContents().get(0);
+		private final Keyword cColonKeyword_12_1 = (Keyword)cGroup_12.eContents().get(1);
+		private final Assignment cIDAssignment_12_2 = (Assignment)cGroup_12.eContents().get(2);
+		private final RuleCall cIDSTRINGTerminalRuleCall_12_2_0 = (RuleCall)cIDAssignment_12_2.eContents().get(0);
 		
 		//EncodingSettings returns sensidl::EncodingSettings:
-		//	"encoding" coding=Coding "with" endianness=Endianness "alignment" alignment=INT "BIT" ("with" "identifier" ":"
-		//	ID=STRING)?;
+		//	"encoding" ":" coding=Coding "," "endianness" ":" endianness=Endianness "," "alignment" ":" alignment=INT "BIT"
+		//	("with identifier" ":" ID=STRING)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"encoding" coding=Coding "with" endianness=Endianness "alignment" alignment=INT "BIT" ("with" "identifier" ":"
-		//ID=STRING)?
+		//"encoding" ":" coding=Coding "," "endianness" ":" endianness=Endianness "," "alignment" ":" alignment=INT "BIT"
+		//("with identifier" ":" ID=STRING)?
 		public Group getGroup() { return cGroup; }
 
 		//"encoding"
 		public Keyword getEncodingKeyword_0() { return cEncodingKeyword_0; }
 
+		//":"
+		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+
 		//coding=Coding
-		public Assignment getCodingAssignment_1() { return cCodingAssignment_1; }
+		public Assignment getCodingAssignment_2() { return cCodingAssignment_2; }
 
 		//Coding
-		public RuleCall getCodingCodingEnumRuleCall_1_0() { return cCodingCodingEnumRuleCall_1_0; }
+		public RuleCall getCodingCodingEnumRuleCall_2_0() { return cCodingCodingEnumRuleCall_2_0; }
 
-		//"with"
-		public Keyword getWithKeyword_2() { return cWithKeyword_2; }
+		//","
+		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
 
-		//endianness=Endianness
-		public Assignment getEndiannessAssignment_3() { return cEndiannessAssignment_3; }
-
-		//Endianness
-		public RuleCall getEndiannessEndiannessEnumRuleCall_3_0() { return cEndiannessEndiannessEnumRuleCall_3_0; }
-
-		//"alignment"
-		public Keyword getAlignmentKeyword_4() { return cAlignmentKeyword_4; }
-
-		//alignment=INT
-		public Assignment getAlignmentAssignment_5() { return cAlignmentAssignment_5; }
-
-		//INT
-		public RuleCall getAlignmentINTTerminalRuleCall_5_0() { return cAlignmentINTTerminalRuleCall_5_0; }
-
-		//"BIT"
-		public Keyword getBITKeyword_6() { return cBITKeyword_6; }
-
-		//("with" "identifier" ":" ID=STRING)?
-		public Group getGroup_7() { return cGroup_7; }
-
-		//"with"
-		public Keyword getWithKeyword_7_0() { return cWithKeyword_7_0; }
-
-		//"identifier"
-		public Keyword getIdentifierKeyword_7_1() { return cIdentifierKeyword_7_1; }
+		//"endianness"
+		public Keyword getEndiannessKeyword_4() { return cEndiannessKeyword_4; }
 
 		//":"
-		public Keyword getColonKeyword_7_2() { return cColonKeyword_7_2; }
+		public Keyword getColonKeyword_5() { return cColonKeyword_5; }
+
+		//endianness=Endianness
+		public Assignment getEndiannessAssignment_6() { return cEndiannessAssignment_6; }
+
+		//Endianness
+		public RuleCall getEndiannessEndiannessEnumRuleCall_6_0() { return cEndiannessEndiannessEnumRuleCall_6_0; }
+
+		//","
+		public Keyword getCommaKeyword_7() { return cCommaKeyword_7; }
+
+		//"alignment"
+		public Keyword getAlignmentKeyword_8() { return cAlignmentKeyword_8; }
+
+		//":"
+		public Keyword getColonKeyword_9() { return cColonKeyword_9; }
+
+		//alignment=INT
+		public Assignment getAlignmentAssignment_10() { return cAlignmentAssignment_10; }
+
+		//INT
+		public RuleCall getAlignmentINTTerminalRuleCall_10_0() { return cAlignmentINTTerminalRuleCall_10_0; }
+
+		//"BIT"
+		public Keyword getBITKeyword_11() { return cBITKeyword_11; }
+
+		//("with identifier" ":" ID=STRING)?
+		public Group getGroup_12() { return cGroup_12; }
+
+		//"with identifier"
+		public Keyword getWithIdentifierKeyword_12_0() { return cWithIdentifierKeyword_12_0; }
+
+		//":"
+		public Keyword getColonKeyword_12_1() { return cColonKeyword_12_1; }
 
 		//ID=STRING
-		public Assignment getIDAssignment_7_3() { return cIDAssignment_7_3; }
+		public Assignment getIDAssignment_12_2() { return cIDAssignment_12_2; }
 
 		//STRING
-		public RuleCall getIDSTRINGTerminalRuleCall_7_3_0() { return cIDSTRINGTerminalRuleCall_7_3_0; }
+		public RuleCall getIDSTRINGTerminalRuleCall_12_2_0() { return cIDSTRINGTerminalRuleCall_12_2_0; }
 	}
 
 	public class SensorDataDescriptionElements extends AbstractParserRuleElementFinder {
@@ -240,22 +196,21 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSensorDataKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Action cSensorDataDescriptionAction_1 = (Action)cGroup.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cWithKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Keyword cIdentifierKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
-		private final Keyword cColonKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
-		private final Assignment cIDAssignment_2_3 = (Assignment)cGroup_2.eContents().get(3);
-		private final RuleCall cIDSTRINGTerminalRuleCall_2_3_0 = (RuleCall)cIDAssignment_2_3.eContents().get(0);
+		private final Keyword cWithIdentifierKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Keyword cColonKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
+		private final Assignment cIDAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final RuleCall cIDSTRINGTerminalRuleCall_2_2_0 = (RuleCall)cIDAssignment_2_2.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cDataSetsAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cDataSetsDataSetParserRuleCall_4_0 = (RuleCall)cDataSetsAssignment_4.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//SensorDataDescription returns dataRepresentation::SensorDataDescription:
-		//	"sensorData" {dataRepresentation::SensorDataDescription} ("with" "identifier" ":" ID=STRING)? "{" dataSets+=DataSet*
+		//	"sensorData" {dataRepresentation::SensorDataDescription} ("with identifier" ":" ID=STRING)? "{" dataSets+=DataSet*
 		//	"}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"sensorData" {dataRepresentation::SensorDataDescription} ("with" "identifier" ":" ID=STRING)? "{" dataSets+=DataSet* "}"
+		//"sensorData" {dataRepresentation::SensorDataDescription} ("with identifier" ":" ID=STRING)? "{" dataSets+=DataSet* "}"
 		public Group getGroup() { return cGroup; }
 
 		//"sensorData"
@@ -264,23 +219,20 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		//{dataRepresentation::SensorDataDescription}
 		public Action getSensorDataDescriptionAction_1() { return cSensorDataDescriptionAction_1; }
 
-		//("with" "identifier" ":" ID=STRING)?
+		//("with identifier" ":" ID=STRING)?
 		public Group getGroup_2() { return cGroup_2; }
 
-		//"with"
-		public Keyword getWithKeyword_2_0() { return cWithKeyword_2_0; }
-
-		//"identifier"
-		public Keyword getIdentifierKeyword_2_1() { return cIdentifierKeyword_2_1; }
+		//"with identifier"
+		public Keyword getWithIdentifierKeyword_2_0() { return cWithIdentifierKeyword_2_0; }
 
 		//":"
-		public Keyword getColonKeyword_2_2() { return cColonKeyword_2_2; }
+		public Keyword getColonKeyword_2_1() { return cColonKeyword_2_1; }
 
 		//ID=STRING
-		public Assignment getIDAssignment_2_3() { return cIDAssignment_2_3; }
+		public Assignment getIDAssignment_2_2() { return cIDAssignment_2_2; }
 
 		//STRING
-		public RuleCall getIDSTRINGTerminalRuleCall_2_3_0() { return cIDSTRINGTerminalRuleCall_2_3_0; }
+		public RuleCall getIDSTRINGTerminalRuleCall_2_2_0() { return cIDSTRINGTerminalRuleCall_2_2_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
@@ -302,24 +254,29 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cWithKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Keyword cIdentifierKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
-		private final Assignment cIDAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
-		private final RuleCall cIDSTRINGTerminalRuleCall_2_2_0 = (RuleCall)cIDAssignment_2_2.eContents().get(0);
-		private final Assignment cDescriptionAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cDescriptionDESCRIPTIONTerminalRuleCall_3_0 = (RuleCall)cDescriptionAssignment_3.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cDataAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cDataDataParserRuleCall_5_0 = (RuleCall)cDataAssignment_5.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cUsesKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cParentDataSetAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final CrossReference cParentDataSetDataSetCrossReference_2_1_0 = (CrossReference)cParentDataSetAssignment_2_1.eContents().get(0);
+		private final RuleCall cParentDataSetDataSetIDTerminalRuleCall_2_1_0_1 = (RuleCall)cParentDataSetDataSetCrossReference_2_1_0.eContents().get(1);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cWithIdentifierKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Keyword cColonKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Assignment cIDAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
+		private final RuleCall cIDSTRINGTerminalRuleCall_3_2_0 = (RuleCall)cIDAssignment_3_2.eContents().get(0);
+		private final Assignment cDescriptionAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cDescriptionDESCRIPTIONTerminalRuleCall_4_0 = (RuleCall)cDescriptionAssignment_4.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cDataAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cDataDataParserRuleCall_6_0 = (RuleCall)cDataAssignment_6.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//DataSet returns dataRepresentation::DataSet:
-		//	"dataSet" name=ID ("with" "identifier" ID=STRING)? description=DESCRIPTION? "{" //		(subDataSets+=DataSet)?
-		//	data+=Data* "}";
+		//	"dataSet" name=ID ("uses" parentDataSet=[dataRepresentation::DataSet])? ("with identifier" ":" ID=STRING)?
+		//	description=DESCRIPTION? "{" data+=Data* "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"dataSet" name=ID ("with" "identifier" ID=STRING)? description=DESCRIPTION? "{" //		(subDataSets+=DataSet)?
-		//data+=Data* "}"
+		//"dataSet" name=ID ("uses" parentDataSet=[dataRepresentation::DataSet])? ("with identifier" ":" ID=STRING)?
+		//description=DESCRIPTION? "{" data+=Data* "}"
 		public Group getGroup() { return cGroup; }
 
 		//"dataSet"
@@ -331,38 +288,53 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 
-		//("with" "identifier" ID=STRING)?
+		//("uses" parentDataSet=[dataRepresentation::DataSet])?
 		public Group getGroup_2() { return cGroup_2; }
 
-		//"with"
-		public Keyword getWithKeyword_2_0() { return cWithKeyword_2_0; }
+		//"uses"
+		public Keyword getUsesKeyword_2_0() { return cUsesKeyword_2_0; }
 
-		//"identifier"
-		public Keyword getIdentifierKeyword_2_1() { return cIdentifierKeyword_2_1; }
+		//parentDataSet=[dataRepresentation::DataSet]
+		public Assignment getParentDataSetAssignment_2_1() { return cParentDataSetAssignment_2_1; }
+
+		//[dataRepresentation::DataSet]
+		public CrossReference getParentDataSetDataSetCrossReference_2_1_0() { return cParentDataSetDataSetCrossReference_2_1_0; }
+
+		//ID
+		public RuleCall getParentDataSetDataSetIDTerminalRuleCall_2_1_0_1() { return cParentDataSetDataSetIDTerminalRuleCall_2_1_0_1; }
+
+		//("with identifier" ":" ID=STRING)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//"with identifier"
+		public Keyword getWithIdentifierKeyword_3_0() { return cWithIdentifierKeyword_3_0; }
+
+		//":"
+		public Keyword getColonKeyword_3_1() { return cColonKeyword_3_1; }
 
 		//ID=STRING
-		public Assignment getIDAssignment_2_2() { return cIDAssignment_2_2; }
+		public Assignment getIDAssignment_3_2() { return cIDAssignment_3_2; }
 
 		//STRING
-		public RuleCall getIDSTRINGTerminalRuleCall_2_2_0() { return cIDSTRINGTerminalRuleCall_2_2_0; }
+		public RuleCall getIDSTRINGTerminalRuleCall_3_2_0() { return cIDSTRINGTerminalRuleCall_3_2_0; }
 
 		//description=DESCRIPTION?
-		public Assignment getDescriptionAssignment_3() { return cDescriptionAssignment_3; }
+		public Assignment getDescriptionAssignment_4() { return cDescriptionAssignment_4; }
 
 		//DESCRIPTION
-		public RuleCall getDescriptionDESCRIPTIONTerminalRuleCall_3_0() { return cDescriptionDESCRIPTIONTerminalRuleCall_3_0; }
+		public RuleCall getDescriptionDESCRIPTIONTerminalRuleCall_4_0() { return cDescriptionDESCRIPTIONTerminalRuleCall_4_0; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
+		public Keyword getLeftCurlyBracketKeyword_5() { return cLeftCurlyBracketKeyword_5; }
 
 		//data+=Data*
-		public Assignment getDataAssignment_5() { return cDataAssignment_5; }
+		public Assignment getDataAssignment_6() { return cDataAssignment_6; }
 
 		//Data
-		public RuleCall getDataDataParserRuleCall_5_0() { return cDataDataParserRuleCall_5_0; }
+		public RuleCall getDataDataParserRuleCall_6_0() { return cDataDataParserRuleCall_6_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
 	}
 
 	public class DataElements extends AbstractParserRuleElementFinder {
@@ -397,13 +369,12 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cUnitAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cUnitUNITParserRuleCall_4_0 = (RuleCall)cUnitAssignment_4.eContents().get(0);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cWithKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Keyword cIdentifierKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
-		private final Keyword cColonKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
-		private final Assignment cIDAssignment_5_3 = (Assignment)cGroup_5.eContents().get(3);
-		private final RuleCall cIDSTRINGTerminalRuleCall_5_3_0 = (RuleCall)cIDAssignment_5_3.eContents().get(0);
+		private final Keyword cWithIdentifierKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Keyword cColonKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
+		private final Assignment cIDAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
+		private final RuleCall cIDSTRINGTerminalRuleCall_5_2_0 = (RuleCall)cIDAssignment_5_2.eContents().get(0);
 		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cAdjustedByKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Keyword cAdjustedKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
 		private final Assignment cAdjustmentsAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
 		private final RuleCall cAdjustmentsDataAdjustmentParserRuleCall_6_1_0 = (RuleCall)cAdjustmentsAssignment_6_1.eContents().get(0);
 		private final Group cGroup_6_2 = (Group)cGroup_6.eContents().get(2);
@@ -414,12 +385,12 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDescriptionDESCRIPTIONTerminalRuleCall_7_0 = (RuleCall)cDescriptionAssignment_7.eContents().get(0);
 		
 		//MeasurementData returns dataRepresentation::MeasurementData:
-		//	name=ID "as" dataType=DataType "in" unit=UNIT ("with" "identifier" ":" ID=STRING)? ("adjusted by"
+		//	name=ID "as" dataType=DataType "in" unit=UNIT ("with identifier" ":" ID=STRING)? ("adjusted"
 		//	adjustments+=DataAdjustment ("," adjustments+=DataAdjustment)*)? description=DESCRIPTION?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=ID "as" dataType=DataType "in" unit=UNIT ("with" "identifier" ":" ID=STRING)? ("adjusted by"
-		//adjustments+=DataAdjustment ("," adjustments+=DataAdjustment)*)? description=DESCRIPTION?
+		//name=ID "as" dataType=DataType "in" unit=UNIT ("with identifier" ":" ID=STRING)? ("adjusted" adjustments+=DataAdjustment
+		//("," adjustments+=DataAdjustment)*)? description=DESCRIPTION?
 		public Group getGroup() { return cGroup; }
 
 		//name=ID
@@ -446,29 +417,26 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		//UNIT
 		public RuleCall getUnitUNITParserRuleCall_4_0() { return cUnitUNITParserRuleCall_4_0; }
 
-		//("with" "identifier" ":" ID=STRING)?
+		//("with identifier" ":" ID=STRING)?
 		public Group getGroup_5() { return cGroup_5; }
 
-		//"with"
-		public Keyword getWithKeyword_5_0() { return cWithKeyword_5_0; }
-
-		//"identifier"
-		public Keyword getIdentifierKeyword_5_1() { return cIdentifierKeyword_5_1; }
+		//"with identifier"
+		public Keyword getWithIdentifierKeyword_5_0() { return cWithIdentifierKeyword_5_0; }
 
 		//":"
-		public Keyword getColonKeyword_5_2() { return cColonKeyword_5_2; }
+		public Keyword getColonKeyword_5_1() { return cColonKeyword_5_1; }
 
 		//ID=STRING
-		public Assignment getIDAssignment_5_3() { return cIDAssignment_5_3; }
+		public Assignment getIDAssignment_5_2() { return cIDAssignment_5_2; }
 
 		//STRING
-		public RuleCall getIDSTRINGTerminalRuleCall_5_3_0() { return cIDSTRINGTerminalRuleCall_5_3_0; }
+		public RuleCall getIDSTRINGTerminalRuleCall_5_2_0() { return cIDSTRINGTerminalRuleCall_5_2_0; }
 
-		//("adjusted by" adjustments+=DataAdjustment ("," adjustments+=DataAdjustment)*)?
+		//("adjusted" adjustments+=DataAdjustment ("," adjustments+=DataAdjustment)*)?
 		public Group getGroup_6() { return cGroup_6; }
 
-		//"adjusted by"
-		public Keyword getAdjustedByKeyword_6_0() { return cAdjustedByKeyword_6_0; }
+		//"adjusted"
+		public Keyword getAdjustedKeyword_6_0() { return cAdjustedKeyword_6_0; }
 
 		//adjustments+=DataAdjustment
 		public Assignment getAdjustmentsAssignment_6_1() { return cAdjustmentsAssignment_6_1; }
@@ -511,20 +479,19 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
 		private final RuleCall cValueSTRINGTerminalRuleCall_4_2_0 = (RuleCall)cValueAssignment_4_2.eContents().get(0);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cWithKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Keyword cIdentifierKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
-		private final Keyword cColonKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
-		private final Assignment cIDAssignment_5_3 = (Assignment)cGroup_5.eContents().get(3);
-		private final RuleCall cIDSTRINGTerminalRuleCall_5_3_0 = (RuleCall)cIDAssignment_5_3.eContents().get(0);
+		private final Keyword cWithIdentifierKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Keyword cColonKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
+		private final Assignment cIDAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
+		private final RuleCall cIDSTRINGTerminalRuleCall_5_2_0 = (RuleCall)cIDAssignment_5_2.eContents().get(0);
 		private final Assignment cDescriptionAssignment_6 = (Assignment)cGroup.eContents().get(6);
 		private final RuleCall cDescriptionDESCRIPTIONTerminalRuleCall_6_0 = (RuleCall)cDescriptionAssignment_6.eContents().get(0);
 		
 		//NonMeasurementData returns dataRepresentation::NonMeasurementData:
-		//	name=ID "as" dataType=DataType constant?="constant"? ("value" "=" value=STRING)? ("with" "identifier" ":" ID=STRING)?
+		//	name=ID "as" dataType=DataType constant?="constant"? ("value" "=" value=STRING)? ("with identifier" ":" ID=STRING)?
 		//	description=DESCRIPTION?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=ID "as" dataType=DataType constant?="constant"? ("value" "=" value=STRING)? ("with" "identifier" ":" ID=STRING)?
+		//name=ID "as" dataType=DataType constant?="constant"? ("value" "=" value=STRING)? ("with identifier" ":" ID=STRING)?
 		//description=DESCRIPTION?
 		public Group getGroup() { return cGroup; }
 
@@ -564,23 +531,20 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getValueSTRINGTerminalRuleCall_4_2_0() { return cValueSTRINGTerminalRuleCall_4_2_0; }
 
-		//("with" "identifier" ":" ID=STRING)?
+		//("with identifier" ":" ID=STRING)?
 		public Group getGroup_5() { return cGroup_5; }
 
-		//"with"
-		public Keyword getWithKeyword_5_0() { return cWithKeyword_5_0; }
-
-		//"identifier"
-		public Keyword getIdentifierKeyword_5_1() { return cIdentifierKeyword_5_1; }
+		//"with identifier"
+		public Keyword getWithIdentifierKeyword_5_0() { return cWithIdentifierKeyword_5_0; }
 
 		//":"
-		public Keyword getColonKeyword_5_2() { return cColonKeyword_5_2; }
+		public Keyword getColonKeyword_5_1() { return cColonKeyword_5_1; }
 
 		//ID=STRING
-		public Assignment getIDAssignment_5_3() { return cIDAssignment_5_3; }
+		public Assignment getIDAssignment_5_2() { return cIDAssignment_5_2; }
 
 		//STRING
-		public RuleCall getIDSTRINGTerminalRuleCall_5_3_0() { return cIDSTRINGTerminalRuleCall_5_3_0; }
+		public RuleCall getIDSTRINGTerminalRuleCall_5_2_0() { return cIDSTRINGTerminalRuleCall_5_2_0; }
 
 		//description=DESCRIPTION?
 		public Assignment getDescriptionAssignment_6() { return cDescriptionAssignment_6; }
@@ -612,65 +576,65 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	public class DataRangeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DataRange");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cWithKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cRangeKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cRangeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cRangeIntervalParserRuleCall_2_0 = (RuleCall)cRangeAssignment_2.eContents().get(0);
-		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cWithRangeKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cRangeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cRangeIntervalParserRuleCall_1_0 = (RuleCall)cRangeAssignment_1.eContents().get(0);
 		
 		//DataRange returns dataRepresentation::DataRange:
-		//	"with" "range" range=Interval ";";
+		//	"with range" range=Interval;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"with" "range" range=Interval ";"
+		//"with range" range=Interval
 		public Group getGroup() { return cGroup; }
 
-		//"with"
-		public Keyword getWithKeyword_0() { return cWithKeyword_0; }
-
-		//"range"
-		public Keyword getRangeKeyword_1() { return cRangeKeyword_1; }
+		//"with range"
+		public Keyword getWithRangeKeyword_0() { return cWithRangeKeyword_0; }
 
 		//range=Interval
-		public Assignment getRangeAssignment_2() { return cRangeAssignment_2; }
+		public Assignment getRangeAssignment_1() { return cRangeAssignment_1; }
 
 		//Interval
-		public RuleCall getRangeIntervalParserRuleCall_2_0() { return cRangeIntervalParserRuleCall_2_0; }
-
-		//";"
-		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
+		public RuleCall getRangeIntervalParserRuleCall_1_0() { return cRangeIntervalParserRuleCall_1_0; }
 	}
 
 	public class IntervalElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Interval");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cLowerBoundAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cLowerBoundDOUBLEParserRuleCall_0_0 = (RuleCall)cLowerBoundAssignment_0.eContents().get(0);
-		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cUpperBoundAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cUpperBoundDOUBLEParserRuleCall_2_0 = (RuleCall)cUpperBoundAssignment_2.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cLowerBoundAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cLowerBoundDOUBLEParserRuleCall_1_0 = (RuleCall)cLowerBoundAssignment_1.eContents().get(0);
+		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cUpperBoundAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cUpperBoundDOUBLEParserRuleCall_3_0 = (RuleCall)cUpperBoundAssignment_3.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Interval returns dataRepresentation::Interval:
-		//	lowerBound=DOUBLE ";" upperBound=DOUBLE;
+		//	"[" lowerBound=DOUBLE ";" upperBound=DOUBLE "]";
 		@Override public ParserRule getRule() { return rule; }
 
-		//lowerBound=DOUBLE ";" upperBound=DOUBLE
+		//"[" lowerBound=DOUBLE ";" upperBound=DOUBLE "]"
 		public Group getGroup() { return cGroup; }
 
+		//"["
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+
 		//lowerBound=DOUBLE
-		public Assignment getLowerBoundAssignment_0() { return cLowerBoundAssignment_0; }
+		public Assignment getLowerBoundAssignment_1() { return cLowerBoundAssignment_1; }
 
 		//DOUBLE
-		public RuleCall getLowerBoundDOUBLEParserRuleCall_0_0() { return cLowerBoundDOUBLEParserRuleCall_0_0; }
+		public RuleCall getLowerBoundDOUBLEParserRuleCall_1_0() { return cLowerBoundDOUBLEParserRuleCall_1_0; }
 
 		//";"
-		public Keyword getSemicolonKeyword_1() { return cSemicolonKeyword_1; }
+		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
 
 		//upperBound=DOUBLE
-		public Assignment getUpperBoundAssignment_2() { return cUpperBoundAssignment_2; }
+		public Assignment getUpperBoundAssignment_3() { return cUpperBoundAssignment_3; }
 
 		//DOUBLE
-		public RuleCall getUpperBoundDOUBLEParserRuleCall_2_0() { return cUpperBoundDOUBLEParserRuleCall_2_0; }
+		public RuleCall getUpperBoundDOUBLEParserRuleCall_3_0() { return cUpperBoundDOUBLEParserRuleCall_3_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
 	}
 
 	public class DataConversionElements extends AbstractParserRuleElementFinder {
@@ -696,105 +660,81 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	public class LinearDataConversionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LinearDataConversion");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cWithKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cScalingFactorKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cScalingFactorAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cScalingFactorDOUBLEParserRuleCall_3_0 = (RuleCall)cScalingFactorAssignment_3.eContents().get(0);
-		private final Keyword cAndKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Keyword cOffsetKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Keyword cColonKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cOffsetAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cOffsetDOUBLEParserRuleCall_7_0 = (RuleCall)cOffsetAssignment_7.eContents().get(0);
+		private final Keyword cWithScalingFactorKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cScalingFactorAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cScalingFactorDOUBLEParserRuleCall_2_0 = (RuleCall)cScalingFactorAssignment_2.eContents().get(0);
+		private final Keyword cAndOffsetKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cColonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cOffsetAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cOffsetDOUBLEParserRuleCall_5_0 = (RuleCall)cOffsetAssignment_5.eContents().get(0);
 		
 		//LinearDataConversion returns dataRepresentation::LinearDataConversion:
-		//	"with" "scaling factor" ":" scalingFactor=DOUBLE "and" "offset" ":" offset=DOUBLE;
+		//	"with scaling factor" ":" scalingFactor=DOUBLE "and offset" ":" offset=DOUBLE;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"with" "scaling factor" ":" scalingFactor=DOUBLE "and" "offset" ":" offset=DOUBLE
+		//"with scaling factor" ":" scalingFactor=DOUBLE "and offset" ":" offset=DOUBLE
 		public Group getGroup() { return cGroup; }
 
-		//"with"
-		public Keyword getWithKeyword_0() { return cWithKeyword_0; }
-
-		//"scaling factor"
-		public Keyword getScalingFactorKeyword_1() { return cScalingFactorKeyword_1; }
+		//"with scaling factor"
+		public Keyword getWithScalingFactorKeyword_0() { return cWithScalingFactorKeyword_0; }
 
 		//":"
-		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
+		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 
 		//scalingFactor=DOUBLE
-		public Assignment getScalingFactorAssignment_3() { return cScalingFactorAssignment_3; }
+		public Assignment getScalingFactorAssignment_2() { return cScalingFactorAssignment_2; }
 
 		//DOUBLE
-		public RuleCall getScalingFactorDOUBLEParserRuleCall_3_0() { return cScalingFactorDOUBLEParserRuleCall_3_0; }
+		public RuleCall getScalingFactorDOUBLEParserRuleCall_2_0() { return cScalingFactorDOUBLEParserRuleCall_2_0; }
 
-		//"and"
-		public Keyword getAndKeyword_4() { return cAndKeyword_4; }
-
-		//"offset"
-		public Keyword getOffsetKeyword_5() { return cOffsetKeyword_5; }
+		//"and offset"
+		public Keyword getAndOffsetKeyword_3() { return cAndOffsetKeyword_3; }
 
 		//":"
-		public Keyword getColonKeyword_6() { return cColonKeyword_6; }
+		public Keyword getColonKeyword_4() { return cColonKeyword_4; }
 
 		//offset=DOUBLE
-		public Assignment getOffsetAssignment_7() { return cOffsetAssignment_7; }
+		public Assignment getOffsetAssignment_5() { return cOffsetAssignment_5; }
 
 		//DOUBLE
-		public RuleCall getOffsetDOUBLEParserRuleCall_7_0() { return cOffsetDOUBLEParserRuleCall_7_0; }
+		public RuleCall getOffsetDOUBLEParserRuleCall_5_0() { return cOffsetDOUBLEParserRuleCall_5_0; }
 	}
 
 	public class LinearDataConversionWithIntervalElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LinearDataConversionWithInterval");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLinearMappingKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cFromIntervalAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cFromIntervalIntervalParserRuleCall_2_0 = (RuleCall)cFromIntervalAssignment_2.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Keyword cEqualsSignGreaterThanSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Keyword cLeftSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cToIntervalAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cToIntervalIntervalParserRuleCall_6_0 = (RuleCall)cToIntervalAssignment_6.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cByLinearMappingKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cFromIntervalAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cFromIntervalIntervalParserRuleCall_1_0 = (RuleCall)cFromIntervalAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignGreaterThanSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cToIntervalAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cToIntervalIntervalParserRuleCall_3_0 = (RuleCall)cToIntervalAssignment_3.eContents().get(0);
 		
 		//LinearDataConversionWithInterval returns dataRepresentation::LinearDataConversionWithInterval:
-		//	"linear mapping" "[" fromInterval=Interval "]" "=>" "[" toInterval=Interval "]";
+		//	"by linear mapping" fromInterval=Interval "=>" toInterval=Interval;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"linear mapping" "[" fromInterval=Interval "]" "=>" "[" toInterval=Interval "]"
+		//"by linear mapping" fromInterval=Interval "=>" toInterval=Interval
 		public Group getGroup() { return cGroup; }
 
-		//"linear mapping"
-		public Keyword getLinearMappingKeyword_0() { return cLinearMappingKeyword_0; }
-
-		//"["
-		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
+		//"by linear mapping"
+		public Keyword getByLinearMappingKeyword_0() { return cByLinearMappingKeyword_0; }
 
 		//fromInterval=Interval
-		public Assignment getFromIntervalAssignment_2() { return cFromIntervalAssignment_2; }
+		public Assignment getFromIntervalAssignment_1() { return cFromIntervalAssignment_1; }
 
 		//Interval
-		public RuleCall getFromIntervalIntervalParserRuleCall_2_0() { return cFromIntervalIntervalParserRuleCall_2_0; }
-
-		//"]"
-		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+		public RuleCall getFromIntervalIntervalParserRuleCall_1_0() { return cFromIntervalIntervalParserRuleCall_1_0; }
 
 		//"=>"
-		public Keyword getEqualsSignGreaterThanSignKeyword_4() { return cEqualsSignGreaterThanSignKeyword_4; }
-
-		//"["
-		public Keyword getLeftSquareBracketKeyword_5() { return cLeftSquareBracketKeyword_5; }
+		public Keyword getEqualsSignGreaterThanSignKeyword_2() { return cEqualsSignGreaterThanSignKeyword_2; }
 
 		//toInterval=Interval
-		public Assignment getToIntervalAssignment_6() { return cToIntervalAssignment_6; }
+		public Assignment getToIntervalAssignment_3() { return cToIntervalAssignment_3; }
 
 		//Interval
-		public RuleCall getToIntervalIntervalParserRuleCall_6_0() { return cToIntervalIntervalParserRuleCall_6_0; }
-
-		//"]"
-		public Keyword getRightSquareBracketKeyword_7() { return cRightSquareBracketKeyword_7; }
+		public RuleCall getToIntervalIntervalParserRuleCall_3_0() { return cToIntervalIntervalParserRuleCall_3_0; }
 	}
 
 	public class DOUBLEElements extends AbstractParserRuleElementFinder {
@@ -827,17 +767,33 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class UNITElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UNIT");
-		private final RuleCall cIDTerminalRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cANY_OTHERTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		////BOOLEAN returns ecore::EBoolean: 'true' | 'false';
 		////UNIT returns dataRepresentation::Unit: STRING;
 		////terminal UNIT returns dataRepresentation::Unit : '^'?('a'..'z'|'A'..'Z'/ **'_'* /) ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 		//UNIT returns dataRepresentation::Unit:
-		//	ID;
+		//	ID* (ANY_OTHER ID*)*;
 		@Override public ParserRule getRule() { return rule; }
 
-		//ID
-		public RuleCall getIDTerminalRuleCall() { return cIDTerminalRuleCall; }
+		//ID* (ANY_OTHER ID*)*
+		public Group getGroup() { return cGroup; }
+
+		//ID*
+		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
+
+		//(ANY_OTHER ID*)*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//ANY_OTHER
+		public RuleCall getANY_OTHERTerminalRuleCall_1_0() { return cANY_OTHERTerminalRuleCall_1_0; }
+
+		//ID*
+		public RuleCall getIDTerminalRuleCall_1_1() { return cIDTerminalRuleCall_1_1; }
 	}
 	
 	
@@ -920,12 +876,16 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFLOATFLOATKeyword_8_0 = (Keyword)cFLOATEnumLiteralDeclaration_8.eContents().get(0);
 		private final EnumLiteralDeclaration cDOUBLEEnumLiteralDeclaration_9 = (EnumLiteralDeclaration)cAlternatives.eContents().get(9);
 		private final Keyword cDOUBLEDOUBLEKeyword_9_0 = (Keyword)cDOUBLEEnumLiteralDeclaration_9.eContents().get(0);
+		private final EnumLiteralDeclaration cBOOLEANEnumLiteralDeclaration_10 = (EnumLiteralDeclaration)cAlternatives.eContents().get(10);
+		private final Keyword cBOOLEANBOOLEANKeyword_10_0 = (Keyword)cBOOLEANEnumLiteralDeclaration_10.eContents().get(0);
+		private final EnumLiteralDeclaration cSTRINGEnumLiteralDeclaration_11 = (EnumLiteralDeclaration)cAlternatives.eContents().get(11);
+		private final Keyword cSTRINGSTRINGKeyword_11_0 = (Keyword)cSTRINGEnumLiteralDeclaration_11.eContents().get(0);
 		
 		//enum DataType returns dataRepresentation::DataType:
-		//	INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE;
+		//	INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE | BOOLEAN | STRING;
 		public EnumRule getRule() { return rule; }
 
-		//INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE
+		//INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE | BOOLEAN | STRING
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//INT8
@@ -987,10 +947,20 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"DOUBLE"
 		public Keyword getDOUBLEDOUBLEKeyword_9_0() { return cDOUBLEDOUBLEKeyword_9_0; }
+
+		//BOOLEAN
+		public EnumLiteralDeclaration getBOOLEANEnumLiteralDeclaration_10() { return cBOOLEANEnumLiteralDeclaration_10; }
+
+		//"BOOLEAN"
+		public Keyword getBOOLEANBOOLEANKeyword_10_0() { return cBOOLEANBOOLEANKeyword_10_0; }
+
+		//STRING
+		public EnumLiteralDeclaration getSTRINGEnumLiteralDeclaration_11() { return cSTRINGEnumLiteralDeclaration_11; }
+
+		//"STRING"
+		public Keyword getSTRINGSTRINGKeyword_11_0() { return cSTRINGSTRINGKeyword_11_0; }
 	}
 	
-	private final IdentifiableElementElements pIdentifiableElement;
-	private final NamedElementElements pNamedElement;
 	private final SensorInterfaceElements pSensorInterface;
 	private final EncodingSettingsElements pEncodingSettings;
 	private final CodingElements unknownRuleCoding;
@@ -1021,8 +991,6 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		TerminalsGrammarAccess gaTerminals) {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
-		this.pIdentifiableElement = new IdentifiableElementElements();
-		this.pNamedElement = new NamedElementElements();
 		this.pSensorInterface = new SensorInterfaceElements();
 		this.pEncodingSettings = new EncodingSettingsElements();
 		this.unknownRuleCoding = new CodingElements();
@@ -1072,28 +1040,8 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	
-	//IdentifiableElement returns sensidl::IdentifiableElement:
-	//	NamedElement | EncodingSettings | SensorDataDescription | DataAdjustment | Interval;
-	public IdentifiableElementElements getIdentifiableElementAccess() {
-		return pIdentifiableElement;
-	}
-	
-	public ParserRule getIdentifiableElementRule() {
-		return getIdentifiableElementAccess().getRule();
-	}
-
-	//NamedElement returns sensidl::NamedElement:
-	//	SensorInterface | DataSet | Data;
-	public NamedElementElements getNamedElementAccess() {
-		return pNamedElement;
-	}
-	
-	public ParserRule getNamedElementRule() {
-		return getNamedElementAccess().getRule();
-	}
-
 	//SensorInterface returns sensidl::SensorInterface:
-	//	"sensorInterface" name=ID description=DESCRIPTION? ("with" "identifier" ":" ID=STRING)? "{"
+	//	"sensorInterface" name=ID description=DESCRIPTION? ("with identifier" ":" ID=STRING)? "{"
 	//	encodingSettings=EncodingSettings dataDescription=SensorDataDescription "}";
 	public SensorInterfaceElements getSensorInterfaceAccess() {
 		return pSensorInterface;
@@ -1104,8 +1052,8 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EncodingSettings returns sensidl::EncodingSettings:
-	//	"encoding" coding=Coding "with" endianness=Endianness "alignment" alignment=INT "BIT" ("with" "identifier" ":"
-	//	ID=STRING)?;
+	//	"encoding" ":" coding=Coding "," "endianness" ":" endianness=Endianness "," "alignment" ":" alignment=INT "BIT"
+	//	("with identifier" ":" ID=STRING)?;
 	public EncodingSettingsElements getEncodingSettingsAccess() {
 		return pEncodingSettings;
 	}
@@ -1135,7 +1083,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SensorDataDescription returns dataRepresentation::SensorDataDescription:
-	//	"sensorData" {dataRepresentation::SensorDataDescription} ("with" "identifier" ":" ID=STRING)? "{" dataSets+=DataSet*
+	//	"sensorData" {dataRepresentation::SensorDataDescription} ("with identifier" ":" ID=STRING)? "{" dataSets+=DataSet*
 	//	"}";
 	public SensorDataDescriptionElements getSensorDataDescriptionAccess() {
 		return pSensorDataDescription;
@@ -1146,8 +1094,8 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DataSet returns dataRepresentation::DataSet:
-	//	"dataSet" name=ID ("with" "identifier" ID=STRING)? description=DESCRIPTION? "{" //		(subDataSets+=DataSet)?
-	//	data+=Data* "}";
+	//	"dataSet" name=ID ("uses" parentDataSet=[dataRepresentation::DataSet])? ("with identifier" ":" ID=STRING)?
+	//	description=DESCRIPTION? "{" data+=Data* "}";
 	public DataSetElements getDataSetAccess() {
 		return pDataSet;
 	}
@@ -1167,7 +1115,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MeasurementData returns dataRepresentation::MeasurementData:
-	//	name=ID "as" dataType=DataType "in" unit=UNIT ("with" "identifier" ":" ID=STRING)? ("adjusted by"
+	//	name=ID "as" dataType=DataType "in" unit=UNIT ("with identifier" ":" ID=STRING)? ("adjusted"
 	//	adjustments+=DataAdjustment ("," adjustments+=DataAdjustment)*)? description=DESCRIPTION?;
 	public MeasurementDataElements getMeasurementDataAccess() {
 		return pMeasurementData;
@@ -1178,7 +1126,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NonMeasurementData returns dataRepresentation::NonMeasurementData:
-	//	name=ID "as" dataType=DataType constant?="constant"? ("value" "=" value=STRING)? ("with" "identifier" ":" ID=STRING)?
+	//	name=ID "as" dataType=DataType constant?="constant"? ("value" "=" value=STRING)? ("with identifier" ":" ID=STRING)?
 	//	description=DESCRIPTION?;
 	public NonMeasurementDataElements getNonMeasurementDataAccess() {
 		return pNonMeasurementData;
@@ -1189,7 +1137,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum DataType returns dataRepresentation::DataType:
-	//	INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE;
+	//	INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE | BOOLEAN | STRING;
 	public DataTypeElements getDataTypeAccess() {
 		return unknownRuleDataType;
 	}
@@ -1209,7 +1157,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DataRange returns dataRepresentation::DataRange:
-	//	"with" "range" range=Interval ";";
+	//	"with range" range=Interval;
 	public DataRangeElements getDataRangeAccess() {
 		return pDataRange;
 	}
@@ -1219,7 +1167,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Interval returns dataRepresentation::Interval:
-	//	lowerBound=DOUBLE ";" upperBound=DOUBLE;
+	//	"[" lowerBound=DOUBLE ";" upperBound=DOUBLE "]";
 	public IntervalElements getIntervalAccess() {
 		return pInterval;
 	}
@@ -1239,7 +1187,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LinearDataConversion returns dataRepresentation::LinearDataConversion:
-	//	"with" "scaling factor" ":" scalingFactor=DOUBLE "and" "offset" ":" offset=DOUBLE;
+	//	"with scaling factor" ":" scalingFactor=DOUBLE "and offset" ":" offset=DOUBLE;
 	public LinearDataConversionElements getLinearDataConversionAccess() {
 		return pLinearDataConversion;
 	}
@@ -1249,7 +1197,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LinearDataConversionWithInterval returns dataRepresentation::LinearDataConversionWithInterval:
-	//	"linear mapping" "[" fromInterval=Interval "]" "=>" "[" toInterval=Interval "]";
+	//	"by linear mapping" fromInterval=Interval "=>" toInterval=Interval;
 	public LinearDataConversionWithIntervalElements getLinearDataConversionWithIntervalAccess() {
 		return pLinearDataConversionWithInterval;
 	}
@@ -1272,7 +1220,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	////UNIT returns dataRepresentation::Unit: STRING;
 	////terminal UNIT returns dataRepresentation::Unit : '^'?('a'..'z'|'A'..'Z'/ **'_'* /) ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 	//UNIT returns dataRepresentation::Unit:
-	//	ID;
+	//	ID* (ANY_OTHER ID*)*;
 	public UNITElements getUNITAccess() {
 		return pUNIT;
 	}

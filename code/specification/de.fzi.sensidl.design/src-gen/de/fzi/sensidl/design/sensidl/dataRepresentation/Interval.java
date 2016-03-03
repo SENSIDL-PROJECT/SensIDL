@@ -11,6 +11,7 @@ import de.fzi.sensidl.design.sensidl.IdentifiableElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getLowerBound <em>Lower Bound</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getUpperBound <em>Upper Bound</em>}</li>
@@ -18,7 +19,6 @@ import de.fzi.sensidl.design.sensidl.IdentifiableElement;
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getLinearDataConversionTo <em>Linear Data Conversion To</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Interval#getDataRange <em>Data Range</em>}</li>
  * </ul>
- * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getInterval()
  * @model

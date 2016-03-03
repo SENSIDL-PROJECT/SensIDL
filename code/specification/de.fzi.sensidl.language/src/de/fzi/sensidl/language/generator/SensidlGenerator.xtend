@@ -12,6 +12,7 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
 import org.apache.log4j.Logger
 import org.apache.log4j.Level
+import de.fzi.sensidl.language.generator.SensIDLConstants.GenerationLanguage
 
 /**
  * Der Generator für SensIDL.
@@ -34,6 +35,8 @@ class SensidlGenerator implements IGenerator {
 	
 	private static String EXTENSION = "sensidl"
 	
+	private GenerationLanguage generationLanguage = GenerationLanguage.ALL
+//	
 	/**
 	 * Der Einstiegspunkt für den Generator für SensIDL.
 	 * <p>
@@ -48,7 +51,7 @@ class SensidlGenerator implements IGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		setUpLogger()
 		
-		//new JavaDTOGenerator(resource, fsa).generate //starts the Java Code Generator
+		codeGenerator.generationLanguage = generationLanguage
 		codeGenerator.doGenerate(resource, fsa)
 		
 		logger.info("Code was generated")
@@ -68,6 +71,10 @@ class SensidlGenerator implements IGenerator {
 		EcorePersistenceHelper.persistEcoreModel(dataModel, URI.createURI(fileName), fsa)
 		
 		logger.info("Model was successfully persisted.")
+	}
+	
+	def setGenerationLanguage(GenerationLanguage generationLanguage) {
+		this.generationLanguage = generationLanguage
 	}
 	
 	def setUpLogger() {

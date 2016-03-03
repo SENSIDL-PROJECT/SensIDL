@@ -83,7 +83,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Constraint:
-	 *     (name=ID ID=STRING? description=DESCRIPTION? data+=Data*)
+	 *     (name=ID parentDataSet=[DataSet|ID]? ID=STRING? description=DESCRIPTION? data+=Data*)
 	 */
 	protected void sequence_DataSet(EObject context, DataSet semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

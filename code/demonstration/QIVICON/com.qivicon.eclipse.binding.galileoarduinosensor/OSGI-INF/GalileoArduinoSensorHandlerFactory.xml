@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright 2014, 2015, Deutsche Telekom AG. All rights reserved.
+-->
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="com.qivicon.eclipse.binding.galileoarduinosensor.internal.GalileoArduinoSensorHandlerFactory">
+
+   <implementation class="com.qivicon.eclipse.binding.galileoarduinosensor.internal.GalileoArduinoSensorHandlerFactory"/>
+
+   <service>
+      <provide interface="org.eclipse.smarthome.core.thing.binding.ThingHandlerFactory"/>
+   </service>
+
+</scr:component>

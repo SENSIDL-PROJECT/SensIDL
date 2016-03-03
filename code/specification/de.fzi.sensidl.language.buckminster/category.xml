@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/de.fzi.sensidl.language.feature.example_1.0.0.qualifier.jar" id="de.fzi.sensidl.language.feature.example" version="1.0.0.qualifier">
+      <category name="sensidl"/>
+   </feature>
+   <feature url="features/de.fzi.sensidl.language.feature.sdk_1.0.0.qualifier.jar" id="de.fzi.sensidl.language.feature.sdk" version="1.0.0.qualifier">
+      <category name="sensidl"/>
+   </feature>
+   <feature id="de.fzi.sensidl.language.feature.sdk.source" version="1.0.0.qualifier">
+      <category name="sensidl"/>
+   </feature>
+   <feature id="de.fzi.sensidl.language.feature.example.source" version="1.0.0.qualifier">
+      <category name="sensidl"/>
+   </feature>
+   <category-def name="sensidl" label="SensIDL"/>
+</site>

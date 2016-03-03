@@ -11,8 +11,8 @@ import org.eclipse.xtext.generator.IFileSystemAccess
  */
 interface ISensidlCodeGenerator {
 	/**
-	 * @param input - the input {@link DataModel} for which to create code
-	 * @param fsa - file system access to be used to generate files
+	 * @param input Represents he input of the {@link DataModel}.
+	 * @param fsa The file system access is used to generate files.
 	 */
 	def void doGenerate(Resource input, IFileSystemAccess fsa);
 }

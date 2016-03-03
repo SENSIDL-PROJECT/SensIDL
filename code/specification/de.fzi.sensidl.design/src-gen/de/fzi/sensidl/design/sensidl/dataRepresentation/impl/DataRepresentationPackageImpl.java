@@ -701,6 +701,8 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 		addEEnumLiteral(dataTypeEEnum, DataType.UINT64);
 		addEEnumLiteral(dataTypeEEnum, DataType.FLOAT);
 		addEEnumLiteral(dataTypeEEnum, DataType.DOUBLE);
+		addEEnumLiteral(dataTypeEEnum, DataType.BOOLEAN);
+		addEEnumLiteral(dataTypeEEnum, DataType.STRING);
 
 		// Initialize data types
 		initEDataType(unitEDataType, Unit.class, "Unit", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

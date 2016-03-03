@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SensIDL Example Umgebungskachel
+Bundle-SymbolicName: de.fzi.sensidl.example.umgebungskachel
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: FZI Forschungszentrum Informatik

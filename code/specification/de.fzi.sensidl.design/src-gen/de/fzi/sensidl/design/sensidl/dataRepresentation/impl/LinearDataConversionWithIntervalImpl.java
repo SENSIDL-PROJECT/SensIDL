@@ -20,11 +20,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.LinearDataConversionWithIntervalImpl#getFromInterval <em>From Interval</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.LinearDataConversionWithIntervalImpl#getToInterval <em>To Interval</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

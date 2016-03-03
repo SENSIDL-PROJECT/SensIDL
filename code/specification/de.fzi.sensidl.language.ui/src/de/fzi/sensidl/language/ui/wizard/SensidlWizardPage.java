@@ -6,6 +6,8 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FormAttachment;
@@ -32,8 +34,14 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
  *
  */
 public class SensidlWizardPage extends WizardPage {
-
-	private static final String[] GENERATION_LANGUAGES = new String[] { "Java", "JavaScript", "C", "C#", "All" };
+	/**
+	 * contains all generation languages that are shown in the generation
+	 * wizard. The languages are: <code>Java</code>,
+	 * <code>Java Plug-in Project</code>, <code>JavaScript</code>,
+	 * <code>C</code>, <code>C#</code> and <code>All</code>
+	 */
+	public static final String[] GENERATION_LANGUAGES_STRINGS = new String[] { "Java", "Java Plug-in Project",
+			"JavaScript", "C", "C#", "All" };
 
 	// first row Elements
 	private Label label_ModelPath;
@@ -44,6 +52,7 @@ public class SensidlWizardPage extends WizardPage {
 
 	// second row Elements
 	private Label label_Path;
+	private Label label_JavaProjectPathInfomation;
 	private Button button_FileSystemPath;
 	private Button button_WorkspacePath;
 	private Text textfield_Path;
@@ -79,7 +88,7 @@ public class SensidlWizardPage extends WizardPage {
 
 	@Override
 	public void performHelp() {
-		PlatformUI.getWorkbench().getHelpSystem().displayHelp("de.fzi.sensidl.help.sensidl_wizard_help_documentation");
+		// PlatformUI.getWorkbench().getHelpSystem().displayHelp("de.fzi.sensidl.help.sensidl_wizard_help_documentation");
 	}
 
 	@Override
@@ -128,7 +137,7 @@ public class SensidlWizardPage extends WizardPage {
 				dialog.setFilterExtensions(new String[] { "*.sidl" });
 				// set the workspace directory as default:
 				dialog.setFilterPath(ResourcesPlugin.getWorkspace().getRoot().getLocation().toString());
-				textfield_ModelPath.setText(dialog.open());
+				textfield_ModelPath.setText(dialog.open().replaceAll("\\\\", "/"));
 
 			}
 
@@ -192,6 +201,31 @@ public class SensidlWizardPage extends WizardPage {
 		position5.right = new FormAttachment(button_WorkspacePath, -5);
 		textfield_Path.setLayoutData(position5);
 
+		textfield_Path.addModifyListener(new ModifyListener() {
+
+			@Override
+			public void modifyText(ModifyEvent e) {
+				if (combo_language.getText().equals(GENERATION_LANGUAGES_STRINGS[1])) {
+					if (textfield_Path.getText().startsWith("platform:/resource/")) {
+						if (textfield_Path.getText().replace("platform:/resource/", "").contains("/")) {
+							setPageComplete(false);
+							label_JavaProjectPathInfomation.setVisible(true);
+						} else {
+							setPageComplete(true);
+							label_JavaProjectPathInfomation.setVisible(false);
+						}
+					} else {
+						setPageComplete(false);
+						label_JavaProjectPathInfomation.setVisible(true);
+					}
+				} else {
+					setPageComplete(true);
+					label_JavaProjectPathInfomation.setVisible(false);
+				}
+
+			}
+		});
+
 		button_FileSystemPath.addSelectionListener(new SelectionListener() {
 
 			@Override
@@ -199,7 +233,7 @@ public class SensidlWizardPage extends WizardPage {
 				DirectoryDialog dialog = new DirectoryDialog(new Shell(), SWT.OPEN);
 				// set the workspace directory as default:
 				dialog.setFilterPath(ResourcesPlugin.getWorkspace().getRoot().getLocation().toString());
-				textfield_Path.setText(dialog.open());
+				textfield_Path.setText(dialog.open().replaceAll("\\\\", "/"));
 
 			}
 
@@ -233,13 +267,47 @@ public class SensidlWizardPage extends WizardPage {
 
 		// third row
 		combo_language = new Combo(composite, SWT.READ_ONLY);
-		combo_language.setItems(GENERATION_LANGUAGES);
+		combo_language.setItems(GENERATION_LANGUAGES_STRINGS);
 		combo_language.setText(text_language);
 		FormData position8 = new FormData();
 		position8.left = new FormAttachment(0, 0);
 		position8.top = new FormAttachment(button_WorkspacePath, 10);
 		position8.right = new FormAttachment(100, 0);
 		combo_language.setLayoutData(position8);
+
+		combo_language.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if (combo_language.getText().equals(GENERATION_LANGUAGES_STRINGS[1])) {
+					button_FileSystemPath.setEnabled(false);
+				} else {
+					button_FileSystemPath.setEnabled(true);
+					setPageComplete(true);
+					label_JavaProjectPathInfomation.setVisible(false);
+				}
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+				widgetSelected(e);
+
+			}
+		});
+
+		if (combo_language.getText().equals(GENERATION_LANGUAGES_STRINGS[1])) {
+			button_FileSystemPath.setEnabled(false);
+		} else {
+			button_FileSystemPath.setEnabled(true);
+		}
+
+		label_JavaProjectPathInfomation = new Label(composite, SWT.READ_ONLY);
+		label_JavaProjectPathInfomation
+				.setText("Warning: the Java Project has to be at the root of the current workspace");
+		FormData position9 = new FormData();
+		position9.top = new FormAttachment(combo_language, 10);
+		label_JavaProjectPathInfomation.setLayoutData(position9);
+		label_JavaProjectPathInfomation.setVisible(false);
 
 		setControl(composite);
 	}

@@ -11,11 +11,11 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.SensorInterface#getEncodingSettings <em>Encoding Settings</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.SensorInterface#getDataDescription <em>Data Description</em>}</li>
  * </ul>
- * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getSensorInterface()
  * @model

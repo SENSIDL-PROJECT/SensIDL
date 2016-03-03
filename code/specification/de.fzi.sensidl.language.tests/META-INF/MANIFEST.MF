@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: de.fzi.sensidl.language.tests
-Bundle-Vendor: My Company
+Bundle-Name: SensIDL Language Tests
+Bundle-Vendor: FZI Forschungszentrum Informatik
 Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: de.fzi.sensidl.language.tests; singleton:=true
 Bundle-ActivationPolicy: lazy
@@ -11,14 +11,18 @@ Require-Bundle: de.fzi.sensidl.language,
  org.eclipse.xtext.junit4,
  org.eclipse.ui.workbench;resolution:=optional,
  org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
- org.eclipse.xtext.xbase.lib
-Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib,
+ com.google.guava;bundle-version="15.0.0",
+ com.google.inject;bundle-version="3.0.0"
+Import-Package: de.fzi.sensidl.design.sensidl.dataRepresentation.impl,
+ org.apache.commons.io;version="1.6.0",
+ org.apache.log4j,
+ org.hamcrest.core,
  org.junit;version="4.5.0",
  org.junit.runner;version="4.5.0",
  org.junit.runner.manipulation;version="4.5.0",
  org.junit.runner.notification;version="4.5.0",
  org.junit.runners;version="4.5.0",
- org.junit.runners.model;version="4.5.0",
- org.hamcrest.core
+ org.junit.runners.model;version="4.5.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: de.fzi.sensidl.language

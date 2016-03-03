@@ -16,11 +16,15 @@
 			href="#non_si_units">NonSI-Units</a>. Furthermore the user can <a
 			href="new_units.html">add new units</a>.
 	</p>
+	
+	<p> <i><b>Note</b>: Some units (for example °C) may be represented by a '?' in the generated 
+	Files (probably best recognizable at the comments in the generated Java files). This is so, 
+	because JScience converts these units to a String which can't be shown by the Editor. This is 
+	the only restriction that happens with these units.</i> </p>
 
 	<a name="si_units"></a>
 	<h3>SI Units</h3>
-	<p>These are the units JScience sees as SI-Units. Units with * are
-		currently not available</p>
+	<p>These are the units JScience handles as SI-Units.</p>
 
 	<table BORDER="3" CELLSPACING="1" CELLPADDING="1">
 		<tr>
@@ -40,11 +44,11 @@
 			<td>bit</td>
 		</tr>
 		<tr>
-			<td>Canela</td>
+			<td>Candela</td>
 			<td>cd</td>
 		</tr>
 		<tr>
-			<td>Celsius*</td>
+			<td>Celsius</td>
 			<td>°C</td>
 		</tr>
 		<tr>
@@ -52,16 +56,8 @@
 			<td>C</td>
 		</tr>
 		<tr>
-			<td>Cubic Metre*<br></td>
-			<td>m³</td>
-		</tr>
-		<tr>
 			<td>Farad</td>
 			<td>F</td>
-		</tr>
-		<tr>
-			<td>Gram <br></td>
-			<td>g</td>
 		</tr>
 		<tr>
 			<td>Gray</td>
@@ -89,7 +85,7 @@
 		</tr>
 		<tr>
 			<td>Kilogram <br></td>
-			<td>Kg</td>
+			<td>Kg (also g, µg)</td>
 		</tr>
 		<tr>
 			<td>Lumen <br></td>
@@ -104,7 +100,15 @@
 			<td>m</td>
 		</tr>
 		<tr>
-			<td>Mole <br></td>
+			<td>Square Metre<br></td>
+			<td>m²</td>
+		</tr>
+		<tr>
+			<td>Cubic Metre<br></td>
+			<td>m³</td>
+		</tr>
+		<tr>
+			<td>Mole<br></td>
 			<td>mol</td>
 		</tr>
 		<tr>
@@ -116,15 +120,15 @@
 			<td>Ohm</td>
 		</tr>
 		<tr>
-			<td>Pascal <br></td>
+			<td>Pascal<br></td>
 			<td>Pa</td>
 		</tr>
 		<tr>
-			<td>Radian <br></td>
+			<td>Radian<br></td>
 			<td>rad</td>
 		</tr>
 		<tr>
-			<td>Second <br></td>
+			<td>Second<br></td>
 			<td>s</td>
 		</tr>
 		<tr>
@@ -134,10 +138,6 @@
 		<tr>
 			<td>Sievert</td>
 			<td>Sv</td>
-		</tr>
-		<tr>
-			<td>Square Metre*<br></td>
-			<td>m²</td>
 		</tr>
 		<tr>
 			<td>Steradian</td>
@@ -164,15 +164,14 @@
 
 	<a name="non_si_units"></a>
 	<h3>NonSI Units</h3>
-	<p>These are the units Jscience sees as NonSI-Units. units with *
-		are currently not available.</p>
+	<p>These are the units Jscience handles as NonSI-Units.
 	<table BORDER="3" CELLSPACING="1" CELLPADDING="1">
 		<tr>
 			<th>Unit</th>
 			<th>Abbreviation</th>
 		</tr>
 		<tr>
-			<td>Angstrom*</td>
+			<td>Angstrom</td>
 			<td>Å</td>
 		</tr>
 		<tr>
@@ -224,7 +223,7 @@
 			<td>day</td>
 		</tr>
 		<tr>
-			<td>Day Sidereal*<br></td>
+			<td>Day Sidereal<br></td>
 			<td>day_sidereal<br></td>
 		</tr>
 		<tr>
@@ -232,7 +231,7 @@
 			<td>dB</td>
 		</tr>
 		<tr>
-			<td>Degree Angle*<br></td>
+			<td>Degree Angle<br></td>
 			<td>°</td>
 		</tr>
 		<tr>
@@ -256,7 +255,7 @@
 			<td>erg</td>
 		</tr>
 		<tr>
-			<td>Fahrenheit*</td>
+			<td>Fahrenheit</td>
 			<td>°F</td>
 		</tr>
 		<tr>
@@ -268,6 +267,10 @@
 			<td>ft</td>
 		</tr>
 		<tr>
+			<td>Foot Survey US</td>
+			<td>foot_survey_us</td>
+		</tr>
+		<tr>
 			<td>Franklin<br></td>
 			<td>Fr</td>
 		</tr>
@@ -276,7 +279,15 @@
 			<td>grav</td>
 		</tr>
 		<tr>
-			<td>Gallon uk*<br></td>
+			<td>Gallon liquid US<br></td>
+			<td>gal</td>
+		</tr>
+		<tr>
+			<td>Gallon dry US<br></td>
+			<td>gal_dry_us</td>
+		</tr>
+		<tr>
+			<td>Gallon UK<br></td>
 			<td>gal_uk</td>
 		</tr>
 		<tr>
@@ -299,24 +310,29 @@
 			<td>Horsepower</td>
 			<td>hp</td>
 		</tr>
+		
 		<tr>
 			<td>Hour</td>
 			<td>h</td>
 		</tr>
 		<tr>
-			<td>Inch*<br></td>
-			<td>in</td>
+			<td>Inch of Mercury</td>
+			<td>inHg</td>
+		</tr>
+		<tr>
+			<td>Millimeter of Mercury</td>
+			<td>mmHg</td>
 		</tr>
 		<tr>
 			<td>Kilogram force<br></td>
 			<td>kgf</td>
 		</tr>
 		<tr>
-			<td>Knot <br></td>
+			<td>Knot<br></td>
 			<td>kn</td>
 		</tr>
 		<tr>
-			<td>Lambert <br></td>
+			<td>Lambert<br></td>
 			<td>La</td>
 		</tr>
 		<tr>
@@ -325,11 +341,11 @@
 		</tr>
 		<tr>
 			<td>Litre</td>
-			<td>L (also µL*, mL, cL, dL)<br></td>
+			<td>L (also µL, mL, cL, dL)<br></td>
 		</tr>
 		<tr>
-			<td>Mach <br></td>
-			<td>Mach <br></td>
+			<td>Mach<br></td>
+			<td>Mach<br></td>
 		</tr>
 		<tr>
 			<td>Maxwell</td>
@@ -344,12 +360,12 @@
 			<td>mi</td>
 		</tr>
 		<tr>
-			<td>Minute<br></td>
-			<td>min</td>
+			<td>Miles per hour</td>
+			<td>mph</td>
 		</tr>
 		<tr>
-			<td>Minute Angle*<br></td>
-			<td>'</td>
+			<td>Minute<br></td>
+			<td>min</td>
 		</tr>
 		<tr>
 			<td>Month</td>
@@ -364,19 +380,15 @@
 			<td>oz</td>
 		</tr>
 		<tr>
-			<td>Ounce Liquid uk*<br></td>
-			<td>oz_fl_uk</td>
-		</tr>
-		<tr>
-			<td>Ounce liquid us*<br></td>
-			<td>oz_fl</td>
+			<td>Ounce Liquid uk<br></td>
+			<td>oz_uk</td>
 		</tr>
 		<tr>
 			<td>Parsec<br></td>
 			<td>pc</td>
 		</tr>
 		<tr>
-			<td>Percent*<br></td>
+			<td>Percent<br></td>
 			<td>%</td>
 		</tr>
 		<tr>
@@ -392,11 +404,15 @@
 			<td>lb</td>
 		</tr>
 		<tr>
+			<td>Pound Force<br></td>
+			<td>lbf</td>
+		</tr>
+		<tr>
 			<td>Rad <br></td>
 			<td>rd</td>
 		</tr>
 		<tr>
-			<td>Rankine*</td>
+			<td>Rankine</td>
 			<td>°R</td>
 		</tr>
 		<tr>
@@ -416,19 +432,15 @@
 			<td>Rd</td>
 		</tr>
 		<tr>
-			<td>Second Angle*<br></td>
-			<td>"</td>
-		</tr>
-		<tr>
 			<td>Sphere</td>
 			<td>sphere</td>
 		</tr>
 		<tr>
-			<td>Ton UK*<br></td>
+			<td>Ton UK<br></td>
 			<td>ton_uk</td>
 		</tr>
 		<tr>
-			<td>Ton US*<br></td>
+			<td>Ton US<br></td>
 			<td>ton_us</td>
 		</tr>
 		<tr>
@@ -442,6 +454,14 @@
 		<tr>
 			<td>Year</td>
 			<td>year</td>
+		</tr>
+		<tr>
+			<td>Year calendar</td>
+			<td>year_calendar</td>
+		</tr>
+		<tr>
+			<td>Year sidereal</td>
+			<td>year_sidereal</td>
 		</tr>
 
 	</table>
