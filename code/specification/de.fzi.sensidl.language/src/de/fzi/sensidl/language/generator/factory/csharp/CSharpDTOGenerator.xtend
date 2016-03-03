@@ -43,6 +43,11 @@ class CSharpDTOGenerator implements IDTOGenerator {
 	}
 	
 
+	/**
+	 * The constructor calls the constructor of the superclass to set a list of DataSet-elements and a member-variable.
+	 * @param newDataSet Represents the list of DataSet-elements.
+	 * @param createProject Indicates if a project should be created.
+	 */
 	new(List<DataSet> newDataSet,boolean createProject) {
 		this.dataSet = newDataSet
 		this.createProject = createProject
