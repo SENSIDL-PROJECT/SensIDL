@@ -16,7 +16,15 @@ class CSharpGenerator implements ICodeGenerator {
  	* @see ICodeGenerator#generateDTO()
  	*/
 	override generateDTO(List<DataSet> dataSet) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		new CSharpDTOGenerator(dataSet).generate
+	}
+	
+	/**
+	 * starts the JavaPluginProjectGenerator and afterwards the JavaDTOGenerator
+	 */
+	def generatePluginProject(List<DataSet> dataSet) {
+		CSharpPluginProjectGenerator.createPluginProject
+		new CSharpDTOGenerator(dataSet, true).generate
 	}
 	
 	/**
@@ -39,6 +47,13 @@ class CSharpGenerator implements ICodeGenerator {
  	*@see ICodeGenerator#generateUtilityClass()
  	*/
 	override generateUtilityClass(List<MeasurementData> data) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		new CSharpUtilityGenerator(data).generate
+	}
+
+	/**
+	 * if a Java Plug-in Project is generated the JavaUtilityGenerator needs a parameter that indicates so 
+	 */
+	def generateUtilityClass(List<MeasurementData> data, boolean createProject) {
+		new CSharpUtilityGenerator(data, createProject).generate
 	}
 }

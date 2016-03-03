@@ -160,16 +160,8 @@ class CSharpDTOGenerator implements IDTOGenerator {
 			}
 		}
 		return constructorString
-}
+	}
 
-	/**
-	 * Adds the file extension.
-	 * @see IDTOGenerator#addFileExtensionTo(String)
-	 */
-	override addFileExtensionTo(String ClassName) {
-		return ClassName + SensIDLConstants.CSharp_EXTENSION;
-
-}
 
 
 	/**
@@ -406,7 +398,14 @@ class CSharpDTOGenerator implements IDTOGenerator {
 		'''
 	}
 	
-	
+	/**
+	 * Adds the file extension.
+	 * @see IDTOGenerator#addFileExtensionTo(String)
+	 */
+	override addFileExtensionTo(String ClassName) {
+		return ClassName + SensIDLConstants.CSharp_EXTENSION;
+
+	}
 	
 	
 }
