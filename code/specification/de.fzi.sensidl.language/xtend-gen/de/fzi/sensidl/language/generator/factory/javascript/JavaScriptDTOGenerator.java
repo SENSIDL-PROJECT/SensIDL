@@ -41,12 +41,16 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
   
   private List<DataSet> dataSet;
   
+  /**
+   * The constructor calls the constructor of the superclass to set a list of DataSet-elements.
+   * @param newDataSet Represents the list of DataSet-elements.
+   */
   public JavaScriptDTOGenerator(final List<DataSet> newDataSet) {
     this.dataSet = newDataSet;
   }
   
   /**
-   * Generates the .js files
+   * @see IDTOGenerator#generate()
    */
   @Override
   public HashMap<String, CharSequence> generate() {

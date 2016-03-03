@@ -9,13 +9,14 @@ import java.util.HashMap
 interface IUtilityGenerator {
 	/**
 	 * Main generation method for the utility class.
+	 * @return a HashMap which maps the filename to generation-code represented as CharSequence.
 	 */
 	abstract def HashMap<String, CharSequence> generate();
 	
 	/**
 	 * Adds the corresponding extension to the generated file.
-	 * @param ClassName - name of the file (equivalent to class name)
-	 * @return the filename with extension
+	 * @param ClassName The name of the file (equivalent to class name).
+	 * @return the filename with extension.
 	 */
 	abstract def String addFileExtensionTo(String ClassName);
 }

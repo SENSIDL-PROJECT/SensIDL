@@ -12,20 +12,22 @@ import org.apache.log4j.Logger;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 /**
- * This Generator generates the main header file which includes all header files of
- * all generated DTO structs.
+ * This class implements a part of the CDTOGenerator. This class is responsible for
+ * the main header file which includes all header files of all generated DTO structs.
  */
 @SuppressWarnings("all")
 public class MainDTOHeaderFileGenerator extends CDTOGenerator {
   private static Logger logger = Logger.getLogger(MainDTOHeaderFileGenerator.class);
   
+  /**
+   * The constructor calls the constructor of the superclass to set a list of DataSet-elements.
+   * @param newDataSet Represents the list of DataSet-elements.
+   */
   public MainDTOHeaderFileGenerator(final List<DataSet> newDataSet) {
     super(newDataSet);
   }
   
   /**
-   * Generates the main header file which includes all header files of all generated
-   * DTO structs.
    * @see IDTOGenerator#generate()
    */
   @Override

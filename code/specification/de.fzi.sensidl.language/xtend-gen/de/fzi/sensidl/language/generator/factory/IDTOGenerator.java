@@ -11,21 +11,22 @@ import java.util.HashMap;
 public interface IDTOGenerator {
   /**
    * Main generation method for the DTO class.
-   * @param fsa file system access for file generation
+   * @return a HashMap which maps the filename to generation-code
+   * 		  represented as CharSequence.
    */
   public abstract HashMap<String, CharSequence> generate();
   
   /**
    * Adds the corresponding extension to the generated file.
-   * @param ClassName - name of the file (equivalent to class name)
+   * @param ClassName The name of the file (equivalent to class name)
    * @return the filename with extension
    */
   public abstract String addFileExtensionTo(final String ClassName);
   
   /**
    * Returns the name of the datatype in the generated language.
-   * @param sensidlType - datatype
-   * @return the datatype
+   * @param data Represents the Data-element.
+   * @return the corresponding data type.
    */
   public abstract String toTypeName(final Data data);
 }

@@ -17,6 +17,9 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
+/**
+ * Java code generator for the utility class.
+ */
 @SuppressWarnings("all")
 public class JavaUtilityGenerator implements IUtilityGenerator {
   private static Logger logger = Logger.getLogger(JavaUtilityGenerator.class);
@@ -25,15 +28,28 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
   
   private boolean createProject = false;
   
+  /**
+   * The constructor calls the constructor of the superclass to set a list of Data-elements.
+   * @param newData Represents the list of DataSet-elements.
+   */
   public JavaUtilityGenerator(final List<MeasurementData> newData) {
     this.data = newData;
   }
   
+  /**
+   * The constructor calls the constructor of the superclass to set a list of Data-elements
+   * and a member-variable.
+   * @param newData 		Represents the list of DataSet-elements.
+   * @param createProject Indicates if a project should be created.
+   */
   public JavaUtilityGenerator(final List<MeasurementData> newData, final boolean createProject) {
     this.data = newData;
     this.createProject = createProject;
   }
   
+  /**
+   * @see IUtilityGenerator#generate()
+   */
   @Override
   public HashMap<String, CharSequence> generate() {
     HashMap<String, CharSequence> _xblockexpression = null;
@@ -282,6 +298,9 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
     return _builder;
   }
   
+  /**
+   * @see IUtilityGenerator#addFileExtensionTo(String)
+   */
   @Override
   public String addFileExtensionTo(final String ClassName) {
     return (ClassName + SensIDLConstants.JAVA_EXTENSION);

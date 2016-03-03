@@ -52,6 +52,11 @@ public class DataTypes {
     }
   });
   
+  /**
+   * Maps a given DataType to the C equivalent data type.
+   * @param dataType Corresponds to the specified sensidl data type.
+   * @return the C equivalent data type.
+   */
   public static String getDataTypeBy(final DataType dataType) {
     return DataTypes.dataTypesMap.get(dataType);
   }

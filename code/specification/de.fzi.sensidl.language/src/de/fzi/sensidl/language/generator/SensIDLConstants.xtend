@@ -1,5 +1,8 @@
 package de.fzi.sensidl.language.generator
 
+/**
+ * This class should provide a common place for specific sensidl constants.
+ */
 class SensIDLConstants {
 	public static val C_EXTENSION = ".c"
 	public static val MARSHAL_FILE = "DataMarshalling"

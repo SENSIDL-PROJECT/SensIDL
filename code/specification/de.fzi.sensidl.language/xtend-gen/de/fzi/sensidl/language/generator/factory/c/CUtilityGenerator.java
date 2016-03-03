@@ -10,16 +10,26 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
+/**
+ * C code generator for the utility header-file.
+ */
 @SuppressWarnings("all")
 public class CUtilityGenerator implements IUtilityGenerator {
   private static Logger logger = Logger.getLogger(CUtilityGenerator.class);
   
   private List<MeasurementData> data;
   
+  /**
+   * The constructor calls the constructor of the superclass to set a list of Data-elements.
+   * @param newData Represents the list of DataSet-elements.
+   */
   public CUtilityGenerator(final List<MeasurementData> newData) {
     this.data = newData;
   }
   
+  /**
+   * @see IUtilityGenerator#generate()
+   */
   @Override
   public HashMap<String, CharSequence> generate() {
     HashMap<String, CharSequence> _xblockexpression = null;
@@ -49,6 +59,9 @@ public class CUtilityGenerator implements IUtilityGenerator {
     return _builder;
   }
   
+  /**
+   * @see IUtilityGenerator#addFileExtensionTo(String)
+   */
   @Override
   public String addFileExtensionTo(final String ClassName) {
     return (ClassName + SensIDLConstants.HEADER_EXTENSION);

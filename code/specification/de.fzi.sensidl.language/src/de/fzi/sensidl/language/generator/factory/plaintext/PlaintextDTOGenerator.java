@@ -43,9 +43,7 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 	}
 
 	/**
-	 * Generates the .txt files
-	 * 
-	 * @return
+	 * @see IDTOGenerator#generate()
 	 */
 	@Override public HashMap<String, CharSequence> generate() {
 		PlaintextDTOGenerator.logger.info("Start with text generation.");
@@ -219,11 +217,19 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 		return _builder;
 	}
 
-	@Override public String addFileExtensionTo(final String ClassName) {
+	/**
+	 * @see IDTOGenerator#addFileExtensionTo(String)
+	 */
+	@Override 
+	public String addFileExtensionTo(final String ClassName) {
 		return (ClassName + PlaintextDTOGenerator.TEXT_EXTENSION);
 	}
 
-	@Override public String toTypeName(final Data data) {
+	/**
+	 * @see IDTOGenerator#toTypeName(Data)
+	 */
+	@Override 
+	public String toTypeName(final Data data) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub");
 	}
 

@@ -3,8 +3,10 @@ package de.fzi.sensidl.language.generator.generationstep.skeletongenerationstep;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.language.generator.IExecuter;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
+import de.fzi.sensidl.language.generator.SensIDLConstants.GenerationLanguage;
 import de.fzi.sensidl.language.generator.elementfilter.ElementFilter;
 import de.fzi.sensidl.language.generator.factory.c.CGenerator;
+import de.fzi.sensidl.language.generator.factory.csharp.CSharpGenerator;
 import de.fzi.sensidl.language.generator.factory.java.JavaGenerator;
 import de.fzi.sensidl.language.generator.factory.javascript.JavaScriptGenerator;
 import de.fzi.sensidl.language.generator.factory.plaintext.PlaintextGenerator;
@@ -14,21 +16,39 @@ import java.util.List;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
+/**
+ * The SkeletonGenerationStep is a concrete subclass of the GenerationStep class. The main
+ * task of the class is to generate the base structure (code-skeletons) of all files.
+ */
 @SuppressWarnings("all")
 public class SkeletonGenerationStep extends GenerationStep {
   private List<DataSet> dataSet;
   
+  /**
+   * The constructor calls the needed data filtered by a
+   * concrete element-filter.
+   * @param filter - represents a base filter which can be substituted by a specific
+   * 				   subclass that filters a particular set of elements.
+   */
   public SkeletonGenerationStep(final ElementFilter filter) {
     List<DataSet> _filterData = filter.<DataSet>filterData();
     this.dataSet = _filterData;
   }
   
+  /**
+   * @see GenerationStep#startGenerationTask()
+   */
   @Override
   public void startGenerationTask() {
     HashMap<SensIDLConstants.GenerationLanguage, IExecuter> _initExecuter = this.initExecuter();
     this.startGenerationTask(_initExecuter);
   }
   
+  /**
+   * The initExecuter-method initializes a HashMap that maps each {@link GenerationLanguage} to a
+   * {@link IExecuter} object.
+   * @return the HashMap {@link GenerationLanguage} to {@link IExecuter}
+   */
   private HashMap<SensIDLConstants.GenerationLanguage, IExecuter> initExecuter() {
     HashMap<SensIDLConstants.GenerationLanguage, IExecuter> _hashMap = new HashMap<SensIDLConstants.GenerationLanguage, IExecuter>();
     final Procedure1<HashMap<SensIDLConstants.GenerationLanguage, IExecuter>> _function = new Procedure1<HashMap<SensIDLConstants.GenerationLanguage, IExecuter>>() {
@@ -39,6 +59,7 @@ public class SkeletonGenerationStep extends GenerationStep {
           public void execute() {
             final JavaGenerator jgenerator = new JavaGenerator();
             final CGenerator cgenerator = new CGenerator();
+            final CSharpGenerator csharpgenerator = new CSharpGenerator();
             final JavaScriptGenerator jsgenerator = new JavaScriptGenerator();
             final PlaintextGenerator generator = new PlaintextGenerator();
             final Procedure1<HashMap<String, CharSequence>> _function = new Procedure1<HashMap<String, CharSequence>>() {
@@ -48,10 +69,12 @@ public class SkeletonGenerationStep extends GenerationStep {
                 it.putAll(_generateDTO);
                 HashMap<String, CharSequence> _generateDTO_1 = cgenerator.generateDTO(SkeletonGenerationStep.this.dataSet);
                 it.putAll(_generateDTO_1);
-                HashMap<String, CharSequence> _generateDTO_2 = jsgenerator.generateDTO(SkeletonGenerationStep.this.dataSet);
+                HashMap<String, CharSequence> _generateDTO_2 = csharpgenerator.generateDTO(SkeletonGenerationStep.this.dataSet);
                 it.putAll(_generateDTO_2);
-                HashMap<String, CharSequence> _generateDTO_3 = generator.generateDTO(SkeletonGenerationStep.this.dataSet);
+                HashMap<String, CharSequence> _generateDTO_3 = jsgenerator.generateDTO(SkeletonGenerationStep.this.dataSet);
                 it.putAll(_generateDTO_3);
+                HashMap<String, CharSequence> _generateDTO_4 = generator.generateDTO(SkeletonGenerationStep.this.dataSet);
+                it.putAll(_generateDTO_4);
               }
             };
             ObjectExtensions.<HashMap<String, CharSequence>>operator_doubleArrow(
@@ -119,6 +142,19 @@ public class SkeletonGenerationStep extends GenerationStep {
         final IExecuter _function_4 = new IExecuter() {
           @Override
           public void execute() {
+            final CSharpGenerator generator = new CSharpGenerator();
+            final PlaintextGenerator generator2 = new PlaintextGenerator();
+            final Procedure1<HashMap<String, CharSequence>> _function = new Procedure1<HashMap<String, CharSequence>>() {
+              @Override
+              public void apply(final HashMap<String, CharSequence> it) {
+                HashMap<String, CharSequence> _generateDTO = generator.generateDTO(SkeletonGenerationStep.this.dataSet);
+                it.putAll(_generateDTO);
+                HashMap<String, CharSequence> _generateDTO_1 = generator2.generateDTO(SkeletonGenerationStep.this.dataSet);
+                it.putAll(_generateDTO_1);
+              }
+            };
+            ObjectExtensions.<HashMap<String, CharSequence>>operator_doubleArrow(
+              GenerationStep.filesToGenerate, _function);
           }
         };
         it.put(SensIDLConstants.GenerationLanguage.CSHARP, _function_4);

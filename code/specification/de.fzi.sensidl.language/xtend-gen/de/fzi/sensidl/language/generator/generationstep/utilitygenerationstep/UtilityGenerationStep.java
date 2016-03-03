@@ -12,15 +12,29 @@ import java.util.List;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
+/**
+ * The UtilityGenerationStep is a concrete subclass of the GenerationStep class.
+ * The main task of the class is to generate a utility class for a specific generation
+ * language. The utility class is used to store different functionalities to reduce the
+ * complexity of other generated classes.
+ */
 @SuppressWarnings("all")
 public class UtilityGenerationStep extends GenerationStep {
   private final List<MeasurementData> data;
   
+  /**
+   * The constructor calls the needed data filtered by a concrete element-filter.
+   * @param filter Represents a base filter which can be substituted by a specific
+   * 				 subclass that filters a particular set of elements.
+   */
   public UtilityGenerationStep(final ElementFilter filter) {
     List<MeasurementData> _filterData = filter.<MeasurementData>filterData();
     this.data = _filterData;
   }
   
+  /**
+   * @see GenerationStep#startGenerationTask()
+   */
   @Override
   public void startGenerationTask() {
     int _size = this.data.size();

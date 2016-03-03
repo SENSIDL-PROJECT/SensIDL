@@ -38,9 +38,9 @@ class SkeletonGenerationStep extends GenerationStep {
 	}
 
 	/**
-	 * The initExecuter-method initializes a HashMap that maps each @see GenerationLanguage to a
-	 * @see IExecuter object.
-	 * @return the HashMap @see GenerationLanguage to @see IExecuter
+	 * The initExecuter-method initializes a HashMap that maps each {@link GenerationLanguage} to a
+	 * {@link IExecuter} object.
+	 * @return the HashMap {@link GenerationLanguage} to {@link IExecuter}
 	 */
 	private def initExecuter() {
 		return new HashMap<GenerationLanguage, IExecuter> => [

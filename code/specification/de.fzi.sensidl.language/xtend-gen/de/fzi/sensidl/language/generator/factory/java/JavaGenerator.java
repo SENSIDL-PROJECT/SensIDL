@@ -11,12 +11,16 @@ import java.util.List;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 
 /**
- * Implementation of the ICodeGenerator interface. The JavaGenerator represents a specific code-generator.
+ * The JavaGenerator represents a concrete implementation of The ICodeGenerator and implements the
+ * code-generator for the language Java.
  * 
  * @author Max Scheerer
  */
 @SuppressWarnings("all")
 public class JavaGenerator implements ICodeGenerator {
+  /**
+   * @see ICodeGenerator#generateDTO()
+   */
   @Override
   public HashMap<String, CharSequence> generateDTO(final List<DataSet> dataSet) {
     JavaDTOGenerator _javaDTOGenerator = new JavaDTOGenerator(dataSet);
@@ -40,16 +44,25 @@ public class JavaGenerator implements ICodeGenerator {
     }
   }
   
+  /**
+   * @see ICodeGenerator#generateEncoder()
+   */
   @Override
   public HashMap<String, CharSequence> generateEncoder() {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
   
+  /**
+   * @see ICodeGenerator#generateDecoder()
+   */
   @Override
   public HashMap<String, CharSequence> generateDecoder() {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
   
+  /**
+   * @see ICodeGenerator#generateUtilityClass(List<MeasurementData>)
+   */
   @Override
   public HashMap<String, CharSequence> generateUtilityClass(final List<MeasurementData> data) {
     JavaUtilityGenerator _javaUtilityGenerator = new JavaUtilityGenerator(data);

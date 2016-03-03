@@ -48,17 +48,26 @@ public class JavaDTOGenerator implements IDTOGenerator {
   
   private boolean createProject = false;
   
+  /**
+   * The constructor calls the constructor of the superclass to set a list of DataSet-elements.
+   * @param newDataSet Represents the list of DataSet-elements.
+   */
   public JavaDTOGenerator(final List<DataSet> newDataSet) {
     this.dataSet = newDataSet;
   }
   
+  /**
+   * The constructor calls the constructor of the superclass to set a list of DataSet-elements and a member-variable.
+   * @param newDataSet Represents the list of DataSet-elements.
+   * @param createProject Indicates if a project should be created.
+   */
   public JavaDTOGenerator(final List<DataSet> newDataSet, final boolean createProject) {
     this.dataSet = newDataSet;
     this.createProject = createProject;
   }
   
   /**
-   * Generates the .java Files
+   * @see IDTOGenerator#generate()
    */
   @Override
   public HashMap<String, CharSequence> generate() {

@@ -10,20 +10,22 @@ import java.util.List
 import org.apache.log4j.Logger
 
 /**
- * This Generator generates the main header file which includes all header files of 
- * all generated DTO structs.
+ * This class implements a part of the CDTOGenerator. This class is responsible for 
+ * the main header file which includes all header files of all generated DTO structs.
  */
 class MainDTOHeaderFileGenerator extends CDTOGenerator {
 	
 	private static Logger logger = Logger.getLogger(MainDTOHeaderFileGenerator)
 	
+	/**
+	 * The constructor calls the constructor of the superclass to set a list of DataSet-elements.
+	 * @param newDataSet Represents the list of DataSet-elements.
+	 */
 	new(List<DataSet> newDataSet) {
 		super(newDataSet)
 	}
 	
 	/**
-	 * Generates the main header file which includes all header files of all generated
-	 * DTO structs.
 	 * @see IDTOGenerator#generate()
 	 */
 	override generate() {

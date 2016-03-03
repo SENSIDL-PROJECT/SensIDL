@@ -17,8 +17,8 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 /**
  * Code generator für die SensIDL Sprache.
  * 
- * @author Dominik Werle
- * @author Max Scheerer
+ * @author Dominik Werle - Base implementation
+ * @author Max Scheerer	- refinement of the base implementation
  * @author Emre Taspolatoglu
  */
 class SensidlCodeGenerationExecutor implements ISensidlCodeGenerator {
@@ -28,9 +28,8 @@ class SensidlCodeGenerationExecutor implements ISensidlCodeGenerator {
 	
 	/**
 	 * The entry point to the generation.
-	 * 
-	 * @author Dominik Werle - Base implementation
-	 * @author Max Scheerer	- refinement of the base implementation
+	 * @param input Corresponds to the resource file which includes all specified sensidl elements.
+	 * @param fsa   Corresponds to the IFileSystemAccess-object which is used for the file-generation.
 	 */
 	override doGenerate(Resource input, IFileSystemAccess fsa) {
 		GenerationStep.init(generationLanguage)
@@ -54,7 +53,8 @@ class SensidlCodeGenerationExecutor implements ISensidlCodeGenerator {
 	}
 
 	/**
-	 * set the language to generate the code in
+	 * Set the language to generate the code in.
+	 * @param generationLanguage Represents the new generation language value.
 	 */
 	def setGenerationLanguage(GenerationLanguage generationLanguage) {
 		this.generationLanguage = generationLanguage

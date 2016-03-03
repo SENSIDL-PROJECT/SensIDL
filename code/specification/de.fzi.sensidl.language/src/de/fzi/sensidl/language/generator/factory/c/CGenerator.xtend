@@ -8,8 +8,8 @@ import java.util.List
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 
 /**
-* The CGenerator represents a concrete  implementation
-* of @see ICodeGenerator
+* The CGenerator represents a concrete implementation of The ICodeGenerator and 
+* implements the code-generator for the language C.
 */
 class CGenerator implements ICodeGenerator {
 	
@@ -44,6 +44,9 @@ class CGenerator implements ICodeGenerator {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
+	/**
+	 * @see ICodeGenerator#generateUtilityClass(List<MeasurementData>)
+	 */
 	override generateUtilityClass(List<MeasurementData> data) {
 		new CUtilityGenerator(data).generate
 	}

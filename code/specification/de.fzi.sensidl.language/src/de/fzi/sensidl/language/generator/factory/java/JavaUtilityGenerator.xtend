@@ -11,21 +11,37 @@ import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
 
+/**
+ * Java code generator for the utility class.
+ */
 class JavaUtilityGenerator implements IUtilityGenerator {
 	private static Logger logger = Logger.getLogger(JavaUtilityGenerator)
 	private List<MeasurementData> data
 
 	private boolean createProject = false
 
+	/**
+	 * The constructor calls the constructor of the superclass to set a list of Data-elements.
+	 * @param newData Represents the list of DataSet-elements.
+	 */
 	new(List<MeasurementData> newData) {
 		this.data = newData
 	}
 
+	/**
+	 * The constructor calls the constructor of the superclass to set a list of Data-elements
+	 * and a member-variable.
+	 * @param newData 		Represents the list of DataSet-elements.
+	 * @param createProject Indicates if a project should be created.
+	 */
 	new(List<MeasurementData> newData, boolean createProject) {
 		this.data = newData
 		this.createProject = createProject
 	}
-
+	
+	/**
+	 * @see IUtilityGenerator#generate()
+	 */
 	override generate() {
 		logger.info("Start with code-generation of the java utility class.")
 
@@ -121,6 +137,9 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 		'''
 	}
 
+	/**
+	 * @see IUtilityGenerator#addFileExtensionTo(String)
+	 */
 	override addFileExtensionTo(String ClassName) {
 		ClassName + SensIDLConstants.JAVA_EXTENSION
 	}

@@ -35,6 +35,11 @@ class DataTypes {
 		put(DataType.STRING, STRING)
 	] 
 	
+	/**
+	 * Maps a given DataType to the C equivalent data type.
+	 * @param dataType Corresponds to the specified sensidl data type.
+	 * @return the C equivalent data type.
+	 */
 	def static String getDataTypeBy(DataType dataType) {
 		return dataTypesMap.get(dataType)
 	}
