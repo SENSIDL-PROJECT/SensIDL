@@ -34,7 +34,7 @@ Export-Package: de.fzi.sensidl.language.ui.contentassist,
  de.fzi.sensidl.language.ui.handler,
  de.fzi.sensidl.language.ui.internal,
  de.fzi.sensidl.language.ui.quickfix,
- de.fzi.sensidl.language.ui.wizard
+ de.fzi.sensidl.language.ui.wizard,
+ de.fzi.sensidl.language.ui.contentassist.antlr.internal
 Bundle-Activator: de.fzi.sensidl.language.ui.internal.SensidlActivator
-Bundle-ClassPath: .,
- jgoodies-forms-1.8.0.jar
+Bundle-ClassPath: .,jgoodies-forms-1.8.0.jar
