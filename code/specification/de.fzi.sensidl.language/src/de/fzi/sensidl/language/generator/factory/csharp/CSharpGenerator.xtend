@@ -9,6 +9,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
  * The CSharpGenerator represents a concrete implementation of The ICodeGenerator
  * and implements the code-generator for the language C#.
  * @see ICodeGenerator
+ * 
  * @author Nathalie Hipp
  */
 class CSharpGenerator implements ICodeGenerator {
