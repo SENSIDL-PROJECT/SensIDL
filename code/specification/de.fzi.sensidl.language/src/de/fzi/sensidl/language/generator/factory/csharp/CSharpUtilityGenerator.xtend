@@ -13,6 +13,7 @@ import org.apache.log4j.Logger
 
 /**
  * C# code generator for the utility class.
+ * @author Nathalie Hipp
  */
 class CSharpUtilityGenerator implements IUtilityGenerator {
 	private static Logger logger = Logger.getLogger(CSharpUtilityGenerator)
