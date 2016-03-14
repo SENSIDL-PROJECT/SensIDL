@@ -301,7 +301,20 @@ class JavaDTOGenerator implements IDTOGenerator {
 	 * returns the appropriate simple type name suitable for casting
 	 */
 	def toSimpleTypeName(Data d){
-		return d.toTypeName.substring(d.toTypeName.lastIndexOf('.')+1).toLowerCase();
+		return switch (d.dataType) {
+			case INT8: "byte"
+			case UINT8: "byte"
+			case INT16: "short"
+			case UINT16: "short"
+			case INT32: "int"
+			case UINT32: "int"
+			case INT64: "long"
+			case UINT64: "long"
+			case FLOAT: "float"
+			case DOUBLE: "double"
+			case BOOLEAN: "boolean"
+			case STRING: "String"
+		}
 	}
 
 	/**
