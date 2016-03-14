@@ -58,8 +58,19 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 				sequence_LinearDataConversionWithInterval(context, (LinearDataConversionWithInterval) semanticObject); 
 				return; 
 			case DataRepresentationPackage.MEASUREMENT_DATA:
-				sequence_MeasurementData(context, (MeasurementData) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getMeasurementDataNotAdjustableRule()) {
+					sequence_MeasurementDataNotAdjustable(context, (MeasurementData) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getMeasurementDataRule()) {
+					sequence_MeasurementData(context, (MeasurementData) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getDataRule()) {
+					sequence_MeasurementData_MeasurementDataNotAdjustable(context, (MeasurementData) semanticObject); 
+					return; 
+				}
+				else break;
 			case DataRepresentationPackage.NON_MEASUREMENT_DATA:
 				sequence_NonMeasurementData(context, (NonMeasurementData) semanticObject); 
 				return; 
@@ -151,7 +162,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     LinearDataConversionWithInterval returns LinearDataConversionWithInterval
 	 *
 	 * Constraint:
-	 *     (fromInterval=Interval toInterval=Interval)
+	 *     (fromInterval=Interval toInterval=Interval dataType=DataType)
 	 */
 	protected void sequence_LinearDataConversionWithInterval(ISerializationContext context, LinearDataConversionWithInterval semanticObject) {
 		if (errorAcceptor != null) {
@@ -159,10 +170,13 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DataRepresentationPackage.Literals.LINEAR_DATA_CONVERSION_WITH_INTERVAL__FROM_INTERVAL));
 			if (transientValues.isValueTransient(semanticObject, DataRepresentationPackage.Literals.LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DataRepresentationPackage.Literals.LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL));
+			if (transientValues.isValueTransient(semanticObject, DataRepresentationPackage.Literals.LINEAR_DATA_CONVERSION_WITH_INTERVAL__DATA_TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DataRepresentationPackage.Literals.LINEAR_DATA_CONVERSION_WITH_INTERVAL__DATA_TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getLinearDataConversionWithIntervalAccess().getFromIntervalIntervalParserRuleCall_1_0(), semanticObject.getFromInterval());
 		feeder.accept(grammarAccess.getLinearDataConversionWithIntervalAccess().getToIntervalIntervalParserRuleCall_3_0(), semanticObject.getToInterval());
+		feeder.accept(grammarAccess.getLinearDataConversionWithIntervalAccess().getDataTypeDataTypeEnumRuleCall_5_0(), semanticObject.getDataType());
 		feeder.finish();
 	}
 	
@@ -192,7 +206,18 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Contexts:
-	 *     Data returns MeasurementData
+	 *     MeasurementDataNotAdjustable returns MeasurementData
+	 *
+	 * Constraint:
+	 *     (name=ID dataType=DataTypeNotAdjustable unit=UNIT ID=STRING? description=DESCRIPTION?)
+	 */
+	protected void sequence_MeasurementDataNotAdjustable(ISerializationContext context, MeasurementData semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     MeasurementData returns MeasurementData
 	 *
 	 * Constraint:
@@ -212,13 +237,35 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	
 	/**
 	 * Contexts:
+	 *     Data returns MeasurementData
+	 *
+	 * Constraint:
+	 *     (
+	 *         (
+	 *             name=ID 
+	 *             dataType=DataType 
+	 *             unit=UNIT 
+	 *             ID=STRING? 
+	 *             (adjustments+=DataAdjustment adjustments+=DataAdjustment*)? 
+	 *             description=DESCRIPTION?
+	 *         ) | 
+	 *         (name=ID dataType=DataTypeNotAdjustable unit=UNIT ID=STRING? description=DESCRIPTION?)
+	 *     )
+	 */
+	protected void sequence_MeasurementData_MeasurementDataNotAdjustable(ISerializationContext context, MeasurementData semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Data returns NonMeasurementData
 	 *     NonMeasurementData returns NonMeasurementData
 	 *
 	 * Constraint:
 	 *     (
 	 *         name=ID 
-	 *         dataType=DataType 
+	 *         (dataType=DataType | dataType=DataTypeNotAdjustable) 
 	 *         constant?='constant'? 
 	 *         value=STRING? 
 	 *         ID=STRING? 

@@ -15,7 +15,9 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -46,8 +48,31 @@ public class LinearDataConversionWithIntervalItemProvider extends DataConversion
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addDataTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Data Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDataTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LinearDataConversionWithInterval_dataType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LinearDataConversionWithInterval_dataType_feature", "_UI_LinearDataConversionWithInterval_type"),
+				 DataRepresentationPackage.Literals.LINEAR_DATA_CONVERSION_WITH_INTERVAL__DATA_TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -119,6 +144,9 @@ public class LinearDataConversionWithIntervalItemProvider extends DataConversion
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LinearDataConversionWithInterval.class)) {
+			case DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__DATA_TYPE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__FROM_INTERVAL:
 			case DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));

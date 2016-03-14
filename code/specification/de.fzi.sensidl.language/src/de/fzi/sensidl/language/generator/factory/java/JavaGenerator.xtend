@@ -45,7 +45,7 @@ class JavaGenerator implements ICodeGenerator {
 	}
 
 	/**
- 	* @see ICodeGenerator#generateUtilityClass(List<MeasurementData>)
+ 	* @see ICodeGenerator#generateUtilityClass()
  	*/
 	override generateUtilityClass(List<MeasurementData> data) {
 		new JavaUtilityGenerator(data).generate

@@ -1,53 +1,61 @@
 package de.fzi.sensidl.language.generator.factory.java
 
+import de.fzi.sensidl.design.sensidl.Endianness
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 import de.fzi.sensidl.language.generator.GenerationUtil
 import de.fzi.sensidl.language.generator.SensIDLConstants
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider
+import de.fzi.sensidl.language.generator.factory.IDTOGenerator
 import de.fzi.sensidl.language.generator.factory.IUtilityGenerator
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
 
-/**
- * Java code generator for the utility class.
- */
+
 class JavaUtilityGenerator implements IUtilityGenerator {
 	private static Logger logger = Logger.getLogger(JavaUtilityGenerator)
 	private List<MeasurementData> data
 
 	private boolean createProject = false
-
+	private boolean bigEndian
+	
 	/**
-	 * The constructor calls the constructor of the superclass to set a list of Data-elements.
-	 * @param newData Represents the list of DataSet-elements.
+	 * The constructor calls the constructor of the superclass to set a
+	 * list of Data-elements.
+	 * @param newData - represents the list of DataSet-elements.
 	 */
 	new(List<MeasurementData> newData) {
 		this.data = newData
 	}
 
 	/**
-	 * The constructor calls the constructor of the superclass to set a list of Data-elements
-	 * and a member-variable.
-	 * @param newData 		Represents the list of DataSet-elements.
-	 * @param createProject Indicates if a project should be created.
+	 * The constructor calls the constructor of the superclass to set a
+	 * list of Data-elements and a member-variable.
+	 * @param newData - represents the list of DataSet-elements.
+	 * @param createProject - indicates if a project should be created.
 	 */
 	new(List<MeasurementData> newData, boolean createProject) {
 		this.data = newData
 		this.createProject = createProject
 	}
-	
 	/**
-	 * @see IUtilityGenerator#generate()
+	 * Generates the .java file for the utility-class.
+	 * @see IDTOGenerator#generate()
 	 */
 	override generate() {
 		logger.info("Start with code-generation of the java utility class.")
 
 		val filesToGenerate = new HashMap
 		val utilityName = GenerationUtil.getUtilityName(this.data.get(0))
-
+	
+		if (GenerationUtil.getSensorInterface(this.data.get(0).eContainer).encodingSettings.endianness == Endianness.BIG_ENDIAN){
+			bigEndian = true;
+		} else {
+			bigEndian = false;
+		}
+	
 		// if a Plug-in Project is generated the file has to be generated to another path
 		if (createProject) {
 			filesToGenerate.put(
@@ -69,6 +77,12 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 				package de.fzi.sensidl.«GenerationUtil.getSensorInterfaceName(this.data.get(0).eContainer)»;
 				 
 			«ENDIF» 
+			
+			«IF !bigEndian»
+				import java.nio.ByteBuffer;
+				import java.nio.ByteOrder;
+			«ENDIF» 
+			
 			/**
 			 * Data transfer object for «className»
 			 *
@@ -82,6 +96,10 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 				
 				«IF this.data.exists[data | data.adjustments.get(0) instanceof LinearDataConversionWithInterval]»
 					«generateLinearDataConversionWithIntervalMethod»
+				«ENDIF»
+				
+				«IF !bigEndian»
+					«generateEndiannessConverterMethods»
 				«ENDIF»
 			}
 		'''
@@ -136,10 +154,105 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 			}
 		'''
 	}
+	
+	def generateEndiannessConverterMethods() {
+	'''
+		/**
+		 * Converts a big endian float into a little endian float
+		 *	
+		 * @param num the float to convert
+		 * @return float the converted float
+		 *
+		 */
+		public static float convertToLittleEndian(float num) {
+			byte[] bytes = new byte[4];
+			ByteBuffer.wrap(bytes).putFloat(num);
+			return ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).getFloat();
+		}
+		
+		/**
+		 * Converts a big endian double into a little endian double
+		 *	
+		 * @param num the double to convert
+		 * @return double the converted double
+		 *
+		 */
+		public static double convertToLittleEndian(double num) {
+			byte[] bytes = new byte[8];
+			ByteBuffer.wrap(bytes).putDouble(num);
+			return ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).getDouble();
+		}
+		
+		/**
+		 * Converts a big endian byte into a little endian byte
+		 *	
+		 * @param num the byte to convert
+		 * @return byte the converted byte
+		 *
+		 */
+		public static byte convertToLittleEndian(byte num) {
+			return num;
+		}
+		
+		/**
+		 * Converts a big endian short into a little endian short
+		 *	
+		 * @param num the short to convert
+		 * @return short the converted short
+		 *
+		 */
+		public static short convertToLittleEndian(short num) {
+			return Short.reverseBytes(num);
+		}
+		
+		/**
+		 * Converts a big endian int into a little endian int
+		 *	
+		 * @param num the int to convert
+		 * @return int the converted int
+		 *
+		 */
+		public static int convertToLittleEndian(int num) {
+			return Integer.reverseBytes(num);
+		}
+		
+		/**
+		 * Converts a big endian long into a little endian long
+		 *	
+		 * @param num the long to convert
+		 * @return long the converted long
+		 *
+		 */
+		public static long convertToLittleEndian(long num) {
+			return Long.reverseBytes(num);
+		}
+		
+		/**
+		 * Converts a big endian String into a little endian String
+		 *	
+		 * @param str the String to convert
+		 * @return String the converted String
+		 *
+		 */
+		public String convertToLittleEndian(String str) {
+			//TODO: implement Method
+			return str;
+		}
+		
+		/**
+		 * Converts a big endian boolean into a little endian boolean
+		 *	
+		 * @param bool the boolean to convert
+		 * @return boolean the converted boolean
+		 *
+		 */
+		public boolean convertToLittleEndian(boolean bool) {
+			//TODO: implement Method
+			return bool;
+		}
+	'''
+	}
 
-	/**
-	 * @see IUtilityGenerator#addFileExtensionTo(String)
-	 */
 	override addFileExtensionTo(String ClassName) {
 		ClassName + SensIDLConstants.JAVA_EXTENSION
 	}

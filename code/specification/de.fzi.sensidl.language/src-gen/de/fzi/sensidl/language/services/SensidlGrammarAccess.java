@@ -347,12 +347,13 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cMeasurementDataParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cNonMeasurementDataParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cMeasurementDataNotAdjustableParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//Data dataRepresentation::Data:
-		//	MeasurementData | NonMeasurementData
+		//	MeasurementData | NonMeasurementData | MeasurementDataNotAdjustable
 		@Override public ParserRule getRule() { return rule; }
 
-		//MeasurementData | NonMeasurementData
+		//MeasurementData | NonMeasurementData | MeasurementDataNotAdjustable
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//MeasurementData
@@ -360,6 +361,9 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//NonMeasurementData
 		public RuleCall getNonMeasurementDataParserRuleCall_1() { return cNonMeasurementDataParserRuleCall_1; }
+
+		//MeasurementDataNotAdjustable
+		public RuleCall getMeasurementDataNotAdjustableParserRuleCall_2() { return cMeasurementDataNotAdjustableParserRuleCall_2; }
 	}
 
 	public class MeasurementDataElements extends AbstractParserRuleElementFinder {
@@ -474,8 +478,11 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
 		private final Keyword cAsKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cDataTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cDataTypeDataTypeEnumRuleCall_2_0 = (RuleCall)cDataTypeAssignment_2.eContents().get(0);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cDataTypeAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final RuleCall cDataTypeDataTypeEnumRuleCall_2_0_0 = (RuleCall)cDataTypeAssignment_2_0.eContents().get(0);
+		private final Assignment cDataTypeAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final RuleCall cDataTypeDataTypeNotAdjustableEnumRuleCall_2_1_0 = (RuleCall)cDataTypeAssignment_2_1.eContents().get(0);
 		private final Assignment cConstantAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final Keyword cConstantConstantKeyword_3_0 = (Keyword)cConstantAssignment_3.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
@@ -492,12 +499,12 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDescriptionDESCRIPTIONTerminalRuleCall_6_0 = (RuleCall)cDescriptionAssignment_6.eContents().get(0);
 		
 		//NonMeasurementData dataRepresentation::NonMeasurementData:
-		//	name=ID "as" dataType=DataType constant?='constant'? ("value" "=" value=STRING)? ("with identifier" ":" ID=STRING)?
-		//	description=DESCRIPTION?
+		//	name=ID "as" (dataType=DataType | dataType=DataTypeNotAdjustable) constant?='constant'? ("value" "=" value=STRING)?
+		//	("with identifier" ":" ID=STRING)? description=DESCRIPTION?
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=ID "as" dataType=DataType constant?='constant'? ("value" "=" value=STRING)? ("with identifier" ":" ID=STRING)?
-		//description=DESCRIPTION?
+		//name=ID "as" (dataType=DataType | dataType=DataTypeNotAdjustable) constant?='constant'? ("value" "=" value=STRING)?
+		//("with identifier" ":" ID=STRING)? description=DESCRIPTION?
 		public Group getGroup() { return cGroup; }
 
 		//name=ID
@@ -509,11 +516,20 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		//"as"
 		public Keyword getAsKeyword_1() { return cAsKeyword_1; }
 
+		//(dataType=DataType | dataType=DataTypeNotAdjustable)
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+
 		//dataType=DataType
-		public Assignment getDataTypeAssignment_2() { return cDataTypeAssignment_2; }
+		public Assignment getDataTypeAssignment_2_0() { return cDataTypeAssignment_2_0; }
 
 		//DataType
-		public RuleCall getDataTypeDataTypeEnumRuleCall_2_0() { return cDataTypeDataTypeEnumRuleCall_2_0; }
+		public RuleCall getDataTypeDataTypeEnumRuleCall_2_0_0() { return cDataTypeDataTypeEnumRuleCall_2_0_0; }
+
+		//dataType=DataTypeNotAdjustable
+		public Assignment getDataTypeAssignment_2_1() { return cDataTypeAssignment_2_1; }
+
+		//DataTypeNotAdjustable
+		public RuleCall getDataTypeDataTypeNotAdjustableEnumRuleCall_2_1_0() { return cDataTypeDataTypeNotAdjustableEnumRuleCall_2_1_0; }
 
 		//constant?='constant'?
 		public Assignment getConstantAssignment_3() { return cConstantAssignment_3; }
@@ -535,6 +551,79 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//STRING
 		public RuleCall getValueSTRINGTerminalRuleCall_4_2_0() { return cValueSTRINGTerminalRuleCall_4_2_0; }
+
+		//("with identifier" ":" ID=STRING)?
+		public Group getGroup_5() { return cGroup_5; }
+
+		//"with identifier"
+		public Keyword getWithIdentifierKeyword_5_0() { return cWithIdentifierKeyword_5_0; }
+
+		//":"
+		public Keyword getColonKeyword_5_1() { return cColonKeyword_5_1; }
+
+		//ID=STRING
+		public Assignment getIDAssignment_5_2() { return cIDAssignment_5_2; }
+
+		//STRING
+		public RuleCall getIDSTRINGTerminalRuleCall_5_2_0() { return cIDSTRINGTerminalRuleCall_5_2_0; }
+
+		//description=DESCRIPTION?
+		public Assignment getDescriptionAssignment_6() { return cDescriptionAssignment_6; }
+
+		//DESCRIPTION
+		public RuleCall getDescriptionDESCRIPTIONTerminalRuleCall_6_0() { return cDescriptionDESCRIPTIONTerminalRuleCall_6_0; }
+	}
+
+	public class MeasurementDataNotAdjustableElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.fzi.sensidl.language.Sensidl.MeasurementDataNotAdjustable");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cAsKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cDataTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cDataTypeDataTypeNotAdjustableEnumRuleCall_2_0 = (RuleCall)cDataTypeAssignment_2.eContents().get(0);
+		private final Keyword cInKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cUnitAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cUnitUNITParserRuleCall_4_0 = (RuleCall)cUnitAssignment_4.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cWithIdentifierKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Keyword cColonKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
+		private final Assignment cIDAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
+		private final RuleCall cIDSTRINGTerminalRuleCall_5_2_0 = (RuleCall)cIDAssignment_5_2.eContents().get(0);
+		private final Assignment cDescriptionAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cDescriptionDESCRIPTIONTerminalRuleCall_6_0 = (RuleCall)cDescriptionAssignment_6.eContents().get(0);
+		
+		//MeasurementDataNotAdjustable dataRepresentation::MeasurementData:
+		//	name=ID "as" dataType=DataTypeNotAdjustable "in" unit=UNIT ("with identifier" ":" ID=STRING)?
+		//	description=DESCRIPTION?
+		@Override public ParserRule getRule() { return rule; }
+
+		//name=ID "as" dataType=DataTypeNotAdjustable "in" unit=UNIT ("with identifier" ":" ID=STRING)? description=DESCRIPTION?
+		public Group getGroup() { return cGroup; }
+
+		//name=ID
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
+
+		//"as"
+		public Keyword getAsKeyword_1() { return cAsKeyword_1; }
+
+		//dataType=DataTypeNotAdjustable
+		public Assignment getDataTypeAssignment_2() { return cDataTypeAssignment_2; }
+
+		//DataTypeNotAdjustable
+		public RuleCall getDataTypeDataTypeNotAdjustableEnumRuleCall_2_0() { return cDataTypeDataTypeNotAdjustableEnumRuleCall_2_0; }
+
+		//"in"
+		public Keyword getInKeyword_3() { return cInKeyword_3; }
+
+		//unit=UNIT
+		public Assignment getUnitAssignment_4() { return cUnitAssignment_4; }
+
+		//UNIT
+		public RuleCall getUnitUNITParserRuleCall_4_0() { return cUnitUNITParserRuleCall_4_0; }
 
 		//("with identifier" ":" ID=STRING)?
 		public Group getGroup_5() { return cGroup_5; }
@@ -715,12 +804,15 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEqualsSignGreaterThanSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cToIntervalAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cToIntervalIntervalParserRuleCall_3_0 = (RuleCall)cToIntervalAssignment_3.eContents().get(0);
+		private final Keyword cAsKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cDataTypeAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cDataTypeDataTypeEnumRuleCall_5_0 = (RuleCall)cDataTypeAssignment_5.eContents().get(0);
 		
 		//LinearDataConversionWithInterval dataRepresentation::LinearDataConversionWithInterval:
-		//	"by linear mapping" fromInterval=Interval "=>" toInterval=Interval
+		//	"by linear mapping" fromInterval=Interval "=>" toInterval=Interval "as" dataType=DataType
 		@Override public ParserRule getRule() { return rule; }
 
-		//"by linear mapping" fromInterval=Interval "=>" toInterval=Interval
+		//"by linear mapping" fromInterval=Interval "=>" toInterval=Interval "as" dataType=DataType
 		public Group getGroup() { return cGroup; }
 
 		//"by linear mapping"
@@ -740,6 +832,15 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Interval
 		public RuleCall getToIntervalIntervalParserRuleCall_3_0() { return cToIntervalIntervalParserRuleCall_3_0; }
+
+		//"as"
+		public Keyword getAsKeyword_4() { return cAsKeyword_4; }
+
+		//dataType=DataType
+		public Assignment getDataTypeAssignment_5() { return cDataTypeAssignment_5; }
+
+		//DataType
+		public RuleCall getDataTypeDataTypeEnumRuleCall_5_0() { return cDataTypeDataTypeEnumRuleCall_5_0; }
 	}
 
 	public class DOUBLEElements extends AbstractParserRuleElementFinder {
@@ -858,6 +959,35 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getLITTLE_ENDIANLITTLE_ENDIANKeyword_1_0() { return cLITTLE_ENDIANLITTLE_ENDIANKeyword_1_0; }
 	}
 
+	public class DataTypeNotAdjustableElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "de.fzi.sensidl.language.Sensidl.DataTypeNotAdjustable");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cSTRINGEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cSTRINGSTRINGKeyword_0_0 = (Keyword)cSTRINGEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cBOOLEANEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cBOOLEANBOOLEANKeyword_1_0 = (Keyword)cBOOLEANEnumLiteralDeclaration_1.eContents().get(0);
+		
+		//enum DataTypeNotAdjustable returns dataRepresentation::DataType:
+		//	STRING |
+		//	BOOLEAN;
+		public EnumRule getRule() { return rule; }
+
+		//STRING | BOOLEAN
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//STRING
+		public EnumLiteralDeclaration getSTRINGEnumLiteralDeclaration_0() { return cSTRINGEnumLiteralDeclaration_0; }
+
+		//"STRING"
+		public Keyword getSTRINGSTRINGKeyword_0_0() { return cSTRINGSTRINGKeyword_0_0; }
+
+		//BOOLEAN
+		public EnumLiteralDeclaration getBOOLEANEnumLiteralDeclaration_1() { return cBOOLEANEnumLiteralDeclaration_1; }
+
+		//"BOOLEAN"
+		public Keyword getBOOLEANBOOLEANKeyword_1_0() { return cBOOLEANBOOLEANKeyword_1_0; }
+	}
+
 	public class DataTypeElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "de.fzi.sensidl.language.Sensidl.DataType");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -881,10 +1011,6 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFLOATFLOATKeyword_8_0 = (Keyword)cFLOATEnumLiteralDeclaration_8.eContents().get(0);
 		private final EnumLiteralDeclaration cDOUBLEEnumLiteralDeclaration_9 = (EnumLiteralDeclaration)cAlternatives.eContents().get(9);
 		private final Keyword cDOUBLEDOUBLEKeyword_9_0 = (Keyword)cDOUBLEEnumLiteralDeclaration_9.eContents().get(0);
-		private final EnumLiteralDeclaration cBOOLEANEnumLiteralDeclaration_10 = (EnumLiteralDeclaration)cAlternatives.eContents().get(10);
-		private final Keyword cBOOLEANBOOLEANKeyword_10_0 = (Keyword)cBOOLEANEnumLiteralDeclaration_10.eContents().get(0);
-		private final EnumLiteralDeclaration cSTRINGEnumLiteralDeclaration_11 = (EnumLiteralDeclaration)cAlternatives.eContents().get(11);
-		private final Keyword cSTRINGSTRINGKeyword_11_0 = (Keyword)cSTRINGEnumLiteralDeclaration_11.eContents().get(0);
 		
 		//enum DataType returns dataRepresentation::DataType:
 		//	INT8 |
@@ -896,12 +1022,10 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		//	INT64 |
 		//	UINT64 |
 		//	FLOAT |
-		//	DOUBLE |
-		//	BOOLEAN |
-		//	STRING;
+		//	DOUBLE;
 		public EnumRule getRule() { return rule; }
 
-		//INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE | BOOLEAN | STRING
+		//INT8 | UINT8 | INT16 | UINT16 | INT32 | UINT32 | INT64 | UINT64 | FLOAT | DOUBLE
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//INT8
@@ -963,18 +1087,6 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"DOUBLE"
 		public Keyword getDOUBLEDOUBLEKeyword_9_0() { return cDOUBLEDOUBLEKeyword_9_0; }
-
-		//BOOLEAN
-		public EnumLiteralDeclaration getBOOLEANEnumLiteralDeclaration_10() { return cBOOLEANEnumLiteralDeclaration_10; }
-
-		//"BOOLEAN"
-		public Keyword getBOOLEANBOOLEANKeyword_10_0() { return cBOOLEANBOOLEANKeyword_10_0; }
-
-		//STRING
-		public EnumLiteralDeclaration getSTRINGEnumLiteralDeclaration_11() { return cSTRINGEnumLiteralDeclaration_11; }
-
-		//"STRING"
-		public Keyword getSTRINGSTRINGKeyword_11_0() { return cSTRINGSTRINGKeyword_11_0; }
 	}
 	
 	private final SensorInterfaceElements pSensorInterface;
@@ -986,6 +1098,8 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	private final DataElements pData;
 	private final MeasurementDataElements pMeasurementData;
 	private final NonMeasurementDataElements pNonMeasurementData;
+	private final MeasurementDataNotAdjustableElements pMeasurementDataNotAdjustable;
+	private final DataTypeNotAdjustableElements eDataTypeNotAdjustable;
 	private final DataTypeElements eDataType;
 	private final DataAdjustmentElements pDataAdjustment;
 	private final DataRangeElements pDataRange;
@@ -1016,6 +1130,8 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		this.pData = new DataElements();
 		this.pMeasurementData = new MeasurementDataElements();
 		this.pNonMeasurementData = new NonMeasurementDataElements();
+		this.pMeasurementDataNotAdjustable = new MeasurementDataNotAdjustableElements();
+		this.eDataTypeNotAdjustable = new DataTypeNotAdjustableElements();
 		this.eDataType = new DataTypeElements();
 		this.pDataAdjustment = new DataAdjustmentElements();
 		this.pDataRange = new DataRangeElements();
@@ -1126,7 +1242,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Data dataRepresentation::Data:
-	//	MeasurementData | NonMeasurementData
+	//	MeasurementData | NonMeasurementData | MeasurementDataNotAdjustable
 	public DataElements getDataAccess() {
 		return pData;
 	}
@@ -1147,14 +1263,36 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NonMeasurementData dataRepresentation::NonMeasurementData:
-	//	name=ID "as" dataType=DataType constant?='constant'? ("value" "=" value=STRING)? ("with identifier" ":" ID=STRING)?
-	//	description=DESCRIPTION?
+	//	name=ID "as" (dataType=DataType | dataType=DataTypeNotAdjustable) constant?='constant'? ("value" "=" value=STRING)?
+	//	("with identifier" ":" ID=STRING)? description=DESCRIPTION?
 	public NonMeasurementDataElements getNonMeasurementDataAccess() {
 		return pNonMeasurementData;
 	}
 	
 	public ParserRule getNonMeasurementDataRule() {
 		return getNonMeasurementDataAccess().getRule();
+	}
+
+	//MeasurementDataNotAdjustable dataRepresentation::MeasurementData:
+	//	name=ID "as" dataType=DataTypeNotAdjustable "in" unit=UNIT ("with identifier" ":" ID=STRING)?
+	//	description=DESCRIPTION?
+	public MeasurementDataNotAdjustableElements getMeasurementDataNotAdjustableAccess() {
+		return pMeasurementDataNotAdjustable;
+	}
+	
+	public ParserRule getMeasurementDataNotAdjustableRule() {
+		return getMeasurementDataNotAdjustableAccess().getRule();
+	}
+
+	//enum DataTypeNotAdjustable returns dataRepresentation::DataType:
+	//	STRING |
+	//	BOOLEAN;
+	public DataTypeNotAdjustableElements getDataTypeNotAdjustableAccess() {
+		return eDataTypeNotAdjustable;
+	}
+	
+	public EnumRule getDataTypeNotAdjustableRule() {
+		return getDataTypeNotAdjustableAccess().getRule();
 	}
 
 	//enum DataType returns dataRepresentation::DataType:
@@ -1167,9 +1305,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	//	INT64 |
 	//	UINT64 |
 	//	FLOAT |
-	//	DOUBLE |
-	//	BOOLEAN |
-	//	STRING;
+	//	DOUBLE;
 	public DataTypeElements getDataTypeAccess() {
 		return eDataType;
 	}
@@ -1229,7 +1365,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LinearDataConversionWithInterval dataRepresentation::LinearDataConversionWithInterval:
-	//	"by linear mapping" fromInterval=Interval "=>" toInterval=Interval
+	//	"by linear mapping" fromInterval=Interval "=>" toInterval=Interval "as" dataType=DataType
 	public LinearDataConversionWithIntervalElements getLinearDataConversionWithIntervalAccess() {
 		return pLinearDataConversionWithInterval;
 	}

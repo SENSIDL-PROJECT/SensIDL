@@ -53,16 +53,26 @@ DataSet returns dataRepresentation::DataSet:
 
 Data returns dataRepresentation::Data:
 	MeasurementData |
-	NonMeasurementData
+	NonMeasurementData |
+	MeasurementDataNotAdjustable
 ;
 
 MeasurementData returns dataRepresentation::MeasurementData:
 	name=ID "as" dataType=DataType "in" unit=UNIT ("with identifier" ":" ID=STRING)?
-	("adjusted" adjustments+=DataAdjustment ("," adjustments+=DataAdjustment)*)? (description=DESCRIPTION)? 
+	("adjusted" adjustments+=DataAdjustment ("," adjustments+=DataAdjustment)*)? (description=DESCRIPTION)?
 ;
 
 NonMeasurementData returns dataRepresentation::NonMeasurementData:
-	 name=ID "as" dataType=DataType (constant?='constant')? ("value" "=" value=STRING)? ("with identifier" ":" ID=STRING)? (description=DESCRIPTION)?
+	 name=ID "as" (dataType=DataType|dataType=DataTypeNotAdjustable) (constant?='constant')? ("value" "=" value=STRING)? ("with identifier" ":" ID=STRING)? (description=DESCRIPTION)?
+;
+
+MeasurementDataNotAdjustable returns dataRepresentation::MeasurementData:
+	name=ID "as" dataType=DataTypeNotAdjustable "in" unit=UNIT ("with identifier" ":" ID=STRING)? (description=DESCRIPTION)?
+;
+
+enum DataTypeNotAdjustable returns dataRepresentation::DataType: 
+	STRING |
+	BOOLEAN
 ;
 
 enum DataType returns dataRepresentation::DataType:
@@ -75,9 +85,7 @@ enum DataType returns dataRepresentation::DataType:
 	INT64 |
 	UINT64 |
 	FLOAT |
-	DOUBLE |
-	BOOLEAN |
-	STRING
+	DOUBLE
 ;
 
 DataAdjustment returns dataRepresentation::DataAdjustment:
@@ -106,7 +114,7 @@ LinearDataConversion returns dataRepresentation::LinearDataConversion:
 
 LinearDataConversionWithInterval returns dataRepresentation::LinearDataConversionWithInterval: 
 	(
-		"by linear mapping"  fromInterval=Interval "=>" toInterval=Interval
+		"by linear mapping"  fromInterval=Interval "=>" toInterval=Interval "as" dataType=DataType
 	)
 ;
 

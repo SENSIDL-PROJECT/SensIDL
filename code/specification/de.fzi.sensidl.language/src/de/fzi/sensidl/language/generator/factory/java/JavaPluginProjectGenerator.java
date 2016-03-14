@@ -39,7 +39,8 @@ public class JavaPluginProjectGenerator {
 	/**
 	 * Create a Java Plug-in Project with the given name.
 	 * 
-	 * @param projectName The name for the java plug-in project
+	 * @param projectName
+	 *            The name for the java plug-in project
 	 * @return the plug-in project
 	 * @throws CoreException
 	 * @throws IOException
@@ -129,7 +130,8 @@ public class JavaPluginProjectGenerator {
 	/**
 	 * Set the project name
 	 * 
-	 * @param project The project-name to set.
+	 * @param project
+	 *            The project-name to set.
 	 */
 	public static void setProjectName(String project) {
 		projectName = project;

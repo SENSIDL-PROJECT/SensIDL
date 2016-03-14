@@ -3,9 +3,9 @@
 package de.fzi.sensidl.design.sensidl.dataRepresentation.impl;
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Interval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.LinearDataConversionWithIntervalImpl#getFromInterval <em>From Interval</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.LinearDataConversionWithIntervalImpl#getToInterval <em>To Interval</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.LinearDataConversionWithIntervalImpl#getDataType <em>Data Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -48,6 +49,26 @@ public class LinearDataConversionWithIntervalImpl extends DataConversionImpl imp
 	 * @ordered
 	 */
 	protected Interval toInterval;
+
+	/**
+	 * The default value of the '{@link #getDataType() <em>Data Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final DataType DATA_TYPE_EDEFAULT = DataType.INT8;
+
+	/**
+	 * The cached value of the '{@link #getDataType() <em>Data Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataType()
+	 * @generated
+	 * @ordered
+	 */
+	protected DataType dataType = DATA_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -159,6 +180,27 @@ public class LinearDataConversionWithIntervalImpl extends DataConversionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DataType getDataType() {
+		return dataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDataType(DataType newDataType) {
+		DataType oldDataType = dataType;
+		dataType = newDataType == null ? DATA_TYPE_EDEFAULT : newDataType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__DATA_TYPE, oldDataType, dataType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -202,6 +244,8 @@ public class LinearDataConversionWithIntervalImpl extends DataConversionImpl imp
 				return getFromInterval();
 			case DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL:
 				return getToInterval();
+			case DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__DATA_TYPE:
+				return getDataType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -219,6 +263,9 @@ public class LinearDataConversionWithIntervalImpl extends DataConversionImpl imp
 				return;
 			case DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL:
 				setToInterval((Interval)newValue);
+				return;
+			case DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__DATA_TYPE:
+				setDataType((DataType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -238,6 +285,9 @@ public class LinearDataConversionWithIntervalImpl extends DataConversionImpl imp
 			case DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL:
 				setToInterval((Interval)null);
 				return;
+			case DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__DATA_TYPE:
+				setDataType(DATA_TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -254,8 +304,26 @@ public class LinearDataConversionWithIntervalImpl extends DataConversionImpl imp
 				return fromInterval != null;
 			case DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__TO_INTERVAL:
 				return toInterval != null;
+			case DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL__DATA_TYPE:
+				return dataType != DATA_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (dataType: ");
+		result.append(dataType);
+		result.append(')');
+		return result.toString();
 	}
 
 } //LinearDataConversionWithIntervalImpl

@@ -2,7 +2,6 @@
  */
 package de.fzi.sensidl.design.sensidl.dataRepresentation;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Linear Data Conversion With Interval</b></em>'.
@@ -14,6 +13,7 @@ package de.fzi.sensidl.design.sensidl.dataRepresentation;
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval#getFromInterval <em>From Interval</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval#getToInterval <em>To Interval</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval#getDataType <em>Data Type</em>}</li>
  * </ul>
  *
  * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getLinearDataConversionWithInterval()
@@ -76,5 +76,34 @@ public interface LinearDataConversionWithInterval extends DataConversion {
 	 * @generated
 	 */
 	void setToInterval(Interval value);
+
+	/**
+	 * Returns the value of the '<em><b>Data Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Data Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Type</em>' attribute.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
+	 * @see #setDataType(DataType)
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getLinearDataConversionWithInterval_DataType()
+	 * @model required="true"
+	 * @generated
+	 */
+	DataType getDataType();
+
+	/**
+	 * Sets the value of the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval#getDataType <em>Data Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Type</em>' attribute.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
+	 * @see #getDataType()
+	 * @generated
+	 */
+	void setDataType(DataType value);
 
 } // LinearDataConversionWithInterval
