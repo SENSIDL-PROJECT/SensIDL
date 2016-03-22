@@ -2,6 +2,9 @@ package de.fzi.sensidl.language.generator.factory.java;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
+import de.fzi.sensidl.design.sensidl.EncodingSettings;
+import de.fzi.sensidl.design.sensidl.Endianness;
+import de.fzi.sensidl.design.sensidl.SensorInterface;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataAdjustment;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion;
@@ -27,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 /**
@@ -48,18 +52,22 @@ public class JavaDTOGenerator implements IDTOGenerator {
   
   private boolean createProject = false;
   
+  private boolean bigEndian;
+  
   /**
-   * The constructor calls the constructor of the superclass to set a list of DataSet-elements.
-   * @param newDataSet Represents the list of DataSet-elements.
+   * The constructor calls the constructor of the superclass to set a
+   * list of DataSet-elements.
+   * @param newDataSet - represents the list of DataSet-elements.
    */
   public JavaDTOGenerator(final List<DataSet> newDataSet) {
     this.dataSet = newDataSet;
   }
   
   /**
-   * The constructor calls the constructor of the superclass to set a list of DataSet-elements and a member-variable.
-   * @param newDataSet Represents the list of DataSet-elements.
-   * @param createProject Indicates if a project should be created.
+   * The constructor calls the constructor of the superclass to set a
+   * list of DataSet-elements and a member-variable.
+   * @param newDataSet - represents the list of DataSet-elements.
+   * @param createProject - indicates if a project should be created.
    */
   public JavaDTOGenerator(final List<DataSet> newDataSet, final boolean createProject) {
     this.dataSet = newDataSet;
@@ -67,6 +75,7 @@ public class JavaDTOGenerator implements IDTOGenerator {
   }
   
   /**
+   * Generates the .java file for each data transfer object.
    * @see IDTOGenerator#generate()
    */
   @Override
@@ -75,15 +84,29 @@ public class JavaDTOGenerator implements IDTOGenerator {
     {
       JavaDTOGenerator.logger.info("Start with code-generation of a java data transfer object.");
       final HashMap<String, CharSequence> filesToGenerate = new HashMap<String, CharSequence>();
+      DataSet _get = this.dataSet.get(0);
+      EList<EObject> _eContents = _get.eContents();
+      Iterable<Data> _filter = Iterables.<Data>filter(_eContents, Data.class);
+      Data _get_1 = ((Data[])Conversions.unwrapArray(_filter, Data.class))[0];
+      EObject _eContainer = _get_1.eContainer();
+      SensorInterface _sensorInterface = GenerationUtil.getSensorInterface(_eContainer);
+      EncodingSettings _encodingSettings = _sensorInterface.getEncodingSettings();
+      Endianness _endianness = _encodingSettings.getEndianness();
+      boolean _equals = Objects.equal(_endianness, Endianness.BIG_ENDIAN);
+      if (_equals) {
+        this.bigEndian = true;
+      } else {
+        this.bigEndian = false;
+      }
       if (this.createProject) {
         for (final DataSet d : this.dataSet) {
           {
-            DataSet _get = this.dataSet.get(0);
-            EList<EObject> _eContents = _get.eContents();
-            Iterable<Data> _filter = Iterables.<Data>filter(_eContents, Data.class);
-            Data _get_1 = ((Data[])Conversions.unwrapArray(_filter, Data.class))[0];
-            EObject _eContainer = _get_1.eContainer();
-            String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(_eContainer);
+            DataSet _get_2 = this.dataSet.get(0);
+            EList<EObject> _eContents_1 = _get_2.eContents();
+            Iterable<Data> _filter_1 = Iterables.<Data>filter(_eContents_1, Data.class);
+            Data _get_3 = ((Data[])Conversions.unwrapArray(_filter_1, Data.class))[0];
+            EObject _eContainer_1 = _get_3.eContainer();
+            String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(_eContainer_1);
             String _plus = ("src/de/fzi/sensidl/" + _sensorInterfaceName);
             String _plus_1 = (_plus + "/");
             String _nameUpper = GenerationUtil.toNameUpper(d);
@@ -154,6 +177,14 @@ public class JavaDTOGenerator implements IDTOGenerator {
     _builder.newLine();
     _builder.append("import com.google.gson.Gson;");
     _builder.newLine();
+    {
+      if ((!this.bigEndian)) {
+        _builder.append("import java.nio.ByteBuffer;");
+        _builder.newLine();
+        _builder.append("import java.nio.ByteOrder;");
+        _builder.newLine();
+      }
+    }
     _builder.append(" ");
     _builder.newLine();
     _builder.append("/**");
@@ -171,7 +202,7 @@ public class JavaDTOGenerator implements IDTOGenerator {
     _builder.append(" ");
     _builder.append("*/");
     _builder.newLine();
-    _builder.append("class ");
+    _builder.append("public class ");
     _builder.append(className, "");
     _builder.append(" {");
     _builder.newLineIfNotEmpty();
@@ -181,29 +212,16 @@ public class JavaDTOGenerator implements IDTOGenerator {
     _builder.append("private static final long serialVersionUID = 1L;");
     _builder.newLine();
     _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    String _generateDataFieldsIncludeParentDataSet = this.generateDataFieldsIncludeParentDataSet(d);
+    CharSequence _generateDataFieldsIncludeParentDataSet = this.generateDataFieldsIncludeParentDataSet(d);
     _builder.append(_generateDataFieldsIncludeParentDataSet, "\t");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("/**");
-    _builder.newLine();
-    _builder.append("\t ");
-    _builder.append("* Constructor for the Data transfer object");
-    _builder.newLine();
-    _builder.append("\t ");
-    _builder.append("*/");
-    _builder.newLine();
-    _builder.append("\t");
-    String _generateConstructorIncludeParentDataSet = this.generateConstructorIncludeParentDataSet(d, className);
+    CharSequence _generateConstructorIncludeParentDataSet = this.generateConstructorIncludeParentDataSet(d, className);
     _builder.append(_generateConstructorIncludeParentDataSet, "\t");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.newLine();
     _builder.append("\t");
-    _builder.append("}");
     _builder.newLine();
     {
       if (this.createEmptyConstructor) {
@@ -221,7 +239,7 @@ public class JavaDTOGenerator implements IDTOGenerator {
         _builder.append("\t");
         _builder.append("public ");
         _builder.append(className, "\t");
-        _builder.append("(){");
+        _builder.append("() {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.newLine();
@@ -231,25 +249,43 @@ public class JavaDTOGenerator implements IDTOGenerator {
       }
     }
     _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    String _generateDataMethodsIncludeParentDataSet = this.generateDataMethodsIncludeParentDataSet(d);
+    CharSequence _generateDataMethodsIncludeParentDataSet = this.generateDataMethodsIncludeParentDataSet(d);
     _builder.append(_generateDataMethodsIncludeParentDataSet, "\t");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
+    _builder.append("\t");
     _builder.newLine();
     _builder.append("\t");
     CharSequence _generateJsonUnmarshal = this.generateJsonUnmarshal(d);
     _builder.append(_generateJsonUnmarshal, "\t");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    CharSequence _generateJsonMarshal = this.generateJsonMarshal(d);
+    _builder.append(_generateJsonMarshal, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.newLine();
     _builder.append("\t");
     CharSequence _generateByteArrayUnmarshal = this.generateByteArrayUnmarshal(d);
     _builder.append(_generateByteArrayUnmarshal, "\t");
-    _builder.append("\t");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    CharSequence _generateByteArrayMarshal = this.generateByteArrayMarshal(d);
+    _builder.append(_generateByteArrayMarshal, "\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    {
+      if ((!this.bigEndian)) {
+        _builder.append("\t");
+        CharSequence _generateConverterMethods = this.generateConverterMethods(d);
+        _builder.append(_generateConverterMethods, "\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.append("}");
     _builder.newLine();
     return _builder;
@@ -258,196 +294,56 @@ public class JavaDTOGenerator implements IDTOGenerator {
   /**
    * Generates the data fields for this data set including used data sets.
    */
-  public String generateDataFieldsIncludeParentDataSet(final DataSet d) {
-    DataSet dataSet = d;
+  public CharSequence generateDataFieldsIncludeParentDataSet(final DataSet d) {
     StringConcatenation _builder = new StringConcatenation();
-    String dataFieldsString = _builder.toString();
-    while ((dataSet != null)) {
-      {
-        EList<EObject> _eContents = dataSet.eContents();
-        Iterable<NonMeasurementData> _filter = Iterables.<NonMeasurementData>filter(_eContents, NonMeasurementData.class);
-        for (final NonMeasurementData data : _filter) {
-          {
-            String _dataFieldsString = dataFieldsString;
-            CharSequence _generateDataFields = this.generateDataFields(data);
-            dataFieldsString = (_dataFieldsString + _generateDataFields);
-            String _dataFieldsString_1 = dataFieldsString;
-            String _property = System.getProperty("line.separator");
-            dataFieldsString = (_dataFieldsString_1 + _property);
-          }
-        }
-        EList<EObject> _eContents_1 = dataSet.eContents();
-        Iterable<MeasurementData> _filter_1 = Iterables.<MeasurementData>filter(_eContents_1, MeasurementData.class);
-        for (final MeasurementData data_1 : _filter_1) {
-          {
-            String _dataFieldsString = dataFieldsString;
-            CharSequence _generateDataFields = this.generateDataFields(data_1);
-            dataFieldsString = (_dataFieldsString + _generateDataFields);
-            String _dataFieldsString_1 = dataFieldsString;
-            String _property = System.getProperty("line.separator");
-            dataFieldsString = (_dataFieldsString_1 + _property);
-          }
-        }
-        DataSet _parentDataSet = dataSet.getParentDataSet();
-        dataSet = _parentDataSet;
+    {
+      EList<EObject> _eContents = d.eContents();
+      Iterable<NonMeasurementData> _filter = Iterables.<NonMeasurementData>filter(_eContents, NonMeasurementData.class);
+      for(final NonMeasurementData data : _filter) {
+        _builder.newLine();
+        CharSequence _generateDataFields = this.generateDataFields(data);
+        _builder.append(_generateDataFields, "");
+        _builder.newLineIfNotEmpty();
       }
     }
-    return dataFieldsString;
-  }
-  
-  /**
-   * Generates the constructor for this data set including used data sets.
-   */
-  public String generateConstructorIncludeParentDataSet(final DataSet d, final String className) {
-    DataSet dataSet = d;
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("public ");
-    _builder.append(className, "");
-    _builder.append(" (");
-    CharSequence _generateConstructorArgumentsIncludeParentDataSets = this.generateConstructorArgumentsIncludeParentDataSets(d);
-    _builder.append(_generateConstructorArgumentsIncludeParentDataSets, "");
-    _builder.append("){");
-    String constructorString = _builder.toString();
-    String _constructorString = constructorString;
-    String _property = System.getProperty("line.separator");
-    constructorString = (_constructorString + _property);
-    ArrayList<MeasurementData> measurementDataList = new ArrayList<MeasurementData>();
-    ArrayList<NonMeasurementData> nonMeasurementDataList = new ArrayList<NonMeasurementData>();
-    while ((dataSet != null)) {
-      {
-        EList<EObject> _eContents = dataSet.eContents();
-        Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(_eContents, MeasurementData.class);
-        Iterables.<MeasurementData>addAll(measurementDataList, _filter);
-        EList<EObject> _eContents_1 = dataSet.eContents();
-        Iterable<NonMeasurementData> _filter_1 = Iterables.<NonMeasurementData>filter(_eContents_1, NonMeasurementData.class);
-        Iterables.<NonMeasurementData>addAll(nonMeasurementDataList, _filter_1);
-        DataSet _parentDataSet = dataSet.getParentDataSet();
-        dataSet = _parentDataSet;
+    {
+      EList<EObject> _eContents_1 = d.eContents();
+      Iterable<MeasurementData> _filter_1 = Iterables.<MeasurementData>filter(_eContents_1, MeasurementData.class);
+      for(final MeasurementData data_1 : _filter_1) {
+        CharSequence _generateDataFields_1 = this.generateDataFields(data_1);
+        _builder.append(_generateDataFields_1, "");
+        _builder.newLineIfNotEmpty();
       }
     }
-    for (final MeasurementData data : measurementDataList) {
-      String _constructorString_1 = constructorString;
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("\t");
-      _builder_1.append("this.");
-      String _nameLower = GenerationUtil.toNameLower(data);
-      _builder_1.append(_nameLower, "\t");
-      _builder_1.append(" = ");
-      {
-        DataType _dataType = data.getDataType();
-        boolean _isUnsigned = this.isUnsigned(_dataType);
-        if (_isUnsigned) {
-          _builder_1.append("(");
-          String _simpleTypeName = this.toSimpleTypeName(data);
-          _builder_1.append(_simpleTypeName, "\t");
-          _builder_1.append(") (");
-          String _nameLower_1 = GenerationUtil.toNameLower(data);
-          _builder_1.append(_nameLower_1, "\t");
-          _builder_1.append(" - ");
-          String _typeName = this.toTypeName(data);
-          _builder_1.append(_typeName, "\t");
-          _builder_1.append(".MAX_VALUE)");
-        } else {
-          String _nameLower_2 = GenerationUtil.toNameLower(data);
-          _builder_1.append(_nameLower_2, "\t");
-        }
-      }
-      _builder_1.append(";");
-      _builder_1.newLineIfNotEmpty();
-      constructorString = (_constructorString_1 + _builder_1);
-    }
-    for (final NonMeasurementData data_1 : nonMeasurementDataList) {
-      boolean _isConstant = data_1.isConstant();
-      boolean _not = (!_isConstant);
-      if (_not) {
-        String _constructorString_2 = constructorString;
-        StringConcatenation _builder_2 = new StringConcatenation();
-        _builder_2.append("\t");
-        _builder_2.append("this.");
-        String _nameLower_3 = GenerationUtil.toNameLower(data_1);
-        _builder_2.append(_nameLower_3, "\t");
-        _builder_2.append(" = ");
-        {
-          DataType _dataType_1 = data_1.getDataType();
-          boolean _isUnsigned_1 = this.isUnsigned(_dataType_1);
-          if (_isUnsigned_1) {
-            _builder_2.append("(");
-            String _simpleTypeName_1 = this.toSimpleTypeName(data_1);
-            _builder_2.append(_simpleTypeName_1, "\t");
-            _builder_2.append(") (");
-            String _nameLower_4 = GenerationUtil.toNameLower(data_1);
-            _builder_2.append(_nameLower_4, "\t");
-            _builder_2.append(" - ");
-            String _typeName_1 = this.toTypeName(data_1);
-            _builder_2.append(_typeName_1, "\t");
-            _builder_2.append(".MAX_VALUE)");
-          } else {
-            String _nameLower_5 = GenerationUtil.toNameLower(data_1);
-            _builder_2.append(_nameLower_5, "\t");
-          }
-        }
-        _builder_2.append(";");
-        _builder_2.newLineIfNotEmpty();
-        constructorString = (_constructorString_2 + _builder_2);
+    {
+      DataSet _parentDataSet = d.getParentDataSet();
+      boolean _notEquals = (!Objects.equal(_parentDataSet, null));
+      if (_notEquals) {
+        _builder.newLine();
+        _builder.append("/*\t");
+        _builder.newLine();
+        _builder.append(" ");
+        _builder.append("* ");
+        DataSet _parentDataSet_1 = d.getParentDataSet();
+        String _description = _parentDataSet_1.getDescription();
+        _builder.append(_description, " ");
+        _builder.newLineIfNotEmpty();
+        _builder.append(" ");
+        _builder.append("*/");
+        _builder.newLine();
+        _builder.append("private ");
+        DataSet _parentDataSet_2 = d.getParentDataSet();
+        String _nameUpper = GenerationUtil.toNameUpper(_parentDataSet_2);
+        _builder.append(_nameUpper, "");
+        _builder.append(" ");
+        DataSet _parentDataSet_3 = d.getParentDataSet();
+        String _nameLower = GenerationUtil.toNameLower(_parentDataSet_3);
+        _builder.append(_nameLower, "");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
       }
     }
-    return constructorString;
-  }
-  
-  /**
-   * Generates the getter and setter methods for the data of this data set including used data sets.
-   */
-  public String generateDataMethodsIncludeParentDataSet(final DataSet d) {
-    DataSet dataSet = d;
-    StringConcatenation _builder = new StringConcatenation();
-    String methodsString = _builder.toString();
-    ArrayList<MeasurementData> measurementDataList = new ArrayList<MeasurementData>();
-    ArrayList<NonMeasurementData> nonMeasurementDataList = new ArrayList<NonMeasurementData>();
-    while ((dataSet != null)) {
-      {
-        EList<EObject> _eContents = dataSet.eContents();
-        Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(_eContents, MeasurementData.class);
-        Iterables.<MeasurementData>addAll(measurementDataList, _filter);
-        EList<EObject> _eContents_1 = dataSet.eContents();
-        Iterable<NonMeasurementData> _filter_1 = Iterables.<NonMeasurementData>filter(_eContents_1, NonMeasurementData.class);
-        Iterables.<NonMeasurementData>addAll(nonMeasurementDataList, _filter_1);
-        DataSet _parentDataSet = dataSet.getParentDataSet();
-        dataSet = _parentDataSet;
-      }
-    }
-    for (final MeasurementData data : measurementDataList) {
-      {
-        String _methodsString = methodsString;
-        CharSequence _generateGetter = this.generateGetter(data);
-        methodsString = (_methodsString + _generateGetter);
-        String _methodsString_1 = methodsString;
-        String _property = System.getProperty("line.separator");
-        methodsString = (_methodsString_1 + _property);
-        String _methodsString_2 = methodsString;
-        CharSequence _generateSetter = this.generateSetter(data);
-        methodsString = (_methodsString_2 + _generateSetter);
-        String _methodsString_3 = methodsString;
-        String _property_1 = System.getProperty("line.separator");
-        methodsString = (_methodsString_3 + _property_1);
-      }
-    }
-    for (final NonMeasurementData data_1 : nonMeasurementDataList) {
-      {
-        String _methodsString = methodsString;
-        CharSequence _generateGetter = this.generateGetter(data_1);
-        methodsString = (_methodsString + _generateGetter);
-        String _methodsString_1 = methodsString;
-        String _property = System.getProperty("line.separator");
-        methodsString = (_methodsString_1 + _property);
-        String _methodsString_2 = methodsString;
-        CharSequence _generateSetter = this.generateSetter(data_1);
-        methodsString = (_methodsString_2 + _generateSetter);
-        String _methodsString_3 = methodsString;
-        String _property_1 = System.getProperty("line.separator");
-        methodsString = (_methodsString_3 + _property_1);
-      }
-    }
-    return methodsString;
+    return _builder;
   }
   
   /**
@@ -461,9 +357,10 @@ public class JavaDTOGenerator implements IDTOGenerator {
       String _description = d.getDescription();
       boolean _notEquals = (!Objects.equal(_description, null));
       if (_notEquals) {
-        _builder.append(" * ");
+        _builder.append(" ");
+        _builder.append("* ");
         String _description_1 = d.getDescription();
-        _builder.append(_description_1, "");
+        _builder.append(_description_1, " ");
         _builder.newLineIfNotEmpty();
         _builder.append(" ");
         _builder.append("* ");
@@ -486,6 +383,47 @@ public class JavaDTOGenerator implements IDTOGenerator {
     _builder.append(_nameLower, "");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    {
+      boolean _hasLinearDataConversionWithInterval = this.hasLinearDataConversionWithInterval(d);
+      if (_hasLinearDataConversionWithInterval) {
+        _builder.append("/*");
+        _builder.newLine();
+        {
+          String _description_2 = d.getDescription();
+          boolean _notEquals_1 = (!Objects.equal(_description_2, null));
+          if (_notEquals_1) {
+            _builder.append(" * ");
+            String _description_3 = d.getDescription();
+            _builder.append(_description_3, "");
+            _builder.newLineIfNotEmpty();
+            _builder.append(" ");
+            _builder.append("* ");
+            _builder.newLine();
+          }
+        }
+        _builder.append(" ");
+        _builder.append("* Unit: ");
+        Unit<?> _unit_1 = d.getUnit();
+        _builder.append(_unit_1, " ");
+        _builder.newLineIfNotEmpty();
+        _builder.append(" ");
+        _builder.append("* Adjusted");
+        _builder.newLine();
+        _builder.append(" ");
+        _builder.append("*/");
+        _builder.newLine();
+        _builder.append("private ");
+        DataType _dataConversionType = this.getDataConversionType(d);
+        String _typeName_1 = this.toTypeName(_dataConversionType);
+        _builder.append(_typeName_1, "");
+        _builder.append(" ");
+        String _nameLower_1 = GenerationUtil.toNameLower(d);
+        _builder.append(_nameLower_1, "");
+        _builder.append("Adjusted;");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
   
@@ -501,34 +439,40 @@ public class JavaDTOGenerator implements IDTOGenerator {
         String _description = d.getDescription();
         boolean _notEquals = (!Objects.equal(_description, null));
         if (_notEquals) {
-          _builder.append(" ");
           _builder.append("/*");
           _builder.newLine();
-          _builder.append("  ");
+          _builder.append(" ");
           _builder.append("*");
           String _description_1 = d.getDescription();
-          _builder.append(_description_1, "  ");
+          _builder.append(_description_1, " ");
           _builder.newLineIfNotEmpty();
           {
             DataType _dataType = d.getDataType();
             boolean _isUnsigned = this.isUnsigned(_dataType);
             if (_isUnsigned) {
               _builder.append(" ");
-              _builder.append("* (Java has no option for unsigned data types, so if the data has an unsigned ");
+              _builder.append("*");
               _builder.newLine();
               _builder.append(" ");
-              _builder.append("* data type the value is calculated by subtracting the max value from the ");
+              _builder.append("* Java has no option for unsigned data types, so if the data has an ");
               _builder.newLine();
               _builder.append(" ");
-              _builder.append("* signed data type and adding it again, if it is used.) ");
+              _builder.append("* unsigned data type the value is calculated by subtracting the maximum ");
+              _builder.newLine();
+              _builder.append(" ");
+              _builder.append("* value from the signed data type and adding it again, if it is used.");
+              _builder.newLine();
+              _builder.append(" ");
+              _builder.append("*");
               _builder.newLine();
             }
           }
+          _builder.append(" ");
           _builder.append("*/");
           _builder.newLine();
         }
       }
-      _builder.append("private static final ");
+      _builder.append("private ");
       String _typeName = this.toTypeName(d);
       _builder.append(_typeName, "");
       _builder.append(" ");
@@ -622,7 +566,1460 @@ public class JavaDTOGenerator implements IDTOGenerator {
   }
   
   /**
-   * returns the appropriate type name
+   * Generates the constructor for this data set including used data sets.
+   */
+  public CharSequence generateConstructorIncludeParentDataSet(final DataSet d, final String className) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Constructor for the Data transfer object");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public ");
+    _builder.append(className, "");
+    _builder.append("(");
+    CharSequence _generateConstructorArgumentsIncludeParentDataSets = this.generateConstructorArgumentsIncludeParentDataSets(d);
+    _builder.append(_generateConstructorArgumentsIncludeParentDataSets, "");
+    _builder.append(") {");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<EObject> _eContents = d.eContents();
+      Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(_eContents, MeasurementData.class);
+      for(final MeasurementData data : _filter) {
+        {
+          boolean _hasLinearDataConversionWithInterval = this.hasLinearDataConversionWithInterval(data);
+          if (_hasLinearDataConversionWithInterval) {
+            _builder.append("\t");
+            _builder.append("set");
+            String _nameUpper = GenerationUtil.toNameUpper(data);
+            _builder.append(_nameUpper, "\t");
+            _builder.append("(");
+            String _nameLower = GenerationUtil.toNameLower(data);
+            _builder.append(_nameLower, "\t");
+            _builder.append(");");
+            _builder.newLineIfNotEmpty();
+          } else {
+            _builder.append("\t");
+            _builder.append("this.");
+            String _nameLower_1 = GenerationUtil.toNameLower(data);
+            _builder.append(_nameLower_1, "\t");
+            _builder.append(" = ");
+            {
+              DataType _dataType = data.getDataType();
+              boolean _isUnsigned = this.isUnsigned(_dataType);
+              if (_isUnsigned) {
+                _builder.append("(");
+                String _simpleTypeName = this.toSimpleTypeName(data);
+                _builder.append(_simpleTypeName, "\t");
+                _builder.append(") (");
+                String _nameLower_2 = GenerationUtil.toNameLower(data);
+                _builder.append(_nameLower_2, "\t");
+                _builder.append(" - ");
+                String _typeName = this.toTypeName(data);
+                _builder.append(_typeName, "\t");
+                _builder.append(".MAX_VALUE)");
+              } else {
+                String _nameLower_3 = GenerationUtil.toNameLower(data);
+                _builder.append(_nameLower_3, "\t");
+              }
+            }
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    {
+      EList<EObject> _eContents_1 = d.eContents();
+      Iterable<NonMeasurementData> _filter_1 = Iterables.<NonMeasurementData>filter(_eContents_1, NonMeasurementData.class);
+      for(final NonMeasurementData data_1 : _filter_1) {
+        {
+          boolean _isConstant = data_1.isConstant();
+          boolean _not = (!_isConstant);
+          if (_not) {
+            _builder.append("\t");
+            _builder.append("this.");
+            String _nameLower_4 = GenerationUtil.toNameLower(data_1);
+            _builder.append(_nameLower_4, "\t");
+            _builder.append(" = ");
+            {
+              DataType _dataType_1 = data_1.getDataType();
+              boolean _isUnsigned_1 = this.isUnsigned(_dataType_1);
+              if (_isUnsigned_1) {
+                _builder.append("(");
+                String _simpleTypeName_1 = this.toSimpleTypeName(data_1);
+                _builder.append(_simpleTypeName_1, "\t");
+                _builder.append(") (");
+                String _nameLower_5 = GenerationUtil.toNameLower(data_1);
+                _builder.append(_nameLower_5, "\t");
+                _builder.append(" - ");
+                String _typeName_1 = this.toTypeName(data_1);
+                _builder.append(_typeName_1, "\t");
+                _builder.append(".MAX_VALUE)");
+              } else {
+                String _nameLower_6 = GenerationUtil.toNameLower(data_1);
+                _builder.append(_nameLower_6, "\t");
+              }
+            }
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    {
+      DataSet _parentDataSet = d.getParentDataSet();
+      boolean _notEquals = (!Objects.equal(_parentDataSet, null));
+      if (_notEquals) {
+        _builder.append("\t");
+        _builder.append("this.");
+        DataSet _parentDataSet_1 = d.getParentDataSet();
+        String _nameLower_7 = GenerationUtil.toNameLower(_parentDataSet_1);
+        _builder.append(_nameLower_7, "\t");
+        _builder.append(" = ");
+        DataSet _parentDataSet_2 = d.getParentDataSet();
+        String _nameLower_8 = GenerationUtil.toNameLower(_parentDataSet_2);
+        _builder.append(_nameLower_8, "\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  /**
+   * Generates the Constructor arguments
+   */
+  public CharSequence generateConstructorArgumentsIncludeParentDataSets(final DataSet d) {
+    CharSequence _xblockexpression = null;
+    {
+      ArrayList<Data> dataList = new ArrayList<Data>();
+      DataSet dataSet = d;
+      EList<EObject> _eContents = dataSet.eContents();
+      Iterable<Data> _filter = Iterables.<Data>filter(_eContents, Data.class);
+      for (final Data data : _filter) {
+        if ((data instanceof NonMeasurementData)) {
+          NonMeasurementData nmdata = ((NonMeasurementData) data);
+          boolean _isConstant = nmdata.isConstant();
+          boolean _not = (!_isConstant);
+          if (_not) {
+            dataList.add(data);
+          }
+        } else {
+          dataList.add(data);
+        }
+      }
+      CharSequence _xifexpression = null;
+      int _size = dataList.size();
+      boolean _greaterThan = (_size > 0);
+      if (_greaterThan) {
+        CharSequence _xblockexpression_1 = null;
+        {
+          Data _get = dataList.get(0);
+          String _typeName = this.toTypeName(_get);
+          String _plus = (_typeName + " ");
+          Data _get_1 = dataList.get(0);
+          String _nameLower = GenerationUtil.toNameLower(_get_1);
+          String firstElement = (_plus + _nameLower);
+          dataList.remove(0);
+          CharSequence _xifexpression_1 = null;
+          DataSet _parentDataSet = d.getParentDataSet();
+          boolean _notEquals = (!Objects.equal(_parentDataSet, null));
+          if (_notEquals) {
+            StringConcatenation _builder = new StringConcatenation();
+            _builder.append(firstElement, "");
+            {
+              for(final Data data_1 : dataList) {
+                _builder.append(", ");
+                String _typeName_1 = this.toTypeName(data_1);
+                _builder.append(_typeName_1, "");
+                _builder.append(" ");
+                String _nameLower_1 = GenerationUtil.toNameLower(data_1);
+                _builder.append(_nameLower_1, "");
+              }
+            }
+            _builder.append(", ");
+            DataSet _parentDataSet_1 = d.getParentDataSet();
+            String _nameUpper = GenerationUtil.toNameUpper(_parentDataSet_1);
+            _builder.append(_nameUpper, "");
+            _builder.append(" ");
+            DataSet _parentDataSet_2 = d.getParentDataSet();
+            String _nameLower_2 = GenerationUtil.toNameLower(_parentDataSet_2);
+            _builder.append(_nameLower_2, "");
+            _xifexpression_1 = _builder;
+          } else {
+            StringConcatenation _builder_1 = new StringConcatenation();
+            _builder_1.append(firstElement, "");
+            {
+              for(final Data data_2 : dataList) {
+                _builder_1.append(", ");
+                String _typeName_2 = this.toTypeName(data_2);
+                _builder_1.append(_typeName_2, "");
+                _builder_1.append(" ");
+                String _nameLower_3 = GenerationUtil.toNameLower(data_2);
+                _builder_1.append(_nameLower_3, "");
+              }
+            }
+            _xifexpression_1 = _builder_1;
+          }
+          _xblockexpression_1 = _xifexpression_1;
+        }
+        _xifexpression = _xblockexpression_1;
+      } else {
+        CharSequence _xblockexpression_2 = null;
+        {
+          this.createEmptyConstructor = false;
+          StringConcatenation _builder = new StringConcatenation();
+          _xblockexpression_2 = _builder;
+        }
+        _xifexpression = _xblockexpression_2;
+      }
+      _xblockexpression = _xifexpression;
+    }
+    return _xblockexpression;
+  }
+  
+  /**
+   * Generates the getter and setter methods for the data of this data set including used data sets.
+   */
+  public CharSequence generateDataMethodsIncludeParentDataSet(final DataSet d) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<EObject> _eContents = d.eContents();
+      Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(_eContents, MeasurementData.class);
+      for(final MeasurementData data : _filter) {
+        _builder.newLine();
+        CharSequence _generateGetter = this.generateGetter(data);
+        _builder.append(_generateGetter, "");
+        _builder.newLineIfNotEmpty();
+        _builder.newLine();
+        CharSequence _generateSetter = this.generateSetter(data);
+        _builder.append(_generateSetter, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<EObject> _eContents_1 = d.eContents();
+      Iterable<NonMeasurementData> _filter_1 = Iterables.<NonMeasurementData>filter(_eContents_1, NonMeasurementData.class);
+      for(final NonMeasurementData data_1 : _filter_1) {
+        _builder.newLine();
+        CharSequence _generateGetter_1 = this.generateGetter(data_1);
+        _builder.append(_generateGetter_1, "");
+        _builder.newLineIfNotEmpty();
+        _builder.newLine();
+        CharSequence _generateSetter_1 = this.generateSetter(data_1);
+        _builder.append(_generateSetter_1, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      DataSet _parentDataSet = d.getParentDataSet();
+      boolean _notEquals = (!Objects.equal(_parentDataSet, null));
+      if (_notEquals) {
+        _builder.newLine();
+        DataSet _parentDataSet_1 = d.getParentDataSet();
+        CharSequence _generateGetter_2 = this.generateGetter(_parentDataSet_1);
+        _builder.append(_generateGetter_2, "");
+        _builder.newLineIfNotEmpty();
+        _builder.newLine();
+        DataSet _parentDataSet_2 = d.getParentDataSet();
+        CharSequence _generateSetter_2 = this.generateSetter(_parentDataSet_2);
+        _builder.append(_generateSetter_2, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  /**
+   * returns the Getter Name
+   */
+  public CharSequence toGetterName(final Data d) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("get");
+    String _name = d.getName();
+    String _replaceAll = _name.replaceAll("[^a-zA-Z0-9]", "");
+    String _firstUpper = StringExtensions.toFirstUpper(_replaceAll);
+    _builder.append(_firstUpper, "");
+    return _builder;
+  }
+  
+  /**
+   * returns the Setter Name
+   */
+  public CharSequence toSetterName(final Data d) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("set");
+    String _name = d.getName();
+    String _replaceAll = _name.replaceAll("[^a-zA-Z0-9]", "");
+    String _firstUpper = StringExtensions.toFirstUpper(_replaceAll);
+    _builder.append(_firstUpper, "");
+    return _builder;
+  }
+  
+  /**
+   * Generates the Getter Method for the dataset
+   */
+  public CharSequence generateGetter(final DataSet d) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @return the ");
+    String _nameLower = GenerationUtil.toNameLower(d);
+    _builder.append(_nameLower, " ");
+    _builder.newLineIfNotEmpty();
+    _builder.append(" ");
+    _builder.append("*");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public ");
+    String _nameUpper = GenerationUtil.toNameUpper(d);
+    _builder.append(_nameUpper, "");
+    _builder.append(" get");
+    String _nameUpper_1 = GenerationUtil.toNameUpper(d);
+    _builder.append(_nameUpper_1, "");
+    _builder.append("() {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("return this.");
+    String _nameLower_1 = GenerationUtil.toNameLower(d);
+    _builder.append(_nameLower_1, "\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  /**
+   * Generates the Getter Method for the measurement data
+   */
+  public CharSequence generateGetter(final MeasurementData d) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      boolean _hasLinearDataConversionWithInterval = this.hasLinearDataConversionWithInterval(d);
+      boolean _not = (!_hasLinearDataConversionWithInterval);
+      if (_not) {
+        _builder.append("/**");
+        _builder.newLine();
+        {
+          DataType _dataType = d.getDataType();
+          boolean _isUnsigned = this.isUnsigned(_dataType);
+          if (_isUnsigned) {
+            _builder.append(" ");
+            _builder.append("* Java has no option for unsigned data types, so if the data has an ");
+            _builder.newLine();
+            _builder.append(" ");
+            _builder.append("* unsigned data type the value is calculated by subtracting the maximum ");
+            _builder.newLine();
+            _builder.append(" ");
+            _builder.append("* value from the signed data type and adding it again, if it is used.");
+            _builder.newLine();
+            _builder.append(" ");
+            _builder.append("*");
+            _builder.newLine();
+          }
+        }
+        _builder.append(" ");
+        _builder.append("* @return the ");
+        String _nameLower = GenerationUtil.toNameLower(d);
+        _builder.append(_nameLower, " ");
+        _builder.newLineIfNotEmpty();
+        _builder.append(" ");
+        _builder.append("*/");
+        _builder.newLine();
+        _builder.append("public ");
+        String _typeName = this.toTypeName(d);
+        _builder.append(_typeName, "");
+        _builder.append(" ");
+        CharSequence _getterName = this.toGetterName(d);
+        _builder.append(_getterName, "");
+        _builder.append("() {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("return ");
+        {
+          DataType _dataType_1 = d.getDataType();
+          boolean _isUnsigned_1 = this.isUnsigned(_dataType_1);
+          if (_isUnsigned_1) {
+            _builder.append("(");
+            String _simpleTypeName = this.toSimpleTypeName(d);
+            _builder.append(_simpleTypeName, "\t");
+            _builder.append(") (this.");
+            String _nameLower_1 = GenerationUtil.toNameLower(d);
+            _builder.append(_nameLower_1, "\t");
+            _builder.append(" + ");
+            String _typeName_1 = this.toTypeName(d);
+            _builder.append(_typeName_1, "\t");
+            _builder.append(".MAX_VALUE)");
+          } else {
+            _builder.append("this.");
+            String _nameLower_2 = GenerationUtil.toNameLower(d);
+            _builder.append(_nameLower_2, "\t");
+          }
+        }
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("}");
+        _builder.newLine();
+      } else {
+        _builder.append("/**");
+        _builder.newLine();
+        _builder.append(" ");
+        _builder.append("* @return the ");
+        String _nameLower_3 = GenerationUtil.toNameLower(d);
+        _builder.append(_nameLower_3, " ");
+        _builder.newLineIfNotEmpty();
+        _builder.append(" ");
+        _builder.append("*/");
+        _builder.newLine();
+        _builder.append("public ");
+        DataType _dataConversionType = this.getDataConversionType(d);
+        String _typeName_2 = this.toTypeName(_dataConversionType);
+        _builder.append(_typeName_2, "");
+        _builder.append(" ");
+        CharSequence _getterName_1 = this.toGetterName(d);
+        _builder.append(_getterName_1, "");
+        _builder.append("(){");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("return this.");
+        String _nameLower_4 = GenerationUtil.toNameLower(d);
+        _builder.append(_nameLower_4, "\t");
+        _builder.append("Adjusted;");
+        _builder.newLineIfNotEmpty();
+        _builder.append("}");
+        _builder.newLine();
+        _builder.newLine();
+        _builder.append("/**");
+        _builder.newLine();
+        _builder.append(" ");
+        _builder.append("* @return the ");
+        String _nameLower_5 = GenerationUtil.toNameLower(d);
+        _builder.append(_nameLower_5, " ");
+        _builder.newLineIfNotEmpty();
+        _builder.append(" ");
+        _builder.append("*/");
+        _builder.newLine();
+        _builder.append("public ");
+        String _typeName_3 = this.toTypeName(d);
+        _builder.append(_typeName_3, "");
+        _builder.append(" ");
+        CharSequence _getterName_2 = this.toGetterName(d);
+        _builder.append(_getterName_2, "");
+        _builder.append("NotAdjusted(){");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("return ");
+        {
+          DataType _dataType_2 = d.getDataType();
+          boolean _isUnsigned_2 = this.isUnsigned(_dataType_2);
+          if (_isUnsigned_2) {
+            _builder.append("(");
+            String _simpleTypeName_1 = this.toSimpleTypeName(d);
+            _builder.append(_simpleTypeName_1, "\t");
+            _builder.append(") (this.");
+            String _nameLower_6 = GenerationUtil.toNameLower(d);
+            _builder.append(_nameLower_6, "\t");
+            _builder.append(" + ");
+            String _typeName_4 = this.toTypeName(d);
+            _builder.append(_typeName_4, "\t");
+            _builder.append(".MAX_VALUE)");
+          } else {
+            _builder.append("this.");
+            String _nameLower_7 = GenerationUtil.toNameLower(d);
+            _builder.append(_nameLower_7, "\t");
+          }
+        }
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    return _builder;
+  }
+  
+  /**
+   * Generates the Getter Method for the non measurement data
+   */
+  public CharSequence generateGetter(final NonMeasurementData d) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    {
+      DataType _dataType = d.getDataType();
+      boolean _isUnsigned = this.isUnsigned(_dataType);
+      if (_isUnsigned) {
+        _builder.append(" ");
+        _builder.append("* Java has no option for unsigned data types, so if the data has an ");
+        _builder.newLine();
+        _builder.append(" ");
+        _builder.append("* unsigned data type the value is calculated by subtracting the maximum ");
+        _builder.newLine();
+        _builder.append(" ");
+        _builder.append("* value from the signed data type and adding it again, if it is used.");
+        _builder.newLine();
+        _builder.append(" ");
+        _builder.append("*");
+        _builder.newLine();
+      }
+    }
+    _builder.append(" ");
+    _builder.append("* @return the ");
+    String _nameLower = GenerationUtil.toNameLower(d);
+    _builder.append(_nameLower, " ");
+    _builder.newLineIfNotEmpty();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public ");
+    String _typeName = this.toTypeName(d);
+    _builder.append(_typeName, "");
+    _builder.append(" ");
+    CharSequence _getterName = this.toGetterName(d);
+    _builder.append(_getterName, "");
+    _builder.append("() {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("return ");
+    {
+      DataType _dataType_1 = d.getDataType();
+      boolean _isUnsigned_1 = this.isUnsigned(_dataType_1);
+      if (_isUnsigned_1) {
+        _builder.append("(");
+        String _simpleTypeName = this.toSimpleTypeName(d);
+        _builder.append(_simpleTypeName, "\t");
+        _builder.append(") (");
+        {
+          boolean _isConstant = d.isConstant();
+          if (_isConstant) {
+            String _name = d.getName();
+            String _upperCase = _name.toUpperCase();
+            _builder.append(_upperCase, "\t");
+          } else {
+            _builder.append("this.");
+            String _nameLower_1 = GenerationUtil.toNameLower(d);
+            _builder.append(_nameLower_1, "\t");
+          }
+        }
+        _builder.append(" + ");
+        String _typeName_1 = this.toTypeName(d);
+        _builder.append(_typeName_1, "\t");
+        _builder.append(".MAX_VALUE)");
+      } else {
+        _builder.append("this.");
+        {
+          boolean _isConstant_1 = d.isConstant();
+          if (_isConstant_1) {
+            String _name_1 = d.getName();
+            String _upperCase_1 = _name_1.toUpperCase();
+            _builder.append(_upperCase_1, "\t");
+          } else {
+            String _nameLower_2 = GenerationUtil.toNameLower(d);
+            _builder.append(_nameLower_2, "\t");
+          }
+        }
+      }
+    }
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  /**
+   * Generates the Setter Method for the dataset
+   */
+  public CharSequence generateSetter(final DataSet d) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @param info");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*            the ");
+    String _nameLower = GenerationUtil.toNameLower(d);
+    _builder.append(_nameLower, " ");
+    _builder.append(" to set");
+    _builder.newLineIfNotEmpty();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public void set");
+    String _nameUpper = GenerationUtil.toNameUpper(d);
+    _builder.append(_nameUpper, "");
+    _builder.append("(");
+    String _nameUpper_1 = GenerationUtil.toNameUpper(d);
+    _builder.append(_nameUpper_1, "");
+    _builder.append(" ");
+    String _nameLower_1 = GenerationUtil.toNameLower(d);
+    _builder.append(_nameLower_1, "");
+    _builder.append(") {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("this.");
+    String _nameLower_2 = GenerationUtil.toNameLower(d);
+    _builder.append(_nameLower_2, "\t");
+    _builder.append(" = ");
+    String _nameLower_3 = GenerationUtil.toNameLower(d);
+    _builder.append(_nameLower_3, "\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  /**
+   * Generates the Setter Method for the measurement data
+   */
+  public CharSequence generateSetter(final MeasurementData d) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<DataAdjustment> _adjustments = d.getAdjustments();
+      boolean _isEmpty = _adjustments.isEmpty();
+      boolean _equals = (_isEmpty == false);
+      if (_equals) {
+        {
+          EList<DataAdjustment> _adjustments_1 = d.getAdjustments();
+          for(final DataAdjustment dataAdj : _adjustments_1) {
+            {
+              if ((dataAdj instanceof DataRange)) {
+                _builder.append("/**");
+                _builder.newLine();
+                _builder.append(" ");
+                _builder.append("* @param ");
+                String _nameLower = GenerationUtil.toNameLower(d);
+                _builder.append(_nameLower, " ");
+                _builder.newLineIfNotEmpty();
+                _builder.append(" ");
+                _builder.append("*            the ");
+                String _nameLower_1 = GenerationUtil.toNameLower(d);
+                _builder.append(_nameLower_1, " ");
+                _builder.append(" to set");
+                _builder.newLineIfNotEmpty();
+                _builder.append(" ");
+                _builder.append("*/");
+                _builder.newLine();
+                _builder.append("public void ");
+                CharSequence _setterName = this.toSetterName(d);
+                _builder.append(_setterName, "");
+                _builder.append("(");
+                String _typeName = this.toTypeName(d);
+                _builder.append(_typeName, "");
+                _builder.append(" ");
+                String _nameLower_2 = GenerationUtil.toNameLower(d);
+                _builder.append(_nameLower_2, "");
+                _builder.append("){");
+                _builder.newLineIfNotEmpty();
+                _builder.append("\t");
+                _builder.append("if (");
+                String _nameLower_3 = GenerationUtil.toNameLower(d);
+                _builder.append(_nameLower_3, "\t");
+                _builder.append(" >= ");
+                Interval _range = ((DataRange)dataAdj).getRange();
+                double _lowerBound = _range.getLowerBound();
+                _builder.append(_lowerBound, "\t");
+                _builder.append(" && ");
+                String _nameLower_4 = GenerationUtil.toNameLower(d);
+                _builder.append(_nameLower_4, "\t");
+                _builder.append(" <= ");
+                Interval _range_1 = ((DataRange)dataAdj).getRange();
+                double _upperBound = _range_1.getUpperBound();
+                _builder.append(_upperBound, "\t");
+                _builder.append(")");
+                _builder.newLineIfNotEmpty();
+                _builder.append("\t\t");
+                _builder.append("this.");
+                String _nameLower_5 = GenerationUtil.toNameLower(d);
+                _builder.append(_nameLower_5, "\t\t");
+                _builder.append(" = ");
+                String _nameLower_6 = GenerationUtil.toNameLower(d);
+                _builder.append(_nameLower_6, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+                _builder.append("\t");
+                _builder.append("else");
+                _builder.newLine();
+                _builder.append("\t\t");
+                _builder.append("throw new IllegalArgumentException(\"value is out of defined range\");\t");
+                _builder.newLine();
+                _builder.append("} ");
+                _builder.newLine();
+              } else {
+                if ((dataAdj instanceof DataConversion)) {
+                  _builder.append("/**");
+                  _builder.newLine();
+                  _builder.append(" ");
+                  _builder.append("* @param ");
+                  String _nameLower_7 = GenerationUtil.toNameLower(d);
+                  _builder.append(_nameLower_7, " ");
+                  _builder.newLineIfNotEmpty();
+                  _builder.append(" ");
+                  _builder.append("*            the ");
+                  String _nameLower_8 = GenerationUtil.toNameLower(d);
+                  _builder.append(_nameLower_8, " ");
+                  _builder.append(" to set");
+                  _builder.newLineIfNotEmpty();
+                  _builder.append(" ");
+                  _builder.append("*/");
+                  _builder.newLine();
+                  _builder.append("public void ");
+                  CharSequence _setterName_1 = this.toSetterName(d);
+                  _builder.append(_setterName_1, "");
+                  _builder.append("(");
+                  String _typeName_1 = this.toTypeName(d);
+                  _builder.append(_typeName_1, "");
+                  _builder.append(" ");
+                  String _nameLower_9 = GenerationUtil.toNameLower(d);
+                  _builder.append(_nameLower_9, "");
+                  _builder.append(") {");
+                  _builder.newLineIfNotEmpty();
+                  _builder.append("\t");
+                  _builder.append("try {");
+                  _builder.newLine();
+                  _builder.append("\t\t");
+                  CharSequence _generateSetterBodyForMeasurementData = this.generateSetterBodyForMeasurementData(d, ((DataConversion) dataAdj));
+                  _builder.append(_generateSetterBodyForMeasurementData, "\t\t");
+                  _builder.newLineIfNotEmpty();
+                  _builder.append("\t");
+                  _builder.append("} catch (IllegalArgumentException e) {");
+                  _builder.newLine();
+                  _builder.append("\t\t");
+                  _builder.append("//Do something");
+                  _builder.newLine();
+                  _builder.append("\t");
+                  _builder.append("}");
+                  _builder.newLine();
+                  _builder.append("}");
+                  _builder.newLine();
+                }
+              }
+            }
+          }
+        }
+      } else {
+        _builder.append("/**");
+        _builder.newLine();
+        _builder.append(" ");
+        _builder.append("* @param ");
+        String _nameLower_10 = GenerationUtil.toNameLower(d);
+        _builder.append(_nameLower_10, " ");
+        _builder.append("  ");
+        _builder.newLineIfNotEmpty();
+        _builder.append(" ");
+        _builder.append("*            the ");
+        String _nameLower_11 = GenerationUtil.toNameLower(d);
+        _builder.append(_nameLower_11, " ");
+        _builder.append(" to set");
+        _builder.newLineIfNotEmpty();
+        _builder.append(" ");
+        _builder.append("*/");
+        _builder.newLine();
+        _builder.append("public void ");
+        CharSequence _setterName_2 = this.toSetterName(d);
+        _builder.append(_setterName_2, "");
+        _builder.append("(");
+        String _typeName_2 = this.toTypeName(d);
+        _builder.append(_typeName_2, "");
+        _builder.append(" ");
+        String _nameLower_12 = GenerationUtil.toNameLower(d);
+        _builder.append(_nameLower_12, "");
+        _builder.append(") {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("this.");
+        String _nameLower_13 = GenerationUtil.toNameLower(d);
+        _builder.append(_nameLower_13, "\t");
+        _builder.append(" = ");
+        {
+          DataType _dataType = d.getDataType();
+          boolean _isUnsigned = this.isUnsigned(_dataType);
+          if (_isUnsigned) {
+            _builder.append("(");
+            String _simpleTypeName = this.toSimpleTypeName(d);
+            _builder.append(_simpleTypeName, "\t");
+            _builder.append(") (");
+            String _nameLower_14 = GenerationUtil.toNameLower(d);
+            _builder.append(_nameLower_14, "\t");
+            _builder.append(" - ");
+            String _typeName_3 = this.toTypeName(d);
+            _builder.append(_typeName_3, "\t");
+            _builder.append(".MAX_VALUE)");
+          } else {
+            String _nameLower_15 = GenerationUtil.toNameLower(d);
+            _builder.append(_nameLower_15, "\t");
+          }
+        }
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("} ");
+        _builder.newLine();
+      }
+    }
+    return _builder;
+  }
+  
+  protected CharSequence _generateSetterBodyForMeasurementData(final MeasurementData data, final LinearDataConversion conversion) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("final double offset = ");
+    double _offset = conversion.getOffset();
+    _builder.append(_offset, "");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("final double scalingFactor = ");
+    double _scalingFactor = conversion.getScalingFactor();
+    _builder.append(_scalingFactor, "");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("this.");
+    String _nameLower = GenerationUtil.toNameLower(data);
+    _builder.append(_nameLower, "");
+    _builder.append(" = (");
+    String _simpleTypeName = this.toSimpleTypeName(data);
+    _builder.append(_simpleTypeName, "");
+    _builder.append(") ");
+    EObject _eContainer = data.eContainer();
+    String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(_eContainer);
+    _builder.append(_sensorInterfaceName, "");
+    _builder.append(SensIDLConstants.UTILITY_CLASS_NAME, "");
+    _builder.append(".");
+    _builder.append(SensIDLConstants.LINEAR_CONVERSION_METHOD_NAME, "");
+    _builder.append("(");
+    String _nameLower_1 = GenerationUtil.toNameLower(data);
+    _builder.append(_nameLower_1, "");
+    _builder.append(", scalingFactor, offset);");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  protected CharSequence _generateSetterBodyForMeasurementData(final MeasurementData data, final LinearDataConversionWithInterval conversion) {
+    StringConcatenation _builder = new StringConcatenation();
+    DataType _dataType = conversion.getDataType();
+    String _typeName = this.toTypeName(_dataType);
+    _builder.append(_typeName, "");
+    _builder.append(" oldMin = (");
+    DataType _dataType_1 = conversion.getDataType();
+    String _simpleTypeName = this.toSimpleTypeName(_dataType_1);
+    _builder.append(_simpleTypeName, "");
+    _builder.append(") ");
+    Interval _fromInterval = conversion.getFromInterval();
+    double _lowerBound = _fromInterval.getLowerBound();
+    _builder.append(_lowerBound, "");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    DataType _dataType_2 = conversion.getDataType();
+    String _typeName_1 = this.toTypeName(_dataType_2);
+    _builder.append(_typeName_1, "");
+    _builder.append(" oldMax = (");
+    DataType _dataType_3 = conversion.getDataType();
+    String _simpleTypeName_1 = this.toSimpleTypeName(_dataType_3);
+    _builder.append(_simpleTypeName_1, "");
+    _builder.append(") ");
+    Interval _fromInterval_1 = conversion.getFromInterval();
+    double _upperBound = _fromInterval_1.getUpperBound();
+    _builder.append(_upperBound, "");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    DataType _dataType_4 = conversion.getDataType();
+    String _typeName_2 = this.toTypeName(_dataType_4);
+    _builder.append(_typeName_2, "");
+    _builder.append(" newMin = (");
+    DataType _dataType_5 = conversion.getDataType();
+    String _simpleTypeName_2 = this.toSimpleTypeName(_dataType_5);
+    _builder.append(_simpleTypeName_2, "");
+    _builder.append(") ");
+    Interval _toInterval = conversion.getToInterval();
+    double _lowerBound_1 = _toInterval.getLowerBound();
+    _builder.append(_lowerBound_1, "");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    DataType _dataType_6 = conversion.getDataType();
+    String _typeName_3 = this.toTypeName(_dataType_6);
+    _builder.append(_typeName_3, "");
+    _builder.append(" newMax = (");
+    DataType _dataType_7 = conversion.getDataType();
+    String _simpleTypeName_3 = this.toSimpleTypeName(_dataType_7);
+    _builder.append(_simpleTypeName_3, "");
+    _builder.append(") ");
+    Interval _toInterval_1 = conversion.getToInterval();
+    double _upperBound_1 = _toInterval_1.getUpperBound();
+    _builder.append(_upperBound_1, "");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("this.");
+    String _nameLower = GenerationUtil.toNameLower(data);
+    _builder.append(_nameLower, "");
+    _builder.append(" = ");
+    {
+      DataType _dataType_8 = data.getDataType();
+      boolean _isUnsigned = this.isUnsigned(_dataType_8);
+      if (_isUnsigned) {
+        _builder.append("(");
+        String _simpleTypeName_4 = this.toSimpleTypeName(data);
+        _builder.append(_simpleTypeName_4, "");
+        _builder.append(") (");
+        String _nameLower_1 = GenerationUtil.toNameLower(data);
+        _builder.append(_nameLower_1, "");
+        _builder.append(" - ");
+        String _typeName_4 = this.toTypeName(data);
+        _builder.append(_typeName_4, "");
+        _builder.append(".MAX_VALUE)");
+      } else {
+        String _nameLower_2 = GenerationUtil.toNameLower(data);
+        _builder.append(_nameLower_2, "");
+      }
+    }
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("this.");
+    String _nameLower_3 = GenerationUtil.toNameLower(data);
+    _builder.append(_nameLower_3, "");
+    _builder.append("Adjusted = (");
+    DataType _dataType_9 = conversion.getDataType();
+    String _simpleTypeName_5 = this.toSimpleTypeName(_dataType_9);
+    _builder.append(_simpleTypeName_5, "");
+    _builder.append(") ");
+    EObject _eContainer = data.eContainer();
+    String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(_eContainer);
+    _builder.append(_sensorInterfaceName, "");
+    _builder.append(SensIDLConstants.UTILITY_CLASS_NAME, "");
+    _builder.append(".");
+    _builder.append(SensIDLConstants.LINEAR_CONVERSION_WITH_INTERVAL_METHOD_NAME, "");
+    _builder.append("(");
+    String _nameLower_4 = GenerationUtil.toNameLower(data);
+    _builder.append(_nameLower_4, "");
+    _builder.append(", oldMin, oldMax, newMin, newMax);");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  /**
+   * Generates the Setter Method for the non measurement data
+   */
+  public CharSequence generateSetter(final NonMeasurementData d) {
+    CharSequence _xifexpression = null;
+    boolean _isConstant = d.isConstant();
+    if (_isConstant) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("// no setter for constant value");
+      _builder.newLine();
+      _xifexpression = _builder;
+    } else {
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("/**");
+      _builder_1.newLine();
+      {
+        DataType _dataType = d.getDataType();
+        boolean _isUnsigned = this.isUnsigned(_dataType);
+        if (_isUnsigned) {
+          _builder_1.append(" ");
+          _builder_1.append("* Java has no option for unsigned data types, so if the data has an ");
+          _builder_1.newLine();
+          _builder_1.append(" ");
+          _builder_1.append("* unsigned data type the value is calculated by subtracting the maximum ");
+          _builder_1.newLine();
+          _builder_1.append(" ");
+          _builder_1.append("* value from the signed data type and adding it again, if it is used.");
+          _builder_1.newLine();
+          _builder_1.append(" ");
+          _builder_1.append("*");
+          _builder_1.newLine();
+        }
+      }
+      _builder_1.append(" ");
+      _builder_1.append("* @param ");
+      String _nameLower = GenerationUtil.toNameLower(d);
+      _builder_1.append(_nameLower, " ");
+      _builder_1.newLineIfNotEmpty();
+      _builder_1.append(" ");
+      _builder_1.append("*            the ");
+      String _nameLower_1 = GenerationUtil.toNameLower(d);
+      _builder_1.append(_nameLower_1, " ");
+      _builder_1.append(" to set");
+      _builder_1.newLineIfNotEmpty();
+      _builder_1.append(" ");
+      _builder_1.append("*/");
+      _builder_1.newLine();
+      _builder_1.append("public void ");
+      CharSequence _setterName = this.toSetterName(d);
+      _builder_1.append(_setterName, "");
+      _builder_1.append("(");
+      String _typeName = this.toTypeName(d);
+      _builder_1.append(_typeName, "");
+      _builder_1.append(" ");
+      String _nameLower_2 = GenerationUtil.toNameLower(d);
+      _builder_1.append(_nameLower_2, "");
+      _builder_1.append("){");
+      _builder_1.newLineIfNotEmpty();
+      _builder_1.append("\t");
+      _builder_1.append("this.");
+      String _nameLower_3 = GenerationUtil.toNameLower(d);
+      _builder_1.append(_nameLower_3, "\t");
+      _builder_1.append(" = ");
+      {
+        DataType _dataType_1 = d.getDataType();
+        boolean _isUnsigned_1 = this.isUnsigned(_dataType_1);
+        if (_isUnsigned_1) {
+          _builder_1.append("(");
+          String _simpleTypeName = this.toSimpleTypeName(d);
+          _builder_1.append(_simpleTypeName, "\t");
+          _builder_1.append(") (");
+          String _nameLower_4 = GenerationUtil.toNameLower(d);
+          _builder_1.append(_nameLower_4, "\t");
+          _builder_1.append(" - ");
+          String _typeName_1 = this.toTypeName(d);
+          _builder_1.append(_typeName_1, "\t");
+          _builder_1.append(".MAX_VALUE)");
+        } else {
+          String _nameLower_5 = GenerationUtil.toNameLower(d);
+          _builder_1.append(_nameLower_5, "\t");
+        }
+      }
+      _builder_1.append(";");
+      _builder_1.newLineIfNotEmpty();
+      _builder_1.append("} ");
+      _builder_1.newLine();
+      _xifexpression = _builder_1;
+    }
+    return _xifexpression;
+  }
+  
+  public CharSequence generateJsonUnmarshal(final DataSet d) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Alternative method responsible for deserializing the received");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* JSON-formatted L stage from sensor.");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* ");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @param dataset");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*            the dataset to unmarshall incoming from sensor side in a JSON");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*            format");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @return L unmarshalled L structure");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public ");
+    String _nameUpper = GenerationUtil.toNameUpper(d);
+    _builder.append(_nameUpper, "");
+    _builder.append(" unmarshal");
+    String _nameUpper_1 = GenerationUtil.toNameUpper(d);
+    _builder.append(_nameUpper_1, "");
+    _builder.append("JSON(BufferedReader dataset) { ");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("Gson gson = new Gson();");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("BufferedReader br = dataset;");
+    _builder.newLine();
+    _builder.append("\t");
+    String _nameUpper_2 = GenerationUtil.toNameUpper(d);
+    _builder.append(_nameUpper_2, "\t");
+    _builder.append(" obj = gson.fromJson(br, ");
+    String _nameUpper_3 = GenerationUtil.toNameUpper(d);
+    _builder.append(_nameUpper_3, "\t");
+    _builder.append(".class);");
+    _builder.newLineIfNotEmpty();
+    {
+      if ((!this.bigEndian)) {
+        _builder.append("\t");
+        _builder.append("// use little endianness ");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("obj.convertAllToLittleEndian();");
+        _builder.newLine();
+      }
+    }
+    _builder.append("\t");
+    _builder.append("return obj;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generateJsonMarshal(final DataSet d) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Alternative method responsible for serializing JSON");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* ");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @return Json String");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public String marshal");
+    String _nameUpper = GenerationUtil.toNameUpper(d);
+    _builder.append(_nameUpper, "");
+    _builder.append("JSON() { ");
+    _builder.newLineIfNotEmpty();
+    {
+      if (this.bigEndian) {
+        _builder.append("\t");
+        _builder.append("Gson gson = new Gson();");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("return gson.toJson(this);");
+        _builder.newLine();
+      } else {
+        _builder.append("\t");
+        _builder.append("Gson gson = new Gson();");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("// use little endianness");
+        _builder.newLine();
+        _builder.append("\t");
+        String _nameUpper_1 = GenerationUtil.toNameUpper(d);
+        _builder.append(_nameUpper_1, "\t");
+        _builder.append(" ");
+        String _nameLower = GenerationUtil.toNameLower(d);
+        _builder.append(_nameLower, "\t");
+        _builder.append(" = new ");
+        String _nameUpper_2 = GenerationUtil.toNameUpper(d);
+        _builder.append(_nameUpper_2, "\t");
+        _builder.append("(");
+        CharSequence _generateConstructorArgumentsForMarshal = this.generateConstructorArgumentsForMarshal(d);
+        _builder.append(_generateConstructorArgumentsForMarshal, "\t");
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("return gson.toJson(");
+        String _nameLower_1 = GenerationUtil.toNameLower(d);
+        _builder.append(_nameLower_1, "\t");
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generateByteArrayUnmarshal(final DataSet d) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Method responsible for deserializing the received byte array");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* representation of L from sensor.");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* ");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @param dataset");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*            the dataset to unmarshall incoming from sensor side as a byte");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*            array");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @return L unmarshalled L structure");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @throws IOException");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @throws ClassNotFoundException");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public ");
+    String _nameUpper = GenerationUtil.toNameUpper(d);
+    _builder.append(_nameUpper, "");
+    _builder.append(" unmarshal");
+    String _nameUpper_1 = GenerationUtil.toNameUpper(d);
+    _builder.append(_nameUpper_1, "");
+    _builder.append("ByteArray(byte[] dataset) throws IOException, ClassNotFoundException {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("ByteArrayInputStream in = new ByteArrayInputStream(dataset);");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("ObjectInputStream ois = null;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("ois = new ObjectInputStream(in);");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("Object o = ois.readObject();");
+    _builder.newLine();
+    _builder.append("\t");
+    String _nameUpper_2 = GenerationUtil.toNameUpper(d);
+    _builder.append(_nameUpper_2, "\t");
+    _builder.append(" ");
+    String _nameLower = GenerationUtil.toNameLower(d);
+    _builder.append(_nameLower, "\t");
+    _builder.append(" = (");
+    String _nameUpper_3 = GenerationUtil.toNameUpper(d);
+    _builder.append(_nameUpper_3, "\t");
+    _builder.append(") o; // TODO: Ensure the type conversion is valid");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("in.close();");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("if (in != null) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("ois.close();");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return ");
+    String _nameLower_1 = GenerationUtil.toNameLower(d);
+    _builder.append(_nameLower_1, "\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generateByteArrayMarshal(final DataSet d) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Method responsible for serializing Byte-Array");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public ");
+    String _nameUpper = GenerationUtil.toNameUpper(d);
+    _builder.append(_nameUpper, "");
+    _builder.append(" marshal");
+    String _nameUpper_1 = GenerationUtil.toNameUpper(d);
+    _builder.append(_nameUpper_1, "");
+    _builder.append("ByteArray() {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("//TODO: implement Method");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return null;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generateConstructorArgumentsForMarshal(final DataSet d) {
+    CharSequence _xblockexpression = null;
+    {
+      ArrayList<Data> dataList = new ArrayList<Data>();
+      DataSet dataSet = d;
+      EList<EObject> _eContents = dataSet.eContents();
+      Iterable<Data> _filter = Iterables.<Data>filter(_eContents, Data.class);
+      for (final Data data : _filter) {
+        if ((data instanceof NonMeasurementData)) {
+          NonMeasurementData nmdata = ((NonMeasurementData) data);
+          boolean _isConstant = nmdata.isConstant();
+          boolean _not = (!_isConstant);
+          if (_not) {
+            dataList.add(data);
+          }
+        } else {
+          dataList.add(data);
+        }
+      }
+      CharSequence _xifexpression = null;
+      int _size = dataList.size();
+      boolean _greaterThan = (_size > 0);
+      if (_greaterThan) {
+        CharSequence _xblockexpression_1 = null;
+        {
+          Data firstElement = dataList.get(0);
+          dataList.remove(0);
+          CharSequence _xifexpression_1 = null;
+          DataSet _parentDataSet = d.getParentDataSet();
+          boolean _notEquals = (!Objects.equal(_parentDataSet, null));
+          if (_notEquals) {
+            StringConcatenation _builder = new StringConcatenation();
+            EObject _eContainer = firstElement.eContainer();
+            String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(_eContainer);
+            _builder.append(_sensorInterfaceName, "");
+            _builder.append(SensIDLConstants.UTILITY_CLASS_NAME, "");
+            _builder.append(".convertToLittleEndian(");
+            {
+              DataType _dataType = firstElement.getDataType();
+              boolean _isUnsigned = this.isUnsigned(_dataType);
+              if (_isUnsigned) {
+                _builder.append("(");
+                String _simpleTypeName = this.toSimpleTypeName(firstElement);
+                _builder.append(_simpleTypeName, "");
+                _builder.append(") (this.");
+                String _nameLower = GenerationUtil.toNameLower(firstElement);
+                _builder.append(_nameLower, "");
+                _builder.append(" + ");
+                String _typeName = this.toTypeName(firstElement);
+                _builder.append(_typeName, "");
+                _builder.append(".MAX_VALUE)");
+              } else {
+                _builder.append("this.");
+                String _nameLower_1 = GenerationUtil.toNameLower(firstElement);
+                _builder.append(_nameLower_1, "");
+              }
+            }
+            _builder.append(")");
+            {
+              for(final Data data_1 : dataList) {
+                _builder.append(", ");
+                EObject _eContainer_1 = data_1.eContainer();
+                String _sensorInterfaceName_1 = GenerationUtil.getSensorInterfaceName(_eContainer_1);
+                _builder.append(_sensorInterfaceName_1, "");
+                _builder.append(SensIDLConstants.UTILITY_CLASS_NAME, "");
+                _builder.append(".convertToLittleEndian(");
+                {
+                  DataType _dataType_1 = data_1.getDataType();
+                  boolean _isUnsigned_1 = this.isUnsigned(_dataType_1);
+                  if (_isUnsigned_1) {
+                    _builder.append("(");
+                    String _simpleTypeName_1 = this.toSimpleTypeName(data_1);
+                    _builder.append(_simpleTypeName_1, "");
+                    _builder.append(") (this.");
+                    String _nameLower_2 = GenerationUtil.toNameLower(data_1);
+                    _builder.append(_nameLower_2, "");
+                    _builder.append(" + ");
+                    String _typeName_1 = this.toTypeName(data_1);
+                    _builder.append(_typeName_1, "");
+                    _builder.append(".MAX_VALUE)");
+                  } else {
+                    _builder.append("this.");
+                    String _nameLower_3 = GenerationUtil.toNameLower(data_1);
+                    _builder.append(_nameLower_3, "");
+                  }
+                }
+                _builder.append(") ");
+              }
+            }
+            _builder.append(", convertToLittleEndian(this.");
+            DataSet _parentDataSet_1 = d.getParentDataSet();
+            String _nameLower_4 = GenerationUtil.toNameLower(_parentDataSet_1);
+            _builder.append(_nameLower_4, "");
+            _builder.append(")");
+            _xifexpression_1 = _builder;
+          } else {
+            StringConcatenation _builder_1 = new StringConcatenation();
+            EObject _eContainer_2 = firstElement.eContainer();
+            String _sensorInterfaceName_2 = GenerationUtil.getSensorInterfaceName(_eContainer_2);
+            _builder_1.append(_sensorInterfaceName_2, "");
+            _builder_1.append(SensIDLConstants.UTILITY_CLASS_NAME, "");
+            _builder_1.append(".convertToLittleEndian(");
+            {
+              DataType _dataType_2 = firstElement.getDataType();
+              boolean _isUnsigned_2 = this.isUnsigned(_dataType_2);
+              if (_isUnsigned_2) {
+                _builder_1.append("(");
+                String _simpleTypeName_2 = this.toSimpleTypeName(firstElement);
+                _builder_1.append(_simpleTypeName_2, "");
+                _builder_1.append(") (this.");
+                String _nameLower_5 = GenerationUtil.toNameLower(firstElement);
+                _builder_1.append(_nameLower_5, "");
+                _builder_1.append(" + ");
+                String _typeName_2 = this.toTypeName(firstElement);
+                _builder_1.append(_typeName_2, "");
+                _builder_1.append(".MAX_VALUE)");
+              } else {
+                _builder_1.append("this.");
+                String _nameLower_6 = GenerationUtil.toNameLower(firstElement);
+                _builder_1.append(_nameLower_6, "");
+              }
+            }
+            _builder_1.append(")");
+            {
+              for(final Data data_2 : dataList) {
+                _builder_1.append(", ");
+                EObject _eContainer_3 = data_2.eContainer();
+                String _sensorInterfaceName_3 = GenerationUtil.getSensorInterfaceName(_eContainer_3);
+                _builder_1.append(_sensorInterfaceName_3, "");
+                _builder_1.append(SensIDLConstants.UTILITY_CLASS_NAME, "");
+                _builder_1.append(".convertToLittleEndian(");
+                {
+                  DataType _dataType_3 = data_2.getDataType();
+                  boolean _isUnsigned_3 = this.isUnsigned(_dataType_3);
+                  if (_isUnsigned_3) {
+                    _builder_1.append("(");
+                    String _simpleTypeName_3 = this.toSimpleTypeName(data_2);
+                    _builder_1.append(_simpleTypeName_3, "");
+                    _builder_1.append(") (this.");
+                    String _nameLower_7 = GenerationUtil.toNameLower(data_2);
+                    _builder_1.append(_nameLower_7, "");
+                    _builder_1.append(" + ");
+                    String _typeName_3 = this.toTypeName(data_2);
+                    _builder_1.append(_typeName_3, "");
+                    _builder_1.append(".MAX_VALUE)");
+                  } else {
+                    _builder_1.append("this.");
+                    String _nameLower_8 = GenerationUtil.toNameLower(data_2);
+                    _builder_1.append(_nameLower_8, "");
+                  }
+                }
+                _builder_1.append(") ");
+              }
+            }
+            _xifexpression_1 = _builder_1;
+          }
+          _xblockexpression_1 = _xifexpression_1;
+        }
+        _xifexpression = _xblockexpression_1;
+      }
+      _xblockexpression = _xifexpression;
+    }
+    return _xblockexpression;
+  }
+  
+  /**
+   * Maps to the corresponding language data type.
+   * @see IDTOGenerator#toTypeName(Data)
    */
   @Override
   public String toTypeName(final Data d) {
@@ -630,6 +2027,56 @@ public class JavaDTOGenerator implements IDTOGenerator {
     DataType _dataType = d.getDataType();
     if (_dataType != null) {
       switch (_dataType) {
+        case INT8:
+          _switchResult = Byte.class.getName();
+          break;
+        case UINT8:
+          _switchResult = Byte.class.getName();
+          break;
+        case INT16:
+          _switchResult = Short.class.getName();
+          break;
+        case UINT16:
+          _switchResult = Short.class.getName();
+          break;
+        case INT32:
+          _switchResult = Integer.class.getName();
+          break;
+        case UINT32:
+          _switchResult = Integer.class.getName();
+          break;
+        case INT64:
+          _switchResult = Long.class.getName();
+          break;
+        case UINT64:
+          _switchResult = Long.class.getName();
+          break;
+        case FLOAT:
+          _switchResult = Float.class.getName();
+          break;
+        case DOUBLE:
+          _switchResult = Double.class.getName();
+          break;
+        case BOOLEAN:
+          _switchResult = Boolean.class.getName();
+          break;
+        case STRING:
+          _switchResult = String.class.getName();
+          break;
+        default:
+          break;
+      }
+    }
+    return _switchResult;
+  }
+  
+  /**
+   * returns the appropriate type name for DataType
+   */
+  public String toTypeName(final DataType d) {
+    String _switchResult = null;
+    if (d != null) {
+      switch (d) {
         case INT8:
           _switchResult = Byte.class.getName();
           break;
@@ -709,784 +2156,307 @@ public class JavaDTOGenerator implements IDTOGenerator {
    * returns the appropriate simple type name suitable for casting
    */
   public String toSimpleTypeName(final Data d) {
-    String _typeName = this.toTypeName(d);
-    String _typeName_1 = this.toTypeName(d);
-    int _lastIndexOf = _typeName_1.lastIndexOf(".");
-    int _plus = (_lastIndexOf + 1);
-    String _substring = _typeName.substring(_plus);
-    return _substring.toLowerCase();
+    String _switchResult = null;
+    DataType _dataType = d.getDataType();
+    if (_dataType != null) {
+      switch (_dataType) {
+        case INT8:
+          _switchResult = "byte";
+          break;
+        case UINT8:
+          _switchResult = "byte";
+          break;
+        case INT16:
+          _switchResult = "short";
+          break;
+        case UINT16:
+          _switchResult = "short";
+          break;
+        case INT32:
+          _switchResult = "int";
+          break;
+        case UINT32:
+          _switchResult = "int";
+          break;
+        case INT64:
+          _switchResult = "long";
+          break;
+        case UINT64:
+          _switchResult = "long";
+          break;
+        case FLOAT:
+          _switchResult = "float";
+          break;
+        case DOUBLE:
+          _switchResult = "double";
+          break;
+        case BOOLEAN:
+          _switchResult = "boolean";
+          break;
+        case STRING:
+          _switchResult = "String";
+          break;
+        default:
+          break;
+      }
+    }
+    return _switchResult;
   }
   
   /**
-   * Generates the Constructor arguments
+   * returns the appropriate simple type name suitable for casting for dataType
    */
-  public CharSequence generateConstructorArgumentsIncludeParentDataSets(final DataSet d) {
-    CharSequence _xblockexpression = null;
-    {
-      ArrayList<Data> dataList = new ArrayList<Data>();
-      DataSet dataSet = d;
-      while ((!Objects.equal(dataSet, null))) {
-        {
-          EList<EObject> _eContents = dataSet.eContents();
-          Iterable<Data> _filter = Iterables.<Data>filter(_eContents, Data.class);
-          for (final Data data : _filter) {
-            if ((data instanceof NonMeasurementData)) {
-              NonMeasurementData nmdata = ((NonMeasurementData) data);
-              boolean _isConstant = nmdata.isConstant();
-              boolean _not = (!_isConstant);
-              if (_not) {
-                dataList.add(data);
-              }
-            } else {
-              dataList.add(data);
-            }
-          }
-          DataSet _parentDataSet = dataSet.getParentDataSet();
-          dataSet = _parentDataSet;
-        }
+  public String toSimpleTypeName(final DataType d) {
+    String _switchResult = null;
+    if (d != null) {
+      switch (d) {
+        case INT8:
+          _switchResult = "byte";
+          break;
+        case UINT8:
+          _switchResult = "byte";
+          break;
+        case INT16:
+          _switchResult = "short";
+          break;
+        case UINT16:
+          _switchResult = "short";
+          break;
+        case INT32:
+          _switchResult = "int";
+          break;
+        case UINT32:
+          _switchResult = "int";
+          break;
+        case INT64:
+          _switchResult = "long";
+          break;
+        case UINT64:
+          _switchResult = "long";
+          break;
+        case FLOAT:
+          _switchResult = "float";
+          break;
+        case DOUBLE:
+          _switchResult = "double";
+          break;
+        case BOOLEAN:
+          _switchResult = "boolean";
+          break;
+        case STRING:
+          _switchResult = "String";
+          break;
+        default:
+          break;
       }
-      CharSequence _xifexpression = null;
-      int _size = dataList.size();
-      boolean _greaterThan = (_size > 0);
-      if (_greaterThan) {
-        CharSequence _xblockexpression_1 = null;
-        {
-          Data _get = dataList.get(0);
-          String _typeName = this.toTypeName(_get);
-          String _plus = (_typeName + " ");
-          Data _get_1 = dataList.get(0);
-          String _nameLower = GenerationUtil.toNameLower(_get_1);
-          String firstElement = (_plus + _nameLower);
-          dataList.remove(0);
-          StringConcatenation _builder = new StringConcatenation();
-          _builder.append(firstElement, "");
-          {
-            for(final Data data : dataList) {
-              _builder.append(", ");
-              String _typeName_1 = this.toTypeName(data);
-              _builder.append(_typeName_1, "");
-              _builder.append(" ");
-              String _nameLower_1 = GenerationUtil.toNameLower(data);
-              _builder.append(_nameLower_1, "");
-            }
-          }
-          _xblockexpression_1 = _builder;
-        }
-        _xifexpression = _xblockexpression_1;
-      } else {
-        CharSequence _xblockexpression_2 = null;
-        {
-          this.createEmptyConstructor = false;
-          StringConcatenation _builder = new StringConcatenation();
-          _xblockexpression_2 = _builder;
-        }
-        _xifexpression = _xblockexpression_2;
-      }
-      _xblockexpression = _xifexpression;
     }
-    return _xblockexpression;
+    return _switchResult;
   }
   
   /**
-   * Generates the Getter Method for the measurement data
+   * returns the Data Conversion type (at the moment
+   * only LinearDataConversionWithIntervall has a type)
    */
-  public CharSequence generateGetter(final MeasurementData d) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("/**");
-    _builder.newLine();
-    {
-      DataType _dataType = d.getDataType();
-      boolean _isUnsigned = this.isUnsigned(_dataType);
-      if (_isUnsigned) {
-        _builder.append("* (Java has no option for unsigned data types, so if the data has an unsigned ");
-        _builder.newLine();
-        _builder.append("* data type the value is calculated by subtracting the max value from the ");
-        _builder.newLine();
-        _builder.append("* signed data type and adding it again, if it is used.)");
-        _builder.newLine();
-      }
+  public DataType getDataConversionType(final MeasurementData d) {
+    EList<DataAdjustment> _adjustments = d.getAdjustments();
+    boolean _isEmpty = _adjustments.isEmpty();
+    if (_isEmpty) {
+      return null;
     }
-    _builder.append(" ");
-    _builder.append("* @return the ");
-    String _nameLower = GenerationUtil.toNameLower(d);
-    _builder.append(_nameLower, " ");
-    _builder.newLineIfNotEmpty();
-    _builder.append(" ");
-    _builder.append("*/");
-    _builder.newLine();
-    _builder.append("public ");
-    String _typeName = this.toTypeName(d);
-    _builder.append(_typeName, "");
-    _builder.append(" ");
-    CharSequence _getterName = this.toGetterName(d);
-    _builder.append(_getterName, "");
-    _builder.append("(){");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("return ");
-    {
-      DataType _dataType_1 = d.getDataType();
-      boolean _isUnsigned_1 = this.isUnsigned(_dataType_1);
-      if (_isUnsigned_1) {
-        _builder.append("(");
-        String _simpleTypeName = this.toSimpleTypeName(d);
-        _builder.append(_simpleTypeName, "\t");
-        _builder.append(") (this.");
-        String _nameLower_1 = GenerationUtil.toNameLower(d);
-        _builder.append(_nameLower_1, "\t");
-        _builder.append(" + ");
-        String _typeName_1 = this.toTypeName(d);
-        _builder.append(_typeName_1, "\t");
-        _builder.append(".MAX_VALUE)");
-      } else {
-        _builder.append("this.");
-        String _nameLower_2 = GenerationUtil.toNameLower(d);
-        _builder.append(_nameLower_2, "\t");
-      }
-    }
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.append("}");
-    _builder.newLine();
-    return _builder;
-  }
-  
-  /**
-   * Generates the Getter Method for the non measurement data
-   */
-  public CharSequence generateGetter(final NonMeasurementData d) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("/**");
-    _builder.newLine();
-    {
-      DataType _dataType = d.getDataType();
-      boolean _isUnsigned = this.isUnsigned(_dataType);
-      if (_isUnsigned) {
-        _builder.append("* (Java has no option for unsigned data types, so if the data has an unsigned ");
-        _builder.newLine();
-        _builder.append("* data type the value is calculated by subtracting the max value from the ");
-        _builder.newLine();
-        _builder.append("* signed data type and adding it again, if it is used.)");
-        _builder.newLine();
-      }
-    }
-    _builder.append(" ");
-    _builder.append("* @return the ");
-    String _nameLower = GenerationUtil.toNameLower(d);
-    _builder.append(_nameLower, " ");
-    _builder.newLineIfNotEmpty();
-    _builder.append(" ");
-    _builder.append("*/");
-    _builder.newLine();
-    _builder.append("public ");
-    String _typeName = this.toTypeName(d);
-    _builder.append(_typeName, "");
-    _builder.append(" ");
-    CharSequence _getterName = this.toGetterName(d);
-    _builder.append(_getterName, "");
-    _builder.append("(){");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("return ");
-    {
-      DataType _dataType_1 = d.getDataType();
-      boolean _isUnsigned_1 = this.isUnsigned(_dataType_1);
-      if (_isUnsigned_1) {
-        _builder.append("(");
-        String _simpleTypeName = this.toSimpleTypeName(d);
-        _builder.append(_simpleTypeName, "\t");
-        _builder.append(") (");
-        {
-          boolean _isConstant = d.isConstant();
-          if (_isConstant) {
-            String _name = d.getName();
-            String _upperCase = _name.toUpperCase();
-            _builder.append(_upperCase, "\t");
-          } else {
-            _builder.append("this.");
-            String _nameLower_1 = GenerationUtil.toNameLower(d);
-            _builder.append(_nameLower_1, "\t");
-          }
-        }
-        _builder.append(" + ");
-        String _typeName_1 = this.toTypeName(d);
-        _builder.append(_typeName_1, "\t");
-        _builder.append(".MAX_VALUE)");
-      } else {
-        _builder.append("this.");
-        {
-          boolean _isConstant_1 = d.isConstant();
-          if (_isConstant_1) {
-            String _name_1 = d.getName();
-            String _upperCase_1 = _name_1.toUpperCase();
-            _builder.append(_upperCase_1, "\t");
-          } else {
-            String _nameLower_2 = GenerationUtil.toNameLower(d);
-            _builder.append(_nameLower_2, "\t");
-          }
-        }
-      }
-    }
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.append("}");
-    _builder.newLine();
-    return _builder;
-  }
-  
-  public CharSequence toGetterName(final Data d) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("get");
-    String _name = d.getName();
-    String _replaceAll = _name.replaceAll("[^a-zA-Z0-9]", "");
-    String _firstUpper = StringExtensions.toFirstUpper(_replaceAll);
-    _builder.append(_firstUpper, "");
-    return _builder;
-  }
-  
-  /**
-   * Generates the Setter Method for the measurement data
-   */
-  public CharSequence generateSetter(final MeasurementData d) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      EList<DataAdjustment> _adjustments = d.getAdjustments();
-      boolean _isEmpty = _adjustments.isEmpty();
-      boolean _equals = (_isEmpty == false);
-      if (_equals) {
-        _builder.newLine();
-        {
-          EList<DataAdjustment> _adjustments_1 = d.getAdjustments();
-          for(final DataAdjustment dataAdj : _adjustments_1) {
-            {
-              if ((dataAdj instanceof DataRange)) {
-                _builder.append("/**");
-                _builder.newLine();
-                _builder.append(" ");
-                _builder.append("* @param ");
-                String _nameLower = GenerationUtil.toNameLower(d);
-                _builder.append(_nameLower, " ");
-                _builder.newLineIfNotEmpty();
-                _builder.append(" ");
-                _builder.append("*\t\t\tthe ");
-                String _nameLower_1 = GenerationUtil.toNameLower(d);
-                _builder.append(_nameLower_1, " ");
-                _builder.append(" to set");
-                _builder.newLineIfNotEmpty();
-                _builder.append(" ");
-                _builder.append("*/");
-                _builder.newLine();
-                _builder.append("public void ");
-                CharSequence _setterName = this.toSetterName(d);
-                _builder.append(_setterName, "");
-                _builder.append("(");
-                String _typeName = this.toTypeName(d);
-                _builder.append(_typeName, "");
-                _builder.append(" ");
-                String _nameLower_2 = GenerationUtil.toNameLower(d);
-                _builder.append(_nameLower_2, "");
-                _builder.append("){");
-                _builder.newLineIfNotEmpty();
-                _builder.append("\t");
-                _builder.append("if (");
-                String _nameLower_3 = GenerationUtil.toNameLower(d);
-                _builder.append(_nameLower_3, "\t");
-                _builder.append(" >= ");
-                Interval _range = ((DataRange)dataAdj).getRange();
-                double _lowerBound = _range.getLowerBound();
-                _builder.append(_lowerBound, "\t");
-                _builder.append(" && ");
-                String _nameLower_4 = GenerationUtil.toNameLower(d);
-                _builder.append(_nameLower_4, "\t");
-                _builder.append(" <= ");
-                Interval _range_1 = ((DataRange)dataAdj).getRange();
-                double _upperBound = _range_1.getUpperBound();
-                _builder.append(_upperBound, "\t");
-                _builder.append(")");
-                _builder.newLineIfNotEmpty();
-                _builder.append("\t\t");
-                _builder.append("this.");
-                String _nameLower_5 = GenerationUtil.toNameLower(d);
-                _builder.append(_nameLower_5, "\t\t");
-                _builder.append(" = ");
-                String _nameLower_6 = GenerationUtil.toNameLower(d);
-                _builder.append(_nameLower_6, "\t\t");
-                _builder.append(";");
-                _builder.newLineIfNotEmpty();
-                _builder.append("\t");
-                _builder.append("else");
-                _builder.newLine();
-                _builder.append("\t\t");
-                _builder.append("throw new IllegalArgumentException(\"value is out of defined range\");\t");
-                _builder.newLine();
-                _builder.append("} ");
-                _builder.newLine();
-              } else {
-                if ((dataAdj instanceof DataConversion)) {
-                  _builder.newLine();
-                  _builder.append("/**");
-                  _builder.newLine();
-                  _builder.append("* @param ");
-                  String _nameLower_7 = GenerationUtil.toNameLower(d);
-                  _builder.append(_nameLower_7, "");
-                  _builder.newLineIfNotEmpty();
-                  _builder.append("*\t\t\tthe ");
-                  String _nameLower_8 = GenerationUtil.toNameLower(d);
-                  _builder.append(_nameLower_8, "");
-                  _builder.append(" to set");
-                  _builder.newLineIfNotEmpty();
-                  _builder.append("*/");
-                  _builder.newLine();
-                  _builder.append("public void ");
-                  CharSequence _setterName_1 = this.toSetterName(d);
-                  _builder.append(_setterName_1, "");
-                  _builder.append("(");
-                  String _typeName_1 = this.toTypeName(d);
-                  _builder.append(_typeName_1, "");
-                  _builder.append(" ");
-                  String _nameLower_9 = GenerationUtil.toNameLower(d);
-                  _builder.append(_nameLower_9, "");
-                  _builder.append(") {");
-                  _builder.newLineIfNotEmpty();
-                  _builder.append("\t");
-                  _builder.append("try {");
-                  _builder.newLine();
-                  _builder.append("\t\t");
-                  CharSequence _generateSetterBodyForMeasurementData = this.generateSetterBodyForMeasurementData(d, ((DataConversion) dataAdj));
-                  _builder.append(_generateSetterBodyForMeasurementData, "\t\t");
-                  _builder.newLineIfNotEmpty();
-                  _builder.append("\t");
-                  _builder.append("} catch (IllegalArgumentException e) {");
-                  _builder.newLine();
-                  _builder.append("\t\t");
-                  _builder.append("//Do something");
-                  _builder.newLine();
-                  _builder.append("\t");
-                  _builder.append("}");
-                  _builder.newLine();
-                  _builder.append("}");
-                  _builder.newLine();
-                }
-              }
-            }
-          }
-        }
-        _builder.append("\t");
-        _builder.newLine();
-      } else {
-        _builder.append("/**");
-        _builder.newLine();
-        _builder.append(" ");
-        _builder.append("* @param ");
-        String _nameLower_10 = GenerationUtil.toNameLower(d);
-        _builder.append(_nameLower_10, " ");
-        _builder.append("  ");
-        _builder.newLineIfNotEmpty();
-        _builder.append(" ");
-        _builder.append("*\t\t\tthe ");
-        String _nameLower_11 = GenerationUtil.toNameLower(d);
-        _builder.append(_nameLower_11, " ");
-        _builder.append(" to set");
-        _builder.newLineIfNotEmpty();
-        _builder.append(" ");
-        _builder.append("*/");
-        _builder.newLine();
-        _builder.append("public void ");
-        CharSequence _setterName_2 = this.toSetterName(d);
-        _builder.append(_setterName_2, "");
-        _builder.append("(");
-        String _typeName_2 = this.toTypeName(d);
-        _builder.append(_typeName_2, "");
-        _builder.append(" ");
-        String _nameLower_12 = GenerationUtil.toNameLower(d);
-        _builder.append(_nameLower_12, "");
-        _builder.append("){");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.newLine();
-        _builder.append("\t");
-        _builder.append("this.");
-        String _nameLower_13 = GenerationUtil.toNameLower(d);
-        _builder.append(_nameLower_13, "\t");
-        _builder.append(" = ");
-        {
-          DataType _dataType = d.getDataType();
-          boolean _isUnsigned = this.isUnsigned(_dataType);
-          if (_isUnsigned) {
-            _builder.append("(");
-            String _simpleTypeName = this.toSimpleTypeName(d);
-            _builder.append(_simpleTypeName, "\t");
-            _builder.append(") (");
-            String _nameLower_14 = GenerationUtil.toNameLower(d);
-            _builder.append(_nameLower_14, "\t");
-            _builder.append(" - ");
-            String _typeName_3 = this.toTypeName(d);
-            _builder.append(_typeName_3, "\t");
-            _builder.append(".MAX_VALUE)");
-          } else {
-            String _nameLower_15 = GenerationUtil.toNameLower(d);
-            _builder.append(_nameLower_15, "\t");
-          }
-        }
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
-        _builder.append("} ");
-        _builder.newLine();
-      }
-    }
-    return _builder;
-  }
-  
-  protected CharSequence _generateSetterBodyForMeasurementData(final MeasurementData data, final LinearDataConversion conversion) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("final double offset = ");
-    double _offset = conversion.getOffset();
-    _builder.append(_offset, "");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.append("final double scalingFactor = ");
-    double _scalingFactor = conversion.getScalingFactor();
-    _builder.append(_scalingFactor, "");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    _builder.append("this.");
-    String _nameLower = GenerationUtil.toNameLower(data);
-    _builder.append(_nameLower, "");
-    _builder.append(" = (");
-    String _simpleTypeName = this.toSimpleTypeName(data);
-    _builder.append(_simpleTypeName, "");
-    _builder.append(") ");
-    EObject _eContainer = data.eContainer();
-    String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(_eContainer);
-    _builder.append(_sensorInterfaceName, "");
-    _builder.append(SensIDLConstants.UTILITY_CLASS_NAME, "");
-    _builder.append(".");
-    _builder.append(SensIDLConstants.LINEAR_CONVERSION_METHOD_NAME, "");
-    _builder.append("(");
-    String _nameLower_1 = GenerationUtil.toNameLower(data);
-    _builder.append(_nameLower_1, "");
-    _builder.append(", scalingFactor, offset);");
-    _builder.newLineIfNotEmpty();
-    return _builder;
-  }
-  
-  protected CharSequence _generateSetterBodyForMeasurementData(final MeasurementData data, final LinearDataConversionWithInterval conversion) {
-    StringConcatenation _builder = new StringConcatenation();
-    String _typeName = this.toTypeName(data);
-    _builder.append(_typeName, "");
-    _builder.append(" oldMin = (");
-    String _simpleTypeName = this.toSimpleTypeName(data);
-    _builder.append(_simpleTypeName, "");
-    _builder.append(") ");
-    Interval _fromInterval = conversion.getFromInterval();
-    double _lowerBound = _fromInterval.getLowerBound();
-    _builder.append(_lowerBound, "");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    String _typeName_1 = this.toTypeName(data);
-    _builder.append(_typeName_1, "");
-    _builder.append(" oldMax = (");
-    String _simpleTypeName_1 = this.toSimpleTypeName(data);
-    _builder.append(_simpleTypeName_1, "");
-    _builder.append(") ");
-    Interval _fromInterval_1 = conversion.getFromInterval();
-    double _upperBound = _fromInterval_1.getUpperBound();
-    _builder.append(_upperBound, "");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    String _typeName_2 = this.toTypeName(data);
-    _builder.append(_typeName_2, "");
-    _builder.append(" newMin = (");
-    String _simpleTypeName_2 = this.toSimpleTypeName(data);
-    _builder.append(_simpleTypeName_2, "");
-    _builder.append(") ");
-    Interval _toInterval = conversion.getToInterval();
-    double _lowerBound_1 = _toInterval.getLowerBound();
-    _builder.append(_lowerBound_1, "");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    String _typeName_3 = this.toTypeName(data);
-    _builder.append(_typeName_3, "");
-    _builder.append(" newMax = (");
-    String _simpleTypeName_3 = this.toSimpleTypeName(data);
-    _builder.append(_simpleTypeName_3, "");
-    _builder.append(") ");
-    Interval _toInterval_1 = conversion.getToInterval();
-    double _upperBound_1 = _toInterval_1.getUpperBound();
-    _builder.append(_upperBound_1, "");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    _builder.append("this.");
-    String _nameLower = GenerationUtil.toNameLower(data);
-    _builder.append(_nameLower, "");
-    _builder.append(" = (");
-    String _simpleTypeName_4 = this.toSimpleTypeName(data);
-    _builder.append(_simpleTypeName_4, "");
-    _builder.append(") ");
-    EObject _eContainer = data.eContainer();
-    String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(_eContainer);
-    _builder.append(_sensorInterfaceName, "");
-    _builder.append(SensIDLConstants.UTILITY_CLASS_NAME, "");
-    _builder.append(".");
-    _builder.append(SensIDLConstants.LINEAR_CONVERSION_WITH_INTERVAL_METHOD_NAME, "");
-    _builder.append("(");
-    String _nameLower_1 = GenerationUtil.toNameLower(data);
-    _builder.append(_nameLower_1, "");
-    _builder.append(", oldMin, oldMax, newMin, newMax);");
-    _builder.newLineIfNotEmpty();
-    return _builder;
-  }
-  
-  /**
-   * Generates the Setter Method for the non measurement data
-   */
-  public CharSequence generateSetter(final NonMeasurementData d) {
-    CharSequence _xifexpression = null;
-    boolean _isConstant = d.isConstant();
-    if (_isConstant) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("// no setter for constant value");
-      _builder.newLine();
-      _xifexpression = _builder;
+    EList<DataAdjustment> _adjustments_1 = d.getAdjustments();
+    Iterable<LinearDataConversionWithInterval> conversion = Iterables.<LinearDataConversionWithInterval>filter(_adjustments_1, LinearDataConversionWithInterval.class);
+    boolean _or = false;
+    boolean _isEmpty_1 = IterableExtensions.isEmpty(conversion);
+    if (_isEmpty_1) {
+      _or = true;
     } else {
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("/**");
-      _builder_1.newLine();
-      {
-        DataType _dataType = d.getDataType();
-        boolean _isUnsigned = this.isUnsigned(_dataType);
-        if (_isUnsigned) {
-          _builder_1.append("* (Java has no option for unsigned data types, so if the data has an unsigned ");
-          _builder_1.newLine();
-          _builder_1.append("* data type the value is calculated by subtracting the max value from the ");
-          _builder_1.newLine();
-          _builder_1.append("* signed data type and adding it again, if it is used.)");
-          _builder_1.newLine();
-        }
-      }
-      _builder_1.append(" ");
-      _builder_1.append("* @param ");
-      String _nameLower = GenerationUtil.toNameLower(d);
-      _builder_1.append(_nameLower, " ");
-      _builder_1.newLineIfNotEmpty();
-      _builder_1.append(" ");
-      _builder_1.append("*\t\t\tthe ");
-      String _nameLower_1 = GenerationUtil.toNameLower(d);
-      _builder_1.append(_nameLower_1, " ");
-      _builder_1.append(" to set");
-      _builder_1.newLineIfNotEmpty();
-      _builder_1.append(" ");
-      _builder_1.append("*/");
-      _builder_1.newLine();
-      _builder_1.append("public void ");
-      CharSequence _setterName = this.toSetterName(d);
-      _builder_1.append(_setterName, "");
-      _builder_1.append("(");
-      String _typeName = this.toTypeName(d);
-      _builder_1.append(_typeName, "");
-      _builder_1.append(" ");
-      String _nameLower_2 = GenerationUtil.toNameLower(d);
-      _builder_1.append(_nameLower_2, "");
-      _builder_1.append("){");
-      _builder_1.newLineIfNotEmpty();
-      _builder_1.append("\t");
-      _builder_1.append("this.");
-      String _nameLower_3 = GenerationUtil.toNameLower(d);
-      _builder_1.append(_nameLower_3, "\t");
-      _builder_1.append(" = ");
-      {
-        DataType _dataType_1 = d.getDataType();
-        boolean _isUnsigned_1 = this.isUnsigned(_dataType_1);
-        if (_isUnsigned_1) {
-          _builder_1.append("(");
-          String _simpleTypeName = this.toSimpleTypeName(d);
-          _builder_1.append(_simpleTypeName, "\t");
-          _builder_1.append(") (");
-          String _nameLower_4 = GenerationUtil.toNameLower(d);
-          _builder_1.append(_nameLower_4, "\t");
-          _builder_1.append(" - ");
-          String _typeName_1 = this.toTypeName(d);
-          _builder_1.append(_typeName_1, "\t");
-          _builder_1.append(".MAX_VALUE)");
-        } else {
-          String _nameLower_5 = GenerationUtil.toNameLower(d);
-          _builder_1.append(_nameLower_5, "\t");
-        }
-      }
-      _builder_1.append(";");
-      _builder_1.newLineIfNotEmpty();
-      _builder_1.append("} ");
-      _builder_1.newLine();
-      _xifexpression = _builder_1;
+      boolean _equals = Objects.equal(conversion, null);
+      _or = _equals;
     }
-    return _xifexpression;
+    if (_or) {
+      return null;
+    }
+    LinearDataConversionWithInterval _head = IterableExtensions.<LinearDataConversionWithInterval>head(conversion);
+    return _head.getDataType();
   }
   
-  public CharSequence toSetterName(final Data d) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("set");
-    String _name = d.getName();
-    String _replaceAll = _name.replaceAll("[^a-zA-Z0-9]", "");
-    String _firstUpper = StringExtensions.toFirstUpper(_replaceAll);
-    _builder.append(_firstUpper, "");
-    return _builder;
-  }
-  
-  public CharSequence generateJsonUnmarshal(final DataSet d) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("/**");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("* Alternative method responsible for deserializing the received");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("* JSON-formatted L stage from sensor.");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("* ");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("* @param dataset");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("*            the dataset to unmarshall incoming from sensor side in a JSON");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("*            format");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("* @return L unmarshalled L structure");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("*/");
-    _builder.newLine();
-    _builder.append("public ");
-    String _nameUpper = GenerationUtil.toNameUpper(d);
-    _builder.append(_nameUpper, "");
-    _builder.append(" unmarshal");
-    String _nameUpper_1 = GenerationUtil.toNameUpper(d);
-    _builder.append(_nameUpper_1, "");
-    _builder.append(" (BufferedReader dataset) { ");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Gson gson = new Gson();");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("BufferedReader br = dataset;");
-    _builder.newLine();
-    _builder.append("\t");
-    String _nameUpper_2 = GenerationUtil.toNameUpper(d);
-    _builder.append(_nameUpper_2, "\t");
-    _builder.append(" obj = gson.fromJson(br, ");
-    String _nameUpper_3 = GenerationUtil.toNameUpper(d);
-    _builder.append(_nameUpper_3, "\t");
-    _builder.append(".class);");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("return obj;");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    return _builder;
-  }
-  
-  public CharSequence generateByteArrayUnmarshal(final DataSet d) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("/**");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("* Method responsible for deserializing the received byte array");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("* representation of L from sensor.");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("* ");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("* @param dataset");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("*            the dataset to unmarshall incoming from sensor side as a byte");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("*            array");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("* @return L unmarshalled L structure");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("* @throws IOException");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("* @throws ClassNotFoundException");
-    _builder.newLine();
-    _builder.append(" ");
-    _builder.append("*/");
-    _builder.newLine();
-    _builder.append("public ");
-    String _nameUpper = GenerationUtil.toNameUpper(d);
-    _builder.append(_nameUpper, "");
-    _builder.append(" unmarshal");
-    String _nameUpper_1 = GenerationUtil.toNameUpper(d);
-    _builder.append(_nameUpper_1, "");
-    _builder.append("(byte[] dataset) throws IOException, ClassNotFoundException {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("ByteArrayInputStream in = new ByteArrayInputStream(dataset);");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("ObjectInputStream ois = null;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("ois = new ObjectInputStream(in);");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("Object o = ois.readObject();");
-    _builder.newLine();
-    _builder.append("\t");
-    String _nameUpper_2 = GenerationUtil.toNameUpper(d);
-    _builder.append(_nameUpper_2, "\t");
-    _builder.append(" ");
-    String _nameLower = GenerationUtil.toNameLower(d);
-    _builder.append(_nameLower, "\t");
-    _builder.append(" = (");
-    String _nameUpper_3 = GenerationUtil.toNameUpper(d);
-    _builder.append(_nameUpper_3, "\t");
-    _builder.append(") o; // TODO: Ensure the type conversion is valid");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("in.close();");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("if (in != null) {");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("ois.close();");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("return ");
-    String _nameLower_1 = GenerationUtil.toNameLower(d);
-    _builder.append(_nameLower_1, "\t");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.append("}");
-    _builder.newLine();
-    return _builder;
+  /**
+   * @return true if the MeasurementData is adjusted
+   * with linear data conversion with interval
+   */
+  public boolean hasLinearDataConversionWithInterval(final MeasurementData data) {
+    EList<DataAdjustment> _adjustments = data.getAdjustments();
+    Iterable<LinearDataConversionWithInterval> _filter = Iterables.<LinearDataConversionWithInterval>filter(_adjustments, LinearDataConversionWithInterval.class);
+    boolean _isEmpty = IterableExtensions.isEmpty(_filter);
+    return (!_isEmpty);
   }
   
   @Override
   public String addFileExtensionTo(final String ClassName) {
     return (ClassName + SensIDLConstants.JAVA_EXTENSION);
+  }
+  
+  public CharSequence generateConverterMethods(final DataSet d) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      DataSet _parentDataSet = d.getParentDataSet();
+      boolean _notEquals = (!Objects.equal(_parentDataSet, null));
+      if (_notEquals) {
+        _builder.append("/**");
+        _builder.newLine();
+        _builder.append(" ");
+        _builder.append("* Converts a big endian ");
+        DataSet _parentDataSet_1 = d.getParentDataSet();
+        String _nameUpper = GenerationUtil.toNameUpper(_parentDataSet_1);
+        _builder.append(_nameUpper, " ");
+        _builder.append(" Object into a little endian ");
+        DataSet _parentDataSet_2 = d.getParentDataSet();
+        String _nameUpper_1 = GenerationUtil.toNameUpper(_parentDataSet_2);
+        _builder.append(_nameUpper_1, " ");
+        _builder.append(" Object");
+        _builder.newLineIfNotEmpty();
+        _builder.append(" ");
+        _builder.append("*\t");
+        _builder.newLine();
+        _builder.append(" ");
+        _builder.append("* @param the ");
+        DataSet _parentDataSet_3 = d.getParentDataSet();
+        String _nameUpper_2 = GenerationUtil.toNameUpper(_parentDataSet_3);
+        _builder.append(_nameUpper_2, " ");
+        _builder.append(" Object to convert");
+        _builder.newLineIfNotEmpty();
+        _builder.append(" ");
+        _builder.append("* @return ");
+        DataSet _parentDataSet_4 = d.getParentDataSet();
+        String _nameUpper_3 = GenerationUtil.toNameUpper(_parentDataSet_4);
+        _builder.append(_nameUpper_3, " ");
+        _builder.append(" the converted ");
+        DataSet _parentDataSet_5 = d.getParentDataSet();
+        String _nameUpper_4 = GenerationUtil.toNameUpper(_parentDataSet_5);
+        _builder.append(_nameUpper_4, " ");
+        _builder.append(" Object");
+        _builder.newLineIfNotEmpty();
+        _builder.append(" ");
+        _builder.append("*");
+        _builder.newLine();
+        _builder.append(" ");
+        _builder.append("*/");
+        _builder.newLine();
+        _builder.append("public ");
+        DataSet _parentDataSet_6 = d.getParentDataSet();
+        String _nameUpper_5 = GenerationUtil.toNameUpper(_parentDataSet_6);
+        _builder.append(_nameUpper_5, "");
+        _builder.append(" convertToLittleEndian(");
+        DataSet _parentDataSet_7 = d.getParentDataSet();
+        String _nameUpper_6 = GenerationUtil.toNameUpper(_parentDataSet_7);
+        _builder.append(_nameUpper_6, "");
+        _builder.append(" ");
+        DataSet _parentDataSet_8 = d.getParentDataSet();
+        String _nameLower = GenerationUtil.toNameLower(_parentDataSet_8);
+        _builder.append(_nameLower, "");
+        _builder.append("){");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("//TODO: implement Method");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("return null;");
+        _builder.newLine();
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    _builder.newLine();
+    CharSequence _convertAllToTLitteEndian = this.convertAllToTLitteEndian(d);
+    _builder.append(_convertAllToTLitteEndian, "");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence convertAllToTLitteEndian(final DataSet d) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public void convertAllToLittleEndian(){");
+    _builder.newLine();
+    {
+      EList<EObject> _eContents = d.eContents();
+      Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(_eContents, MeasurementData.class);
+      for(final MeasurementData data : _filter) {
+        _builder.append("\t");
+        String _nameLower = GenerationUtil.toNameLower(data);
+        _builder.append(_nameLower, "\t");
+        _builder.append(" = ");
+        EObject _eContainer = data.eContainer();
+        String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(_eContainer);
+        _builder.append(_sensorInterfaceName, "\t");
+        _builder.append(SensIDLConstants.UTILITY_CLASS_NAME, "\t");
+        _builder.append(".convertToLittleEndian(");
+        String _nameLower_1 = GenerationUtil.toNameLower(data);
+        _builder.append(_nameLower_1, "\t");
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<EObject> _eContents_1 = d.eContents();
+      Iterable<NonMeasurementData> _filter_1 = Iterables.<NonMeasurementData>filter(_eContents_1, NonMeasurementData.class);
+      for(final NonMeasurementData data_1 : _filter_1) {
+        {
+          boolean _isConstant = data_1.isConstant();
+          if (_isConstant) {
+            _builder.append("\t");
+            String _name = data_1.getName();
+            String _upperCase = _name.toUpperCase();
+            _builder.append(_upperCase, "\t");
+            _builder.append(" = ");
+            EObject _eContainer_1 = data_1.eContainer();
+            String _sensorInterfaceName_1 = GenerationUtil.getSensorInterfaceName(_eContainer_1);
+            _builder.append(_sensorInterfaceName_1, "\t");
+            _builder.append(SensIDLConstants.UTILITY_CLASS_NAME, "\t");
+            _builder.append(".convertToLittleEndian(");
+            String _name_1 = data_1.getName();
+            String _upperCase_1 = _name_1.toUpperCase();
+            _builder.append(_upperCase_1, "\t");
+            _builder.append(");");
+            _builder.newLineIfNotEmpty();
+          } else {
+            _builder.append("\t");
+            String _nameLower_2 = GenerationUtil.toNameLower(data_1);
+            _builder.append(_nameLower_2, "\t");
+            _builder.append(" = ");
+            EObject _eContainer_2 = data_1.eContainer();
+            String _sensorInterfaceName_2 = GenerationUtil.getSensorInterfaceName(_eContainer_2);
+            _builder.append(_sensorInterfaceName_2, "\t");
+            _builder.append(SensIDLConstants.UTILITY_CLASS_NAME, "\t");
+            _builder.append(".convertToLittleEndian(");
+            String _nameLower_3 = GenerationUtil.toNameLower(data_1);
+            _builder.append(_nameLower_3, "\t");
+            _builder.append(");");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    {
+      DataSet _parentDataSet = d.getParentDataSet();
+      boolean _notEquals = (!Objects.equal(_parentDataSet, null));
+      if (_notEquals) {
+        _builder.append("\t");
+        DataSet _parentDataSet_1 = d.getParentDataSet();
+        String _nameLower_4 = GenerationUtil.toNameLower(_parentDataSet_1);
+        _builder.append(_nameLower_4, "\t");
+        _builder.append(" = convertToLittleEndian(");
+        DataSet _parentDataSet_2 = d.getParentDataSet();
+        String _nameLower_5 = GenerationUtil.toNameLower(_parentDataSet_2);
+        _builder.append(_nameLower_5, "\t");
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    return _builder;
   }
   
   public CharSequence generateSetterBodyForMeasurementData(final MeasurementData data, final DataConversion conversion) {

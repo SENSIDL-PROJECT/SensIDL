@@ -1,5 +1,9 @@
 package de.fzi.sensidl.language.generator.factory.java;
 
+import com.google.common.base.Objects;
+import de.fzi.sensidl.design.sensidl.EncodingSettings;
+import de.fzi.sensidl.design.sensidl.Endianness;
+import de.fzi.sensidl.design.sensidl.SensorInterface;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataAdjustment;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
@@ -7,6 +11,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.language.generator.GenerationUtil;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
+import de.fzi.sensidl.language.generator.factory.IDTOGenerator;
 import de.fzi.sensidl.language.generator.factory.IUtilityGenerator;
 import java.util.HashMap;
 import java.util.List;
@@ -17,9 +22,6 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
-/**
- * Java code generator for the utility class.
- */
 @SuppressWarnings("all")
 public class JavaUtilityGenerator implements IUtilityGenerator {
   private static Logger logger = Logger.getLogger(JavaUtilityGenerator.class);
@@ -28,19 +30,22 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
   
   private boolean createProject = false;
   
+  private boolean bigEndian;
+  
   /**
-   * The constructor calls the constructor of the superclass to set a list of Data-elements.
-   * @param newData Represents the list of DataSet-elements.
+   * The constructor calls the constructor of the superclass to set a
+   * list of Data-elements.
+   * @param newData - represents the list of DataSet-elements.
    */
   public JavaUtilityGenerator(final List<MeasurementData> newData) {
     this.data = newData;
   }
   
   /**
-   * The constructor calls the constructor of the superclass to set a list of Data-elements
-   * and a member-variable.
-   * @param newData 		Represents the list of DataSet-elements.
-   * @param createProject Indicates if a project should be created.
+   * The constructor calls the constructor of the superclass to set a
+   * list of Data-elements and a member-variable.
+   * @param newData - represents the list of DataSet-elements.
+   * @param createProject - indicates if a project should be created.
    */
   public JavaUtilityGenerator(final List<MeasurementData> newData, final boolean createProject) {
     this.data = newData;
@@ -48,7 +53,8 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
   }
   
   /**
-   * @see IUtilityGenerator#generate()
+   * Generates the .java file for the utility-class.
+   * @see IDTOGenerator#generate()
    */
   @Override
   public HashMap<String, CharSequence> generate() {
@@ -58,10 +64,21 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
       final HashMap<String, CharSequence> filesToGenerate = new HashMap<String, CharSequence>();
       MeasurementData _get = this.data.get(0);
       final String utilityName = GenerationUtil.getUtilityName(_get);
+      MeasurementData _get_1 = this.data.get(0);
+      EObject _eContainer = _get_1.eContainer();
+      SensorInterface _sensorInterface = GenerationUtil.getSensorInterface(_eContainer);
+      EncodingSettings _encodingSettings = _sensorInterface.getEncodingSettings();
+      Endianness _endianness = _encodingSettings.getEndianness();
+      boolean _equals = Objects.equal(_endianness, Endianness.BIG_ENDIAN);
+      if (_equals) {
+        this.bigEndian = true;
+      } else {
+        this.bigEndian = false;
+      }
       if (this.createProject) {
-        MeasurementData _get_1 = this.data.get(0);
-        EObject _eContainer = _get_1.eContainer();
-        String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(_eContainer);
+        MeasurementData _get_2 = this.data.get(0);
+        EObject _eContainer_1 = _get_2.eContainer();
+        String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(_eContainer_1);
         String _plus = ("src/de/fzi/sensidl/" + _sensorInterfaceName);
         String _plus_1 = (_plus + "/");
         String _addFileExtensionTo = this.addFileExtensionTo(utilityName);
@@ -99,6 +116,16 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
         _builder.newLine();
       }
     }
+    _builder.newLine();
+    {
+      if ((!this.bigEndian)) {
+        _builder.append("import java.nio.ByteBuffer;");
+        _builder.newLine();
+        _builder.append("import java.nio.ByteOrder;");
+        _builder.newLine();
+      }
+    }
+    _builder.newLine();
     _builder.append("/**");
     _builder.newLine();
     _builder.append(" ");
@@ -155,6 +182,16 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
         _builder.append("\t");
         CharSequence _generateLinearDataConversionWithIntervalMethod = this.generateLinearDataConversionWithIntervalMethod();
         _builder.append(_generateLinearDataConversionWithIntervalMethod, "\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t");
+    _builder.newLine();
+    {
+      if ((!this.bigEndian)) {
+        _builder.append("\t");
+        CharSequence _generateEndiannessConverterMethods = this.generateEndiannessConverterMethods();
+        _builder.append(_generateEndiannessConverterMethods, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -298,9 +335,252 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
     return _builder;
   }
   
-  /**
-   * @see IUtilityGenerator#addFileExtensionTo(String)
-   */
+  public CharSequence generateEndiannessConverterMethods() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Converts a big endian float into a little endian float");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*\t");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @param num the float to convert");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @return float the converted float");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public static float convertToLittleEndian(float num) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("byte[] bytes = new byte[4];");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("ByteBuffer.wrap(bytes).putFloat(num);");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).getFloat();");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Converts a big endian double into a little endian double");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*\t");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @param num the double to convert");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @return double the converted double");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public static double convertToLittleEndian(double num) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("byte[] bytes = new byte[8];");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("ByteBuffer.wrap(bytes).putDouble(num);");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN).getDouble();");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Converts a big endian byte into a little endian byte");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*\t");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @param num the byte to convert");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @return byte the converted byte");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public static byte convertToLittleEndian(byte num) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return num;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Converts a big endian short into a little endian short");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*\t");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @param num the short to convert");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @return short the converted short");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public static short convertToLittleEndian(short num) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return Short.reverseBytes(num);");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Converts a big endian int into a little endian int");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*\t");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @param num the int to convert");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @return int the converted int");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public static int convertToLittleEndian(int num) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return Integer.reverseBytes(num);");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Converts a big endian long into a little endian long");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*\t");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @param num the long to convert");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @return long the converted long");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public static long convertToLittleEndian(long num) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return Long.reverseBytes(num);");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Converts a big endian String into a little endian String");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*\t");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @param str the String to convert");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @return String the converted String");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public String convertToLittleEndian(String str) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("//TODO: implement Method");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return str;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Converts a big endian boolean into a little endian boolean");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*\t");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @param bool the boolean to convert");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @return boolean the converted boolean");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public boolean convertToLittleEndian(boolean bool) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("//TODO: implement Method");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return bool;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
   @Override
   public String addFileExtensionTo(final String ClassName) {
     return (ClassName + SensIDLConstants.JAVA_EXTENSION);

@@ -61,7 +61,7 @@ public class JavaGenerator implements ICodeGenerator {
   }
   
   /**
-   * @see ICodeGenerator#generateUtilityClass(List<MeasurementData>)
+   * @see ICodeGenerator#generateUtilityClass()
    */
   @Override
   public HashMap<String, CharSequence> generateUtilityClass(final List<MeasurementData> data) {

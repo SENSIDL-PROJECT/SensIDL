@@ -14,6 +14,8 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
  * The CSharpGenerator represents a concrete implementation of The ICodeGenerator
  * and implements the code-generator for the language C#.
  * @see ICodeGenerator
+ * 
+ * @author Nathalie Hipp
  */
 @SuppressWarnings("all")
 public class CSharpGenerator implements ICodeGenerator {

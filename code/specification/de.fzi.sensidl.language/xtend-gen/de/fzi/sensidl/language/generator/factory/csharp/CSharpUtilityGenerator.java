@@ -19,6 +19,8 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
  * C# code generator for the utility class.
+ * 
+ * @author Nathalie Hipp
  */
 @SuppressWarnings("all")
 public class CSharpUtilityGenerator implements IUtilityGenerator {
