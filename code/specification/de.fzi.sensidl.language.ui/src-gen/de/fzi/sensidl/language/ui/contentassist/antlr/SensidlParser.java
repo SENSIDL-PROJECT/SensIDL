@@ -38,8 +38,8 @@ public class SensidlParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getDataAccess().getAlternatives(), "rule__Data__Alternatives");
+					put(grammarAccess.getMeasurementDataAccess().getAlternatives_6(), "rule__MeasurementData__Alternatives_6");
 					put(grammarAccess.getNonMeasurementDataAccess().getAlternatives_2(), "rule__NonMeasurementData__Alternatives_2");
-					put(grammarAccess.getDataAdjustmentAccess().getAlternatives(), "rule__DataAdjustment__Alternatives");
 					put(grammarAccess.getDataConversionAccess().getAlternatives(), "rule__DataConversion__Alternatives");
 					put(grammarAccess.getCodingAccess().getAlternatives(), "rule__Coding__Alternatives");
 					put(grammarAccess.getEndiannessAccess().getAlternatives(), "rule__Endianness__Alternatives");
@@ -56,7 +56,8 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDataSetAccess().getGroup_3(), "rule__DataSet__Group_3__0");
 					put(grammarAccess.getMeasurementDataAccess().getGroup(), "rule__MeasurementData__Group__0");
 					put(grammarAccess.getMeasurementDataAccess().getGroup_5(), "rule__MeasurementData__Group_5__0");
-					put(grammarAccess.getMeasurementDataAccess().getGroup_6(), "rule__MeasurementData__Group_6__0");
+					put(grammarAccess.getMeasurementDataAccess().getGroup_6_0(), "rule__MeasurementData__Group_6_0__0");
+					put(grammarAccess.getMeasurementDataAccess().getGroup_6_1(), "rule__MeasurementData__Group_6_1__0");
 					put(grammarAccess.getMeasurementDataAccess().getGroup_6_2(), "rule__MeasurementData__Group_6_2__0");
 					put(grammarAccess.getNonMeasurementDataAccess().getGroup(), "rule__NonMeasurementData__Group__0");
 					put(grammarAccess.getNonMeasurementDataAccess().getGroup_4(), "rule__NonMeasurementData__Group_4__0");
@@ -91,8 +92,10 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMeasurementDataAccess().getDataTypeAssignment_2(), "rule__MeasurementData__DataTypeAssignment_2");
 					put(grammarAccess.getMeasurementDataAccess().getUnitAssignment_4(), "rule__MeasurementData__UnitAssignment_4");
 					put(grammarAccess.getMeasurementDataAccess().getIDAssignment_5_2(), "rule__MeasurementData__IDAssignment_5_2");
-					put(grammarAccess.getMeasurementDataAccess().getAdjustmentsAssignment_6_1(), "rule__MeasurementData__AdjustmentsAssignment_6_1");
+					put(grammarAccess.getMeasurementDataAccess().getAdjustmentsAssignment_6_0_1(), "rule__MeasurementData__AdjustmentsAssignment_6_0_1");
+					put(grammarAccess.getMeasurementDataAccess().getAdjustmentsAssignment_6_1_1(), "rule__MeasurementData__AdjustmentsAssignment_6_1_1");
 					put(grammarAccess.getMeasurementDataAccess().getAdjustmentsAssignment_6_2_1(), "rule__MeasurementData__AdjustmentsAssignment_6_2_1");
+					put(grammarAccess.getMeasurementDataAccess().getAdjustmentsAssignment_6_2_3(), "rule__MeasurementData__AdjustmentsAssignment_6_2_3");
 					put(grammarAccess.getMeasurementDataAccess().getDescriptionAssignment_7(), "rule__MeasurementData__DescriptionAssignment_7");
 					put(grammarAccess.getNonMeasurementDataAccess().getNameAssignment_0(), "rule__NonMeasurementData__NameAssignment_0");
 					put(grammarAccess.getNonMeasurementDataAccess().getDataTypeAssignment_2_0(), "rule__NonMeasurementData__DataTypeAssignment_2_0");

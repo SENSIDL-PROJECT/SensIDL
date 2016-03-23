@@ -96,7 +96,7 @@ ruleSensorInterface returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -114,7 +114,7 @@ ruleSensorInterface returns [EObject current=null]
        			$current, 
        			"description",
         		lv_description_2_0, 
-        		"DESCRIPTION");
+        		"de.fzi.sensidl.language.Sensidl.DESCRIPTION");
 	    }
 
 )
@@ -140,7 +140,7 @@ ruleSensorInterface returns [EObject current=null]
        			$current, 
        			"ID",
         		lv_ID_5_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -161,7 +161,7 @@ ruleSensorInterface returns [EObject current=null]
        			$current, 
        			"encodingSettings",
         		lv_encodingSettings_7_0, 
-        		"EncodingSettings");
+        		"de.fzi.sensidl.language.Sensidl.EncodingSettings");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -179,7 +179,7 @@ ruleSensorInterface returns [EObject current=null]
        			$current, 
        			"dataDescription",
         		lv_dataDescription_8_0, 
-        		"SensorDataDescription");
+        		"de.fzi.sensidl.language.Sensidl.SensorDataDescription");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -230,7 +230,7 @@ ruleEncodingSettings returns [EObject current=null]
        			$current, 
        			"coding",
         		lv_coding_2_0, 
-        		"Coding");
+        		"de.fzi.sensidl.language.Sensidl.Coding");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -260,7 +260,7 @@ ruleEncodingSettings returns [EObject current=null]
        			$current, 
        			"endianness",
         		lv_endianness_6_0, 
-        		"Endianness");
+        		"de.fzi.sensidl.language.Sensidl.Endianness");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -291,7 +291,7 @@ ruleEncodingSettings returns [EObject current=null]
        			$current, 
        			"alignment",
         		lv_alignment_10_0, 
-        		"INT");
+        		"org.eclipse.xtext.common.Terminals.INT");
 	    }
 
 )
@@ -321,7 +321,7 @@ ruleEncodingSettings returns [EObject current=null]
        			$current, 
        			"ID",
         		lv_ID_14_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -378,7 +378,7 @@ ruleSensorDataDescription returns [EObject current=null]
        			$current, 
        			"ID",
         		lv_ID_4_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -399,7 +399,7 @@ ruleSensorDataDescription returns [EObject current=null]
        			$current, 
        			"dataSets",
         		lv_dataSets_6_0, 
-        		"DataSet");
+        		"de.fzi.sensidl.language.Sensidl.DataSet");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -447,7 +447,7 @@ ruleDataSet returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -490,7 +490,7 @@ ruleDataSet returns [EObject current=null]
        			$current, 
        			"ID",
         		lv_ID_6_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -508,7 +508,7 @@ ruleDataSet returns [EObject current=null]
        			$current, 
        			"description",
         		lv_description_7_0, 
-        		"DESCRIPTION");
+        		"de.fzi.sensidl.language.Sensidl.DESCRIPTION");
 	    }
 
 )
@@ -529,7 +529,7 @@ ruleDataSet returns [EObject current=null]
        			$current, 
        			"data",
         		lv_data_9_0, 
-        		"Data");
+        		"de.fzi.sensidl.language.Sensidl.Data");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -623,7 +623,7 @@ ruleMeasurementData returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -644,7 +644,7 @@ ruleMeasurementData returns [EObject current=null]
        			$current, 
        			"dataType",
         		lv_dataType_2_0, 
-        		"DataType");
+        		"de.fzi.sensidl.language.Sensidl.DataType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -666,7 +666,7 @@ ruleMeasurementData returns [EObject current=null]
        			$current, 
        			"unit",
         		lv_unit_4_0, 
-        		"UNIT");
+        		"de.fzi.sensidl.language.Sensidl.UNIT");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -693,20 +693,20 @@ ruleMeasurementData returns [EObject current=null]
        			$current, 
        			"ID",
         		lv_ID_7_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
-))?(	otherlv_8='adjusted' 
+))?((	otherlv_8='adjusted' 
     {
-    	newLeafNode(otherlv_8, grammarAccess.getMeasurementDataAccess().getAdjustedKeyword_6_0());
+    	newLeafNode(otherlv_8, grammarAccess.getMeasurementDataAccess().getAdjustedKeyword_6_0_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataAdjustmentParserRuleCall_6_1_0()); 
+	        newCompositeNode(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataConversionParserRuleCall_6_0_1_0()); 
 	    }
-		lv_adjustments_9_0=ruleDataAdjustment		{
+		lv_adjustments_9_0=ruleDataConversion		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMeasurementDataRule());
 	        }
@@ -714,21 +714,22 @@ ruleMeasurementData returns [EObject current=null]
        			$current, 
        			"adjustments",
         		lv_adjustments_9_0, 
-        		"DataAdjustment");
+        		"de.fzi.sensidl.language.Sensidl.DataConversion");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	otherlv_10=',' 
+))
+    |(	otherlv_10='adjusted' 
     {
-    	newLeafNode(otherlv_10, grammarAccess.getMeasurementDataAccess().getCommaKeyword_6_2_0());
+    	newLeafNode(otherlv_10, grammarAccess.getMeasurementDataAccess().getAdjustedKeyword_6_1_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataAdjustmentParserRuleCall_6_2_1_0()); 
+	        newCompositeNode(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataRangeParserRuleCall_6_1_1_0()); 
 	    }
-		lv_adjustments_11_0=ruleDataAdjustment		{
+		lv_adjustments_11_0=ruleDataRange		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMeasurementDataRule());
 	        }
@@ -736,16 +737,61 @@ ruleMeasurementData returns [EObject current=null]
        			$current, 
        			"adjustments",
         		lv_adjustments_11_0, 
-        		"DataAdjustment");
+        		"de.fzi.sensidl.language.Sensidl.DataRange");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))*)?(
+))
+    |(	otherlv_12='adjusted' 
+    {
+    	newLeafNode(otherlv_12, grammarAccess.getMeasurementDataAccess().getAdjustedKeyword_6_2_0());
+    }
 (
-		lv_description_12_0=RULE_DESCRIPTION
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataConversionParserRuleCall_6_2_1_0()); 
+	    }
+		lv_adjustments_13_0=ruleDataConversion		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMeasurementDataRule());
+	        }
+       		add(
+       			$current, 
+       			"adjustments",
+        		lv_adjustments_13_0, 
+        		"de.fzi.sensidl.language.Sensidl.DataConversion");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_14=',' 
+    {
+    	newLeafNode(otherlv_14, grammarAccess.getMeasurementDataAccess().getCommaKeyword_6_2_2());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataRangeParserRuleCall_6_2_3_0()); 
+	    }
+		lv_adjustments_15_0=ruleDataRange		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMeasurementDataRule());
+	        }
+       		add(
+       			$current, 
+       			"adjustments",
+        		lv_adjustments_15_0, 
+        		"de.fzi.sensidl.language.Sensidl.DataRange");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)))?(
+(
+		lv_description_16_0=RULE_DESCRIPTION
 		{
-			newLeafNode(lv_description_12_0, grammarAccess.getMeasurementDataAccess().getDescriptionDESCRIPTIONTerminalRuleCall_7_0()); 
+			newLeafNode(lv_description_16_0, grammarAccess.getMeasurementDataAccess().getDescriptionDESCRIPTIONTerminalRuleCall_7_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -754,8 +800,8 @@ ruleMeasurementData returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"description",
-        		lv_description_12_0, 
-        		"DESCRIPTION");
+        		lv_description_16_0, 
+        		"de.fzi.sensidl.language.Sensidl.DESCRIPTION");
 	    }
 
 )
@@ -794,7 +840,7 @@ ruleNonMeasurementData returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -815,7 +861,7 @@ ruleNonMeasurementData returns [EObject current=null]
        			$current, 
        			"dataType",
         		lv_dataType_2_0, 
-        		"DataType");
+        		"de.fzi.sensidl.language.Sensidl.DataType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -834,7 +880,7 @@ ruleNonMeasurementData returns [EObject current=null]
        			$current, 
        			"dataType",
         		lv_dataType_3_0, 
-        		"DataTypeNotAdjustable");
+        		"de.fzi.sensidl.language.Sensidl.DataTypeNotAdjustable");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -876,7 +922,7 @@ ruleNonMeasurementData returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_7_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -902,7 +948,7 @@ ruleNonMeasurementData returns [EObject current=null]
        			$current, 
        			"ID",
         		lv_ID_10_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -920,7 +966,7 @@ ruleNonMeasurementData returns [EObject current=null]
        			$current, 
        			"description",
         		lv_description_11_0, 
-        		"DESCRIPTION");
+        		"de.fzi.sensidl.language.Sensidl.DESCRIPTION");
 	    }
 
 )
@@ -959,7 +1005,7 @@ ruleMeasurementDataNotAdjustable returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -980,7 +1026,7 @@ ruleMeasurementDataNotAdjustable returns [EObject current=null]
        			$current, 
        			"dataType",
         		lv_dataType_2_0, 
-        		"DataTypeNotAdjustable");
+        		"de.fzi.sensidl.language.Sensidl.DataTypeNotAdjustable");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1002,7 +1048,7 @@ ruleMeasurementDataNotAdjustable returns [EObject current=null]
        			$current, 
        			"unit",
         		lv_unit_4_0, 
-        		"UNIT");
+        		"de.fzi.sensidl.language.Sensidl.UNIT");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1029,7 +1075,7 @@ ruleMeasurementDataNotAdjustable returns [EObject current=null]
        			$current, 
        			"ID",
         		lv_ID_7_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -1047,51 +1093,11 @@ ruleMeasurementDataNotAdjustable returns [EObject current=null]
        			$current, 
        			"description",
         		lv_description_8_0, 
-        		"DESCRIPTION");
+        		"de.fzi.sensidl.language.Sensidl.DESCRIPTION");
 	    }
 
 )
 )?)
-;
-
-
-
-
-
-// Entry rule entryRuleDataAdjustment
-entryRuleDataAdjustment returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getDataAdjustmentRule()); }
-	 iv_ruleDataAdjustment=ruleDataAdjustment 
-	 { $current=$iv_ruleDataAdjustment.current; } 
-	 EOF 
-;
-
-// Rule DataAdjustment
-ruleDataAdjustment returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-    { 
-        newCompositeNode(grammarAccess.getDataAdjustmentAccess().getDataRangeParserRuleCall_0()); 
-    }
-    this_DataRange_0=ruleDataRange
-    { 
-        $current = $this_DataRange_0.current; 
-        afterParserOrEnumRuleCall();
-    }
-
-    |
-    { 
-        newCompositeNode(grammarAccess.getDataAdjustmentAccess().getDataConversionParserRuleCall_1()); 
-    }
-    this_DataConversion_1=ruleDataConversion
-    { 
-        $current = $this_DataConversion_1.current; 
-        afterParserOrEnumRuleCall();
-    }
-)
 ;
 
 
@@ -1129,7 +1135,7 @@ ruleDataRange returns [EObject current=null]
        			$current, 
        			"range",
         		lv_range_1_0, 
-        		"Interval");
+        		"de.fzi.sensidl.language.Sensidl.Interval");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1172,7 +1178,7 @@ ruleInterval returns [EObject current=null]
        			$current, 
        			"lowerBound",
         		lv_lowerBound_1_0, 
-        		"DOUBLE");
+        		"de.fzi.sensidl.language.Sensidl.DOUBLE");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1194,7 +1200,7 @@ ruleInterval returns [EObject current=null]
        			$current, 
        			"upperBound",
         		lv_upperBound_3_0, 
-        		"DOUBLE");
+        		"de.fzi.sensidl.language.Sensidl.DOUBLE");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1285,7 +1291,7 @@ ruleLinearDataConversion returns [EObject current=null]
        			$current, 
        			"scalingFactor",
         		lv_scalingFactor_2_0, 
-        		"DOUBLE");
+        		"de.fzi.sensidl.language.Sensidl.DOUBLE");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1311,7 +1317,7 @@ ruleLinearDataConversion returns [EObject current=null]
        			$current, 
        			"offset",
         		lv_offset_5_0, 
-        		"DOUBLE");
+        		"de.fzi.sensidl.language.Sensidl.DOUBLE");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1354,7 +1360,7 @@ ruleLinearDataConversionWithInterval returns [EObject current=null]
        			$current, 
        			"fromInterval",
         		lv_fromInterval_1_0, 
-        		"Interval");
+        		"de.fzi.sensidl.language.Sensidl.Interval");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1376,7 +1382,7 @@ ruleLinearDataConversionWithInterval returns [EObject current=null]
        			$current, 
        			"toInterval",
         		lv_toInterval_3_0, 
-        		"Interval");
+        		"de.fzi.sensidl.language.Sensidl.Interval");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1398,7 +1404,7 @@ ruleLinearDataConversionWithInterval returns [EObject current=null]
        			$current, 
        			"dataType",
         		lv_dataType_5_0, 
-        		"DataType");
+        		"de.fzi.sensidl.language.Sensidl.DataType");
 	        afterParserOrEnumRuleCall();
 	    }
 

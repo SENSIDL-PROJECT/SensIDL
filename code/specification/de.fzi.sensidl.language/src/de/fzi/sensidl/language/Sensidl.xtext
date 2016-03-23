@@ -59,7 +59,7 @@ Data returns dataRepresentation::Data:
 
 MeasurementData returns dataRepresentation::MeasurementData:
 	name=ID "as" dataType=DataType "in" unit=UNIT ("with identifier" ":" ID=STRING)?
-	("adjusted" adjustments+=DataAdjustment ("," adjustments+=DataAdjustment)*)? (description=DESCRIPTION)?
+	(("adjusted" adjustments+=DataConversion) | ("adjusted" adjustments+=DataRange) | ("adjusted" adjustments+=DataConversion "," adjustments+=DataRange))?  (description=DESCRIPTION)?
 ;
 
 NonMeasurementData returns dataRepresentation::NonMeasurementData:
@@ -88,10 +88,10 @@ enum DataType returns dataRepresentation::DataType:
 	DOUBLE
 ;
 
-DataAdjustment returns dataRepresentation::DataAdjustment:
-	DataRange |
-	DataConversion
-;
+//DataAdjustment returns dataRepresentation::DataAdjustment:
+//	DataRange |
+//	DataConversion
+//;
 
 DataRange returns dataRepresentation::DataRange:
 	"with range" range=Interval

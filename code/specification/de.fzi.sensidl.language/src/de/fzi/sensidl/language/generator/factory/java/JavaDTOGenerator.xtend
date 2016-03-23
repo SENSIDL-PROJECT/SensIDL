@@ -440,7 +440,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 						 * @param «GenerationUtil.toNameLower(d)»
 						 *            the «GenerationUtil.toNameLower(d)» to set
 						 */
-						public void «d.toSetterName»(«d.toTypeName» «GenerationUtil.toNameLower(d)»){
+						public void «d.toSetterName»WithRange(«d.toTypeName» «GenerationUtil.toNameLower(d)»){
 							if («GenerationUtil.toNameLower(d)» >= «dataAdj.range.lowerBound» && «GenerationUtil.toNameLower(d)» <= «dataAdj.range.upperBound»)
 								this.«GenerationUtil.toNameLower(d)» = «GenerationUtil.toNameLower(d)»;
 							else
@@ -451,7 +451,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 						 * @param «GenerationUtil.toNameLower(d)»
 						 *            the «GenerationUtil.toNameLower(d)» to set
 						 */
-						public void «d.toSetterName»(«d.toTypeName» «GenerationUtil.toNameLower(d)») {
+						public void «d.toSetterName»WithDataConversion(«d.toTypeName» «GenerationUtil.toNameLower(d)») {
 							try {
 								«d.generateSetterBodyForMeasurementData(dataAdj as DataConversion)»
 							} catch (IllegalArgumentException e) {
@@ -491,16 +491,16 @@ class JavaDTOGenerator implements IDTOGenerator {
 «««						«ENDIF»
 					«ENDIF»				
 				«ENDFOR»
-			«ELSE»
-				/**
-				 * @param «GenerationUtil.toNameLower(d)»  
-				 *            the «GenerationUtil.toNameLower(d)» to set
-				 */
-				public void «d.toSetterName»(«d.toTypeName» «GenerationUtil.toNameLower(d)») {
-					
-					this.«GenerationUtil.toNameLower(d)» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («GenerationUtil.toNameLower(d)» - «d.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(d)»«ENDIF»;
-				} 
 			«ENDIF»
+			/**
+			 * @param «GenerationUtil.toNameLower(d)»  
+			 *            the «GenerationUtil.toNameLower(d)» to set
+			 */
+			public void «d.toSetterName»(«d.toTypeName» «GenerationUtil.toNameLower(d)») {
+				
+				this.«GenerationUtil.toNameLower(d)» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («GenerationUtil.toNameLower(d)» - «d.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(d)»«ENDIF»;
+			} 
+			
 		''' 
 
 	}
