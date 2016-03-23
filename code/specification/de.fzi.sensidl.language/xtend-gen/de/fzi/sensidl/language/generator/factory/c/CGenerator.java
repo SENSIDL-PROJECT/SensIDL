@@ -1,7 +1,6 @@
 package de.fzi.sensidl.language.generator.factory.c;
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
-import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.language.generator.factory.ICodeGenerator;
 import de.fzi.sensidl.language.generator.factory.c.CDTOFileGenerator;
 import de.fzi.sensidl.language.generator.factory.c.CDTOGenerator;
@@ -12,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Consumer;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * The CGenerator represents a concrete implementation of The ICodeGenerator and
@@ -67,7 +67,7 @@ public class CGenerator implements ICodeGenerator {
    * @see ICodeGenerator#generateUtilityClass(List<MeasurementData>)
    */
   @Override
-  public HashMap<String, CharSequence> generateUtilityClass(final List<MeasurementData> data) {
+  public HashMap<String, CharSequence> generateUtilityClass(final List<EObject> data) {
     CUtilityGenerator _cUtilityGenerator = new CUtilityGenerator(data);
     return _cUtilityGenerator.generate();
   }

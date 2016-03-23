@@ -4,6 +4,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
 import de.fzi.sensidl.language.generator.factory.ICodeGenerator
 import java.util.List
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
+import org.eclipse.emf.ecore.EObject
 
 /**
  * The CSharpGenerator represents a concrete implementation of The ICodeGenerator
@@ -48,7 +49,7 @@ class CSharpGenerator implements ICodeGenerator {
 	/**
  	*@see ICodeGenerator#generateUtilityClass()
  	*/
-	override generateUtilityClass(List<MeasurementData> data) {
+	override generateUtilityClass(List<EObject> data) {
 		new CSharpUtilityGenerator(data).generate
 	}
 

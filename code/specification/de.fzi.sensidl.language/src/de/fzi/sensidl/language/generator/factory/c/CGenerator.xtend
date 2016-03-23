@@ -6,6 +6,7 @@ import java.util.ArrayList
 import java.util.HashMap
 import java.util.List
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
+import org.eclipse.emf.ecore.EObject
 
 /**
 * The CGenerator represents a concrete implementation of The ICodeGenerator and 
@@ -47,7 +48,7 @@ class CGenerator implements ICodeGenerator {
 	/**
 	 * @see ICodeGenerator#generateUtilityClass(List<MeasurementData>)
 	 */
-	override generateUtilityClass(List<MeasurementData> data) {
+	override generateUtilityClass(List<EObject> data) {
 		new CUtilityGenerator(data).generate
 	}
 }

@@ -1,6 +1,7 @@
 package de.fzi.sensidl.language.generator.factory.java
 
 import de.fzi.sensidl.design.sensidl.Endianness
+import de.fzi.sensidl.design.sensidl.SensorInterface
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
@@ -12,22 +13,24 @@ import de.fzi.sensidl.language.generator.factory.IUtilityGenerator
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
-
+import org.eclipse.emf.ecore.EObject
 
 class JavaUtilityGenerator implements IUtilityGenerator {
 	private static Logger logger = Logger.getLogger(JavaUtilityGenerator)
 	private List<MeasurementData> data
+	private SensorInterface currentSensorInterface;
 
 	private boolean createProject = false
 	private boolean bigEndian
 	
 	/**
 	 * The constructor calls the constructor of the superclass to set a
-	 * list of Data-elements.
-	 * @param newData - represents the list of DataSet-elements.
+	 * list of elements.
+	 * @param newData - represents the list of EObject-elements.
 	 */
-	new(List<MeasurementData> newData) {
-		this.data = newData
+	new(List<EObject> newData) {
+		this.data = newData.filter(MeasurementData).toList
+		currentSensorInterface = newData.filter(SensorInterface).get(0);
 	}
 
 	/**
@@ -36,10 +39,12 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 	 * @param newData - represents the list of DataSet-elements.
 	 * @param createProject - indicates if a project should be created.
 	 */
-	new(List<MeasurementData> newData, boolean createProject) {
-		this.data = newData
+	new(List<EObject> newData, boolean createProject) {
+		this.data = newData.filter(MeasurementData).toList
+		currentSensorInterface = newData.filter(SensorInterface).get(0);
 		this.createProject = createProject
 	}
+	
 	/**
 	 * Generates the .java file for the utility-class.
 	 * @see IDTOGenerator#generate()
@@ -48,18 +53,14 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 		logger.info("Start with code-generation of the java utility class.")
 
 		val filesToGenerate = new HashMap
-		val utilityName = GenerationUtil.getUtilityName(this.data.get(0))
+		val utilityName = GenerationUtil.getUtilityName(this.currentSensorInterface)
 	
-		if (GenerationUtil.getSensorInterface(this.data.get(0).eContainer).encodingSettings.endianness == Endianness.BIG_ENDIAN){
-			bigEndian = true;
-		} else {
-			bigEndian = false;
-		}
+		bigEndian = (this.currentSensorInterface.encodingSettings.endianness == Endianness.BIG_ENDIAN)
 	
 		// if a Plug-in Project is generated the file has to be generated to another path
 		if (createProject) {
 			filesToGenerate.put(
-				"src/de/fzi/sensidl/" + GenerationUtil.getSensorInterfaceName(this.data.get(0).eContainer) + "/" +
+				"src/de/fzi/sensidl/" + GenerationUtil.getSensorInterfaceName(this.currentSensorInterface) + "/" +
 					addFileExtensionTo(utilityName), generateClassBody(utilityName))
 		} else {
 			filesToGenerate.put(addFileExtensionTo(utilityName), generateClassBody(utilityName))
@@ -89,19 +90,27 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 			 * @generated
 			 */
 			class «className» {
-				«IF this.data.exists[data | data.adjustments.get(0) instanceof LinearDataConversion]»
-					«generateLinearDataConversionMethod»
-					«generateGetMaxValueOfMethod»
-				«ENDIF»
-				
-				«IF this.data.exists[data | data.adjustments.get(0) instanceof LinearDataConversionWithInterval]»
-					«generateLinearDataConversionWithIntervalMethod»
+				«IF this.data.size > 0»
+					«generateConversionMethods»
 				«ENDIF»
 				
 				«IF !bigEndian»
 					«generateEndiannessConverterMethods»
 				«ENDIF»
 			}
+		'''
+	}
+	
+	def generateConversionMethods() {
+		'''
+		«IF this.data.exists[data | data.adjustments.get(0) instanceof LinearDataConversion]»
+			«generateLinearDataConversionMethod»
+			«generateGetMaxValueOfMethod»
+		«ENDIF»
+		
+		«IF this.data.exists[data | data.adjustments.get(0) instanceof LinearDataConversionWithInterval]»
+				«generateLinearDataConversionWithIntervalMethod»
+		«ENDIF»
 		'''
 	}
 

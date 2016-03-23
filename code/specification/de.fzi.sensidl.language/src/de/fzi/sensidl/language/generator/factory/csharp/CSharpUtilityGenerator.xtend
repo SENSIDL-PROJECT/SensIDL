@@ -10,6 +10,8 @@ import de.fzi.sensidl.language.generator.factory.IUtilityGenerator
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
+import org.eclipse.emf.ecore.EObject
+import de.fzi.sensidl.design.sensidl.SensorInterface
 
 /**
  * C# code generator for the utility class.
@@ -19,6 +21,7 @@ import org.apache.log4j.Logger
 class CSharpUtilityGenerator implements IUtilityGenerator {
 	private static Logger logger = Logger.getLogger(CSharpUtilityGenerator)
 	private List<MeasurementData> data
+	private SensorInterface currentSensorInterface
 
 	private boolean createProject = false
 
@@ -26,8 +29,9 @@ class CSharpUtilityGenerator implements IUtilityGenerator {
 	 * The constructor calls the constructor of the superclass to set a list of Data-elements.
 	 * @param newData Represents the list of DataSet-elements.
 	 */
-	new(List<MeasurementData> newData) {
-		this.data = newData
+	new(List<EObject> newData) {
+		this.data = newData.filter(MeasurementData).toList
+		this.currentSensorInterface = newData.filter(SensorInterface).get(0)
 	}
 
 	/**
@@ -38,6 +42,7 @@ class CSharpUtilityGenerator implements IUtilityGenerator {
 	 */
 	new(List<MeasurementData> newData, boolean createProject) {
 		this.data = newData
+		this.currentSensorInterface = newData.filter(SensorInterface).get(0)
 		this.createProject = createProject
 	}
 
@@ -48,12 +53,12 @@ class CSharpUtilityGenerator implements IUtilityGenerator {
 		logger.info("Start with code-generation of the csharp utility class.")
 
 		val filesToGenerate = new HashMap
-		val utilityName = GenerationUtil.getUtilityName(this.data.get(0))
+		val utilityName = GenerationUtil.getUtilityName(currentSensorInterface)
 
 		// if a Plug-in Project is generated the file has to be generated to another path
 		if (createProject) {
 			filesToGenerate.put(
-				"src/de/fzi/sensidl/" + GenerationUtil.getSensorInterfaceName(this.data.get(0).eContainer) + "/" +
+				"src/de/fzi/sensidl/" + GenerationUtil.getSensorInterfaceName(currentSensorInterface) + "/" +
 					addFileExtensionTo(utilityName), generateClassBody(utilityName))
 		} else {
 			filesToGenerate.put(addFileExtensionTo(utilityName), generateClassBody(utilityName))
@@ -73,15 +78,23 @@ class CSharpUtilityGenerator implements IUtilityGenerator {
 			/// @generated
 			/// </summary>
 			class «className» {
-				«IF this.data.exists[data | data.adjustments.get(0) instanceof LinearDataConversion]»
-					«generateLinearDataConversionMethod»
-					«generateGetMaxValueOfMethod»
-				«ENDIF»
-				
-				«IF this.data.exists[data | data.adjustments.get(0) instanceof LinearDataConversionWithInterval]»
-					«generateLinearDataConversionWithIntervalMethod»
+				«IF this.data.size > 0»
+					«generateConversionMethods»
 				«ENDIF»
 			}
+		'''
+	}
+	
+	def generateConversionMethods() {
+		'''
+		«IF this.data.exists[data | data.adjustments.get(0) instanceof LinearDataConversion]»
+			«generateLinearDataConversionMethod»
+			«generateGetMaxValueOfMethod»
+		«ENDIF»
+		
+		«IF this.data.exists[data | data.adjustments.get(0) instanceof LinearDataConversionWithInterval]»
+			«generateLinearDataConversionWithIntervalMethod»
+		«ENDIF»
 		'''
 	}
 

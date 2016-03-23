@@ -3,6 +3,8 @@ package de.fzi.sensidl.language.generator.factory.plaintext;
 import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
+
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.language.generator.factory.ICodeGenerator;
@@ -42,7 +44,7 @@ public class PlaintextGenerator implements ICodeGenerator {
 	 * @see ICodeGenerator#generateUtilityClass(List)
 	 */
 	@Override
-	public HashMap<String, CharSequence> generateUtilityClass(List<MeasurementData> data) {
+	public HashMap<String, CharSequence> generateUtilityClass(List<EObject> data) {
 		// TODO Auto-generated method stub
 		return null;
 	}

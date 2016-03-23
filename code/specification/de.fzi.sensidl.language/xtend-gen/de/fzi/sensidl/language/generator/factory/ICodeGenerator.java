@@ -1,9 +1,9 @@
 package de.fzi.sensidl.language.generator.factory;
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
-import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import java.util.HashMap;
 import java.util.List;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * Main interface to create a new generation family
@@ -42,5 +42,5 @@ public interface ICodeGenerator {
    * @return a HashMap which maps the filename to generation-code
    * 		  represented as CharSequence.
    */
-  public abstract HashMap<String, CharSequence> generateUtilityClass(final List<MeasurementData> data);
+  public abstract HashMap<String, CharSequence> generateUtilityClass(final List<EObject> data);
 }

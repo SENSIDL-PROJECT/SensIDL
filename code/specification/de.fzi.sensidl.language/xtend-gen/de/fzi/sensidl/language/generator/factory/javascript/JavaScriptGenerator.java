@@ -1,11 +1,11 @@
 package de.fzi.sensidl.language.generator.factory.javascript;
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
-import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.language.generator.factory.ICodeGenerator;
 import de.fzi.sensidl.language.generator.factory.javascript.JavaScriptDTOGenerator;
 import java.util.HashMap;
 import java.util.List;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * The JavaScriptGenerator represents a concrete implementation of The ICodeGenerator and
@@ -42,7 +42,7 @@ public class JavaScriptGenerator implements ICodeGenerator {
    * @see ICodeGenerator#generateUtilityClass(List<MeasurementData>)
    */
   @Override
-  public HashMap<String, CharSequence> generateUtilityClass(final List<MeasurementData> data) {
+  public HashMap<String, CharSequence> generateUtilityClass(final List<EObject> data) {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
 }

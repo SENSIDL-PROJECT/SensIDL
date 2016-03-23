@@ -4,6 +4,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 import de.fzi.sensidl.language.generator.factory.ICodeGenerator
 import java.util.List
+import org.eclipse.emf.ecore.EObject
 
 /**
  * The JavaScriptGenerator represents a concrete implementation of The ICodeGenerator and 
@@ -38,7 +39,7 @@ class JavaScriptGenerator implements ICodeGenerator {
 	/**
 	 * @see ICodeGenerator#generateUtilityClass(List<MeasurementData>)
 	 */
-	override generateUtilityClass(List<MeasurementData> data) {
+	override generateUtilityClass(List<EObject> data) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 }

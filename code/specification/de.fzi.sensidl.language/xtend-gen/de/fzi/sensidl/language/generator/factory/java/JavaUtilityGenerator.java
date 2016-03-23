@@ -1,6 +1,7 @@
 package de.fzi.sensidl.language.generator.factory.java;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
 import de.fzi.sensidl.design.sensidl.EncodingSettings;
 import de.fzi.sensidl.design.sensidl.Endianness;
 import de.fzi.sensidl.design.sensidl.SensorInterface;
@@ -19,6 +20,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
@@ -28,17 +30,24 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
   
   private List<MeasurementData> data;
   
+  private SensorInterface currentSensorInterface;
+  
   private boolean createProject = false;
   
   private boolean bigEndian;
   
   /**
    * The constructor calls the constructor of the superclass to set a
-   * list of Data-elements.
-   * @param newData - represents the list of DataSet-elements.
+   * list of elements.
+   * @param newData - represents the list of EObject-elements.
    */
-  public JavaUtilityGenerator(final List<MeasurementData> newData) {
-    this.data = newData;
+  public JavaUtilityGenerator(final List<EObject> newData) {
+    Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(newData, MeasurementData.class);
+    List<MeasurementData> _list = IterableExtensions.<MeasurementData>toList(_filter);
+    this.data = _list;
+    Iterable<SensorInterface> _filter_1 = Iterables.<SensorInterface>filter(newData, SensorInterface.class);
+    SensorInterface _get = ((SensorInterface[])Conversions.unwrapArray(_filter_1, SensorInterface.class))[0];
+    this.currentSensorInterface = _get;
   }
   
   /**
@@ -47,8 +56,13 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
    * @param newData - represents the list of DataSet-elements.
    * @param createProject - indicates if a project should be created.
    */
-  public JavaUtilityGenerator(final List<MeasurementData> newData, final boolean createProject) {
-    this.data = newData;
+  public JavaUtilityGenerator(final List<EObject> newData, final boolean createProject) {
+    Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(newData, MeasurementData.class);
+    List<MeasurementData> _list = IterableExtensions.<MeasurementData>toList(_filter);
+    this.data = _list;
+    Iterable<SensorInterface> _filter_1 = Iterables.<SensorInterface>filter(newData, SensorInterface.class);
+    SensorInterface _get = ((SensorInterface[])Conversions.unwrapArray(_filter_1, SensorInterface.class))[0];
+    this.currentSensorInterface = _get;
     this.createProject = createProject;
   }
   
@@ -62,23 +76,13 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
     {
       JavaUtilityGenerator.logger.info("Start with code-generation of the java utility class.");
       final HashMap<String, CharSequence> filesToGenerate = new HashMap<String, CharSequence>();
-      MeasurementData _get = this.data.get(0);
-      final String utilityName = GenerationUtil.getUtilityName(_get);
-      MeasurementData _get_1 = this.data.get(0);
-      EObject _eContainer = _get_1.eContainer();
-      SensorInterface _sensorInterface = GenerationUtil.getSensorInterface(_eContainer);
-      EncodingSettings _encodingSettings = _sensorInterface.getEncodingSettings();
+      final String utilityName = GenerationUtil.getUtilityName(this.currentSensorInterface);
+      EncodingSettings _encodingSettings = this.currentSensorInterface.getEncodingSettings();
       Endianness _endianness = _encodingSettings.getEndianness();
       boolean _equals = Objects.equal(_endianness, Endianness.BIG_ENDIAN);
-      if (_equals) {
-        this.bigEndian = true;
-      } else {
-        this.bigEndian = false;
-      }
+      this.bigEndian = _equals;
       if (this.createProject) {
-        MeasurementData _get_2 = this.data.get(0);
-        EObject _eContainer_1 = _get_2.eContainer();
-        String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(_eContainer_1);
+        String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(this.currentSensorInterface);
         String _plus = ("src/de/fzi/sensidl/" + _sensorInterfaceName);
         String _plus_1 = (_plus + "/");
         String _addFileExtensionTo = this.addFileExtensionTo(utilityName);
@@ -146,42 +150,12 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
     _builder.append(" {");
     _builder.newLineIfNotEmpty();
     {
-      final Function1<MeasurementData, Boolean> _function = new Function1<MeasurementData, Boolean>() {
-        @Override
-        public Boolean apply(final MeasurementData data) {
-          EList<DataAdjustment> _adjustments = data.getAdjustments();
-          DataAdjustment _get = _adjustments.get(0);
-          return Boolean.valueOf((_get instanceof LinearDataConversion));
-        }
-      };
-      boolean _exists = IterableExtensions.<MeasurementData>exists(this.data, _function);
-      if (_exists) {
+      int _size = this.data.size();
+      boolean _greaterThan = (_size > 0);
+      if (_greaterThan) {
         _builder.append("\t");
-        CharSequence _generateLinearDataConversionMethod = this.generateLinearDataConversionMethod();
-        _builder.append(_generateLinearDataConversionMethod, "\t");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        CharSequence _generateGetMaxValueOfMethod = this.generateGetMaxValueOfMethod();
-        _builder.append(_generateGetMaxValueOfMethod, "\t");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("\t");
-    _builder.newLine();
-    {
-      final Function1<MeasurementData, Boolean> _function_1 = new Function1<MeasurementData, Boolean>() {
-        @Override
-        public Boolean apply(final MeasurementData data) {
-          EList<DataAdjustment> _adjustments = data.getAdjustments();
-          DataAdjustment _get = _adjustments.get(0);
-          return Boolean.valueOf((_get instanceof LinearDataConversionWithInterval));
-        }
-      };
-      boolean _exists_1 = IterableExtensions.<MeasurementData>exists(this.data, _function_1);
-      if (_exists_1) {
-        _builder.append("\t");
-        CharSequence _generateLinearDataConversionWithIntervalMethod = this.generateLinearDataConversionWithIntervalMethod();
-        _builder.append(_generateLinearDataConversionWithIntervalMethod, "\t");
+        CharSequence _generateConversionMethods = this.generateConversionMethods();
+        _builder.append(_generateConversionMethods, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -197,6 +171,47 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
     }
     _builder.append("}");
     _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generateConversionMethods() {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      final Function1<MeasurementData, Boolean> _function = new Function1<MeasurementData, Boolean>() {
+        @Override
+        public Boolean apply(final MeasurementData data) {
+          EList<DataAdjustment> _adjustments = data.getAdjustments();
+          DataAdjustment _get = _adjustments.get(0);
+          return Boolean.valueOf((_get instanceof LinearDataConversion));
+        }
+      };
+      boolean _exists = IterableExtensions.<MeasurementData>exists(this.data, _function);
+      if (_exists) {
+        CharSequence _generateLinearDataConversionMethod = this.generateLinearDataConversionMethod();
+        _builder.append(_generateLinearDataConversionMethod, "");
+        _builder.newLineIfNotEmpty();
+        CharSequence _generateGetMaxValueOfMethod = this.generateGetMaxValueOfMethod();
+        _builder.append(_generateGetMaxValueOfMethod, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    {
+      final Function1<MeasurementData, Boolean> _function_1 = new Function1<MeasurementData, Boolean>() {
+        @Override
+        public Boolean apply(final MeasurementData data) {
+          EList<DataAdjustment> _adjustments = data.getAdjustments();
+          DataAdjustment _get = _adjustments.get(0);
+          return Boolean.valueOf((_get instanceof LinearDataConversionWithInterval));
+        }
+      };
+      boolean _exists_1 = IterableExtensions.<MeasurementData>exists(this.data, _function_1);
+      if (_exists_1) {
+        CharSequence _generateLinearDataConversionWithIntervalMethod = this.generateLinearDataConversionWithIntervalMethod();
+        _builder.append(_generateLinearDataConversionWithIntervalMethod, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
   

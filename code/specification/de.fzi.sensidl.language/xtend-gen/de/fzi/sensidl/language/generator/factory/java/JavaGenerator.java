@@ -1,13 +1,13 @@
 package de.fzi.sensidl.language.generator.factory.java;
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
-import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.language.generator.factory.ICodeGenerator;
 import de.fzi.sensidl.language.generator.factory.java.JavaDTOGenerator;
 import de.fzi.sensidl.language.generator.factory.java.JavaPluginProjectGenerator;
 import de.fzi.sensidl.language.generator.factory.java.JavaUtilityGenerator;
 import java.util.HashMap;
 import java.util.List;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 
 /**
@@ -64,7 +64,7 @@ public class JavaGenerator implements ICodeGenerator {
    * @see ICodeGenerator#generateUtilityClass()
    */
   @Override
-  public HashMap<String, CharSequence> generateUtilityClass(final List<MeasurementData> data) {
+  public HashMap<String, CharSequence> generateUtilityClass(final List<EObject> data) {
     JavaUtilityGenerator _javaUtilityGenerator = new JavaUtilityGenerator(data);
     return _javaUtilityGenerator.generate();
   }
@@ -72,7 +72,7 @@ public class JavaGenerator implements ICodeGenerator {
   /**
    * if a Java Plug-in Project is generated the JavaUtilityGenerator needs a parameter that indicates so
    */
-  public HashMap<String, CharSequence> generateUtilityClass(final List<MeasurementData> data, final boolean createProject) {
+  public HashMap<String, CharSequence> generateUtilityClass(final List<EObject> data, final boolean createProject) {
     JavaUtilityGenerator _javaUtilityGenerator = new JavaUtilityGenerator(data, createProject);
     return _javaUtilityGenerator.generate();
   }

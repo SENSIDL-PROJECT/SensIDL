@@ -4,6 +4,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 import de.fzi.sensidl.language.generator.factory.ICodeGenerator
 import java.util.List
+import org.eclipse.emf.ecore.EObject
 
 /**
  * The JavaGenerator represents a concrete implementation of The ICodeGenerator and implements the 
@@ -47,14 +48,14 @@ class JavaGenerator implements ICodeGenerator {
 	/**
  	* @see ICodeGenerator#generateUtilityClass()
  	*/
-	override generateUtilityClass(List<MeasurementData> data) {
+	override generateUtilityClass(List<EObject> data) {
 		new JavaUtilityGenerator(data).generate
 	}
 
 	/**
 	 * if a Java Plug-in Project is generated the JavaUtilityGenerator needs a parameter that indicates so 
 	 */
-	def generateUtilityClass(List<MeasurementData> data, boolean createProject) {
+	def generateUtilityClass(List<EObject> data, boolean createProject) {
 		new JavaUtilityGenerator(data, createProject).generate
 	}
 }

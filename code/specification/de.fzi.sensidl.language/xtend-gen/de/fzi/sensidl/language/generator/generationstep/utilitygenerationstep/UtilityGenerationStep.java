@@ -1,14 +1,15 @@
 package de.fzi.sensidl.language.generator.generationstep.utilitygenerationstep;
 
-import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.language.generator.IExecuter;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
 import de.fzi.sensidl.language.generator.elementfilter.ElementFilter;
 import de.fzi.sensidl.language.generator.factory.c.CGenerator;
+import de.fzi.sensidl.language.generator.factory.csharp.CSharpGenerator;
 import de.fzi.sensidl.language.generator.factory.java.JavaGenerator;
 import de.fzi.sensidl.language.generator.generationstep.GenerationStep;
 import java.util.HashMap;
 import java.util.List;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
@@ -20,7 +21,7 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
  */
 @SuppressWarnings("all")
 public class UtilityGenerationStep extends GenerationStep {
-  private final List<MeasurementData> data;
+  private final List<EObject> data;
   
   /**
    * The constructor calls the needed data filtered by a concrete element-filter.
@@ -28,7 +29,7 @@ public class UtilityGenerationStep extends GenerationStep {
    * 				 subclass that filters a particular set of elements.
    */
   public UtilityGenerationStep(final ElementFilter filter) {
-    List<MeasurementData> _filterData = filter.<MeasurementData>filterData();
+    List<EObject> _filterData = filter.<EObject>filterData();
     this.data = _filterData;
   }
   
@@ -56,6 +57,7 @@ public class UtilityGenerationStep extends GenerationStep {
           public void execute() {
             final JavaGenerator jgenerator = new JavaGenerator();
             final CGenerator cgenerator = new CGenerator();
+            final CSharpGenerator csharpgenerator = new CSharpGenerator();
             final Procedure1<HashMap<String, CharSequence>> _function = new Procedure1<HashMap<String, CharSequence>>() {
               @Override
               public void apply(final HashMap<String, CharSequence> it) {
@@ -74,6 +76,15 @@ public class UtilityGenerationStep extends GenerationStep {
             };
             ObjectExtensions.<HashMap<String, CharSequence>>operator_doubleArrow(
               GenerationStep.filesToGenerate, _function_1);
+            final Procedure1<HashMap<String, CharSequence>> _function_2 = new Procedure1<HashMap<String, CharSequence>>() {
+              @Override
+              public void apply(final HashMap<String, CharSequence> it) {
+                HashMap<String, CharSequence> _generateUtilityClass = csharpgenerator.generateUtilityClass(UtilityGenerationStep.this.data);
+                it.putAll(_generateUtilityClass);
+              }
+            };
+            ObjectExtensions.<HashMap<String, CharSequence>>operator_doubleArrow(
+              GenerationStep.filesToGenerate, _function_2);
           }
         };
         it.put(SensIDLConstants.GenerationLanguage.ALL, _function);
@@ -128,6 +139,16 @@ public class UtilityGenerationStep extends GenerationStep {
         final IExecuter _function_4 = new IExecuter() {
           @Override
           public void execute() {
+            final CSharpGenerator csharpgenerator = new CSharpGenerator();
+            final Procedure1<HashMap<String, CharSequence>> _function = new Procedure1<HashMap<String, CharSequence>>() {
+              @Override
+              public void apply(final HashMap<String, CharSequence> it) {
+                HashMap<String, CharSequence> _generateUtilityClass = csharpgenerator.generateUtilityClass(UtilityGenerationStep.this.data);
+                it.putAll(_generateUtilityClass);
+              }
+            };
+            ObjectExtensions.<HashMap<String, CharSequence>>operator_doubleArrow(
+              GenerationStep.filesToGenerate, _function);
           }
         };
         it.put(SensIDLConstants.GenerationLanguage.CSHARP, _function_4);

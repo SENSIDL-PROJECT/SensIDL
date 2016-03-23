@@ -1,5 +1,7 @@
 package de.fzi.sensidl.language.generator.factory.c;
 
+import com.google.common.collect.Iterables;
+import de.fzi.sensidl.design.sensidl.SensorInterface;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.language.generator.GenerationUtil;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
@@ -8,7 +10,10 @@ import de.fzi.sensidl.language.generator.factory.IUtilityGenerator;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
  * C code generator for the utility header-file.
@@ -19,12 +24,19 @@ public class CUtilityGenerator implements IUtilityGenerator {
   
   private List<MeasurementData> data;
   
+  private SensorInterface currentSensorInterface;
+  
   /**
    * The constructor calls the constructor of the superclass to set a list of Data-elements.
    * @param newData Represents the list of DataSet-elements.
    */
-  public CUtilityGenerator(final List<MeasurementData> newData) {
-    this.data = newData;
+  public CUtilityGenerator(final List<EObject> newData) {
+    Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(newData, MeasurementData.class);
+    List<MeasurementData> _list = IterableExtensions.<MeasurementData>toList(_filter);
+    this.data = _list;
+    Iterable<SensorInterface> _filter_1 = Iterables.<SensorInterface>filter(newData, SensorInterface.class);
+    SensorInterface _get = ((SensorInterface[])Conversions.unwrapArray(_filter_1, SensorInterface.class))[0];
+    this.currentSensorInterface = _get;
   }
   
   /**
@@ -36,8 +48,7 @@ public class CUtilityGenerator implements IUtilityGenerator {
     {
       CUtilityGenerator.logger.info("Start with code-generation of the java utility class.");
       final HashMap<String, CharSequence> filesToGenerate = new HashMap<String, CharSequence>();
-      MeasurementData _get = this.data.get(0);
-      final String utilityName = GenerationUtil.getUtilityName(_get);
+      final String utilityName = GenerationUtil.getUtilityName(this.currentSensorInterface);
       String _addFileExtensionTo = this.addFileExtensionTo(utilityName);
       CharSequence _generateUtility = this.generateUtility(utilityName);
       filesToGenerate.put(_addFileExtensionTo, _generateUtility);

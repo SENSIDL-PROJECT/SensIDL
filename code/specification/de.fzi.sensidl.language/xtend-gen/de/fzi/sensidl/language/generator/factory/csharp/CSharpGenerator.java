@@ -8,6 +8,7 @@ import de.fzi.sensidl.language.generator.factory.csharp.CSharpPluginProjectGener
 import de.fzi.sensidl.language.generator.factory.csharp.CSharpUtilityGenerator;
 import java.util.HashMap;
 import java.util.List;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 
 /**
@@ -65,7 +66,7 @@ public class CSharpGenerator implements ICodeGenerator {
    * @see ICodeGenerator#generateUtilityClass()
    */
   @Override
-  public HashMap<String, CharSequence> generateUtilityClass(final List<MeasurementData> data) {
+  public HashMap<String, CharSequence> generateUtilityClass(final List<EObject> data) {
     CSharpUtilityGenerator _cSharpUtilityGenerator = new CSharpUtilityGenerator(data);
     return _cSharpUtilityGenerator.generate();
   }

@@ -4,11 +4,13 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 import de.fzi.sensidl.language.generator.IExecuter
 import de.fzi.sensidl.language.generator.SensIDLConstants.GenerationLanguage
 import de.fzi.sensidl.language.generator.elementfilter.ElementFilter
+import de.fzi.sensidl.language.generator.factory.c.CGenerator
 import de.fzi.sensidl.language.generator.factory.java.JavaGenerator
 import de.fzi.sensidl.language.generator.generationstep.GenerationStep
 import java.util.HashMap
 import java.util.List
-import de.fzi.sensidl.language.generator.factory.c.CGenerator
+import org.eclipse.emf.ecore.EObject
+import de.fzi.sensidl.language.generator.factory.csharp.CSharpGenerator
 
 /**
  * The UtilityGenerationStep is a concrete subclass of the GenerationStep class. 
@@ -17,7 +19,7 @@ import de.fzi.sensidl.language.generator.factory.c.CGenerator
  * complexity of other generated classes.
  */
 class UtilityGenerationStep extends GenerationStep {
-	private val List<MeasurementData> data;
+	private val List<EObject> data;
 	
 	/**
 	 * The constructor calls the needed data filtered by a concrete element-filter.
@@ -40,12 +42,14 @@ class UtilityGenerationStep extends GenerationStep {
 	}
 	
 	private def initExecuter() {
-				return new HashMap<GenerationLanguage, IExecuter> => [
+		return new HashMap<GenerationLanguage, IExecuter> => [
 			put(GenerationLanguage.ALL, [
 				val jgenerator = new JavaGenerator
 				val cgenerator = new CGenerator
+				val csharpgenerator = new CSharpGenerator
 				filesToGenerate => [putAll(jgenerator.generateUtilityClass(this.data))]
 				filesToGenerate => [putAll(cgenerator.generateUtilityClass(this.data))]
+				filesToGenerate => [putAll(csharpgenerator.generateUtilityClass(this.data))]
 			])
 			
 			put(GenerationLanguage.JAVA, [
@@ -61,7 +65,8 @@ class UtilityGenerationStep extends GenerationStep {
 				filesToGenerate => [putAll(generator.generateUtilityClass(this.data))]
 			])
 			put(GenerationLanguage.CSHARP, [
-				//filesToGenerate => [putAll(generator.generateDTO)]
+				val csharpgenerator = new CSharpGenerator
+				filesToGenerate => [putAll(csharpgenerator.generateUtilityClass(this.data))]
 			])
 			put(GenerationLanguage.JAVASCRIPT, [
 				//filesToGenerate => [putAll(generator.generateDTO)]
