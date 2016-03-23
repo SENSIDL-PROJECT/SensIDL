@@ -75,7 +75,7 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 	def generateClassBody(String className) {
 		'''
 			«IF createProject»
-				package de.fzi.sensidl.«GenerationUtil.getSensorInterfaceName(this.data.get(0).eContainer)»;
+				package de.fzi.sensidl.«GenerationUtil.getSensorInterfaceName(this.currentSensorInterface)»;
 				 
 			«ENDIF» 
 			
