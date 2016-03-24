@@ -2,8 +2,16 @@ package de.fzi.sensidl.language.generator;
 
 import de.fzi.sensidl.design.sensidl.SensorInterface;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataAdjustment;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
+import java.util.Arrays;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 
@@ -98,5 +106,52 @@ public class GenerationUtil {
   public static String getUtilityName(final EObject object) {
     String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(object);
     return (_sensorInterfaceName + SensIDLConstants.UTILITY_CLASS_NAME);
+  }
+  
+  /**
+   * Gets the specified data type the LinearDataConversionWithInterval-element.
+   * @param data Represents the MeasurementData of interest.
+   * @return the name of the DataConversion data type.
+   */
+  public static String getDataTypeOfDataConversionAdjustment(final MeasurementData data) {
+    boolean _and = false;
+    EList<DataAdjustment> _adjustments = data.getAdjustments();
+    int _size = _adjustments.size();
+    boolean _lessEqualsThan = (_size <= 0);
+    if (!_lessEqualsThan) {
+      _and = false;
+    } else {
+      EList<DataAdjustment> _adjustments_1 = data.getAdjustments();
+      DataAdjustment _get = _adjustments_1.get(0);
+      boolean _not = (!(_get instanceof DataConversion));
+      _and = _not;
+    }
+    if (_and) {
+      return "";
+    }
+    EList<DataAdjustment> _adjustments_2 = data.getAdjustments();
+    DataAdjustment _get_1 = _adjustments_2.get(0);
+    return GenerationUtil.getDataTypeOfAdjustment(((DataConversion) _get_1));
+  }
+  
+  private static String _getDataTypeOfAdjustment(final LinearDataConversion conversion) {
+    return "";
+  }
+  
+  private static String _getDataTypeOfAdjustment(final LinearDataConversionWithInterval conversion) {
+    DataType _dataType = conversion.getDataType();
+    String _string = _dataType.toString();
+    return _string.toLowerCase();
+  }
+  
+  private static String getDataTypeOfAdjustment(final DataConversion conversion) {
+    if (conversion instanceof LinearDataConversion) {
+      return _getDataTypeOfAdjustment((LinearDataConversion)conversion);
+    } else if (conversion instanceof LinearDataConversionWithInterval) {
+      return _getDataTypeOfAdjustment((LinearDataConversionWithInterval)conversion);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(conversion).toString());
+    }
   }
 }

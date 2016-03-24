@@ -193,8 +193,17 @@ class CDTOFileGenerator extends CDTOGenerator {
 		'''
 
 		«d.toTypeName» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p) { return p->«d.name»; }
+		
+		
+		«IF (d instanceof MeasurementData) && (d as MeasurementData).isAdjustedByLineareConversionWithInterval»
+			«generatedAdjustedGetterDeclaration((d as MeasurementData), dataset)»
+		«ENDIF»
 		'''
-	}	
+	}
+	
+	def generatedAdjustedGetterDeclaration(MeasurementData d, DataSet dataset) {
+		'''«GenerationUtil.getDataTypeOfDataConversionAdjustment(d)» get_Adjusted_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p) { return p->adjusted_«d.name»; };'''
+	}
 	
 	dispatch def generateSetterDeclaration(MeasurementData d, DataSet dataset) {
 			'''
@@ -213,7 +222,6 @@ class CDTOFileGenerator extends CDTOGenerator {
 				
 				«IF dataAdj instanceof DataConversion»						
 					«IF dataAdj instanceof LinearDataConversion»
-					
 					void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ){						
 						p->«d.name.toFirstLower» =  «d.name.toFirstLower» *  «dataAdj.scalingFactor» +  «dataAdj.offset»;
 					} 
@@ -227,7 +235,8 @@ class CDTOFileGenerator extends CDTOGenerator {
 								«d.toTypeName» newMin =  «dataAdj.toInterval.lowerBound.intValue»;
 								«d.toTypeName» newMax =  «dataAdj.toInterval.upperBound.intValue»;
 								
-								p->«d.name.toFirstLower» =  ((((«d.name.toFirstLower» - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin);
+								p->«d.name.toFirstLower» = «d.name.toFirstLower»;
+								p->adjusted_«d.name.toFirstLower» =  ((((«d.name.toFirstLower» - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin);
 							}
 							else{
 								//Do something

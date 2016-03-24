@@ -1,11 +1,15 @@
 package de.fzi.sensidl.language.generator.factory.c;
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataAdjustment;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.language.generator.factory.IDTOGenerator;
 import de.fzi.sensidl.language.generator.factory.c.DataTypes;
 import java.util.List;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * C code generator for the SensIDL Model.
@@ -31,5 +35,24 @@ public abstract class CDTOGenerator implements IDTOGenerator {
   public String toTypeName(final Data data) {
     DataType _dataType = data.getDataType();
     return DataTypes.getDataTypeBy(_dataType);
+  }
+  
+  /**
+   * Checks, if the given MeasurementData-element was specified to be adjusted as linear conversion
+   * with interval.
+   */
+  protected boolean isAdjustedByLineareConversionWithInterval(final MeasurementData data) {
+    boolean _and = false;
+    EList<DataAdjustment> _adjustments = data.getAdjustments();
+    int _size = _adjustments.size();
+    boolean _greaterThan = (_size > 0);
+    if (!_greaterThan) {
+      _and = false;
+    } else {
+      EList<DataAdjustment> _adjustments_1 = data.getAdjustments();
+      DataAdjustment _get = _adjustments_1.get(0);
+      _and = (_get instanceof LinearDataConversionWithInterval);
+    }
+    return _and;
   }
 }

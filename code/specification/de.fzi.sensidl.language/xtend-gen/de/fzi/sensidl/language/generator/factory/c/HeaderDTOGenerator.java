@@ -232,7 +232,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
         dataSet = _parentDataSet;
       }
     }
-    return dataFieldsString;
+    return dataFieldsString.replaceAll("(?m)^[ \t]*\r?\n", "");
   }
   
   /**
@@ -347,6 +347,48 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append("* p);");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
+    {
+      boolean _isAdjustedByLineareConversionWithInterval = this.isAdjustedByLineareConversionWithInterval(d);
+      if (_isAdjustedByLineareConversionWithInterval) {
+        CharSequence _generatedAdjustedGetterPrototype = this.generatedAdjustedGetterPrototype(d, dataset);
+        _builder.append(_generatedAdjustedGetterPrototype, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    return _builder;
+  }
+  
+  /**
+   * Generates the Getter Method for adjusted measurement data
+   */
+  public CharSequence generatedAdjustedGetterPrototype(final MeasurementData d, final DataSet dataset) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append("* @return the adjusted ");
+    String _name = d.getName();
+    String _firstUpper = StringExtensions.toFirstUpper(_name);
+    _builder.append(_firstUpper, "");
+    _builder.newLineIfNotEmpty();
+    _builder.append("*/");
+    _builder.newLine();
+    String _dataTypeOfDataConversionAdjustment = GenerationUtil.getDataTypeOfDataConversionAdjustment(d);
+    _builder.append(_dataTypeOfDataConversionAdjustment, "");
+    _builder.append(" get_Adjusted_");
+    String _name_1 = dataset.getName();
+    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
+    _builder.append(_firstUpper_1, "");
+    _builder.append("_");
+    String _name_2 = d.getName();
+    String _replaceAll = _name_2.replaceAll("[^a-zA-Z0-9]", "");
+    _builder.append(_replaceAll, "");
+    _builder.append("(");
+    String _name_3 = dataset.getName();
+    String _firstUpper_2 = StringExtensions.toFirstUpper(_name_3);
+    _builder.append(_firstUpper_2, "");
+    _builder.append("* p);");
+    _builder.newLineIfNotEmpty();
     _builder.newLine();
     return _builder;
   }
@@ -553,6 +595,19 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     String _nameLower = GenerationUtil.toNameLower(data);
     _builder.append(_nameLower, "");
     _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    {
+      boolean _isAdjustedByLineareConversionWithInterval = this.isAdjustedByLineareConversionWithInterval(data);
+      if (_isAdjustedByLineareConversionWithInterval) {
+        String _dataTypeOfDataConversionAdjustment = GenerationUtil.getDataTypeOfDataConversionAdjustment(data);
+        _builder.append(_dataTypeOfDataConversionAdjustment, "");
+        _builder.append(" adjusted_");
+        String _nameLower_1 = GenerationUtil.toNameLower(data);
+        _builder.append(_nameLower_1, "");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
   

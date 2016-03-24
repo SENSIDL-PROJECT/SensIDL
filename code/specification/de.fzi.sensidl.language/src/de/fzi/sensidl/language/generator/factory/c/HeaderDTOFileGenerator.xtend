@@ -12,6 +12,9 @@ import de.fzi.sensidl.language.generator.factory.IDTOGenerator
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
 
 /**
  * This class implements a part of the CDTOGenerator. This class is responsible for 
@@ -117,7 +120,8 @@ class HeaderDTOGenerator extends CDTOGenerator {
 				}
 			dataSet = dataSet.parentDataSet
 		}
-		return dataFieldsString
+		//Remove all empty lines
+		return dataFieldsString.replaceAll("(?m)^[ \t]*\r?\n", "");
 	}	
 	
 	/** 
@@ -168,6 +172,22 @@ class HeaderDTOGenerator extends CDTOGenerator {
 		*/
 		«d.toTypeName» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p);
 		
+		«IF d.isAdjustedByLineareConversionWithInterval»
+			«generatedAdjustedGetterPrototype(d, dataset)»
+		«ENDIF»
+		
+		'''
+	}
+	
+	/**
+	 * Generates the Getter Method for adjusted measurement data
+	 */
+	def generatedAdjustedGetterPrototype(MeasurementData d, DataSet dataset) {
+		'''
+		/**
+		* @return the adjusted «d.name.toFirstUpper»
+		*/
+		«GenerationUtil.getDataTypeOfDataConversionAdjustment(d)» get_Adjusted_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p);
 		
 		'''
 	}
@@ -244,7 +264,12 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 * 			represents data which was measured by a sensor.
 	 */
 	dispatch def generateVariable(MeasurementData data) {
-		'''«data.toTypeName» «GenerationUtil.toNameLower(data)»;'''
+		'''
+		«data.toTypeName» «GenerationUtil.toNameLower(data)»;
+		«IF data.isAdjustedByLineareConversionWithInterval»
+		«GenerationUtil.getDataTypeOfDataConversionAdjustment(data)» adjusted_«GenerationUtil.toNameLower(data)»;
+		«ENDIF»
+		'''
 	}
 
 	/**

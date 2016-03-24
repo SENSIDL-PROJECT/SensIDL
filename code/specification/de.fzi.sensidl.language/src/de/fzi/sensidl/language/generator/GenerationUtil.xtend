@@ -3,7 +3,11 @@ package de.fzi.sensidl.language.generator
 import de.fzi.sensidl.design.sensidl.SensorInterface
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
+import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 import org.eclipse.emf.ecore.EObject
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
 
 /**
  * The GenerationUtil-class is used to implement common methods, which are 
@@ -88,5 +92,27 @@ class GenerationUtil {
 	 */
 	static def getUtilityName(EObject object) {
 		GenerationUtil.getSensorInterfaceName(object) + SensIDLConstants.UTILITY_CLASS_NAME
+	}
+	
+	/**
+	 * Gets the specified data type the LinearDataConversionWithInterval-element.
+	 * @param data Represents the MeasurementData of interest.
+	 * @return the name of the DataConversion data type.
+	 */
+	static def getDataTypeOfDataConversionAdjustment(MeasurementData data) {
+		if (data.adjustments.size <= 0 && !(data.adjustments.get(0) instanceof DataConversion)) {
+			return "";
+		}
+		
+		return getDataTypeOfAdjustment(data.adjustments.get(0) as DataConversion)
+	}
+	
+	private static dispatch def getDataTypeOfAdjustment(LinearDataConversion conversion) {
+		//TODO has to be implemented
+		return ""
+	}
+	
+	private static dispatch def getDataTypeOfAdjustment(LinearDataConversionWithInterval conversion) {
+		return conversion.dataType.toString.toLowerCase
 	}
 }
