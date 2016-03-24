@@ -6,6 +6,7 @@ import de.fzi.sensidl.language.generator.factory.IDTOGenerator
 import java.util.List
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 
 /**
 * C code generator for the SensIDL Model. 
@@ -29,6 +30,10 @@ abstract class CDTOGenerator implements IDTOGenerator {
 	override String toTypeName(Data data) {
 		DataTypes.getDataTypeBy(data.dataType)
 	}
+	
+	def String toTypeName(DataType dataType) {
+		DataTypes.getDataTypeBy(dataType)
+	}	
 	
 	/**
 	 * Checks, if the given MeasurementData-element was specified to be adjusted as linear conversion

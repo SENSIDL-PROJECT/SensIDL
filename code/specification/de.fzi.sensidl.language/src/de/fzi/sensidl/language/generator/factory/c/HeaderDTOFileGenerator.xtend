@@ -76,14 +76,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 			
 			#include <stdint.h> 
 			#include "«GenerationUtil.getUtilityFileName(dataset, SensIDLConstants.HEADER_EXTENSION)»"
-			
-			«FOR data : dataset.eContents.filter(NonMeasurementData)»				
-			«IF data.constant && data.name == "bDeviceType"»
-			#ifndef RADIO_DEVICE_TYPE_VALUE
-			#define RADIO_DEVICE_TYPE_VALUE «data.value»
-			#endif
-			«ENDIF»
-			«ENDFOR»			
+						
 						
 			typedef struct
 			{
@@ -97,9 +90,20 @@ class HeaderDTOGenerator extends CDTOGenerator {
 			
 			«generateDataMethodsPrototypesIncludeParentDataSet(dataset)»
 						
+			«generateEndiannessMethodsPrototypes(dataset)»
 
 			#endif
 		'''
+	}
+	
+	def generateEndiannessMethodsPrototypes(DataSet d){
+		'''
+			«generateAdjustAllEndiannessPrototype(d)»
+			
+			«generateCheckLittleEndianPrototype()»
+			
+			«generateSwapEndiannessOnDemandPrototype(d)»
+		'''			
 	}
 	
 	/**
@@ -280,6 +284,47 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	dispatch def generateVariable(NonMeasurementData data) {
 		'''«data.toTypeName» «GenerationUtil.toNameLower(data)»;'''
 	}
+	
+/**
+	 * Generates a method to adjust endianness of all struct variables.
+	 * @param dataset
+	 */
+	def generateAdjustAllEndiannessPrototype(DataSet dataset) {
+		'''
+		/**
+		* Adjusts all data atributes of a struct to given endianness depending on the machine architecture
+		*/
+		void adjust_«dataset.name.toFirstUpper»_allEndianness(«dataset.name.toFirstUpper»* p);
+		
+		'''
+	}
+	
+	/**
+	 * Generates a method to swap endianness of all struct variables.
+	 * @param dataset
+	 */	
+	def generateSwapEndiannessOnDemandPrototype(DataSet dataset){
+		'''
+		/**
+		* Swaps Endianness between little endian and big endian
+		*/				
+		void swap_«dataset.name.toFirstUpper»_all_endianness(«dataset.name.toFirstUpper»* p);
+		
+		'''
+	}	
+	
+	/**
+	 * Generates a method to check if the given architecture is little endian.
+	 */
+	def generateCheckLittleEndianPrototype() {
+		'''
+		/**
+		* Returns true if given architecture is little endian
+		*/		
+		bool check_little_endian();	
+			
+		'''
+	}	
 
 	/**
 	 * @see IDTOGenerator#addFileExtensionTo(String)

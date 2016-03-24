@@ -17,6 +17,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
+import de.fzi.sensidl.design.sensidl.Endianness
 
 /**
  * This class implements a part of the CDTOGenerator. This class is responsible for 
@@ -25,6 +26,8 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 class CDTOFileGenerator extends CDTOGenerator {
 	
 	private static Logger logger = Logger.getLogger(CDTOFileGenerator)
+	
+	private boolean bigEndian
 	
 	/**
 	 * The constructor calls the constructor of the superclass to set a list of DataSet-elements.
@@ -40,6 +43,12 @@ class CDTOFileGenerator extends CDTOGenerator {
 	 */
 	override generate() {
 		val filesToGenerate = new HashMap();
+		
+		if (GenerationUtil.getSensorInterface(this.dataSets.get(0).eContents.filter(Data).get(0).eContainer).encodingSettings.endianness == Endianness.BIG_ENDIAN){
+			bigEndian = true;
+		} else {
+			bigEndian = false;
+		}		
 		
 		logger.info("Start with code-generation of a c data transfer object.")
 		
@@ -111,16 +120,14 @@ class CDTOFileGenerator extends CDTOGenerator {
 			
 			«generateInitDatasetDeclaration(dataset)»
 			
-			«generateSetterDeclarationIncludeParentDataSet(dataset)»
+			«generateDataMethodsIncludeParentDataSet(dataset)»
 			
-«««			«FOR data : dataset.eContents.filter(Data)»				
-«««				«generateGetterDeclaration(data, dataset)»
-«««				«generateSetterDeclaration(data, dataset)»				
-«««			«ENDFOR»			
+			«generateEndiannessMethodsDeclarations(dataset)»
+			
 		'''	
 	}
 	
-	
+
 	def generateInitDatasetDeclaration(DataSet d) {
 		
 		var dataSet = d
@@ -166,7 +173,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 	/**
 	 * Generates the getter and setter methods prototypes for the data of this data set including used data sets.
 	 */
-	def generateSetterDeclarationIncludeParentDataSet(DataSet d) {
+	def generateDataMethodsIncludeParentDataSet(DataSet d) {
 		var dataSet = d
 		var methodsString =''''''
 		var parentDataSet = dataSet
@@ -263,6 +270,140 @@ class CDTOFileGenerator extends CDTOGenerator {
 			'''
 		}
 	}
+	
+	def generateEndiannessMethodsDeclarations(DataSet d){
+		'''
+			«generateAdjustAllEndianness(d)»
+			
+			«generateCheckLittleEndian()»
+			
+			«generateSwapEndiannessOnDemand(d)»
+		'''						
+	}
+	
+/**
+	 * Generates a method to check if endianness of the variables of the struct need to be swappe
+	 */
+	def generateAdjustAllEndianness(DataSet dataset){
+		'''		
+		void adjust_«dataset.name.toFirstUpper»_allEndianness(«dataset.name.toFirstUpper»* p){
+			int n = 1;
+
+			«IF bigEndian == true»
+				// if little endian device architecture then convert (big endian defined)
+				if(*(char *)&n == 1) {
+			«ELSE»
+				// if big endian device architecture then convert (little endian defined)
+				if(*(char *)&n != 1) {
+			«ENDIF»
+				«swapEndiannessIncludeParentDataSet(dataset)»
+			}
+		}
+		
+		'''
+	}
+	
+	/**
+	 * Generates a method to check if the given architecture is little endian.
+	 */
+	def generateCheckLittleEndian(){
+		'''
+		bool check_little_endian(){
+			
+		// true if little endian device architecture detected
+		return (*(char *)&n == 1);
+		} 
+			
+		'''
+	}
+	
+	/**
+	 * Generates a method to swap endianness of all variables of the struct
+	 */
+	def generateSwapEndiannessOnDemand(DataSet dataset){
+		'''		
+		void swap_«dataset.name.toFirstUpper»_all_endianness(«dataset.name.toFirstUpper»* p){
+				«swapEndiannessIncludeParentDataSet(dataset)»
+		}
+		
+		'''
+	}
+	
+	/**
+	 *  Helper function to swap endianness of all variables of the struct 
+	 */
+	def swapEndiannessIncludeParentDataSet(DataSet d){
+			var dataSet = d
+			var methodsString =''''''
+			while (dataSet!==null) {
+		
+				methodsString += swapEndianness(dataSet)
+				dataSet = dataSet.parentDataSet
+			}
+			return methodsString
+	}	
+
+	/**
+	 *  Helper function to swap endianness of all variables of the struct 
+	 */
+	def swapEndianness(DataSet dataset){
+	'''
+			«FOR data : dataset.eContents.filter(MeasurementData)»
+				«IF data.dataType ==  DataType.INT16 »
+				p->«GenerationUtil.toNameLower(data)» = swap_int16( p->«GenerationUtil.toNameLower(data)» );
+				«ENDIF»
+				«IF data.dataType ==  DataType.UINT16»
+				p->«GenerationUtil.toNameLower(data)» = swap_uint16( p->«GenerationUtil.toNameLower(data)» );
+				«ENDIF»
+				«IF data.dataType ==  DataType.INT32»
+				p->«GenerationUtil.toNameLower(data)» = swap_int32( p->«GenerationUtil.toNameLower(data)» );
+				«ENDIF»
+				«IF data.dataType ==  DataType.UINT32»
+				p->«GenerationUtil.toNameLower(data)» = swap_uint32( p->«GenerationUtil.toNameLower(data)» );
+				«ENDIF»
+				«IF data.dataType ==  DataType.INT64»
+				p->«GenerationUtil.toNameLower(data)» = swap_int64( p->«GenerationUtil.toNameLower(data)» );
+				«ENDIF»
+				«IF data.dataType ==  DataType.UINT64»
+				p->«GenerationUtil.toNameLower(data)» = swap_uint64( p->«GenerationUtil.toNameLower(data)» );
+				«ENDIF»
+				«IF data.dataType ==  DataType.FLOAT »
+				p->«GenerationUtil.toNameLower(data)» = swap_float( p->«GenerationUtil.toNameLower(data)» );
+				«ENDIF»
+				«IF data.dataType ==  DataType.DOUBLE»
+				p->«GenerationUtil.toNameLower(data)» = swap_double( p->«GenerationUtil.toNameLower(data)» );
+				«ENDIF»
+			«ENDFOR»
+			«FOR data : dataset.eContents.filter(NonMeasurementData)»
+				«IF data.dataType ==  DataType.INT16 »
+				p->«GenerationUtil.toNameLower(data)» = swap_int16( p->«GenerationUtil.toNameLower(data)» );
+				«ENDIF»
+				«IF data.dataType ==  DataType.UINT16»
+				p->«GenerationUtil.toNameLower(data)» = swap_uint16( p->«GenerationUtil.toNameLower(data)» );
+				«ENDIF»
+				«IF data.dataType ==  DataType.INT32»
+				p->«GenerationUtil.toNameLower(data)» = swap_int32( p->«GenerationUtil.toNameLower(data)» );
+				«ENDIF»
+				«IF data.dataType ==  DataType.UINT32»
+				p->«GenerationUtil.toNameLower(data)» = swap_uint32( p->«GenerationUtil.toNameLower(data)» );
+				«ENDIF»
+				«IF data.dataType ==  DataType.INT64»
+				p->«GenerationUtil.toNameLower(data)» = swap_int64( p->«GenerationUtil.toNameLower(data)» );
+				«ENDIF»
+				«IF data.dataType ==  DataType.UINT64»
+				p->«GenerationUtil.toNameLower(data)» = swap_uint64( p->«GenerationUtil.toNameLower(data)» );
+				«ENDIF»
+				«IF data.dataType ==  DataType.FLOAT »
+				p->«GenerationUtil.toNameLower(data)» = swap_float( p->«GenerationUtil.toNameLower(data)» );
+				«ENDIF»
+				«IF data.dataType ==  DataType.DOUBLE»
+				p->«GenerationUtil.toNameLower(data)» = swap_double( p->«GenerationUtil.toNameLower(data)» );
+				«ENDIF»
+			«ENDFOR»
+		'''
+		
+	}	
+	
 		
 	/**
 	 * Generates a description for a dataset.
