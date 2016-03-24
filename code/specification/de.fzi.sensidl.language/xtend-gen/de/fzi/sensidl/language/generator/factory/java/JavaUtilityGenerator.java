@@ -6,6 +6,7 @@ import de.fzi.sensidl.design.sensidl.EncodingSettings;
 import de.fzi.sensidl.design.sensidl.Endianness;
 import de.fzi.sensidl.design.sensidl.SensorInterface;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataAdjustment;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
@@ -30,6 +31,8 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
   
   private List<MeasurementData> data;
   
+  private List<DataSet> dataSets;
+  
   private SensorInterface currentSensorInterface;
   
   private boolean createProject = false;
@@ -45,8 +48,11 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
     Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(newData, MeasurementData.class);
     List<MeasurementData> _list = IterableExtensions.<MeasurementData>toList(_filter);
     this.data = _list;
-    Iterable<SensorInterface> _filter_1 = Iterables.<SensorInterface>filter(newData, SensorInterface.class);
-    SensorInterface _get = ((SensorInterface[])Conversions.unwrapArray(_filter_1, SensorInterface.class))[0];
+    Iterable<DataSet> _filter_1 = Iterables.<DataSet>filter(newData, DataSet.class);
+    List<DataSet> _list_1 = IterableExtensions.<DataSet>toList(_filter_1);
+    this.dataSets = _list_1;
+    Iterable<SensorInterface> _filter_2 = Iterables.<SensorInterface>filter(newData, SensorInterface.class);
+    SensorInterface _get = ((SensorInterface[])Conversions.unwrapArray(_filter_2, SensorInterface.class))[0];
     this.currentSensorInterface = _get;
   }
   
@@ -60,8 +66,11 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
     Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(newData, MeasurementData.class);
     List<MeasurementData> _list = IterableExtensions.<MeasurementData>toList(_filter);
     this.data = _list;
-    Iterable<SensorInterface> _filter_1 = Iterables.<SensorInterface>filter(newData, SensorInterface.class);
-    SensorInterface _get = ((SensorInterface[])Conversions.unwrapArray(_filter_1, SensorInterface.class))[0];
+    Iterable<DataSet> _filter_1 = Iterables.<DataSet>filter(newData, DataSet.class);
+    List<DataSet> _list_1 = IterableExtensions.<DataSet>toList(_filter_1);
+    this.dataSets = _list_1;
+    Iterable<SensorInterface> _filter_2 = Iterables.<SensorInterface>filter(newData, SensorInterface.class);
+    SensorInterface _get = ((SensorInterface[])Conversions.unwrapArray(_filter_2, SensorInterface.class))[0];
     this.currentSensorInterface = _get;
     this.createProject = createProject;
   }
@@ -110,9 +119,7 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
     {
       if (this.createProject) {
         _builder.append("package de.fzi.sensidl.");
-        MeasurementData _get = this.data.get(0);
-        EObject _eContainer = _get.eContainer();
-        String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(_eContainer);
+        String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(this.currentSensorInterface);
         _builder.append(_sensorInterfaceName, "");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
@@ -120,6 +127,17 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
         _builder.newLine();
       }
     }
+    _builder.append("import java.io.BufferedReader;");
+    _builder.newLine();
+    _builder.append("import java.io.ByteArrayInputStream;");
+    _builder.newLine();
+    _builder.append("import java.io.IOException;");
+    _builder.newLine();
+    _builder.append("import java.io.ObjectInputStream;");
+    _builder.newLine();
+    _builder.append("import java.io.Serializable;");
+    _builder.newLine();
+    _builder.append("import com.google.gson.Gson;");
     _builder.newLine();
     {
       if ((!this.bigEndian)) {
@@ -169,6 +187,302 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("\t");
+    _builder.newLine();
+    {
+      int _size_1 = this.dataSets.size();
+      boolean _greaterThan_1 = (_size_1 > 0);
+      if (_greaterThan_1) {
+        _builder.append("\t");
+        CharSequence _generateMarshallingMethods = this.generateMarshallingMethods();
+        _builder.append(_generateMarshallingMethods, "\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generateMarshallingMethods() {
+    StringConcatenation _builder = new StringConcatenation();
+    CharSequence _generateJsonMarshal = this.generateJsonMarshal();
+    _builder.append(_generateJsonMarshal, "");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    CharSequence _generateJsonUnmarshal = this.generateJsonUnmarshal();
+    _builder.append(_generateJsonUnmarshal, "");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    CharSequence _generateByteArrayUnmarshal = this.generateByteArrayUnmarshal();
+    _builder.append(_generateByteArrayUnmarshal, "");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    {
+      for(final DataSet dataSet : this.dataSets) {
+        CharSequence _generateByteArrayMarshal = this.generateByteArrayMarshal(dataSet);
+        _builder.append(_generateByteArrayMarshal, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence generateJsonUnmarshal() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Alternative method responsible for deserializing the received");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* JSON-formatted L stage from sensor.");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* ");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @param dataset");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*            the dataset to unmarshall incoming from sensor side in a JSON");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*            format");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @return T unmarshalled T structure");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public static <T> T unmarshalJSON(BufferedReader dataset, T obj) { ");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("Gson gson = new Gson();");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("BufferedReader br = dataset;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("obj = gson.fromJson(br, obj.getClass());");
+    _builder.newLine();
+    {
+      if ((!this.bigEndian)) {
+        _builder.append("\t");
+        _builder.append("// use little endianness ");
+        _builder.newLine();
+        {
+          for(final DataSet dataSet : this.dataSets) {
+            _builder.append("\t");
+            _builder.append("if (obj instanceof ");
+            String _nameUpper = GenerationUtil.toNameUpper(dataSet);
+            _builder.append(_nameUpper, "\t");
+            _builder.append(") {");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("((");
+            String _nameUpper_1 = GenerationUtil.toNameUpper(dataSet);
+            _builder.append(_nameUpper_1, "\t\t");
+            _builder.append(") obj).");
+            _builder.append(SensIDLConstants.JAVA_CONVERT_ALL_TO_LITTLE_ENDIAN_METHOD_NAME, "\t\t");
+            _builder.append("();");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("}");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.append("\t");
+    _builder.append("return obj;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generateJsonMarshal() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Alternative method responsible for serializing JSON");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* ");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @return Json String");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public static String marshalJSON(Object elementToMarshall) { ");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("Gson gson = new Gson();");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    {
+      for(final DataSet dataSet : this.dataSets) {
+        _builder.append("\t");
+        _builder.append("if (elementToMarshall instanceof ");
+        String _nameUpper = GenerationUtil.toNameUpper(dataSet);
+        _builder.append(_nameUpper, "\t");
+        _builder.append(") {");
+        _builder.newLineIfNotEmpty();
+        {
+          if (this.bigEndian) {
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("return gson.toJson((");
+            String _nameUpper_1 = GenerationUtil.toNameUpper(dataSet);
+            _builder.append(_nameUpper_1, "\t\t");
+            _builder.append(") elementToMarshall);");
+            _builder.newLineIfNotEmpty();
+          } else {
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("// use little endianness");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("((");
+            String _nameUpper_2 = GenerationUtil.toNameUpper(dataSet);
+            _builder.append(_nameUpper_2, "\t\t");
+            _builder.append(") elementToMarshall).");
+            _builder.append(SensIDLConstants.JAVA_CONVERT_ALL_TO_LITTLE_ENDIAN_METHOD_NAME, "\t\t");
+            _builder.append("();");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("return gson.toJson(((");
+            String _nameUpper_3 = GenerationUtil.toNameUpper(dataSet);
+            _builder.append(_nameUpper_3, "\t\t");
+            _builder.append(") elementToMarshall));");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.newLine();
+      }
+    }
+    _builder.append("\t");
+    _builder.append("return null;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generateByteArrayUnmarshal() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Method responsible for deserializing the received byte array");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* representation of L from sensor.");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* ");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @param dataset");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*            the dataset to unmarshall incoming from sensor side as a byte");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*            array");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @return T unmarshalled T structure");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @throws IOException");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* @throws ClassNotFoundException");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public static <T> T unmarshalByteArray(byte[] dataset) throws IOException, ClassNotFoundException {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("ByteArrayInputStream in = new ByteArrayInputStream(dataset);");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("ObjectInputStream ois = null;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("ois = new ObjectInputStream(in);");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("Object o = ois.readObject();");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("T unmarshalledObject = (T) o; // TODO: Ensure the type conversion is valid");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("in.close();");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("if (in != null) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("ois.close();");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return unmarshalledObject;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generateByteArrayMarshal(final DataSet d) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("* Method responsible for serializing Byte-Array");
+    _builder.newLine();
+    _builder.append(" ");
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("public static ");
+    String _nameUpper = GenerationUtil.toNameUpper(d);
+    _builder.append(_nameUpper, "");
+    _builder.append(" marshal");
+    String _nameUpper_1 = GenerationUtil.toNameUpper(d);
+    _builder.append(_nameUpper_1, "");
+    _builder.append("ByteArray() {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("//TODO: implement Method");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return null;");
+    _builder.newLine();
     _builder.append("}");
     _builder.newLine();
     return _builder;

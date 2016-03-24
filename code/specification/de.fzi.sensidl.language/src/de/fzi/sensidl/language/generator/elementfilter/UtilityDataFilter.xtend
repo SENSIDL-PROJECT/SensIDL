@@ -13,15 +13,6 @@ import java.util.ArrayList
  */
 class UtilityDataFilter extends ElementFilter {
 	
-	//private List<Predicate<MeasurementData>> conditions;
-	
-	/**
-	 * Default constructor.
-	 */
-	new() {
-		//conditions += [data | data.isAdjusted]
-	}
-	
 	/**
 	 * Implements the abstract method of the base-class and filters 
 	 * all MeasurementData-elements.
@@ -32,8 +23,9 @@ class UtilityDataFilter extends ElementFilter {
 					  							.filter(SensorDataDescription).head.eAllContents.toIterable
 					  							.filter(MeasurementData)
 					  							.filter[mData | mData.isAdjusted].toList
-					  							//.filter[data | conditions.exists[condition | condition.test(data)]].toList)
 					  					  )
+					  
+		data.addAll(new ArrayList<EObject> (new DataSetFilter().filterData))
 					  
 		data.add(input.contents.filter(SensorInterface).get(0));
 		

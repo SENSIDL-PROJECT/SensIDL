@@ -98,12 +98,6 @@ class JavaDTOGenerator implements IDTOGenerator {
 			package de.fzi.sensidl.«GenerationUtil.getSensorInterfaceName(d.eContents.filter(Data).get(0).eContainer)»;
 			 
 			«ENDIF» 
-			import java.io.BufferedReader;
-			import java.io.ByteArrayInputStream;
-			import java.io.IOException;
-			import java.io.ObjectInputStream;
-			import java.io.Serializable;
-			import com.google.gson.Gson;
 			«IF !bigEndian»
 				import java.nio.ByteBuffer;
 				import java.nio.ByteOrder;
@@ -130,14 +124,6 @@ class JavaDTOGenerator implements IDTOGenerator {
 				}
 				«ENDIF»
 				«generateDataMethodsIncludeParentDataSet(d)»
-				
-				«d.generateJsonUnmarshal»
-				
-				«d.generateJsonMarshal»
-				
-				«d.generateByteArrayUnmarshal»
-				
-				«d.generateByteArrayMarshal»
 				
 				«IF !bigEndian»
 				«d.generateConverterMethods»
@@ -553,123 +539,6 @@ class JavaDTOGenerator implements IDTOGenerator {
 		}
 	}
 
-// ------------------------------ Unmarshal Methods ------------------------------
-
-	def generateJsonUnmarshal(DataSet d){
-		'''
-		/**
-		 * Alternative method responsible for deserializing the received
-		 * JSON-formatted L stage from sensor.
-		 * 
-		 * @param dataset
-		 *            the dataset to unmarshall incoming from sensor side in a JSON
-		 *            format
-		 * @return L unmarshalled L structure
-		 */
-		public «GenerationUtil.toNameUpper(d)» unmarshal«GenerationUtil.toNameUpper(d)»JSON(BufferedReader dataset) { 
-			
-			Gson gson = new Gson();
-			BufferedReader br = dataset;
-			«GenerationUtil.toNameUpper(d)» obj = gson.fromJson(br, «GenerationUtil.toNameUpper(d)».class);
-			«IF !bigEndian»
-			// use little endianness 
-			obj.convertAllToLittleEndian();
-			«ENDIF»
-			return obj;
-		}
-		'''
-	}
-	
-	def generateJsonMarshal(DataSet d){
-		'''
-		/**
-		 * Alternative method responsible for serializing JSON
-		 * 
-		 * @return Json String
-		 */
-		public String marshal«GenerationUtil.toNameUpper(d)»JSON() { 
-			«IF bigEndian»
-			Gson gson = new Gson();
-			return gson.toJson(this);
-			«ELSE»
-			Gson gson = new Gson();
-			// use little endianness
-			«GenerationUtil.toNameUpper(d)» «GenerationUtil.toNameLower(d)» = new «GenerationUtil.toNameUpper(d)»(«d.generateConstructorArgumentsForMarshal»);
-			return gson.toJson(«GenerationUtil.toNameLower(d)»);
-			«ENDIF»
-		}
-		'''
-	}
-	
-	def generateByteArrayUnmarshal(DataSet d){
-		'''
-		/**
-		 * Method responsible for deserializing the received byte array
-		 * representation of L from sensor.
-		 * 
-		 * @param dataset
-		 *            the dataset to unmarshall incoming from sensor side as a byte
-		 *            array
-		 * @return L unmarshalled L structure
-		 * @throws IOException
-		 * @throws ClassNotFoundException
-		 */
-		public «GenerationUtil.toNameUpper(d)» unmarshal«GenerationUtil.toNameUpper(d)»ByteArray(byte[] dataset) throws IOException, ClassNotFoundException {
-			
-			ByteArrayInputStream in = new ByteArrayInputStream(dataset);
-			ObjectInputStream ois = null;
-			ois = new ObjectInputStream(in);
-			Object o = ois.readObject();
-			«GenerationUtil.toNameUpper(d)» «GenerationUtil.toNameLower(d)» = («GenerationUtil.toNameUpper(d)») o; // TODO: Ensure the type conversion is valid
-			in.close();
-			if (in != null) {
-				ois.close();
-			}
-			return «GenerationUtil.toNameLower(d)»;
-		}
-		'''
-	}
-	
-	def generateByteArrayMarshal(DataSet d){
-		'''
-		/**
-		 * Method responsible for serializing Byte-Array
-		 */
-		public «GenerationUtil.toNameUpper(d)» marshal«GenerationUtil.toNameUpper(d)»ByteArray() {
-			//TODO: implement Method
-			return null;
-		}
-		'''
-	}
-	
-	def generateConstructorArgumentsForMarshal(DataSet d) {
-		// create an ArrayList with all data that is not a constant NonMeasurementData (which will not be constructor arguments)
-		var dataList = new ArrayList<Data>();
-		var dataSet = d
-		
-		for (data : dataSet.eContents.filter(Data)) {
-			if (data instanceof NonMeasurementData) {
-				var nmdata = data as NonMeasurementData
-				if (!nmdata.constant) {
-					dataList.add(data)
-				}
-			} else {
-				dataList.add(data)
-			}
-		}
-
-		if (dataList.size > 0) {
-			var firstElement = dataList.get(0)
-			dataList.remove(0)
-			if(d.parentDataSet != null){
-				'''«GenerationUtil.getSensorInterfaceName(firstElement.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«IF firstElement.dataType.isUnsigned»(«firstElement.toSimpleTypeName») (this.«GenerationUtil.toNameLower(firstElement)» + «firstElement.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(firstElement)»«ENDIF»)«FOR data : dataList», «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«IF data.dataType.isUnsigned»(«data.toSimpleTypeName») (this.«GenerationUtil.toNameLower(data)» + «data.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(data)»«ENDIF») «ENDFOR», convertToLittleEndian(this.«GenerationUtil.toNameLower(d.parentDataSet)»)'''
-			} else {
-				'''«GenerationUtil.getSensorInterfaceName(firstElement.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«IF firstElement.dataType.isUnsigned»(«firstElement.toSimpleTypeName») (this.«GenerationUtil.toNameLower(firstElement)» + «firstElement.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(firstElement)»«ENDIF»)«FOR data : dataList», «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«IF data.dataType.isUnsigned»(«data.toSimpleTypeName») (this.«GenerationUtil.toNameLower(data)» + «data.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(data)»«ENDIF») «ENDFOR»'''
-			}
-		}
-	}
-	
-
 // ------------------------------ Other Methods ------------------------------
 	/**
 	 * Maps to the corresponding language data type.
@@ -816,7 +685,7 @@ def generateConverterMethods(DataSet d) {
 	
 def convertAllToTLitteEndian(DataSet d){
 		'''
-		public void convertAllToLittleEndian(){
+		public void «SensIDLConstants.JAVA_CONVERT_ALL_TO_LITTLE_ENDIAN_METHOD_NAME»(){
 			«FOR data : d.eContents.filter(MeasurementData)»
 				«GenerationUtil.toNameLower(data)» = «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«GenerationUtil.toNameLower(data)»);
 			«ENDFOR»

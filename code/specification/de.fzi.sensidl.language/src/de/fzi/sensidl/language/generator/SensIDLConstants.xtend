@@ -14,6 +14,7 @@ class SensIDLConstants {
 	public static val LINEAR_CONVERSION_METHOD_NAME = "linearConversion"
 	public static val LINEAR_CONVERSION_WITH_INTERVAL_METHOD_NAME = "linearConversionWithInterval"
 	public static val MAIN_HEADER_FILE_NAME = "DTOs"
+	public static val JAVA_CONVERT_ALL_TO_LITTLE_ENDIAN_METHOD_NAME = "convertAllToLittleEndian"
 
 	public enum GenerationLanguage {
 		NONE,

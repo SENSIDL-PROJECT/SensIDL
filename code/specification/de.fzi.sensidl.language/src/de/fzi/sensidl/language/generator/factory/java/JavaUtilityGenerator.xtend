@@ -2,14 +2,18 @@ package de.fzi.sensidl.language.generator.factory.java
 
 import de.fzi.sensidl.design.sensidl.Endianness
 import de.fzi.sensidl.design.sensidl.SensorInterface
+import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
+import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData
 import de.fzi.sensidl.language.generator.GenerationUtil
 import de.fzi.sensidl.language.generator.SensIDLConstants
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider
 import de.fzi.sensidl.language.generator.factory.IDTOGenerator
 import de.fzi.sensidl.language.generator.factory.IUtilityGenerator
+import java.util.ArrayList
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
@@ -18,6 +22,7 @@ import org.eclipse.emf.ecore.EObject
 class JavaUtilityGenerator implements IUtilityGenerator {
 	private static Logger logger = Logger.getLogger(JavaUtilityGenerator)
 	private List<MeasurementData> data
+	private List<DataSet> dataSets
 	private SensorInterface currentSensorInterface;
 
 	private boolean createProject = false
@@ -30,6 +35,7 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 	 */
 	new(List<EObject> newData) {
 		this.data = newData.filter(MeasurementData).toList
+		this.dataSets = newData.filter(DataSet).toList
 		currentSensorInterface = newData.filter(SensorInterface).get(0);
 	}
 
@@ -41,6 +47,7 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 	 */
 	new(List<EObject> newData, boolean createProject) {
 		this.data = newData.filter(MeasurementData).toList
+		this.dataSets = newData.filter(DataSet).toList
 		currentSensorInterface = newData.filter(SensorInterface).get(0);
 		this.createProject = createProject
 	}
@@ -78,7 +85,12 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 				package de.fzi.sensidl.«GenerationUtil.getSensorInterfaceName(this.currentSensorInterface)»;
 				 
 			«ENDIF» 
-			
+			import java.io.BufferedReader;
+			import java.io.ByteArrayInputStream;
+			import java.io.IOException;
+			import java.io.ObjectInputStream;
+			import java.io.Serializable;
+			import com.google.gson.Gson;
 			«IF !bigEndian»
 				import java.nio.ByteBuffer;
 				import java.nio.ByteOrder;
@@ -97,9 +109,152 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 				«IF !bigEndian»
 					«generateEndiannessConverterMethods»
 				«ENDIF»
+				
+				«IF this.dataSets.size > 0»
+					«generateMarshallingMethods»
+				«ENDIF»
 			}
 		'''
 	}
+	
+	def generateMarshallingMethods () {
+		'''
+		«generateJsonMarshal»
+
+		«generateJsonUnmarshal»
+
+		«generateByteArrayUnmarshal»
+		
+		«FOR DataSet dataSet : this.dataSets»			
+		«dataSet.generateByteArrayMarshal»
+		«ENDFOR»
+		'''
+	}
+
+	def generateJsonUnmarshal(){
+		'''
+		/**
+		 * Alternative method responsible for deserializing the received
+		 * JSON-formatted L stage from sensor.
+		 * 
+		 * @param dataset
+		 *            the dataset to unmarshall incoming from sensor side in a JSON
+		 *            format
+		 * @return T unmarshalled T structure
+		 */
+		public static <T> T unmarshalJSON(BufferedReader dataset, T obj) { 
+			
+			Gson gson = new Gson();
+			BufferedReader br = dataset;
+			obj = gson.fromJson(br, obj.getClass());
+			«IF !bigEndian»
+			// use little endianness 
+			«FOR DataSet dataSet : this.dataSets»
+				if (obj instanceof «GenerationUtil.toNameUpper(dataSet)») {
+					((«GenerationUtil.toNameUpper(dataSet)») obj).«SensIDLConstants.JAVA_CONVERT_ALL_TO_LITTLE_ENDIAN_METHOD_NAME»();
+				}
+				
+			«ENDFOR»
+			«ENDIF»
+			return obj;
+		}
+		'''
+	}
+	
+	def generateJsonMarshal(){
+		'''
+		/**
+		 * Alternative method responsible for serializing JSON
+		 * 
+		 * @return Json String
+		 */
+		public static String marshalJSON(Object elementToMarshall) { 
+			Gson gson = new Gson();
+			
+			«FOR DataSet dataSet : this.dataSets»
+				if (elementToMarshall instanceof «GenerationUtil.toNameUpper(dataSet)») {
+					«IF bigEndian»
+					return gson.toJson((«GenerationUtil.toNameUpper(dataSet)») elementToMarshall);
+					«ELSE»
+					// use little endianness
+					((«GenerationUtil.toNameUpper(dataSet)») elementToMarshall).«SensIDLConstants.JAVA_CONVERT_ALL_TO_LITTLE_ENDIAN_METHOD_NAME»();
+					return gson.toJson(((«GenerationUtil.toNameUpper(dataSet)») elementToMarshall));
+					«ENDIF»
+				}
+				
+			«ENDFOR»
+			return null;
+		}
+		'''
+	}
+	
+	def generateByteArrayUnmarshal(){
+		'''
+		/**
+		 * Method responsible for deserializing the received byte array
+		 * representation of L from sensor.
+		 * 
+		 * @param dataset
+		 *            the dataset to unmarshall incoming from sensor side as a byte
+		 *            array
+		 * @return T unmarshalled T structure
+		 * @throws IOException
+		 * @throws ClassNotFoundException
+		 */
+		public static <T> T unmarshalByteArray(byte[] dataset) throws IOException, ClassNotFoundException {
+			
+			ByteArrayInputStream in = new ByteArrayInputStream(dataset);
+			ObjectInputStream ois = null;
+			ois = new ObjectInputStream(in);
+			Object o = ois.readObject();
+			T unmarshalledObject = (T) o; // TODO: Ensure the type conversion is valid
+			in.close();
+			if (in != null) {
+				ois.close();
+			}
+			return unmarshalledObject;
+		}
+		'''
+	}
+	
+	def generateByteArrayMarshal(DataSet d){
+		'''
+		/**
+		 * Method responsible for serializing Byte-Array
+		 */
+		public static «GenerationUtil.toNameUpper(d)» marshal«GenerationUtil.toNameUpper(d)»ByteArray() {
+			//TODO: implement Method
+			return null;
+		}
+		'''
+	}
+	
+//	def generateConstructorArgumentsForMarshal(DataSet d) {
+//		// create an ArrayList with all data that is not a constant NonMeasurementData (which will not be constructor arguments)
+//		var dataList = new ArrayList<Data>();
+//		var dataSet = d
+//		
+//		for (data : dataSet.eContents.filter(Data)) {
+//			if (data instanceof NonMeasurementData) {
+//				var nmdata = data as NonMeasurementData
+//				if (!nmdata.constant) {
+//					dataList.add(data)
+//				}
+//			} else {
+//				dataList.add(data)
+//			}
+//		}
+//
+//		if (dataList.size > 0) {
+//			var firstElement = dataList.get(0)
+//			dataList.remove(0)
+//			if(d.parentDataSet != null){
+//				'''«GenerationUtil.getSensorInterfaceName(firstElement.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«IF firstElement.dataType.isUnsigned»(«firstElement.toSimpleTypeName») (this.«GenerationUtil.toNameLower(firstElement)» + «firstElement.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(firstElement)»«ENDIF»)«FOR data : dataList», «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«IF data.dataType.isUnsigned»(«data.toSimpleTypeName») (this.«GenerationUtil.toNameLower(data)» + «data.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(data)»«ENDIF») «ENDFOR», convertToLittleEndian(this.«GenerationUtil.toNameLower(d.parentDataSet)»)'''
+//			} else {
+//				'''«GenerationUtil.getSensorInterfaceName(firstElement.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«IF firstElement.dataType.isUnsigned»(«firstElement.toSimpleTypeName») (this.«GenerationUtil.toNameLower(firstElement)» + «firstElement.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(firstElement)»«ENDIF»)«FOR data : dataList», «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«IF data.dataType.isUnsigned»(«data.toSimpleTypeName») (this.«GenerationUtil.toNameLower(data)» + «data.toTypeName».MAX_VALUE)«ELSE»this.«GenerationUtil.toNameLower(data)»«ENDIF») «ENDFOR»'''
+//			}
+//		}
+//	}
 	
 	def generateConversionMethods() {
 		'''

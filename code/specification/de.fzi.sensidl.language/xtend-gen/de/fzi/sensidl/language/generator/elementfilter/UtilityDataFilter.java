@@ -5,8 +5,10 @@ import com.google.common.collect.Iterators;
 import de.fzi.sensidl.design.sensidl.SensorInterface;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataAdjustment;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
+import de.fzi.sensidl.language.generator.elementfilter.DataSetFilter;
 import de.fzi.sensidl.language.generator.elementfilter.ElementFilter;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -24,12 +26,6 @@ import org.eclipse.xtext.xbase.lib.IteratorExtensions;
  */
 @SuppressWarnings("all")
 public class UtilityDataFilter extends ElementFilter {
-  /**
-   * Default constructor.
-   */
-  public UtilityDataFilter() {
-  }
-  
   /**
    * Implements the abstract method of the base-class and filters
    * all MeasurementData-elements.
@@ -57,6 +53,10 @@ public class UtilityDataFilter extends ElementFilter {
       Iterable<MeasurementData> _filter_3 = IterableExtensions.<MeasurementData>filter(_filter_2, _function);
       List<MeasurementData> _list = IterableExtensions.<MeasurementData>toList(_filter_3);
       ArrayList<EObject> data = new ArrayList<EObject>(_list);
+      DataSetFilter _dataSetFilter = new DataSetFilter();
+      List<DataSet> _filterData = _dataSetFilter.filterData();
+      ArrayList<EObject> _arrayList = new ArrayList<EObject>(_filterData);
+      data.addAll(_arrayList);
       EList<EObject> _contents_1 = ElementFilter.input.getContents();
       Iterable<SensorInterface> _filter_4 = Iterables.<SensorInterface>filter(_contents_1, SensorInterface.class);
       EObject _get = ((EObject[])Conversions.unwrapArray(_filter_4, EObject.class))[0];
