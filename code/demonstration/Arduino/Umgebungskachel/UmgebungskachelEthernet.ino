@@ -1,6 +1,7 @@
+
 /**
     *** UmgebungskachelEthernet.ino ***
-    This file holds all methods that are necessary for communicating with the Ethernet Port on the Arduino.
+    This file holds all methods that are necessary for communicating with the Ethernet Port or via WIFI on the Arduino.
 **/
 
 
@@ -66,6 +67,22 @@ void sendHeader(EthernetClient client) {
 String getLocalIP() {
  char ip[24];
  IPAddress myIP = Ethernet.localIP(); 
- sprintf(ip,"%d.%d.%d.%d",myIP[0],myIP[1],myIP[2],myIP[3]);  
+ sprintf(ip,"%d.%d.%d.%d",myIP[0],myIP[1],myIP[2],myIP[3]);
+ if((String) ip == "255.255.255.255") return "no IP"; 
  return (String)ip;
+}
+
+/**
+  getWifiIP reads the current IP of the wlan0 adapter (if a connection exists) and returns a String
+**/
+String getWifiIP() {
+  char result[24];
+  system("ifconfig wlan0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}' > /wifiIP.txt");
+  FILE *tempFile;
+  tempFile = fopen("/wifiIP.txt", "r");
+  if(fgets(result, 24, tempFile)==NULL) return "no IP";
+  fclose(tempFile);
+  String ret = (String)(result);
+  //return the string without the end of file character
+  return ret.substring(0,ret.length()-1);  
 }

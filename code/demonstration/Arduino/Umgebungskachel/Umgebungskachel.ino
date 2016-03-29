@@ -20,6 +20,8 @@
 //LCD Display
 rgb_lcd lcd;
 
+//Network connection
+boolean ethernetConnection = false;
 
 //Data Structure Library
 Sensidl_light sens;
@@ -38,11 +40,23 @@ void setup()
  //Setup the Display and Display the current action
  lcd.begin(16,2); 
  lcd.setRGB(255,0,0); 
- showDisplay("Initializing ...","Ethernet!");
  
- //Call to the linux system, to activate the ethernet port
- system("ifup eth0");
+ //First try to connect via Wifi
+ showDisplay("Initializing ...","Wireless!"); 
+ //Two separated Calls to the linux system, to activate the wlan interface
+ system("ifup wlan0");
+ delay(8000);
+ system("ifup wlan0");
  delay(5000);
+ 
+ if(getWifiIP() == "no IP") {
+   //No wifi connection. Try connecting via ethernet
+   ethernetConnection = true;
+   showDisplay("Initializing ...","Ethernet!"); 
+   //Call to the linux system, to activate the ethernet port
+   system("ifup eth0");
+   delay(5000);  
+ }
  
  // set LED pin on OUTPUT and turn it off
  pinMode(LED, OUTPUT);
@@ -59,7 +73,8 @@ void setup()
  updateLowerDisplay("DHCP Protocol!");
  Ethernet.begin(MAC);
  server.begin();
- showDisplay("Server is at:",getLocalIP());
+ 
+ showDisplay("Server is at:",(ethernetConnection)? getLocalIP() : getWifiIP());
  lcd.setRGB(150,255,0);
  
  //initial values for the thresholds
@@ -70,8 +85,9 @@ void setup()
  attachInterrupt(2, touchEvent, CHANGE);
  
  //Initialize the TimerOne Library with a 1s Period
- Timer1.initialize(1000000);
+ Timer1.initialize(1000000); 
  Timer1.attachInterrupt(isr,1000000); //attach a TimerInterrupt to call the isr method every 1 seconds
+ 
 }
 
 /**

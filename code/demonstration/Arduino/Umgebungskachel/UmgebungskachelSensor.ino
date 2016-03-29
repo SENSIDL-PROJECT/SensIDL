@@ -15,7 +15,7 @@ void updateSensorData() {
   This is the Interrupt Service Routine for the TimerOne Library that is called each 1000000 µs (1s).
   It updates the sensor data, refreshes the display and eventually toggles the buzzer.
 **/
-void isr() {
+void isr() {  
   updateSensorData();
   refreshDisplay();
   if(sens.data.brightness < sens.data.threshold_brightness &&

@@ -24,7 +24,7 @@ void touchEvent() {
 void refreshDisplay() {
     switch (onDisplay % 4) {
       case 0:
-         showDisplay("Server is at:",getLocalIP());
+         showDisplay("Server is at:",(ethernetConnection)? getLocalIP() : getWifiIP());
       break;
       case 1:
          showDisplay("Temperatur:",dtostrf(sens.data.temperature,0,3));
