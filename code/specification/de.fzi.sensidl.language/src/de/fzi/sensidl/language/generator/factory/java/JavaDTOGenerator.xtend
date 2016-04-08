@@ -68,7 +68,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 		logger.info("Start with code-generation of a java data transfer object.")
 		val filesToGenerate = new HashMap		
 		
-		if (GenerationUtil.getSensorInterface(this.dataSet.get(0).eContents.filter(Data).get(0).eContainer).encodingSettings.endianness == Endianness.BIG_ENDIAN){
+		if (GenerationUtil.getSensorInterface(this.dataSet.get(0).eContainer).encodingSettings.endianness == Endianness.BIG_ENDIAN){
 			bigEndian = true;
 		} else {
 			bigEndian = false;
@@ -76,7 +76,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 		
 		if (createProject) {
 			for (d : this.dataSet) {
-				filesToGenerate.put("src/de/fzi/sensidl/" + GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContents.filter(Data).get(0).eContainer) +"/" + addFileExtensionTo(GenerationUtil.toNameUpper(d)), generateClassBody(GenerationUtil.toNameUpper(d), d))
+				filesToGenerate.put("src/de/fzi/sensidl/" + GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer) +"/" + addFileExtensionTo(GenerationUtil.toNameUpper(d)), generateClassBody(GenerationUtil.toNameUpper(d), d))
 				logger.info("File: " + addFileExtensionTo(GenerationUtil.toNameUpper(d)) + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
 			}
 		
@@ -95,7 +95,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 	def generateClassBody(String className, DataSet d) {
 		'''
 			«IF createProject»
-			package de.fzi.sensidl.«GenerationUtil.getSensorInterfaceName(d.eContents.filter(Data).get(0).eContainer)»;
+			package de.fzi.sensidl.«GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer)»;
 			 
 			«ENDIF» 
 			«IF !bigEndian»
