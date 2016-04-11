@@ -66,6 +66,8 @@
           eType="#//dataRepresentation/Data" containment="true" eOpposite="#//dataRepresentation/Data/dataSet"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parentDataSet" upperBound="-1"
           eType="#//dataRepresentation/DataSet" eOpposite="#//dataRepresentation/DataSet/subDataSets"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="method" upperBound="-1"
+          eType="#//dataRepresentation/Method" containment="true" eOpposite="#//dataRepresentation/Method/dataSet"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Data" abstract="true" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="dataSet" eType="#//dataRepresentation/DataSet"
@@ -139,9 +141,28 @@
       <eLiterals name="DOUBLE" value="9"/>
       <eLiterals name="BOOLEAN" value="10"/>
       <eLiterals name="STRING" value="11"/>
+      <eLiterals name="UNDEFINED" value="12" literal="UNDEFINED"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="Unit" instanceClassName="javax.measure.unit.Unit">
       <eTypeParameters name="Q"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Method" eSuperTypes="#//NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dataSet" eType="#//dataRepresentation/DataSet"
+          eOpposite="#//dataRepresentation/DataSet/method"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
+          eType="#//dataRepresentation/MethodParameter" containment="true" eOpposite="#//dataRepresentation/MethodParameter/method"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnType" lowerBound="1"
+          eType="#//dataRepresentation/DataType" defaultValueLiteral="UNDEFINED"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="returnTypeDataSet" eType="#//dataRepresentation/DataSet"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MethodParameter">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="method" eType="#//dataRepresentation/Method"
+          eOpposite="#//dataRepresentation/Method/parameter"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" lowerBound="1"
+          eType="#//dataRepresentation/DataType" defaultValueLiteral="UNDEFINED"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dataTypeDataSet" eType="#//dataRepresentation/DataSet"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

@@ -9,6 +9,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
+import de.fzi.sensidl.design.sensidl.dataRepresentation.Method
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData
 import de.fzi.sensidl.language.generator.GenerationUtil
 import de.fzi.sensidl.language.generator.SensIDLConstants
@@ -123,6 +124,8 @@ class JavaDTOGenerator implements IDTOGenerator {
 				
 				}
 				«ENDIF»
+				«d.generateMethods»
+				
 				«generateDataMethodsIncludeParentDataSet(d)»
 				
 				«IF !bigEndian»
@@ -131,6 +134,108 @@ class JavaDTOGenerator implements IDTOGenerator {
 			}
 		 '''
 	}
+// ------------------------------ Methods------------------------------
+
+	/** 
+	 * Generates Methods
+	 * 
+	 */
+	def generateMethods(DataSet d){
+		'''
+		«FOR method : d.eContents.filter(Method)»
+				
+				/**
+				 * Method for «method.name»
+				 * «method.description»
+				 * @generated
+				 */	
+				«method.getMethodVisibility» «method.methodReturnType» «method.name»(«method.getMethodParameter»){
+					//TODO: Auto Generated method stub
+					«IF !method.methodReturnType.equals("void")»
+					return null;
+					«ENDIF»
+				}
+		«ENDFOR»
+		'''
+	}
+	
+	/**
+	 * Returns the visibility of a method
+	 * 
+	 */
+	def getMethodVisibility(Method method) {
+		if (method.visibility != null) {
+			switch (method.visibility) {
+				case '+': "public"
+				case '#': "protected"
+				case '~': ""
+				case '-': "private"
+				default: "public"
+			}
+		} else {
+			return "public"
+		}
+	}
+	
+	/**
+	 * Returns the return type of a method
+	 * 
+	 */
+	def getMethodReturnType(Method method){
+		if (method.returnType != DataType.UNDEFINED){
+			return method.returnType.toTypeName
+		} else if (method.returnTypeDataSet != null){
+			return method.returnTypeDataSet.name
+		} else {
+			return "void"
+		}
+	}
+	
+	/**
+	 * Returns the parameter of a method
+	 * 
+	 */
+	def getMethodParameter(Method method) {
+		var str = ""
+		if (method.parameter.size > 0) {
+			if (method.parameter.head.dataType != DataType.UNDEFINED) {
+				str = method.parameter.head.dataType.toTypeName + " " + method.parameter.head.name
+			} else if (method.parameter.head.dataTypeDataSet != null) {
+				str = method.parameter.head.dataTypeDataSet.name + " " + method.parameter.head.name
+			}
+			for (p : method.parameter.tail) {
+				if (p.dataType != DataType.UNDEFINED) {
+					str += ", " + p.dataType.toTypeName + " " + p.name
+				} else if (p.dataTypeDataSet != null) {
+					str += ", " + p.dataTypeDataSet.name + " " + p.name
+				}
+			}
+		}
+		return str
+	}
+	
+	/**
+	 * returns the appropriate type name for string
+	 *
+	 */
+	def toTypeName(String s) {
+		return switch (s) {
+			case "INT8": Byte.name
+			case "UINT8": Byte.name
+			case "INT16": Short.name
+			case "UINT16": Short.name
+			case "INT32": Integer.name
+			case "UINT32": Integer.name
+			case "INT64": Long.name
+			case "UINT64": Long.name
+			case "FLOAT": Float.name
+			case "DOUBLE": Double.name
+			case "BOOLEAN": Boolean.name
+			case "STRING": String.name
+		}
+	}
+		
+
 
 // ------------------------------ Data Fields ------------------------------
 	/**

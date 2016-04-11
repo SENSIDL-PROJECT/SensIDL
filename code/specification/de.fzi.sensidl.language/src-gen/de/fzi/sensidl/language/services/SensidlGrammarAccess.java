@@ -274,20 +274,23 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDescriptionAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cDescriptionDESCRIPTIONTerminalRuleCall_5_0 = (RuleCall)cDescriptionAssignment_5.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cDataAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cDataDataParserRuleCall_7_0 = (RuleCall)cDataAssignment_7.eContents().get(0);
+		private final Alternatives cAlternatives_7 = (Alternatives)cGroup.eContents().get(7);
+		private final Assignment cDataAssignment_7_0 = (Assignment)cAlternatives_7.eContents().get(0);
+		private final RuleCall cDataDataParserRuleCall_7_0_0 = (RuleCall)cDataAssignment_7_0.eContents().get(0);
+		private final Assignment cMethodAssignment_7_1 = (Assignment)cAlternatives_7.eContents().get(1);
+		private final RuleCall cMethodMethodParserRuleCall_7_1_0 = (RuleCall)cMethodAssignment_7_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//DataSet dataRepresentation::DataSet:
 		//	"dataSet" name=ID ("uses" parentDataSet+=[dataRepresentation::DataSet])? (","
 		//	parentDataSet+=[dataRepresentation::DataSet])* ("with identifier" ":" ID=STRING)? description=DESCRIPTION? "{"
-		//	data+=Data*
+		//	(data+=Data | method+=Method)*
 		//	"}"
 		@Override public ParserRule getRule() { return rule; }
 
 		//"dataSet" name=ID ("uses" parentDataSet+=[dataRepresentation::DataSet])? (","
 		//parentDataSet+=[dataRepresentation::DataSet])* ("with identifier" ":" ID=STRING)? description=DESCRIPTION? "{"
-		//data+=Data* "}"
+		//(data+=Data | method+=Method)* "}"
 		public Group getGroup() { return cGroup; }
 
 		//"dataSet"
@@ -353,14 +356,253 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
 
-		//data+=Data*
-		public Assignment getDataAssignment_7() { return cDataAssignment_7; }
+		//(data+=Data | method+=Method)*
+		public Alternatives getAlternatives_7() { return cAlternatives_7; }
+
+		//data+=Data
+		public Assignment getDataAssignment_7_0() { return cDataAssignment_7_0; }
 
 		//Data
-		public RuleCall getDataDataParserRuleCall_7_0() { return cDataDataParserRuleCall_7_0; }
+		public RuleCall getDataDataParserRuleCall_7_0_0() { return cDataDataParserRuleCall_7_0_0; }
+
+		//method+=Method
+		public Assignment getMethodAssignment_7_1() { return cMethodAssignment_7_1; }
+
+		//Method
+		public RuleCall getMethodMethodParserRuleCall_7_1_0() { return cMethodMethodParserRuleCall_7_1_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
+	}
+
+	public class MethodElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.fzi.sensidl.language.Sensidl.Method");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Assignment cVisibilityAssignment_0_0 = (Assignment)cAlternatives_0.eContents().get(0);
+		private final Keyword cVisibilityPlusSignKeyword_0_0_0 = (Keyword)cVisibilityAssignment_0_0.eContents().get(0);
+		private final Assignment cVisibilityAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
+		private final Keyword cVisibilityHyphenMinusKeyword_0_1_0 = (Keyword)cVisibilityAssignment_0_1.eContents().get(0);
+		private final Assignment cVisibilityAssignment_0_2 = (Assignment)cAlternatives_0.eContents().get(2);
+		private final Keyword cVisibilityNumberSignKeyword_0_2_0 = (Keyword)cVisibilityAssignment_0_2.eContents().get(0);
+		private final Assignment cVisibilityAssignment_0_3 = (Assignment)cAlternatives_0.eContents().get(3);
+		private final Keyword cVisibilityTildeKeyword_0_3_0 = (Keyword)cVisibilityAssignment_0_3.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cParameterAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cParameterMethodParameterParserRuleCall_3_0 = (RuleCall)cParameterAssignment_3.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cParameterAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cParameterMethodParameterParserRuleCall_4_1_0 = (RuleCall)cParameterAssignment_4_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cColonKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Alternatives cAlternatives_6_1 = (Alternatives)cGroup_6.eContents().get(1);
+		private final Alternatives cAlternatives_6_1_0 = (Alternatives)cAlternatives_6_1.eContents().get(0);
+		private final Assignment cReturnTypeAssignment_6_1_0_0 = (Assignment)cAlternatives_6_1_0.eContents().get(0);
+		private final RuleCall cReturnTypeDataTypeEnumRuleCall_6_1_0_0_0 = (RuleCall)cReturnTypeAssignment_6_1_0_0.eContents().get(0);
+		private final Assignment cReturnTypeAssignment_6_1_0_1 = (Assignment)cAlternatives_6_1_0.eContents().get(1);
+		private final RuleCall cReturnTypeDataTypeNotAdjustableEnumRuleCall_6_1_0_1_0 = (RuleCall)cReturnTypeAssignment_6_1_0_1.eContents().get(0);
+		private final Assignment cReturnTypeDataSetAssignment_6_1_1 = (Assignment)cAlternatives_6_1.eContents().get(1);
+		private final CrossReference cReturnTypeDataSetDataSetCrossReference_6_1_1_0 = (CrossReference)cReturnTypeDataSetAssignment_6_1_1.eContents().get(0);
+		private final RuleCall cReturnTypeDataSetDataSetIDTerminalRuleCall_6_1_1_0_1 = (RuleCall)cReturnTypeDataSetDataSetCrossReference_6_1_1_0.eContents().get(1);
+		private final Keyword cAsKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cMethodKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Group cGroup_9 = (Group)cGroup.eContents().get(9);
+		private final Keyword cWithIdentifierKeyword_9_0 = (Keyword)cGroup_9.eContents().get(0);
+		private final Keyword cColonKeyword_9_1 = (Keyword)cGroup_9.eContents().get(1);
+		private final Assignment cIDAssignment_9_2 = (Assignment)cGroup_9.eContents().get(2);
+		private final RuleCall cIDSTRINGTerminalRuleCall_9_2_0 = (RuleCall)cIDAssignment_9_2.eContents().get(0);
+		private final Assignment cDescriptionAssignment_10 = (Assignment)cGroup.eContents().get(10);
+		private final RuleCall cDescriptionDESCRIPTIONTerminalRuleCall_10_0 = (RuleCall)cDescriptionAssignment_10.eContents().get(0);
+		
+		//Method dataRepresentation::Method:
+		//	(visibility='+' | visibility='-' | visibility='#' | visibility='~')? name=ID "(" parameter+=MethodParameter? (","
+		//	parameter+=MethodParameter)* ")" (":" ((returnType=DataType | returnType=DataTypeNotAdjustable) |
+		//	returnTypeDataSet=[dataRepresentation::DataSet]))? "as" "Method" ("with identifier" ":" ID=STRING)?
+		//	description=DESCRIPTION?
+		@Override public ParserRule getRule() { return rule; }
+
+		//(visibility='+' | visibility='-' | visibility='#' | visibility='~')? name=ID "(" parameter+=MethodParameter? (","
+		//parameter+=MethodParameter)* ")" (":" ((returnType=DataType | returnType=DataTypeNotAdjustable) |
+		//returnTypeDataSet=[dataRepresentation::DataSet]))? "as" "Method" ("with identifier" ":" ID=STRING)?
+		//description=DESCRIPTION?
+		public Group getGroup() { return cGroup; }
+
+		//(visibility='+' | visibility='-' | visibility='#' | visibility='~')?
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+
+		//visibility='+'
+		public Assignment getVisibilityAssignment_0_0() { return cVisibilityAssignment_0_0; }
+
+		//'+'
+		public Keyword getVisibilityPlusSignKeyword_0_0_0() { return cVisibilityPlusSignKeyword_0_0_0; }
+
+		//visibility='-'
+		public Assignment getVisibilityAssignment_0_1() { return cVisibilityAssignment_0_1; }
+
+		//'-'
+		public Keyword getVisibilityHyphenMinusKeyword_0_1_0() { return cVisibilityHyphenMinusKeyword_0_1_0; }
+
+		//visibility='#'
+		public Assignment getVisibilityAssignment_0_2() { return cVisibilityAssignment_0_2; }
+
+		//'#'
+		public Keyword getVisibilityNumberSignKeyword_0_2_0() { return cVisibilityNumberSignKeyword_0_2_0; }
+
+		//visibility='~'
+		public Assignment getVisibilityAssignment_0_3() { return cVisibilityAssignment_0_3; }
+
+		//'~'
+		public Keyword getVisibilityTildeKeyword_0_3_0() { return cVisibilityTildeKeyword_0_3_0; }
+
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+
+		//parameter+=MethodParameter?
+		public Assignment getParameterAssignment_3() { return cParameterAssignment_3; }
+
+		//MethodParameter
+		public RuleCall getParameterMethodParameterParserRuleCall_3_0() { return cParameterMethodParameterParserRuleCall_3_0; }
+
+		//("," parameter+=MethodParameter)*
+		public Group getGroup_4() { return cGroup_4; }
+
+		//","
+		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
+
+		//parameter+=MethodParameter
+		public Assignment getParameterAssignment_4_1() { return cParameterAssignment_4_1; }
+
+		//MethodParameter
+		public RuleCall getParameterMethodParameterParserRuleCall_4_1_0() { return cParameterMethodParameterParserRuleCall_4_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
+
+		//(":" ((returnType=DataType | returnType=DataTypeNotAdjustable) | returnTypeDataSet=[dataRepresentation::DataSet]))?
+		public Group getGroup_6() { return cGroup_6; }
+
+		//":"
+		public Keyword getColonKeyword_6_0() { return cColonKeyword_6_0; }
+
+		//((returnType=DataType | returnType=DataTypeNotAdjustable) | returnTypeDataSet=[dataRepresentation::DataSet])
+		public Alternatives getAlternatives_6_1() { return cAlternatives_6_1; }
+
+		//(returnType=DataType | returnType=DataTypeNotAdjustable)
+		public Alternatives getAlternatives_6_1_0() { return cAlternatives_6_1_0; }
+
+		//returnType=DataType
+		public Assignment getReturnTypeAssignment_6_1_0_0() { return cReturnTypeAssignment_6_1_0_0; }
+
+		//DataType
+		public RuleCall getReturnTypeDataTypeEnumRuleCall_6_1_0_0_0() { return cReturnTypeDataTypeEnumRuleCall_6_1_0_0_0; }
+
+		//returnType=DataTypeNotAdjustable
+		public Assignment getReturnTypeAssignment_6_1_0_1() { return cReturnTypeAssignment_6_1_0_1; }
+
+		//DataTypeNotAdjustable
+		public RuleCall getReturnTypeDataTypeNotAdjustableEnumRuleCall_6_1_0_1_0() { return cReturnTypeDataTypeNotAdjustableEnumRuleCall_6_1_0_1_0; }
+
+		//returnTypeDataSet=[dataRepresentation::DataSet]
+		public Assignment getReturnTypeDataSetAssignment_6_1_1() { return cReturnTypeDataSetAssignment_6_1_1; }
+
+		//[dataRepresentation::DataSet]
+		public CrossReference getReturnTypeDataSetDataSetCrossReference_6_1_1_0() { return cReturnTypeDataSetDataSetCrossReference_6_1_1_0; }
+
+		//ID
+		public RuleCall getReturnTypeDataSetDataSetIDTerminalRuleCall_6_1_1_0_1() { return cReturnTypeDataSetDataSetIDTerminalRuleCall_6_1_1_0_1; }
+
+		//"as"
+		public Keyword getAsKeyword_7() { return cAsKeyword_7; }
+
+		//"Method"
+		public Keyword getMethodKeyword_8() { return cMethodKeyword_8; }
+
+		//("with identifier" ":" ID=STRING)?
+		public Group getGroup_9() { return cGroup_9; }
+
+		//"with identifier"
+		public Keyword getWithIdentifierKeyword_9_0() { return cWithIdentifierKeyword_9_0; }
+
+		//":"
+		public Keyword getColonKeyword_9_1() { return cColonKeyword_9_1; }
+
+		//ID=STRING
+		public Assignment getIDAssignment_9_2() { return cIDAssignment_9_2; }
+
+		//STRING
+		public RuleCall getIDSTRINGTerminalRuleCall_9_2_0() { return cIDSTRINGTerminalRuleCall_9_2_0; }
+
+		//description=DESCRIPTION?
+		public Assignment getDescriptionAssignment_10() { return cDescriptionAssignment_10; }
+
+		//DESCRIPTION
+		public RuleCall getDescriptionDESCRIPTIONTerminalRuleCall_10_0() { return cDescriptionDESCRIPTIONTerminalRuleCall_10_0; }
+	}
+
+	public class MethodParameterElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.fzi.sensidl.language.Sensidl.MethodParameter");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_0_0 = (Alternatives)cAlternatives_0.eContents().get(0);
+		private final Assignment cDataTypeAssignment_0_0_0 = (Assignment)cAlternatives_0_0.eContents().get(0);
+		private final RuleCall cDataTypeDataTypeEnumRuleCall_0_0_0_0 = (RuleCall)cDataTypeAssignment_0_0_0.eContents().get(0);
+		private final Assignment cDataTypeAssignment_0_0_1 = (Assignment)cAlternatives_0_0.eContents().get(1);
+		private final RuleCall cDataTypeDataTypeNotAdjustableEnumRuleCall_0_0_1_0 = (RuleCall)cDataTypeAssignment_0_0_1.eContents().get(0);
+		private final Assignment cDataTypeDataSetAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
+		private final CrossReference cDataTypeDataSetDataSetCrossReference_0_1_0 = (CrossReference)cDataTypeDataSetAssignment_0_1.eContents().get(0);
+		private final RuleCall cDataTypeDataSetDataSetIDTerminalRuleCall_0_1_0_1 = (RuleCall)cDataTypeDataSetDataSetCrossReference_0_1_0.eContents().get(1);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		
+		//MethodParameter dataRepresentation::MethodParameter:
+		//	((dataType=DataType | dataType=DataTypeNotAdjustable) | dataTypeDataSet=[dataRepresentation::DataSet]) name=ID
+		@Override public ParserRule getRule() { return rule; }
+
+		//((dataType=DataType | dataType=DataTypeNotAdjustable) | dataTypeDataSet=[dataRepresentation::DataSet]) name=ID
+		public Group getGroup() { return cGroup; }
+
+		//((dataType=DataType | dataType=DataTypeNotAdjustable) | dataTypeDataSet=[dataRepresentation::DataSet])
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+
+		//(dataType=DataType | dataType=DataTypeNotAdjustable)
+		public Alternatives getAlternatives_0_0() { return cAlternatives_0_0; }
+
+		//dataType=DataType
+		public Assignment getDataTypeAssignment_0_0_0() { return cDataTypeAssignment_0_0_0; }
+
+		//DataType
+		public RuleCall getDataTypeDataTypeEnumRuleCall_0_0_0_0() { return cDataTypeDataTypeEnumRuleCall_0_0_0_0; }
+
+		//dataType=DataTypeNotAdjustable
+		public Assignment getDataTypeAssignment_0_0_1() { return cDataTypeAssignment_0_0_1; }
+
+		//DataTypeNotAdjustable
+		public RuleCall getDataTypeDataTypeNotAdjustableEnumRuleCall_0_0_1_0() { return cDataTypeDataTypeNotAdjustableEnumRuleCall_0_0_1_0; }
+
+		//dataTypeDataSet=[dataRepresentation::DataSet]
+		public Assignment getDataTypeDataSetAssignment_0_1() { return cDataTypeDataSetAssignment_0_1; }
+
+		//[dataRepresentation::DataSet]
+		public CrossReference getDataTypeDataSetDataSetCrossReference_0_1_0() { return cDataTypeDataSetDataSetCrossReference_0_1_0; }
+
+		//ID
+		public RuleCall getDataTypeDataSetDataSetIDTerminalRuleCall_0_1_0_1() { return cDataTypeDataSetDataSetIDTerminalRuleCall_0_1_0_1; }
+
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 	}
 
 	public class DataElements extends AbstractParserRuleElementFinder {
@@ -1356,6 +1598,8 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	private final EndiannessElements eEndianness;
 	private final SensorDataDescriptionElements pSensorDataDescription;
 	private final DataSetElements pDataSet;
+	private final MethodElements pMethod;
+	private final MethodParameterElements pMethodParameter;
 	private final DataElements pData;
 	private final MeasurementDataElements pMeasurementData;
 	private final NonMeasurementDataElements pNonMeasurementData;
@@ -1387,6 +1631,8 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		this.eEndianness = new EndiannessElements();
 		this.pSensorDataDescription = new SensorDataDescriptionElements();
 		this.pDataSet = new DataSetElements();
+		this.pMethod = new MethodElements();
+		this.pMethodParameter = new MethodParameterElements();
 		this.pData = new DataElements();
 		this.pMeasurementData = new MeasurementDataElements();
 		this.pNonMeasurementData = new NonMeasurementDataElements();
@@ -1490,7 +1736,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	//DataSet dataRepresentation::DataSet:
 	//	"dataSet" name=ID ("uses" parentDataSet+=[dataRepresentation::DataSet])? (","
 	//	parentDataSet+=[dataRepresentation::DataSet])* ("with identifier" ":" ID=STRING)? description=DESCRIPTION? "{"
-	//	data+=Data*
+	//	(data+=Data | method+=Method)*
 	//	"}"
 	public DataSetElements getDataSetAccess() {
 		return pDataSet;
@@ -1498,6 +1744,29 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getDataSetRule() {
 		return getDataSetAccess().getRule();
+	}
+
+	//Method dataRepresentation::Method:
+	//	(visibility='+' | visibility='-' | visibility='#' | visibility='~')? name=ID "(" parameter+=MethodParameter? (","
+	//	parameter+=MethodParameter)* ")" (":" ((returnType=DataType | returnType=DataTypeNotAdjustable) |
+	//	returnTypeDataSet=[dataRepresentation::DataSet]))? "as" "Method" ("with identifier" ":" ID=STRING)?
+	//	description=DESCRIPTION?
+	public MethodElements getMethodAccess() {
+		return pMethod;
+	}
+	
+	public ParserRule getMethodRule() {
+		return getMethodAccess().getRule();
+	}
+
+	//MethodParameter dataRepresentation::MethodParameter:
+	//	((dataType=DataType | dataType=DataTypeNotAdjustable) | dataTypeDataSet=[dataRepresentation::DataSet]) name=ID
+	public MethodParameterElements getMethodParameterAccess() {
+		return pMethodParameter;
+	}
+	
+	public ParserRule getMethodParameterRule() {
+		return getMethodParameterAccess().getRule();
 	}
 
 	//Data dataRepresentation::Data:

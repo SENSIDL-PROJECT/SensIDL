@@ -68,6 +68,8 @@ public class DataRepresentationFactoryImpl extends EFactoryImpl implements DataR
 			case DataRepresentationPackage.LINEAR_DATA_CONVERSION: return createLinearDataConversion();
 			case DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL: return createLinearDataConversionWithInterval();
 			case DataRepresentationPackage.INTERVAL: return createInterval();
+			case DataRepresentationPackage.METHOD: return createMethod();
+			case DataRepresentationPackage.METHOD_PARAMETER: return createMethodParameter();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -195,6 +197,26 @@ public class DataRepresentationFactoryImpl extends EFactoryImpl implements DataR
 	public Interval createInterval() {
 		IntervalImpl interval = new IntervalImpl();
 		return interval;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Method createMethod() {
+		MethodImpl method = new MethodImpl();
+		return method;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MethodParameter createMethodParameter() {
+		MethodParameterImpl methodParameter = new MethodParameterImpl();
+		return methodParameter;
 	}
 
 	/**

@@ -194,13 +194,22 @@ public interface DataRepresentationPackage extends EPackage {
 	int DATA_SET__PARENT_DATA_SET = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Method</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_SET__METHOD = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Data Set</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_SET_FEATURE_COUNT = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int DATA_SET_FEATURE_COUNT = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Data Set</em>' class.
@@ -860,6 +869,170 @@ public interface DataRepresentationPackage extends EPackage {
 	int INTERVAL_OPERATION_COUNT = sensidlPackage.IDENTIFIABLE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.MethodImpl <em>Method</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.MethodImpl
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getMethod()
+	 * @generated
+	 */
+	int METHOD = 11;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__ID = sensidlPackage.NAMED_ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__NAME = sensidlPackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__DESCRIPTION = sensidlPackage.NAMED_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Data Set</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__DATA_SET = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Parameter</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__PARAMETER = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Return Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__RETURN_TYPE = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__VISIBILITY = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Return Type Data Set</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__RETURN_TYPE_DATA_SET = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>Method</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_FEATURE_COUNT = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The number of operations of the '<em>Method</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_OPERATION_COUNT = sensidlPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.MethodParameterImpl <em>Method Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.MethodParameterImpl
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getMethodParameter()
+	 * @generated
+	 */
+	int METHOD_PARAMETER = 12;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_PARAMETER__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Method</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_PARAMETER__METHOD = 1;
+
+	/**
+	 * The feature id for the '<em><b>Data Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_PARAMETER__DATA_TYPE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Data Type Data Set</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_PARAMETER__DATA_TYPE_DATA_SET = 3;
+
+	/**
+	 * The number of structural features of the '<em>Method Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_PARAMETER_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Method Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_PARAMETER_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataType <em>Data Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -867,7 +1040,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getDataType()
 	 * @generated
 	 */
-	int DATA_TYPE = 11;
+	int DATA_TYPE = 13;
 
 	/**
 	 * The meta object id for the '<em>Unit</em>' data type.
@@ -877,7 +1050,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getUnit()
 	 * @generated
 	 */
-	int UNIT = 12;
+	int UNIT = 14;
 
 
 	/**
@@ -965,6 +1138,17 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDataSet_ParentDataSet();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getMethod <em>Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Method</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getMethod()
+	 * @see #getDataSet()
+	 * @generated
+	 */
+	EReference getDataSet_Method();
 
 	/**
 	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Data <em>Data</em>}'.
@@ -1266,6 +1450,125 @@ public interface DataRepresentationPackage extends EPackage {
 	EReference getInterval_DataRange();
 
 	/**
+	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Method <em>Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Method</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.Method
+	 * @generated
+	 */
+	EClass getMethod();
+
+	/**
+	 * Returns the meta object for the container reference '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Method#getDataSet <em>Data Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Data Set</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.Method#getDataSet()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EReference getMethod_DataSet();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Method#getParameter <em>Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Parameter</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.Method#getParameter()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EReference getMethod_Parameter();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Method#getReturnType <em>Return Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Return Type</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.Method#getReturnType()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EAttribute getMethod_ReturnType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Method#getVisibility <em>Visibility</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Visibility</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.Method#getVisibility()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EAttribute getMethod_Visibility();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Method#getReturnTypeDataSet <em>Return Type Data Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Return Type Data Set</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.Method#getReturnTypeDataSet()
+	 * @see #getMethod()
+	 * @generated
+	 */
+	EReference getMethod_ReturnTypeDataSet();
+
+	/**
+	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter <em>Method Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Method Parameter</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter
+	 * @generated
+	 */
+	EClass getMethodParameter();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter#getName()
+	 * @see #getMethodParameter()
+	 * @generated
+	 */
+	EAttribute getMethodParameter_Name();
+
+	/**
+	 * Returns the meta object for the container reference '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter#getMethod <em>Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Method</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter#getMethod()
+	 * @see #getMethodParameter()
+	 * @generated
+	 */
+	EReference getMethodParameter_Method();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter#getDataType <em>Data Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data Type</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter#getDataType()
+	 * @see #getMethodParameter()
+	 * @generated
+	 */
+	EAttribute getMethodParameter_DataType();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter#getDataTypeDataSet <em>Data Type Data Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Data Type Data Set</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter#getDataTypeDataSet()
+	 * @see #getMethodParameter()
+	 * @generated
+	 */
+	EReference getMethodParameter_DataTypeDataSet();
+
+	/**
 	 * Returns the meta object for enum '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataType <em>Data Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1376,6 +1679,14 @@ public interface DataRepresentationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DATA_SET__PARENT_DATA_SET = eINSTANCE.getDataSet_ParentDataSet();
+
+		/**
+		 * The meta object literal for the '<em><b>Method</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATA_SET__METHOD = eINSTANCE.getDataSet_Method();
 
 		/**
 		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataImpl <em>Data</em>}' class.
@@ -1618,6 +1929,98 @@ public interface DataRepresentationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference INTERVAL__DATA_RANGE = eINSTANCE.getInterval_DataRange();
+
+		/**
+		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.MethodImpl <em>Method</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.MethodImpl
+		 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getMethod()
+		 * @generated
+		 */
+		EClass METHOD = eINSTANCE.getMethod();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Set</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METHOD__DATA_SET = eINSTANCE.getMethod_DataSet();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameter</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METHOD__PARAMETER = eINSTANCE.getMethod_Parameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Return Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD__RETURN_TYPE = eINSTANCE.getMethod_ReturnType();
+
+		/**
+		 * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD__VISIBILITY = eINSTANCE.getMethod_Visibility();
+
+		/**
+		 * The meta object literal for the '<em><b>Return Type Data Set</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METHOD__RETURN_TYPE_DATA_SET = eINSTANCE.getMethod_ReturnTypeDataSet();
+
+		/**
+		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.MethodParameterImpl <em>Method Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.MethodParameterImpl
+		 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getMethodParameter()
+		 * @generated
+		 */
+		EClass METHOD_PARAMETER = eINSTANCE.getMethodParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD_PARAMETER__NAME = eINSTANCE.getMethodParameter_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Method</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METHOD_PARAMETER__METHOD = eINSTANCE.getMethodParameter_Method();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD_PARAMETER__DATA_TYPE = eINSTANCE.getMethodParameter_DataType();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Type Data Set</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METHOD_PARAMETER__DATA_TYPE_DATA_SET = eINSTANCE.getMethodParameter_DataTypeDataSet();
 
 		/**
 		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataType <em>Data Type</em>}' enum.

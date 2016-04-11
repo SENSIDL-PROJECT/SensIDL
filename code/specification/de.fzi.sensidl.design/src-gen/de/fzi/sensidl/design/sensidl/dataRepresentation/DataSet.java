@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getSubDataSets <em>Sub Data Sets</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getData <em>Data</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getParentDataSet <em>Parent Data Set</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getMethod <em>Method</em>}</li>
  * </ul>
  *
  * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getDataSet()
@@ -106,5 +107,23 @@ public interface DataSet extends NamedElement {
 	 * @generated
 	 */
 	EList<DataSet> getParentDataSet();
+
+	/**
+	 * Returns the value of the '<em><b>Method</b></em>' containment reference list.
+	 * The list contents are of type {@link de.fzi.sensidl.design.sensidl.dataRepresentation.Method}.
+	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Method#getDataSet <em>Data Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Method</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Method</em>' containment reference list.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getDataSet_Method()
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.Method#getDataSet
+	 * @model opposite="dataSet" containment="true"
+	 * @generated
+	 */
+	EList<Method> getMethod();
 
 } // DataSet

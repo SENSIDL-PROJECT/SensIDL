@@ -116,7 +116,15 @@ public enum DataType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	STRING(11, "STRING", "STRING");
+	STRING(11, "STRING", "STRING"), /**
+	 * The '<em><b>UNDEFINED</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #UNDEFINED_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	UNDEFINED(12, "UNDEFINED", "UNDEFINED");
 
 	/**
 	 * The '<em><b>INT8</b></em>' literal value.
@@ -299,6 +307,21 @@ public enum DataType implements Enumerator {
 	public static final int STRING_VALUE = 11;
 
 	/**
+	 * The '<em><b>UNDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>UNDEFINED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #UNDEFINED
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNDEFINED_VALUE = 12;
+
+	/**
 	 * An array of all the '<em><b>Data Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -318,6 +341,7 @@ public enum DataType implements Enumerator {
 			DOUBLE,
 			BOOLEAN,
 			STRING,
+			UNDEFINED,
 		};
 
 	/**
@@ -386,6 +410,7 @@ public enum DataType implements Enumerator {
 			case DOUBLE_VALUE: return DOUBLE;
 			case BOOLEAN_VALUE: return BOOLEAN;
 			case STRING_VALUE: return STRING;
+			case UNDEFINED_VALUE: return UNDEFINED;
 		}
 		return null;
 	}

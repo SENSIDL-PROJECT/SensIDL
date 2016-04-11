@@ -13,6 +13,8 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.Interval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.Method;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
 import de.fzi.sensidl.design.sensidl.sensidlPackage;
@@ -71,6 +73,12 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 					return; 
 				}
 				else break;
+			case DataRepresentationPackage.METHOD:
+				sequence_Method(context, (Method) semanticObject); 
+				return; 
+			case DataRepresentationPackage.METHOD_PARAMETER:
+				sequence_MethodParameter(context, (MethodParameter) semanticObject); 
+				return; 
 			case DataRepresentationPackage.NON_MEASUREMENT_DATA:
 				sequence_NonMeasurementData(context, (NonMeasurementData) semanticObject); 
 				return; 
@@ -120,7 +128,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *         parentDataSet+=[DataSet|ID]* 
 	 *         ID=STRING? 
 	 *         description=DESCRIPTION? 
-	 *         data+=Data*
+	 *         (data+=Data | method+=Method)*
 	 *     )
 	 */
 	protected void sequence_DataSet(ISerializationContext context, DataSet semanticObject) {
@@ -273,6 +281,38 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     )
 	 */
 	protected void sequence_MeasurementData_MeasurementDataNotAdjustable(ISerializationContext context, MeasurementData semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     MethodParameter returns MethodParameter
+	 *
+	 * Constraint:
+	 *     ((dataType=DataType | dataType=DataTypeNotAdjustable | dataTypeDataSet=[DataSet|ID]) name=ID)
+	 */
+	protected void sequence_MethodParameter(ISerializationContext context, MethodParameter semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Method returns Method
+	 *
+	 * Constraint:
+	 *     (
+	 *         (visibility='+' | visibility='-' | visibility='#' | visibility='~')? 
+	 *         name=ID 
+	 *         parameter+=MethodParameter? 
+	 *         parameter+=MethodParameter* 
+	 *         (returnType=DataType | returnType=DataTypeNotAdjustable | returnTypeDataSet=[DataSet|ID])? 
+	 *         ID=STRING? 
+	 *         description=DESCRIPTION?
+	 *     )
+	 */
+	protected void sequence_Method(ISerializationContext context, Method semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

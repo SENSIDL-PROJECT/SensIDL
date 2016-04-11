@@ -47,8 +47,16 @@ SensorDataDescription returns dataRepresentation::SensorDataDescription:
 
 DataSet returns dataRepresentation::DataSet:
 	"dataSet" name=ID ("uses" parentDataSet+=[dataRepresentation::DataSet])?("," parentDataSet+=[dataRepresentation::DataSet])* ("with identifier" ":" ID=STRING)? (description=DESCRIPTION)? "{"
-		(data+=Data)* 
+		((data+=Data) | (method+=Method))*
 	"}"
+;
+
+Method returns dataRepresentation::Method:
+	(visibility='+'|visibility='-'|visibility='#'|visibility='~')? name = ID"(" (parameter+=MethodParameter)? (","parameter+=MethodParameter)* ")"(":" ((returnType=DataType | returnType=DataTypeNotAdjustable)| returnTypeDataSet=[dataRepresentation::DataSet]))? "as" "Method" ("with identifier" ":" ID=STRING)? (description=DESCRIPTION)?
+;
+
+MethodParameter returns dataRepresentation::MethodParameter:
+	((dataType=DataType | dataType=DataTypeNotAdjustable)| dataTypeDataSet=[dataRepresentation::DataSet]) name=ID
 ;
 
 Data returns dataRepresentation::Data:

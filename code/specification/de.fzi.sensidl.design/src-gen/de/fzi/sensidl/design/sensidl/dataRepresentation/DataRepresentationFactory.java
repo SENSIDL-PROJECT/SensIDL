@@ -103,6 +103,24 @@ public interface DataRepresentationFactory extends EFactory {
 	Interval createInterval();
 
 	/**
+	 * Returns a new object of class '<em>Method</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Method</em>'.
+	 * @generated
+	 */
+	Method createMethod();
+
+	/**
+	 * Returns a new object of class '<em>Method Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Method Parameter</em>'.
+	 * @generated
+	 */
+	MethodParameter createMethodParameter();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

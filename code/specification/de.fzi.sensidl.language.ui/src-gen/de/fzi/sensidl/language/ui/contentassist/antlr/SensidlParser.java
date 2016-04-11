@@ -37,6 +37,12 @@ public class SensidlParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getDataSetAccess().getAlternatives_7(), "rule__DataSet__Alternatives_7");
+					put(grammarAccess.getMethodAccess().getAlternatives_0(), "rule__Method__Alternatives_0");
+					put(grammarAccess.getMethodAccess().getAlternatives_6_1(), "rule__Method__Alternatives_6_1");
+					put(grammarAccess.getMethodAccess().getAlternatives_6_1_0(), "rule__Method__Alternatives_6_1_0");
+					put(grammarAccess.getMethodParameterAccess().getAlternatives_0(), "rule__MethodParameter__Alternatives_0");
+					put(grammarAccess.getMethodParameterAccess().getAlternatives_0_0(), "rule__MethodParameter__Alternatives_0_0");
 					put(grammarAccess.getDataAccess().getAlternatives(), "rule__Data__Alternatives");
 					put(grammarAccess.getMeasurementDataAccess().getAlternatives_6(), "rule__MeasurementData__Alternatives_6");
 					put(grammarAccess.getMeasurementDataAccess().getAlternatives_7_1(), "rule__MeasurementData__Alternatives_7_1");
@@ -58,6 +64,11 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDataSetAccess().getGroup_2(), "rule__DataSet__Group_2__0");
 					put(grammarAccess.getDataSetAccess().getGroup_3(), "rule__DataSet__Group_3__0");
 					put(grammarAccess.getDataSetAccess().getGroup_4(), "rule__DataSet__Group_4__0");
+					put(grammarAccess.getMethodAccess().getGroup(), "rule__Method__Group__0");
+					put(grammarAccess.getMethodAccess().getGroup_4(), "rule__Method__Group_4__0");
+					put(grammarAccess.getMethodAccess().getGroup_6(), "rule__Method__Group_6__0");
+					put(grammarAccess.getMethodAccess().getGroup_9(), "rule__Method__Group_9__0");
+					put(grammarAccess.getMethodParameterAccess().getGroup(), "rule__MethodParameter__Group__0");
 					put(grammarAccess.getMeasurementDataAccess().getGroup(), "rule__MeasurementData__Group__0");
 					put(grammarAccess.getMeasurementDataAccess().getGroup_5(), "rule__MeasurementData__Group_5__0");
 					put(grammarAccess.getMeasurementDataAccess().getGroup_6_0(), "rule__MeasurementData__Group_6_0__0");
@@ -107,7 +118,24 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDataSetAccess().getParentDataSetAssignment_3_1(), "rule__DataSet__ParentDataSetAssignment_3_1");
 					put(grammarAccess.getDataSetAccess().getIDAssignment_4_2(), "rule__DataSet__IDAssignment_4_2");
 					put(grammarAccess.getDataSetAccess().getDescriptionAssignment_5(), "rule__DataSet__DescriptionAssignment_5");
-					put(grammarAccess.getDataSetAccess().getDataAssignment_7(), "rule__DataSet__DataAssignment_7");
+					put(grammarAccess.getDataSetAccess().getDataAssignment_7_0(), "rule__DataSet__DataAssignment_7_0");
+					put(grammarAccess.getDataSetAccess().getMethodAssignment_7_1(), "rule__DataSet__MethodAssignment_7_1");
+					put(grammarAccess.getMethodAccess().getVisibilityAssignment_0_0(), "rule__Method__VisibilityAssignment_0_0");
+					put(grammarAccess.getMethodAccess().getVisibilityAssignment_0_1(), "rule__Method__VisibilityAssignment_0_1");
+					put(grammarAccess.getMethodAccess().getVisibilityAssignment_0_2(), "rule__Method__VisibilityAssignment_0_2");
+					put(grammarAccess.getMethodAccess().getVisibilityAssignment_0_3(), "rule__Method__VisibilityAssignment_0_3");
+					put(grammarAccess.getMethodAccess().getNameAssignment_1(), "rule__Method__NameAssignment_1");
+					put(grammarAccess.getMethodAccess().getParameterAssignment_3(), "rule__Method__ParameterAssignment_3");
+					put(grammarAccess.getMethodAccess().getParameterAssignment_4_1(), "rule__Method__ParameterAssignment_4_1");
+					put(grammarAccess.getMethodAccess().getReturnTypeAssignment_6_1_0_0(), "rule__Method__ReturnTypeAssignment_6_1_0_0");
+					put(grammarAccess.getMethodAccess().getReturnTypeAssignment_6_1_0_1(), "rule__Method__ReturnTypeAssignment_6_1_0_1");
+					put(grammarAccess.getMethodAccess().getReturnTypeDataSetAssignment_6_1_1(), "rule__Method__ReturnTypeDataSetAssignment_6_1_1");
+					put(grammarAccess.getMethodAccess().getIDAssignment_9_2(), "rule__Method__IDAssignment_9_2");
+					put(grammarAccess.getMethodAccess().getDescriptionAssignment_10(), "rule__Method__DescriptionAssignment_10");
+					put(grammarAccess.getMethodParameterAccess().getDataTypeAssignment_0_0_0(), "rule__MethodParameter__DataTypeAssignment_0_0_0");
+					put(grammarAccess.getMethodParameterAccess().getDataTypeAssignment_0_0_1(), "rule__MethodParameter__DataTypeAssignment_0_0_1");
+					put(grammarAccess.getMethodParameterAccess().getDataTypeDataSetAssignment_0_1(), "rule__MethodParameter__DataTypeDataSetAssignment_0_1");
+					put(grammarAccess.getMethodParameterAccess().getNameAssignment_1(), "rule__MethodParameter__NameAssignment_1");
 					put(grammarAccess.getMeasurementDataAccess().getNameAssignment_0(), "rule__MeasurementData__NameAssignment_0");
 					put(grammarAccess.getMeasurementDataAccess().getDataTypeAssignment_2(), "rule__MeasurementData__DataTypeAssignment_2");
 					put(grammarAccess.getMeasurementDataAccess().getUnitAssignment_4(), "rule__MeasurementData__UnitAssignment_4");

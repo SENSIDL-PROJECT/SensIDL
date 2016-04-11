@@ -279,6 +279,52 @@ public class DataRepresentationItemProviderAdapterFactory extends DataRepresenta
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link de.fzi.sensidl.design.sensidl.dataRepresentation.Method} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MethodItemProvider methodItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.fzi.sensidl.design.sensidl.dataRepresentation.Method}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMethodAdapter() {
+		if (methodItemProvider == null) {
+			methodItemProvider = new MethodItemProvider(this);
+		}
+
+		return methodItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MethodParameterItemProvider methodParameterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMethodParameterAdapter() {
+		if (methodParameterItemProvider == null) {
+			methodParameterItemProvider = new MethodParameterItemProvider(this);
+		}
+
+		return methodParameterItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -386,6 +432,8 @@ public class DataRepresentationItemProviderAdapterFactory extends DataRepresenta
 		if (linearDataConversionItemProvider != null) linearDataConversionItemProvider.dispose();
 		if (linearDataConversionWithIntervalItemProvider != null) linearDataConversionWithIntervalItemProvider.dispose();
 		if (intervalItemProvider != null) intervalItemProvider.dispose();
+		if (methodItemProvider != null) methodItemProvider.dispose();
+		if (methodParameterItemProvider != null) methodParameterItemProvider.dispose();
 	}
 
 }

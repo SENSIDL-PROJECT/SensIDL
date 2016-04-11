@@ -5,6 +5,7 @@ package de.fzi.sensidl.design.sensidl.dataRepresentation.impl;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.Method;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
 import de.fzi.sensidl.design.sensidl.impl.NamedElementImpl;
 import java.util.Collection;
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getSubDataSets <em>Sub Data Sets</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getData <em>Data</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getParentDataSet <em>Parent Data Set</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getMethod <em>Method</em>}</li>
  * </ul>
  *
  * @generated
@@ -65,6 +67,16 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * @ordered
 	 */
 	protected EList<DataSet> parentDataSet;
+
+	/**
+	 * The cached value of the '{@link #getMethod() <em>Method</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMethod()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Method> method;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -167,6 +179,18 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Method> getMethod() {
+		if (method == null) {
+			method = new EObjectContainmentWithInverseEList<Method>(Method.class, this, DataRepresentationPackage.DATA_SET__METHOD, DataRepresentationPackage.METHOD__DATA_SET);
+		}
+		return method;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -181,6 +205,8 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getData()).basicAdd(otherEnd, msgs);
 			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParentDataSet()).basicAdd(otherEnd, msgs);
+			case DataRepresentationPackage.DATA_SET__METHOD:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMethod()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -201,6 +227,8 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 				return ((InternalEList<?>)getData()).basicRemove(otherEnd, msgs);
 			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
 				return ((InternalEList<?>)getParentDataSet()).basicRemove(otherEnd, msgs);
+			case DataRepresentationPackage.DATA_SET__METHOD:
+				return ((InternalEList<?>)getMethod()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -235,6 +263,8 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 				return getData();
 			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
 				return getParentDataSet();
+			case DataRepresentationPackage.DATA_SET__METHOD:
+				return getMethod();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -263,6 +293,10 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 				getParentDataSet().clear();
 				getParentDataSet().addAll((Collection<? extends DataSet>)newValue);
 				return;
+			case DataRepresentationPackage.DATA_SET__METHOD:
+				getMethod().clear();
+				getMethod().addAll((Collection<? extends Method>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -287,6 +321,9 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
 				getParentDataSet().clear();
 				return;
+			case DataRepresentationPackage.DATA_SET__METHOD:
+				getMethod().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -307,6 +344,8 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 				return data != null && !data.isEmpty();
 			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
 				return parentDataSet != null && !parentDataSet.isEmpty();
+			case DataRepresentationPackage.DATA_SET__METHOD:
+				return method != null && !method.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
