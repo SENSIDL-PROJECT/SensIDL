@@ -62,7 +62,12 @@ MethodParameter returns dataRepresentation::MethodParameter:
 Data returns dataRepresentation::Data:
 	MeasurementData |
 	NonMeasurementData |
-	MeasurementDataNotAdjustable
+	MeasurementDataNotAdjustable|
+	ListData
+;
+
+ListData returns dataRepresentation::ListData:
+	name=ID "as" "list" "as" (dataType=DataType | dataTypeDataSet=[dataRepresentation::DataSet])
 ;
 
 MeasurementData returns dataRepresentation::MeasurementData:

@@ -1033,6 +1033,97 @@ public interface DataRepresentationPackage extends EPackage {
 	int METHOD_PARAMETER_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.ListDataImpl <em>List Data</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.ListDataImpl
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getListData()
+	 * @generated
+	 */
+	int LIST_DATA = 13;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_DATA__ID = DATA__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_DATA__NAME = DATA__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_DATA__DESCRIPTION = DATA__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Data Set</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_DATA__DATA_SET = DATA__DATA_SET;
+
+	/**
+	 * The feature id for the '<em><b>Data Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_DATA__DATA_TYPE = DATA__DATA_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Excluded Methods</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_DATA__EXCLUDED_METHODS = DATA__EXCLUDED_METHODS;
+
+	/**
+	 * The feature id for the '<em><b>Data Type Data Set</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_DATA__DATA_TYPE_DATA_SET = DATA_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>List Data</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_DATA_FEATURE_COUNT = DATA_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>List Data</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIST_DATA_OPERATION_COUNT = DATA_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataType <em>Data Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1040,7 +1131,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getDataType()
 	 * @generated
 	 */
-	int DATA_TYPE = 13;
+	int DATA_TYPE = 14;
 
 	/**
 	 * The meta object id for the '<em>Unit</em>' data type.
@@ -1050,7 +1141,7 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getUnit()
 	 * @generated
 	 */
-	int UNIT = 14;
+	int UNIT = 15;
 
 
 	/**
@@ -1569,6 +1660,27 @@ public interface DataRepresentationPackage extends EPackage {
 	EReference getMethodParameter_DataTypeDataSet();
 
 	/**
+	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.ListData <em>List Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>List Data</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.ListData
+	 * @generated
+	 */
+	EClass getListData();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.ListData#getDataTypeDataSet <em>Data Type Data Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Data Type Data Set</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.ListData#getDataTypeDataSet()
+	 * @see #getListData()
+	 * @generated
+	 */
+	EReference getListData_DataTypeDataSet();
+
+	/**
 	 * Returns the meta object for enum '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataType <em>Data Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2021,6 +2133,24 @@ public interface DataRepresentationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference METHOD_PARAMETER__DATA_TYPE_DATA_SET = eINSTANCE.getMethodParameter_DataTypeDataSet();
+
+		/**
+		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.ListDataImpl <em>List Data</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.ListDataImpl
+		 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataRepresentationPackageImpl#getListData()
+		 * @generated
+		 */
+		EClass LIST_DATA = eINSTANCE.getListData();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Type Data Set</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LIST_DATA__DATA_TYPE_DATA_SET = eINSTANCE.getListData_DataTypeDataSet();
 
 		/**
 		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataType <em>Data Type</em>}' enum.

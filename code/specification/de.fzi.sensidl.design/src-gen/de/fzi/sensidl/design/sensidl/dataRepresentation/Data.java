@@ -54,6 +54,7 @@ public interface Data extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Data Type</b></em>' attribute.
+	 * The default value is <code>"UNDEFINED"</code>.
 	 * The literals are from the enumeration {@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -65,7 +66,7 @@ public interface Data extends NamedElement {
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 	 * @see #setDataType(DataType)
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getData_DataType()
-	 * @model required="true"
+	 * @model default="UNDEFINED" required="true"
 	 * @generated
 	 */
 	DataType getDataType();

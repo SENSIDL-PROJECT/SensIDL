@@ -121,6 +121,15 @@ public interface DataRepresentationFactory extends EFactory {
 	MethodParameter createMethodParameter();
 
 	/**
+	 * Returns a new object of class '<em>List Data</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>List Data</em>'.
+	 * @generated
+	 */
+	ListData createListData();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

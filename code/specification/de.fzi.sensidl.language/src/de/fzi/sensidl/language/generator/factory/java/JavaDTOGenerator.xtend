@@ -8,6 +8,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
+import de.fzi.sensidl.design.sensidl.dataRepresentation.ListData
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Method
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData
@@ -102,7 +103,11 @@ class JavaDTOGenerator implements IDTOGenerator {
 			«IF !bigEndian»
 				import java.nio.ByteBuffer;
 				import java.nio.ByteOrder;
+				 
 			«ENDIF» 
+			
+			import java.util.ArrayList;
+			import java.util.List;
 			 
 			/**
 			 * Data transfer object for «className»
@@ -250,6 +255,9 @@ class JavaDTOGenerator implements IDTOGenerator {
 		«FOR data : d.eContents.filter(MeasurementData)»
 			«generateDataFields(data)»
 		«ENDFOR» 
+		«FOR data : d.eContents.filter(ListData)»
+			«generateDataFields(data)»
+		«ENDFOR» 
 		«FOR dataSet : d.parentDataSet»
 			«generateDataFields(dataSet)»
 		«ENDFOR»
@@ -265,7 +273,17 @@ class JavaDTOGenerator implements IDTOGenerator {
 		 */
 		private «GenerationUtil.toNameUpper(dataSet)» «GenerationUtil.toNameLower(dataSet)»;
 		'''
-	
+	def generateDataFields(ListData data){
+		'''
+		
+		«IF data.description != null»
+		/* 
+		 * «data.description»
+		 */ 
+		«ENDIF» 
+		private List<«data.getListType»> «GenerationUtil.toNameLower(data)» = new ArrayList<«data.getListType»>();
+			 '''
+	}
 	
 	/**
 	 * Generates the fields for the measurement data
@@ -375,7 +393,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 				if (!nmdata.constant) {
 					dataList.add(data)
 				}
-			} else {
+			} else if (!(data instanceof ListData)) {
 				dataList.add(data)
 			}
 		}
@@ -383,7 +401,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 		if (dataList.size > 0) {
 			var firstElement = dataList.get(0).toTypeName + " " + GenerationUtil.toNameLower(dataList.get(0))
 			dataList.remove(0)
-			if(d.parentDataSet != null){
+			if(d.parentDataSet.size > 0){
 				'''«firstElement»«FOR data : dataList», «data.toTypeName» «GenerationUtil.toNameLower(data)»«ENDFOR»«FOR pdataSet : d.parentDataSet», «GenerationUtil.toNameUpper(pdataSet)» «GenerationUtil.toNameLower(pdataSet)»«ENDFOR»'''
 			} else {
 				'''«firstElement»«FOR data : dataList», «data.toTypeName» «GenerationUtil.toNameLower(data)»«ENDFOR»'''
@@ -417,6 +435,13 @@ class JavaDTOGenerator implements IDTOGenerator {
 				«generateSetter(data)»
 			«ENDIF»
 		«ENDFOR»
+		«FOR data : d.eContents.filter(ListData)»
+				«generateAddMethod(data)»
+				
+				«generateGetter(data)»
+				
+				«generateSetter(data)»
+		«ENDFOR»
 		«FOR pdataSet : d.parentDataSet»
 			
 			«generateGetter(pdataSet)»
@@ -424,6 +449,17 @@ class JavaDTOGenerator implements IDTOGenerator {
 			«generateSetter(pdataSet)»
 		«ENDFOR»
 		'''
+	}
+	
+	/**
+	 * return the type of the list
+	 */
+	def getListType(ListData data){
+		if (data.dataType != DataType.UNDEFINED){
+			return data.dataType.toTypeName
+		} else if (data.dataTypeDataSet != null){
+			return data.dataTypeDataSet.name
+		}
 	}
 	
 	/**
@@ -444,6 +480,34 @@ class JavaDTOGenerator implements IDTOGenerator {
 	
 // ------------------------------ Getter ------------------------------
 
+	/** 
+	 * Generates the Getter Method for the list data
+	 */
+	
+	def generateGetter(ListData data){
+		'''
+		/**
+		 * Get the «data.name» list
+		 *
+		 */
+		public List<«data.getListType»> «data.toGetterName»(){
+			return this.«GenerationUtil.toNameLower(data)»;
+		}
+
+
+		/**
+		 * Get the a specific element from the «data.name» list or null if not found
+		 *
+		 */
+		public «data.getListType» «data.toGetterName»(«data.getListType» obj){
+			if(this.«GenerationUtil.toNameLower(data)».indexOf(obj) == -1){
+				return null;
+			} 
+			return this.«GenerationUtil.toNameLower(data)».get(this.«GenerationUtil.toNameLower(data)».indexOf(obj));
+		}
+		'''
+	}
+	
 	/** 
 	 * Generates the Getter Method for the dataset
 	 */
@@ -519,6 +583,42 @@ class JavaDTOGenerator implements IDTOGenerator {
 
 // ------------------------------ Setter ------------------------------
 
+	/**
+	 * Generates the add method to add data to a data List
+	 */
+	def generateAddMethod(ListData data){
+		'''
+		/**
+		 * Add Data to the «data.name» list
+		 *
+		 * @param «data.name.toFirstLower»Element 
+		 *				the object to add to the list
+		 *
+		 */
+		public void add«data.name.toFirstUpper»(«data.getListType» «data.name.toFirstLower»Element){
+			«GenerationUtil.toNameLower(data)».add(«data.name.toFirstLower»Element);
+		}
+		'''
+	}
+	
+	/**
+	 * Generates the Setter Method for list data
+	 */
+	def generateSetter(ListData data){
+		'''
+		/**
+		 * Set the «data.name» list
+		 *
+		 * @param «data.name.toFirstLower»
+		 * 				the list to set
+		 *
+		 */
+		public void «data.toSetterName»(List<«data.getListType»> «data.name.toFirstLower»){
+			this.«GenerationUtil.toNameLower(data)» = «data.name.toFirstLower»;
+		}
+		'''
+	}
+	
 	/**
 	 * Generates the Setter Method for the dataset
 	 */
@@ -677,6 +777,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			case DOUBLE: Double.name
 			case BOOLEAN: Boolean.name
 			case STRING: String.name
+			default: ""
 		}
 	}
 	
@@ -697,6 +798,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			case DOUBLE: Double.name
 			case BOOLEAN: Boolean.name
 			case STRING: String.name
+			default: ""
 		}
 	}
 	
@@ -727,6 +829,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			case DOUBLE: "double"
 			case BOOLEAN: "boolean"
 			case STRING: "String"
+			default: ""
 		}
 	}
 	
@@ -747,6 +850,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			case DOUBLE: "double"
 			case BOOLEAN: "boolean"
 			case STRING: "String"
+			default: ""
 		}
 	}
 	

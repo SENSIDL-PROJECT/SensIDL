@@ -73,7 +73,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="dataSet" eType="#//dataRepresentation/DataSet"
           eOpposite="#//dataRepresentation/DataSet/data"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" lowerBound="1"
-          eType="#//dataRepresentation/DataType"/>
+          eType="#//dataRepresentation/DataType" defaultValueLiteral="UNDEFINED"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="excludedMethods" upperBound="-1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral=""/>
@@ -162,6 +162,9 @@
           eOpposite="#//dataRepresentation/Method/parameter"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" lowerBound="1"
           eType="#//dataRepresentation/DataType" defaultValueLiteral="UNDEFINED"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dataTypeDataSet" eType="#//dataRepresentation/DataSet"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ListData" eSuperTypes="#//dataRepresentation/Data">
       <eStructuralFeatures xsi:type="ecore:EReference" name="dataTypeDataSet" eType="#//dataRepresentation/DataSet"/>
     </eClassifiers>
   </eSubpackages>

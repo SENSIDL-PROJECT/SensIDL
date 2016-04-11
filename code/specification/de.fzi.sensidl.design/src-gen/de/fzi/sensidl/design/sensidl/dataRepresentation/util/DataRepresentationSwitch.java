@@ -169,6 +169,15 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DataRepresentationPackage.LIST_DATA: {
+				ListData listData = (ListData)theEObject;
+				T result = caseListData(listData);
+				if (result == null) result = caseData(listData);
+				if (result == null) result = caseNamedElement(listData);
+				if (result == null) result = caseIdentifiableElement(listData);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -365,6 +374,21 @@ public class DataRepresentationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMethodParameter(MethodParameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>List Data</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>List Data</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseListData(ListData object) {
 		return null;
 	}
 

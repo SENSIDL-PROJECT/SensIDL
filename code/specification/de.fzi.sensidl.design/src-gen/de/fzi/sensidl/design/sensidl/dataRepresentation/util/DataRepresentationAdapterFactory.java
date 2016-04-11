@@ -119,6 +119,10 @@ public class DataRepresentationAdapterFactory extends AdapterFactoryImpl {
 				return createMethodParameterAdapter();
 			}
 			@Override
+			public Adapter caseListData(ListData object) {
+				return createListDataAdapter();
+			}
+			@Override
 			public Adapter caseIdentifiableElement(IdentifiableElement object) {
 				return createIdentifiableElementAdapter();
 			}
@@ -325,6 +329,20 @@ public class DataRepresentationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMethodParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.ListData <em>List Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.ListData
+	 * @generated
+	 */
+	public Adapter createListDataAdapter() {
 		return null;
 	}
 

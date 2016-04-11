@@ -12,6 +12,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Interval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.ListData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Method;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter;
@@ -58,6 +59,9 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 				return; 
 			case DataRepresentationPackage.LINEAR_DATA_CONVERSION_WITH_INTERVAL:
 				sequence_LinearDataConversionWithInterval(context, (LinearDataConversionWithInterval) semanticObject); 
+				return; 
+			case DataRepresentationPackage.LIST_DATA:
+				sequence_ListData(context, (ListData) semanticObject); 
 				return; 
 			case DataRepresentationPackage.MEASUREMENT_DATA:
 				if (rule == grammarAccess.getMeasurementDataNotAdjustableRule()) {
@@ -213,6 +217,19 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 		feeder.accept(grammarAccess.getLinearDataConversionAccess().getScalingFactorDOUBLEParserRuleCall_2_0(), semanticObject.getScalingFactor());
 		feeder.accept(grammarAccess.getLinearDataConversionAccess().getOffsetDOUBLEParserRuleCall_5_0(), semanticObject.getOffset());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Data returns ListData
+	 *     ListData returns ListData
+	 *
+	 * Constraint:
+	 *     (name=ID (dataType=DataType | dataTypeDataSet=[DataSet|ID]))
+	 */
+	protected void sequence_ListData(ISerializationContext context, ListData semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

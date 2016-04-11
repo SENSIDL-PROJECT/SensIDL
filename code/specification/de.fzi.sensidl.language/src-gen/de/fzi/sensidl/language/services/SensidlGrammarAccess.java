@@ -611,12 +611,13 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cMeasurementDataParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cNonMeasurementDataParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cMeasurementDataNotAdjustableParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cListDataParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//Data dataRepresentation::Data:
-		//	MeasurementData | NonMeasurementData | MeasurementDataNotAdjustable
+		//	MeasurementData | NonMeasurementData | MeasurementDataNotAdjustable | ListData
 		@Override public ParserRule getRule() { return rule; }
 
-		//MeasurementData | NonMeasurementData | MeasurementDataNotAdjustable
+		//MeasurementData | NonMeasurementData | MeasurementDataNotAdjustable | ListData
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//MeasurementData
@@ -627,6 +628,65 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 		//MeasurementDataNotAdjustable
 		public RuleCall getMeasurementDataNotAdjustableParserRuleCall_2() { return cMeasurementDataNotAdjustableParserRuleCall_2; }
+
+		//ListData
+		public RuleCall getListDataParserRuleCall_3() { return cListDataParserRuleCall_3; }
+	}
+
+	public class ListDataElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "de.fzi.sensidl.language.Sensidl.ListData");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Keyword cAsKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cListKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cAsKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
+		private final Assignment cDataTypeAssignment_4_0 = (Assignment)cAlternatives_4.eContents().get(0);
+		private final RuleCall cDataTypeDataTypeEnumRuleCall_4_0_0 = (RuleCall)cDataTypeAssignment_4_0.eContents().get(0);
+		private final Assignment cDataTypeDataSetAssignment_4_1 = (Assignment)cAlternatives_4.eContents().get(1);
+		private final CrossReference cDataTypeDataSetDataSetCrossReference_4_1_0 = (CrossReference)cDataTypeDataSetAssignment_4_1.eContents().get(0);
+		private final RuleCall cDataTypeDataSetDataSetIDTerminalRuleCall_4_1_0_1 = (RuleCall)cDataTypeDataSetDataSetCrossReference_4_1_0.eContents().get(1);
+		
+		//ListData dataRepresentation::ListData:
+		//	name=ID "as" "list" "as" (dataType=DataType | dataTypeDataSet=[dataRepresentation::DataSet])
+		@Override public ParserRule getRule() { return rule; }
+
+		//name=ID "as" "list" "as" (dataType=DataType | dataTypeDataSet=[dataRepresentation::DataSet])
+		public Group getGroup() { return cGroup; }
+
+		//name=ID
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
+
+		//"as"
+		public Keyword getAsKeyword_1() { return cAsKeyword_1; }
+
+		//"list"
+		public Keyword getListKeyword_2() { return cListKeyword_2; }
+
+		//"as"
+		public Keyword getAsKeyword_3() { return cAsKeyword_3; }
+
+		//(dataType=DataType | dataTypeDataSet=[dataRepresentation::DataSet])
+		public Alternatives getAlternatives_4() { return cAlternatives_4; }
+
+		//dataType=DataType
+		public Assignment getDataTypeAssignment_4_0() { return cDataTypeAssignment_4_0; }
+
+		//DataType
+		public RuleCall getDataTypeDataTypeEnumRuleCall_4_0_0() { return cDataTypeDataTypeEnumRuleCall_4_0_0; }
+
+		//dataTypeDataSet=[dataRepresentation::DataSet]
+		public Assignment getDataTypeDataSetAssignment_4_1() { return cDataTypeDataSetAssignment_4_1; }
+
+		//[dataRepresentation::DataSet]
+		public CrossReference getDataTypeDataSetDataSetCrossReference_4_1_0() { return cDataTypeDataSetDataSetCrossReference_4_1_0; }
+
+		//ID
+		public RuleCall getDataTypeDataSetDataSetIDTerminalRuleCall_4_1_0_1() { return cDataTypeDataSetDataSetIDTerminalRuleCall_4_1_0_1; }
 	}
 
 	public class MeasurementDataElements extends AbstractParserRuleElementFinder {
@@ -1601,6 +1661,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	private final MethodElements pMethod;
 	private final MethodParameterElements pMethodParameter;
 	private final DataElements pData;
+	private final ListDataElements pListData;
 	private final MeasurementDataElements pMeasurementData;
 	private final NonMeasurementDataElements pNonMeasurementData;
 	private final MeasurementDataNotAdjustableElements pMeasurementDataNotAdjustable;
@@ -1634,6 +1695,7 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		this.pMethod = new MethodElements();
 		this.pMethodParameter = new MethodParameterElements();
 		this.pData = new DataElements();
+		this.pListData = new ListDataElements();
 		this.pMeasurementData = new MeasurementDataElements();
 		this.pNonMeasurementData = new NonMeasurementDataElements();
 		this.pMeasurementDataNotAdjustable = new MeasurementDataNotAdjustableElements();
@@ -1770,13 +1832,23 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Data dataRepresentation::Data:
-	//	MeasurementData | NonMeasurementData | MeasurementDataNotAdjustable
+	//	MeasurementData | NonMeasurementData | MeasurementDataNotAdjustable | ListData
 	public DataElements getDataAccess() {
 		return pData;
 	}
 	
 	public ParserRule getDataRule() {
 		return getDataAccess().getRule();
+	}
+
+	//ListData dataRepresentation::ListData:
+	//	name=ID "as" "list" "as" (dataType=DataType | dataTypeDataSet=[dataRepresentation::DataSet])
+	public ListDataElements getListDataAccess() {
+		return pListData;
+	}
+	
+	public ParserRule getListDataRule() {
+		return getListDataAccess().getRule();
 	}
 
 	//MeasurementData dataRepresentation::MeasurementData:

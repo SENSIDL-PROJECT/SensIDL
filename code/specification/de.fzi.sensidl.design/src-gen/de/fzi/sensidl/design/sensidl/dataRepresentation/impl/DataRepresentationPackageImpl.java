@@ -13,6 +13,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Interval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.ListData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Method;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter;
@@ -127,6 +128,13 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * @generated
 	 */
 	private EClass methodParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass listDataEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -645,6 +653,24 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getListData() {
+		return listDataEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getListData_DataTypeDataSet() {
+		return (EReference)listDataEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getDataType() {
 		return dataTypeEEnum;
 	}
@@ -747,6 +773,9 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 		createEAttribute(methodParameterEClass, METHOD_PARAMETER__DATA_TYPE);
 		createEReference(methodParameterEClass, METHOD_PARAMETER__DATA_TYPE_DATA_SET);
 
+		listDataEClass = createEClass(LIST_DATA);
+		createEReference(listDataEClass, LIST_DATA__DATA_TYPE_DATA_SET);
+
 		// Create enums
 		dataTypeEEnum = createEEnum(DATA_TYPE);
 
@@ -798,6 +827,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 		linearDataConversionWithIntervalEClass.getESuperTypes().add(this.getDataConversion());
 		intervalEClass.getESuperTypes().add(thesensidlPackage.getIdentifiableElement());
 		methodEClass.getESuperTypes().add(thesensidlPackage.getNamedElement());
+		listDataEClass.getESuperTypes().add(this.getData());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(sensorDataDescriptionEClass, SensorDataDescription.class, "SensorDataDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -813,7 +843,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 
 		initEClass(dataEClass, Data.class, "Data", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getData_DataSet(), this.getDataSet(), this.getDataSet_Data(), "dataSet", null, 0, 1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getData_DataType(), this.getDataType(), "dataType", null, 1, 1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getData_DataType(), this.getDataType(), "dataType", "UNDEFINED", 1, 1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getData_ExcludedMethods(), ecorePackage.getEString(), "excludedMethods", "", 0, -1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(measurementDataEClass, MeasurementData.class, "MeasurementData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -863,6 +893,9 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 		initEReference(getMethodParameter_Method(), this.getMethod(), this.getMethod_Parameter(), "method", null, 0, 1, MethodParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMethodParameter_DataType(), this.getDataType(), "dataType", "UNDEFINED", 1, 1, MethodParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMethodParameter_DataTypeDataSet(), this.getDataSet(), null, "dataTypeDataSet", null, 0, 1, MethodParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(listDataEClass, ListData.class, "ListData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getListData_DataTypeDataSet(), this.getDataSet(), null, "dataTypeDataSet", null, 0, 1, ListData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(dataTypeEEnum, DataType.class, "DataType");

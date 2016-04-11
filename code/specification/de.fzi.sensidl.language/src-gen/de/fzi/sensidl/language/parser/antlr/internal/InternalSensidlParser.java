@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_DESCRIPTION", "RULE_STRING", "RULE_INT", "RULE_ANY_OTHER", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'sensorInterface'", "'with identifier'", "':'", "'{'", "'}'", "'encoding'", "','", "'endianness'", "'alignment'", "'BIT'", "'sensorData'", "'dataSet'", "'uses'", "'+'", "'-'", "'#'", "'~'", "'('", "')'", "'as'", "'Method'", "'in'", "'adjusted'", "'exclude:'", "'setter'", "'getter'", "'constant'", "'value'", "'='", "'exclude'", "'with range'", "'['", "';'", "']'", "'with scaling factor'", "'and offset'", "'by linear mapping'", "'=>'", "'.'", "'SENSIDL_BINARY'", "'SENSIDL_JSON'", "'BIG_ENDIAN'", "'LITTLE_ENDIAN'", "'STRING'", "'BOOLEAN'", "'INT8'", "'UINT8'", "'INT16'", "'UINT16'", "'INT32'", "'UINT32'", "'INT64'", "'UINT64'", "'FLOAT'", "'DOUBLE'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_DESCRIPTION", "RULE_STRING", "RULE_INT", "RULE_ANY_OTHER", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'sensorInterface'", "'with identifier'", "':'", "'{'", "'}'", "'encoding'", "','", "'endianness'", "'alignment'", "'BIT'", "'sensorData'", "'dataSet'", "'uses'", "'+'", "'-'", "'#'", "'~'", "'('", "')'", "'as'", "'Method'", "'list'", "'in'", "'adjusted'", "'exclude:'", "'setter'", "'getter'", "'constant'", "'value'", "'='", "'exclude'", "'with range'", "'['", "';'", "']'", "'with scaling factor'", "'and offset'", "'by linear mapping'", "'=>'", "'.'", "'SENSIDL_BINARY'", "'SENSIDL_JSON'", "'BIG_ENDIAN'", "'LITTLE_ENDIAN'", "'STRING'", "'BOOLEAN'", "'INT8'", "'UINT8'", "'INT16'", "'UINT16'", "'INT32'", "'UINT32'", "'INT64'", "'UINT64'", "'FLOAT'", "'DOUBLE'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -55,6 +55,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final int T__66=66;
     public static final int RULE_ML_COMMENT=9;
     public static final int T__23=23;
+    public static final int T__67=67;
     public static final int T__24=24;
     public static final int T__25=25;
     public static final int T__62=62;
@@ -1521,7 +1522,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
             int alt12=2;
             int LA12_0 = input.LA(1);
 
-            if ( (LA12_0==RULE_ID||(LA12_0>=55 && LA12_0<=66)) ) {
+            if ( (LA12_0==RULE_ID||(LA12_0>=56 && LA12_0<=67)) ) {
                 alt12=1;
             }
             switch (alt12) {
@@ -1641,7 +1642,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     int alt15=2;
                     int LA15_0 = input.LA(1);
 
-                    if ( ((LA15_0>=55 && LA15_0<=66)) ) {
+                    if ( ((LA15_0>=56 && LA15_0<=67)) ) {
                         alt15=1;
                     }
                     else if ( (LA15_0==RULE_ID) ) {
@@ -1661,10 +1662,10 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                             int alt14=2;
                             int LA14_0 = input.LA(1);
 
-                            if ( ((LA14_0>=57 && LA14_0<=66)) ) {
+                            if ( ((LA14_0>=58 && LA14_0<=67)) ) {
                                 alt14=1;
                             }
-                            else if ( ((LA14_0>=55 && LA14_0<=56)) ) {
+                            else if ( ((LA14_0>=56 && LA14_0<=57)) ) {
                                 alt14=2;
                             }
                             else {
@@ -1967,7 +1968,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
             int alt20=2;
             int LA20_0 = input.LA(1);
 
-            if ( ((LA20_0>=55 && LA20_0<=66)) ) {
+            if ( ((LA20_0>=56 && LA20_0<=67)) ) {
                 alt20=1;
             }
             else if ( (LA20_0==RULE_ID) ) {
@@ -1987,10 +1988,10 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
-                    if ( ((LA19_0>=57 && LA19_0<=66)) ) {
+                    if ( ((LA19_0>=58 && LA19_0<=67)) ) {
                         alt19=1;
                     }
-                    else if ( ((LA19_0>=55 && LA19_0<=56)) ) {
+                    else if ( ((LA19_0>=56 && LA19_0<=57)) ) {
                         alt19=2;
                     }
                     else {
@@ -2193,7 +2194,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleData"
-    // InternalSensidl.g:941:1: ruleData returns [EObject current=null] : (this_MeasurementData_0= ruleMeasurementData | this_NonMeasurementData_1= ruleNonMeasurementData | this_MeasurementDataNotAdjustable_2= ruleMeasurementDataNotAdjustable ) ;
+    // InternalSensidl.g:941:1: ruleData returns [EObject current=null] : (this_MeasurementData_0= ruleMeasurementData | this_NonMeasurementData_1= ruleNonMeasurementData | this_MeasurementDataNotAdjustable_2= ruleMeasurementDataNotAdjustable | this_ListData_3= ruleListData ) ;
     public final EObject ruleData() throws RecognitionException {
         EObject current = null;
 
@@ -2203,15 +2204,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
         EObject this_MeasurementDataNotAdjustable_2 = null;
 
+        EObject this_ListData_3 = null;
+
 
          enterRule(); 
             
         try {
-            // InternalSensidl.g:944:28: ( (this_MeasurementData_0= ruleMeasurementData | this_NonMeasurementData_1= ruleNonMeasurementData | this_MeasurementDataNotAdjustable_2= ruleMeasurementDataNotAdjustable ) )
-            // InternalSensidl.g:945:1: (this_MeasurementData_0= ruleMeasurementData | this_NonMeasurementData_1= ruleNonMeasurementData | this_MeasurementDataNotAdjustable_2= ruleMeasurementDataNotAdjustable )
+            // InternalSensidl.g:944:28: ( (this_MeasurementData_0= ruleMeasurementData | this_NonMeasurementData_1= ruleNonMeasurementData | this_MeasurementDataNotAdjustable_2= ruleMeasurementDataNotAdjustable | this_ListData_3= ruleListData ) )
+            // InternalSensidl.g:945:1: (this_MeasurementData_0= ruleMeasurementData | this_NonMeasurementData_1= ruleNonMeasurementData | this_MeasurementDataNotAdjustable_2= ruleMeasurementDataNotAdjustable | this_ListData_3= ruleListData )
             {
-            // InternalSensidl.g:945:1: (this_MeasurementData_0= ruleMeasurementData | this_NonMeasurementData_1= ruleNonMeasurementData | this_MeasurementDataNotAdjustable_2= ruleMeasurementDataNotAdjustable )
-            int alt21=3;
+            // InternalSensidl.g:945:1: (this_MeasurementData_0= ruleMeasurementData | this_NonMeasurementData_1= ruleNonMeasurementData | this_MeasurementDataNotAdjustable_2= ruleMeasurementDataNotAdjustable | this_ListData_3= ruleListData )
+            int alt21=4;
             alt21 = dfa21.predict(input);
             switch (alt21) {
                 case 1 :
@@ -2268,6 +2271,24 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
                     }
                     break;
+                case 4 :
+                    // InternalSensidl.g:976:5: this_ListData_3= ruleListData
+                    {
+                     
+                            newCompositeNode(grammarAccess.getDataAccess().getListDataParserRuleCall_3()); 
+                        
+                    pushFollow(FOLLOW_2);
+                    this_ListData_3=ruleListData();
+
+                    state._fsp--;
+
+                     
+                            current = this_ListData_3; 
+                            afterParserOrEnumRuleCall();
+                        
+
+                    }
+                    break;
 
             }
 
@@ -2288,8 +2309,208 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleData"
 
 
+    // $ANTLR start "entryRuleListData"
+    // InternalSensidl.g:992:1: entryRuleListData returns [EObject current=null] : iv_ruleListData= ruleListData EOF ;
+    public final EObject entryRuleListData() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleListData = null;
+
+
+        try {
+            // InternalSensidl.g:993:2: (iv_ruleListData= ruleListData EOF )
+            // InternalSensidl.g:994:2: iv_ruleListData= ruleListData EOF
+            {
+             newCompositeNode(grammarAccess.getListDataRule()); 
+            pushFollow(FOLLOW_1);
+            iv_ruleListData=ruleListData();
+
+            state._fsp--;
+
+             current =iv_ruleListData; 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleListData"
+
+
+    // $ANTLR start "ruleListData"
+    // InternalSensidl.g:1001:1: ruleListData returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' otherlv_2= 'list' otherlv_3= 'as' ( ( (lv_dataType_4_0= ruleDataType ) ) | ( (otherlv_5= RULE_ID ) ) ) ) ;
+    public final EObject ruleListData() throws RecognitionException {
+        EObject current = null;
+
+        Token lv_name_0_0=null;
+        Token otherlv_1=null;
+        Token otherlv_2=null;
+        Token otherlv_3=null;
+        Token otherlv_5=null;
+        Enumerator lv_dataType_4_0 = null;
+
+
+         enterRule(); 
+            
+        try {
+            // InternalSensidl.g:1004:28: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' otherlv_2= 'list' otherlv_3= 'as' ( ( (lv_dataType_4_0= ruleDataType ) ) | ( (otherlv_5= RULE_ID ) ) ) ) )
+            // InternalSensidl.g:1005:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' otherlv_2= 'list' otherlv_3= 'as' ( ( (lv_dataType_4_0= ruleDataType ) ) | ( (otherlv_5= RULE_ID ) ) ) )
+            {
+            // InternalSensidl.g:1005:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' otherlv_2= 'list' otherlv_3= 'as' ( ( (lv_dataType_4_0= ruleDataType ) ) | ( (otherlv_5= RULE_ID ) ) ) )
+            // InternalSensidl.g:1005:2: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' otherlv_2= 'list' otherlv_3= 'as' ( ( (lv_dataType_4_0= ruleDataType ) ) | ( (otherlv_5= RULE_ID ) ) )
+            {
+            // InternalSensidl.g:1005:2: ( (lv_name_0_0= RULE_ID ) )
+            // InternalSensidl.g:1006:1: (lv_name_0_0= RULE_ID )
+            {
+            // InternalSensidl.g:1006:1: (lv_name_0_0= RULE_ID )
+            // InternalSensidl.g:1007:3: lv_name_0_0= RULE_ID
+            {
+            lv_name_0_0=(Token)match(input,RULE_ID,FOLLOW_30); 
+
+            			newLeafNode(lv_name_0_0, grammarAccess.getListDataAccess().getNameIDTerminalRuleCall_0_0()); 
+            		
+
+            	        if (current==null) {
+            	            current = createModelElement(grammarAccess.getListDataRule());
+            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"name",
+                    		lv_name_0_0, 
+                    		"org.eclipse.xtext.common.Terminals.ID");
+            	    
+
+            }
+
+
+            }
+
+            otherlv_1=(Token)match(input,31,FOLLOW_34); 
+
+                	newLeafNode(otherlv_1, grammarAccess.getListDataAccess().getAsKeyword_1());
+                
+            otherlv_2=(Token)match(input,33,FOLLOW_30); 
+
+                	newLeafNode(otherlv_2, grammarAccess.getListDataAccess().getListKeyword_2());
+                
+            otherlv_3=(Token)match(input,31,FOLLOW_35); 
+
+                	newLeafNode(otherlv_3, grammarAccess.getListDataAccess().getAsKeyword_3());
+                
+            // InternalSensidl.g:1035:1: ( ( (lv_dataType_4_0= ruleDataType ) ) | ( (otherlv_5= RULE_ID ) ) )
+            int alt22=2;
+            int LA22_0 = input.LA(1);
+
+            if ( ((LA22_0>=58 && LA22_0<=67)) ) {
+                alt22=1;
+            }
+            else if ( (LA22_0==RULE_ID) ) {
+                alt22=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 22, 0, input);
+
+                throw nvae;
+            }
+            switch (alt22) {
+                case 1 :
+                    // InternalSensidl.g:1035:2: ( (lv_dataType_4_0= ruleDataType ) )
+                    {
+                    // InternalSensidl.g:1035:2: ( (lv_dataType_4_0= ruleDataType ) )
+                    // InternalSensidl.g:1036:1: (lv_dataType_4_0= ruleDataType )
+                    {
+                    // InternalSensidl.g:1036:1: (lv_dataType_4_0= ruleDataType )
+                    // InternalSensidl.g:1037:3: lv_dataType_4_0= ruleDataType
+                    {
+                     
+                    	        newCompositeNode(grammarAccess.getListDataAccess().getDataTypeDataTypeEnumRuleCall_4_0_0()); 
+                    	    
+                    pushFollow(FOLLOW_2);
+                    lv_dataType_4_0=ruleDataType();
+
+                    state._fsp--;
+
+
+                    	        if (current==null) {
+                    	            current = createModelElementForParent(grammarAccess.getListDataRule());
+                    	        }
+                           		set(
+                           			current, 
+                           			"dataType",
+                            		lv_dataType_4_0, 
+                            		"de.fzi.sensidl.language.Sensidl.DataType");
+                    	        afterParserOrEnumRuleCall();
+                    	    
+
+                    }
+
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // InternalSensidl.g:1054:6: ( (otherlv_5= RULE_ID ) )
+                    {
+                    // InternalSensidl.g:1054:6: ( (otherlv_5= RULE_ID ) )
+                    // InternalSensidl.g:1055:1: (otherlv_5= RULE_ID )
+                    {
+                    // InternalSensidl.g:1055:1: (otherlv_5= RULE_ID )
+                    // InternalSensidl.g:1056:3: otherlv_5= RULE_ID
+                    {
+
+                    			if (current==null) {
+                    	            current = createModelElement(grammarAccess.getListDataRule());
+                    	        }
+                            
+                    otherlv_5=(Token)match(input,RULE_ID,FOLLOW_2); 
+
+                    		newLeafNode(otherlv_5, grammarAccess.getListDataAccess().getDataTypeDataSetDataSetCrossReference_4_1_0()); 
+                    	
+
+                    }
+
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+
+            }
+
+             leaveRule(); 
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleListData"
+
+
     // $ANTLR start "entryRuleMeasurementData"
-    // InternalSensidl.g:982:1: entryRuleMeasurementData returns [EObject current=null] : iv_ruleMeasurementData= ruleMeasurementData EOF ;
+    // InternalSensidl.g:1075:1: entryRuleMeasurementData returns [EObject current=null] : iv_ruleMeasurementData= ruleMeasurementData EOF ;
     public final EObject entryRuleMeasurementData() throws RecognitionException {
         EObject current = null;
 
@@ -2297,8 +2518,8 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSensidl.g:983:2: (iv_ruleMeasurementData= ruleMeasurementData EOF )
-            // InternalSensidl.g:984:2: iv_ruleMeasurementData= ruleMeasurementData EOF
+            // InternalSensidl.g:1076:2: (iv_ruleMeasurementData= ruleMeasurementData EOF )
+            // InternalSensidl.g:1077:2: iv_ruleMeasurementData= ruleMeasurementData EOF
             {
              newCompositeNode(grammarAccess.getMeasurementDataRule()); 
             pushFollow(FOLLOW_1);
@@ -2325,7 +2546,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMeasurementData"
-    // InternalSensidl.g:991:1: ruleMeasurementData returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataType ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? ( (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) ) | (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) ) | (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) ) )? (otherlv_16= 'exclude:' ( ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? ) ) )? ( (lv_description_23_0= RULE_DESCRIPTION ) )? ) ;
+    // InternalSensidl.g:1084:1: ruleMeasurementData returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataType ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? ( (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) ) | (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) ) | (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) ) )? (otherlv_16= 'exclude:' ( ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? ) ) )? ( (lv_description_23_0= RULE_DESCRIPTION ) )? ) ;
     public final EObject ruleMeasurementData() throws RecognitionException {
         EObject current = null;
 
@@ -2363,17 +2584,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalSensidl.g:994:28: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataType ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? ( (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) ) | (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) ) | (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) ) )? (otherlv_16= 'exclude:' ( ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? ) ) )? ( (lv_description_23_0= RULE_DESCRIPTION ) )? ) )
-            // InternalSensidl.g:995:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataType ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? ( (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) ) | (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) ) | (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) ) )? (otherlv_16= 'exclude:' ( ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? ) ) )? ( (lv_description_23_0= RULE_DESCRIPTION ) )? )
+            // InternalSensidl.g:1087:28: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataType ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? ( (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) ) | (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) ) | (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) ) )? (otherlv_16= 'exclude:' ( ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? ) ) )? ( (lv_description_23_0= RULE_DESCRIPTION ) )? ) )
+            // InternalSensidl.g:1088:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataType ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? ( (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) ) | (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) ) | (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) ) )? (otherlv_16= 'exclude:' ( ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? ) ) )? ( (lv_description_23_0= RULE_DESCRIPTION ) )? )
             {
-            // InternalSensidl.g:995:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataType ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? ( (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) ) | (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) ) | (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) ) )? (otherlv_16= 'exclude:' ( ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? ) ) )? ( (lv_description_23_0= RULE_DESCRIPTION ) )? )
-            // InternalSensidl.g:995:2: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataType ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? ( (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) ) | (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) ) | (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) ) )? (otherlv_16= 'exclude:' ( ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? ) ) )? ( (lv_description_23_0= RULE_DESCRIPTION ) )?
+            // InternalSensidl.g:1088:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataType ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? ( (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) ) | (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) ) | (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) ) )? (otherlv_16= 'exclude:' ( ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? ) ) )? ( (lv_description_23_0= RULE_DESCRIPTION ) )? )
+            // InternalSensidl.g:1088:2: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataType ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? ( (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) ) | (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) ) | (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) ) )? (otherlv_16= 'exclude:' ( ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? ) ) )? ( (lv_description_23_0= RULE_DESCRIPTION ) )?
             {
-            // InternalSensidl.g:995:2: ( (lv_name_0_0= RULE_ID ) )
-            // InternalSensidl.g:996:1: (lv_name_0_0= RULE_ID )
+            // InternalSensidl.g:1088:2: ( (lv_name_0_0= RULE_ID ) )
+            // InternalSensidl.g:1089:1: (lv_name_0_0= RULE_ID )
             {
-            // InternalSensidl.g:996:1: (lv_name_0_0= RULE_ID )
-            // InternalSensidl.g:997:3: lv_name_0_0= RULE_ID
+            // InternalSensidl.g:1089:1: (lv_name_0_0= RULE_ID )
+            // InternalSensidl.g:1090:3: lv_name_0_0= RULE_ID
             {
             lv_name_0_0=(Token)match(input,RULE_ID,FOLLOW_30); 
 
@@ -2395,20 +2616,20 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,31,FOLLOW_34); 
+            otherlv_1=(Token)match(input,31,FOLLOW_36); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getMeasurementDataAccess().getAsKeyword_1());
                 
-            // InternalSensidl.g:1017:1: ( (lv_dataType_2_0= ruleDataType ) )
-            // InternalSensidl.g:1018:1: (lv_dataType_2_0= ruleDataType )
+            // InternalSensidl.g:1110:1: ( (lv_dataType_2_0= ruleDataType ) )
+            // InternalSensidl.g:1111:1: (lv_dataType_2_0= ruleDataType )
             {
-            // InternalSensidl.g:1018:1: (lv_dataType_2_0= ruleDataType )
-            // InternalSensidl.g:1019:3: lv_dataType_2_0= ruleDataType
+            // InternalSensidl.g:1111:1: (lv_dataType_2_0= ruleDataType )
+            // InternalSensidl.g:1112:3: lv_dataType_2_0= ruleDataType
             {
              
             	        newCompositeNode(grammarAccess.getMeasurementDataAccess().getDataTypeDataTypeEnumRuleCall_2_0()); 
             	    
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_37);
             lv_dataType_2_0=ruleDataType();
 
             state._fsp--;
@@ -2430,20 +2651,20 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,33,FOLLOW_36); 
+            otherlv_3=(Token)match(input,34,FOLLOW_38); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getMeasurementDataAccess().getInKeyword_3());
                 
-            // InternalSensidl.g:1039:1: ( (lv_unit_4_0= ruleUNIT ) )
-            // InternalSensidl.g:1040:1: (lv_unit_4_0= ruleUNIT )
+            // InternalSensidl.g:1132:1: ( (lv_unit_4_0= ruleUNIT ) )
+            // InternalSensidl.g:1133:1: (lv_unit_4_0= ruleUNIT )
             {
-            // InternalSensidl.g:1040:1: (lv_unit_4_0= ruleUNIT )
-            // InternalSensidl.g:1041:3: lv_unit_4_0= ruleUNIT
+            // InternalSensidl.g:1133:1: (lv_unit_4_0= ruleUNIT )
+            // InternalSensidl.g:1134:3: lv_unit_4_0= ruleUNIT
             {
              
             	        newCompositeNode(grammarAccess.getMeasurementDataAccess().getUnitUNITParserRuleCall_4_0()); 
             	    
-            pushFollow(FOLLOW_37);
+            pushFollow(FOLLOW_39);
             lv_unit_4_0=ruleUNIT();
 
             state._fsp--;
@@ -2465,16 +2686,16 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSensidl.g:1057:2: (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )?
-            int alt22=2;
-            int LA22_0 = input.LA(1);
+            // InternalSensidl.g:1150:2: (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )?
+            int alt23=2;
+            int LA23_0 = input.LA(1);
 
-            if ( (LA22_0==13) ) {
-                alt22=1;
+            if ( (LA23_0==13) ) {
+                alt23=1;
             }
-            switch (alt22) {
+            switch (alt23) {
                 case 1 :
-                    // InternalSensidl.g:1057:4: otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) )
+                    // InternalSensidl.g:1150:4: otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) )
                     {
                     otherlv_5=(Token)match(input,13,FOLLOW_6); 
 
@@ -2484,13 +2705,13 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
                         	newLeafNode(otherlv_6, grammarAccess.getMeasurementDataAccess().getColonKeyword_5_1());
                         
-                    // InternalSensidl.g:1065:1: ( (lv_ID_7_0= RULE_STRING ) )
-                    // InternalSensidl.g:1066:1: (lv_ID_7_0= RULE_STRING )
+                    // InternalSensidl.g:1158:1: ( (lv_ID_7_0= RULE_STRING ) )
+                    // InternalSensidl.g:1159:1: (lv_ID_7_0= RULE_STRING )
                     {
-                    // InternalSensidl.g:1066:1: (lv_ID_7_0= RULE_STRING )
-                    // InternalSensidl.g:1067:3: lv_ID_7_0= RULE_STRING
+                    // InternalSensidl.g:1159:1: (lv_ID_7_0= RULE_STRING )
+                    // InternalSensidl.g:1160:3: lv_ID_7_0= RULE_STRING
                     {
-                    lv_ID_7_0=(Token)match(input,RULE_STRING,FOLLOW_38); 
+                    lv_ID_7_0=(Token)match(input,RULE_STRING,FOLLOW_40); 
 
                     			newLeafNode(lv_ID_7_0, grammarAccess.getMeasurementDataAccess().getIDSTRINGTerminalRuleCall_5_2_0()); 
                     		
@@ -2516,30 +2737,30 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSensidl.g:1083:4: ( (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) ) | (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) ) | (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) ) )?
-            int alt23=4;
-            alt23 = dfa23.predict(input);
-            switch (alt23) {
+            // InternalSensidl.g:1176:4: ( (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) ) | (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) ) | (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) ) )?
+            int alt24=4;
+            alt24 = dfa24.predict(input);
+            switch (alt24) {
                 case 1 :
-                    // InternalSensidl.g:1083:5: (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) )
+                    // InternalSensidl.g:1176:5: (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) )
                     {
-                    // InternalSensidl.g:1083:5: (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) )
-                    // InternalSensidl.g:1083:7: otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) )
+                    // InternalSensidl.g:1176:5: (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) )
+                    // InternalSensidl.g:1176:7: otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) )
                     {
-                    otherlv_8=(Token)match(input,34,FOLLOW_39); 
+                    otherlv_8=(Token)match(input,35,FOLLOW_41); 
 
                         	newLeafNode(otherlv_8, grammarAccess.getMeasurementDataAccess().getAdjustedKeyword_6_0_0());
                         
-                    // InternalSensidl.g:1087:1: ( (lv_adjustments_9_0= ruleDataConversion ) )
-                    // InternalSensidl.g:1088:1: (lv_adjustments_9_0= ruleDataConversion )
+                    // InternalSensidl.g:1180:1: ( (lv_adjustments_9_0= ruleDataConversion ) )
+                    // InternalSensidl.g:1181:1: (lv_adjustments_9_0= ruleDataConversion )
                     {
-                    // InternalSensidl.g:1088:1: (lv_adjustments_9_0= ruleDataConversion )
-                    // InternalSensidl.g:1089:3: lv_adjustments_9_0= ruleDataConversion
+                    // InternalSensidl.g:1181:1: (lv_adjustments_9_0= ruleDataConversion )
+                    // InternalSensidl.g:1182:3: lv_adjustments_9_0= ruleDataConversion
                     {
                      
                     	        newCompositeNode(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataConversionParserRuleCall_6_0_1_0()); 
                     	    
-                    pushFollow(FOLLOW_40);
+                    pushFollow(FOLLOW_42);
                     lv_adjustments_9_0=ruleDataConversion();
 
                     state._fsp--;
@@ -2568,25 +2789,25 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSensidl.g:1106:6: (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) )
+                    // InternalSensidl.g:1199:6: (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) )
                     {
-                    // InternalSensidl.g:1106:6: (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) )
-                    // InternalSensidl.g:1106:8: otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) )
+                    // InternalSensidl.g:1199:6: (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) )
+                    // InternalSensidl.g:1199:8: otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) )
                     {
-                    otherlv_10=(Token)match(input,34,FOLLOW_41); 
+                    otherlv_10=(Token)match(input,35,FOLLOW_43); 
 
                         	newLeafNode(otherlv_10, grammarAccess.getMeasurementDataAccess().getAdjustedKeyword_6_1_0());
                         
-                    // InternalSensidl.g:1110:1: ( (lv_adjustments_11_0= ruleDataRange ) )
-                    // InternalSensidl.g:1111:1: (lv_adjustments_11_0= ruleDataRange )
+                    // InternalSensidl.g:1203:1: ( (lv_adjustments_11_0= ruleDataRange ) )
+                    // InternalSensidl.g:1204:1: (lv_adjustments_11_0= ruleDataRange )
                     {
-                    // InternalSensidl.g:1111:1: (lv_adjustments_11_0= ruleDataRange )
-                    // InternalSensidl.g:1112:3: lv_adjustments_11_0= ruleDataRange
+                    // InternalSensidl.g:1204:1: (lv_adjustments_11_0= ruleDataRange )
+                    // InternalSensidl.g:1205:3: lv_adjustments_11_0= ruleDataRange
                     {
                      
                     	        newCompositeNode(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataRangeParserRuleCall_6_1_1_0()); 
                     	    
-                    pushFollow(FOLLOW_40);
+                    pushFollow(FOLLOW_42);
                     lv_adjustments_11_0=ruleDataRange();
 
                     state._fsp--;
@@ -2615,20 +2836,20 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalSensidl.g:1129:6: (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) )
+                    // InternalSensidl.g:1222:6: (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) )
                     {
-                    // InternalSensidl.g:1129:6: (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) )
-                    // InternalSensidl.g:1129:8: otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) )
+                    // InternalSensidl.g:1222:6: (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) )
+                    // InternalSensidl.g:1222:8: otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) )
                     {
-                    otherlv_12=(Token)match(input,34,FOLLOW_39); 
+                    otherlv_12=(Token)match(input,35,FOLLOW_41); 
 
                         	newLeafNode(otherlv_12, grammarAccess.getMeasurementDataAccess().getAdjustedKeyword_6_2_0());
                         
-                    // InternalSensidl.g:1133:1: ( (lv_adjustments_13_0= ruleDataConversion ) )
-                    // InternalSensidl.g:1134:1: (lv_adjustments_13_0= ruleDataConversion )
+                    // InternalSensidl.g:1226:1: ( (lv_adjustments_13_0= ruleDataConversion ) )
+                    // InternalSensidl.g:1227:1: (lv_adjustments_13_0= ruleDataConversion )
                     {
-                    // InternalSensidl.g:1134:1: (lv_adjustments_13_0= ruleDataConversion )
-                    // InternalSensidl.g:1135:3: lv_adjustments_13_0= ruleDataConversion
+                    // InternalSensidl.g:1227:1: (lv_adjustments_13_0= ruleDataConversion )
+                    // InternalSensidl.g:1228:3: lv_adjustments_13_0= ruleDataConversion
                     {
                      
                     	        newCompositeNode(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataConversionParserRuleCall_6_2_1_0()); 
@@ -2655,20 +2876,20 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_14=(Token)match(input,18,FOLLOW_41); 
+                    otherlv_14=(Token)match(input,18,FOLLOW_43); 
 
                         	newLeafNode(otherlv_14, grammarAccess.getMeasurementDataAccess().getCommaKeyword_6_2_2());
                         
-                    // InternalSensidl.g:1155:1: ( (lv_adjustments_15_0= ruleDataRange ) )
-                    // InternalSensidl.g:1156:1: (lv_adjustments_15_0= ruleDataRange )
+                    // InternalSensidl.g:1248:1: ( (lv_adjustments_15_0= ruleDataRange ) )
+                    // InternalSensidl.g:1249:1: (lv_adjustments_15_0= ruleDataRange )
                     {
-                    // InternalSensidl.g:1156:1: (lv_adjustments_15_0= ruleDataRange )
-                    // InternalSensidl.g:1157:3: lv_adjustments_15_0= ruleDataRange
+                    // InternalSensidl.g:1249:1: (lv_adjustments_15_0= ruleDataRange )
+                    // InternalSensidl.g:1250:3: lv_adjustments_15_0= ruleDataRange
                     {
                      
                     	        newCompositeNode(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataRangeParserRuleCall_6_2_3_0()); 
                     	    
-                    pushFollow(FOLLOW_40);
+                    pushFollow(FOLLOW_42);
                     lv_adjustments_15_0=ruleDataRange();
 
                     state._fsp--;
@@ -2699,51 +2920,51 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSensidl.g:1173:5: (otherlv_16= 'exclude:' ( ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? ) ) )?
-            int alt27=2;
-            int LA27_0 = input.LA(1);
+            // InternalSensidl.g:1266:5: (otherlv_16= 'exclude:' ( ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? ) ) )?
+            int alt28=2;
+            int LA28_0 = input.LA(1);
 
-            if ( (LA27_0==35) ) {
-                alt27=1;
+            if ( (LA28_0==36) ) {
+                alt28=1;
             }
-            switch (alt27) {
+            switch (alt28) {
                 case 1 :
-                    // InternalSensidl.g:1173:7: otherlv_16= 'exclude:' ( ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? ) )
+                    // InternalSensidl.g:1266:7: otherlv_16= 'exclude:' ( ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? ) )
                     {
-                    otherlv_16=(Token)match(input,35,FOLLOW_42); 
+                    otherlv_16=(Token)match(input,36,FOLLOW_44); 
 
                         	newLeafNode(otherlv_16, grammarAccess.getMeasurementDataAccess().getExcludeKeyword_7_0());
                         
-                    // InternalSensidl.g:1177:1: ( ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? ) )
-                    int alt26=2;
-                    int LA26_0 = input.LA(1);
+                    // InternalSensidl.g:1270:1: ( ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? ) )
+                    int alt27=2;
+                    int LA27_0 = input.LA(1);
 
-                    if ( (LA26_0==36) ) {
-                        alt26=1;
+                    if ( (LA27_0==37) ) {
+                        alt27=1;
                     }
-                    else if ( (LA26_0==37) ) {
-                        alt26=2;
+                    else if ( (LA27_0==38) ) {
+                        alt27=2;
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 26, 0, input);
+                            new NoViableAltException("", 27, 0, input);
 
                         throw nvae;
                     }
-                    switch (alt26) {
+                    switch (alt27) {
                         case 1 :
-                            // InternalSensidl.g:1177:2: ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? )
+                            // InternalSensidl.g:1270:2: ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? )
                             {
-                            // InternalSensidl.g:1177:2: ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? )
-                            // InternalSensidl.g:1177:3: ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )?
+                            // InternalSensidl.g:1270:2: ( ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )? )
+                            // InternalSensidl.g:1270:3: ( (lv_excludedMethods_17_0= 'setter' ) ) (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )?
                             {
-                            // InternalSensidl.g:1177:3: ( (lv_excludedMethods_17_0= 'setter' ) )
-                            // InternalSensidl.g:1178:1: (lv_excludedMethods_17_0= 'setter' )
+                            // InternalSensidl.g:1270:3: ( (lv_excludedMethods_17_0= 'setter' ) )
+                            // InternalSensidl.g:1271:1: (lv_excludedMethods_17_0= 'setter' )
                             {
-                            // InternalSensidl.g:1178:1: (lv_excludedMethods_17_0= 'setter' )
-                            // InternalSensidl.g:1179:3: lv_excludedMethods_17_0= 'setter'
+                            // InternalSensidl.g:1271:1: (lv_excludedMethods_17_0= 'setter' )
+                            // InternalSensidl.g:1272:3: lv_excludedMethods_17_0= 'setter'
                             {
-                            lv_excludedMethods_17_0=(Token)match(input,36,FOLLOW_43); 
+                            lv_excludedMethods_17_0=(Token)match(input,37,FOLLOW_45); 
 
                                     newLeafNode(lv_excludedMethods_17_0, grammarAccess.getMeasurementDataAccess().getExcludedMethodsSetterKeyword_7_1_0_0_0());
                                 
@@ -2759,28 +2980,28 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // InternalSensidl.g:1192:2: (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )?
-                            int alt24=2;
-                            int LA24_0 = input.LA(1);
+                            // InternalSensidl.g:1285:2: (otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) ) )?
+                            int alt25=2;
+                            int LA25_0 = input.LA(1);
 
-                            if ( (LA24_0==18) ) {
-                                alt24=1;
+                            if ( (LA25_0==18) ) {
+                                alt25=1;
                             }
-                            switch (alt24) {
+                            switch (alt25) {
                                 case 1 :
-                                    // InternalSensidl.g:1192:4: otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) )
+                                    // InternalSensidl.g:1285:4: otherlv_18= ',' ( (lv_excludedMethods_19_0= 'getter' ) )
                                     {
-                                    otherlv_18=(Token)match(input,18,FOLLOW_44); 
+                                    otherlv_18=(Token)match(input,18,FOLLOW_46); 
 
                                         	newLeafNode(otherlv_18, grammarAccess.getMeasurementDataAccess().getCommaKeyword_7_1_0_1_0());
                                         
-                                    // InternalSensidl.g:1196:1: ( (lv_excludedMethods_19_0= 'getter' ) )
-                                    // InternalSensidl.g:1197:1: (lv_excludedMethods_19_0= 'getter' )
+                                    // InternalSensidl.g:1289:1: ( (lv_excludedMethods_19_0= 'getter' ) )
+                                    // InternalSensidl.g:1290:1: (lv_excludedMethods_19_0= 'getter' )
                                     {
-                                    // InternalSensidl.g:1197:1: (lv_excludedMethods_19_0= 'getter' )
-                                    // InternalSensidl.g:1198:3: lv_excludedMethods_19_0= 'getter'
+                                    // InternalSensidl.g:1290:1: (lv_excludedMethods_19_0= 'getter' )
+                                    // InternalSensidl.g:1291:3: lv_excludedMethods_19_0= 'getter'
                                     {
-                                    lv_excludedMethods_19_0=(Token)match(input,37,FOLLOW_33); 
+                                    lv_excludedMethods_19_0=(Token)match(input,38,FOLLOW_33); 
 
                                             newLeafNode(lv_excludedMethods_19_0, grammarAccess.getMeasurementDataAccess().getExcludedMethodsGetterKeyword_7_1_0_1_1_0());
                                         
@@ -2809,18 +3030,18 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // InternalSensidl.g:1212:6: ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? )
+                            // InternalSensidl.g:1305:6: ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? )
                             {
-                            // InternalSensidl.g:1212:6: ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? )
-                            // InternalSensidl.g:1212:7: ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )?
+                            // InternalSensidl.g:1305:6: ( ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )? )
+                            // InternalSensidl.g:1305:7: ( (lv_excludedMethods_20_0= 'getter' ) ) (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )?
                             {
-                            // InternalSensidl.g:1212:7: ( (lv_excludedMethods_20_0= 'getter' ) )
-                            // InternalSensidl.g:1213:1: (lv_excludedMethods_20_0= 'getter' )
+                            // InternalSensidl.g:1305:7: ( (lv_excludedMethods_20_0= 'getter' ) )
+                            // InternalSensidl.g:1306:1: (lv_excludedMethods_20_0= 'getter' )
                             {
-                            // InternalSensidl.g:1213:1: (lv_excludedMethods_20_0= 'getter' )
-                            // InternalSensidl.g:1214:3: lv_excludedMethods_20_0= 'getter'
+                            // InternalSensidl.g:1306:1: (lv_excludedMethods_20_0= 'getter' )
+                            // InternalSensidl.g:1307:3: lv_excludedMethods_20_0= 'getter'
                             {
-                            lv_excludedMethods_20_0=(Token)match(input,37,FOLLOW_43); 
+                            lv_excludedMethods_20_0=(Token)match(input,38,FOLLOW_45); 
 
                                     newLeafNode(lv_excludedMethods_20_0, grammarAccess.getMeasurementDataAccess().getExcludedMethodsGetterKeyword_7_1_1_0_0());
                                 
@@ -2836,28 +3057,28 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // InternalSensidl.g:1227:2: (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )?
-                            int alt25=2;
-                            int LA25_0 = input.LA(1);
+                            // InternalSensidl.g:1320:2: (otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) ) )?
+                            int alt26=2;
+                            int LA26_0 = input.LA(1);
 
-                            if ( (LA25_0==18) ) {
-                                alt25=1;
+                            if ( (LA26_0==18) ) {
+                                alt26=1;
                             }
-                            switch (alt25) {
+                            switch (alt26) {
                                 case 1 :
-                                    // InternalSensidl.g:1227:4: otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) )
+                                    // InternalSensidl.g:1320:4: otherlv_21= ',' ( (lv_excludedMethods_22_0= 'setter' ) )
                                     {
-                                    otherlv_21=(Token)match(input,18,FOLLOW_45); 
+                                    otherlv_21=(Token)match(input,18,FOLLOW_47); 
 
                                         	newLeafNode(otherlv_21, grammarAccess.getMeasurementDataAccess().getCommaKeyword_7_1_1_1_0());
                                         
-                                    // InternalSensidl.g:1231:1: ( (lv_excludedMethods_22_0= 'setter' ) )
-                                    // InternalSensidl.g:1232:1: (lv_excludedMethods_22_0= 'setter' )
+                                    // InternalSensidl.g:1324:1: ( (lv_excludedMethods_22_0= 'setter' ) )
+                                    // InternalSensidl.g:1325:1: (lv_excludedMethods_22_0= 'setter' )
                                     {
-                                    // InternalSensidl.g:1232:1: (lv_excludedMethods_22_0= 'setter' )
-                                    // InternalSensidl.g:1233:3: lv_excludedMethods_22_0= 'setter'
+                                    // InternalSensidl.g:1325:1: (lv_excludedMethods_22_0= 'setter' )
+                                    // InternalSensidl.g:1326:3: lv_excludedMethods_22_0= 'setter'
                                     {
-                                    lv_excludedMethods_22_0=(Token)match(input,36,FOLLOW_33); 
+                                    lv_excludedMethods_22_0=(Token)match(input,37,FOLLOW_33); 
 
                                             newLeafNode(lv_excludedMethods_22_0, grammarAccess.getMeasurementDataAccess().getExcludedMethodsSetterKeyword_7_1_1_1_1_0());
                                         
@@ -2894,19 +3115,19 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSensidl.g:1246:8: ( (lv_description_23_0= RULE_DESCRIPTION ) )?
-            int alt28=2;
-            int LA28_0 = input.LA(1);
+            // InternalSensidl.g:1339:8: ( (lv_description_23_0= RULE_DESCRIPTION ) )?
+            int alt29=2;
+            int LA29_0 = input.LA(1);
 
-            if ( (LA28_0==RULE_DESCRIPTION) ) {
-                alt28=1;
+            if ( (LA29_0==RULE_DESCRIPTION) ) {
+                alt29=1;
             }
-            switch (alt28) {
+            switch (alt29) {
                 case 1 :
-                    // InternalSensidl.g:1247:1: (lv_description_23_0= RULE_DESCRIPTION )
+                    // InternalSensidl.g:1340:1: (lv_description_23_0= RULE_DESCRIPTION )
                     {
-                    // InternalSensidl.g:1247:1: (lv_description_23_0= RULE_DESCRIPTION )
-                    // InternalSensidl.g:1248:3: lv_description_23_0= RULE_DESCRIPTION
+                    // InternalSensidl.g:1340:1: (lv_description_23_0= RULE_DESCRIPTION )
+                    // InternalSensidl.g:1341:3: lv_description_23_0= RULE_DESCRIPTION
                     {
                     lv_description_23_0=(Token)match(input,RULE_DESCRIPTION,FOLLOW_2); 
 
@@ -2952,7 +3173,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNonMeasurementData"
-    // InternalSensidl.g:1272:1: entryRuleNonMeasurementData returns [EObject current=null] : iv_ruleNonMeasurementData= ruleNonMeasurementData EOF ;
+    // InternalSensidl.g:1365:1: entryRuleNonMeasurementData returns [EObject current=null] : iv_ruleNonMeasurementData= ruleNonMeasurementData EOF ;
     public final EObject entryRuleNonMeasurementData() throws RecognitionException {
         EObject current = null;
 
@@ -2960,8 +3181,8 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSensidl.g:1273:2: (iv_ruleNonMeasurementData= ruleNonMeasurementData EOF )
-            // InternalSensidl.g:1274:2: iv_ruleNonMeasurementData= ruleNonMeasurementData EOF
+            // InternalSensidl.g:1366:2: (iv_ruleNonMeasurementData= ruleNonMeasurementData EOF )
+            // InternalSensidl.g:1367:2: iv_ruleNonMeasurementData= ruleNonMeasurementData EOF
             {
              newCompositeNode(grammarAccess.getNonMeasurementDataRule()); 
             pushFollow(FOLLOW_1);
@@ -2988,7 +3209,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNonMeasurementData"
-    // InternalSensidl.g:1281:1: ruleNonMeasurementData returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( ( (lv_dataType_2_0= ruleDataType ) ) | ( (lv_dataType_3_0= ruleDataTypeNotAdjustable ) ) ) ( (lv_constant_4_0= 'constant' ) )? (otherlv_5= 'value' otherlv_6= '=' ( (lv_value_7_0= RULE_STRING ) ) )? (otherlv_8= 'with identifier' otherlv_9= ':' ( (lv_ID_10_0= RULE_STRING ) ) )? (otherlv_11= 'exclude:' ( ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? ) ) )? ( (lv_description_18_0= RULE_DESCRIPTION ) )? ) ;
+    // InternalSensidl.g:1374:1: ruleNonMeasurementData returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( ( (lv_dataType_2_0= ruleDataType ) ) | ( (lv_dataType_3_0= ruleDataTypeNotAdjustable ) ) ) ( (lv_constant_4_0= 'constant' ) )? (otherlv_5= 'value' otherlv_6= '=' ( (lv_value_7_0= RULE_STRING ) ) )? (otherlv_8= 'with identifier' otherlv_9= ':' ( (lv_ID_10_0= RULE_STRING ) ) )? (otherlv_11= 'exclude:' ( ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? ) ) )? ( (lv_description_18_0= RULE_DESCRIPTION ) )? ) ;
     public final EObject ruleNonMeasurementData() throws RecognitionException {
         EObject current = null;
 
@@ -3017,17 +3238,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalSensidl.g:1284:28: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( ( (lv_dataType_2_0= ruleDataType ) ) | ( (lv_dataType_3_0= ruleDataTypeNotAdjustable ) ) ) ( (lv_constant_4_0= 'constant' ) )? (otherlv_5= 'value' otherlv_6= '=' ( (lv_value_7_0= RULE_STRING ) ) )? (otherlv_8= 'with identifier' otherlv_9= ':' ( (lv_ID_10_0= RULE_STRING ) ) )? (otherlv_11= 'exclude:' ( ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? ) ) )? ( (lv_description_18_0= RULE_DESCRIPTION ) )? ) )
-            // InternalSensidl.g:1285:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( ( (lv_dataType_2_0= ruleDataType ) ) | ( (lv_dataType_3_0= ruleDataTypeNotAdjustable ) ) ) ( (lv_constant_4_0= 'constant' ) )? (otherlv_5= 'value' otherlv_6= '=' ( (lv_value_7_0= RULE_STRING ) ) )? (otherlv_8= 'with identifier' otherlv_9= ':' ( (lv_ID_10_0= RULE_STRING ) ) )? (otherlv_11= 'exclude:' ( ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? ) ) )? ( (lv_description_18_0= RULE_DESCRIPTION ) )? )
+            // InternalSensidl.g:1377:28: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( ( (lv_dataType_2_0= ruleDataType ) ) | ( (lv_dataType_3_0= ruleDataTypeNotAdjustable ) ) ) ( (lv_constant_4_0= 'constant' ) )? (otherlv_5= 'value' otherlv_6= '=' ( (lv_value_7_0= RULE_STRING ) ) )? (otherlv_8= 'with identifier' otherlv_9= ':' ( (lv_ID_10_0= RULE_STRING ) ) )? (otherlv_11= 'exclude:' ( ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? ) ) )? ( (lv_description_18_0= RULE_DESCRIPTION ) )? ) )
+            // InternalSensidl.g:1378:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( ( (lv_dataType_2_0= ruleDataType ) ) | ( (lv_dataType_3_0= ruleDataTypeNotAdjustable ) ) ) ( (lv_constant_4_0= 'constant' ) )? (otherlv_5= 'value' otherlv_6= '=' ( (lv_value_7_0= RULE_STRING ) ) )? (otherlv_8= 'with identifier' otherlv_9= ':' ( (lv_ID_10_0= RULE_STRING ) ) )? (otherlv_11= 'exclude:' ( ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? ) ) )? ( (lv_description_18_0= RULE_DESCRIPTION ) )? )
             {
-            // InternalSensidl.g:1285:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( ( (lv_dataType_2_0= ruleDataType ) ) | ( (lv_dataType_3_0= ruleDataTypeNotAdjustable ) ) ) ( (lv_constant_4_0= 'constant' ) )? (otherlv_5= 'value' otherlv_6= '=' ( (lv_value_7_0= RULE_STRING ) ) )? (otherlv_8= 'with identifier' otherlv_9= ':' ( (lv_ID_10_0= RULE_STRING ) ) )? (otherlv_11= 'exclude:' ( ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? ) ) )? ( (lv_description_18_0= RULE_DESCRIPTION ) )? )
-            // InternalSensidl.g:1285:2: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( ( (lv_dataType_2_0= ruleDataType ) ) | ( (lv_dataType_3_0= ruleDataTypeNotAdjustable ) ) ) ( (lv_constant_4_0= 'constant' ) )? (otherlv_5= 'value' otherlv_6= '=' ( (lv_value_7_0= RULE_STRING ) ) )? (otherlv_8= 'with identifier' otherlv_9= ':' ( (lv_ID_10_0= RULE_STRING ) ) )? (otherlv_11= 'exclude:' ( ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? ) ) )? ( (lv_description_18_0= RULE_DESCRIPTION ) )?
+            // InternalSensidl.g:1378:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( ( (lv_dataType_2_0= ruleDataType ) ) | ( (lv_dataType_3_0= ruleDataTypeNotAdjustable ) ) ) ( (lv_constant_4_0= 'constant' ) )? (otherlv_5= 'value' otherlv_6= '=' ( (lv_value_7_0= RULE_STRING ) ) )? (otherlv_8= 'with identifier' otherlv_9= ':' ( (lv_ID_10_0= RULE_STRING ) ) )? (otherlv_11= 'exclude:' ( ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? ) ) )? ( (lv_description_18_0= RULE_DESCRIPTION ) )? )
+            // InternalSensidl.g:1378:2: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( ( (lv_dataType_2_0= ruleDataType ) ) | ( (lv_dataType_3_0= ruleDataTypeNotAdjustable ) ) ) ( (lv_constant_4_0= 'constant' ) )? (otherlv_5= 'value' otherlv_6= '=' ( (lv_value_7_0= RULE_STRING ) ) )? (otherlv_8= 'with identifier' otherlv_9= ':' ( (lv_ID_10_0= RULE_STRING ) ) )? (otherlv_11= 'exclude:' ( ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? ) ) )? ( (lv_description_18_0= RULE_DESCRIPTION ) )?
             {
-            // InternalSensidl.g:1285:2: ( (lv_name_0_0= RULE_ID ) )
-            // InternalSensidl.g:1286:1: (lv_name_0_0= RULE_ID )
+            // InternalSensidl.g:1378:2: ( (lv_name_0_0= RULE_ID ) )
+            // InternalSensidl.g:1379:1: (lv_name_0_0= RULE_ID )
             {
-            // InternalSensidl.g:1286:1: (lv_name_0_0= RULE_ID )
-            // InternalSensidl.g:1287:3: lv_name_0_0= RULE_ID
+            // InternalSensidl.g:1379:1: (lv_name_0_0= RULE_ID )
+            // InternalSensidl.g:1380:3: lv_name_0_0= RULE_ID
             {
             lv_name_0_0=(Token)match(input,RULE_ID,FOLLOW_30); 
 
@@ -3049,40 +3270,40 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,31,FOLLOW_46); 
+            otherlv_1=(Token)match(input,31,FOLLOW_48); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getNonMeasurementDataAccess().getAsKeyword_1());
                 
-            // InternalSensidl.g:1307:1: ( ( (lv_dataType_2_0= ruleDataType ) ) | ( (lv_dataType_3_0= ruleDataTypeNotAdjustable ) ) )
-            int alt29=2;
-            int LA29_0 = input.LA(1);
+            // InternalSensidl.g:1400:1: ( ( (lv_dataType_2_0= ruleDataType ) ) | ( (lv_dataType_3_0= ruleDataTypeNotAdjustable ) ) )
+            int alt30=2;
+            int LA30_0 = input.LA(1);
 
-            if ( ((LA29_0>=57 && LA29_0<=66)) ) {
-                alt29=1;
+            if ( ((LA30_0>=58 && LA30_0<=67)) ) {
+                alt30=1;
             }
-            else if ( ((LA29_0>=55 && LA29_0<=56)) ) {
-                alt29=2;
+            else if ( ((LA30_0>=56 && LA30_0<=57)) ) {
+                alt30=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 29, 0, input);
+                    new NoViableAltException("", 30, 0, input);
 
                 throw nvae;
             }
-            switch (alt29) {
+            switch (alt30) {
                 case 1 :
-                    // InternalSensidl.g:1307:2: ( (lv_dataType_2_0= ruleDataType ) )
+                    // InternalSensidl.g:1400:2: ( (lv_dataType_2_0= ruleDataType ) )
                     {
-                    // InternalSensidl.g:1307:2: ( (lv_dataType_2_0= ruleDataType ) )
-                    // InternalSensidl.g:1308:1: (lv_dataType_2_0= ruleDataType )
+                    // InternalSensidl.g:1400:2: ( (lv_dataType_2_0= ruleDataType ) )
+                    // InternalSensidl.g:1401:1: (lv_dataType_2_0= ruleDataType )
                     {
-                    // InternalSensidl.g:1308:1: (lv_dataType_2_0= ruleDataType )
-                    // InternalSensidl.g:1309:3: lv_dataType_2_0= ruleDataType
+                    // InternalSensidl.g:1401:1: (lv_dataType_2_0= ruleDataType )
+                    // InternalSensidl.g:1402:3: lv_dataType_2_0= ruleDataType
                     {
                      
                     	        newCompositeNode(grammarAccess.getNonMeasurementDataAccess().getDataTypeDataTypeEnumRuleCall_2_0_0()); 
                     	    
-                    pushFollow(FOLLOW_47);
+                    pushFollow(FOLLOW_49);
                     lv_dataType_2_0=ruleDataType();
 
                     state._fsp--;
@@ -3108,18 +3329,18 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSensidl.g:1326:6: ( (lv_dataType_3_0= ruleDataTypeNotAdjustable ) )
+                    // InternalSensidl.g:1419:6: ( (lv_dataType_3_0= ruleDataTypeNotAdjustable ) )
                     {
-                    // InternalSensidl.g:1326:6: ( (lv_dataType_3_0= ruleDataTypeNotAdjustable ) )
-                    // InternalSensidl.g:1327:1: (lv_dataType_3_0= ruleDataTypeNotAdjustable )
+                    // InternalSensidl.g:1419:6: ( (lv_dataType_3_0= ruleDataTypeNotAdjustable ) )
+                    // InternalSensidl.g:1420:1: (lv_dataType_3_0= ruleDataTypeNotAdjustable )
                     {
-                    // InternalSensidl.g:1327:1: (lv_dataType_3_0= ruleDataTypeNotAdjustable )
-                    // InternalSensidl.g:1328:3: lv_dataType_3_0= ruleDataTypeNotAdjustable
+                    // InternalSensidl.g:1420:1: (lv_dataType_3_0= ruleDataTypeNotAdjustable )
+                    // InternalSensidl.g:1421:3: lv_dataType_3_0= ruleDataTypeNotAdjustable
                     {
                      
                     	        newCompositeNode(grammarAccess.getNonMeasurementDataAccess().getDataTypeDataTypeNotAdjustableEnumRuleCall_2_1_0()); 
                     	    
-                    pushFollow(FOLLOW_47);
+                    pushFollow(FOLLOW_49);
                     lv_dataType_3_0=ruleDataTypeNotAdjustable();
 
                     state._fsp--;
@@ -3147,21 +3368,21 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSensidl.g:1344:3: ( (lv_constant_4_0= 'constant' ) )?
-            int alt30=2;
-            int LA30_0 = input.LA(1);
+            // InternalSensidl.g:1437:3: ( (lv_constant_4_0= 'constant' ) )?
+            int alt31=2;
+            int LA31_0 = input.LA(1);
 
-            if ( (LA30_0==38) ) {
-                alt30=1;
+            if ( (LA31_0==39) ) {
+                alt31=1;
             }
-            switch (alt30) {
+            switch (alt31) {
                 case 1 :
-                    // InternalSensidl.g:1345:1: (lv_constant_4_0= 'constant' )
+                    // InternalSensidl.g:1438:1: (lv_constant_4_0= 'constant' )
                     {
-                    // InternalSensidl.g:1345:1: (lv_constant_4_0= 'constant' )
-                    // InternalSensidl.g:1346:3: lv_constant_4_0= 'constant'
+                    // InternalSensidl.g:1438:1: (lv_constant_4_0= 'constant' )
+                    // InternalSensidl.g:1439:3: lv_constant_4_0= 'constant'
                     {
-                    lv_constant_4_0=(Token)match(input,38,FOLLOW_48); 
+                    lv_constant_4_0=(Token)match(input,39,FOLLOW_50); 
 
                             newLeafNode(lv_constant_4_0, grammarAccess.getNonMeasurementDataAccess().getConstantConstantKeyword_3_0());
                         
@@ -3180,32 +3401,32 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSensidl.g:1359:3: (otherlv_5= 'value' otherlv_6= '=' ( (lv_value_7_0= RULE_STRING ) ) )?
-            int alt31=2;
-            int LA31_0 = input.LA(1);
+            // InternalSensidl.g:1452:3: (otherlv_5= 'value' otherlv_6= '=' ( (lv_value_7_0= RULE_STRING ) ) )?
+            int alt32=2;
+            int LA32_0 = input.LA(1);
 
-            if ( (LA31_0==39) ) {
-                alt31=1;
+            if ( (LA32_0==40) ) {
+                alt32=1;
             }
-            switch (alt31) {
+            switch (alt32) {
                 case 1 :
-                    // InternalSensidl.g:1359:5: otherlv_5= 'value' otherlv_6= '=' ( (lv_value_7_0= RULE_STRING ) )
+                    // InternalSensidl.g:1452:5: otherlv_5= 'value' otherlv_6= '=' ( (lv_value_7_0= RULE_STRING ) )
                     {
-                    otherlv_5=(Token)match(input,39,FOLLOW_49); 
+                    otherlv_5=(Token)match(input,40,FOLLOW_51); 
 
                         	newLeafNode(otherlv_5, grammarAccess.getNonMeasurementDataAccess().getValueKeyword_4_0());
                         
-                    otherlv_6=(Token)match(input,40,FOLLOW_7); 
+                    otherlv_6=(Token)match(input,41,FOLLOW_7); 
 
                         	newLeafNode(otherlv_6, grammarAccess.getNonMeasurementDataAccess().getEqualsSignKeyword_4_1());
                         
-                    // InternalSensidl.g:1367:1: ( (lv_value_7_0= RULE_STRING ) )
-                    // InternalSensidl.g:1368:1: (lv_value_7_0= RULE_STRING )
+                    // InternalSensidl.g:1460:1: ( (lv_value_7_0= RULE_STRING ) )
+                    // InternalSensidl.g:1461:1: (lv_value_7_0= RULE_STRING )
                     {
-                    // InternalSensidl.g:1368:1: (lv_value_7_0= RULE_STRING )
-                    // InternalSensidl.g:1369:3: lv_value_7_0= RULE_STRING
+                    // InternalSensidl.g:1461:1: (lv_value_7_0= RULE_STRING )
+                    // InternalSensidl.g:1462:3: lv_value_7_0= RULE_STRING
                     {
-                    lv_value_7_0=(Token)match(input,RULE_STRING,FOLLOW_50); 
+                    lv_value_7_0=(Token)match(input,RULE_STRING,FOLLOW_52); 
 
                     			newLeafNode(lv_value_7_0, grammarAccess.getNonMeasurementDataAccess().getValueSTRINGTerminalRuleCall_4_2_0()); 
                     		
@@ -3231,16 +3452,16 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSensidl.g:1385:4: (otherlv_8= 'with identifier' otherlv_9= ':' ( (lv_ID_10_0= RULE_STRING ) ) )?
-            int alt32=2;
-            int LA32_0 = input.LA(1);
+            // InternalSensidl.g:1478:4: (otherlv_8= 'with identifier' otherlv_9= ':' ( (lv_ID_10_0= RULE_STRING ) ) )?
+            int alt33=2;
+            int LA33_0 = input.LA(1);
 
-            if ( (LA32_0==13) ) {
-                alt32=1;
+            if ( (LA33_0==13) ) {
+                alt33=1;
             }
-            switch (alt32) {
+            switch (alt33) {
                 case 1 :
-                    // InternalSensidl.g:1385:6: otherlv_8= 'with identifier' otherlv_9= ':' ( (lv_ID_10_0= RULE_STRING ) )
+                    // InternalSensidl.g:1478:6: otherlv_8= 'with identifier' otherlv_9= ':' ( (lv_ID_10_0= RULE_STRING ) )
                     {
                     otherlv_8=(Token)match(input,13,FOLLOW_6); 
 
@@ -3250,13 +3471,13 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
                         	newLeafNode(otherlv_9, grammarAccess.getNonMeasurementDataAccess().getColonKeyword_5_1());
                         
-                    // InternalSensidl.g:1393:1: ( (lv_ID_10_0= RULE_STRING ) )
-                    // InternalSensidl.g:1394:1: (lv_ID_10_0= RULE_STRING )
+                    // InternalSensidl.g:1486:1: ( (lv_ID_10_0= RULE_STRING ) )
+                    // InternalSensidl.g:1487:1: (lv_ID_10_0= RULE_STRING )
                     {
-                    // InternalSensidl.g:1394:1: (lv_ID_10_0= RULE_STRING )
-                    // InternalSensidl.g:1395:3: lv_ID_10_0= RULE_STRING
+                    // InternalSensidl.g:1487:1: (lv_ID_10_0= RULE_STRING )
+                    // InternalSensidl.g:1488:3: lv_ID_10_0= RULE_STRING
                     {
-                    lv_ID_10_0=(Token)match(input,RULE_STRING,FOLLOW_40); 
+                    lv_ID_10_0=(Token)match(input,RULE_STRING,FOLLOW_42); 
 
                     			newLeafNode(lv_ID_10_0, grammarAccess.getNonMeasurementDataAccess().getIDSTRINGTerminalRuleCall_5_2_0()); 
                     		
@@ -3282,51 +3503,51 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSensidl.g:1411:4: (otherlv_11= 'exclude:' ( ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? ) ) )?
-            int alt36=2;
-            int LA36_0 = input.LA(1);
+            // InternalSensidl.g:1504:4: (otherlv_11= 'exclude:' ( ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? ) ) )?
+            int alt37=2;
+            int LA37_0 = input.LA(1);
 
-            if ( (LA36_0==35) ) {
-                alt36=1;
+            if ( (LA37_0==36) ) {
+                alt37=1;
             }
-            switch (alt36) {
+            switch (alt37) {
                 case 1 :
-                    // InternalSensidl.g:1411:6: otherlv_11= 'exclude:' ( ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? ) )
+                    // InternalSensidl.g:1504:6: otherlv_11= 'exclude:' ( ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? ) )
                     {
-                    otherlv_11=(Token)match(input,35,FOLLOW_42); 
+                    otherlv_11=(Token)match(input,36,FOLLOW_44); 
 
                         	newLeafNode(otherlv_11, grammarAccess.getNonMeasurementDataAccess().getExcludeKeyword_6_0());
                         
-                    // InternalSensidl.g:1415:1: ( ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? ) )
-                    int alt35=2;
-                    int LA35_0 = input.LA(1);
+                    // InternalSensidl.g:1508:1: ( ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? ) )
+                    int alt36=2;
+                    int LA36_0 = input.LA(1);
 
-                    if ( (LA35_0==36) ) {
-                        alt35=1;
+                    if ( (LA36_0==37) ) {
+                        alt36=1;
                     }
-                    else if ( (LA35_0==37) ) {
-                        alt35=2;
+                    else if ( (LA36_0==38) ) {
+                        alt36=2;
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 35, 0, input);
+                            new NoViableAltException("", 36, 0, input);
 
                         throw nvae;
                     }
-                    switch (alt35) {
+                    switch (alt36) {
                         case 1 :
-                            // InternalSensidl.g:1415:2: ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? )
+                            // InternalSensidl.g:1508:2: ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? )
                             {
-                            // InternalSensidl.g:1415:2: ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? )
-                            // InternalSensidl.g:1415:3: ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )?
+                            // InternalSensidl.g:1508:2: ( ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )? )
+                            // InternalSensidl.g:1508:3: ( (lv_excludedMethods_12_0= 'setter' ) ) (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )?
                             {
-                            // InternalSensidl.g:1415:3: ( (lv_excludedMethods_12_0= 'setter' ) )
-                            // InternalSensidl.g:1416:1: (lv_excludedMethods_12_0= 'setter' )
+                            // InternalSensidl.g:1508:3: ( (lv_excludedMethods_12_0= 'setter' ) )
+                            // InternalSensidl.g:1509:1: (lv_excludedMethods_12_0= 'setter' )
                             {
-                            // InternalSensidl.g:1416:1: (lv_excludedMethods_12_0= 'setter' )
-                            // InternalSensidl.g:1417:3: lv_excludedMethods_12_0= 'setter'
+                            // InternalSensidl.g:1509:1: (lv_excludedMethods_12_0= 'setter' )
+                            // InternalSensidl.g:1510:3: lv_excludedMethods_12_0= 'setter'
                             {
-                            lv_excludedMethods_12_0=(Token)match(input,36,FOLLOW_43); 
+                            lv_excludedMethods_12_0=(Token)match(input,37,FOLLOW_45); 
 
                                     newLeafNode(lv_excludedMethods_12_0, grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsSetterKeyword_6_1_0_0_0());
                                 
@@ -3342,28 +3563,28 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // InternalSensidl.g:1430:2: (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )?
-                            int alt33=2;
-                            int LA33_0 = input.LA(1);
+                            // InternalSensidl.g:1523:2: (otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) ) )?
+                            int alt34=2;
+                            int LA34_0 = input.LA(1);
 
-                            if ( (LA33_0==18) ) {
-                                alt33=1;
+                            if ( (LA34_0==18) ) {
+                                alt34=1;
                             }
-                            switch (alt33) {
+                            switch (alt34) {
                                 case 1 :
-                                    // InternalSensidl.g:1430:4: otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) )
+                                    // InternalSensidl.g:1523:4: otherlv_13= ',' ( (lv_excludedMethods_14_0= 'getter' ) )
                                     {
-                                    otherlv_13=(Token)match(input,18,FOLLOW_44); 
+                                    otherlv_13=(Token)match(input,18,FOLLOW_46); 
 
                                         	newLeafNode(otherlv_13, grammarAccess.getNonMeasurementDataAccess().getCommaKeyword_6_1_0_1_0());
                                         
-                                    // InternalSensidl.g:1434:1: ( (lv_excludedMethods_14_0= 'getter' ) )
-                                    // InternalSensidl.g:1435:1: (lv_excludedMethods_14_0= 'getter' )
+                                    // InternalSensidl.g:1527:1: ( (lv_excludedMethods_14_0= 'getter' ) )
+                                    // InternalSensidl.g:1528:1: (lv_excludedMethods_14_0= 'getter' )
                                     {
-                                    // InternalSensidl.g:1435:1: (lv_excludedMethods_14_0= 'getter' )
-                                    // InternalSensidl.g:1436:3: lv_excludedMethods_14_0= 'getter'
+                                    // InternalSensidl.g:1528:1: (lv_excludedMethods_14_0= 'getter' )
+                                    // InternalSensidl.g:1529:3: lv_excludedMethods_14_0= 'getter'
                                     {
-                                    lv_excludedMethods_14_0=(Token)match(input,37,FOLLOW_33); 
+                                    lv_excludedMethods_14_0=(Token)match(input,38,FOLLOW_33); 
 
                                             newLeafNode(lv_excludedMethods_14_0, grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsGetterKeyword_6_1_0_1_1_0());
                                         
@@ -3392,18 +3613,18 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // InternalSensidl.g:1450:6: ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? )
+                            // InternalSensidl.g:1543:6: ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? )
                             {
-                            // InternalSensidl.g:1450:6: ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? )
-                            // InternalSensidl.g:1450:7: ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )?
+                            // InternalSensidl.g:1543:6: ( ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )? )
+                            // InternalSensidl.g:1543:7: ( (lv_excludedMethods_15_0= 'getter' ) ) (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )?
                             {
-                            // InternalSensidl.g:1450:7: ( (lv_excludedMethods_15_0= 'getter' ) )
-                            // InternalSensidl.g:1451:1: (lv_excludedMethods_15_0= 'getter' )
+                            // InternalSensidl.g:1543:7: ( (lv_excludedMethods_15_0= 'getter' ) )
+                            // InternalSensidl.g:1544:1: (lv_excludedMethods_15_0= 'getter' )
                             {
-                            // InternalSensidl.g:1451:1: (lv_excludedMethods_15_0= 'getter' )
-                            // InternalSensidl.g:1452:3: lv_excludedMethods_15_0= 'getter'
+                            // InternalSensidl.g:1544:1: (lv_excludedMethods_15_0= 'getter' )
+                            // InternalSensidl.g:1545:3: lv_excludedMethods_15_0= 'getter'
                             {
-                            lv_excludedMethods_15_0=(Token)match(input,37,FOLLOW_43); 
+                            lv_excludedMethods_15_0=(Token)match(input,38,FOLLOW_45); 
 
                                     newLeafNode(lv_excludedMethods_15_0, grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsGetterKeyword_6_1_1_0_0());
                                 
@@ -3419,28 +3640,28 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // InternalSensidl.g:1465:2: (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )?
-                            int alt34=2;
-                            int LA34_0 = input.LA(1);
+                            // InternalSensidl.g:1558:2: (otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) ) )?
+                            int alt35=2;
+                            int LA35_0 = input.LA(1);
 
-                            if ( (LA34_0==18) ) {
-                                alt34=1;
+                            if ( (LA35_0==18) ) {
+                                alt35=1;
                             }
-                            switch (alt34) {
+                            switch (alt35) {
                                 case 1 :
-                                    // InternalSensidl.g:1465:4: otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) )
+                                    // InternalSensidl.g:1558:4: otherlv_16= ',' ( (lv_excludedMethods_17_0= 'setter' ) )
                                     {
-                                    otherlv_16=(Token)match(input,18,FOLLOW_45); 
+                                    otherlv_16=(Token)match(input,18,FOLLOW_47); 
 
                                         	newLeafNode(otherlv_16, grammarAccess.getNonMeasurementDataAccess().getCommaKeyword_6_1_1_1_0());
                                         
-                                    // InternalSensidl.g:1469:1: ( (lv_excludedMethods_17_0= 'setter' ) )
-                                    // InternalSensidl.g:1470:1: (lv_excludedMethods_17_0= 'setter' )
+                                    // InternalSensidl.g:1562:1: ( (lv_excludedMethods_17_0= 'setter' ) )
+                                    // InternalSensidl.g:1563:1: (lv_excludedMethods_17_0= 'setter' )
                                     {
-                                    // InternalSensidl.g:1470:1: (lv_excludedMethods_17_0= 'setter' )
-                                    // InternalSensidl.g:1471:3: lv_excludedMethods_17_0= 'setter'
+                                    // InternalSensidl.g:1563:1: (lv_excludedMethods_17_0= 'setter' )
+                                    // InternalSensidl.g:1564:3: lv_excludedMethods_17_0= 'setter'
                                     {
-                                    lv_excludedMethods_17_0=(Token)match(input,36,FOLLOW_33); 
+                                    lv_excludedMethods_17_0=(Token)match(input,37,FOLLOW_33); 
 
                                             newLeafNode(lv_excludedMethods_17_0, grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsSetterKeyword_6_1_1_1_1_0());
                                         
@@ -3477,19 +3698,19 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSensidl.g:1484:8: ( (lv_description_18_0= RULE_DESCRIPTION ) )?
-            int alt37=2;
-            int LA37_0 = input.LA(1);
+            // InternalSensidl.g:1577:8: ( (lv_description_18_0= RULE_DESCRIPTION ) )?
+            int alt38=2;
+            int LA38_0 = input.LA(1);
 
-            if ( (LA37_0==RULE_DESCRIPTION) ) {
-                alt37=1;
+            if ( (LA38_0==RULE_DESCRIPTION) ) {
+                alt38=1;
             }
-            switch (alt37) {
+            switch (alt38) {
                 case 1 :
-                    // InternalSensidl.g:1485:1: (lv_description_18_0= RULE_DESCRIPTION )
+                    // InternalSensidl.g:1578:1: (lv_description_18_0= RULE_DESCRIPTION )
                     {
-                    // InternalSensidl.g:1485:1: (lv_description_18_0= RULE_DESCRIPTION )
-                    // InternalSensidl.g:1486:3: lv_description_18_0= RULE_DESCRIPTION
+                    // InternalSensidl.g:1578:1: (lv_description_18_0= RULE_DESCRIPTION )
+                    // InternalSensidl.g:1579:3: lv_description_18_0= RULE_DESCRIPTION
                     {
                     lv_description_18_0=(Token)match(input,RULE_DESCRIPTION,FOLLOW_2); 
 
@@ -3535,7 +3756,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMeasurementDataNotAdjustable"
-    // InternalSensidl.g:1510:1: entryRuleMeasurementDataNotAdjustable returns [EObject current=null] : iv_ruleMeasurementDataNotAdjustable= ruleMeasurementDataNotAdjustable EOF ;
+    // InternalSensidl.g:1603:1: entryRuleMeasurementDataNotAdjustable returns [EObject current=null] : iv_ruleMeasurementDataNotAdjustable= ruleMeasurementDataNotAdjustable EOF ;
     public final EObject entryRuleMeasurementDataNotAdjustable() throws RecognitionException {
         EObject current = null;
 
@@ -3543,8 +3764,8 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSensidl.g:1511:2: (iv_ruleMeasurementDataNotAdjustable= ruleMeasurementDataNotAdjustable EOF )
-            // InternalSensidl.g:1512:2: iv_ruleMeasurementDataNotAdjustable= ruleMeasurementDataNotAdjustable EOF
+            // InternalSensidl.g:1604:2: (iv_ruleMeasurementDataNotAdjustable= ruleMeasurementDataNotAdjustable EOF )
+            // InternalSensidl.g:1605:2: iv_ruleMeasurementDataNotAdjustable= ruleMeasurementDataNotAdjustable EOF
             {
              newCompositeNode(grammarAccess.getMeasurementDataNotAdjustableRule()); 
             pushFollow(FOLLOW_1);
@@ -3571,7 +3792,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMeasurementDataNotAdjustable"
-    // InternalSensidl.g:1519:1: ruleMeasurementDataNotAdjustable returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataTypeNotAdjustable ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? (otherlv_8= 'exclude' otherlv_9= ':' ( ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? ) ) )? ( (lv_description_16_0= RULE_DESCRIPTION ) )? ) ;
+    // InternalSensidl.g:1612:1: ruleMeasurementDataNotAdjustable returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataTypeNotAdjustable ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? (otherlv_8= 'exclude' otherlv_9= ':' ( ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? ) ) )? ( (lv_description_16_0= RULE_DESCRIPTION ) )? ) ;
     public final EObject ruleMeasurementDataNotAdjustable() throws RecognitionException {
         EObject current = null;
 
@@ -3598,17 +3819,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalSensidl.g:1522:28: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataTypeNotAdjustable ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? (otherlv_8= 'exclude' otherlv_9= ':' ( ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? ) ) )? ( (lv_description_16_0= RULE_DESCRIPTION ) )? ) )
-            // InternalSensidl.g:1523:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataTypeNotAdjustable ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? (otherlv_8= 'exclude' otherlv_9= ':' ( ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? ) ) )? ( (lv_description_16_0= RULE_DESCRIPTION ) )? )
+            // InternalSensidl.g:1615:28: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataTypeNotAdjustable ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? (otherlv_8= 'exclude' otherlv_9= ':' ( ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? ) ) )? ( (lv_description_16_0= RULE_DESCRIPTION ) )? ) )
+            // InternalSensidl.g:1616:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataTypeNotAdjustable ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? (otherlv_8= 'exclude' otherlv_9= ':' ( ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? ) ) )? ( (lv_description_16_0= RULE_DESCRIPTION ) )? )
             {
-            // InternalSensidl.g:1523:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataTypeNotAdjustable ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? (otherlv_8= 'exclude' otherlv_9= ':' ( ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? ) ) )? ( (lv_description_16_0= RULE_DESCRIPTION ) )? )
-            // InternalSensidl.g:1523:2: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataTypeNotAdjustable ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? (otherlv_8= 'exclude' otherlv_9= ':' ( ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? ) ) )? ( (lv_description_16_0= RULE_DESCRIPTION ) )?
+            // InternalSensidl.g:1616:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataTypeNotAdjustable ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? (otherlv_8= 'exclude' otherlv_9= ':' ( ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? ) ) )? ( (lv_description_16_0= RULE_DESCRIPTION ) )? )
+            // InternalSensidl.g:1616:2: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= 'as' ( (lv_dataType_2_0= ruleDataTypeNotAdjustable ) ) otherlv_3= 'in' ( (lv_unit_4_0= ruleUNIT ) ) (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )? (otherlv_8= 'exclude' otherlv_9= ':' ( ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? ) ) )? ( (lv_description_16_0= RULE_DESCRIPTION ) )?
             {
-            // InternalSensidl.g:1523:2: ( (lv_name_0_0= RULE_ID ) )
-            // InternalSensidl.g:1524:1: (lv_name_0_0= RULE_ID )
+            // InternalSensidl.g:1616:2: ( (lv_name_0_0= RULE_ID ) )
+            // InternalSensidl.g:1617:1: (lv_name_0_0= RULE_ID )
             {
-            // InternalSensidl.g:1524:1: (lv_name_0_0= RULE_ID )
-            // InternalSensidl.g:1525:3: lv_name_0_0= RULE_ID
+            // InternalSensidl.g:1617:1: (lv_name_0_0= RULE_ID )
+            // InternalSensidl.g:1618:3: lv_name_0_0= RULE_ID
             {
             lv_name_0_0=(Token)match(input,RULE_ID,FOLLOW_30); 
 
@@ -3630,20 +3851,20 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,31,FOLLOW_46); 
+            otherlv_1=(Token)match(input,31,FOLLOW_48); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getMeasurementDataNotAdjustableAccess().getAsKeyword_1());
                 
-            // InternalSensidl.g:1545:1: ( (lv_dataType_2_0= ruleDataTypeNotAdjustable ) )
-            // InternalSensidl.g:1546:1: (lv_dataType_2_0= ruleDataTypeNotAdjustable )
+            // InternalSensidl.g:1638:1: ( (lv_dataType_2_0= ruleDataTypeNotAdjustable ) )
+            // InternalSensidl.g:1639:1: (lv_dataType_2_0= ruleDataTypeNotAdjustable )
             {
-            // InternalSensidl.g:1546:1: (lv_dataType_2_0= ruleDataTypeNotAdjustable )
-            // InternalSensidl.g:1547:3: lv_dataType_2_0= ruleDataTypeNotAdjustable
+            // InternalSensidl.g:1639:1: (lv_dataType_2_0= ruleDataTypeNotAdjustable )
+            // InternalSensidl.g:1640:3: lv_dataType_2_0= ruleDataTypeNotAdjustable
             {
              
             	        newCompositeNode(grammarAccess.getMeasurementDataNotAdjustableAccess().getDataTypeDataTypeNotAdjustableEnumRuleCall_2_0()); 
             	    
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_37);
             lv_dataType_2_0=ruleDataTypeNotAdjustable();
 
             state._fsp--;
@@ -3665,20 +3886,20 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,33,FOLLOW_51); 
+            otherlv_3=(Token)match(input,34,FOLLOW_53); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getMeasurementDataNotAdjustableAccess().getInKeyword_3());
                 
-            // InternalSensidl.g:1567:1: ( (lv_unit_4_0= ruleUNIT ) )
-            // InternalSensidl.g:1568:1: (lv_unit_4_0= ruleUNIT )
+            // InternalSensidl.g:1660:1: ( (lv_unit_4_0= ruleUNIT ) )
+            // InternalSensidl.g:1661:1: (lv_unit_4_0= ruleUNIT )
             {
-            // InternalSensidl.g:1568:1: (lv_unit_4_0= ruleUNIT )
-            // InternalSensidl.g:1569:3: lv_unit_4_0= ruleUNIT
+            // InternalSensidl.g:1661:1: (lv_unit_4_0= ruleUNIT )
+            // InternalSensidl.g:1662:3: lv_unit_4_0= ruleUNIT
             {
              
             	        newCompositeNode(grammarAccess.getMeasurementDataNotAdjustableAccess().getUnitUNITParserRuleCall_4_0()); 
             	    
-            pushFollow(FOLLOW_52);
+            pushFollow(FOLLOW_54);
             lv_unit_4_0=ruleUNIT();
 
             state._fsp--;
@@ -3700,16 +3921,16 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSensidl.g:1585:2: (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )?
-            int alt38=2;
-            int LA38_0 = input.LA(1);
+            // InternalSensidl.g:1678:2: (otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) ) )?
+            int alt39=2;
+            int LA39_0 = input.LA(1);
 
-            if ( (LA38_0==13) ) {
-                alt38=1;
+            if ( (LA39_0==13) ) {
+                alt39=1;
             }
-            switch (alt38) {
+            switch (alt39) {
                 case 1 :
-                    // InternalSensidl.g:1585:4: otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) )
+                    // InternalSensidl.g:1678:4: otherlv_5= 'with identifier' otherlv_6= ':' ( (lv_ID_7_0= RULE_STRING ) )
                     {
                     otherlv_5=(Token)match(input,13,FOLLOW_6); 
 
@@ -3719,13 +3940,13 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
                         	newLeafNode(otherlv_6, grammarAccess.getMeasurementDataNotAdjustableAccess().getColonKeyword_5_1());
                         
-                    // InternalSensidl.g:1593:1: ( (lv_ID_7_0= RULE_STRING ) )
-                    // InternalSensidl.g:1594:1: (lv_ID_7_0= RULE_STRING )
+                    // InternalSensidl.g:1686:1: ( (lv_ID_7_0= RULE_STRING ) )
+                    // InternalSensidl.g:1687:1: (lv_ID_7_0= RULE_STRING )
                     {
-                    // InternalSensidl.g:1594:1: (lv_ID_7_0= RULE_STRING )
-                    // InternalSensidl.g:1595:3: lv_ID_7_0= RULE_STRING
+                    // InternalSensidl.g:1687:1: (lv_ID_7_0= RULE_STRING )
+                    // InternalSensidl.g:1688:3: lv_ID_7_0= RULE_STRING
                     {
-                    lv_ID_7_0=(Token)match(input,RULE_STRING,FOLLOW_53); 
+                    lv_ID_7_0=(Token)match(input,RULE_STRING,FOLLOW_55); 
 
                     			newLeafNode(lv_ID_7_0, grammarAccess.getMeasurementDataNotAdjustableAccess().getIDSTRINGTerminalRuleCall_5_2_0()); 
                     		
@@ -3751,55 +3972,55 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSensidl.g:1611:4: (otherlv_8= 'exclude' otherlv_9= ':' ( ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? ) ) )?
-            int alt42=2;
-            int LA42_0 = input.LA(1);
+            // InternalSensidl.g:1704:4: (otherlv_8= 'exclude' otherlv_9= ':' ( ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? ) ) )?
+            int alt43=2;
+            int LA43_0 = input.LA(1);
 
-            if ( (LA42_0==41) ) {
-                alt42=1;
+            if ( (LA43_0==42) ) {
+                alt43=1;
             }
-            switch (alt42) {
+            switch (alt43) {
                 case 1 :
-                    // InternalSensidl.g:1611:6: otherlv_8= 'exclude' otherlv_9= ':' ( ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? ) )
+                    // InternalSensidl.g:1704:6: otherlv_8= 'exclude' otherlv_9= ':' ( ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? ) )
                     {
-                    otherlv_8=(Token)match(input,41,FOLLOW_6); 
+                    otherlv_8=(Token)match(input,42,FOLLOW_6); 
 
                         	newLeafNode(otherlv_8, grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludeKeyword_6_0());
                         
-                    otherlv_9=(Token)match(input,14,FOLLOW_42); 
+                    otherlv_9=(Token)match(input,14,FOLLOW_44); 
 
                         	newLeafNode(otherlv_9, grammarAccess.getMeasurementDataNotAdjustableAccess().getColonKeyword_6_1());
                         
-                    // InternalSensidl.g:1619:1: ( ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? ) )
-                    int alt41=2;
-                    int LA41_0 = input.LA(1);
+                    // InternalSensidl.g:1712:1: ( ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? ) | ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? ) )
+                    int alt42=2;
+                    int LA42_0 = input.LA(1);
 
-                    if ( (LA41_0==36) ) {
-                        alt41=1;
+                    if ( (LA42_0==37) ) {
+                        alt42=1;
                     }
-                    else if ( (LA41_0==37) ) {
-                        alt41=2;
+                    else if ( (LA42_0==38) ) {
+                        alt42=2;
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 41, 0, input);
+                            new NoViableAltException("", 42, 0, input);
 
                         throw nvae;
                     }
-                    switch (alt41) {
+                    switch (alt42) {
                         case 1 :
-                            // InternalSensidl.g:1619:2: ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? )
+                            // InternalSensidl.g:1712:2: ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? )
                             {
-                            // InternalSensidl.g:1619:2: ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? )
-                            // InternalSensidl.g:1619:3: ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )?
+                            // InternalSensidl.g:1712:2: ( ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )? )
+                            // InternalSensidl.g:1712:3: ( (lv_excludedMethods_10_0= 'setter' ) ) (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )?
                             {
-                            // InternalSensidl.g:1619:3: ( (lv_excludedMethods_10_0= 'setter' ) )
-                            // InternalSensidl.g:1620:1: (lv_excludedMethods_10_0= 'setter' )
+                            // InternalSensidl.g:1712:3: ( (lv_excludedMethods_10_0= 'setter' ) )
+                            // InternalSensidl.g:1713:1: (lv_excludedMethods_10_0= 'setter' )
                             {
-                            // InternalSensidl.g:1620:1: (lv_excludedMethods_10_0= 'setter' )
-                            // InternalSensidl.g:1621:3: lv_excludedMethods_10_0= 'setter'
+                            // InternalSensidl.g:1713:1: (lv_excludedMethods_10_0= 'setter' )
+                            // InternalSensidl.g:1714:3: lv_excludedMethods_10_0= 'setter'
                             {
-                            lv_excludedMethods_10_0=(Token)match(input,36,FOLLOW_43); 
+                            lv_excludedMethods_10_0=(Token)match(input,37,FOLLOW_45); 
 
                                     newLeafNode(lv_excludedMethods_10_0, grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsSetterKeyword_6_2_0_0_0());
                                 
@@ -3815,28 +4036,28 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // InternalSensidl.g:1634:2: (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )?
-                            int alt39=2;
-                            int LA39_0 = input.LA(1);
+                            // InternalSensidl.g:1727:2: (otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) ) )?
+                            int alt40=2;
+                            int LA40_0 = input.LA(1);
 
-                            if ( (LA39_0==18) ) {
-                                alt39=1;
+                            if ( (LA40_0==18) ) {
+                                alt40=1;
                             }
-                            switch (alt39) {
+                            switch (alt40) {
                                 case 1 :
-                                    // InternalSensidl.g:1634:4: otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) )
+                                    // InternalSensidl.g:1727:4: otherlv_11= ',' ( (lv_excludedMethods_12_0= 'getter' ) )
                                     {
-                                    otherlv_11=(Token)match(input,18,FOLLOW_44); 
+                                    otherlv_11=(Token)match(input,18,FOLLOW_46); 
 
                                         	newLeafNode(otherlv_11, grammarAccess.getMeasurementDataNotAdjustableAccess().getCommaKeyword_6_2_0_1_0());
                                         
-                                    // InternalSensidl.g:1638:1: ( (lv_excludedMethods_12_0= 'getter' ) )
-                                    // InternalSensidl.g:1639:1: (lv_excludedMethods_12_0= 'getter' )
+                                    // InternalSensidl.g:1731:1: ( (lv_excludedMethods_12_0= 'getter' ) )
+                                    // InternalSensidl.g:1732:1: (lv_excludedMethods_12_0= 'getter' )
                                     {
-                                    // InternalSensidl.g:1639:1: (lv_excludedMethods_12_0= 'getter' )
-                                    // InternalSensidl.g:1640:3: lv_excludedMethods_12_0= 'getter'
+                                    // InternalSensidl.g:1732:1: (lv_excludedMethods_12_0= 'getter' )
+                                    // InternalSensidl.g:1733:3: lv_excludedMethods_12_0= 'getter'
                                     {
-                                    lv_excludedMethods_12_0=(Token)match(input,37,FOLLOW_33); 
+                                    lv_excludedMethods_12_0=(Token)match(input,38,FOLLOW_33); 
 
                                             newLeafNode(lv_excludedMethods_12_0, grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsGetterKeyword_6_2_0_1_1_0());
                                         
@@ -3865,18 +4086,18 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // InternalSensidl.g:1654:6: ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? )
+                            // InternalSensidl.g:1747:6: ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? )
                             {
-                            // InternalSensidl.g:1654:6: ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? )
-                            // InternalSensidl.g:1654:7: ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )?
+                            // InternalSensidl.g:1747:6: ( ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )? )
+                            // InternalSensidl.g:1747:7: ( (lv_excludedMethods_13_0= 'getter' ) ) (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )?
                             {
-                            // InternalSensidl.g:1654:7: ( (lv_excludedMethods_13_0= 'getter' ) )
-                            // InternalSensidl.g:1655:1: (lv_excludedMethods_13_0= 'getter' )
+                            // InternalSensidl.g:1747:7: ( (lv_excludedMethods_13_0= 'getter' ) )
+                            // InternalSensidl.g:1748:1: (lv_excludedMethods_13_0= 'getter' )
                             {
-                            // InternalSensidl.g:1655:1: (lv_excludedMethods_13_0= 'getter' )
-                            // InternalSensidl.g:1656:3: lv_excludedMethods_13_0= 'getter'
+                            // InternalSensidl.g:1748:1: (lv_excludedMethods_13_0= 'getter' )
+                            // InternalSensidl.g:1749:3: lv_excludedMethods_13_0= 'getter'
                             {
-                            lv_excludedMethods_13_0=(Token)match(input,37,FOLLOW_43); 
+                            lv_excludedMethods_13_0=(Token)match(input,38,FOLLOW_45); 
 
                                     newLeafNode(lv_excludedMethods_13_0, grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsGetterKeyword_6_2_1_0_0());
                                 
@@ -3892,28 +4113,28 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // InternalSensidl.g:1669:2: (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )?
-                            int alt40=2;
-                            int LA40_0 = input.LA(1);
+                            // InternalSensidl.g:1762:2: (otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) ) )?
+                            int alt41=2;
+                            int LA41_0 = input.LA(1);
 
-                            if ( (LA40_0==18) ) {
-                                alt40=1;
+                            if ( (LA41_0==18) ) {
+                                alt41=1;
                             }
-                            switch (alt40) {
+                            switch (alt41) {
                                 case 1 :
-                                    // InternalSensidl.g:1669:4: otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) )
+                                    // InternalSensidl.g:1762:4: otherlv_14= ',' ( (lv_excludedMethods_15_0= 'setter' ) )
                                     {
-                                    otherlv_14=(Token)match(input,18,FOLLOW_45); 
+                                    otherlv_14=(Token)match(input,18,FOLLOW_47); 
 
                                         	newLeafNode(otherlv_14, grammarAccess.getMeasurementDataNotAdjustableAccess().getCommaKeyword_6_2_1_1_0());
                                         
-                                    // InternalSensidl.g:1673:1: ( (lv_excludedMethods_15_0= 'setter' ) )
-                                    // InternalSensidl.g:1674:1: (lv_excludedMethods_15_0= 'setter' )
+                                    // InternalSensidl.g:1766:1: ( (lv_excludedMethods_15_0= 'setter' ) )
+                                    // InternalSensidl.g:1767:1: (lv_excludedMethods_15_0= 'setter' )
                                     {
-                                    // InternalSensidl.g:1674:1: (lv_excludedMethods_15_0= 'setter' )
-                                    // InternalSensidl.g:1675:3: lv_excludedMethods_15_0= 'setter'
+                                    // InternalSensidl.g:1767:1: (lv_excludedMethods_15_0= 'setter' )
+                                    // InternalSensidl.g:1768:3: lv_excludedMethods_15_0= 'setter'
                                     {
-                                    lv_excludedMethods_15_0=(Token)match(input,36,FOLLOW_33); 
+                                    lv_excludedMethods_15_0=(Token)match(input,37,FOLLOW_33); 
 
                                             newLeafNode(lv_excludedMethods_15_0, grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsSetterKeyword_6_2_1_1_1_0());
                                         
@@ -3950,19 +4171,19 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSensidl.g:1688:8: ( (lv_description_16_0= RULE_DESCRIPTION ) )?
-            int alt43=2;
-            int LA43_0 = input.LA(1);
+            // InternalSensidl.g:1781:8: ( (lv_description_16_0= RULE_DESCRIPTION ) )?
+            int alt44=2;
+            int LA44_0 = input.LA(1);
 
-            if ( (LA43_0==RULE_DESCRIPTION) ) {
-                alt43=1;
+            if ( (LA44_0==RULE_DESCRIPTION) ) {
+                alt44=1;
             }
-            switch (alt43) {
+            switch (alt44) {
                 case 1 :
-                    // InternalSensidl.g:1689:1: (lv_description_16_0= RULE_DESCRIPTION )
+                    // InternalSensidl.g:1782:1: (lv_description_16_0= RULE_DESCRIPTION )
                     {
-                    // InternalSensidl.g:1689:1: (lv_description_16_0= RULE_DESCRIPTION )
-                    // InternalSensidl.g:1690:3: lv_description_16_0= RULE_DESCRIPTION
+                    // InternalSensidl.g:1782:1: (lv_description_16_0= RULE_DESCRIPTION )
+                    // InternalSensidl.g:1783:3: lv_description_16_0= RULE_DESCRIPTION
                     {
                     lv_description_16_0=(Token)match(input,RULE_DESCRIPTION,FOLLOW_2); 
 
@@ -4008,7 +4229,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDataRange"
-    // InternalSensidl.g:1714:1: entryRuleDataRange returns [EObject current=null] : iv_ruleDataRange= ruleDataRange EOF ;
+    // InternalSensidl.g:1807:1: entryRuleDataRange returns [EObject current=null] : iv_ruleDataRange= ruleDataRange EOF ;
     public final EObject entryRuleDataRange() throws RecognitionException {
         EObject current = null;
 
@@ -4016,8 +4237,8 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSensidl.g:1715:2: (iv_ruleDataRange= ruleDataRange EOF )
-            // InternalSensidl.g:1716:2: iv_ruleDataRange= ruleDataRange EOF
+            // InternalSensidl.g:1808:2: (iv_ruleDataRange= ruleDataRange EOF )
+            // InternalSensidl.g:1809:2: iv_ruleDataRange= ruleDataRange EOF
             {
              newCompositeNode(grammarAccess.getDataRangeRule()); 
             pushFollow(FOLLOW_1);
@@ -4044,7 +4265,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDataRange"
-    // InternalSensidl.g:1723:1: ruleDataRange returns [EObject current=null] : (otherlv_0= 'with range' ( (lv_range_1_0= ruleInterval ) ) ) ;
+    // InternalSensidl.g:1816:1: ruleDataRange returns [EObject current=null] : (otherlv_0= 'with range' ( (lv_range_1_0= ruleInterval ) ) ) ;
     public final EObject ruleDataRange() throws RecognitionException {
         EObject current = null;
 
@@ -4055,21 +4276,21 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalSensidl.g:1726:28: ( (otherlv_0= 'with range' ( (lv_range_1_0= ruleInterval ) ) ) )
-            // InternalSensidl.g:1727:1: (otherlv_0= 'with range' ( (lv_range_1_0= ruleInterval ) ) )
+            // InternalSensidl.g:1819:28: ( (otherlv_0= 'with range' ( (lv_range_1_0= ruleInterval ) ) ) )
+            // InternalSensidl.g:1820:1: (otherlv_0= 'with range' ( (lv_range_1_0= ruleInterval ) ) )
             {
-            // InternalSensidl.g:1727:1: (otherlv_0= 'with range' ( (lv_range_1_0= ruleInterval ) ) )
-            // InternalSensidl.g:1727:3: otherlv_0= 'with range' ( (lv_range_1_0= ruleInterval ) )
+            // InternalSensidl.g:1820:1: (otherlv_0= 'with range' ( (lv_range_1_0= ruleInterval ) ) )
+            // InternalSensidl.g:1820:3: otherlv_0= 'with range' ( (lv_range_1_0= ruleInterval ) )
             {
-            otherlv_0=(Token)match(input,42,FOLLOW_54); 
+            otherlv_0=(Token)match(input,43,FOLLOW_56); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getDataRangeAccess().getWithRangeKeyword_0());
                 
-            // InternalSensidl.g:1731:1: ( (lv_range_1_0= ruleInterval ) )
-            // InternalSensidl.g:1732:1: (lv_range_1_0= ruleInterval )
+            // InternalSensidl.g:1824:1: ( (lv_range_1_0= ruleInterval ) )
+            // InternalSensidl.g:1825:1: (lv_range_1_0= ruleInterval )
             {
-            // InternalSensidl.g:1732:1: (lv_range_1_0= ruleInterval )
-            // InternalSensidl.g:1733:3: lv_range_1_0= ruleInterval
+            // InternalSensidl.g:1825:1: (lv_range_1_0= ruleInterval )
+            // InternalSensidl.g:1826:3: lv_range_1_0= ruleInterval
             {
              
             	        newCompositeNode(grammarAccess.getDataRangeAccess().getRangeIntervalParserRuleCall_1_0()); 
@@ -4117,7 +4338,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleInterval"
-    // InternalSensidl.g:1757:1: entryRuleInterval returns [EObject current=null] : iv_ruleInterval= ruleInterval EOF ;
+    // InternalSensidl.g:1850:1: entryRuleInterval returns [EObject current=null] : iv_ruleInterval= ruleInterval EOF ;
     public final EObject entryRuleInterval() throws RecognitionException {
         EObject current = null;
 
@@ -4125,8 +4346,8 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSensidl.g:1758:2: (iv_ruleInterval= ruleInterval EOF )
-            // InternalSensidl.g:1759:2: iv_ruleInterval= ruleInterval EOF
+            // InternalSensidl.g:1851:2: (iv_ruleInterval= ruleInterval EOF )
+            // InternalSensidl.g:1852:2: iv_ruleInterval= ruleInterval EOF
             {
              newCompositeNode(grammarAccess.getIntervalRule()); 
             pushFollow(FOLLOW_1);
@@ -4153,7 +4374,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleInterval"
-    // InternalSensidl.g:1766:1: ruleInterval returns [EObject current=null] : (otherlv_0= '[' ( (lv_lowerBound_1_0= ruleDOUBLE ) ) otherlv_2= ';' ( (lv_upperBound_3_0= ruleDOUBLE ) ) otherlv_4= ']' ) ;
+    // InternalSensidl.g:1859:1: ruleInterval returns [EObject current=null] : (otherlv_0= '[' ( (lv_lowerBound_1_0= ruleDOUBLE ) ) otherlv_2= ';' ( (lv_upperBound_3_0= ruleDOUBLE ) ) otherlv_4= ']' ) ;
     public final EObject ruleInterval() throws RecognitionException {
         EObject current = null;
 
@@ -4168,26 +4389,26 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalSensidl.g:1769:28: ( (otherlv_0= '[' ( (lv_lowerBound_1_0= ruleDOUBLE ) ) otherlv_2= ';' ( (lv_upperBound_3_0= ruleDOUBLE ) ) otherlv_4= ']' ) )
-            // InternalSensidl.g:1770:1: (otherlv_0= '[' ( (lv_lowerBound_1_0= ruleDOUBLE ) ) otherlv_2= ';' ( (lv_upperBound_3_0= ruleDOUBLE ) ) otherlv_4= ']' )
+            // InternalSensidl.g:1862:28: ( (otherlv_0= '[' ( (lv_lowerBound_1_0= ruleDOUBLE ) ) otherlv_2= ';' ( (lv_upperBound_3_0= ruleDOUBLE ) ) otherlv_4= ']' ) )
+            // InternalSensidl.g:1863:1: (otherlv_0= '[' ( (lv_lowerBound_1_0= ruleDOUBLE ) ) otherlv_2= ';' ( (lv_upperBound_3_0= ruleDOUBLE ) ) otherlv_4= ']' )
             {
-            // InternalSensidl.g:1770:1: (otherlv_0= '[' ( (lv_lowerBound_1_0= ruleDOUBLE ) ) otherlv_2= ';' ( (lv_upperBound_3_0= ruleDOUBLE ) ) otherlv_4= ']' )
-            // InternalSensidl.g:1770:3: otherlv_0= '[' ( (lv_lowerBound_1_0= ruleDOUBLE ) ) otherlv_2= ';' ( (lv_upperBound_3_0= ruleDOUBLE ) ) otherlv_4= ']'
+            // InternalSensidl.g:1863:1: (otherlv_0= '[' ( (lv_lowerBound_1_0= ruleDOUBLE ) ) otherlv_2= ';' ( (lv_upperBound_3_0= ruleDOUBLE ) ) otherlv_4= ']' )
+            // InternalSensidl.g:1863:3: otherlv_0= '[' ( (lv_lowerBound_1_0= ruleDOUBLE ) ) otherlv_2= ';' ( (lv_upperBound_3_0= ruleDOUBLE ) ) otherlv_4= ']'
             {
-            otherlv_0=(Token)match(input,43,FOLLOW_17); 
+            otherlv_0=(Token)match(input,44,FOLLOW_17); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getIntervalAccess().getLeftSquareBracketKeyword_0());
                 
-            // InternalSensidl.g:1774:1: ( (lv_lowerBound_1_0= ruleDOUBLE ) )
-            // InternalSensidl.g:1775:1: (lv_lowerBound_1_0= ruleDOUBLE )
+            // InternalSensidl.g:1867:1: ( (lv_lowerBound_1_0= ruleDOUBLE ) )
+            // InternalSensidl.g:1868:1: (lv_lowerBound_1_0= ruleDOUBLE )
             {
-            // InternalSensidl.g:1775:1: (lv_lowerBound_1_0= ruleDOUBLE )
-            // InternalSensidl.g:1776:3: lv_lowerBound_1_0= ruleDOUBLE
+            // InternalSensidl.g:1868:1: (lv_lowerBound_1_0= ruleDOUBLE )
+            // InternalSensidl.g:1869:3: lv_lowerBound_1_0= ruleDOUBLE
             {
              
             	        newCompositeNode(grammarAccess.getIntervalAccess().getLowerBoundDOUBLEParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_55);
+            pushFollow(FOLLOW_57);
             lv_lowerBound_1_0=ruleDOUBLE();
 
             state._fsp--;
@@ -4209,20 +4430,20 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,44,FOLLOW_17); 
+            otherlv_2=(Token)match(input,45,FOLLOW_17); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getIntervalAccess().getSemicolonKeyword_2());
                 
-            // InternalSensidl.g:1796:1: ( (lv_upperBound_3_0= ruleDOUBLE ) )
-            // InternalSensidl.g:1797:1: (lv_upperBound_3_0= ruleDOUBLE )
+            // InternalSensidl.g:1889:1: ( (lv_upperBound_3_0= ruleDOUBLE ) )
+            // InternalSensidl.g:1890:1: (lv_upperBound_3_0= ruleDOUBLE )
             {
-            // InternalSensidl.g:1797:1: (lv_upperBound_3_0= ruleDOUBLE )
-            // InternalSensidl.g:1798:3: lv_upperBound_3_0= ruleDOUBLE
+            // InternalSensidl.g:1890:1: (lv_upperBound_3_0= ruleDOUBLE )
+            // InternalSensidl.g:1891:3: lv_upperBound_3_0= ruleDOUBLE
             {
              
             	        newCompositeNode(grammarAccess.getIntervalAccess().getUpperBoundDOUBLEParserRuleCall_3_0()); 
             	    
-            pushFollow(FOLLOW_56);
+            pushFollow(FOLLOW_58);
             lv_upperBound_3_0=ruleDOUBLE();
 
             state._fsp--;
@@ -4244,7 +4465,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,45,FOLLOW_2); 
+            otherlv_4=(Token)match(input,46,FOLLOW_2); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getIntervalAccess().getRightSquareBracketKeyword_4());
                 
@@ -4269,7 +4490,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDataConversion"
-    // InternalSensidl.g:1826:1: entryRuleDataConversion returns [EObject current=null] : iv_ruleDataConversion= ruleDataConversion EOF ;
+    // InternalSensidl.g:1919:1: entryRuleDataConversion returns [EObject current=null] : iv_ruleDataConversion= ruleDataConversion EOF ;
     public final EObject entryRuleDataConversion() throws RecognitionException {
         EObject current = null;
 
@@ -4277,8 +4498,8 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSensidl.g:1827:2: (iv_ruleDataConversion= ruleDataConversion EOF )
-            // InternalSensidl.g:1828:2: iv_ruleDataConversion= ruleDataConversion EOF
+            // InternalSensidl.g:1920:2: (iv_ruleDataConversion= ruleDataConversion EOF )
+            // InternalSensidl.g:1921:2: iv_ruleDataConversion= ruleDataConversion EOF
             {
              newCompositeNode(grammarAccess.getDataConversionRule()); 
             pushFollow(FOLLOW_1);
@@ -4305,7 +4526,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDataConversion"
-    // InternalSensidl.g:1835:1: ruleDataConversion returns [EObject current=null] : (this_LinearDataConversion_0= ruleLinearDataConversion | this_LinearDataConversionWithInterval_1= ruleLinearDataConversionWithInterval ) ;
+    // InternalSensidl.g:1928:1: ruleDataConversion returns [EObject current=null] : (this_LinearDataConversion_0= ruleLinearDataConversion | this_LinearDataConversionWithInterval_1= ruleLinearDataConversionWithInterval ) ;
     public final EObject ruleDataConversion() throws RecognitionException {
         EObject current = null;
 
@@ -4317,28 +4538,28 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalSensidl.g:1838:28: ( (this_LinearDataConversion_0= ruleLinearDataConversion | this_LinearDataConversionWithInterval_1= ruleLinearDataConversionWithInterval ) )
-            // InternalSensidl.g:1839:1: (this_LinearDataConversion_0= ruleLinearDataConversion | this_LinearDataConversionWithInterval_1= ruleLinearDataConversionWithInterval )
+            // InternalSensidl.g:1931:28: ( (this_LinearDataConversion_0= ruleLinearDataConversion | this_LinearDataConversionWithInterval_1= ruleLinearDataConversionWithInterval ) )
+            // InternalSensidl.g:1932:1: (this_LinearDataConversion_0= ruleLinearDataConversion | this_LinearDataConversionWithInterval_1= ruleLinearDataConversionWithInterval )
             {
-            // InternalSensidl.g:1839:1: (this_LinearDataConversion_0= ruleLinearDataConversion | this_LinearDataConversionWithInterval_1= ruleLinearDataConversionWithInterval )
-            int alt44=2;
-            int LA44_0 = input.LA(1);
+            // InternalSensidl.g:1932:1: (this_LinearDataConversion_0= ruleLinearDataConversion | this_LinearDataConversionWithInterval_1= ruleLinearDataConversionWithInterval )
+            int alt45=2;
+            int LA45_0 = input.LA(1);
 
-            if ( (LA44_0==46) ) {
-                alt44=1;
+            if ( (LA45_0==47) ) {
+                alt45=1;
             }
-            else if ( (LA44_0==48) ) {
-                alt44=2;
+            else if ( (LA45_0==49) ) {
+                alt45=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 44, 0, input);
+                    new NoViableAltException("", 45, 0, input);
 
                 throw nvae;
             }
-            switch (alt44) {
+            switch (alt45) {
                 case 1 :
-                    // InternalSensidl.g:1840:5: this_LinearDataConversion_0= ruleLinearDataConversion
+                    // InternalSensidl.g:1933:5: this_LinearDataConversion_0= ruleLinearDataConversion
                     {
                      
                             newCompositeNode(grammarAccess.getDataConversionAccess().getLinearDataConversionParserRuleCall_0()); 
@@ -4356,7 +4577,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSensidl.g:1850:5: this_LinearDataConversionWithInterval_1= ruleLinearDataConversionWithInterval
+                    // InternalSensidl.g:1943:5: this_LinearDataConversionWithInterval_1= ruleLinearDataConversionWithInterval
                     {
                      
                             newCompositeNode(grammarAccess.getDataConversionAccess().getLinearDataConversionWithIntervalParserRuleCall_1()); 
@@ -4394,7 +4615,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLinearDataConversion"
-    // InternalSensidl.g:1866:1: entryRuleLinearDataConversion returns [EObject current=null] : iv_ruleLinearDataConversion= ruleLinearDataConversion EOF ;
+    // InternalSensidl.g:1959:1: entryRuleLinearDataConversion returns [EObject current=null] : iv_ruleLinearDataConversion= ruleLinearDataConversion EOF ;
     public final EObject entryRuleLinearDataConversion() throws RecognitionException {
         EObject current = null;
 
@@ -4402,8 +4623,8 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSensidl.g:1867:2: (iv_ruleLinearDataConversion= ruleLinearDataConversion EOF )
-            // InternalSensidl.g:1868:2: iv_ruleLinearDataConversion= ruleLinearDataConversion EOF
+            // InternalSensidl.g:1960:2: (iv_ruleLinearDataConversion= ruleLinearDataConversion EOF )
+            // InternalSensidl.g:1961:2: iv_ruleLinearDataConversion= ruleLinearDataConversion EOF
             {
              newCompositeNode(grammarAccess.getLinearDataConversionRule()); 
             pushFollow(FOLLOW_1);
@@ -4430,7 +4651,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLinearDataConversion"
-    // InternalSensidl.g:1875:1: ruleLinearDataConversion returns [EObject current=null] : (otherlv_0= 'with scaling factor' otherlv_1= ':' ( (lv_scalingFactor_2_0= ruleDOUBLE ) ) otherlv_3= 'and offset' otherlv_4= ':' ( (lv_offset_5_0= ruleDOUBLE ) ) ) ;
+    // InternalSensidl.g:1968:1: ruleLinearDataConversion returns [EObject current=null] : (otherlv_0= 'with scaling factor' otherlv_1= ':' ( (lv_scalingFactor_2_0= ruleDOUBLE ) ) otherlv_3= 'and offset' otherlv_4= ':' ( (lv_offset_5_0= ruleDOUBLE ) ) ) ;
     public final EObject ruleLinearDataConversion() throws RecognitionException {
         EObject current = null;
 
@@ -4446,13 +4667,13 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalSensidl.g:1878:28: ( (otherlv_0= 'with scaling factor' otherlv_1= ':' ( (lv_scalingFactor_2_0= ruleDOUBLE ) ) otherlv_3= 'and offset' otherlv_4= ':' ( (lv_offset_5_0= ruleDOUBLE ) ) ) )
-            // InternalSensidl.g:1879:1: (otherlv_0= 'with scaling factor' otherlv_1= ':' ( (lv_scalingFactor_2_0= ruleDOUBLE ) ) otherlv_3= 'and offset' otherlv_4= ':' ( (lv_offset_5_0= ruleDOUBLE ) ) )
+            // InternalSensidl.g:1971:28: ( (otherlv_0= 'with scaling factor' otherlv_1= ':' ( (lv_scalingFactor_2_0= ruleDOUBLE ) ) otherlv_3= 'and offset' otherlv_4= ':' ( (lv_offset_5_0= ruleDOUBLE ) ) ) )
+            // InternalSensidl.g:1972:1: (otherlv_0= 'with scaling factor' otherlv_1= ':' ( (lv_scalingFactor_2_0= ruleDOUBLE ) ) otherlv_3= 'and offset' otherlv_4= ':' ( (lv_offset_5_0= ruleDOUBLE ) ) )
             {
-            // InternalSensidl.g:1879:1: (otherlv_0= 'with scaling factor' otherlv_1= ':' ( (lv_scalingFactor_2_0= ruleDOUBLE ) ) otherlv_3= 'and offset' otherlv_4= ':' ( (lv_offset_5_0= ruleDOUBLE ) ) )
-            // InternalSensidl.g:1879:3: otherlv_0= 'with scaling factor' otherlv_1= ':' ( (lv_scalingFactor_2_0= ruleDOUBLE ) ) otherlv_3= 'and offset' otherlv_4= ':' ( (lv_offset_5_0= ruleDOUBLE ) )
+            // InternalSensidl.g:1972:1: (otherlv_0= 'with scaling factor' otherlv_1= ':' ( (lv_scalingFactor_2_0= ruleDOUBLE ) ) otherlv_3= 'and offset' otherlv_4= ':' ( (lv_offset_5_0= ruleDOUBLE ) ) )
+            // InternalSensidl.g:1972:3: otherlv_0= 'with scaling factor' otherlv_1= ':' ( (lv_scalingFactor_2_0= ruleDOUBLE ) ) otherlv_3= 'and offset' otherlv_4= ':' ( (lv_offset_5_0= ruleDOUBLE ) )
             {
-            otherlv_0=(Token)match(input,46,FOLLOW_6); 
+            otherlv_0=(Token)match(input,47,FOLLOW_6); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getLinearDataConversionAccess().getWithScalingFactorKeyword_0());
                 
@@ -4460,16 +4681,16 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_1, grammarAccess.getLinearDataConversionAccess().getColonKeyword_1());
                 
-            // InternalSensidl.g:1887:1: ( (lv_scalingFactor_2_0= ruleDOUBLE ) )
-            // InternalSensidl.g:1888:1: (lv_scalingFactor_2_0= ruleDOUBLE )
+            // InternalSensidl.g:1980:1: ( (lv_scalingFactor_2_0= ruleDOUBLE ) )
+            // InternalSensidl.g:1981:1: (lv_scalingFactor_2_0= ruleDOUBLE )
             {
-            // InternalSensidl.g:1888:1: (lv_scalingFactor_2_0= ruleDOUBLE )
-            // InternalSensidl.g:1889:3: lv_scalingFactor_2_0= ruleDOUBLE
+            // InternalSensidl.g:1981:1: (lv_scalingFactor_2_0= ruleDOUBLE )
+            // InternalSensidl.g:1982:3: lv_scalingFactor_2_0= ruleDOUBLE
             {
              
             	        newCompositeNode(grammarAccess.getLinearDataConversionAccess().getScalingFactorDOUBLEParserRuleCall_2_0()); 
             	    
-            pushFollow(FOLLOW_57);
+            pushFollow(FOLLOW_59);
             lv_scalingFactor_2_0=ruleDOUBLE();
 
             state._fsp--;
@@ -4491,7 +4712,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,47,FOLLOW_6); 
+            otherlv_3=(Token)match(input,48,FOLLOW_6); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getLinearDataConversionAccess().getAndOffsetKeyword_3());
                 
@@ -4499,11 +4720,11 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
                 	newLeafNode(otherlv_4, grammarAccess.getLinearDataConversionAccess().getColonKeyword_4());
                 
-            // InternalSensidl.g:1913:1: ( (lv_offset_5_0= ruleDOUBLE ) )
-            // InternalSensidl.g:1914:1: (lv_offset_5_0= ruleDOUBLE )
+            // InternalSensidl.g:2006:1: ( (lv_offset_5_0= ruleDOUBLE ) )
+            // InternalSensidl.g:2007:1: (lv_offset_5_0= ruleDOUBLE )
             {
-            // InternalSensidl.g:1914:1: (lv_offset_5_0= ruleDOUBLE )
-            // InternalSensidl.g:1915:3: lv_offset_5_0= ruleDOUBLE
+            // InternalSensidl.g:2007:1: (lv_offset_5_0= ruleDOUBLE )
+            // InternalSensidl.g:2008:3: lv_offset_5_0= ruleDOUBLE
             {
              
             	        newCompositeNode(grammarAccess.getLinearDataConversionAccess().getOffsetDOUBLEParserRuleCall_5_0()); 
@@ -4551,7 +4772,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLinearDataConversionWithInterval"
-    // InternalSensidl.g:1939:1: entryRuleLinearDataConversionWithInterval returns [EObject current=null] : iv_ruleLinearDataConversionWithInterval= ruleLinearDataConversionWithInterval EOF ;
+    // InternalSensidl.g:2032:1: entryRuleLinearDataConversionWithInterval returns [EObject current=null] : iv_ruleLinearDataConversionWithInterval= ruleLinearDataConversionWithInterval EOF ;
     public final EObject entryRuleLinearDataConversionWithInterval() throws RecognitionException {
         EObject current = null;
 
@@ -4559,8 +4780,8 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSensidl.g:1940:2: (iv_ruleLinearDataConversionWithInterval= ruleLinearDataConversionWithInterval EOF )
-            // InternalSensidl.g:1941:2: iv_ruleLinearDataConversionWithInterval= ruleLinearDataConversionWithInterval EOF
+            // InternalSensidl.g:2033:2: (iv_ruleLinearDataConversionWithInterval= ruleLinearDataConversionWithInterval EOF )
+            // InternalSensidl.g:2034:2: iv_ruleLinearDataConversionWithInterval= ruleLinearDataConversionWithInterval EOF
             {
              newCompositeNode(grammarAccess.getLinearDataConversionWithIntervalRule()); 
             pushFollow(FOLLOW_1);
@@ -4587,7 +4808,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLinearDataConversionWithInterval"
-    // InternalSensidl.g:1948:1: ruleLinearDataConversionWithInterval returns [EObject current=null] : (otherlv_0= 'by linear mapping' ( (lv_fromInterval_1_0= ruleInterval ) ) otherlv_2= '=>' ( (lv_toInterval_3_0= ruleInterval ) ) otherlv_4= 'as' ( (lv_dataType_5_0= ruleDataType ) ) ) ;
+    // InternalSensidl.g:2041:1: ruleLinearDataConversionWithInterval returns [EObject current=null] : (otherlv_0= 'by linear mapping' ( (lv_fromInterval_1_0= ruleInterval ) ) otherlv_2= '=>' ( (lv_toInterval_3_0= ruleInterval ) ) otherlv_4= 'as' ( (lv_dataType_5_0= ruleDataType ) ) ) ;
     public final EObject ruleLinearDataConversionWithInterval() throws RecognitionException {
         EObject current = null;
 
@@ -4604,26 +4825,26 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalSensidl.g:1951:28: ( (otherlv_0= 'by linear mapping' ( (lv_fromInterval_1_0= ruleInterval ) ) otherlv_2= '=>' ( (lv_toInterval_3_0= ruleInterval ) ) otherlv_4= 'as' ( (lv_dataType_5_0= ruleDataType ) ) ) )
-            // InternalSensidl.g:1952:1: (otherlv_0= 'by linear mapping' ( (lv_fromInterval_1_0= ruleInterval ) ) otherlv_2= '=>' ( (lv_toInterval_3_0= ruleInterval ) ) otherlv_4= 'as' ( (lv_dataType_5_0= ruleDataType ) ) )
+            // InternalSensidl.g:2044:28: ( (otherlv_0= 'by linear mapping' ( (lv_fromInterval_1_0= ruleInterval ) ) otherlv_2= '=>' ( (lv_toInterval_3_0= ruleInterval ) ) otherlv_4= 'as' ( (lv_dataType_5_0= ruleDataType ) ) ) )
+            // InternalSensidl.g:2045:1: (otherlv_0= 'by linear mapping' ( (lv_fromInterval_1_0= ruleInterval ) ) otherlv_2= '=>' ( (lv_toInterval_3_0= ruleInterval ) ) otherlv_4= 'as' ( (lv_dataType_5_0= ruleDataType ) ) )
             {
-            // InternalSensidl.g:1952:1: (otherlv_0= 'by linear mapping' ( (lv_fromInterval_1_0= ruleInterval ) ) otherlv_2= '=>' ( (lv_toInterval_3_0= ruleInterval ) ) otherlv_4= 'as' ( (lv_dataType_5_0= ruleDataType ) ) )
-            // InternalSensidl.g:1952:3: otherlv_0= 'by linear mapping' ( (lv_fromInterval_1_0= ruleInterval ) ) otherlv_2= '=>' ( (lv_toInterval_3_0= ruleInterval ) ) otherlv_4= 'as' ( (lv_dataType_5_0= ruleDataType ) )
+            // InternalSensidl.g:2045:1: (otherlv_0= 'by linear mapping' ( (lv_fromInterval_1_0= ruleInterval ) ) otherlv_2= '=>' ( (lv_toInterval_3_0= ruleInterval ) ) otherlv_4= 'as' ( (lv_dataType_5_0= ruleDataType ) ) )
+            // InternalSensidl.g:2045:3: otherlv_0= 'by linear mapping' ( (lv_fromInterval_1_0= ruleInterval ) ) otherlv_2= '=>' ( (lv_toInterval_3_0= ruleInterval ) ) otherlv_4= 'as' ( (lv_dataType_5_0= ruleDataType ) )
             {
-            otherlv_0=(Token)match(input,48,FOLLOW_54); 
+            otherlv_0=(Token)match(input,49,FOLLOW_56); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getLinearDataConversionWithIntervalAccess().getByLinearMappingKeyword_0());
                 
-            // InternalSensidl.g:1956:1: ( (lv_fromInterval_1_0= ruleInterval ) )
-            // InternalSensidl.g:1957:1: (lv_fromInterval_1_0= ruleInterval )
+            // InternalSensidl.g:2049:1: ( (lv_fromInterval_1_0= ruleInterval ) )
+            // InternalSensidl.g:2050:1: (lv_fromInterval_1_0= ruleInterval )
             {
-            // InternalSensidl.g:1957:1: (lv_fromInterval_1_0= ruleInterval )
-            // InternalSensidl.g:1958:3: lv_fromInterval_1_0= ruleInterval
+            // InternalSensidl.g:2050:1: (lv_fromInterval_1_0= ruleInterval )
+            // InternalSensidl.g:2051:3: lv_fromInterval_1_0= ruleInterval
             {
              
             	        newCompositeNode(grammarAccess.getLinearDataConversionWithIntervalAccess().getFromIntervalIntervalParserRuleCall_1_0()); 
             	    
-            pushFollow(FOLLOW_58);
+            pushFollow(FOLLOW_60);
             lv_fromInterval_1_0=ruleInterval();
 
             state._fsp--;
@@ -4645,15 +4866,15 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,49,FOLLOW_54); 
+            otherlv_2=(Token)match(input,50,FOLLOW_56); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getLinearDataConversionWithIntervalAccess().getEqualsSignGreaterThanSignKeyword_2());
                 
-            // InternalSensidl.g:1978:1: ( (lv_toInterval_3_0= ruleInterval ) )
-            // InternalSensidl.g:1979:1: (lv_toInterval_3_0= ruleInterval )
+            // InternalSensidl.g:2071:1: ( (lv_toInterval_3_0= ruleInterval ) )
+            // InternalSensidl.g:2072:1: (lv_toInterval_3_0= ruleInterval )
             {
-            // InternalSensidl.g:1979:1: (lv_toInterval_3_0= ruleInterval )
-            // InternalSensidl.g:1980:3: lv_toInterval_3_0= ruleInterval
+            // InternalSensidl.g:2072:1: (lv_toInterval_3_0= ruleInterval )
+            // InternalSensidl.g:2073:3: lv_toInterval_3_0= ruleInterval
             {
              
             	        newCompositeNode(grammarAccess.getLinearDataConversionWithIntervalAccess().getToIntervalIntervalParserRuleCall_3_0()); 
@@ -4680,15 +4901,15 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,31,FOLLOW_34); 
+            otherlv_4=(Token)match(input,31,FOLLOW_36); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getLinearDataConversionWithIntervalAccess().getAsKeyword_4());
                 
-            // InternalSensidl.g:2000:1: ( (lv_dataType_5_0= ruleDataType ) )
-            // InternalSensidl.g:2001:1: (lv_dataType_5_0= ruleDataType )
+            // InternalSensidl.g:2093:1: ( (lv_dataType_5_0= ruleDataType ) )
+            // InternalSensidl.g:2094:1: (lv_dataType_5_0= ruleDataType )
             {
-            // InternalSensidl.g:2001:1: (lv_dataType_5_0= ruleDataType )
-            // InternalSensidl.g:2002:3: lv_dataType_5_0= ruleDataType
+            // InternalSensidl.g:2094:1: (lv_dataType_5_0= ruleDataType )
+            // InternalSensidl.g:2095:3: lv_dataType_5_0= ruleDataType
             {
              
             	        newCompositeNode(grammarAccess.getLinearDataConversionWithIntervalAccess().getDataTypeDataTypeEnumRuleCall_5_0()); 
@@ -4736,7 +4957,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDOUBLE"
-    // InternalSensidl.g:2026:1: entryRuleDOUBLE returns [String current=null] : iv_ruleDOUBLE= ruleDOUBLE EOF ;
+    // InternalSensidl.g:2119:1: entryRuleDOUBLE returns [String current=null] : iv_ruleDOUBLE= ruleDOUBLE EOF ;
     public final String entryRuleDOUBLE() throws RecognitionException {
         String current = null;
 
@@ -4744,8 +4965,8 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSensidl.g:2027:2: (iv_ruleDOUBLE= ruleDOUBLE EOF )
-            // InternalSensidl.g:2028:2: iv_ruleDOUBLE= ruleDOUBLE EOF
+            // InternalSensidl.g:2120:2: (iv_ruleDOUBLE= ruleDOUBLE EOF )
+            // InternalSensidl.g:2121:2: iv_ruleDOUBLE= ruleDOUBLE EOF
             {
              newCompositeNode(grammarAccess.getDOUBLERule()); 
             pushFollow(FOLLOW_1);
@@ -4772,7 +4993,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDOUBLE"
-    // InternalSensidl.g:2035:1: ruleDOUBLE returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? ) ;
+    // InternalSensidl.g:2128:1: ruleDOUBLE returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? ) ;
     public final AntlrDatatypeRuleToken ruleDOUBLE() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -4783,31 +5004,31 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalSensidl.g:2038:28: ( (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? ) )
-            // InternalSensidl.g:2039:1: (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? )
+            // InternalSensidl.g:2131:28: ( (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? ) )
+            // InternalSensidl.g:2132:1: (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? )
             {
-            // InternalSensidl.g:2039:1: (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? )
-            // InternalSensidl.g:2039:6: this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )?
+            // InternalSensidl.g:2132:1: (this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )? )
+            // InternalSensidl.g:2132:6: this_INT_0= RULE_INT (kw= '.' this_INT_2= RULE_INT )?
             {
-            this_INT_0=(Token)match(input,RULE_INT,FOLLOW_59); 
+            this_INT_0=(Token)match(input,RULE_INT,FOLLOW_61); 
 
             		current.merge(this_INT_0);
                 
              
                 newLeafNode(this_INT_0, grammarAccess.getDOUBLEAccess().getINTTerminalRuleCall_0()); 
                 
-            // InternalSensidl.g:2046:1: (kw= '.' this_INT_2= RULE_INT )?
-            int alt45=2;
-            int LA45_0 = input.LA(1);
+            // InternalSensidl.g:2139:1: (kw= '.' this_INT_2= RULE_INT )?
+            int alt46=2;
+            int LA46_0 = input.LA(1);
 
-            if ( (LA45_0==50) ) {
-                alt45=1;
+            if ( (LA46_0==51) ) {
+                alt46=1;
             }
-            switch (alt45) {
+            switch (alt46) {
                 case 1 :
-                    // InternalSensidl.g:2047:2: kw= '.' this_INT_2= RULE_INT
+                    // InternalSensidl.g:2140:2: kw= '.' this_INT_2= RULE_INT
                     {
-                    kw=(Token)match(input,50,FOLLOW_17); 
+                    kw=(Token)match(input,51,FOLLOW_17); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getDOUBLEAccess().getFullStopKeyword_1_0()); 
@@ -4846,7 +5067,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUNIT"
-    // InternalSensidl.g:2067:1: entryRuleUNIT returns [String current=null] : iv_ruleUNIT= ruleUNIT EOF ;
+    // InternalSensidl.g:2160:1: entryRuleUNIT returns [String current=null] : iv_ruleUNIT= ruleUNIT EOF ;
     public final String entryRuleUNIT() throws RecognitionException {
         String current = null;
 
@@ -4854,8 +5075,8 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalSensidl.g:2068:2: (iv_ruleUNIT= ruleUNIT EOF )
-            // InternalSensidl.g:2069:2: iv_ruleUNIT= ruleUNIT EOF
+            // InternalSensidl.g:2161:2: (iv_ruleUNIT= ruleUNIT EOF )
+            // InternalSensidl.g:2162:2: iv_ruleUNIT= ruleUNIT EOF
             {
              newCompositeNode(grammarAccess.getUNITRule()); 
             pushFollow(FOLLOW_1);
@@ -4882,7 +5103,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUNIT"
-    // InternalSensidl.g:2076:1: ruleUNIT returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_ID_0= RULE_ID )* (this_ANY_OTHER_1= RULE_ANY_OTHER (this_ID_2= RULE_ID )* )* ) ;
+    // InternalSensidl.g:2169:1: ruleUNIT returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_ID_0= RULE_ID )* (this_ANY_OTHER_1= RULE_ANY_OTHER (this_ID_2= RULE_ID )* )* ) ;
     public final AntlrDatatypeRuleToken ruleUNIT() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -4893,34 +5114,34 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // InternalSensidl.g:2079:28: ( ( (this_ID_0= RULE_ID )* (this_ANY_OTHER_1= RULE_ANY_OTHER (this_ID_2= RULE_ID )* )* ) )
-            // InternalSensidl.g:2080:1: ( (this_ID_0= RULE_ID )* (this_ANY_OTHER_1= RULE_ANY_OTHER (this_ID_2= RULE_ID )* )* )
+            // InternalSensidl.g:2172:28: ( ( (this_ID_0= RULE_ID )* (this_ANY_OTHER_1= RULE_ANY_OTHER (this_ID_2= RULE_ID )* )* ) )
+            // InternalSensidl.g:2173:1: ( (this_ID_0= RULE_ID )* (this_ANY_OTHER_1= RULE_ANY_OTHER (this_ID_2= RULE_ID )* )* )
             {
-            // InternalSensidl.g:2080:1: ( (this_ID_0= RULE_ID )* (this_ANY_OTHER_1= RULE_ANY_OTHER (this_ID_2= RULE_ID )* )* )
-            // InternalSensidl.g:2080:2: (this_ID_0= RULE_ID )* (this_ANY_OTHER_1= RULE_ANY_OTHER (this_ID_2= RULE_ID )* )*
+            // InternalSensidl.g:2173:1: ( (this_ID_0= RULE_ID )* (this_ANY_OTHER_1= RULE_ANY_OTHER (this_ID_2= RULE_ID )* )* )
+            // InternalSensidl.g:2173:2: (this_ID_0= RULE_ID )* (this_ANY_OTHER_1= RULE_ANY_OTHER (this_ID_2= RULE_ID )* )*
             {
-            // InternalSensidl.g:2080:2: (this_ID_0= RULE_ID )*
-            loop46:
+            // InternalSensidl.g:2173:2: (this_ID_0= RULE_ID )*
+            loop47:
             do {
-                int alt46=2;
-                int LA46_0 = input.LA(1);
+                int alt47=2;
+                int LA47_0 = input.LA(1);
 
-                if ( (LA46_0==RULE_ID) ) {
-                    int LA46_2 = input.LA(2);
+                if ( (LA47_0==RULE_ID) ) {
+                    int LA47_2 = input.LA(2);
 
-                    if ( (LA46_2==EOF||(LA46_2>=RULE_ID && LA46_2<=RULE_DESCRIPTION)||LA46_2==RULE_ANY_OTHER||LA46_2==13||LA46_2==16||(LA46_2>=25 && LA46_2<=28)||(LA46_2>=34 && LA46_2<=35)||LA46_2==41) ) {
-                        alt46=1;
+                    if ( (LA47_2==EOF||(LA47_2>=RULE_ID && LA47_2<=RULE_DESCRIPTION)||LA47_2==RULE_ANY_OTHER||LA47_2==13||LA47_2==16||(LA47_2>=25 && LA47_2<=28)||(LA47_2>=35 && LA47_2<=36)||LA47_2==42) ) {
+                        alt47=1;
                     }
 
 
                 }
 
 
-                switch (alt46) {
+                switch (alt47) {
             	case 1 :
-            	    // InternalSensidl.g:2080:7: this_ID_0= RULE_ID
+            	    // InternalSensidl.g:2173:7: this_ID_0= RULE_ID
             	    {
-            	    this_ID_0=(Token)match(input,RULE_ID,FOLLOW_60); 
+            	    this_ID_0=(Token)match(input,RULE_ID,FOLLOW_62); 
 
             	    		current.merge(this_ID_0);
             	        
@@ -4932,54 +5153,54 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop46;
+            	    break loop47;
                 }
             } while (true);
 
-            // InternalSensidl.g:2087:3: (this_ANY_OTHER_1= RULE_ANY_OTHER (this_ID_2= RULE_ID )* )*
-            loop48:
+            // InternalSensidl.g:2180:3: (this_ANY_OTHER_1= RULE_ANY_OTHER (this_ID_2= RULE_ID )* )*
+            loop49:
             do {
-                int alt48=2;
-                int LA48_0 = input.LA(1);
+                int alt49=2;
+                int LA49_0 = input.LA(1);
 
-                if ( (LA48_0==RULE_ANY_OTHER) ) {
-                    alt48=1;
+                if ( (LA49_0==RULE_ANY_OTHER) ) {
+                    alt49=1;
                 }
 
 
-                switch (alt48) {
+                switch (alt49) {
             	case 1 :
-            	    // InternalSensidl.g:2087:8: this_ANY_OTHER_1= RULE_ANY_OTHER (this_ID_2= RULE_ID )*
+            	    // InternalSensidl.g:2180:8: this_ANY_OTHER_1= RULE_ANY_OTHER (this_ID_2= RULE_ID )*
             	    {
-            	    this_ANY_OTHER_1=(Token)match(input,RULE_ANY_OTHER,FOLLOW_60); 
+            	    this_ANY_OTHER_1=(Token)match(input,RULE_ANY_OTHER,FOLLOW_62); 
 
             	    		current.merge(this_ANY_OTHER_1);
             	        
             	     
             	        newLeafNode(this_ANY_OTHER_1, grammarAccess.getUNITAccess().getANY_OTHERTerminalRuleCall_1_0()); 
             	        
-            	    // InternalSensidl.g:2094:1: (this_ID_2= RULE_ID )*
-            	    loop47:
+            	    // InternalSensidl.g:2187:1: (this_ID_2= RULE_ID )*
+            	    loop48:
             	    do {
-            	        int alt47=2;
-            	        int LA47_0 = input.LA(1);
+            	        int alt48=2;
+            	        int LA48_0 = input.LA(1);
 
-            	        if ( (LA47_0==RULE_ID) ) {
-            	            int LA47_2 = input.LA(2);
+            	        if ( (LA48_0==RULE_ID) ) {
+            	            int LA48_2 = input.LA(2);
 
-            	            if ( (LA47_2==EOF||(LA47_2>=RULE_ID && LA47_2<=RULE_DESCRIPTION)||LA47_2==RULE_ANY_OTHER||LA47_2==13||LA47_2==16||(LA47_2>=25 && LA47_2<=28)||(LA47_2>=34 && LA47_2<=35)||LA47_2==41) ) {
-            	                alt47=1;
+            	            if ( (LA48_2==EOF||(LA48_2>=RULE_ID && LA48_2<=RULE_DESCRIPTION)||LA48_2==RULE_ANY_OTHER||LA48_2==13||LA48_2==16||(LA48_2>=25 && LA48_2<=28)||(LA48_2>=35 && LA48_2<=36)||LA48_2==42) ) {
+            	                alt48=1;
             	            }
 
 
             	        }
 
 
-            	        switch (alt47) {
+            	        switch (alt48) {
             	    	case 1 :
-            	    	    // InternalSensidl.g:2094:6: this_ID_2= RULE_ID
+            	    	    // InternalSensidl.g:2187:6: this_ID_2= RULE_ID
             	    	    {
-            	    	    this_ID_2=(Token)match(input,RULE_ID,FOLLOW_60); 
+            	    	    this_ID_2=(Token)match(input,RULE_ID,FOLLOW_62); 
 
             	    	    		current.merge(this_ID_2);
             	    	        
@@ -4991,7 +5212,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
             	    	    break;
 
             	    	default :
-            	    	    break loop47;
+            	    	    break loop48;
             	        }
             	    } while (true);
 
@@ -5000,7 +5221,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop48;
+            	    break loop49;
                 }
             } while (true);
 
@@ -5025,7 +5246,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCoding"
-    // InternalSensidl.g:2109:1: ruleCoding returns [Enumerator current=null] : ( (enumLiteral_0= 'SENSIDL_BINARY' ) | (enumLiteral_1= 'SENSIDL_JSON' ) ) ;
+    // InternalSensidl.g:2202:1: ruleCoding returns [Enumerator current=null] : ( (enumLiteral_0= 'SENSIDL_BINARY' ) | (enumLiteral_1= 'SENSIDL_JSON' ) ) ;
     public final Enumerator ruleCoding() throws RecognitionException {
         Enumerator current = null;
 
@@ -5034,33 +5255,33 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // InternalSensidl.g:2111:28: ( ( (enumLiteral_0= 'SENSIDL_BINARY' ) | (enumLiteral_1= 'SENSIDL_JSON' ) ) )
-            // InternalSensidl.g:2112:1: ( (enumLiteral_0= 'SENSIDL_BINARY' ) | (enumLiteral_1= 'SENSIDL_JSON' ) )
+            // InternalSensidl.g:2204:28: ( ( (enumLiteral_0= 'SENSIDL_BINARY' ) | (enumLiteral_1= 'SENSIDL_JSON' ) ) )
+            // InternalSensidl.g:2205:1: ( (enumLiteral_0= 'SENSIDL_BINARY' ) | (enumLiteral_1= 'SENSIDL_JSON' ) )
             {
-            // InternalSensidl.g:2112:1: ( (enumLiteral_0= 'SENSIDL_BINARY' ) | (enumLiteral_1= 'SENSIDL_JSON' ) )
-            int alt49=2;
-            int LA49_0 = input.LA(1);
+            // InternalSensidl.g:2205:1: ( (enumLiteral_0= 'SENSIDL_BINARY' ) | (enumLiteral_1= 'SENSIDL_JSON' ) )
+            int alt50=2;
+            int LA50_0 = input.LA(1);
 
-            if ( (LA49_0==51) ) {
-                alt49=1;
+            if ( (LA50_0==52) ) {
+                alt50=1;
             }
-            else if ( (LA49_0==52) ) {
-                alt49=2;
+            else if ( (LA50_0==53) ) {
+                alt50=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 49, 0, input);
+                    new NoViableAltException("", 50, 0, input);
 
                 throw nvae;
             }
-            switch (alt49) {
+            switch (alt50) {
                 case 1 :
-                    // InternalSensidl.g:2112:2: (enumLiteral_0= 'SENSIDL_BINARY' )
+                    // InternalSensidl.g:2205:2: (enumLiteral_0= 'SENSIDL_BINARY' )
                     {
-                    // InternalSensidl.g:2112:2: (enumLiteral_0= 'SENSIDL_BINARY' )
-                    // InternalSensidl.g:2112:4: enumLiteral_0= 'SENSIDL_BINARY'
+                    // InternalSensidl.g:2205:2: (enumLiteral_0= 'SENSIDL_BINARY' )
+                    // InternalSensidl.g:2205:4: enumLiteral_0= 'SENSIDL_BINARY'
                     {
-                    enumLiteral_0=(Token)match(input,51,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,52,FOLLOW_2); 
 
                             current = grammarAccess.getCodingAccess().getSENSIDL_BINARYEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getCodingAccess().getSENSIDL_BINARYEnumLiteralDeclaration_0()); 
@@ -5072,12 +5293,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSensidl.g:2118:6: (enumLiteral_1= 'SENSIDL_JSON' )
+                    // InternalSensidl.g:2211:6: (enumLiteral_1= 'SENSIDL_JSON' )
                     {
-                    // InternalSensidl.g:2118:6: (enumLiteral_1= 'SENSIDL_JSON' )
-                    // InternalSensidl.g:2118:8: enumLiteral_1= 'SENSIDL_JSON'
+                    // InternalSensidl.g:2211:6: (enumLiteral_1= 'SENSIDL_JSON' )
+                    // InternalSensidl.g:2211:8: enumLiteral_1= 'SENSIDL_JSON'
                     {
-                    enumLiteral_1=(Token)match(input,52,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,53,FOLLOW_2); 
 
                             current = grammarAccess.getCodingAccess().getSENSIDL_JSONEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getCodingAccess().getSENSIDL_JSONEnumLiteralDeclaration_1()); 
@@ -5109,7 +5330,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEndianness"
-    // InternalSensidl.g:2128:1: ruleEndianness returns [Enumerator current=null] : ( (enumLiteral_0= 'BIG_ENDIAN' ) | (enumLiteral_1= 'LITTLE_ENDIAN' ) ) ;
+    // InternalSensidl.g:2221:1: ruleEndianness returns [Enumerator current=null] : ( (enumLiteral_0= 'BIG_ENDIAN' ) | (enumLiteral_1= 'LITTLE_ENDIAN' ) ) ;
     public final Enumerator ruleEndianness() throws RecognitionException {
         Enumerator current = null;
 
@@ -5118,33 +5339,33 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // InternalSensidl.g:2130:28: ( ( (enumLiteral_0= 'BIG_ENDIAN' ) | (enumLiteral_1= 'LITTLE_ENDIAN' ) ) )
-            // InternalSensidl.g:2131:1: ( (enumLiteral_0= 'BIG_ENDIAN' ) | (enumLiteral_1= 'LITTLE_ENDIAN' ) )
+            // InternalSensidl.g:2223:28: ( ( (enumLiteral_0= 'BIG_ENDIAN' ) | (enumLiteral_1= 'LITTLE_ENDIAN' ) ) )
+            // InternalSensidl.g:2224:1: ( (enumLiteral_0= 'BIG_ENDIAN' ) | (enumLiteral_1= 'LITTLE_ENDIAN' ) )
             {
-            // InternalSensidl.g:2131:1: ( (enumLiteral_0= 'BIG_ENDIAN' ) | (enumLiteral_1= 'LITTLE_ENDIAN' ) )
-            int alt50=2;
-            int LA50_0 = input.LA(1);
+            // InternalSensidl.g:2224:1: ( (enumLiteral_0= 'BIG_ENDIAN' ) | (enumLiteral_1= 'LITTLE_ENDIAN' ) )
+            int alt51=2;
+            int LA51_0 = input.LA(1);
 
-            if ( (LA50_0==53) ) {
-                alt50=1;
+            if ( (LA51_0==54) ) {
+                alt51=1;
             }
-            else if ( (LA50_0==54) ) {
-                alt50=2;
+            else if ( (LA51_0==55) ) {
+                alt51=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 50, 0, input);
+                    new NoViableAltException("", 51, 0, input);
 
                 throw nvae;
             }
-            switch (alt50) {
+            switch (alt51) {
                 case 1 :
-                    // InternalSensidl.g:2131:2: (enumLiteral_0= 'BIG_ENDIAN' )
+                    // InternalSensidl.g:2224:2: (enumLiteral_0= 'BIG_ENDIAN' )
                     {
-                    // InternalSensidl.g:2131:2: (enumLiteral_0= 'BIG_ENDIAN' )
-                    // InternalSensidl.g:2131:4: enumLiteral_0= 'BIG_ENDIAN'
+                    // InternalSensidl.g:2224:2: (enumLiteral_0= 'BIG_ENDIAN' )
+                    // InternalSensidl.g:2224:4: enumLiteral_0= 'BIG_ENDIAN'
                     {
-                    enumLiteral_0=(Token)match(input,53,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,54,FOLLOW_2); 
 
                             current = grammarAccess.getEndiannessAccess().getBIG_ENDIANEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getEndiannessAccess().getBIG_ENDIANEnumLiteralDeclaration_0()); 
@@ -5156,12 +5377,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSensidl.g:2137:6: (enumLiteral_1= 'LITTLE_ENDIAN' )
+                    // InternalSensidl.g:2230:6: (enumLiteral_1= 'LITTLE_ENDIAN' )
                     {
-                    // InternalSensidl.g:2137:6: (enumLiteral_1= 'LITTLE_ENDIAN' )
-                    // InternalSensidl.g:2137:8: enumLiteral_1= 'LITTLE_ENDIAN'
+                    // InternalSensidl.g:2230:6: (enumLiteral_1= 'LITTLE_ENDIAN' )
+                    // InternalSensidl.g:2230:8: enumLiteral_1= 'LITTLE_ENDIAN'
                     {
-                    enumLiteral_1=(Token)match(input,54,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,55,FOLLOW_2); 
 
                             current = grammarAccess.getEndiannessAccess().getLITTLE_ENDIANEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getEndiannessAccess().getLITTLE_ENDIANEnumLiteralDeclaration_1()); 
@@ -5193,7 +5414,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDataTypeNotAdjustable"
-    // InternalSensidl.g:2147:1: ruleDataTypeNotAdjustable returns [Enumerator current=null] : ( (enumLiteral_0= 'STRING' ) | (enumLiteral_1= 'BOOLEAN' ) ) ;
+    // InternalSensidl.g:2240:1: ruleDataTypeNotAdjustable returns [Enumerator current=null] : ( (enumLiteral_0= 'STRING' ) | (enumLiteral_1= 'BOOLEAN' ) ) ;
     public final Enumerator ruleDataTypeNotAdjustable() throws RecognitionException {
         Enumerator current = null;
 
@@ -5202,33 +5423,33 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // InternalSensidl.g:2149:28: ( ( (enumLiteral_0= 'STRING' ) | (enumLiteral_1= 'BOOLEAN' ) ) )
-            // InternalSensidl.g:2150:1: ( (enumLiteral_0= 'STRING' ) | (enumLiteral_1= 'BOOLEAN' ) )
+            // InternalSensidl.g:2242:28: ( ( (enumLiteral_0= 'STRING' ) | (enumLiteral_1= 'BOOLEAN' ) ) )
+            // InternalSensidl.g:2243:1: ( (enumLiteral_0= 'STRING' ) | (enumLiteral_1= 'BOOLEAN' ) )
             {
-            // InternalSensidl.g:2150:1: ( (enumLiteral_0= 'STRING' ) | (enumLiteral_1= 'BOOLEAN' ) )
-            int alt51=2;
-            int LA51_0 = input.LA(1);
+            // InternalSensidl.g:2243:1: ( (enumLiteral_0= 'STRING' ) | (enumLiteral_1= 'BOOLEAN' ) )
+            int alt52=2;
+            int LA52_0 = input.LA(1);
 
-            if ( (LA51_0==55) ) {
-                alt51=1;
+            if ( (LA52_0==56) ) {
+                alt52=1;
             }
-            else if ( (LA51_0==56) ) {
-                alt51=2;
+            else if ( (LA52_0==57) ) {
+                alt52=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 51, 0, input);
+                    new NoViableAltException("", 52, 0, input);
 
                 throw nvae;
             }
-            switch (alt51) {
+            switch (alt52) {
                 case 1 :
-                    // InternalSensidl.g:2150:2: (enumLiteral_0= 'STRING' )
+                    // InternalSensidl.g:2243:2: (enumLiteral_0= 'STRING' )
                     {
-                    // InternalSensidl.g:2150:2: (enumLiteral_0= 'STRING' )
-                    // InternalSensidl.g:2150:4: enumLiteral_0= 'STRING'
+                    // InternalSensidl.g:2243:2: (enumLiteral_0= 'STRING' )
+                    // InternalSensidl.g:2243:4: enumLiteral_0= 'STRING'
                     {
-                    enumLiteral_0=(Token)match(input,55,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,56,FOLLOW_2); 
 
                             current = grammarAccess.getDataTypeNotAdjustableAccess().getSTRINGEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getDataTypeNotAdjustableAccess().getSTRINGEnumLiteralDeclaration_0()); 
@@ -5240,12 +5461,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSensidl.g:2156:6: (enumLiteral_1= 'BOOLEAN' )
+                    // InternalSensidl.g:2249:6: (enumLiteral_1= 'BOOLEAN' )
                     {
-                    // InternalSensidl.g:2156:6: (enumLiteral_1= 'BOOLEAN' )
-                    // InternalSensidl.g:2156:8: enumLiteral_1= 'BOOLEAN'
+                    // InternalSensidl.g:2249:6: (enumLiteral_1= 'BOOLEAN' )
+                    // InternalSensidl.g:2249:8: enumLiteral_1= 'BOOLEAN'
                     {
-                    enumLiteral_1=(Token)match(input,56,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,57,FOLLOW_2); 
 
                             current = grammarAccess.getDataTypeNotAdjustableAccess().getBOOLEANEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getDataTypeNotAdjustableAccess().getBOOLEANEnumLiteralDeclaration_1()); 
@@ -5277,7 +5498,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDataType"
-    // InternalSensidl.g:2166:1: ruleDataType returns [Enumerator current=null] : ( (enumLiteral_0= 'INT8' ) | (enumLiteral_1= 'UINT8' ) | (enumLiteral_2= 'INT16' ) | (enumLiteral_3= 'UINT16' ) | (enumLiteral_4= 'INT32' ) | (enumLiteral_5= 'UINT32' ) | (enumLiteral_6= 'INT64' ) | (enumLiteral_7= 'UINT64' ) | (enumLiteral_8= 'FLOAT' ) | (enumLiteral_9= 'DOUBLE' ) ) ;
+    // InternalSensidl.g:2259:1: ruleDataType returns [Enumerator current=null] : ( (enumLiteral_0= 'INT8' ) | (enumLiteral_1= 'UINT8' ) | (enumLiteral_2= 'INT16' ) | (enumLiteral_3= 'UINT16' ) | (enumLiteral_4= 'INT32' ) | (enumLiteral_5= 'UINT32' ) | (enumLiteral_6= 'INT64' ) | (enumLiteral_7= 'UINT64' ) | (enumLiteral_8= 'FLOAT' ) | (enumLiteral_9= 'DOUBLE' ) ) ;
     public final Enumerator ruleDataType() throws RecognitionException {
         Enumerator current = null;
 
@@ -5294,77 +5515,77 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // InternalSensidl.g:2168:28: ( ( (enumLiteral_0= 'INT8' ) | (enumLiteral_1= 'UINT8' ) | (enumLiteral_2= 'INT16' ) | (enumLiteral_3= 'UINT16' ) | (enumLiteral_4= 'INT32' ) | (enumLiteral_5= 'UINT32' ) | (enumLiteral_6= 'INT64' ) | (enumLiteral_7= 'UINT64' ) | (enumLiteral_8= 'FLOAT' ) | (enumLiteral_9= 'DOUBLE' ) ) )
-            // InternalSensidl.g:2169:1: ( (enumLiteral_0= 'INT8' ) | (enumLiteral_1= 'UINT8' ) | (enumLiteral_2= 'INT16' ) | (enumLiteral_3= 'UINT16' ) | (enumLiteral_4= 'INT32' ) | (enumLiteral_5= 'UINT32' ) | (enumLiteral_6= 'INT64' ) | (enumLiteral_7= 'UINT64' ) | (enumLiteral_8= 'FLOAT' ) | (enumLiteral_9= 'DOUBLE' ) )
+            // InternalSensidl.g:2261:28: ( ( (enumLiteral_0= 'INT8' ) | (enumLiteral_1= 'UINT8' ) | (enumLiteral_2= 'INT16' ) | (enumLiteral_3= 'UINT16' ) | (enumLiteral_4= 'INT32' ) | (enumLiteral_5= 'UINT32' ) | (enumLiteral_6= 'INT64' ) | (enumLiteral_7= 'UINT64' ) | (enumLiteral_8= 'FLOAT' ) | (enumLiteral_9= 'DOUBLE' ) ) )
+            // InternalSensidl.g:2262:1: ( (enumLiteral_0= 'INT8' ) | (enumLiteral_1= 'UINT8' ) | (enumLiteral_2= 'INT16' ) | (enumLiteral_3= 'UINT16' ) | (enumLiteral_4= 'INT32' ) | (enumLiteral_5= 'UINT32' ) | (enumLiteral_6= 'INT64' ) | (enumLiteral_7= 'UINT64' ) | (enumLiteral_8= 'FLOAT' ) | (enumLiteral_9= 'DOUBLE' ) )
             {
-            // InternalSensidl.g:2169:1: ( (enumLiteral_0= 'INT8' ) | (enumLiteral_1= 'UINT8' ) | (enumLiteral_2= 'INT16' ) | (enumLiteral_3= 'UINT16' ) | (enumLiteral_4= 'INT32' ) | (enumLiteral_5= 'UINT32' ) | (enumLiteral_6= 'INT64' ) | (enumLiteral_7= 'UINT64' ) | (enumLiteral_8= 'FLOAT' ) | (enumLiteral_9= 'DOUBLE' ) )
-            int alt52=10;
+            // InternalSensidl.g:2262:1: ( (enumLiteral_0= 'INT8' ) | (enumLiteral_1= 'UINT8' ) | (enumLiteral_2= 'INT16' ) | (enumLiteral_3= 'UINT16' ) | (enumLiteral_4= 'INT32' ) | (enumLiteral_5= 'UINT32' ) | (enumLiteral_6= 'INT64' ) | (enumLiteral_7= 'UINT64' ) | (enumLiteral_8= 'FLOAT' ) | (enumLiteral_9= 'DOUBLE' ) )
+            int alt53=10;
             switch ( input.LA(1) ) {
-            case 57:
-                {
-                alt52=1;
-                }
-                break;
             case 58:
                 {
-                alt52=2;
+                alt53=1;
                 }
                 break;
             case 59:
                 {
-                alt52=3;
+                alt53=2;
                 }
                 break;
             case 60:
                 {
-                alt52=4;
+                alt53=3;
                 }
                 break;
             case 61:
                 {
-                alt52=5;
+                alt53=4;
                 }
                 break;
             case 62:
                 {
-                alt52=6;
+                alt53=5;
                 }
                 break;
             case 63:
                 {
-                alt52=7;
+                alt53=6;
                 }
                 break;
             case 64:
                 {
-                alt52=8;
+                alt53=7;
                 }
                 break;
             case 65:
                 {
-                alt52=9;
+                alt53=8;
                 }
                 break;
             case 66:
                 {
-                alt52=10;
+                alt53=9;
+                }
+                break;
+            case 67:
+                {
+                alt53=10;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 52, 0, input);
+                    new NoViableAltException("", 53, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt52) {
+            switch (alt53) {
                 case 1 :
-                    // InternalSensidl.g:2169:2: (enumLiteral_0= 'INT8' )
+                    // InternalSensidl.g:2262:2: (enumLiteral_0= 'INT8' )
                     {
-                    // InternalSensidl.g:2169:2: (enumLiteral_0= 'INT8' )
-                    // InternalSensidl.g:2169:4: enumLiteral_0= 'INT8'
+                    // InternalSensidl.g:2262:2: (enumLiteral_0= 'INT8' )
+                    // InternalSensidl.g:2262:4: enumLiteral_0= 'INT8'
                     {
-                    enumLiteral_0=(Token)match(input,57,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,58,FOLLOW_2); 
 
                             current = grammarAccess.getDataTypeAccess().getINT8EnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getDataTypeAccess().getINT8EnumLiteralDeclaration_0()); 
@@ -5376,12 +5597,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSensidl.g:2175:6: (enumLiteral_1= 'UINT8' )
+                    // InternalSensidl.g:2268:6: (enumLiteral_1= 'UINT8' )
                     {
-                    // InternalSensidl.g:2175:6: (enumLiteral_1= 'UINT8' )
-                    // InternalSensidl.g:2175:8: enumLiteral_1= 'UINT8'
+                    // InternalSensidl.g:2268:6: (enumLiteral_1= 'UINT8' )
+                    // InternalSensidl.g:2268:8: enumLiteral_1= 'UINT8'
                     {
-                    enumLiteral_1=(Token)match(input,58,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,59,FOLLOW_2); 
 
                             current = grammarAccess.getDataTypeAccess().getUINT8EnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getDataTypeAccess().getUINT8EnumLiteralDeclaration_1()); 
@@ -5393,12 +5614,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalSensidl.g:2181:6: (enumLiteral_2= 'INT16' )
+                    // InternalSensidl.g:2274:6: (enumLiteral_2= 'INT16' )
                     {
-                    // InternalSensidl.g:2181:6: (enumLiteral_2= 'INT16' )
-                    // InternalSensidl.g:2181:8: enumLiteral_2= 'INT16'
+                    // InternalSensidl.g:2274:6: (enumLiteral_2= 'INT16' )
+                    // InternalSensidl.g:2274:8: enumLiteral_2= 'INT16'
                     {
-                    enumLiteral_2=(Token)match(input,59,FOLLOW_2); 
+                    enumLiteral_2=(Token)match(input,60,FOLLOW_2); 
 
                             current = grammarAccess.getDataTypeAccess().getINT16EnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getDataTypeAccess().getINT16EnumLiteralDeclaration_2()); 
@@ -5410,12 +5631,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalSensidl.g:2187:6: (enumLiteral_3= 'UINT16' )
+                    // InternalSensidl.g:2280:6: (enumLiteral_3= 'UINT16' )
                     {
-                    // InternalSensidl.g:2187:6: (enumLiteral_3= 'UINT16' )
-                    // InternalSensidl.g:2187:8: enumLiteral_3= 'UINT16'
+                    // InternalSensidl.g:2280:6: (enumLiteral_3= 'UINT16' )
+                    // InternalSensidl.g:2280:8: enumLiteral_3= 'UINT16'
                     {
-                    enumLiteral_3=(Token)match(input,60,FOLLOW_2); 
+                    enumLiteral_3=(Token)match(input,61,FOLLOW_2); 
 
                             current = grammarAccess.getDataTypeAccess().getUINT16EnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_3, grammarAccess.getDataTypeAccess().getUINT16EnumLiteralDeclaration_3()); 
@@ -5427,12 +5648,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalSensidl.g:2193:6: (enumLiteral_4= 'INT32' )
+                    // InternalSensidl.g:2286:6: (enumLiteral_4= 'INT32' )
                     {
-                    // InternalSensidl.g:2193:6: (enumLiteral_4= 'INT32' )
-                    // InternalSensidl.g:2193:8: enumLiteral_4= 'INT32'
+                    // InternalSensidl.g:2286:6: (enumLiteral_4= 'INT32' )
+                    // InternalSensidl.g:2286:8: enumLiteral_4= 'INT32'
                     {
-                    enumLiteral_4=(Token)match(input,61,FOLLOW_2); 
+                    enumLiteral_4=(Token)match(input,62,FOLLOW_2); 
 
                             current = grammarAccess.getDataTypeAccess().getINT32EnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_4, grammarAccess.getDataTypeAccess().getINT32EnumLiteralDeclaration_4()); 
@@ -5444,12 +5665,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalSensidl.g:2199:6: (enumLiteral_5= 'UINT32' )
+                    // InternalSensidl.g:2292:6: (enumLiteral_5= 'UINT32' )
                     {
-                    // InternalSensidl.g:2199:6: (enumLiteral_5= 'UINT32' )
-                    // InternalSensidl.g:2199:8: enumLiteral_5= 'UINT32'
+                    // InternalSensidl.g:2292:6: (enumLiteral_5= 'UINT32' )
+                    // InternalSensidl.g:2292:8: enumLiteral_5= 'UINT32'
                     {
-                    enumLiteral_5=(Token)match(input,62,FOLLOW_2); 
+                    enumLiteral_5=(Token)match(input,63,FOLLOW_2); 
 
                             current = grammarAccess.getDataTypeAccess().getUINT32EnumLiteralDeclaration_5().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_5, grammarAccess.getDataTypeAccess().getUINT32EnumLiteralDeclaration_5()); 
@@ -5461,12 +5682,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // InternalSensidl.g:2205:6: (enumLiteral_6= 'INT64' )
+                    // InternalSensidl.g:2298:6: (enumLiteral_6= 'INT64' )
                     {
-                    // InternalSensidl.g:2205:6: (enumLiteral_6= 'INT64' )
-                    // InternalSensidl.g:2205:8: enumLiteral_6= 'INT64'
+                    // InternalSensidl.g:2298:6: (enumLiteral_6= 'INT64' )
+                    // InternalSensidl.g:2298:8: enumLiteral_6= 'INT64'
                     {
-                    enumLiteral_6=(Token)match(input,63,FOLLOW_2); 
+                    enumLiteral_6=(Token)match(input,64,FOLLOW_2); 
 
                             current = grammarAccess.getDataTypeAccess().getINT64EnumLiteralDeclaration_6().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_6, grammarAccess.getDataTypeAccess().getINT64EnumLiteralDeclaration_6()); 
@@ -5478,12 +5699,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // InternalSensidl.g:2211:6: (enumLiteral_7= 'UINT64' )
+                    // InternalSensidl.g:2304:6: (enumLiteral_7= 'UINT64' )
                     {
-                    // InternalSensidl.g:2211:6: (enumLiteral_7= 'UINT64' )
-                    // InternalSensidl.g:2211:8: enumLiteral_7= 'UINT64'
+                    // InternalSensidl.g:2304:6: (enumLiteral_7= 'UINT64' )
+                    // InternalSensidl.g:2304:8: enumLiteral_7= 'UINT64'
                     {
-                    enumLiteral_7=(Token)match(input,64,FOLLOW_2); 
+                    enumLiteral_7=(Token)match(input,65,FOLLOW_2); 
 
                             current = grammarAccess.getDataTypeAccess().getUINT64EnumLiteralDeclaration_7().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_7, grammarAccess.getDataTypeAccess().getUINT64EnumLiteralDeclaration_7()); 
@@ -5495,12 +5716,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 9 :
-                    // InternalSensidl.g:2217:6: (enumLiteral_8= 'FLOAT' )
+                    // InternalSensidl.g:2310:6: (enumLiteral_8= 'FLOAT' )
                     {
-                    // InternalSensidl.g:2217:6: (enumLiteral_8= 'FLOAT' )
-                    // InternalSensidl.g:2217:8: enumLiteral_8= 'FLOAT'
+                    // InternalSensidl.g:2310:6: (enumLiteral_8= 'FLOAT' )
+                    // InternalSensidl.g:2310:8: enumLiteral_8= 'FLOAT'
                     {
-                    enumLiteral_8=(Token)match(input,65,FOLLOW_2); 
+                    enumLiteral_8=(Token)match(input,66,FOLLOW_2); 
 
                             current = grammarAccess.getDataTypeAccess().getFLOATEnumLiteralDeclaration_8().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_8, grammarAccess.getDataTypeAccess().getFLOATEnumLiteralDeclaration_8()); 
@@ -5512,12 +5733,12 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 10 :
-                    // InternalSensidl.g:2223:6: (enumLiteral_9= 'DOUBLE' )
+                    // InternalSensidl.g:2316:6: (enumLiteral_9= 'DOUBLE' )
                     {
-                    // InternalSensidl.g:2223:6: (enumLiteral_9= 'DOUBLE' )
-                    // InternalSensidl.g:2223:8: enumLiteral_9= 'DOUBLE'
+                    // InternalSensidl.g:2316:6: (enumLiteral_9= 'DOUBLE' )
+                    // InternalSensidl.g:2316:8: enumLiteral_9= 'DOUBLE'
                     {
-                    enumLiteral_9=(Token)match(input,66,FOLLOW_2); 
+                    enumLiteral_9=(Token)match(input,67,FOLLOW_2); 
 
                             current = grammarAccess.getDataTypeAccess().getDOUBLEEnumLiteralDeclaration_9().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_9, grammarAccess.getDataTypeAccess().getDOUBLEEnumLiteralDeclaration_9()); 
@@ -5551,29 +5772,30 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
 
 
     protected DFA21 dfa21 = new DFA21(this);
-    protected DFA23 dfa23 = new DFA23(this);
-    static final String dfa_1s = "\22\uffff";
-    static final String dfa_2s = "\3\uffff\14\20\3\uffff";
-    static final String dfa_3s = "\1\4\1\37\1\67\14\4\3\uffff";
-    static final String dfa_4s = "\1\4\1\37\1\102\14\47\3\uffff";
-    static final String dfa_5s = "\17\uffff\1\1\1\2\1\3";
-    static final String dfa_6s = "\22\uffff}>";
+    protected DFA24 dfa24 = new DFA24(this);
+    static final String dfa_1s = "\23\uffff";
+    static final String dfa_2s = "\3\uffff\14\21\4\uffff";
+    static final String dfa_3s = "\1\4\1\37\1\41\14\4\4\uffff";
+    static final String dfa_4s = "\1\4\1\37\1\103\14\50\4\uffff";
+    static final String dfa_5s = "\17\uffff\1\4\1\3\1\2\1\1";
+    static final String dfa_6s = "\23\uffff}>";
     static final String[] dfa_7s = {
             "\1\1",
             "\1\2",
-            "\1\15\1\16\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14",
-            "\2\20\7\uffff\1\20\2\uffff\1\20\10\uffff\4\20\4\uffff\1\17\1\uffff\1\20\2\uffff\2\20",
-            "\2\20\7\uffff\1\20\2\uffff\1\20\10\uffff\4\20\4\uffff\1\17\1\uffff\1\20\2\uffff\2\20",
-            "\2\20\7\uffff\1\20\2\uffff\1\20\10\uffff\4\20\4\uffff\1\17\1\uffff\1\20\2\uffff\2\20",
-            "\2\20\7\uffff\1\20\2\uffff\1\20\10\uffff\4\20\4\uffff\1\17\1\uffff\1\20\2\uffff\2\20",
-            "\2\20\7\uffff\1\20\2\uffff\1\20\10\uffff\4\20\4\uffff\1\17\1\uffff\1\20\2\uffff\2\20",
-            "\2\20\7\uffff\1\20\2\uffff\1\20\10\uffff\4\20\4\uffff\1\17\1\uffff\1\20\2\uffff\2\20",
-            "\2\20\7\uffff\1\20\2\uffff\1\20\10\uffff\4\20\4\uffff\1\17\1\uffff\1\20\2\uffff\2\20",
-            "\2\20\7\uffff\1\20\2\uffff\1\20\10\uffff\4\20\4\uffff\1\17\1\uffff\1\20\2\uffff\2\20",
-            "\2\20\7\uffff\1\20\2\uffff\1\20\10\uffff\4\20\4\uffff\1\17\1\uffff\1\20\2\uffff\2\20",
-            "\2\20\7\uffff\1\20\2\uffff\1\20\10\uffff\4\20\4\uffff\1\17\1\uffff\1\20\2\uffff\2\20",
-            "\2\20\7\uffff\1\20\2\uffff\1\20\10\uffff\4\20\4\uffff\1\21\1\uffff\1\20\2\uffff\2\20",
-            "\2\20\7\uffff\1\20\2\uffff\1\20\10\uffff\4\20\4\uffff\1\21\1\uffff\1\20\2\uffff\2\20",
+            "\1\17\26\uffff\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16",
+            "\2\21\7\uffff\1\21\2\uffff\1\21\10\uffff\4\21\5\uffff\1\20\1\uffff\1\21\2\uffff\2\21",
+            "\2\21\7\uffff\1\21\2\uffff\1\21\10\uffff\4\21\5\uffff\1\20\1\uffff\1\21\2\uffff\2\21",
+            "\2\21\7\uffff\1\21\2\uffff\1\21\10\uffff\4\21\5\uffff\1\22\1\uffff\1\21\2\uffff\2\21",
+            "\2\21\7\uffff\1\21\2\uffff\1\21\10\uffff\4\21\5\uffff\1\22\1\uffff\1\21\2\uffff\2\21",
+            "\2\21\7\uffff\1\21\2\uffff\1\21\10\uffff\4\21\5\uffff\1\22\1\uffff\1\21\2\uffff\2\21",
+            "\2\21\7\uffff\1\21\2\uffff\1\21\10\uffff\4\21\5\uffff\1\22\1\uffff\1\21\2\uffff\2\21",
+            "\2\21\7\uffff\1\21\2\uffff\1\21\10\uffff\4\21\5\uffff\1\22\1\uffff\1\21\2\uffff\2\21",
+            "\2\21\7\uffff\1\21\2\uffff\1\21\10\uffff\4\21\5\uffff\1\22\1\uffff\1\21\2\uffff\2\21",
+            "\2\21\7\uffff\1\21\2\uffff\1\21\10\uffff\4\21\5\uffff\1\22\1\uffff\1\21\2\uffff\2\21",
+            "\2\21\7\uffff\1\21\2\uffff\1\21\10\uffff\4\21\5\uffff\1\22\1\uffff\1\21\2\uffff\2\21",
+            "\2\21\7\uffff\1\21\2\uffff\1\21\10\uffff\4\21\5\uffff\1\22\1\uffff\1\21\2\uffff\2\21",
+            "\2\21\7\uffff\1\21\2\uffff\1\21\10\uffff\4\21\5\uffff\1\22\1\uffff\1\21\2\uffff\2\21",
+            "",
             "",
             "",
             ""
@@ -5601,17 +5823,17 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
             this.transition = dfa_7;
         }
         public String getDescription() {
-            return "945:1: (this_MeasurementData_0= ruleMeasurementData | this_NonMeasurementData_1= ruleNonMeasurementData | this_MeasurementDataNotAdjustable_2= ruleMeasurementDataNotAdjustable )";
+            return "945:1: (this_MeasurementData_0= ruleMeasurementData | this_NonMeasurementData_1= ruleNonMeasurementData | this_MeasurementDataNotAdjustable_2= ruleMeasurementDataNotAdjustable | this_ListData_3= ruleListData )";
         }
     }
     static final String dfa_8s = "\57\uffff";
-    static final String dfa_9s = "\1\2\21\uffff\1\27\7\uffff\1\27\12\uffff\12\27";
-    static final String dfa_10s = "\1\4\1\52\1\uffff\1\16\1\53\1\uffff\2\7\1\57\1\54\1\7\1\16\2\7\1\57\1\7\1\54\1\55\1\4\1\7\1\61\1\7\2\uffff\1\55\1\53\1\4\1\7\1\54\2\7\1\54\1\55\1\7\1\37\1\55\1\71\12\4";
-    static final String dfa_11s = "\1\43\1\60\1\uffff\1\16\1\53\1\uffff\2\7\2\62\1\7\1\16\2\7\1\57\1\7\1\54\2\62\1\7\1\61\1\7\2\uffff\1\55\1\53\1\43\1\7\1\62\2\7\1\54\1\62\1\7\1\37\1\55\1\102\12\43";
-    static final String dfa_12s = "\2\uffff\1\4\2\uffff\1\2\20\uffff\1\3\1\1\27\uffff";
+    static final String dfa_9s = "\1\2\21\uffff\1\26\7\uffff\1\26\12\uffff\12\26";
+    static final String dfa_10s = "\1\4\1\53\1\uffff\1\16\1\54\1\uffff\2\7\1\60\1\55\1\7\1\16\2\7\1\60\1\7\1\55\1\56\1\4\1\7\1\62\1\7\2\uffff\1\56\1\54\1\4\1\7\1\55\2\7\1\55\1\56\1\7\1\37\1\56\1\72\12\4";
+    static final String dfa_11s = "\1\44\1\61\1\uffff\1\16\1\54\1\uffff\2\7\2\63\1\7\1\16\2\7\1\60\1\7\1\55\2\63\1\7\1\62\1\7\2\uffff\1\56\1\54\1\44\1\7\1\63\2\7\1\55\1\63\1\7\1\37\1\56\1\103\12\44";
+    static final String dfa_12s = "\2\uffff\1\4\2\uffff\1\2\20\uffff\1\1\1\3\27\uffff";
     static final String dfa_13s = "\57\uffff}>";
     static final String[] dfa_14s = {
-            "\2\2\12\uffff\1\2\10\uffff\4\2\5\uffff\1\1\1\2",
+            "\2\2\12\uffff\1\2\10\uffff\4\2\6\uffff\1\1\1\2",
             "\1\5\3\uffff\1\3\1\uffff\1\4",
             "",
             "\1\6",
@@ -5629,7 +5851,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
             "\1\22",
             "\1\15",
             "\1\24\4\uffff\1\23",
-            "\2\27\12\uffff\1\27\1\uffff\1\26\6\uffff\4\27\6\uffff\1\27\16\uffff\1\25",
+            "\2\26\12\uffff\1\26\1\uffff\1\27\6\uffff\4\26\7\uffff\1\26\16\uffff\1\25",
             "\1\30",
             "\1\31",
             "\1\32",
@@ -5637,7 +5859,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
             "",
             "\1\24",
             "\1\33",
-            "\2\27\12\uffff\1\27\1\uffff\1\26\6\uffff\4\27\6\uffff\1\27",
+            "\2\26\12\uffff\1\26\1\uffff\1\27\6\uffff\4\26\7\uffff\1\26",
             "\1\34",
             "\1\36\5\uffff\1\35",
             "\1\37",
@@ -5648,16 +5870,16 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
             "\1\44",
             "\1\42",
             "\1\45\1\46\1\47\1\50\1\51\1\52\1\53\1\54\1\55\1\56",
-            "\2\27\12\uffff\1\27\1\uffff\1\26\6\uffff\4\27\6\uffff\1\27",
-            "\2\27\12\uffff\1\27\1\uffff\1\26\6\uffff\4\27\6\uffff\1\27",
-            "\2\27\12\uffff\1\27\1\uffff\1\26\6\uffff\4\27\6\uffff\1\27",
-            "\2\27\12\uffff\1\27\1\uffff\1\26\6\uffff\4\27\6\uffff\1\27",
-            "\2\27\12\uffff\1\27\1\uffff\1\26\6\uffff\4\27\6\uffff\1\27",
-            "\2\27\12\uffff\1\27\1\uffff\1\26\6\uffff\4\27\6\uffff\1\27",
-            "\2\27\12\uffff\1\27\1\uffff\1\26\6\uffff\4\27\6\uffff\1\27",
-            "\2\27\12\uffff\1\27\1\uffff\1\26\6\uffff\4\27\6\uffff\1\27",
-            "\2\27\12\uffff\1\27\1\uffff\1\26\6\uffff\4\27\6\uffff\1\27",
-            "\2\27\12\uffff\1\27\1\uffff\1\26\6\uffff\4\27\6\uffff\1\27"
+            "\2\26\12\uffff\1\26\1\uffff\1\27\6\uffff\4\26\7\uffff\1\26",
+            "\2\26\12\uffff\1\26\1\uffff\1\27\6\uffff\4\26\7\uffff\1\26",
+            "\2\26\12\uffff\1\26\1\uffff\1\27\6\uffff\4\26\7\uffff\1\26",
+            "\2\26\12\uffff\1\26\1\uffff\1\27\6\uffff\4\26\7\uffff\1\26",
+            "\2\26\12\uffff\1\26\1\uffff\1\27\6\uffff\4\26\7\uffff\1\26",
+            "\2\26\12\uffff\1\26\1\uffff\1\27\6\uffff\4\26\7\uffff\1\26",
+            "\2\26\12\uffff\1\26\1\uffff\1\27\6\uffff\4\26\7\uffff\1\26",
+            "\2\26\12\uffff\1\26\1\uffff\1\27\6\uffff\4\26\7\uffff\1\26",
+            "\2\26\12\uffff\1\26\1\uffff\1\27\6\uffff\4\26\7\uffff\1\26",
+            "\2\26\12\uffff\1\26\1\uffff\1\27\6\uffff\4\26\7\uffff\1\26"
     };
 
     static final short[] dfa_8 = DFA.unpackEncodedString(dfa_8s);
@@ -5668,11 +5890,11 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     static final short[] dfa_13 = DFA.unpackEncodedString(dfa_13s);
     static final short[][] dfa_14 = unpackEncodedStringArray(dfa_14s);
 
-    class DFA23 extends DFA {
+    class DFA24 extends DFA {
 
-        public DFA23(BaseRecognizer recognizer) {
+        public DFA24(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 23;
+            this.decisionNumber = 24;
             this.eot = dfa_8;
             this.eof = dfa_9;
             this.min = dfa_10;
@@ -5682,7 +5904,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
             this.transition = dfa_14;
         }
         public String getDescription() {
-            return "1083:4: ( (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) ) | (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) ) | (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) ) )?";
+            return "1176:4: ( (otherlv_8= 'adjusted' ( (lv_adjustments_9_0= ruleDataConversion ) ) ) | (otherlv_10= 'adjusted' ( (lv_adjustments_11_0= ruleDataRange ) ) ) | (otherlv_12= 'adjusted' ( (lv_adjustments_13_0= ruleDataConversion ) ) otherlv_14= ',' ( (lv_adjustments_15_0= ruleDataRange ) ) ) )?";
         }
     }
  
@@ -5698,10 +5920,10 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0018000000000000L});
+    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0030000000000000L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000040000L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0060000000000000L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x00C0000000000000L});
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000100000L});
     public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000000080L});
     public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000000200000L});
@@ -5712,40 +5934,42 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000000008020L});
     public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x000000001E010010L});
     public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0xFF80000040040010L,0x0000000000000007L});
+    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0xFF00000040040010L,0x000000000000000FL});
     public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000040040000L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0xFF80000000000010L,0x0000000000000007L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0xFF00000000000010L,0x000000000000000FL});
     public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000080004000L});
     public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000080000000L});
     public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000000002022L});
     public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0xFE00000000000000L,0x0000000000000007L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000C00002130L});
-    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000000C00002022L});
-    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000000C00000022L});
-    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0001400000000000L});
-    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000000800000022L});
-    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000003000000000L});
-    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000000000040022L});
-    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0xFF80000000000000L,0x0000000000000007L});
-    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x000000C800002022L});
-    public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x0000008800002022L});
-    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x0000000800002022L});
-    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0000020000002130L});
-    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0000020000002022L});
-    public static final BitSet FOLLOW_53 = new BitSet(new long[]{0x0000020000000022L});
-    public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_56 = new BitSet(new long[]{0x0000200000000000L});
-    public static final BitSet FOLLOW_57 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_58 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_59 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_60 = new BitSet(new long[]{0x0000000000000112L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0xFC00000000000010L,0x000000000000000FL});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0xFC00000000000000L,0x000000000000000FL});
+    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000001800002130L});
+    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000001800002022L});
+    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000001800000022L});
+    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0002800000000000L});
+    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000001000000022L});
+    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0000006000000000L});
+    public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0000000000040022L});
+    public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_48 = new BitSet(new long[]{0xFF00000000000000L,0x000000000000000FL});
+    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0000019000002022L});
+    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x0000011000002022L});
+    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0000001000002022L});
+    public static final BitSet FOLLOW_53 = new BitSet(new long[]{0x0000040000002130L});
+    public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x0000040000002022L});
+    public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x0000040000000022L});
+    public static final BitSet FOLLOW_56 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_57 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_58 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_59 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_60 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_61 = new BitSet(new long[]{0x0008000000000002L});
+    public static final BitSet FOLLOW_62 = new BitSet(new long[]{0x0000000000000112L});
 
 }

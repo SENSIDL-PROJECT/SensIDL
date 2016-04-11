@@ -63,7 +63,6 @@ public class MethodParameterItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
-			addMethodPropertyDescriptor(object);
 			addDataTypePropertyDescriptor(object);
 			addDataTypeDataSetPropertyDescriptor(object);
 		}
@@ -88,28 +87,6 @@ public class MethodParameterItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Method feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addMethodPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MethodParameter_method_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MethodParameter_method_feature", "_UI_MethodParameter_type"),
-				 DataRepresentationPackage.Literals.METHOD_PARAMETER__METHOD,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}

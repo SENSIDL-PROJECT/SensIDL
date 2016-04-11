@@ -325,6 +325,29 @@ public class DataRepresentationItemProviderAdapterFactory extends DataRepresenta
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link de.fzi.sensidl.design.sensidl.dataRepresentation.ListData} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ListDataItemProvider listDataItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link de.fzi.sensidl.design.sensidl.dataRepresentation.ListData}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createListDataAdapter() {
+		if (listDataItemProvider == null) {
+			listDataItemProvider = new ListDataItemProvider(this);
+		}
+
+		return listDataItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -434,6 +457,7 @@ public class DataRepresentationItemProviderAdapterFactory extends DataRepresenta
 		if (intervalItemProvider != null) intervalItemProvider.dispose();
 		if (methodItemProvider != null) methodItemProvider.dispose();
 		if (methodParameterItemProvider != null) methodParameterItemProvider.dispose();
+		if (listDataItemProvider != null) listDataItemProvider.dispose();
 	}
 
 }

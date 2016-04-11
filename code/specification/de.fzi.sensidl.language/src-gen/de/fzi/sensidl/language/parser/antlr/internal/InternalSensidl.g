@@ -971,7 +971,100 @@ ruleData returns [EObject current=null]
         $current = $this_MeasurementDataNotAdjustable_2.current; 
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getDataAccess().getListDataParserRuleCall_3()); 
+    }
+    this_ListData_3=ruleListData
+    { 
+        $current = $this_ListData_3.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
+;
+
+
+
+
+
+// Entry rule entryRuleListData
+entryRuleListData returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getListDataRule()); }
+	 iv_ruleListData=ruleListData 
+	 { $current=$iv_ruleListData.current; } 
+	 EOF 
+;
+
+// Rule ListData
+ruleListData returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		lv_name_0_0=RULE_ID
+		{
+			newLeafNode(lv_name_0_0, grammarAccess.getListDataAccess().getNameIDTerminalRuleCall_0_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getListDataRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"name",
+        		lv_name_0_0, 
+        		"org.eclipse.xtext.common.Terminals.ID");
+	    }
+
+)
+)	otherlv_1='as' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getListDataAccess().getAsKeyword_1());
+    }
+	otherlv_2='list' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getListDataAccess().getListKeyword_2());
+    }
+	otherlv_3='as' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getListDataAccess().getAsKeyword_3());
+    }
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getListDataAccess().getDataTypeDataTypeEnumRuleCall_4_0_0()); 
+	    }
+		lv_dataType_4_0=ruleDataType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getListDataRule());
+	        }
+       		set(
+       			$current, 
+       			"dataType",
+        		lv_dataType_4_0, 
+        		"de.fzi.sensidl.language.Sensidl.DataType");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+    |(
+(
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getListDataRule());
+	        }
+        }
+	otherlv_5=RULE_ID
+	{
+		newLeafNode(otherlv_5, grammarAccess.getListDataAccess().getDataTypeDataSetDataSetCrossReference_4_1_0()); 
+	}
+
+)
+)))
 ;
 
 
