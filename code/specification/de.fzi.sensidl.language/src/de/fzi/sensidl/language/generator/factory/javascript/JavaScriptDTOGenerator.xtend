@@ -84,11 +84,19 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 		var measurementDataList = new ArrayList<MeasurementData>
 		var nonMeasurementDataList = new ArrayList<NonMeasurementData>
 
-		while (dataSet!==null) {
-			measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
-			nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
-			dataSet = dataSet.parentDataSet
-		}	
+//		while (dataSet!==null) {
+//			measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
+//			nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
+//			dataSet = dataSet.parentDataSet
+//		}	
+		
+		measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
+		nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
+		
+		for (DataSet pdataSet : dataSet.parentDataSet){
+			measurementDataList.addAll(pdataSet.eContents.filter(MeasurementData))
+			nonMeasurementDataList.addAll(pdataSet.eContents.filter(NonMeasurementData))
+		}
 			
 		val mdatalast = measurementDataList.last
 		val nmdatalast = nonMeasurementDataList.last

@@ -3,6 +3,7 @@ package de.fzi.sensidl.language.generator.factory.c
 import com.google.common.base.Strings
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
+import de.fzi.sensidl.design.sensidl.dataRepresentation.ListData
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData
 import de.fzi.sensidl.language.generator.GenerationUtil
@@ -12,9 +13,6 @@ import de.fzi.sensidl.language.generator.factory.IDTOGenerator
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
-import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
-import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
-import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
 
 /**
  * This class implements a part of the CDTOGenerator. This class is responsible for 
@@ -67,7 +65,9 @@ class HeaderDTOGenerator extends CDTOGenerator {
 		'''
 			/**\brief		«IF !Strings.isNullOrEmpty(dataset.description)»«dataset.description»«ENDIF»  
 			«FOR data : dataset.eContents.filter(Data)»
-				«generateDescription(data)»
+				«IF !(data instanceof ListData)»
+					«generateDescription(data)»
+				«ENDIF»
 			«ENDFOR»
 			*/
 			

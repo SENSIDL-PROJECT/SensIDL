@@ -127,19 +127,42 @@ class CSharpDTOGenerator implements IDTOGenerator {
 	 */
 	def generateDataFieldsIncludeParentDataSet(DataSet d) {
 		var dataSet = d
-		var dataFieldsString =''''''
+		var dataFieldsString = ''''''
 		
-		while (dataSet!==null) {
-			for (data : dataSet.eContents.filter(NonMeasurementData)) {
-				dataFieldsString += generateDataFields(data)
-				dataFieldsString += System.getProperty("line.separator");
-				}
-			for (data : dataSet.eContents.filter(MeasurementData)) {
-				dataFieldsString += generateDataFields(data)
-				dataFieldsString += System.getProperty("line.separator");
-				}
-			dataSet = dataSet.parentDataSet
+//		while (dataSet!==null) {
+//			for (data : dataSet.eContents.filter(NonMeasurementData)) {
+//				dataFieldsString += generateDataFields(data)
+//				dataFieldsString += System.getProperty("line.separator");
+//				}
+//			for (data : dataSet.eContents.filter(MeasurementData)) {
+//				dataFieldsString += generateDataFields(data)
+//				dataFieldsString += System.getProperty("line.separator");
+//				}
+//			dataSet = dataSet.parentDataSet
+//		}
+
+		for (data : dataSet.eContents.filter(NonMeasurementData)) {
+			dataFieldsString += generateDataFields(data)
+			dataFieldsString += System.getProperty("line.separator");
 		}
+
+		for (data : dataSet.eContents.filter(MeasurementData)) {
+			dataFieldsString += generateDataFields(data)
+			dataFieldsString += System.getProperty("line.separator");
+		}
+
+		for (DataSet pdataSet : dataSet.parentDataSet) {
+			for (data : pdataSet.eContents.filter(NonMeasurementData)) {
+				dataFieldsString += generateDataFields(data)
+				dataFieldsString += System.getProperty("line.separator");
+			}
+
+			for (data : pdataSet.eContents.filter(MeasurementData)) {
+				dataFieldsString += generateDataFields(data)
+				dataFieldsString += System.getProperty("line.separator");
+			}
+		}
+
 		return dataFieldsString
 	}
 	
@@ -155,11 +178,21 @@ class CSharpDTOGenerator implements IDTOGenerator {
 		constructorString += System.getProperty("line.separator");
 		var measurementDataList = new ArrayList<MeasurementData>
 		var nonMeasurementDataList = new ArrayList<NonMeasurementData>
-		while (dataSet!==null) {
-			measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
-			nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
-			dataSet = dataSet.parentDataSet
+		
+//		while (dataSet!==null) {
+//			measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
+//			nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
+//			dataSet = dataSet.parentDataSet
+//		}
+		
+		measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
+		nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
+		
+		for (DataSet pdataSet : dataSet.parentDataSet){
+			measurementDataList.addAll(pdataSet.eContents.filter(MeasurementData))
+			nonMeasurementDataList.addAll(pdataSet.eContents.filter(NonMeasurementData))
 		}
+		
 		for (data : measurementDataList) {
 			constructorString += '''	this.«GenerationUtil.toNameLower(data)» = «GenerationUtil.toNameLower(data)»;
 			'''
@@ -180,24 +213,31 @@ class CSharpDTOGenerator implements IDTOGenerator {
 	 */
 	def generateDataMethodsIncludeParentDataSet(DataSet d) {
 		var dataSet = d
-		var methodsString =''''''
+		var methodsString = ''''''
 		var measurementDataList = new ArrayList<MeasurementData>
 		var nonMeasurementDataList = new ArrayList<NonMeasurementData>
-		while (dataSet!==null) {
+
+//		while (dataSet!==null) {
+//			measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
+//			nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
+//			dataSet = dataSet.parentDataSet
+//		}
+		measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
+		nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
+
+		for (DataSet pdataSet : dataSet.parentDataSet) {
 			measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
 			nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
-			dataSet = dataSet.parentDataSet
 		}
-	
-	
-			for (data : measurementDataList) {
-				methodsString += generateProperties(data)
-				methodsString += System.getProperty("line.separator");
-			}
-			for (data : nonMeasurementDataList) {
-				methodsString += generateProperties(data)
-				methodsString += System.getProperty("line.separator");
-			}
+
+		for (data : measurementDataList) {
+			methodsString += generateProperties(data)
+			methodsString += System.getProperty("line.separator");
+		}
+		for (data : nonMeasurementDataList) {
+			methodsString += generateProperties(data)
+			methodsString += System.getProperty("line.separator");
+		}
 		return methodsString
 	}
 
@@ -280,8 +320,33 @@ class CSharpDTOGenerator implements IDTOGenerator {
 		var dataList = new ArrayList<Data>();
 		var dataSet = d
 		
-		while (dataSet != null){
-			for (data : dataSet.eContents.filter(Data)) {
+//		while (dataSet != null){
+//			for (data : dataSet.eContents.filter(Data)) {
+//				if (data instanceof NonMeasurementData) {
+//					var nmdata = data as NonMeasurementData
+//					if (!nmdata.constant) {
+//						dataList.add(data)
+//					}
+//				} else {
+//					dataList.add(data)
+//				}
+//			}
+//			dataSet = dataSet.parentDataSet
+//		}
+
+		for (data : dataSet.eContents.filter(Data)) {
+			if (data instanceof NonMeasurementData) {
+				var nmdata = data as NonMeasurementData
+				if (!nmdata.constant) {
+					dataList.add(data)
+				}
+			} else {
+				dataList.add(data)
+			}
+		}
+
+		for (DataSet pdataSet : dataSet.parentDataSet) {
+			for (data : pdataSet.eContents.filter(Data)) {
 				if (data instanceof NonMeasurementData) {
 					var nmdata = data as NonMeasurementData
 					if (!nmdata.constant) {
@@ -291,9 +356,7 @@ class CSharpDTOGenerator implements IDTOGenerator {
 					dataList.add(data)
 				}
 			}
-			dataSet = dataSet.parentDataSet
 		}
-
 		if (dataList.size > 0) {
 			var firstElement = dataList.get(0).toTypeName + " " + GenerationUtil.toNameLower(dataList.get(0))
 			dataList.remove(0)
