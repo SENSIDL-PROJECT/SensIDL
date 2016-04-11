@@ -137,7 +137,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 		while (dataSet!==null) {
 	
 			methodsString += generateInit(dataSet)
-			dataSet = dataSet.parentDataSet
+			dataSet = dataSet.parentDataSet.head //TODO: also use other parent data sets if there is more than one
 		}
 		methodsString += generateInitTemplateEnd(dataSet)
 		
@@ -191,7 +191,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 				methodsString += generateSetterDeclaration(data, parentDataSet)
 				methodsString += System.getProperty("line.separator");
 			}
-			dataSet = dataSet.parentDataSet
+			dataSet = dataSet.parentDataSet.head //TODO: also use other parent data sets if there is more than one
 		}
 		return methodsString
 	}		
@@ -338,7 +338,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 			while (dataSet!==null) {
 		
 				methodsString += swapEndianness(dataSet)
-				dataSet = dataSet.parentDataSet
+				dataSet = dataSet.parentDataSet.head //TODO: also use other parent data sets if there is more than one
 			}
 			return methodsString
 	}	

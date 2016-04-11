@@ -127,8 +127,8 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 			}
 			_builder.append(dataString + ".");
 			_builder.newLine();
-			if (dataSet.getParentDataSet() != null) {
-				_builder.append("This data set uses the data set \"" + dataSet.getParentDataSet().getName() + "\".");
+			for (DataSet pd : dataSet.getParentDataSet()) {
+				_builder.append("This data set uses the data set \"" + pd.getName() + "\".");
 				_builder.newLine();
 			}
 			addDescription(dataSet, _builder);

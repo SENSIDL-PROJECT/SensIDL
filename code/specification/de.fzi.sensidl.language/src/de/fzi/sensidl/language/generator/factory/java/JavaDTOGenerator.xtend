@@ -145,15 +145,21 @@ class JavaDTOGenerator implements IDTOGenerator {
 		«FOR data : d.eContents.filter(MeasurementData)»
 			«generateDataFields(data)»
 		«ENDFOR» 
-		«IF d.parentDataSet != null»
-		
-		/*	
-		 * «d.parentDataSet.description»
-		 */
-		private «GenerationUtil.toNameUpper(d.parentDataSet)» «GenerationUtil.toNameLower(d.parentDataSet)»;
-		«ENDIF»
+		«FOR dataSet : d.parentDataSet»
+			«generateDataFields(dataSet)»
+		«ENDFOR»
 		'''
 	}
+	/**
+	 * generate the fields for datasets
+	 */
+	def generateDataFields(DataSet dataSet)
+		'''
+		/*	
+		 * «dataSet.description»
+		 */
+		private «GenerationUtil.toNameUpper(dataSet)» «GenerationUtil.toNameLower(dataSet)»;
+		'''
 	
 	
 	/**
@@ -239,9 +245,9 @@ class JavaDTOGenerator implements IDTOGenerator {
 					this.«GenerationUtil.toNameLower(data)» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («GenerationUtil.toNameLower(data)» - «data.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(data)»«ENDIF»;
 				«ENDIF»
 			«ENDFOR»
-			«IF d.parentDataSet != null»
-				this.«GenerationUtil.toNameLower(d.parentDataSet)» = «GenerationUtil.toNameLower(d.parentDataSet)»;
-			«ENDIF»
+			«FOR pdataSet : d.parentDataSet»
+					this.«GenerationUtil.toNameLower(pdataSet)» = «GenerationUtil.toNameLower(pdataSet)»;
+			«ENDFOR»
 		}
 		'''
 	}
@@ -269,7 +275,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			var firstElement = dataList.get(0).toTypeName + " " + GenerationUtil.toNameLower(dataList.get(0))
 			dataList.remove(0)
 			if(d.parentDataSet != null){
-				'''«firstElement»«FOR data : dataList», «data.toTypeName» «GenerationUtil.toNameLower(data)»«ENDFOR», «GenerationUtil.toNameUpper(d.parentDataSet)» «GenerationUtil.toNameLower(d.parentDataSet)»'''
+				'''«firstElement»«FOR data : dataList», «data.toTypeName» «GenerationUtil.toNameLower(data)»«ENDFOR»«FOR pdataSet : d.parentDataSet», «GenerationUtil.toNameUpper(pdataSet)» «GenerationUtil.toNameLower(pdataSet)»«ENDFOR»'''
 			} else {
 				'''«firstElement»«FOR data : dataList», «data.toTypeName» «GenerationUtil.toNameLower(data)»«ENDFOR»'''
 			}
@@ -298,12 +304,12 @@ class JavaDTOGenerator implements IDTOGenerator {
 			
 			«generateSetter(data)»
 		«ENDFOR»
-		«IF d.parentDataSet != null»
+		«FOR pdataSet : d.parentDataSet»
 			
-			«generateGetter(d.parentDataSet)»
+			«generateGetter(pdataSet)»
 			
-			«generateSetter(d.parentDataSet)»
-		«ENDIF»
+			«generateSetter(pdataSet)»
+		«ENDFOR»
 		'''
 	}
 	
@@ -662,45 +668,45 @@ class JavaDTOGenerator implements IDTOGenerator {
 	
 // ------------------------------ Little Endian Converter Methods ------------------------------
 
-def generateConverterMethods(DataSet d) {
-	'''
-		«IF d.parentDataSet != null»
-		/**
-		 * Converts a big endian «GenerationUtil.toNameUpper(d.parentDataSet)» Object into a little endian «GenerationUtil.toNameUpper(d.parentDataSet)» Object
-		 *	
-		 * @param the «GenerationUtil.toNameUpper(d.parentDataSet)» Object to convert
-		 * @return «GenerationUtil.toNameUpper(d.parentDataSet)» the converted «GenerationUtil.toNameUpper(d.parentDataSet)» Object
-		 *
-		 */
-		public «GenerationUtil.toNameUpper(d.parentDataSet)» convertToLittleEndian(«GenerationUtil.toNameUpper(d.parentDataSet)» «GenerationUtil.toNameLower(d.parentDataSet)»){
-			//TODO: implement Method
-			return null;
-		}
-		«ENDIF»
-		
-		«convertAllToTLitteEndian(d)»
-		
-	'''
+	def generateConverterMethods(DataSet d) {
+		'''
+			«FOR pdataSet : d.parentDataSet»
+				/**
+				 * Converts a big endian «GenerationUtil.toNameUpper(pdataSet)» Object into a little endian «GenerationUtil.toNameUpper(pdataSet)» Object
+				 *	
+				 * @param the «GenerationUtil.toNameUpper(pdataSet)» Object to convert
+				 * @return «GenerationUtil.toNameUpper(pdataSet)» the converted «GenerationUtil.toNameUpper(pdataSet)» Object
+				 *
+				 */
+				public «GenerationUtil.toNameUpper(pdataSet)» convertToLittleEndian(«GenerationUtil.toNameUpper(pdataSet)» «GenerationUtil.toNameLower(pdataSet)»){
+					//TODO: implement Method
+					return null;
+				}
+			«ENDFOR»
+			
+			«convertAllToTLitteEndian(d)»
+			
+		'''
 	}
 	
-def convertAllToTLitteEndian(DataSet d){
+	def convertAllToTLitteEndian(DataSet d) {
 		'''
-		public void «SensIDLConstants.JAVA_CONVERT_ALL_TO_LITTLE_ENDIAN_METHOD_NAME»(){
-			«FOR data : d.eContents.filter(MeasurementData)»
-				«GenerationUtil.toNameLower(data)» = «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«GenerationUtil.toNameLower(data)»);
-			«ENDFOR»
-			«FOR data : d.eContents.filter(NonMeasurementData)»
-				«IF data.isConstant»
-					«data.name.toUpperCase» = «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«data.name.toUpperCase»);
-				«ELSE»
+			public void «SensIDLConstants.JAVA_CONVERT_ALL_TO_LITTLE_ENDIAN_METHOD_NAME»(){
+				«FOR data : d.eContents.filter(MeasurementData)»
 					«GenerationUtil.toNameLower(data)» = «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«GenerationUtil.toNameLower(data)»);
-				«ENDIF»
-			«ENDFOR»
-			«IF d.parentDataSet != null»
-				«GenerationUtil.toNameLower(d.parentDataSet)» = convertToLittleEndian(«GenerationUtil.toNameLower(d.parentDataSet)»);
-			«ENDIF»
-		}
-		
+				«ENDFOR»
+				«FOR data : d.eContents.filter(NonMeasurementData)»
+					«IF data.isConstant»
+						«data.name.toUpperCase» = «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«data.name.toUpperCase»);
+					«ELSE»
+						«GenerationUtil.toNameLower(data)» = «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«GenerationUtil.toNameLower(data)»);
+					«ENDIF»
+				«ENDFOR»
+				«FOR pdataSet : d.parentDataSet»
+					«GenerationUtil.toNameLower(pdataSet)» = convertToLittleEndian(«GenerationUtil.toNameLower(pdataSet)»);
+				«ENDFOR»
+			}
+			
 		'''
 	}
 }

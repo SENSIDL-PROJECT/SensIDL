@@ -57,14 +57,14 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	protected EList<Data> data;
 
 	/**
-	 * The cached value of the '{@link #getParentDataSet() <em>Parent Data Set</em>}' reference.
+	 * The cached value of the '{@link #getParentDataSet() <em>Parent Data Set</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getParentDataSet()
 	 * @generated
 	 * @ordered
 	 */
-	protected DataSet parentDataSet;
+	protected EList<DataSet> parentDataSet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,7 +133,7 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 */
 	public EList<DataSet> getSubDataSets() {
 		if (subDataSets == null) {
-			subDataSets = new EObjectWithInverseResolvingEList<DataSet>(DataSet.class, this, DataRepresentationPackage.DATA_SET__SUB_DATA_SETS, DataRepresentationPackage.DATA_SET__PARENT_DATA_SET);
+			subDataSets = new EObjectWithInverseResolvingEList.ManyInverse<DataSet>(DataSet.class, this, DataRepresentationPackage.DATA_SET__SUB_DATA_SETS, DataRepresentationPackage.DATA_SET__PARENT_DATA_SET);
 		}
 		return subDataSets;
 	}
@@ -155,59 +155,11 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataSet getParentDataSet() {
-		if (parentDataSet != null && parentDataSet.eIsProxy()) {
-			InternalEObject oldParentDataSet = (InternalEObject)parentDataSet;
-			parentDataSet = (DataSet)eResolveProxy(oldParentDataSet);
-			if (parentDataSet != oldParentDataSet) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DataRepresentationPackage.DATA_SET__PARENT_DATA_SET, oldParentDataSet, parentDataSet));
-			}
+	public EList<DataSet> getParentDataSet() {
+		if (parentDataSet == null) {
+			parentDataSet = new EObjectWithInverseResolvingEList.ManyInverse<DataSet>(DataSet.class, this, DataRepresentationPackage.DATA_SET__PARENT_DATA_SET, DataRepresentationPackage.DATA_SET__SUB_DATA_SETS);
 		}
 		return parentDataSet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DataSet basicGetParentDataSet() {
-		return parentDataSet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetParentDataSet(DataSet newParentDataSet, NotificationChain msgs) {
-		DataSet oldParentDataSet = parentDataSet;
-		parentDataSet = newParentDataSet;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DataRepresentationPackage.DATA_SET__PARENT_DATA_SET, oldParentDataSet, newParentDataSet);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setParentDataSet(DataSet newParentDataSet) {
-		if (newParentDataSet != parentDataSet) {
-			NotificationChain msgs = null;
-			if (parentDataSet != null)
-				msgs = ((InternalEObject)parentDataSet).eInverseRemove(this, DataRepresentationPackage.DATA_SET__SUB_DATA_SETS, DataSet.class, msgs);
-			if (newParentDataSet != null)
-				msgs = ((InternalEObject)newParentDataSet).eInverseAdd(this, DataRepresentationPackage.DATA_SET__SUB_DATA_SETS, DataSet.class, msgs);
-			msgs = basicSetParentDataSet(newParentDataSet, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataRepresentationPackage.DATA_SET__PARENT_DATA_SET, newParentDataSet, newParentDataSet));
 	}
 
 	/**
@@ -228,9 +180,7 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 			case DataRepresentationPackage.DATA_SET__DATA:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getData()).basicAdd(otherEnd, msgs);
 			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
-				if (parentDataSet != null)
-					msgs = ((InternalEObject)parentDataSet).eInverseRemove(this, DataRepresentationPackage.DATA_SET__SUB_DATA_SETS, DataSet.class, msgs);
-				return basicSetParentDataSet((DataSet)otherEnd, msgs);
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParentDataSet()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -250,7 +200,7 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 			case DataRepresentationPackage.DATA_SET__DATA:
 				return ((InternalEList<?>)getData()).basicRemove(otherEnd, msgs);
 			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
-				return basicSetParentDataSet(null, msgs);
+				return ((InternalEList<?>)getParentDataSet()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -284,8 +234,7 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 			case DataRepresentationPackage.DATA_SET__DATA:
 				return getData();
 			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
-				if (resolve) return getParentDataSet();
-				return basicGetParentDataSet();
+				return getParentDataSet();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -311,7 +260,8 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 				getData().addAll((Collection<? extends Data>)newValue);
 				return;
 			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
-				setParentDataSet((DataSet)newValue);
+				getParentDataSet().clear();
+				getParentDataSet().addAll((Collection<? extends DataSet>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -335,7 +285,7 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 				getData().clear();
 				return;
 			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
-				setParentDataSet((DataSet)null);
+				getParentDataSet().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -356,7 +306,7 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 			case DataRepresentationPackage.DATA_SET__DATA:
 				return data != null && !data.isEmpty();
 			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
-				return parentDataSet != null;
+				return parentDataSet != null && !parentDataSet.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

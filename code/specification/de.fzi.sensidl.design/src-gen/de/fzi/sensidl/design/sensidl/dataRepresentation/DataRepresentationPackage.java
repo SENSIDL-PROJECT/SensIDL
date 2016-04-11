@@ -185,7 +185,7 @@ public interface DataRepresentationPackage extends EPackage {
 	int DATA_SET__DATA = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Parent Data Set</b></em>' reference.
+	 * The feature id for the '<em><b>Parent Data Set</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -929,10 +929,10 @@ public interface DataRepresentationPackage extends EPackage {
 	EReference getDataSet_Data();
 
 	/**
-	 * Returns the meta object for the reference '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getParentDataSet <em>Parent Data Set</em>}'.
+	 * Returns the meta object for the reference list '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getParentDataSet <em>Parent Data Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Parent Data Set</em>'.
+	 * @return the meta object for the reference list '<em>Parent Data Set</em>'.
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getParentDataSet()
 	 * @see #getDataSet()
 	 * @generated
@@ -1332,7 +1332,7 @@ public interface DataRepresentationPackage extends EPackage {
 		EReference DATA_SET__DATA = eINSTANCE.getDataSet_Data();
 
 		/**
-		 * The meta object literal for the '<em><b>Parent Data Set</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Parent Data Set</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

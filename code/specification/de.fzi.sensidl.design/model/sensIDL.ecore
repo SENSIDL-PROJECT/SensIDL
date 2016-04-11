@@ -64,8 +64,8 @@
           eType="#//dataRepresentation/DataSet" eOpposite="#//dataRepresentation/DataSet/parentDataSet"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="data" upperBound="-1"
           eType="#//dataRepresentation/Data" containment="true" eOpposite="#//dataRepresentation/Data/dataSet"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="parentDataSet" eType="#//dataRepresentation/DataSet"
-          eOpposite="#//dataRepresentation/DataSet/subDataSets"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parentDataSet" upperBound="-1"
+          eType="#//dataRepresentation/DataSet" eOpposite="#//dataRepresentation/DataSet/subDataSets"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Data" abstract="true" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="dataSet" eType="#//dataRepresentation/DataSet"

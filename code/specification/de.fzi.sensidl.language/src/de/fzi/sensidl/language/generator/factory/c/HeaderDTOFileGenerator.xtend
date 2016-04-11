@@ -122,7 +122,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 				dataFieldsString += generateVariable(data)
 				dataFieldsString += System.getProperty("line.separator");
 				}
-			dataSet = dataSet.parentDataSet
+			dataSet = dataSet.parentDataSet.head //TODO: also use other parent data sets if there is more than one
 		}
 		//Remove all empty lines
 		return dataFieldsString.replaceAll("(?m)^[ \t]*\r?\n", "");
@@ -161,7 +161,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 				methodsString += generateSetterPrototype(data, parentDataSet)
 				methodsString += System.getProperty("line.separator");
 			}
-			dataSet = dataSet.parentDataSet
+			dataSet = dataSet.parentDataSet.head //TODO: also use other parent data sets if there is more than one
 		}
 		return methodsString
 	}	

@@ -54,6 +54,7 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDataSetAccess().getGroup(), "rule__DataSet__Group__0");
 					put(grammarAccess.getDataSetAccess().getGroup_2(), "rule__DataSet__Group_2__0");
 					put(grammarAccess.getDataSetAccess().getGroup_3(), "rule__DataSet__Group_3__0");
+					put(grammarAccess.getDataSetAccess().getGroup_4(), "rule__DataSet__Group_4__0");
 					put(grammarAccess.getMeasurementDataAccess().getGroup(), "rule__MeasurementData__Group__0");
 					put(grammarAccess.getMeasurementDataAccess().getGroup_5(), "rule__MeasurementData__Group_5__0");
 					put(grammarAccess.getMeasurementDataAccess().getGroup_6_0(), "rule__MeasurementData__Group_6_0__0");
@@ -85,9 +86,10 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSensorDataDescriptionAccess().getDataSetsAssignment_4(), "rule__SensorDataDescription__DataSetsAssignment_4");
 					put(grammarAccess.getDataSetAccess().getNameAssignment_1(), "rule__DataSet__NameAssignment_1");
 					put(grammarAccess.getDataSetAccess().getParentDataSetAssignment_2_1(), "rule__DataSet__ParentDataSetAssignment_2_1");
-					put(grammarAccess.getDataSetAccess().getIDAssignment_3_2(), "rule__DataSet__IDAssignment_3_2");
-					put(grammarAccess.getDataSetAccess().getDescriptionAssignment_4(), "rule__DataSet__DescriptionAssignment_4");
-					put(grammarAccess.getDataSetAccess().getDataAssignment_6(), "rule__DataSet__DataAssignment_6");
+					put(grammarAccess.getDataSetAccess().getParentDataSetAssignment_3_1(), "rule__DataSet__ParentDataSetAssignment_3_1");
+					put(grammarAccess.getDataSetAccess().getIDAssignment_4_2(), "rule__DataSet__IDAssignment_4_2");
+					put(grammarAccess.getDataSetAccess().getDescriptionAssignment_5(), "rule__DataSet__DescriptionAssignment_5");
+					put(grammarAccess.getDataSetAccess().getDataAssignment_7(), "rule__DataSet__DataAssignment_7");
 					put(grammarAccess.getMeasurementDataAccess().getNameAssignment_0(), "rule__MeasurementData__NameAssignment_0");
 					put(grammarAccess.getMeasurementDataAccess().getDataTypeAssignment_2(), "rule__MeasurementData__DataTypeAssignment_2");
 					put(grammarAccess.getMeasurementDataAccess().getUnitAssignment_4(), "rule__MeasurementData__UnitAssignment_4");
