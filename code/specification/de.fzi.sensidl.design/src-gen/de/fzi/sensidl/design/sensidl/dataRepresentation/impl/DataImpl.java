@@ -7,11 +7,14 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackag
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType;
 import de.fzi.sensidl.design.sensidl.impl.NamedElementImpl;
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
@@ -24,6 +27,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataImpl#getDataSet <em>Data Set</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataImpl#getDataType <em>Data Type</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataImpl#getExcludedMethods <em>Excluded Methods</em>}</li>
  * </ul>
  *
  * @generated
@@ -48,6 +52,16 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 	 * @ordered
 	 */
 	protected DataType dataType = DATA_TYPE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getExcludedMethods() <em>Excluded Methods</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExcludedMethods()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> excludedMethods;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -135,6 +149,18 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<String> getExcludedMethods() {
+		if (excludedMethods == null) {
+			excludedMethods = new EDataTypeUniqueEList<String>(String.class, this, DataRepresentationPackage.DATA__EXCLUDED_METHODS);
+		}
+		return excludedMethods;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -186,6 +212,8 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 				return getDataSet();
 			case DataRepresentationPackage.DATA__DATA_TYPE:
 				return getDataType();
+			case DataRepresentationPackage.DATA__EXCLUDED_METHODS:
+				return getExcludedMethods();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -195,6 +223,7 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -203,6 +232,10 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 				return;
 			case DataRepresentationPackage.DATA__DATA_TYPE:
 				setDataType((DataType)newValue);
+				return;
+			case DataRepresentationPackage.DATA__EXCLUDED_METHODS:
+				getExcludedMethods().clear();
+				getExcludedMethods().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -222,6 +255,9 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 			case DataRepresentationPackage.DATA__DATA_TYPE:
 				setDataType(DATA_TYPE_EDEFAULT);
 				return;
+			case DataRepresentationPackage.DATA__EXCLUDED_METHODS:
+				getExcludedMethods().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -238,6 +274,8 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 				return getDataSet() != null;
 			case DataRepresentationPackage.DATA__DATA_TYPE:
 				return dataType != DATA_TYPE_EDEFAULT;
+			case DataRepresentationPackage.DATA__EXCLUDED_METHODS:
+				return excludedMethods != null && !excludedMethods.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -254,6 +292,8 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (dataType: ");
 		result.append(dataType);
+		result.append(", excludedMethods: ");
+		result.append(excludedMethods);
 		result.append(')');
 		return result.toString();
 	}

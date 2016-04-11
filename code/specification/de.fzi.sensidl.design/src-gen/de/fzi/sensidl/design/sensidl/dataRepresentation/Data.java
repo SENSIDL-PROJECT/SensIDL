@@ -3,6 +3,7 @@
 package de.fzi.sensidl.design.sensidl.dataRepresentation;
 
 import de.fzi.sensidl.design.sensidl.NamedElement;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,6 +16,7 @@ import de.fzi.sensidl.design.sensidl.NamedElement;
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Data#getDataSet <em>Data Set</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Data#getDataType <em>Data Type</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Data#getExcludedMethods <em>Excluded Methods</em>}</li>
  * </ul>
  *
  * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getData()
@@ -78,5 +80,21 @@ public interface Data extends NamedElement {
 	 * @generated
 	 */
 	void setDataType(DataType value);
+
+	/**
+	 * Returns the value of the '<em><b>Excluded Methods</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Excluded Methods</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Excluded Methods</em>' attribute list.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getData_ExcludedMethods()
+	 * @model default=""
+	 * @generated
+	 */
+	EList<String> getExcludedMethods();
 
 } // Data

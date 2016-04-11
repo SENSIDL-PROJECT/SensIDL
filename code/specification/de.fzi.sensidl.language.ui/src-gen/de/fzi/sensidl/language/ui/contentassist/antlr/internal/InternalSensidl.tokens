@@ -1,9 +1,9 @@
 ','=34
-'.'=54
+'.'=56
 ':'=32
-';'=48
-'='=45
-'=>'=53
+';'=50
+'='=46
+'=>'=55
 'BIG_ENDIAN'=14
 'BIT'=37
 'BOOLEAN'=17
@@ -21,25 +21,29 @@
 'UINT32'=23
 'UINT64'=25
 'UINT8'=19
-'['=47
-']'=49
+'['=49
+']'=51
 'adjusted'=43
 'alignment'=36
-'and offset'=51
+'and offset'=53
 'as'=41
-'by linear mapping'=52
-'constant'=55
+'by linear mapping'=54
+'constant'=59
 'dataSet'=39
 'encoding'=33
 'endianness'=35
+'exclude'=47
+'exclude:'=44
+'getter'=58
 'in'=42
 'sensorData'=38
 'sensorInterface'=28
+'setter'=57
 'uses'=40
-'value'=44
+'value'=45
 'with identifier'=31
-'with range'=46
-'with scaling factor'=50
+'with range'=48
+'with scaling factor'=52
 '{'=29
 '}'=30
 RULE_ANY_OTHER=6
@@ -94,3 +98,7 @@ T__52=52
 T__53=53
 T__54=54
 T__55=55
+T__56=56
+T__57=57
+T__58=58
+T__59=59

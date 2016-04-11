@@ -227,28 +227,32 @@ class JavaDTOGenerator implements IDTOGenerator {
 	/**
 	 * Generates the constructor for this data set including used data sets.
 	 */
-	def generateConstructorIncludeParentDataSet(DataSet d,String className) {
+	def generateConstructorIncludeParentDataSet(DataSet d, String className) {
 		'''
-		/**
-		 * Constructor for the Data transfer object
-		 */
-		public «className»(«d.generateConstructorArgumentsIncludeParentDataSets») {
-			«FOR data : d.eContents.filter(MeasurementData)»
-				«IF data.hasLinearDataConversionWithInterval»
-					set«GenerationUtil.toNameUpper(data)»(«GenerationUtil.toNameLower(data)»);
-				«ELSE»
-					this.«GenerationUtil.toNameLower(data)» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («GenerationUtil.toNameLower(data)» - «data.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(data)»«ENDIF»;
-				«ENDIF»
-			«ENDFOR»
-			«FOR data : d.eContents.filter(NonMeasurementData)»
-				«IF !data.constant»
-					this.«GenerationUtil.toNameLower(data)» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («GenerationUtil.toNameLower(data)» - «data.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(data)»«ENDIF»;
-				«ENDIF»
-			«ENDFOR»
-			«FOR pdataSet : d.parentDataSet»
+			/**
+			 * Constructor for the Data transfer object
+			 */
+			public «className»(«d.generateConstructorArgumentsIncludeParentDataSets») {
+				«FOR data : d.eContents.filter(MeasurementData)»
+					«IF data.hasLinearDataConversionWithInterval»
+						«IF data.excludedMethods.contains("setter")»
+							//set«GenerationUtil.toNameUpper(data)»(«GenerationUtil.toNameLower(data)»); // no setter was generated
+						«ELSE»
+							set«GenerationUtil.toNameUpper(data)»(«GenerationUtil.toNameLower(data)»);
+						«ENDIF»
+					«ELSE»
+						this.«GenerationUtil.toNameLower(data)» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («GenerationUtil.toNameLower(data)» - «data.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(data)»«ENDIF»;
+					«ENDIF»
+				«ENDFOR»
+				«FOR data : d.eContents.filter(NonMeasurementData)»
+					«IF !data.constant»
+						this.«GenerationUtil.toNameLower(data)» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («GenerationUtil.toNameLower(data)» - «data.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(data)»«ENDIF»;
+					«ENDIF»
+				«ENDFOR»
+				«FOR pdataSet : d.parentDataSet»
 					this.«GenerationUtil.toNameLower(pdataSet)» = «GenerationUtil.toNameLower(pdataSet)»;
-			«ENDFOR»
-		}
+				«ENDFOR»
+			}
 		'''
 	}
 	
@@ -293,16 +297,20 @@ class JavaDTOGenerator implements IDTOGenerator {
 	def generateDataMethodsIncludeParentDataSet(DataSet d) {
 		'''
 		«FOR data : d.eContents.filter(MeasurementData)»
-			
-			«generateGetter(data)»
-			
-			«generateSetter(data)»
+			«IF !data.excludedMethods.contains("getter")»
+				«generateGetter(data)»
+			«ENDIF»
+			«IF !data.excludedMethods.contains("setter")»
+				«generateSetter(data)»
+			«ENDIF»
 		«ENDFOR»
 		«FOR data : d.eContents.filter(NonMeasurementData)»
-			
-			«generateGetter(data)»
-			
-			«generateSetter(data)»
+			«IF !data.excludedMethods.contains("getter")»
+				«generateGetter(data)»
+			«ENDIF»
+			«IF !data.excludedMethods.contains("setter")»
+				«generateSetter(data)»
+			«ENDIF»
 		«ENDFOR»
 		«FOR pdataSet : d.parentDataSet»
 			

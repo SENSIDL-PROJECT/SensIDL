@@ -267,13 +267,22 @@ public interface DataRepresentationPackage extends EPackage {
 	int DATA__DATA_TYPE = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Excluded Methods</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA__EXCLUDED_METHODS = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_FEATURE_COUNT = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int DATA_FEATURE_COUNT = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Data</em>' class.
@@ -338,6 +347,15 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @ordered
 	 */
 	int MEASUREMENT_DATA__DATA_TYPE = DATA__DATA_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Excluded Methods</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEASUREMENT_DATA__EXCLUDED_METHODS = DATA__EXCLUDED_METHODS;
 
 	/**
 	 * The feature id for the '<em><b>Adjustments</b></em>' containment reference list.
@@ -429,6 +447,15 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @ordered
 	 */
 	int NON_MEASUREMENT_DATA__DATA_TYPE = DATA__DATA_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Excluded Methods</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NON_MEASUREMENT_DATA__EXCLUDED_METHODS = DATA__EXCLUDED_METHODS;
 
 	/**
 	 * The feature id for the '<em><b>Constant</b></em>' attribute.
@@ -972,6 +999,17 @@ public interface DataRepresentationPackage extends EPackage {
 	EAttribute getData_DataType();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Data#getExcludedMethods <em>Excluded Methods</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Excluded Methods</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.Data#getExcludedMethods()
+	 * @see #getData()
+	 * @generated
+	 */
+	EAttribute getData_ExcludedMethods();
+
+	/**
 	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData <em>Measurement Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1364,6 +1402,14 @@ public interface DataRepresentationPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DATA__DATA_TYPE = eINSTANCE.getData_DataType();
+
+		/**
+		 * The meta object literal for the '<em><b>Excluded Methods</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA__EXCLUDED_METHODS = eINSTANCE.getData_ExcludedMethods();
 
 		/**
 		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.MeasurementDataImpl <em>Measurement Data</em>}' class.

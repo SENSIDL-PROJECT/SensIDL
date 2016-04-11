@@ -804,11 +804,84 @@ ruleMeasurementData returns [EObject current=null]
 	    }
 
 )
-)))?(
+)))?(	otherlv_16='exclude:' 
+    {
+    	newLeafNode(otherlv_16, grammarAccess.getMeasurementDataAccess().getExcludeKeyword_7_0());
+    }
+(((
 (
-		lv_description_16_0=RULE_DESCRIPTION
+		lv_excludedMethods_17_0=	'setter' 
+    {
+        newLeafNode(lv_excludedMethods_17_0, grammarAccess.getMeasurementDataAccess().getExcludedMethodsSetterKeyword_7_1_0_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMeasurementDataRule());
+	        }
+       		addWithLastConsumed($current, "excludedMethods", lv_excludedMethods_17_0, "setter");
+	    }
+
+)
+)(	otherlv_18=',' 
+    {
+    	newLeafNode(otherlv_18, grammarAccess.getMeasurementDataAccess().getCommaKeyword_7_1_0_1_0());
+    }
+(
+(
+		lv_excludedMethods_19_0=	'getter' 
+    {
+        newLeafNode(lv_excludedMethods_19_0, grammarAccess.getMeasurementDataAccess().getExcludedMethodsGetterKeyword_7_1_0_1_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMeasurementDataRule());
+	        }
+       		addWithLastConsumed($current, "excludedMethods", lv_excludedMethods_19_0, "getter");
+	    }
+
+)
+))?)
+    |((
+(
+		lv_excludedMethods_20_0=	'getter' 
+    {
+        newLeafNode(lv_excludedMethods_20_0, grammarAccess.getMeasurementDataAccess().getExcludedMethodsGetterKeyword_7_1_1_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMeasurementDataRule());
+	        }
+       		addWithLastConsumed($current, "excludedMethods", lv_excludedMethods_20_0, "getter");
+	    }
+
+)
+)(	otherlv_21=',' 
+    {
+    	newLeafNode(otherlv_21, grammarAccess.getMeasurementDataAccess().getCommaKeyword_7_1_1_1_0());
+    }
+(
+(
+		lv_excludedMethods_22_0=	'setter' 
+    {
+        newLeafNode(lv_excludedMethods_22_0, grammarAccess.getMeasurementDataAccess().getExcludedMethodsSetterKeyword_7_1_1_1_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMeasurementDataRule());
+	        }
+       		addWithLastConsumed($current, "excludedMethods", lv_excludedMethods_22_0, "setter");
+	    }
+
+)
+))?)))?(
+(
+		lv_description_23_0=RULE_DESCRIPTION
 		{
-			newLeafNode(lv_description_16_0, grammarAccess.getMeasurementDataAccess().getDescriptionDESCRIPTIONTerminalRuleCall_7_0()); 
+			newLeafNode(lv_description_23_0, grammarAccess.getMeasurementDataAccess().getDescriptionDESCRIPTIONTerminalRuleCall_8_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -817,7 +890,7 @@ ruleMeasurementData returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"description",
-        		lv_description_16_0, 
+        		lv_description_23_0, 
         		"de.fzi.sensidl.language.Sensidl.DESCRIPTION");
 	    }
 
@@ -969,11 +1042,84 @@ ruleNonMeasurementData returns [EObject current=null]
 	    }
 
 )
-))?(
+))?(	otherlv_11='exclude:' 
+    {
+    	newLeafNode(otherlv_11, grammarAccess.getNonMeasurementDataAccess().getExcludeKeyword_6_0());
+    }
+(((
 (
-		lv_description_11_0=RULE_DESCRIPTION
+		lv_excludedMethods_12_0=	'setter' 
+    {
+        newLeafNode(lv_excludedMethods_12_0, grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsSetterKeyword_6_1_0_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getNonMeasurementDataRule());
+	        }
+       		addWithLastConsumed($current, "excludedMethods", lv_excludedMethods_12_0, "setter");
+	    }
+
+)
+)(	otherlv_13=',' 
+    {
+    	newLeafNode(otherlv_13, grammarAccess.getNonMeasurementDataAccess().getCommaKeyword_6_1_0_1_0());
+    }
+(
+(
+		lv_excludedMethods_14_0=	'getter' 
+    {
+        newLeafNode(lv_excludedMethods_14_0, grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsGetterKeyword_6_1_0_1_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getNonMeasurementDataRule());
+	        }
+       		addWithLastConsumed($current, "excludedMethods", lv_excludedMethods_14_0, "getter");
+	    }
+
+)
+))?)
+    |((
+(
+		lv_excludedMethods_15_0=	'getter' 
+    {
+        newLeafNode(lv_excludedMethods_15_0, grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsGetterKeyword_6_1_1_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getNonMeasurementDataRule());
+	        }
+       		addWithLastConsumed($current, "excludedMethods", lv_excludedMethods_15_0, "getter");
+	    }
+
+)
+)(	otherlv_16=',' 
+    {
+    	newLeafNode(otherlv_16, grammarAccess.getNonMeasurementDataAccess().getCommaKeyword_6_1_1_1_0());
+    }
+(
+(
+		lv_excludedMethods_17_0=	'setter' 
+    {
+        newLeafNode(lv_excludedMethods_17_0, grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsSetterKeyword_6_1_1_1_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getNonMeasurementDataRule());
+	        }
+       		addWithLastConsumed($current, "excludedMethods", lv_excludedMethods_17_0, "setter");
+	    }
+
+)
+))?)))?(
+(
+		lv_description_18_0=RULE_DESCRIPTION
 		{
-			newLeafNode(lv_description_11_0, grammarAccess.getNonMeasurementDataAccess().getDescriptionDESCRIPTIONTerminalRuleCall_6_0()); 
+			newLeafNode(lv_description_18_0, grammarAccess.getNonMeasurementDataAccess().getDescriptionDESCRIPTIONTerminalRuleCall_7_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -982,7 +1128,7 @@ ruleNonMeasurementData returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"description",
-        		lv_description_11_0, 
+        		lv_description_18_0, 
         		"de.fzi.sensidl.language.Sensidl.DESCRIPTION");
 	    }
 
@@ -1096,11 +1242,88 @@ ruleMeasurementDataNotAdjustable returns [EObject current=null]
 	    }
 
 )
-))?(
+))?(	otherlv_8='exclude' 
+    {
+    	newLeafNode(otherlv_8, grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludeKeyword_6_0());
+    }
+	otherlv_9=':' 
+    {
+    	newLeafNode(otherlv_9, grammarAccess.getMeasurementDataNotAdjustableAccess().getColonKeyword_6_1());
+    }
+(((
 (
-		lv_description_8_0=RULE_DESCRIPTION
+		lv_excludedMethods_10_0=	'setter' 
+    {
+        newLeafNode(lv_excludedMethods_10_0, grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsSetterKeyword_6_2_0_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMeasurementDataNotAdjustableRule());
+	        }
+       		addWithLastConsumed($current, "excludedMethods", lv_excludedMethods_10_0, "setter");
+	    }
+
+)
+)(	otherlv_11=',' 
+    {
+    	newLeafNode(otherlv_11, grammarAccess.getMeasurementDataNotAdjustableAccess().getCommaKeyword_6_2_0_1_0());
+    }
+(
+(
+		lv_excludedMethods_12_0=	'getter' 
+    {
+        newLeafNode(lv_excludedMethods_12_0, grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsGetterKeyword_6_2_0_1_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMeasurementDataNotAdjustableRule());
+	        }
+       		addWithLastConsumed($current, "excludedMethods", lv_excludedMethods_12_0, "getter");
+	    }
+
+)
+))?)
+    |((
+(
+		lv_excludedMethods_13_0=	'getter' 
+    {
+        newLeafNode(lv_excludedMethods_13_0, grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsGetterKeyword_6_2_1_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMeasurementDataNotAdjustableRule());
+	        }
+       		addWithLastConsumed($current, "excludedMethods", lv_excludedMethods_13_0, "getter");
+	    }
+
+)
+)(	otherlv_14=',' 
+    {
+    	newLeafNode(otherlv_14, grammarAccess.getMeasurementDataNotAdjustableAccess().getCommaKeyword_6_2_1_1_0());
+    }
+(
+(
+		lv_excludedMethods_15_0=	'setter' 
+    {
+        newLeafNode(lv_excludedMethods_15_0, grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsSetterKeyword_6_2_1_1_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMeasurementDataNotAdjustableRule());
+	        }
+       		addWithLastConsumed($current, "excludedMethods", lv_excludedMethods_15_0, "setter");
+	    }
+
+)
+))?)))?(
+(
+		lv_description_16_0=RULE_DESCRIPTION
 		{
-			newLeafNode(lv_description_8_0, grammarAccess.getMeasurementDataNotAdjustableAccess().getDescriptionDESCRIPTIONTerminalRuleCall_6_0()); 
+			newLeafNode(lv_description_16_0, grammarAccess.getMeasurementDataNotAdjustableAccess().getDescriptionDESCRIPTIONTerminalRuleCall_7_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1109,7 +1332,7 @@ ruleMeasurementDataNotAdjustable returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"description",
-        		lv_description_8_0, 
+        		lv_description_16_0, 
         		"de.fzi.sensidl.language.Sensidl.DESCRIPTION");
 	    }
 

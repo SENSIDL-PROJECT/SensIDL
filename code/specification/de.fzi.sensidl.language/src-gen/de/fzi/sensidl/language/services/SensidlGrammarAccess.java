@@ -419,18 +419,37 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cCommaKeyword_6_2_2 = (Keyword)cGroup_6_2.eContents().get(2);
 		private final Assignment cAdjustmentsAssignment_6_2_3 = (Assignment)cGroup_6_2.eContents().get(3);
 		private final RuleCall cAdjustmentsDataRangeParserRuleCall_6_2_3_0 = (RuleCall)cAdjustmentsAssignment_6_2_3.eContents().get(0);
-		private final Assignment cDescriptionAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cDescriptionDESCRIPTIONTerminalRuleCall_7_0 = (RuleCall)cDescriptionAssignment_7.eContents().get(0);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final Keyword cExcludeKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Alternatives cAlternatives_7_1 = (Alternatives)cGroup_7.eContents().get(1);
+		private final Group cGroup_7_1_0 = (Group)cAlternatives_7_1.eContents().get(0);
+		private final Assignment cExcludedMethodsAssignment_7_1_0_0 = (Assignment)cGroup_7_1_0.eContents().get(0);
+		private final Keyword cExcludedMethodsSetterKeyword_7_1_0_0_0 = (Keyword)cExcludedMethodsAssignment_7_1_0_0.eContents().get(0);
+		private final Group cGroup_7_1_0_1 = (Group)cGroup_7_1_0.eContents().get(1);
+		private final Keyword cCommaKeyword_7_1_0_1_0 = (Keyword)cGroup_7_1_0_1.eContents().get(0);
+		private final Assignment cExcludedMethodsAssignment_7_1_0_1_1 = (Assignment)cGroup_7_1_0_1.eContents().get(1);
+		private final Keyword cExcludedMethodsGetterKeyword_7_1_0_1_1_0 = (Keyword)cExcludedMethodsAssignment_7_1_0_1_1.eContents().get(0);
+		private final Group cGroup_7_1_1 = (Group)cAlternatives_7_1.eContents().get(1);
+		private final Assignment cExcludedMethodsAssignment_7_1_1_0 = (Assignment)cGroup_7_1_1.eContents().get(0);
+		private final Keyword cExcludedMethodsGetterKeyword_7_1_1_0_0 = (Keyword)cExcludedMethodsAssignment_7_1_1_0.eContents().get(0);
+		private final Group cGroup_7_1_1_1 = (Group)cGroup_7_1_1.eContents().get(1);
+		private final Keyword cCommaKeyword_7_1_1_1_0 = (Keyword)cGroup_7_1_1_1.eContents().get(0);
+		private final Assignment cExcludedMethodsAssignment_7_1_1_1_1 = (Assignment)cGroup_7_1_1_1.eContents().get(1);
+		private final Keyword cExcludedMethodsSetterKeyword_7_1_1_1_1_0 = (Keyword)cExcludedMethodsAssignment_7_1_1_1_1.eContents().get(0);
+		private final Assignment cDescriptionAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cDescriptionDESCRIPTIONTerminalRuleCall_8_0 = (RuleCall)cDescriptionAssignment_8.eContents().get(0);
 		
 		//MeasurementData dataRepresentation::MeasurementData:
 		//	name=ID "as" dataType=DataType "in" unit=UNIT ("with identifier" ":" ID=STRING)? ("adjusted"
 		//	adjustments+=DataConversion | "adjusted" adjustments+=DataRange | "adjusted" adjustments+=DataConversion ","
-		//	adjustments+=DataRange)? description=DESCRIPTION?
+		//	adjustments+=DataRange)? ("exclude:" (excludedMethods+="setter" ("," excludedMethods+="getter")? |
+		//	excludedMethods+="getter" ("," excludedMethods+="setter")?))? description=DESCRIPTION?
 		@Override public ParserRule getRule() { return rule; }
 
 		//name=ID "as" dataType=DataType "in" unit=UNIT ("with identifier" ":" ID=STRING)? ("adjusted" adjustments+=DataConversion
-		//| "adjusted" adjustments+=DataRange | "adjusted" adjustments+=DataConversion "," adjustments+=DataRange)?
-		//description=DESCRIPTION?
+		//| "adjusted" adjustments+=DataRange | "adjusted" adjustments+=DataConversion "," adjustments+=DataRange)? ("exclude:"
+		//(excludedMethods+="setter" ("," excludedMethods+="getter")? | excludedMethods+="getter" (","
+		//excludedMethods+="setter")?))? description=DESCRIPTION?
 		public Group getGroup() { return cGroup; }
 
 		//name=ID
@@ -521,11 +540,64 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		//DataRange
 		public RuleCall getAdjustmentsDataRangeParserRuleCall_6_2_3_0() { return cAdjustmentsDataRangeParserRuleCall_6_2_3_0; }
 
+		//("exclude:" (excludedMethods+="setter" ("," excludedMethods+="getter")? | excludedMethods+="getter" (","
+		//excludedMethods+="setter")?))?
+		public Group getGroup_7() { return cGroup_7; }
+
+		//"exclude:"
+		public Keyword getExcludeKeyword_7_0() { return cExcludeKeyword_7_0; }
+
+		//(excludedMethods+="setter" ("," excludedMethods+="getter")? | excludedMethods+="getter" (","
+		//excludedMethods+="setter")?)
+		public Alternatives getAlternatives_7_1() { return cAlternatives_7_1; }
+
+		//excludedMethods+="setter" ("," excludedMethods+="getter")?
+		public Group getGroup_7_1_0() { return cGroup_7_1_0; }
+
+		//excludedMethods+="setter"
+		public Assignment getExcludedMethodsAssignment_7_1_0_0() { return cExcludedMethodsAssignment_7_1_0_0; }
+
+		//"setter"
+		public Keyword getExcludedMethodsSetterKeyword_7_1_0_0_0() { return cExcludedMethodsSetterKeyword_7_1_0_0_0; }
+
+		//("," excludedMethods+="getter")?
+		public Group getGroup_7_1_0_1() { return cGroup_7_1_0_1; }
+
+		//","
+		public Keyword getCommaKeyword_7_1_0_1_0() { return cCommaKeyword_7_1_0_1_0; }
+
+		//excludedMethods+="getter"
+		public Assignment getExcludedMethodsAssignment_7_1_0_1_1() { return cExcludedMethodsAssignment_7_1_0_1_1; }
+
+		//"getter"
+		public Keyword getExcludedMethodsGetterKeyword_7_1_0_1_1_0() { return cExcludedMethodsGetterKeyword_7_1_0_1_1_0; }
+
+		//excludedMethods+="getter" ("," excludedMethods+="setter")?
+		public Group getGroup_7_1_1() { return cGroup_7_1_1; }
+
+		//excludedMethods+="getter"
+		public Assignment getExcludedMethodsAssignment_7_1_1_0() { return cExcludedMethodsAssignment_7_1_1_0; }
+
+		//"getter"
+		public Keyword getExcludedMethodsGetterKeyword_7_1_1_0_0() { return cExcludedMethodsGetterKeyword_7_1_1_0_0; }
+
+		//("," excludedMethods+="setter")?
+		public Group getGroup_7_1_1_1() { return cGroup_7_1_1_1; }
+
+		//","
+		public Keyword getCommaKeyword_7_1_1_1_0() { return cCommaKeyword_7_1_1_1_0; }
+
+		//excludedMethods+="setter"
+		public Assignment getExcludedMethodsAssignment_7_1_1_1_1() { return cExcludedMethodsAssignment_7_1_1_1_1; }
+
+		//"setter"
+		public Keyword getExcludedMethodsSetterKeyword_7_1_1_1_1_0() { return cExcludedMethodsSetterKeyword_7_1_1_1_1_0; }
+
 		//description=DESCRIPTION?
-		public Assignment getDescriptionAssignment_7() { return cDescriptionAssignment_7; }
+		public Assignment getDescriptionAssignment_8() { return cDescriptionAssignment_8; }
 
 		//DESCRIPTION
-		public RuleCall getDescriptionDESCRIPTIONTerminalRuleCall_7_0() { return cDescriptionDESCRIPTIONTerminalRuleCall_7_0; }
+		public RuleCall getDescriptionDESCRIPTIONTerminalRuleCall_8_0() { return cDescriptionDESCRIPTIONTerminalRuleCall_8_0; }
 	}
 
 	public class NonMeasurementDataElements extends AbstractParserRuleElementFinder {
@@ -551,16 +623,35 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
 		private final Assignment cIDAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
 		private final RuleCall cIDSTRINGTerminalRuleCall_5_2_0 = (RuleCall)cIDAssignment_5_2.eContents().get(0);
-		private final Assignment cDescriptionAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cDescriptionDESCRIPTIONTerminalRuleCall_6_0 = (RuleCall)cDescriptionAssignment_6.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cExcludeKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Alternatives cAlternatives_6_1 = (Alternatives)cGroup_6.eContents().get(1);
+		private final Group cGroup_6_1_0 = (Group)cAlternatives_6_1.eContents().get(0);
+		private final Assignment cExcludedMethodsAssignment_6_1_0_0 = (Assignment)cGroup_6_1_0.eContents().get(0);
+		private final Keyword cExcludedMethodsSetterKeyword_6_1_0_0_0 = (Keyword)cExcludedMethodsAssignment_6_1_0_0.eContents().get(0);
+		private final Group cGroup_6_1_0_1 = (Group)cGroup_6_1_0.eContents().get(1);
+		private final Keyword cCommaKeyword_6_1_0_1_0 = (Keyword)cGroup_6_1_0_1.eContents().get(0);
+		private final Assignment cExcludedMethodsAssignment_6_1_0_1_1 = (Assignment)cGroup_6_1_0_1.eContents().get(1);
+		private final Keyword cExcludedMethodsGetterKeyword_6_1_0_1_1_0 = (Keyword)cExcludedMethodsAssignment_6_1_0_1_1.eContents().get(0);
+		private final Group cGroup_6_1_1 = (Group)cAlternatives_6_1.eContents().get(1);
+		private final Assignment cExcludedMethodsAssignment_6_1_1_0 = (Assignment)cGroup_6_1_1.eContents().get(0);
+		private final Keyword cExcludedMethodsGetterKeyword_6_1_1_0_0 = (Keyword)cExcludedMethodsAssignment_6_1_1_0.eContents().get(0);
+		private final Group cGroup_6_1_1_1 = (Group)cGroup_6_1_1.eContents().get(1);
+		private final Keyword cCommaKeyword_6_1_1_1_0 = (Keyword)cGroup_6_1_1_1.eContents().get(0);
+		private final Assignment cExcludedMethodsAssignment_6_1_1_1_1 = (Assignment)cGroup_6_1_1_1.eContents().get(1);
+		private final Keyword cExcludedMethodsSetterKeyword_6_1_1_1_1_0 = (Keyword)cExcludedMethodsAssignment_6_1_1_1_1.eContents().get(0);
+		private final Assignment cDescriptionAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cDescriptionDESCRIPTIONTerminalRuleCall_7_0 = (RuleCall)cDescriptionAssignment_7.eContents().get(0);
 		
 		//NonMeasurementData dataRepresentation::NonMeasurementData:
 		//	name=ID "as" (dataType=DataType | dataType=DataTypeNotAdjustable) constant?='constant'? ("value" "=" value=STRING)?
-		//	("with identifier" ":" ID=STRING)? description=DESCRIPTION?
+		//	("with identifier" ":" ID=STRING)? ("exclude:" (excludedMethods+="setter" ("," excludedMethods+="getter")? |
+		//	excludedMethods+="getter" ("," excludedMethods+="setter")?))? description=DESCRIPTION?
 		@Override public ParserRule getRule() { return rule; }
 
 		//name=ID "as" (dataType=DataType | dataType=DataTypeNotAdjustable) constant?='constant'? ("value" "=" value=STRING)?
-		//("with identifier" ":" ID=STRING)? description=DESCRIPTION?
+		//("with identifier" ":" ID=STRING)? ("exclude:" (excludedMethods+="setter" ("," excludedMethods+="getter")? |
+		//excludedMethods+="getter" ("," excludedMethods+="setter")?))? description=DESCRIPTION?
 		public Group getGroup() { return cGroup; }
 
 		//name=ID
@@ -623,11 +714,64 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getIDSTRINGTerminalRuleCall_5_2_0() { return cIDSTRINGTerminalRuleCall_5_2_0; }
 
+		//("exclude:" (excludedMethods+="setter" ("," excludedMethods+="getter")? | excludedMethods+="getter" (","
+		//excludedMethods+="setter")?))?
+		public Group getGroup_6() { return cGroup_6; }
+
+		//"exclude:"
+		public Keyword getExcludeKeyword_6_0() { return cExcludeKeyword_6_0; }
+
+		//(excludedMethods+="setter" ("," excludedMethods+="getter")? | excludedMethods+="getter" (","
+		//excludedMethods+="setter")?)
+		public Alternatives getAlternatives_6_1() { return cAlternatives_6_1; }
+
+		//excludedMethods+="setter" ("," excludedMethods+="getter")?
+		public Group getGroup_6_1_0() { return cGroup_6_1_0; }
+
+		//excludedMethods+="setter"
+		public Assignment getExcludedMethodsAssignment_6_1_0_0() { return cExcludedMethodsAssignment_6_1_0_0; }
+
+		//"setter"
+		public Keyword getExcludedMethodsSetterKeyword_6_1_0_0_0() { return cExcludedMethodsSetterKeyword_6_1_0_0_0; }
+
+		//("," excludedMethods+="getter")?
+		public Group getGroup_6_1_0_1() { return cGroup_6_1_0_1; }
+
+		//","
+		public Keyword getCommaKeyword_6_1_0_1_0() { return cCommaKeyword_6_1_0_1_0; }
+
+		//excludedMethods+="getter"
+		public Assignment getExcludedMethodsAssignment_6_1_0_1_1() { return cExcludedMethodsAssignment_6_1_0_1_1; }
+
+		//"getter"
+		public Keyword getExcludedMethodsGetterKeyword_6_1_0_1_1_0() { return cExcludedMethodsGetterKeyword_6_1_0_1_1_0; }
+
+		//excludedMethods+="getter" ("," excludedMethods+="setter")?
+		public Group getGroup_6_1_1() { return cGroup_6_1_1; }
+
+		//excludedMethods+="getter"
+		public Assignment getExcludedMethodsAssignment_6_1_1_0() { return cExcludedMethodsAssignment_6_1_1_0; }
+
+		//"getter"
+		public Keyword getExcludedMethodsGetterKeyword_6_1_1_0_0() { return cExcludedMethodsGetterKeyword_6_1_1_0_0; }
+
+		//("," excludedMethods+="setter")?
+		public Group getGroup_6_1_1_1() { return cGroup_6_1_1_1; }
+
+		//","
+		public Keyword getCommaKeyword_6_1_1_1_0() { return cCommaKeyword_6_1_1_1_0; }
+
+		//excludedMethods+="setter"
+		public Assignment getExcludedMethodsAssignment_6_1_1_1_1() { return cExcludedMethodsAssignment_6_1_1_1_1; }
+
+		//"setter"
+		public Keyword getExcludedMethodsSetterKeyword_6_1_1_1_1_0() { return cExcludedMethodsSetterKeyword_6_1_1_1_1_0; }
+
 		//description=DESCRIPTION?
-		public Assignment getDescriptionAssignment_6() { return cDescriptionAssignment_6; }
+		public Assignment getDescriptionAssignment_7() { return cDescriptionAssignment_7; }
 
 		//DESCRIPTION
-		public RuleCall getDescriptionDESCRIPTIONTerminalRuleCall_6_0() { return cDescriptionDESCRIPTIONTerminalRuleCall_6_0; }
+		public RuleCall getDescriptionDESCRIPTIONTerminalRuleCall_7_0() { return cDescriptionDESCRIPTIONTerminalRuleCall_7_0; }
 	}
 
 	public class MeasurementDataNotAdjustableElements extends AbstractParserRuleElementFinder {
@@ -646,15 +790,36 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
 		private final Assignment cIDAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
 		private final RuleCall cIDSTRINGTerminalRuleCall_5_2_0 = (RuleCall)cIDAssignment_5_2.eContents().get(0);
-		private final Assignment cDescriptionAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cDescriptionDESCRIPTIONTerminalRuleCall_6_0 = (RuleCall)cDescriptionAssignment_6.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cExcludeKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Keyword cColonKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
+		private final Alternatives cAlternatives_6_2 = (Alternatives)cGroup_6.eContents().get(2);
+		private final Group cGroup_6_2_0 = (Group)cAlternatives_6_2.eContents().get(0);
+		private final Assignment cExcludedMethodsAssignment_6_2_0_0 = (Assignment)cGroup_6_2_0.eContents().get(0);
+		private final Keyword cExcludedMethodsSetterKeyword_6_2_0_0_0 = (Keyword)cExcludedMethodsAssignment_6_2_0_0.eContents().get(0);
+		private final Group cGroup_6_2_0_1 = (Group)cGroup_6_2_0.eContents().get(1);
+		private final Keyword cCommaKeyword_6_2_0_1_0 = (Keyword)cGroup_6_2_0_1.eContents().get(0);
+		private final Assignment cExcludedMethodsAssignment_6_2_0_1_1 = (Assignment)cGroup_6_2_0_1.eContents().get(1);
+		private final Keyword cExcludedMethodsGetterKeyword_6_2_0_1_1_0 = (Keyword)cExcludedMethodsAssignment_6_2_0_1_1.eContents().get(0);
+		private final Group cGroup_6_2_1 = (Group)cAlternatives_6_2.eContents().get(1);
+		private final Assignment cExcludedMethodsAssignment_6_2_1_0 = (Assignment)cGroup_6_2_1.eContents().get(0);
+		private final Keyword cExcludedMethodsGetterKeyword_6_2_1_0_0 = (Keyword)cExcludedMethodsAssignment_6_2_1_0.eContents().get(0);
+		private final Group cGroup_6_2_1_1 = (Group)cGroup_6_2_1.eContents().get(1);
+		private final Keyword cCommaKeyword_6_2_1_1_0 = (Keyword)cGroup_6_2_1_1.eContents().get(0);
+		private final Assignment cExcludedMethodsAssignment_6_2_1_1_1 = (Assignment)cGroup_6_2_1_1.eContents().get(1);
+		private final Keyword cExcludedMethodsSetterKeyword_6_2_1_1_1_0 = (Keyword)cExcludedMethodsAssignment_6_2_1_1_1.eContents().get(0);
+		private final Assignment cDescriptionAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cDescriptionDESCRIPTIONTerminalRuleCall_7_0 = (RuleCall)cDescriptionAssignment_7.eContents().get(0);
 		
 		//MeasurementDataNotAdjustable dataRepresentation::MeasurementData:
-		//	name=ID "as" dataType=DataTypeNotAdjustable "in" unit=UNIT ("with identifier" ":" ID=STRING)?
-		//	description=DESCRIPTION?
+		//	name=ID "as" dataType=DataTypeNotAdjustable "in" unit=UNIT ("with identifier" ":" ID=STRING)? ("exclude" ":"
+		//	(excludedMethods+="setter" ("," excludedMethods+="getter")? | excludedMethods+="getter" (","
+		//	excludedMethods+="setter")?))? description=DESCRIPTION?
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=ID "as" dataType=DataTypeNotAdjustable "in" unit=UNIT ("with identifier" ":" ID=STRING)? description=DESCRIPTION?
+		//name=ID "as" dataType=DataTypeNotAdjustable "in" unit=UNIT ("with identifier" ":" ID=STRING)? ("exclude" ":"
+		//(excludedMethods+="setter" ("," excludedMethods+="getter")? | excludedMethods+="getter" (","
+		//excludedMethods+="setter")?))? description=DESCRIPTION?
 		public Group getGroup() { return cGroup; }
 
 		//name=ID
@@ -696,11 +861,67 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getIDSTRINGTerminalRuleCall_5_2_0() { return cIDSTRINGTerminalRuleCall_5_2_0; }
 
+		//("exclude" ":" (excludedMethods+="setter" ("," excludedMethods+="getter")? | excludedMethods+="getter" (","
+		//excludedMethods+="setter")?))?
+		public Group getGroup_6() { return cGroup_6; }
+
+		//"exclude"
+		public Keyword getExcludeKeyword_6_0() { return cExcludeKeyword_6_0; }
+
+		//":"
+		public Keyword getColonKeyword_6_1() { return cColonKeyword_6_1; }
+
+		//(excludedMethods+="setter" ("," excludedMethods+="getter")? | excludedMethods+="getter" (","
+		//excludedMethods+="setter")?)
+		public Alternatives getAlternatives_6_2() { return cAlternatives_6_2; }
+
+		//excludedMethods+="setter" ("," excludedMethods+="getter")?
+		public Group getGroup_6_2_0() { return cGroup_6_2_0; }
+
+		//excludedMethods+="setter"
+		public Assignment getExcludedMethodsAssignment_6_2_0_0() { return cExcludedMethodsAssignment_6_2_0_0; }
+
+		//"setter"
+		public Keyword getExcludedMethodsSetterKeyword_6_2_0_0_0() { return cExcludedMethodsSetterKeyword_6_2_0_0_0; }
+
+		//("," excludedMethods+="getter")?
+		public Group getGroup_6_2_0_1() { return cGroup_6_2_0_1; }
+
+		//","
+		public Keyword getCommaKeyword_6_2_0_1_0() { return cCommaKeyword_6_2_0_1_0; }
+
+		//excludedMethods+="getter"
+		public Assignment getExcludedMethodsAssignment_6_2_0_1_1() { return cExcludedMethodsAssignment_6_2_0_1_1; }
+
+		//"getter"
+		public Keyword getExcludedMethodsGetterKeyword_6_2_0_1_1_0() { return cExcludedMethodsGetterKeyword_6_2_0_1_1_0; }
+
+		//excludedMethods+="getter" ("," excludedMethods+="setter")?
+		public Group getGroup_6_2_1() { return cGroup_6_2_1; }
+
+		//excludedMethods+="getter"
+		public Assignment getExcludedMethodsAssignment_6_2_1_0() { return cExcludedMethodsAssignment_6_2_1_0; }
+
+		//"getter"
+		public Keyword getExcludedMethodsGetterKeyword_6_2_1_0_0() { return cExcludedMethodsGetterKeyword_6_2_1_0_0; }
+
+		//("," excludedMethods+="setter")?
+		public Group getGroup_6_2_1_1() { return cGroup_6_2_1_1; }
+
+		//","
+		public Keyword getCommaKeyword_6_2_1_1_0() { return cCommaKeyword_6_2_1_1_0; }
+
+		//excludedMethods+="setter"
+		public Assignment getExcludedMethodsAssignment_6_2_1_1_1() { return cExcludedMethodsAssignment_6_2_1_1_1; }
+
+		//"setter"
+		public Keyword getExcludedMethodsSetterKeyword_6_2_1_1_1_0() { return cExcludedMethodsSetterKeyword_6_2_1_1_1_0; }
+
 		//description=DESCRIPTION?
-		public Assignment getDescriptionAssignment_6() { return cDescriptionAssignment_6; }
+		public Assignment getDescriptionAssignment_7() { return cDescriptionAssignment_7; }
 
 		//DESCRIPTION
-		public RuleCall getDescriptionDESCRIPTIONTerminalRuleCall_6_0() { return cDescriptionDESCRIPTIONTerminalRuleCall_6_0; }
+		public RuleCall getDescriptionDESCRIPTIONTerminalRuleCall_7_0() { return cDescriptionDESCRIPTIONTerminalRuleCall_7_0; }
 	}
 
 	public class DataRangeElements extends AbstractParserRuleElementFinder {
@@ -1292,7 +1513,8 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	//MeasurementData dataRepresentation::MeasurementData:
 	//	name=ID "as" dataType=DataType "in" unit=UNIT ("with identifier" ":" ID=STRING)? ("adjusted"
 	//	adjustments+=DataConversion | "adjusted" adjustments+=DataRange | "adjusted" adjustments+=DataConversion ","
-	//	adjustments+=DataRange)? description=DESCRIPTION?
+	//	adjustments+=DataRange)? ("exclude:" (excludedMethods+="setter" ("," excludedMethods+="getter")? |
+	//	excludedMethods+="getter" ("," excludedMethods+="setter")?))? description=DESCRIPTION?
 	public MeasurementDataElements getMeasurementDataAccess() {
 		return pMeasurementData;
 	}
@@ -1303,7 +1525,8 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 
 	//NonMeasurementData dataRepresentation::NonMeasurementData:
 	//	name=ID "as" (dataType=DataType | dataType=DataTypeNotAdjustable) constant?='constant'? ("value" "=" value=STRING)?
-	//	("with identifier" ":" ID=STRING)? description=DESCRIPTION?
+	//	("with identifier" ":" ID=STRING)? ("exclude:" (excludedMethods+="setter" ("," excludedMethods+="getter")? |
+	//	excludedMethods+="getter" ("," excludedMethods+="setter")?))? description=DESCRIPTION?
 	public NonMeasurementDataElements getNonMeasurementDataAccess() {
 		return pNonMeasurementData;
 	}
@@ -1313,8 +1536,9 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MeasurementDataNotAdjustable dataRepresentation::MeasurementData:
-	//	name=ID "as" dataType=DataTypeNotAdjustable "in" unit=UNIT ("with identifier" ":" ID=STRING)?
-	//	description=DESCRIPTION?
+	//	name=ID "as" dataType=DataTypeNotAdjustable "in" unit=UNIT ("with identifier" ":" ID=STRING)? ("exclude" ":"
+	//	(excludedMethods+="setter" ("," excludedMethods+="getter")? | excludedMethods+="getter" (","
+	//	excludedMethods+="setter")?))? description=DESCRIPTION?
 	public MeasurementDataNotAdjustableElements getMeasurementDataNotAdjustableAccess() {
 		return pMeasurementDataNotAdjustable;
 	}

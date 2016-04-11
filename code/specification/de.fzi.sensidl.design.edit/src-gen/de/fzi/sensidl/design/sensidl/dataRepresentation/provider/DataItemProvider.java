@@ -46,6 +46,7 @@ public class DataItemProvider extends NamedElementItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addDataTypePropertyDescriptor(object);
+			addExcludedMethodsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -64,6 +65,28 @@ public class DataItemProvider extends NamedElementItemProvider {
 				 getString("_UI_Data_dataType_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Data_dataType_feature", "_UI_Data_type"),
 				 DataRepresentationPackage.Literals.DATA__DATA_TYPE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Excluded Methods feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExcludedMethodsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Data_excludedMethods_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Data_excludedMethods_feature", "_UI_Data_type"),
+				 DataRepresentationPackage.Literals.DATA__EXCLUDED_METHODS,
 				 true,
 				 false,
 				 false,
@@ -100,6 +123,7 @@ public class DataItemProvider extends NamedElementItemProvider {
 
 		switch (notification.getFeatureID(Data.class)) {
 			case DataRepresentationPackage.DATA__DATA_TYPE:
+			case DataRepresentationPackage.DATA__EXCLUDED_METHODS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

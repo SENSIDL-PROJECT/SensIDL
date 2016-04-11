@@ -213,7 +213,14 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *     MeasurementDataNotAdjustable returns MeasurementData
 	 *
 	 * Constraint:
-	 *     (name=ID dataType=DataTypeNotAdjustable unit=UNIT ID=STRING? description=DESCRIPTION?)
+	 *     (
+	 *         name=ID 
+	 *         dataType=DataTypeNotAdjustable 
+	 *         unit=UNIT 
+	 *         ID=STRING? 
+	 *         ((excludedMethods+='setter' excludedMethods+='getter'?) | (excludedMethods+='getter' excludedMethods+='setter'?))? 
+	 *         description=DESCRIPTION?
+	 *     )
 	 */
 	protected void sequence_MeasurementDataNotAdjustable(ISerializationContext context, MeasurementData semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -231,6 +238,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *         unit=UNIT 
 	 *         ID=STRING? 
 	 *         (adjustments+=DataConversion | adjustments+=DataRange | (adjustments+=DataConversion adjustments+=DataRange))? 
+	 *         ((excludedMethods+='setter' excludedMethods+='getter'?) | (excludedMethods+='getter' excludedMethods+='setter'?))? 
 	 *         description=DESCRIPTION?
 	 *     )
 	 */
@@ -251,9 +259,17 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *             unit=UNIT 
 	 *             ID=STRING? 
 	 *             (adjustments+=DataConversion | adjustments+=DataRange | (adjustments+=DataConversion adjustments+=DataRange))? 
+	 *             ((excludedMethods+='setter' excludedMethods+='getter'?) | (excludedMethods+='getter' excludedMethods+='setter'?))? 
 	 *             description=DESCRIPTION?
 	 *         ) | 
-	 *         (name=ID dataType=DataTypeNotAdjustable unit=UNIT ID=STRING? description=DESCRIPTION?)
+	 *         (
+	 *             name=ID 
+	 *             dataType=DataTypeNotAdjustable 
+	 *             unit=UNIT 
+	 *             ID=STRING? 
+	 *             ((excludedMethods+='setter' excludedMethods+='getter'?) | (excludedMethods+='getter' excludedMethods+='setter'?))? 
+	 *             description=DESCRIPTION?
+	 *         )
 	 *     )
 	 */
 	protected void sequence_MeasurementData_MeasurementDataNotAdjustable(ISerializationContext context, MeasurementData semanticObject) {
@@ -273,6 +289,7 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 *         constant?='constant'? 
 	 *         value=STRING? 
 	 *         ID=STRING? 
+	 *         ((excludedMethods+='setter' excludedMethods+='getter'?) | (excludedMethods+='getter' excludedMethods+='setter'?))? 
 	 *         description=DESCRIPTION?
 	 *     )
 	 */

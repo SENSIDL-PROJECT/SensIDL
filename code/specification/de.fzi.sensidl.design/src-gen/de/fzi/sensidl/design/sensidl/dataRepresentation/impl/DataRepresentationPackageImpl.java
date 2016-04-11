@@ -296,6 +296,15 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getData_ExcludedMethods() {
+		return (EAttribute)dataEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMeasurementData() {
 		return measurementDataEClass;
 	}
@@ -566,6 +575,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 		dataEClass = createEClass(DATA);
 		createEReference(dataEClass, DATA__DATA_SET);
 		createEAttribute(dataEClass, DATA__DATA_TYPE);
+		createEAttribute(dataEClass, DATA__EXCLUDED_METHODS);
 
 		measurementDataEClass = createEClass(MEASUREMENT_DATA);
 		createEReference(measurementDataEClass, MEASUREMENT_DATA__ADJUSTMENTS);
@@ -664,6 +674,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 		initEClass(dataEClass, Data.class, "Data", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getData_DataSet(), this.getDataSet(), this.getDataSet_Data(), "dataSet", null, 0, 1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getData_DataType(), this.getDataType(), "dataType", null, 1, 1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getData_ExcludedMethods(), ecorePackage.getEString(), "excludedMethods", "", 0, -1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(measurementDataEClass, MeasurementData.class, "MeasurementData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMeasurementData_Adjustments(), this.getDataAdjustment(), this.getDataAdjustment_MeasurementData(), "adjustments", null, 0, -1, MeasurementData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
