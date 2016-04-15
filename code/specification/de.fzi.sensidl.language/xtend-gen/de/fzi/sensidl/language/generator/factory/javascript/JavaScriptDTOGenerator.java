@@ -122,16 +122,21 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
     String bodyString = _builder.toString();
     ArrayList<MeasurementData> measurementDataList = new ArrayList<MeasurementData>();
     ArrayList<NonMeasurementData> nonMeasurementDataList = new ArrayList<NonMeasurementData>();
-    while ((dataSet != null)) {
+    EList<EObject> _eContents = dataSet.eContents();
+    Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(_eContents, MeasurementData.class);
+    Iterables.<MeasurementData>addAll(measurementDataList, _filter);
+    EList<EObject> _eContents_1 = dataSet.eContents();
+    Iterable<NonMeasurementData> _filter_1 = Iterables.<NonMeasurementData>filter(_eContents_1, NonMeasurementData.class);
+    Iterables.<NonMeasurementData>addAll(nonMeasurementDataList, _filter_1);
+    EList<DataSet> _parentDataSet = dataSet.getParentDataSet();
+    for (final DataSet pdataSet : _parentDataSet) {
       {
-        EList<EObject> _eContents = dataSet.eContents();
-        Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(_eContents, MeasurementData.class);
-        Iterables.<MeasurementData>addAll(measurementDataList, _filter);
-        EList<EObject> _eContents_1 = dataSet.eContents();
-        Iterable<NonMeasurementData> _filter_1 = Iterables.<NonMeasurementData>filter(_eContents_1, NonMeasurementData.class);
-        Iterables.<NonMeasurementData>addAll(nonMeasurementDataList, _filter_1);
-        DataSet _parentDataSet = dataSet.getParentDataSet();
-        dataSet = _parentDataSet;
+        EList<EObject> _eContents_2 = pdataSet.eContents();
+        Iterable<MeasurementData> _filter_2 = Iterables.<MeasurementData>filter(_eContents_2, MeasurementData.class);
+        Iterables.<MeasurementData>addAll(measurementDataList, _filter_2);
+        EList<EObject> _eContents_3 = pdataSet.eContents();
+        Iterable<NonMeasurementData> _filter_3 = Iterables.<NonMeasurementData>filter(_eContents_3, NonMeasurementData.class);
+        Iterables.<NonMeasurementData>addAll(nonMeasurementDataList, _filter_3);
       }
     }
     final MeasurementData mdatalast = IterableExtensions.<MeasurementData>last(measurementDataList);

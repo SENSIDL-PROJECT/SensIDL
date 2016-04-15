@@ -8,6 +8,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 import org.eclipse.emf.ecore.EObject
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 
 /**
  * The GenerationUtil-class is used to implement common methods, which are 
@@ -99,20 +100,20 @@ class GenerationUtil {
 	 * @param data Represents the MeasurementData of interest.
 	 * @return the name of the DataConversion data type.
 	 */
-	static def getDataTypeOfDataConversionAdjustment(MeasurementData data) {
+	static def DataType getDataTypeOfDataConversionAdjustment(MeasurementData data) {
 		if (data.adjustments.size <= 0 && !(data.adjustments.get(0) instanceof DataConversion)) {
-			return "";
+			return null;
 		}
 		
 		return getDataTypeOfAdjustment(data.adjustments.get(0) as DataConversion)
 	}
 	
-	private static dispatch def getDataTypeOfAdjustment(LinearDataConversion conversion) {
+	private static dispatch def DataType getDataTypeOfAdjustment(LinearDataConversion conversion) {
 		//TODO has to be implemented
-		return ""
+		return null
 	}
 	
-	private static dispatch def getDataTypeOfAdjustment(LinearDataConversionWithInterval conversion) {
-		return conversion.dataType.toString.toLowerCase
+	private static dispatch def DataType getDataTypeOfAdjustment(LinearDataConversionWithInterval conversion) {
+		return conversion.dataType
 	}
 }

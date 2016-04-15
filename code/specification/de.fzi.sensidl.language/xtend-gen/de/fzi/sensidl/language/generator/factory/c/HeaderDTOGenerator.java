@@ -1,10 +1,11 @@
 package de.fzi.sensidl.language.generator.factory.c;
 
-import com.google.common.base.Objects;
 import com.google.common.base.Strings;
 import com.google.common.collect.Iterables;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.ListData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData;
 import de.fzi.sensidl.language.generator.GenerationUtil;
@@ -12,6 +13,7 @@ import de.fzi.sensidl.language.generator.SensIDLConstants;
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
 import de.fzi.sensidl.language.generator.factory.IDTOGenerator;
 import de.fzi.sensidl.language.generator.factory.c.CDTOGenerator;
+import de.fzi.sensidl.language.generator.factory.c.DataTypes;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +22,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 /**
@@ -99,9 +102,13 @@ public class HeaderDTOGenerator extends CDTOGenerator {
       EList<EObject> _eContents = dataset.eContents();
       Iterable<Data> _filter = Iterables.<Data>filter(_eContents, Data.class);
       for(final Data data : _filter) {
-        CharSequence _generateDescription = this.generateDescription(data);
-        _builder.append(_generateDescription, "");
-        _builder.newLineIfNotEmpty();
+        {
+          if ((!(data instanceof ListData))) {
+            CharSequence _generateDescription = this.generateDescription(data);
+            _builder.append(_generateDescription, "");
+            _builder.newLineIfNotEmpty();
+          }
+        }
       }
     }
     _builder.append("*/");
@@ -125,34 +132,8 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append(_utilityFileName, "");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
     _builder.newLine();
-    {
-      EList<EObject> _eContents_1 = dataset.eContents();
-      Iterable<NonMeasurementData> _filter_1 = Iterables.<NonMeasurementData>filter(_eContents_1, NonMeasurementData.class);
-      for(final NonMeasurementData data_1 : _filter_1) {
-        {
-          boolean _and = false;
-          boolean _isConstant = data_1.isConstant();
-          if (!_isConstant) {
-            _and = false;
-          } else {
-            String _name = data_1.getName();
-            boolean _equals = Objects.equal(_name, "bDeviceType");
-            _and = _equals;
-          }
-          if (_and) {
-            _builder.append("#ifndef RADIO_DEVICE_TYPE_VALUE");
-            _builder.newLine();
-            _builder.append("#define RADIO_DEVICE_TYPE_VALUE ");
-            String _value = data_1.getValue();
-            _builder.append(_value, "");
-            _builder.newLineIfNotEmpty();
-            _builder.append("#endif");
-            _builder.newLine();
-          }
-        }
-      }
-    }
     _builder.append("\t\t\t");
     _builder.newLine();
     _builder.append("typedef struct");
@@ -189,9 +170,28 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t\t");
     _builder.newLine();
+    CharSequence _generateEndiannessMethodsPrototypes = this.generateEndiannessMethodsPrototypes(dataset);
+    _builder.append(_generateEndiannessMethodsPrototypes, "");
+    _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("#endif");
     _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generateEndiannessMethodsPrototypes(final DataSet d) {
+    StringConcatenation _builder = new StringConcatenation();
+    CharSequence _generateAdjustAllEndiannessPrototype = this.generateAdjustAllEndiannessPrototype(d);
+    _builder.append(_generateAdjustAllEndiannessPrototype, "");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    CharSequence _generateCheckLittleEndianPrototype = this.generateCheckLittleEndianPrototype();
+    _builder.append(_generateCheckLittleEndianPrototype, "");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    CharSequence _generateSwapEndiannessOnDemandPrototype = this.generateSwapEndiannessOnDemandPrototype(d);
+    _builder.append(_generateSwapEndiannessOnDemandPrototype, "");
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
@@ -228,8 +228,9 @@ public class HeaderDTOGenerator extends CDTOGenerator {
             dataFieldsString = (_dataFieldsString_1 + _property);
           }
         }
-        DataSet _parentDataSet = dataSet.getParentDataSet();
-        dataSet = _parentDataSet;
+        EList<DataSet> _parentDataSet = dataSet.getParentDataSet();
+        DataSet _head = IterableExtensions.<DataSet>head(_parentDataSet);
+        dataSet = _head;
       }
     }
     return dataFieldsString.replaceAll("(?m)^[ \t]*\r?\n", "");
@@ -309,8 +310,9 @@ public class HeaderDTOGenerator extends CDTOGenerator {
             methodsString = (_methodsString_3 + _property_1);
           }
         }
-        DataSet _parentDataSet = dataSet.getParentDataSet();
-        dataSet = _parentDataSet;
+        EList<DataSet> _parentDataSet = dataSet.getParentDataSet();
+        DataSet _head = IterableExtensions.<DataSet>head(_parentDataSet);
+        dataSet = _head;
       }
     }
     return methodsString;
@@ -373,7 +375,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("*/");
     _builder.newLine();
-    String _dataTypeOfDataConversionAdjustment = GenerationUtil.getDataTypeOfDataConversionAdjustment(d);
+    DataType _dataTypeOfDataConversionAdjustment = GenerationUtil.getDataTypeOfDataConversionAdjustment(d);
     _builder.append(_dataTypeOfDataConversionAdjustment, "");
     _builder.append(" get_Adjusted_");
     String _name_1 = dataset.getName();
@@ -599,8 +601,9 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     {
       boolean _isAdjustedByLineareConversionWithInterval = this.isAdjustedByLineareConversionWithInterval(data);
       if (_isAdjustedByLineareConversionWithInterval) {
-        String _dataTypeOfDataConversionAdjustment = GenerationUtil.getDataTypeOfDataConversionAdjustment(data);
-        _builder.append(_dataTypeOfDataConversionAdjustment, "");
+        DataType _dataTypeOfDataConversionAdjustment = GenerationUtil.getDataTypeOfDataConversionAdjustment(data);
+        String _dataTypeBy = DataTypes.getDataTypeBy(_dataTypeOfDataConversionAdjustment);
+        _builder.append(_dataTypeBy, "");
         _builder.append(" adjusted_");
         String _nameLower_1 = GenerationUtil.toNameLower(data);
         _builder.append(_nameLower_1, "");
@@ -624,6 +627,76 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     String _nameLower = GenerationUtil.toNameLower(data);
     _builder.append(_nameLower, "");
     _builder.append(";");
+    return _builder;
+  }
+  
+  /**
+   * Generates a method to adjust endianness of all struct variables.
+   * @param dataset
+   */
+  public CharSequence generateAdjustAllEndiannessPrototype(final DataSet dataset) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append("* Adjusts all data atributes of a struct to given endianness depending on the machine architecture");
+    _builder.newLine();
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("void adjust_");
+    String _name = dataset.getName();
+    String _firstUpper = StringExtensions.toFirstUpper(_name);
+    _builder.append(_firstUpper, "");
+    _builder.append("_allEndianness(");
+    String _name_1 = dataset.getName();
+    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
+    _builder.append(_firstUpper_1, "");
+    _builder.append("* p);");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    return _builder;
+  }
+  
+  /**
+   * Generates a method to swap endianness of all struct variables.
+   * @param dataset
+   */
+  public CharSequence generateSwapEndiannessOnDemandPrototype(final DataSet dataset) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append("* Swaps Endianness between little endian and big endian");
+    _builder.newLine();
+    _builder.append("*/\t\t\t\t");
+    _builder.newLine();
+    _builder.append("void swap_");
+    String _name = dataset.getName();
+    String _firstUpper = StringExtensions.toFirstUpper(_name);
+    _builder.append(_firstUpper, "");
+    _builder.append("_all_endianness(");
+    String _name_1 = dataset.getName();
+    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
+    _builder.append(_firstUpper_1, "");
+    _builder.append("* p);");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    return _builder;
+  }
+  
+  /**
+   * Generates a method to check if the given architecture is little endian.
+   */
+  public CharSequence generateCheckLittleEndianPrototype() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append("* Returns true if given architecture is little endian");
+    _builder.newLine();
+    _builder.append("*/\t\t");
+    _builder.newLine();
+    _builder.append("bool check_little_endian();\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
     return _builder;
   }
   

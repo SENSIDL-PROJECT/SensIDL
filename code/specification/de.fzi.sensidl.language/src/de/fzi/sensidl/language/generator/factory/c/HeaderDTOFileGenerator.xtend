@@ -271,7 +271,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 		'''
 		«data.toTypeName» «GenerationUtil.toNameLower(data)»;
 		«IF data.isAdjustedByLineareConversionWithInterval»
-		«GenerationUtil.getDataTypeOfDataConversionAdjustment(data)» adjusted_«GenerationUtil.toNameLower(data)»;
+		«DataTypes.getDataTypeBy(GenerationUtil.getDataTypeOfDataConversionAdjustment(data))» adjusted_«GenerationUtil.toNameLower(data)»;
 		«ENDIF»
 		'''
 	}

@@ -37,6 +37,10 @@ public abstract class CDTOGenerator implements IDTOGenerator {
     return DataTypes.getDataTypeBy(_dataType);
   }
   
+  public String toTypeName(final DataType dataType) {
+    return DataTypes.getDataTypeBy(dataType);
+  }
+  
   /**
    * Checks, if the given MeasurementData-element was specified to be adjusted as linear conversion
    * with interval.

@@ -222,34 +222,57 @@ public class CSharpDTOGenerator implements IDTOGenerator {
     DataSet dataSet = d;
     StringConcatenation _builder = new StringConcatenation();
     String dataFieldsString = _builder.toString();
-    while ((dataSet != null)) {
+    EList<EObject> _eContents = dataSet.eContents();
+    Iterable<NonMeasurementData> _filter = Iterables.<NonMeasurementData>filter(_eContents, NonMeasurementData.class);
+    for (final NonMeasurementData data : _filter) {
       {
-        EList<EObject> _eContents = dataSet.eContents();
-        Iterable<NonMeasurementData> _filter = Iterables.<NonMeasurementData>filter(_eContents, NonMeasurementData.class);
-        for (final NonMeasurementData data : _filter) {
+        String _dataFieldsString = dataFieldsString;
+        CharSequence _generateDataFields = this.generateDataFields(data);
+        dataFieldsString = (_dataFieldsString + _generateDataFields);
+        String _dataFieldsString_1 = dataFieldsString;
+        String _property = System.getProperty("line.separator");
+        dataFieldsString = (_dataFieldsString_1 + _property);
+      }
+    }
+    EList<EObject> _eContents_1 = dataSet.eContents();
+    Iterable<MeasurementData> _filter_1 = Iterables.<MeasurementData>filter(_eContents_1, MeasurementData.class);
+    for (final MeasurementData data_1 : _filter_1) {
+      {
+        String _dataFieldsString = dataFieldsString;
+        CharSequence _generateDataFields = this.generateDataFields(data_1);
+        dataFieldsString = (_dataFieldsString + _generateDataFields);
+        String _dataFieldsString_1 = dataFieldsString;
+        String _property = System.getProperty("line.separator");
+        dataFieldsString = (_dataFieldsString_1 + _property);
+      }
+    }
+    EList<DataSet> _parentDataSet = dataSet.getParentDataSet();
+    for (final DataSet pdataSet : _parentDataSet) {
+      {
+        EList<EObject> _eContents_2 = pdataSet.eContents();
+        Iterable<NonMeasurementData> _filter_2 = Iterables.<NonMeasurementData>filter(_eContents_2, NonMeasurementData.class);
+        for (final NonMeasurementData data_2 : _filter_2) {
           {
             String _dataFieldsString = dataFieldsString;
-            CharSequence _generateDataFields = this.generateDataFields(data);
+            CharSequence _generateDataFields = this.generateDataFields(data_2);
             dataFieldsString = (_dataFieldsString + _generateDataFields);
             String _dataFieldsString_1 = dataFieldsString;
             String _property = System.getProperty("line.separator");
             dataFieldsString = (_dataFieldsString_1 + _property);
           }
         }
-        EList<EObject> _eContents_1 = dataSet.eContents();
-        Iterable<MeasurementData> _filter_1 = Iterables.<MeasurementData>filter(_eContents_1, MeasurementData.class);
-        for (final MeasurementData data_1 : _filter_1) {
+        EList<EObject> _eContents_3 = pdataSet.eContents();
+        Iterable<MeasurementData> _filter_3 = Iterables.<MeasurementData>filter(_eContents_3, MeasurementData.class);
+        for (final MeasurementData data_3 : _filter_3) {
           {
             String _dataFieldsString = dataFieldsString;
-            CharSequence _generateDataFields = this.generateDataFields(data_1);
+            CharSequence _generateDataFields = this.generateDataFields(data_3);
             dataFieldsString = (_dataFieldsString + _generateDataFields);
             String _dataFieldsString_1 = dataFieldsString;
             String _property = System.getProperty("line.separator");
             dataFieldsString = (_dataFieldsString_1 + _property);
           }
         }
-        DataSet _parentDataSet = dataSet.getParentDataSet();
-        dataSet = _parentDataSet;
       }
     }
     return dataFieldsString;
@@ -275,16 +298,21 @@ public class CSharpDTOGenerator implements IDTOGenerator {
     constructorString = (_constructorString + _property);
     ArrayList<MeasurementData> measurementDataList = new ArrayList<MeasurementData>();
     ArrayList<NonMeasurementData> nonMeasurementDataList = new ArrayList<NonMeasurementData>();
-    while ((dataSet != null)) {
+    EList<EObject> _eContents = dataSet.eContents();
+    Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(_eContents, MeasurementData.class);
+    Iterables.<MeasurementData>addAll(measurementDataList, _filter);
+    EList<EObject> _eContents_1 = dataSet.eContents();
+    Iterable<NonMeasurementData> _filter_1 = Iterables.<NonMeasurementData>filter(_eContents_1, NonMeasurementData.class);
+    Iterables.<NonMeasurementData>addAll(nonMeasurementDataList, _filter_1);
+    EList<DataSet> _parentDataSet = dataSet.getParentDataSet();
+    for (final DataSet pdataSet : _parentDataSet) {
       {
-        EList<EObject> _eContents = dataSet.eContents();
-        Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(_eContents, MeasurementData.class);
-        Iterables.<MeasurementData>addAll(measurementDataList, _filter);
-        EList<EObject> _eContents_1 = dataSet.eContents();
-        Iterable<NonMeasurementData> _filter_1 = Iterables.<NonMeasurementData>filter(_eContents_1, NonMeasurementData.class);
-        Iterables.<NonMeasurementData>addAll(nonMeasurementDataList, _filter_1);
-        DataSet _parentDataSet = dataSet.getParentDataSet();
-        dataSet = _parentDataSet;
+        EList<EObject> _eContents_2 = pdataSet.eContents();
+        Iterable<MeasurementData> _filter_2 = Iterables.<MeasurementData>filter(_eContents_2, MeasurementData.class);
+        Iterables.<MeasurementData>addAll(measurementDataList, _filter_2);
+        EList<EObject> _eContents_3 = pdataSet.eContents();
+        Iterable<NonMeasurementData> _filter_3 = Iterables.<NonMeasurementData>filter(_eContents_3, NonMeasurementData.class);
+        Iterables.<NonMeasurementData>addAll(nonMeasurementDataList, _filter_3);
       }
     }
     for (final MeasurementData data : measurementDataList) {
@@ -331,16 +359,21 @@ public class CSharpDTOGenerator implements IDTOGenerator {
     String methodsString = _builder.toString();
     ArrayList<MeasurementData> measurementDataList = new ArrayList<MeasurementData>();
     ArrayList<NonMeasurementData> nonMeasurementDataList = new ArrayList<NonMeasurementData>();
-    while ((dataSet != null)) {
+    EList<EObject> _eContents = dataSet.eContents();
+    Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(_eContents, MeasurementData.class);
+    Iterables.<MeasurementData>addAll(measurementDataList, _filter);
+    EList<EObject> _eContents_1 = dataSet.eContents();
+    Iterable<NonMeasurementData> _filter_1 = Iterables.<NonMeasurementData>filter(_eContents_1, NonMeasurementData.class);
+    Iterables.<NonMeasurementData>addAll(nonMeasurementDataList, _filter_1);
+    EList<DataSet> _parentDataSet = dataSet.getParentDataSet();
+    for (final DataSet pdataSet : _parentDataSet) {
       {
-        EList<EObject> _eContents = dataSet.eContents();
-        Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(_eContents, MeasurementData.class);
-        Iterables.<MeasurementData>addAll(measurementDataList, _filter);
-        EList<EObject> _eContents_1 = dataSet.eContents();
-        Iterable<NonMeasurementData> _filter_1 = Iterables.<NonMeasurementData>filter(_eContents_1, NonMeasurementData.class);
-        Iterables.<NonMeasurementData>addAll(nonMeasurementDataList, _filter_1);
-        DataSet _parentDataSet = dataSet.getParentDataSet();
-        dataSet = _parentDataSet;
+        EList<EObject> _eContents_2 = dataSet.eContents();
+        Iterable<MeasurementData> _filter_2 = Iterables.<MeasurementData>filter(_eContents_2, MeasurementData.class);
+        Iterables.<MeasurementData>addAll(measurementDataList, _filter_2);
+        EList<EObject> _eContents_3 = dataSet.eContents();
+        Iterable<NonMeasurementData> _filter_3 = Iterables.<NonMeasurementData>filter(_eContents_3, NonMeasurementData.class);
+        Iterables.<NonMeasurementData>addAll(nonMeasurementDataList, _filter_3);
       }
     }
     for (final MeasurementData data : measurementDataList) {
@@ -568,24 +601,35 @@ public class CSharpDTOGenerator implements IDTOGenerator {
     {
       ArrayList<Data> dataList = new ArrayList<Data>();
       DataSet dataSet = d;
-      while ((!Objects.equal(dataSet, null))) {
-        {
-          EList<EObject> _eContents = dataSet.eContents();
-          Iterable<Data> _filter = Iterables.<Data>filter(_eContents, Data.class);
-          for (final Data data : _filter) {
-            if ((data instanceof NonMeasurementData)) {
-              NonMeasurementData nmdata = ((NonMeasurementData) data);
-              boolean _isConstant = nmdata.isConstant();
-              boolean _not = (!_isConstant);
-              if (_not) {
-                dataList.add(data);
-              }
-            } else {
-              dataList.add(data);
-            }
+      EList<EObject> _eContents = dataSet.eContents();
+      Iterable<Data> _filter = Iterables.<Data>filter(_eContents, Data.class);
+      for (final Data data : _filter) {
+        if ((data instanceof NonMeasurementData)) {
+          NonMeasurementData nmdata = ((NonMeasurementData) data);
+          boolean _isConstant = nmdata.isConstant();
+          boolean _not = (!_isConstant);
+          if (_not) {
+            dataList.add(data);
           }
-          DataSet _parentDataSet = dataSet.getParentDataSet();
-          dataSet = _parentDataSet;
+        } else {
+          dataList.add(data);
+        }
+      }
+      EList<DataSet> _parentDataSet = dataSet.getParentDataSet();
+      for (final DataSet pdataSet : _parentDataSet) {
+        EList<EObject> _eContents_1 = pdataSet.eContents();
+        Iterable<Data> _filter_1 = Iterables.<Data>filter(_eContents_1, Data.class);
+        for (final Data data_1 : _filter_1) {
+          if ((data_1 instanceof NonMeasurementData)) {
+            NonMeasurementData nmdata_1 = ((NonMeasurementData) data_1);
+            boolean _isConstant_1 = nmdata_1.isConstant();
+            boolean _not_1 = (!_isConstant_1);
+            if (_not_1) {
+              dataList.add(data_1);
+            }
+          } else {
+            dataList.add(data_1);
+          }
         }
       }
       CharSequence _xifexpression = null;
@@ -604,12 +648,12 @@ public class CSharpDTOGenerator implements IDTOGenerator {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append(firstElement, "");
           {
-            for(final Data data : dataList) {
+            for(final Data data_2 : dataList) {
               _builder.append(", ");
-              String _typeName_1 = this.toTypeName(data);
+              String _typeName_1 = this.toTypeName(data_2);
               _builder.append(_typeName_1, "");
               _builder.append(" ");
-              String _nameLower_1 = GenerationUtil.toNameLower(data);
+              String _nameLower_1 = GenerationUtil.toNameLower(data_2);
               _builder.append(_nameLower_1, "");
             }
           }

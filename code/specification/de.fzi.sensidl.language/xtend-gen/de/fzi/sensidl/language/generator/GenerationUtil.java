@@ -113,7 +113,7 @@ public class GenerationUtil {
    * @param data Represents the MeasurementData of interest.
    * @return the name of the DataConversion data type.
    */
-  public static String getDataTypeOfDataConversionAdjustment(final MeasurementData data) {
+  public static DataType getDataTypeOfDataConversionAdjustment(final MeasurementData data) {
     boolean _and = false;
     EList<DataAdjustment> _adjustments = data.getAdjustments();
     int _size = _adjustments.size();
@@ -127,24 +127,22 @@ public class GenerationUtil {
       _and = _not;
     }
     if (_and) {
-      return "";
+      return null;
     }
     EList<DataAdjustment> _adjustments_2 = data.getAdjustments();
     DataAdjustment _get_1 = _adjustments_2.get(0);
     return GenerationUtil.getDataTypeOfAdjustment(((DataConversion) _get_1));
   }
   
-  private static String _getDataTypeOfAdjustment(final LinearDataConversion conversion) {
-    return "";
+  private static DataType _getDataTypeOfAdjustment(final LinearDataConversion conversion) {
+    return null;
   }
   
-  private static String _getDataTypeOfAdjustment(final LinearDataConversionWithInterval conversion) {
-    DataType _dataType = conversion.getDataType();
-    String _string = _dataType.toString();
-    return _string.toLowerCase();
+  private static DataType _getDataTypeOfAdjustment(final LinearDataConversionWithInterval conversion) {
+    return conversion.getDataType();
   }
   
-  private static String getDataTypeOfAdjustment(final DataConversion conversion) {
+  private static DataType getDataTypeOfAdjustment(final DataConversion conversion) {
     if (conversion instanceof LinearDataConversion) {
       return _getDataTypeOfAdjustment((LinearDataConversion)conversion);
     } else if (conversion instanceof LinearDataConversionWithInterval) {
