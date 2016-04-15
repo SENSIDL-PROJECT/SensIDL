@@ -14,6 +14,7 @@ import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
 import de.fzi.sensidl.language.generator.factory.IDTOGenerator;
 import de.fzi.sensidl.language.generator.factory.c.CDTOGenerator;
 import de.fzi.sensidl.language.generator.factory.c.DataTypes;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +24,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.ObjectExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 /**
@@ -199,40 +202,32 @@ public class HeaderDTOGenerator extends CDTOGenerator {
    * Generates the data fields for this data set including used data sets.
    */
   public String generateVariablesIncludeParentDataSet(final DataSet d) {
-    DataSet dataSet = d;
+    ArrayList<DataSet> _arrayList = new ArrayList<DataSet>();
+    final Procedure1<ArrayList<DataSet>> _function = new Procedure1<ArrayList<DataSet>>() {
+      @Override
+      public void apply(final ArrayList<DataSet> it) {
+        it.add(d);
+        EList<DataSet> _parentDataSet = d.getParentDataSet();
+        it.addAll(_parentDataSet);
+      }
+    };
+    ArrayList<DataSet> dataSets = ObjectExtensions.<ArrayList<DataSet>>operator_doubleArrow(_arrayList, _function);
     StringConcatenation _builder = new StringConcatenation();
     String dataFieldsString = _builder.toString();
-    while ((dataSet != null)) {
-      {
-        EList<Data> _data = dataSet.getData();
-        for (final Data data : _data) {
-          {
-            String _dataFieldsString = dataFieldsString;
-            CharSequence _generateVariable = this.generateVariable(data);
-            dataFieldsString = (_dataFieldsString + _generateVariable);
-            String _dataFieldsString_1 = dataFieldsString;
-            String _property = System.getProperty("line.separator");
-            dataFieldsString = (_dataFieldsString_1 + _property);
-          }
+    for (final DataSet dataSet : dataSets) {
+      EList<Data> _data = dataSet.getData();
+      for (final Data data : _data) {
+        {
+          String _dataFieldsString = dataFieldsString;
+          CharSequence _generateVariable = this.generateVariable(data);
+          dataFieldsString = (_dataFieldsString + _generateVariable);
+          String _dataFieldsString_1 = dataFieldsString;
+          String _property = System.getProperty("line.separator");
+          dataFieldsString = (_dataFieldsString_1 + _property);
         }
-        EList<DataSet> _parentDataSet = dataSet.getParentDataSet();
-        DataSet _head = IterableExtensions.<DataSet>head(_parentDataSet);
-        dataSet = _head;
       }
     }
     return dataFieldsString.replaceAll("(?m)^[ \t]*\r?\n", "");
-  }
-  
-  /**
-   * Reorder the String so that the variable sequence corresponds with the order
-   * defined in the DataSet-element.
-   */
-  public String reorderAccordingToDataSet(final List<String> currentOrder, final DataSet dataset) {
-    String reorderString = "";
-    EList<Data> _data = dataset.getData();
-    for (final Data data : _data) {
-    }
-    return reorderString;
   }
   
   /**
