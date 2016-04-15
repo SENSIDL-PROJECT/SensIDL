@@ -204,24 +204,11 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     String dataFieldsString = _builder.toString();
     while ((dataSet != null)) {
       {
-        EList<EObject> _eContents = dataSet.eContents();
-        Iterable<NonMeasurementData> _filter = Iterables.<NonMeasurementData>filter(_eContents, NonMeasurementData.class);
-        for (final NonMeasurementData data : _filter) {
+        EList<Data> _data = dataSet.getData();
+        for (final Data data : _data) {
           {
             String _dataFieldsString = dataFieldsString;
             CharSequence _generateVariable = this.generateVariable(data);
-            dataFieldsString = (_dataFieldsString + _generateVariable);
-            String _dataFieldsString_1 = dataFieldsString;
-            String _property = System.getProperty("line.separator");
-            dataFieldsString = (_dataFieldsString_1 + _property);
-          }
-        }
-        EList<EObject> _eContents_1 = dataSet.eContents();
-        Iterable<MeasurementData> _filter_1 = Iterables.<MeasurementData>filter(_eContents_1, MeasurementData.class);
-        for (final MeasurementData data_1 : _filter_1) {
-          {
-            String _dataFieldsString = dataFieldsString;
-            CharSequence _generateVariable = this.generateVariable(data_1);
             dataFieldsString = (_dataFieldsString + _generateVariable);
             String _dataFieldsString_1 = dataFieldsString;
             String _property = System.getProperty("line.separator");
@@ -234,6 +221,18 @@ public class HeaderDTOGenerator extends CDTOGenerator {
       }
     }
     return dataFieldsString.replaceAll("(?m)^[ \t]*\r?\n", "");
+  }
+  
+  /**
+   * Reorder the String so that the variable sequence corresponds with the order
+   * defined in the DataSet-element.
+   */
+  public String reorderAccordingToDataSet(final List<String> currentOrder, final DataSet dataset) {
+    String reorderString = "";
+    EList<Data> _data = dataset.getData();
+    for (final Data data : _data) {
+    }
+    return reorderString;
   }
   
   /**

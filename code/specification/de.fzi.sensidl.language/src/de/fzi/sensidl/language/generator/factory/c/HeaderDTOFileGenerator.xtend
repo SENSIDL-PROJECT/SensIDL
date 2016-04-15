@@ -114,19 +114,31 @@ class HeaderDTOGenerator extends CDTOGenerator {
 		var dataFieldsString =''''''
 		
 		while (dataSet!==null) {
-			for (data : dataSet.eContents.filter(NonMeasurementData)) {
+			for (data : dataSet.data) {
 				dataFieldsString += generateVariable(data)
 				dataFieldsString += System.getProperty("line.separator");
-				}
-			for (data : dataSet.eContents.filter(MeasurementData)) {
-				dataFieldsString += generateVariable(data)
-				dataFieldsString += System.getProperty("line.separator");
-				}
+			}
+			
 			dataSet = dataSet.parentDataSet.head //TODO: also use other parent data sets if there is more than one
 		}
+		
 		//Remove all empty lines
 		return dataFieldsString.replaceAll("(?m)^[ \t]*\r?\n", "");
-	}	
+	}
+	
+	/**
+	 * Reorder the String so that the variable sequence corresponds with the order
+	 * defined in the DataSet-element.
+	 */
+	def reorderAccordingToDataSet(List<String> currentOrder, DataSet dataset) {
+		var reorderString = ""
+		
+		for (data : dataset.data) {
+			
+		}
+		
+		return reorderString
+	}
 	
 	/** 
 	 * Generates the Init Method for the dataset initialization
