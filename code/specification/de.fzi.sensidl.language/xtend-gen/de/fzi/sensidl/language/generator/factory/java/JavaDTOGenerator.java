@@ -157,6 +157,18 @@ public class JavaDTOGenerator implements IDTOGenerator {
         _builder.newLineIfNotEmpty();
         _builder.append(" ");
         _builder.newLine();
+      } else {
+        _builder.append("package ");
+        DataSet _get_1 = this.dataSet.get(0);
+        EObject _eContainer_1 = _get_1.eContainer();
+        String _sensorInterfaceName_1 = GenerationUtil.getSensorInterfaceName(_eContainer_1);
+        _builder.append(_sensorInterfaceName_1, "");
+        _builder.append(".");
+        _builder.append(className, "");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append(" ");
+        _builder.newLine();
       }
     }
     {

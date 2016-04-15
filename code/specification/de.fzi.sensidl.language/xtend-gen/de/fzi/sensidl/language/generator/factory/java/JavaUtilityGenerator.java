@@ -125,6 +125,16 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
         _builder.newLineIfNotEmpty();
         _builder.append(" ");
         _builder.newLine();
+      } else {
+        _builder.append("package ");
+        String _sensorInterfaceName_1 = GenerationUtil.getSensorInterfaceName(this.currentSensorInterface);
+        _builder.append(_sensorInterfaceName_1, "");
+        _builder.append(".");
+        _builder.append(className, "");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append(" ");
+        _builder.newLine();
       }
     }
     _builder.append("import java.io.BufferedReader;");

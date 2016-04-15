@@ -84,6 +84,9 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 			«IF createProject»
 				package de.fzi.sensidl.«GenerationUtil.getSensorInterfaceName(this.currentSensorInterface)»;
 				 
+			«ELSE»
+				package «GenerationUtil.getSensorInterfaceName(this.currentSensorInterface)».«className»;
+				 
 			«ENDIF» 
 			import java.io.BufferedReader;
 			import java.io.ByteArrayInputStream;

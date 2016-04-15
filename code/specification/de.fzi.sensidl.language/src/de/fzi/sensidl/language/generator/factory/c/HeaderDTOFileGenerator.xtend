@@ -112,7 +112,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 */
 	def generateVariablesIncludeParentDataSet(DataSet d) {
 		var dataSets = new ArrayList<DataSet>() => [
-			add(d);
+			add(d)
 			addAll(d.parentDataSet)
 		]
 		var dataFieldsString =''''''
