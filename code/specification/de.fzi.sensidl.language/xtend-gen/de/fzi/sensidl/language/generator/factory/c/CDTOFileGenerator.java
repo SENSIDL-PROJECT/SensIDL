@@ -22,6 +22,7 @@ import de.fzi.sensidl.language.generator.SensIDLConstants;
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
 import de.fzi.sensidl.language.generator.factory.IDTOGenerator;
 import de.fzi.sensidl.language.generator.factory.c.CDTOGenerator;
+import de.fzi.sensidl.language.generator.factory.c.DataTypes;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -321,7 +322,8 @@ public class CDTOFileGenerator extends CDTOGenerator {
   public CharSequence generatedAdjustedGetterDeclaration(final MeasurementData d, final DataSet dataset) {
     StringConcatenation _builder = new StringConcatenation();
     DataType _dataTypeOfDataConversionAdjustment = GenerationUtil.getDataTypeOfDataConversionAdjustment(d);
-    _builder.append(_dataTypeOfDataConversionAdjustment, "");
+    String _dataTypeBy = DataTypes.getDataTypeBy(_dataTypeOfDataConversionAdjustment);
+    _builder.append(_dataTypeBy, "");
     _builder.append(" get_Adjusted_");
     String _name = dataset.getName();
     String _firstUpper = StringExtensions.toFirstUpper(_name);

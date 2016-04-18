@@ -370,7 +370,8 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append("*/");
     _builder.newLine();
     DataType _dataTypeOfDataConversionAdjustment = GenerationUtil.getDataTypeOfDataConversionAdjustment(d);
-    _builder.append(_dataTypeOfDataConversionAdjustment, "");
+    String _dataTypeBy = DataTypes.getDataTypeBy(_dataTypeOfDataConversionAdjustment);
+    _builder.append(_dataTypeBy, "");
     _builder.append(" get_Adjusted_");
     String _name_1 = dataset.getName();
     String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);

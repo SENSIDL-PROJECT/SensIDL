@@ -191,7 +191,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 		/**
 		* @return the adjusted «d.name.toFirstUpper»
 		*/
-		«GenerationUtil.getDataTypeOfDataConversionAdjustment(d)» get_Adjusted_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p);
+		«DataTypes.getDataTypeBy(GenerationUtil.getDataTypeOfDataConversionAdjustment(d))» get_Adjusted_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p);
 		
 		'''
 	}

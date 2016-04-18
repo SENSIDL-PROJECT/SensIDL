@@ -209,7 +209,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 	}
 	
 	def generatedAdjustedGetterDeclaration(MeasurementData d, DataSet dataset) {
-		'''«GenerationUtil.getDataTypeOfDataConversionAdjustment(d)» get_Adjusted_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p) { return p->adjusted_«d.name»; };'''
+		'''«DataTypes.getDataTypeBy(GenerationUtil.getDataTypeOfDataConversionAdjustment(d))» get_Adjusted_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p) { return p->adjusted_«d.name»; };'''
 	}
 	
 	dispatch def generateSetterDeclaration(MeasurementData d, DataSet dataset) {
