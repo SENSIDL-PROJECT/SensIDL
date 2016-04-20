@@ -9,6 +9,8 @@ import org.eclipse.emf.ecore.EObject
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
+import javax.sound.sampled.BooleanControl.Type
+import de.fzi.sensidl.design.sensidl.Endianness
 
 /**
  * The GenerationUtil-class is used to implement common methods, which are 
@@ -115,5 +117,9 @@ class GenerationUtil {
 	
 	private static dispatch def DataType getDataTypeOfAdjustment(LinearDataConversionWithInterval conversion) {
 		return conversion.dataType
+	}
+	
+	public static def isBigEndian(SensorInterface sensorInterface) {
+		return (sensorInterface.encodingSettings.endianness == Endianness.BIG_ENDIAN)
 	}
 }

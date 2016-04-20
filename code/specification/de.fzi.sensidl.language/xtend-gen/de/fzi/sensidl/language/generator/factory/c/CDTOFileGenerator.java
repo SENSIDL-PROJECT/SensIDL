@@ -280,83 +280,26 @@ public class CDTOFileGenerator extends CDTOGenerator {
   
   public CharSequence generateGetterDeclaration(final Data d, final DataSet dataset) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.newLine();
-    String _typeName = this.toTypeName(d);
-    _builder.append(_typeName, "");
-    _builder.append(" get_");
-    String _name = dataset.getName();
-    String _firstUpper = StringExtensions.toFirstUpper(_name);
-    _builder.append(_firstUpper, "");
-    _builder.append("_");
-    String _name_1 = d.getName();
-    String _replaceAll = _name_1.replaceAll("[^a-zA-Z0-9]", "");
-    _builder.append(_replaceAll, "");
-    _builder.append("(");
-    String _name_2 = dataset.getName();
-    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
-    _builder.append(_firstUpper_1, "");
-    _builder.append("* p) { return p->");
-    String _name_3 = d.getName();
-    _builder.append(_name_3, "");
-    _builder.append("; }");
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    _builder.newLine();
     {
       boolean _and = false;
       if (!(d instanceof MeasurementData)) {
         _and = false;
       } else {
-        boolean _isAdjustedByLineareConversionWithInterval = this.isAdjustedByLineareConversionWithInterval(((MeasurementData) d));
-        _and = _isAdjustedByLineareConversionWithInterval;
+        EList<DataAdjustment> _adjustments = ((MeasurementData) d).getAdjustments();
+        boolean _isEmpty = _adjustments.isEmpty();
+        boolean _equals = (_isEmpty == false);
+        _and = _equals;
       }
       if (_and) {
-        CharSequence _generatedAdjustedGetterDeclaration = this.generatedAdjustedGetterDeclaration(((MeasurementData) d), dataset);
-        _builder.append(_generatedAdjustedGetterDeclaration, "");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    return _builder;
-  }
-  
-  public CharSequence generatedAdjustedGetterDeclaration(final MeasurementData d, final DataSet dataset) {
-    StringConcatenation _builder = new StringConcatenation();
-    DataType _dataTypeOfDataConversionAdjustment = GenerationUtil.getDataTypeOfDataConversionAdjustment(d);
-    String _dataTypeBy = DataTypes.getDataTypeBy(_dataTypeOfDataConversionAdjustment);
-    _builder.append(_dataTypeBy, "");
-    _builder.append(" get_Adjusted_");
-    String _name = dataset.getName();
-    String _firstUpper = StringExtensions.toFirstUpper(_name);
-    _builder.append(_firstUpper, "");
-    _builder.append("_");
-    String _name_1 = d.getName();
-    String _replaceAll = _name_1.replaceAll("[^a-zA-Z0-9]", "");
-    _builder.append(_replaceAll, "");
-    _builder.append("(");
-    String _name_2 = dataset.getName();
-    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
-    _builder.append(_firstUpper_1, "");
-    _builder.append("* p) { return p->adjusted_");
-    String _name_3 = d.getName();
-    _builder.append(_name_3, "");
-    _builder.append("; };");
-    return _builder;
-  }
-  
-  protected CharSequence _generateSetterDeclaration(final MeasurementData d, final DataSet dataset) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      EList<DataAdjustment> _adjustments = d.getAdjustments();
-      boolean _isEmpty = _adjustments.isEmpty();
-      boolean _equals = (_isEmpty == false);
-      if (_equals) {
         _builder.newLine();
         {
-          EList<DataAdjustment> _adjustments_1 = d.getAdjustments();
+          EList<DataAdjustment> _adjustments_1 = ((MeasurementData) d).getAdjustments();
           for(final DataAdjustment dataAdj : _adjustments_1) {
             {
               if ((dataAdj instanceof DataRange)) {
-                _builder.append("void set_");
+                String _typeName = this.toTypeName(d);
+                _builder.append(_typeName, "");
+                _builder.append(" get_");
                 String _name = dataset.getName();
                 String _firstUpper = StringExtensions.toFirstUpper(_name);
                 _builder.append(_firstUpper, "");
@@ -368,28 +311,21 @@ public class CDTOFileGenerator extends CDTOGenerator {
                 String _name_2 = dataset.getName();
                 String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
                 _builder.append(_firstUpper_1, "");
-                _builder.append("* p, ");
-                String _typeName = this.toTypeName(d);
-                _builder.append(_typeName, "");
-                _builder.append(" ");
-                String _name_3 = d.getName();
-                String _firstLower = StringExtensions.toFirstLower(_name_3);
-                _builder.append(_firstLower, "");
-                _builder.append(" ){");
+                _builder.append("* p){");
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t");
                 _builder.append("if (");
-                String _name_4 = d.getName();
-                String _firstLower_1 = StringExtensions.toFirstLower(_name_4);
-                _builder.append(_firstLower_1, "\t");
+                String _name_3 = d.getName();
+                String _firstLower = StringExtensions.toFirstLower(_name_3);
+                _builder.append(_firstLower, "\t");
                 _builder.append(" >= ");
                 Interval _range = ((DataRange)dataAdj).getRange();
                 double _lowerBound = _range.getLowerBound();
                 _builder.append(_lowerBound, "\t");
                 _builder.append(" && ");
-                String _name_5 = d.getName();
-                String _firstLower_2 = StringExtensions.toFirstLower(_name_5);
-                _builder.append(_firstLower_2, "\t");
+                String _name_4 = d.getName();
+                String _firstLower_1 = StringExtensions.toFirstLower(_name_4);
+                _builder.append(_firstLower_1, "\t");
                 _builder.append(" <= ");
                 Interval _range_1 = ((DataRange)dataAdj).getRange();
                 double _upperBound = _range_1.getUpperBound();
@@ -397,14 +333,10 @@ public class CDTOFileGenerator extends CDTOGenerator {
                 _builder.append(")");
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t\t ");
-                _builder.append("p->");
-                String _name_6 = d.getName();
-                String _firstLower_3 = StringExtensions.toFirstLower(_name_6);
-                _builder.append(_firstLower_3, "\t\t ");
-                _builder.append(" = ");
-                String _name_7 = d.getName();
-                String _firstLower_4 = StringExtensions.toFirstLower(_name_7);
-                _builder.append(_firstLower_4, "\t\t ");
+                _builder.append("return p->");
+                String _name_5 = d.getName();
+                String _firstLower_2 = StringExtensions.toFirstLower(_name_5);
+                _builder.append(_firstLower_2, "\t\t ");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t");
@@ -423,211 +355,214 @@ public class CDTOFileGenerator extends CDTOGenerator {
             _builder.newLine();
             {
               if ((dataAdj instanceof DataConversion)) {
-                {
-                  if ((dataAdj instanceof LinearDataConversion)) {
-                    _builder.append("void set_");
-                    String _name_8 = dataset.getName();
-                    String _firstUpper_2 = StringExtensions.toFirstUpper(_name_8);
-                    _builder.append(_firstUpper_2, "");
-                    _builder.append("_");
-                    String _name_9 = d.getName();
-                    String _replaceAll_1 = _name_9.replaceAll("[^a-zA-Z0-9]", "");
-                    _builder.append(_replaceAll_1, "");
-                    _builder.append("(");
-                    String _name_10 = dataset.getName();
-                    String _firstUpper_3 = StringExtensions.toFirstUpper(_name_10);
-                    _builder.append(_firstUpper_3, "");
-                    _builder.append("* p, ");
-                    String _typeName_1 = this.toTypeName(d);
-                    _builder.append(_typeName_1, "");
-                    _builder.append(" ");
-                    String _name_11 = d.getName();
-                    String _firstLower_5 = StringExtensions.toFirstLower(_name_11);
-                    _builder.append(_firstLower_5, "");
-                    _builder.append(" ){\t\t\t\t\t\t");
-                    _builder.newLineIfNotEmpty();
-                    _builder.append("\t");
-                    _builder.append("p->");
-                    String _name_12 = d.getName();
-                    String _firstLower_6 = StringExtensions.toFirstLower(_name_12);
-                    _builder.append(_firstLower_6, "\t");
-                    _builder.append(" =  ");
-                    String _name_13 = d.getName();
-                    String _firstLower_7 = StringExtensions.toFirstLower(_name_13);
-                    _builder.append(_firstLower_7, "\t");
-                    _builder.append(" *  ");
-                    double _scalingFactor = ((LinearDataConversion)dataAdj).getScalingFactor();
-                    _builder.append(_scalingFactor, "\t");
-                    _builder.append(" +  ");
-                    double _offset = ((LinearDataConversion)dataAdj).getOffset();
-                    _builder.append(_offset, "\t");
-                    _builder.append(";");
-                    _builder.newLineIfNotEmpty();
-                    _builder.append("} ");
-                    _builder.newLine();
-                  } else {
-                    {
-                      if ((dataAdj instanceof LinearDataConversionWithInterval)) {
-                        _builder.append("void set_");
-                        String _name_14 = dataset.getName();
-                        String _firstUpper_4 = StringExtensions.toFirstUpper(_name_14);
-                        _builder.append(_firstUpper_4, "");
-                        _builder.append("_");
-                        String _name_15 = d.getName();
-                        String _replaceAll_2 = _name_15.replaceAll("[^a-zA-Z0-9]", "");
-                        _builder.append(_replaceAll_2, "");
-                        _builder.append("(");
-                        String _name_16 = dataset.getName();
-                        String _firstUpper_5 = StringExtensions.toFirstUpper(_name_16);
-                        _builder.append(_firstUpper_5, "");
-                        _builder.append("* p, ");
-                        String _typeName_2 = this.toTypeName(d);
-                        _builder.append(_typeName_2, "");
-                        _builder.append(" ");
-                        String _name_17 = d.getName();
-                        String _firstLower_8 = StringExtensions.toFirstLower(_name_17);
-                        _builder.append(_firstLower_8, "");
-                        _builder.append(" ){\t\t\t\t\t\t");
-                        _builder.newLineIfNotEmpty();
-                        _builder.append("\t");
-                        _builder.append("if (");
-                        String _name_18 = d.getName();
-                        String _firstLower_9 = StringExtensions.toFirstLower(_name_18);
-                        _builder.append(_firstLower_9, "\t");
-                        _builder.append(" >= ");
-                        Interval _fromInterval = ((LinearDataConversionWithInterval)dataAdj).getFromInterval();
-                        double _lowerBound_1 = _fromInterval.getLowerBound();
-                        _builder.append(_lowerBound_1, "\t");
-                        _builder.append(" && ");
-                        String _name_19 = d.getName();
-                        String _firstLower_10 = StringExtensions.toFirstLower(_name_19);
-                        _builder.append(_firstLower_10, "\t");
-                        _builder.append(" <= ");
-                        Interval _fromInterval_1 = ((LinearDataConversionWithInterval)dataAdj).getFromInterval();
-                        double _upperBound_1 = _fromInterval_1.getUpperBound();
-                        _builder.append(_upperBound_1, "\t");
-                        _builder.append("){\t\t\t\t\t\t\t\t\t\t\t\t");
-                        _builder.newLineIfNotEmpty();
-                        _builder.append("\t\t");
-                        _builder.newLine();
-                        _builder.append("\t\t");
-                        String _typeName_3 = this.toTypeName(d);
-                        _builder.append(_typeName_3, "\t\t");
-                        _builder.append(" oldMin =  ");
-                        Interval _fromInterval_2 = ((LinearDataConversionWithInterval)dataAdj).getFromInterval();
-                        double _lowerBound_2 = _fromInterval_2.getLowerBound();
-                        int _intValue = Double.valueOf(_lowerBound_2).intValue();
-                        _builder.append(_intValue, "\t\t");
-                        _builder.append(";");
-                        _builder.newLineIfNotEmpty();
-                        _builder.append("\t\t");
-                        String _typeName_4 = this.toTypeName(d);
-                        _builder.append(_typeName_4, "\t\t");
-                        _builder.append(" oldMax =  ");
-                        Interval _fromInterval_3 = ((LinearDataConversionWithInterval)dataAdj).getFromInterval();
-                        double _upperBound_2 = _fromInterval_3.getUpperBound();
-                        int _intValue_1 = Double.valueOf(_upperBound_2).intValue();
-                        _builder.append(_intValue_1, "\t\t");
-                        _builder.append(";");
-                        _builder.newLineIfNotEmpty();
-                        _builder.append("\t\t");
-                        String _typeName_5 = this.toTypeName(d);
-                        _builder.append(_typeName_5, "\t\t");
-                        _builder.append(" newMin =  ");
-                        Interval _toInterval = ((LinearDataConversionWithInterval)dataAdj).getToInterval();
-                        double _lowerBound_3 = _toInterval.getLowerBound();
-                        int _intValue_2 = Double.valueOf(_lowerBound_3).intValue();
-                        _builder.append(_intValue_2, "\t\t");
-                        _builder.append(";");
-                        _builder.newLineIfNotEmpty();
-                        _builder.append("\t\t");
-                        String _typeName_6 = this.toTypeName(d);
-                        _builder.append(_typeName_6, "\t\t");
-                        _builder.append(" newMax =  ");
-                        Interval _toInterval_1 = ((LinearDataConversionWithInterval)dataAdj).getToInterval();
-                        double _upperBound_3 = _toInterval_1.getUpperBound();
-                        int _intValue_3 = Double.valueOf(_upperBound_3).intValue();
-                        _builder.append(_intValue_3, "\t\t");
-                        _builder.append(";");
-                        _builder.newLineIfNotEmpty();
-                        _builder.append("\t\t");
-                        _builder.newLine();
-                        _builder.append("\t\t");
-                        _builder.append("p->");
-                        String _name_20 = d.getName();
-                        String _firstLower_11 = StringExtensions.toFirstLower(_name_20);
-                        _builder.append(_firstLower_11, "\t\t");
-                        _builder.append(" = ");
-                        String _name_21 = d.getName();
-                        String _firstLower_12 = StringExtensions.toFirstLower(_name_21);
-                        _builder.append(_firstLower_12, "\t\t");
-                        _builder.append(";");
-                        _builder.newLineIfNotEmpty();
-                        _builder.append("\t\t");
-                        _builder.append("p->adjusted_");
-                        String _name_22 = d.getName();
-                        String _firstLower_13 = StringExtensions.toFirstLower(_name_22);
-                        _builder.append(_firstLower_13, "\t\t");
-                        _builder.append(" =  ((((");
-                        String _name_23 = d.getName();
-                        String _firstLower_14 = StringExtensions.toFirstLower(_name_23);
-                        _builder.append(_firstLower_14, "\t\t");
-                        _builder.append(" - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin);");
-                        _builder.newLineIfNotEmpty();
-                        _builder.append("\t");
-                        _builder.append("}");
-                        _builder.newLine();
-                        _builder.append("\t");
-                        _builder.append("else{");
-                        _builder.newLine();
-                        _builder.append("\t\t");
-                        _builder.append("//Do something");
-                        _builder.newLine();
-                        _builder.append("\t");
-                        _builder.append("}");
-                        _builder.newLine();
-                        _builder.append("} \t\t");
-                        _builder.newLine();
-                      }
-                    }
-                  }
-                }
+                CharSequence _generatedAdjustedGetterDeclaration = this.generatedAdjustedGetterDeclaration(((DataConversion)dataAdj), ((MeasurementData) d), dataset);
+                _builder.append(_generatedAdjustedGetterDeclaration, "");
+                _builder.newLineIfNotEmpty();
               }
             }
           }
         }
+        _builder.newLine();
       } else {
-        _builder.append("void set_");
-        String _name_24 = dataset.getName();
-        String _firstUpper_6 = StringExtensions.toFirstUpper(_name_24);
-        _builder.append(_firstUpper_6, "");
+        String _typeName_1 = this.toTypeName(d);
+        _builder.append(_typeName_1, "");
+        _builder.append(" get_");
+        String _name_6 = dataset.getName();
+        String _firstUpper_2 = StringExtensions.toFirstUpper(_name_6);
+        _builder.append(_firstUpper_2, "");
         _builder.append("_");
-        String _name_25 = d.getName();
-        String _replaceAll_3 = _name_25.replaceAll("[^a-zA-Z0-9]", "");
-        _builder.append(_replaceAll_3, "");
+        String _name_7 = d.getName();
+        String _replaceAll_1 = _name_7.replaceAll("[^a-zA-Z0-9]", "");
+        _builder.append(_replaceAll_1, "");
         _builder.append("(");
-        String _name_26 = dataset.getName();
-        String _firstUpper_7 = StringExtensions.toFirstUpper(_name_26);
-        _builder.append(_firstUpper_7, "");
-        _builder.append("* p, ");
-        String _typeName_7 = this.toTypeName(d);
-        _builder.append(_typeName_7, "");
-        _builder.append(" ");
-        String _name_27 = d.getName();
-        String _firstLower_15 = StringExtensions.toFirstLower(_name_27);
-        _builder.append(_firstLower_15, "");
-        _builder.append(" ) { p->");
-        String _name_28 = d.getName();
-        String _firstLower_16 = StringExtensions.toFirstLower(_name_28);
-        _builder.append(_firstLower_16, "");
-        _builder.append(" = ");
-        String _name_29 = d.getName();
-        String _firstLower_17 = StringExtensions.toFirstLower(_name_29);
-        _builder.append(_firstLower_17, "");
+        String _name_8 = dataset.getName();
+        String _firstUpper_3 = StringExtensions.toFirstUpper(_name_8);
+        _builder.append(_firstUpper_3, "");
+        _builder.append("* p) { return p->");
+        String _name_9 = d.getName();
+        _builder.append(_name_9, "");
         _builder.append("; }");
         _builder.newLineIfNotEmpty();
       }
     }
+    return _builder;
+  }
+  
+  protected CharSequence _generatedAdjustedGetterDeclaration(final LinearDataConversionWithInterval dataAdj, final MeasurementData d, final DataSet dataset) {
+    StringConcatenation _builder = new StringConcatenation();
+    DataType _dataTypeOfDataConversionAdjustment = GenerationUtil.getDataTypeOfDataConversionAdjustment(d);
+    String _dataTypeBy = DataTypes.getDataTypeBy(_dataTypeOfDataConversionAdjustment);
+    _builder.append(_dataTypeBy, "");
+    _builder.append(" get_");
+    String _name = dataset.getName();
+    String _firstUpper = StringExtensions.toFirstUpper(_name);
+    _builder.append(_firstUpper, "");
+    _builder.append("_");
+    String _name_1 = d.getName();
+    String _replaceAll = _name_1.replaceAll("[^a-zA-Z0-9]", "");
+    _builder.append(_replaceAll, "");
+    _builder.append("(");
+    String _name_2 = dataset.getName();
+    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
+    _builder.append(_firstUpper_1, "");
+    _builder.append("* p){\t\t\t\t\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("if (");
+    String _name_3 = d.getName();
+    String _firstLower = StringExtensions.toFirstLower(_name_3);
+    _builder.append(_firstLower, "\t\t");
+    _builder.append(" >= ");
+    Interval _fromInterval = dataAdj.getFromInterval();
+    double _lowerBound = _fromInterval.getLowerBound();
+    _builder.append(_lowerBound, "\t\t");
+    _builder.append(" && ");
+    String _name_4 = d.getName();
+    String _firstLower_1 = StringExtensions.toFirstLower(_name_4);
+    _builder.append(_firstLower_1, "\t\t");
+    _builder.append(" <= ");
+    Interval _fromInterval_1 = dataAdj.getFromInterval();
+    double _upperBound = _fromInterval_1.getUpperBound();
+    _builder.append(_upperBound, "\t\t");
+    _builder.append("){\t\t\t\t\t\t\t\t\t\t\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    String _typeName = this.toTypeName(d);
+    _builder.append(_typeName, "\t\t\t");
+    _builder.append(" oldMin =  ");
+    Interval _fromInterval_2 = dataAdj.getFromInterval();
+    double _lowerBound_1 = _fromInterval_2.getLowerBound();
+    int _intValue = Double.valueOf(_lowerBound_1).intValue();
+    _builder.append(_intValue, "\t\t\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
+    String _typeName_1 = this.toTypeName(d);
+    _builder.append(_typeName_1, "\t\t\t");
+    _builder.append(" oldMax =  ");
+    Interval _fromInterval_3 = dataAdj.getFromInterval();
+    double _upperBound_1 = _fromInterval_3.getUpperBound();
+    int _intValue_1 = Double.valueOf(_upperBound_1).intValue();
+    _builder.append(_intValue_1, "\t\t\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
+    String _typeName_2 = this.toTypeName(d);
+    _builder.append(_typeName_2, "\t\t\t");
+    _builder.append(" newMin =  ");
+    Interval _toInterval = dataAdj.getToInterval();
+    double _lowerBound_2 = _toInterval.getLowerBound();
+    int _intValue_2 = Double.valueOf(_lowerBound_2).intValue();
+    _builder.append(_intValue_2, "\t\t\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
+    String _typeName_3 = this.toTypeName(d);
+    _builder.append(_typeName_3, "\t\t\t");
+    _builder.append(" newMax =  ");
+    Interval _toInterval_1 = dataAdj.getToInterval();
+    double _upperBound_2 = _toInterval_1.getUpperBound();
+    int _intValue_3 = Double.valueOf(_upperBound_2).intValue();
+    _builder.append(_intValue_3, "\t\t\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("return ((((p->");
+    String _name_5 = d.getName();
+    String _firstLower_2 = StringExtensions.toFirstLower(_name_5);
+    _builder.append(_firstLower_2, "\t\t\t");
+    _builder.append(" - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin);");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("else{");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("//Do something");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  protected CharSequence _generatedAdjustedGetterDeclaration(final LinearDataConversion dataAdj, final MeasurementData d, final DataSet dataset) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _typeName = this.toTypeName(d);
+    _builder.append(_typeName, "");
+    _builder.append(" get_");
+    String _name = dataset.getName();
+    String _firstUpper = StringExtensions.toFirstUpper(_name);
+    _builder.append(_firstUpper, "");
+    _builder.append("_");
+    String _name_1 = d.getName();
+    String _replaceAll = _name_1.replaceAll("[^a-zA-Z0-9]", "");
+    _builder.append(_replaceAll, "");
+    _builder.append("(");
+    String _name_2 = dataset.getName();
+    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
+    _builder.append(_firstUpper_1, "");
+    _builder.append("* p){\t\t\t\t\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("return (p->");
+    String _name_3 = d.getName();
+    String _firstLower = StringExtensions.toFirstLower(_name_3);
+    _builder.append(_firstLower, "\t\t");
+    _builder.append(" * ");
+    double _scalingFactor = dataAdj.getScalingFactor();
+    _builder.append(_scalingFactor, "\t\t");
+    _builder.append(") + ");
+    double _offset = dataAdj.getOffset();
+    _builder.append(_offset, "\t\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("} ");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  protected CharSequence _generateSetterDeclaration(final MeasurementData d, final DataSet dataset) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("void set_");
+    String _name = dataset.getName();
+    String _firstUpper = StringExtensions.toFirstUpper(_name);
+    _builder.append(_firstUpper, "");
+    _builder.append("_");
+    String _name_1 = d.getName();
+    String _replaceAll = _name_1.replaceAll("[^a-zA-Z0-9]", "");
+    _builder.append(_replaceAll, "");
+    _builder.append("(");
+    String _name_2 = dataset.getName();
+    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
+    _builder.append(_firstUpper_1, "");
+    _builder.append("* p, ");
+    String _typeName = this.toTypeName(d);
+    _builder.append(_typeName, "");
+    _builder.append(" ");
+    String _name_3 = d.getName();
+    String _firstLower = StringExtensions.toFirstLower(_name_3);
+    _builder.append(_firstLower, "");
+    _builder.append(" ) { p->");
+    String _name_4 = d.getName();
+    String _firstLower_1 = StringExtensions.toFirstLower(_name_4);
+    _builder.append(_firstLower_1, "");
+    _builder.append(" = ");
+    String _name_5 = d.getName();
+    String _firstLower_2 = StringExtensions.toFirstLower(_name_5);
+    _builder.append(_firstLower_2, "");
+    _builder.append("; }\t");
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
@@ -1080,6 +1015,17 @@ public class CDTOFileGenerator extends CDTOGenerator {
   @Override
   public String addFileExtensionTo(final String ClassName) {
     return (ClassName + SensIDLConstants.C_EXTENSION);
+  }
+  
+  public CharSequence generatedAdjustedGetterDeclaration(final DataConversion dataAdj, final MeasurementData d, final DataSet dataset) {
+    if (dataAdj instanceof LinearDataConversion) {
+      return _generatedAdjustedGetterDeclaration((LinearDataConversion)dataAdj, d, dataset);
+    } else if (dataAdj instanceof LinearDataConversionWithInterval) {
+      return _generatedAdjustedGetterDeclaration((LinearDataConversionWithInterval)dataAdj, d, dataset);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(dataAdj, d, dataset).toString());
+    }
   }
   
   public CharSequence generateSetterDeclaration(final Data d, final DataSet dataset) {

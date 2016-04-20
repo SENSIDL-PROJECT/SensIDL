@@ -14,6 +14,8 @@ import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
 import java.util.ArrayList
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
 
 /**
  * This class implements a part of the CDTOGenerator. This class is responsible for 
@@ -171,29 +173,28 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 */
 	dispatch def generateGetterPrototype(MeasurementData d, DataSet dataset) {
 		'''
+		«var dataType = d.getReturnDataType»
+		
 		/**
 		* @return the «d.name.toFirstUpper»
 		*/
-		«d.toTypeName» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p);
-		
-		«IF d.isAdjustedByLineareConversionWithInterval»
-			«generatedAdjustedGetterPrototype(d, dataset)»
-		«ENDIF»
-		
+		«dataType» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p);
 		'''
 	}
 	
-	/**
-	 * Generates the Getter Method for adjusted measurement data
-	 */
-	def generatedAdjustedGetterPrototype(MeasurementData d, DataSet dataset) {
-		'''
-		/**
-		* @return the adjusted «d.name.toFirstUpper»
-		*/
-		«DataTypes.getDataTypeBy(GenerationUtil.getDataTypeOfDataConversionAdjustment(d))» get_Adjusted_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p);
+	def getReturnDataType(MeasurementData d) {
+		if (d.isAdjustedByLinearConversionWithInterval) {
+			return DataTypes.getDataTypeBy(GenerationUtil.getDataTypeOfDataConversionAdjustment(d))
+		}
 		
-		'''
+		d.toTypeName
+	}
+	
+	/**
+	 * Checks, if the given MeasurementData-element was specified to be adjusted as linear conversion.
+	 */
+	def isAdjustedByLinearConversionWithInterval(MeasurementData data) {
+		return ((data.adjustments.size > 0) && (data.adjustments.get(0) instanceof LinearDataConversionWithInterval))
 	}
 	
 	/** 
@@ -270,9 +271,6 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	dispatch def generateVariable(MeasurementData data) {
 		'''
 		«data.toTypeName» «GenerationUtil.toNameLower(data)»;
-		«IF data.isAdjustedByLineareConversionWithInterval»
-		«DataTypes.getDataTypeBy(GenerationUtil.getDataTypeOfDataConversionAdjustment(data))» adjusted_«GenerationUtil.toNameLower(data)»;
-		«ENDIF»
 		'''
 	}
 

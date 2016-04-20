@@ -3,8 +3,10 @@ package de.fzi.sensidl.language.generator.factory.c;
 import com.google.common.base.Strings;
 import com.google.common.collect.Iterables;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataAdjustment;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.ListData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData;
@@ -317,6 +319,9 @@ public class HeaderDTOGenerator extends CDTOGenerator {
    */
   protected CharSequence _generateGetterPrototype(final MeasurementData d, final DataSet dataset) {
     StringConcatenation _builder = new StringConcatenation();
+    String dataType = this.getReturnDataType(d);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
     _builder.append("/**");
     _builder.newLine();
     _builder.append("* @return the ");
@@ -326,8 +331,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("*/");
     _builder.newLine();
-    String _typeName = this.toTypeName(d);
-    _builder.append(_typeName, "");
+    _builder.append(dataType, "");
     _builder.append(" get_");
     String _name_1 = dataset.getName();
     String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
@@ -342,52 +346,38 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append(_firstUpper_2, "");
     _builder.append("* p);");
     _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    {
-      boolean _isAdjustedByLineareConversionWithInterval = this.isAdjustedByLineareConversionWithInterval(d);
-      if (_isAdjustedByLineareConversionWithInterval) {
-        CharSequence _generatedAdjustedGetterPrototype = this.generatedAdjustedGetterPrototype(d, dataset);
-        _builder.append(_generatedAdjustedGetterPrototype, "");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.newLine();
     return _builder;
   }
   
+  public String getReturnDataType(final MeasurementData d) {
+    String _xblockexpression = null;
+    {
+      boolean _isAdjustedByLinearConversionWithInterval = this.isAdjustedByLinearConversionWithInterval(d);
+      if (_isAdjustedByLinearConversionWithInterval) {
+        DataType _dataTypeOfDataConversionAdjustment = GenerationUtil.getDataTypeOfDataConversionAdjustment(d);
+        return DataTypes.getDataTypeBy(_dataTypeOfDataConversionAdjustment);
+      }
+      _xblockexpression = this.toTypeName(d);
+    }
+    return _xblockexpression;
+  }
+  
   /**
-   * Generates the Getter Method for adjusted measurement data
+   * Checks, if the given MeasurementData-element was specified to be adjusted as linear conversion.
    */
-  public CharSequence generatedAdjustedGetterPrototype(final MeasurementData d, final DataSet dataset) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("/**");
-    _builder.newLine();
-    _builder.append("* @return the adjusted ");
-    String _name = d.getName();
-    String _firstUpper = StringExtensions.toFirstUpper(_name);
-    _builder.append(_firstUpper, "");
-    _builder.newLineIfNotEmpty();
-    _builder.append("*/");
-    _builder.newLine();
-    DataType _dataTypeOfDataConversionAdjustment = GenerationUtil.getDataTypeOfDataConversionAdjustment(d);
-    String _dataTypeBy = DataTypes.getDataTypeBy(_dataTypeOfDataConversionAdjustment);
-    _builder.append(_dataTypeBy, "");
-    _builder.append(" get_Adjusted_");
-    String _name_1 = dataset.getName();
-    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
-    _builder.append(_firstUpper_1, "");
-    _builder.append("_");
-    String _name_2 = d.getName();
-    String _replaceAll = _name_2.replaceAll("[^a-zA-Z0-9]", "");
-    _builder.append(_replaceAll, "");
-    _builder.append("(");
-    String _name_3 = dataset.getName();
-    String _firstUpper_2 = StringExtensions.toFirstUpper(_name_3);
-    _builder.append(_firstUpper_2, "");
-    _builder.append("* p);");
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    return _builder;
+  public boolean isAdjustedByLinearConversionWithInterval(final MeasurementData data) {
+    boolean _and = false;
+    EList<DataAdjustment> _adjustments = data.getAdjustments();
+    int _size = _adjustments.size();
+    boolean _greaterThan = (_size > 0);
+    if (!_greaterThan) {
+      _and = false;
+    } else {
+      EList<DataAdjustment> _adjustments_1 = data.getAdjustments();
+      DataAdjustment _get = _adjustments_1.get(0);
+      _and = (_get instanceof LinearDataConversionWithInterval);
+    }
+    return _and;
   }
   
   /**
@@ -593,19 +583,6 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append(_nameLower, "");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
-    {
-      boolean _isAdjustedByLineareConversionWithInterval = this.isAdjustedByLineareConversionWithInterval(data);
-      if (_isAdjustedByLineareConversionWithInterval) {
-        DataType _dataTypeOfDataConversionAdjustment = GenerationUtil.getDataTypeOfDataConversionAdjustment(data);
-        String _dataTypeBy = DataTypes.getDataTypeBy(_dataTypeOfDataConversionAdjustment);
-        _builder.append(_dataTypeBy, "");
-        _builder.append(" adjusted_");
-        String _nameLower_1 = GenerationUtil.toNameLower(data);
-        _builder.append(_nameLower_1, "");
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
-      }
-    }
     return _builder;
   }
   

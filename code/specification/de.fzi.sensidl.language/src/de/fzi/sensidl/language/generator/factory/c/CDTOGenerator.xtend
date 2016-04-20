@@ -34,12 +34,4 @@ abstract class CDTOGenerator implements IDTOGenerator {
 	def String toTypeName(DataType dataType) {
 		DataTypes.getDataTypeBy(dataType)
 	}	
-	
-	/**
-	 * Checks, if the given MeasurementData-element was specified to be adjusted as linear conversion
-	 * with interval.
-	 */
-	protected def isAdjustedByLineareConversionWithInterval(MeasurementData data) {
-		return ((data.adjustments.size > 0) && (data.adjustments.get(0) instanceof LinearDataConversionWithInterval))
-	}
 }

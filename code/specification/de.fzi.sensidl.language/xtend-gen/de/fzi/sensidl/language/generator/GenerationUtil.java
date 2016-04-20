@@ -1,5 +1,8 @@
 package de.fzi.sensidl.language.generator;
 
+import com.google.common.base.Objects;
+import de.fzi.sensidl.design.sensidl.EncodingSettings;
+import de.fzi.sensidl.design.sensidl.Endianness;
 import de.fzi.sensidl.design.sensidl.SensorInterface;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataAdjustment;
@@ -140,6 +143,12 @@ public class GenerationUtil {
   
   private static DataType _getDataTypeOfAdjustment(final LinearDataConversionWithInterval conversion) {
     return conversion.getDataType();
+  }
+  
+  public static boolean isBigEndian(final SensorInterface sensorInterface) {
+    EncodingSettings _encodingSettings = sensorInterface.getEncodingSettings();
+    Endianness _endianness = _encodingSettings.getEndianness();
+    return Objects.equal(_endianness, Endianness.BIG_ENDIAN);
   }
   
   private static DataType getDataTypeOfAdjustment(final DataConversion conversion) {
