@@ -401,7 +401,7 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 		 * @return String the converted String
 		 *
 		 */
-		public String convertToLittleEndian(String str) {
+		public static String convertToLittleEndian(String str) {
 			//TODO: implement Method
 			return str;
 		}
@@ -413,7 +413,7 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 		 * @return boolean the converted boolean
 		 *
 		 */
-		public boolean convertToLittleEndian(boolean bool) {
+		public static boolean convertToLittleEndian(boolean bool) {
 			//TODO: implement Method
 			return bool;
 		}
