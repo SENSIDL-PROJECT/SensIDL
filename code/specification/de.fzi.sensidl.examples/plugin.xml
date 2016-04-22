@@ -6,6 +6,31 @@
 			name="SensIDL Examples"
 			parentCategory="org.eclipse.ui.Examples" />
 	</extension>
+	
+	<!-- =================== blechar example =================== -->
+	<extension point="org.eclipse.ui.newWizards">
+		<wizard 
+			 id="de.fzi.sensidl.example.blechar"
+			 name="Blechar Example"
+			 class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+			 category="org.eclipse.ui.Examples/de.fzi.sensidl.examples"
+			 icon="icons/SensIDL_logo.jpg"
+			 project="true">
+			<description>SensIDL Blechar Example</description>
+		</wizard>
+	</extension>
+		
+	<extension point="org.eclipse.emf.common.ui.examples">
+		<example 
+			 wizardID="de.fzi.sensidl.example.blechar" 
+			 pageImage="icons/SensIDL_logo.jpg">
+		<fileToOpen location="de.fzi.sensidl.example.blechar/src/Characteristic.sidl"/>	
+		<projectDescriptor 
+			 name="de.fzi.sensidl.example.blechar" 
+			 contentURI="platform:/plugin/de.fzi.sensidl.example.blechar/" 
+			 description="Blechar Example"/>
+		</example>
+	</extension>
 
 	<!-- =================== emeter example =================== -->
 	<extension point="org.eclipse.ui.newWizards">
