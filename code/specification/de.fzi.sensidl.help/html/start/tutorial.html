@@ -63,8 +63,7 @@
 	<p>
 		The DataDescription starts with the keyword <code>sensorData</code>
 		and an optional identifier. After that the dataSets are declared. The
-		sensorData can contain any number of dataSets. A DataSet contains
-		NonMeasurementData and MeasurementData.
+		sensorData can contain any number of <a href="#dataset">dataSets</a>. 
 	</p>
 
 	<p>
@@ -72,16 +71,30 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;<b>dataSet</b> exampleDataSet <b>with
 				identifier :</b> "1" {<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//The DataSet
-			contains MeasurementData and NonMeasurementData <br>
+			contains MeasurementData, NonMeasurementData, Lists and Methods <br>
 			&nbsp;&nbsp;&nbsp;&nbsp;} <br> }
 		</code>
 	</p>
 
+	
+	<!-- Start DataSet paragraph -->
+	<a href="#dataset"></a>
+	<br>
+	<h3>DataSets</h3>
 	<p>
-		The DataSet contains <a href="#measurementdata">MeasurementData</a>
-		and <a href="#nonmeasurementdata">NonMeasurementData</a>.
+		The DataSet can contain <a href="#measurementdata">MeasurementData</a>, 
+		<a href="#nonmeasurementdata">NonMeasurementData</a>, <a href="#list">Lists</a>
+		and <a href="#method">Methods</a>. Furthermore it can reference to any number of 
+		other dataSets by the Keyword <b><code>uses</b></code> after the name of the dataSet. 
+	<p>
+	<p>
+		The format of the DataSet is the following:<br> <code>
+			<b>dataSet</b> exampleDataSet <b>uses</b> exDataSet1, exDataSet2, exDataSet3 {<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;//The DataSet contains MeasurementData, NonMeasurementData, Lists and Methods <br>
+			}
+		</code>
 	</p>
-
+	
 	<!-- Start Measurement Data paragraph -->
 	<a name="measurementdata"></a>
 	<br>
@@ -92,7 +105,10 @@
 		optional identifier and description. Furthermore the data can be
 		adjusted, either by range by giving a specific interval or by
 		conversion by scaling or mapping the data. For further information see
-		<a href="../documentation/adjustdata.html">Data Adjustment</a>
+		<a href="../documentation/adjustdata.html">Data Adjustment</a>. Furthermore 
+		the getter and setter methods are excludable, that means with the keyword 
+		<b><code> exclude: getter, setter </b></code> you can exclude both or only 
+		one of these methods.
 	</p>
 
 	<p>
@@ -100,8 +116,8 @@
 			DataName <b>as</b> DataType <b>in</b> Unit (<b>with identifier :</b>
 			"identifier"")(<b>adjusted by</b> (<b>with range</b> 0.0;0.0 || <b>with
 				scaling factor :</b> 0.0 <b>and offset:</b> 0.0 || <b>linear mapping
-				[</b>0.0<b>;</b>0.0<b>] => [</b>0.0<b>;</b>0.0<b>]</b>))(<b>/**</b>optional
-			description<b>*/</b>)
+				[</b>0.0<b>;</b>0.0<b>] => [</b>0.0<b>;</b>0.0<b>]</b>))(exclude: getter, 
+				setter)(<b>/**</b>optional description<b>*/</b>)
 		</code>
 	</p>
 
@@ -114,18 +130,22 @@
 	</p>
 
 	<!-- Start non Measurement Data paragraph -->
-	<a name="nonmeasurementdata"></a>
 	<br>
+	<a name="nonmeasurementdata"></a>
 	<h3>Non MeasurementData</h3>
-	<p>The NonMeasurementData has a name and a datatype. Also the data
+	<p>
+		The NonMeasurementData has a name and a datatype. Also the data
 		can be a constant and can have a value, an identifier and/or a
-		description.</p>
+		description.Furthermore the getter and setter methods are excludable, 
+		that means with the keyword <b><code> exclude: getter, setter </b></code> 
+		you can exclude both or only one of these methods.
+	</p>
 
 	<p>
 		The format for the NonMeasurementData is the following: <br> <code>
 			DataName <strong>as</strong> DataType (<strong>constant</strong>)(<strong>value
-				= </strong>"value")(<strong>with identifier : </strong>"identifier")(<strong>/**
-		</strong>optional description<strong>*/</strong>)
+				= </strong>"value")(<strong>with identifier : </strong>"identifier")(exclude: 
+				getter, setter)(<strong>/**	</strong>optional description<strong>*/</strong>)
 		</code>
 	</p>
 	<p>
@@ -133,6 +153,48 @@
 		can be any name given by the user and DataType is a type from the <a
 			href="../documentation/typesystem.html">TypeSystem</a>.
 	</p>
+	
+	<!-- Start Method paragraph -->
+	<br>
+	<a name="method"></a>
+	<h3>Methods</h3>
+	<p> 
+		Methods are declared starting with a optional visibility (+ for public, # for 
+		protected, ~ for package and - for private) followed by a name for the method. 
+		Furthermore a Method can contain Parameters with a Parameter Type and a name for 
+		the Parameter. Methods can also have a return type. The Keyword for Methods is 
+		<b><code>as Method</code></b> at the end of the Method. ParamterType and ReturnType 
+		can either be from the <a href="../documentation/typesystem.html">TypeSystem</a> 
+		or be a DataSet which was declared by the user. 
+	</p>
+	<p> 
+		The format for the method is the following: <br>
+		<code>(+|#|~|-)methodName(ParamaterType1 parameter1, ParameterType2 parameter2, ...):returnType as Method</code>
+	</p>
+	
+	
+	<!-- Start List paragraph -->
+	<br>
+	<a name="list"></a>
+	<h3>Lists</h3>
+	<p> 
+		Lists can also be declared by the user. Therefore the Keyword is 
+		<b><code>as list of</b></code></p> which follows the name of the list 
+		and is followed by the DataType for the List. DataType either be from the 
+		<a href="../documentation/typesystem.html">TypeSystem</a> or be a DataSet 
+		which was declared by the user. 
+	</p>
+	<p> 
+		The format for the method is the following: <br>
+		<code>listName as List of (UINT8 | INT8 | ...)</code>
+	</p>
+	<p>
+		Besides the usual getter and setter methods there will be more methods generated for lists. 
+		An add Method will be generated which allows to only add one element to the list and a get 
+		Method which allows to get only one element from the List will be generated also. 
+	</p>
+	
+	
 
 </body>
 </html>

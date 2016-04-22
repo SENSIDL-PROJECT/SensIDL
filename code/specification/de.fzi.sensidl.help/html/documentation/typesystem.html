@@ -24,7 +24,7 @@
 		</tr>
 		<tr>
 			<td align = "center">UINT8</td>
-			<td align = "center">byte</td>
+			<td align = "center">byte*</td>
 			<td align = "center">unsigned char<br></td>
 			<td align = "center">var</td>
 		</tr>
@@ -36,7 +36,7 @@
 		</tr>
 		<tr>
 			<td align = "center">UINT16</td>
-			<td align = "center">short</td>
+			<td align = "center">short*</td>
 			<td align = "center">unsigned short<br></td>
 			<td align = "center">var</td>
 		</tr>
@@ -48,7 +48,7 @@
 		</tr>
 		<tr>
 			<td align = "center">UINT32<br></td>
-			<td align = "center">int</td>
+			<td align = "center">int*</td>
 			<td align = "center">unsigned long<br></td>
 			<td align = "center">var</td>
 		</tr>
@@ -60,7 +60,7 @@
 		</tr>
 		<tr>
 			<td align = "center">UINT64</td>
-			<td align = "center">long</td>
+			<td align = "center">long*</td>
 			<td align = "center">unsigned long long<br></td>
 			<td align = "center">var</td>
 		</tr>
@@ -84,10 +84,16 @@
 		</tr>
 		<tr>
 			<td align = "center">STRING</td>
-			<td align = "center">char*</td>
+			<td align = "center">String</td>
 			<td align = "center">String</td>
 			<td align = "center">var</td>
 		</tr>
 	</table>
+	
+	<p>
+		*Java has no option for unsigned data types, so if the data has an 
+	  	unsigned data type the value is calculated by subtracting the maximum 
+	  	value from the signed data type and adding it again, if it is used.
+	</p>
 </body>
 </html>
