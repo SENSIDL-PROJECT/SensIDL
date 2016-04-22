@@ -67,7 +67,7 @@ Data returns dataRepresentation::Data:
 ;
 
 ListData returns dataRepresentation::ListData:
-	name=ID "as" "list" "as" (dataType=DataType | dataTypeDataSet=[dataRepresentation::DataSet])
+	name=ID "as" "list" "of" (dataType=DataType | dataTypeDataSet=[dataRepresentation::DataSet])
 ;
 
 MeasurementData returns dataRepresentation::MeasurementData:

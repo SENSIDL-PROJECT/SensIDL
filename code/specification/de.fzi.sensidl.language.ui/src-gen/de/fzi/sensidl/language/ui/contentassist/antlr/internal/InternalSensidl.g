@@ -3529,11 +3529,11 @@ rule__ListData__Group__3__Impl
     }
 :
 (
-{ before(grammarAccess.getListDataAccess().getAsKeyword_3()); }
+{ before(grammarAccess.getListDataAccess().getOfKeyword_3()); }
 
-	'as' 
+	'of' 
 
-{ after(grammarAccess.getListDataAccess().getAsKeyword_3()); }
+{ after(grammarAccess.getListDataAccess().getOfKeyword_3()); }
 )
 
 ;
