@@ -6,20 +6,17 @@ sensorInterface Umgebungskachel /** communication interface between a sensor and
 		}
 		
 		dataSet AlertThresholdTemperature /** data description for the temperature threshold */{
-			threshold_temperature as DOUBLE in Dimensionless /** Upper threshold that triggers an alert if the measured temperature is too high */
+			threshold_temperature as DOUBLE in °C /** Upper threshold that triggers an alert if the measured temperature is too high */
 		}
 		
 		dataSet LedToggle /** data description for an switch that controls a light source */ {
 			led as STRING in Dimensionless /** Switch for a light source that is either ON or OFF */
 		}
 		
-		dataSet SensorState /** data description of all values the sensor REST-API contains */{
-			led as STRING in Dimensionless 
-			threshold_temperature as DOUBLE in Dimensionless
-			threshold_brightness as DOUBLE in Ohm
-			
-			temperature as DOUBLE in Dimensionless
-			brightness as DOUBLE in Ohm
+		dataSet SensorState uses AlertThresholdBrightness, AlertThresholdTemperature,LedToggle
+		/**data description of all values the sensor REST-API contains */ {			
+			temperature as DOUBLE in °C /** The measured temperature of the Umgebungkachel sensor */
+			brightness as DOUBLE in Ohm /** The measured brightness of the Umgebungkachel sensor */
 		}
 	} 
 }
