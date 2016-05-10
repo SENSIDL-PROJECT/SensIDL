@@ -1,0 +1,12 @@
+namespace de.fzi.sensidl.example.emeter.vorto.type
+version 1.0.0
+displayname "Unit"
+description "Type for Unit"
+category EMeter
+
+enum Unit {
+	Voltage "Measurement unit: Voltage",
+	Ampere "Measurement unit: Ampere",
+	Watt "Measurement unit: Watt",
+	KiloWatt "Measurement unit: KiloWatt",
+	Dimensionless "No unit"}

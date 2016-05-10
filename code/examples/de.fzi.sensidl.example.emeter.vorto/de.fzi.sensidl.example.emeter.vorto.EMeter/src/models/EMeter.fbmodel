@@ -1,0 +1,72 @@
+namespace de.fzi.sensidl.example.emeter.vorto
+version 1.0.0
+displayname "EMeter"
+description "Function block model for EMeter"
+category emeter
+using de.fzi.sensidl.example.emeter.vorto.type.Info ; 1.0.0
+using de.fzi.sensidl.example.emeter.vorto.type.Unit ; 1.0.0
+
+functionblock EMeter {
+	events {
+		Conductor {
+			mandatory recordType as byte "value = 1, Distinct type for this data set."
+			mandatory voltage as short with {
+				measurementUnit : Unit.Voltage
+			}
+
+			mandatory current as float with {
+				measurementUnit : Unit.Ampere
+			}
+
+			mandatory power as float with {
+				measurementUnit : Unit.Watt
+			}
+
+			mandatory powerFactor as short with {
+				measurementUnit : Unit.Dimensionless
+			}
+
+			"Power factor for this conductor. 0 if not available."
+			mandatory identicator as byte "Identifier to correlate measurements for different conductors"
+			mandatory deviceType as byte "constant value = 40"
+			mandatory info as de.fzi.sensidl.example.emeter.vorto.type.Info
+		}
+
+		NeutralConductor {
+			mandatory recordType as byte "value = 4, Distinct type for this data set."
+			mandatory current as float with {
+				measurementUnit : Unit.Ampere
+			}
+
+			mandatory powerFactor as short with {
+				measurementUnit : Unit.Dimensionless
+			}
+
+			mandatory deviceType as byte "constant value = 40"
+			mandatory info as de.fzi.sensidl.example.emeter.vorto.type.Info
+		}
+
+		Energy {
+			mandatory recordType as byte "value = 5, Distinct type for this data set."
+			mandatory l1 as short with {
+				measurementUnit : Unit.KiloWatt
+			}
+
+			"Energy amount for conductor L1."
+			mandatory l2 as float with {
+				measurementUnit : Unit.KiloWatt
+			}
+
+			"Energy amount for conductor L2."
+			mandatory l3 as float with {
+				measurementUnit : Unit.KiloWatt
+			}
+
+			"Energy amount for conductor L3."
+			mandatory deviceType as byte "constant value = 40"
+			mandatory info as de.fzi.sensidl.example.emeter.vorto.type.Info
+		}
+
+	}
+
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>de.fzi.sensidl.example.emeter.vorto.EMeter</name>
+	<comment></comment>
+	<projects>
+		<project>Dimensionless</project>
+		<project>KiloWatt</project>
+		<project>Watt</project>
+		<project>Unit</project>
+		<project>de.fzi.sensidl.example.emeter.vorto.Unit</project>
+		<project>Ampere</project>
+		<project>de.fzi.sensidl.example.emeter.vorto.info</project>
+		<project>Info</project>
+		<project>Voltage</project>
+		<project>de.fzi.sensidl.example.emeter.vorto.Info</project>
+		<project>de.fzi.sensidl.example.emeter.vorto.unit</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.xtext.ui.shared.xtextBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
+		<nature>org.eclipse.vorto.iotnature</nature>
+	</natures>
+</projectDescription>
