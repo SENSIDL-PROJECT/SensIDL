@@ -181,10 +181,10 @@ public class CUtilityGenerator implements IUtilityGenerator {
     _builder.append("{");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("val = ((val << 8) & 0xFF00FF00 ) | ((val >> 8) & 0xFF00FF ); ");
+    _builder.append("//TODO: implement Method");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("return (val << 16) | (val >> 16);");
+    _builder.append("return val;");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
@@ -196,13 +196,10 @@ public class CUtilityGenerator implements IUtilityGenerator {
     _builder.append("{");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("val = ((val << 8) & 0xFF00FF00FF00FF00ULL ) | ((val >> 8) & 0x00FF00FF00FF00FFULL );");
+    _builder.append("//TODO: implement Method");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("val = ((val << 16) & 0xFFFF0000FFFF0000ULL ) | ((val >> 16) & 0x0000FFFF0000FFFFULL );");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("return (val << 32) | (val >> 32);");
+    _builder.append("return val;");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();

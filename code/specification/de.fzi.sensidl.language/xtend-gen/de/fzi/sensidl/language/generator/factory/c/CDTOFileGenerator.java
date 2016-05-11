@@ -684,8 +684,13 @@ public class CDTOFileGenerator extends CDTOGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.newLine();
+    _builder.append("\t");
+    _builder.append("int n = 1;");
+    _builder.newLine();
+    _builder.append("\t");
     _builder.append("// true if little endian device architecture detected");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("return (*(char *)&n == 1);");
     _builder.newLine();
     _builder.append("} ");

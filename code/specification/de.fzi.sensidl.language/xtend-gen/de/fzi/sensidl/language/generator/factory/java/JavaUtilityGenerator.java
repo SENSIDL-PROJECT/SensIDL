@@ -876,7 +876,7 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
     _builder.append(" ");
     _builder.append("*/");
     _builder.newLine();
-    _builder.append("public String convertToLittleEndian(String str) {");
+    _builder.append("public static String convertToLittleEndian(String str) {");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("//TODO: implement Method");
@@ -907,7 +907,7 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
     _builder.append(" ");
     _builder.append("*/");
     _builder.newLine();
-    _builder.append("public boolean convertToLittleEndian(boolean bool) {");
+    _builder.append("public static boolean convertToLittleEndian(boolean bool) {");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("//TODO: implement Method");

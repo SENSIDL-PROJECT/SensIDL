@@ -111,16 +111,15 @@ class CUtilityGenerator implements IUtilityGenerator{
 			//! Byte swap float
 			static inline float swap_float( float val )
 			{
-			    val = ((val << 8) & 0xFF00FF00 ) | ((val >> 8) & 0xFF00FF ); 
-			    return (val << 16) | (val >> 16);
+			    //TODO: implement Method
+			    return val;
 			}
 			
 			//! Byte swap double
 			static inline double swap_double( double val )
 			{
-			    val = ((val << 8) & 0xFF00FF00FF00FF00ULL ) | ((val >> 8) & 0x00FF00FF00FF00FFULL );
-			    val = ((val << 16) & 0xFFFF0000FFFF0000ULL ) | ((val >> 16) & 0x0000FFFF0000FFFFULL );
-			    return (val << 32) | (val >> 32);
+			    //TODO: implement Method
+			    return val;
 			}
 			
 			//! Byte swap string

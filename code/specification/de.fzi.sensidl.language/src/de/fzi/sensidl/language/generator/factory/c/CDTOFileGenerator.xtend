@@ -306,8 +306,9 @@ class CDTOFileGenerator extends CDTOGenerator {
 		'''
 		bool check_little_endian(){
 			
-		// true if little endian device architecture detected
-		return (*(char *)&n == 1);
+			int n = 1;
+			// true if little endian device architecture detected
+			return (*(char *)&n == 1);
 		} 
 			
 		'''
