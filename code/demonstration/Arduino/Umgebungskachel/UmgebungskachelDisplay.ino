@@ -27,13 +27,13 @@ void refreshDisplay() {
          showDisplay("Server is at:",(ethernetConnection)? getLocalIP() : getWifiIP());
       break;
       case 1:
-         showDisplay("Temperatur:",dtostrf(sens.data.temperature,0,3));
+         showDisplay("Temperatur:",dtostrf(get_SensorState_temperature(&sensorState),0,3));
       break;
       case 2:
-        showDisplay("Licht:",dtostrf(sens.data.brightness,0,3));
+        showDisplay("Licht:",dtostrf(get_SensorState_brightness(&sensorState),0,3));
       break;
       case 3:
-        showDisplay("LED:",sens.data.led);
+        showDisplay("LED:",get_SensorState_led(&sensorState));
       break;      
     }  
 }
