@@ -3,13 +3,15 @@
     Implements a sensor demonstrator for the Qivicon platform on a Intel Galileo Board (Arduino).
     This file contains the imports, global variables and also the loop and setup methods that are essential for an Arduino sketch.
 **/
-#include "Sensidl_light.h"
+// Library Include of the generated Code
+#include "SensorState.h"
+
 #include <Wire.h>
 #include "rgb_lcd.h"
 #include <Ethernet.h>
 #include <math.h>
 #include <TimerOne.h>
-#include "SensorState.h"
+
 
 //Define Sensor And Output Pins
 #define LED 8
@@ -23,9 +25,6 @@ rgb_lcd lcd;
 
 //Network connection
 boolean ethernetConnection = false;
-
-//Data Structure Library
-Sensidl_light sens;
 
 
 // the media access control (ethernet hardware) address for the shield:
@@ -79,11 +78,9 @@ void setup()
  showDisplay("Server is at:",(ethernetConnection)? getLocalIP() : getWifiIP());
  lcd.setRGB(150,255,0);
  
+ //initialize Datastructure and values of the thresholds
  initSensorState(&sensorState);
- //initial values for the thresholds
  initDatastructure();
- sens.data.threshold_brightness = 15;
- sens.data.threshold_temperature = 29;
  
  //setup an interrupt for a touch event
  attachInterrupt(2, touchEvent, CHANGE);
