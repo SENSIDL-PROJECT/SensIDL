@@ -3,7 +3,6 @@ package de.fzi.sensidl.language.generator.factory.c
 import com.google.common.base.Strings
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
-import de.fzi.sensidl.design.sensidl.dataRepresentation.ListData
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData
 import de.fzi.sensidl.language.generator.GenerationUtil
@@ -16,6 +15,8 @@ import org.apache.log4j.Logger
 import java.util.ArrayList
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
+import de.fzi.sensidl.design.sensidl.dataRepresentation.ListData
 
 /**
  * This class implements a part of the CDTOGenerator. This class is responsible for 
@@ -49,7 +50,6 @@ class HeaderDTOGenerator extends CDTOGenerator {
 		val filesToGenerate = new HashMap()
 
 		for (dataset : this.dataSets) {
-
 			val fileName = addFileExtensionTo(GenerationUtil.toNameUpper(dataset))
 
 			filesToGenerate.put(fileName, generateStruct(dataset.name.toFirstUpper, dataset))
@@ -64,7 +64,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 * @param structName Represents the name of the struct.
 	 * @param dataset Represents the model element for the struct.
 	 */
-	def generateStruct(String structName, DataSet dataset) {
+	def generateStruct(String structName, DataSet dataset) {		
 		'''
 			/**\brief		«IF !Strings.isNullOrEmpty(dataset.description)»«dataset.description»«ENDIF»  
 			«FOR data : dataset.eContents.filter(Data)»
@@ -83,7 +83,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 						
 			typedef struct
 			{
-					«generateVariablesIncludeParentDataSet(dataset)»
+					«generateDataFieldsIncludeParentDataSet(dataset)»
 							
 			} «GenerationUtil.toNameUpper(dataset)»;
 			
@@ -112,13 +112,13 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	/**
 	 * Generates the data fields for this data set including used data sets.
 	 */
-	def generateVariablesIncludeParentDataSet(DataSet d) {
+	def generateDataFieldsIncludeParentDataSet(DataSet d) {
 		var dataSets = new ArrayList<DataSet>() => [
 			add(d)
 			addAll(d.parentDataSet)
 		]
 		var dataFieldsString =''''''
-		
+				
 		for (dataSet : dataSets) {
 			for (data : dataSet.data) {
 				dataFieldsString += generateVariable(data)
@@ -319,6 +319,23 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 */
 	dispatch def generateVariable(NonMeasurementData data) {
 		'''«data.toTypeName» «GenerationUtil.toNameLower(data)»;'''
+	}
+	
+ 	dispatch def generateVariable(ListData data) {
+ 		'''
+		«data.getListType» «GenerationUtil.toNameLower(data)»[10]; // static list of length 10 (does a dynamic list fit the requierements?)
+ 		'''
+ 	}
+ 	
+ 				/**
+	 * return the type of the list
+	 */
+	def getListType(ListData data){
+		if (data.dataType != DataType.UNDEFINED){
+			return data.dataType.toTypeName
+		} else if (data.dataTypeDataSet != null){
+			return data.dataTypeDataSet.name
+		}
 	}
 	
 /**
