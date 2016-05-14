@@ -18,6 +18,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 import de.fzi.sensidl.design.sensidl.Endianness
+import java.util.ArrayList
 
 /**
  * This class implements a part of the CDTOGenerator. This class is responsible for 
@@ -127,22 +128,24 @@ class CDTOFileGenerator extends CDTOGenerator {
 		'''	
 	}
 	
-
+	
 	def generateInitDatasetDeclaration(DataSet d) {
 		
-		var dataSet = d
+		var dataSets = new ArrayList<DataSet>() => [
+			add(d)
+			addAll(d.parentDataSet)
+		]
 		var methodsString =''''''
-		methodsString += generateInitTemplateStart(dataSet)
+		methodsString += generateInitTemplateStart(d)
 		
-		while (dataSet!==null) {
+		for (dataSet : dataSets) {
 	
 			methodsString += generateInit(dataSet)
-			dataSet = dataSet.parentDataSet.head //TODO: also use other parent data sets if there is more than one
 		}
-		methodsString += generateInitTemplateEnd(dataSet)
+		methodsString += generateInitTemplateEnd(d)
 		
 		return methodsString		
-	}	
+	}		
 	
 	
 	def generateInit(DataSet dataset) {
@@ -174,98 +177,169 @@ class CDTOFileGenerator extends CDTOGenerator {
 	 * Generates the getter and setter methods prototypes for the data of this data set including used data sets.
 	 */
 	def generateDataMethodsIncludeParentDataSet(DataSet d) {
-		var dataSet = d
+		var dataSets = new ArrayList<DataSet>() => [
+			add(d)
+			addAll(d.parentDataSet)
+		]
 		var methodsString =''''''
-		var parentDataSet = dataSet
-		while (dataSet!==null) {
+		var parentDataSet = d	
+		for (dataSet : dataSets) {
 	
 			for (data : dataSet.eContents.filter(NonMeasurementData)) {
-				methodsString += generateGetterDeclaration(data, parentDataSet)
-				methodsString += System.getProperty("line.separator");
-				methodsString += generateSetterDeclaration(data, parentDataSet)
-				methodsString += System.getProperty("line.separator");
+				if (!data.excludedMethods.contains("getter")){
+					methodsString += generateGetterDeclaration(data, parentDataSet)
+					methodsString += System.getProperty("line.separator");
+				}
+				if (!data.excludedMethods.contains("setter")){
+					methodsString += generateSetterDeclaration(data, parentDataSet)
+					methodsString += System.getProperty("line.separator");
+				}
 			}
 			for (data : dataSet.eContents.filter(MeasurementData)) {
-				methodsString += generateGetterDeclaration(data, parentDataSet)
-				methodsString += System.getProperty("line.separator");
-				methodsString += generateSetterDeclaration(data, parentDataSet)
-				methodsString += System.getProperty("line.separator");
+				if (!data.excludedMethods.contains("getter")){
+					methodsString += generateGetterDeclaration(data, parentDataSet)
+					methodsString += System.getProperty("line.separator");
+				}
+				if (!data.excludedMethods.contains("setter")){				
+					methodsString += generateSetterDeclaration(data, parentDataSet)
+					methodsString += System.getProperty("line.separator");
+				}
 			}
-			dataSet = dataSet.parentDataSet.head //TODO: also use other parent data sets if there is more than one
-		}
-		return methodsString
+		}		
+		return methodsString;
 	}		
 	
-	def generateGetterDeclaration(Data d, DataSet dataset) {
+//	def generateGetterDeclaration(Data d, DataSet dataset) {
+//		'''			
+//		«IF (d instanceof MeasurementData) && (d as MeasurementData).adjustments.empty == false»
+//		
+//		«FOR dataAdj : (d as MeasurementData).adjustments»
+//			«IF dataAdj instanceof DataRange»
+//				«d.toTypeName» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p){
+//					if («d.name.toFirstLower» >= «dataAdj.range.lowerBound» && «d.name.toFirstLower» <= «dataAdj.range.upperBound»)
+//						 return p->«d.name.toFirstLower»;
+//					else{
+//							//Do something
+//						}
+//				}
+//			«ENDIF»	
+//			
+//			«IF dataAdj instanceof DataConversion»						
+//				«generatedAdjustedGetterDeclaration(dataAdj, (d as MeasurementData), dataset)»
+//			«ENDIF»		
+//		«ENDFOR»
+//		
+//		«ELSE»
+//			«d.toTypeName» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p) { return p->«d.name»; }
+//		«ENDIF»
+//		'''
+//	}
+	
+		/** 
+	 * Generates the Getter Method for the measurement data
+	 */
+	def generateGetterDeclaration(MeasurementData d, DataSet dataset) {
 		'''
-		«IF (d instanceof MeasurementData) && (d as MeasurementData).adjustments.empty == false»
-		
-		«FOR dataAdj : (d as MeasurementData).adjustments»
-			«IF dataAdj instanceof DataRange»
-				«d.toTypeName» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p){
-					if («d.name.toFirstLower» >= «dataAdj.range.lowerBound» && «d.name.toFirstLower» <= «dataAdj.range.upperBound»)
-						 return p->«d.name.toFirstLower»;
-					else{
-							//Do something
-						}
-				}
-			«ENDIF»	
-			
-			«IF dataAdj instanceof DataConversion»						
-				«generatedAdjustedGetterDeclaration(dataAdj, (d as MeasurementData), dataset)»
-			«ENDIF»				
-		«ENDFOR»
-		
-		«ELSE»
+			«IF !d.hasLinearDataConversionWithInterval»
 			«d.toTypeName» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p) { return p->«d.name»; }
-		«ENDIF»
+			«ELSE»
+			 «generateAdjustedGetterPrototypes(d, dataset)»
+			«ENDIF»
 		'''
 	}
 	
-	def dispatch generatedAdjustedGetterDeclaration(LinearDataConversionWithInterval dataAdj, MeasurementData d, DataSet dataset) {
+ 	/**
+ 	 * Generates the Getter Method for adjusted measurement data
+ 	 */
+ 	def generateAdjustedGetterPrototypes(MeasurementData d, DataSet dataset) {
+ 		'''
+ 		«d.getReturnDataType» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p) { return p->«d.name»Adjusted; }
+ 		
+ 		«d.toTypeName» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»NotAdjusted(«dataset.name.toFirstUpper»* p) { return p->«d.name»; }
+ 		
+ 		'''
+ 	}
+ 	
+ 		/** 
+	 * Generates the Getter Method for the non measurement data
+	 */
+	def generateGetterDeclaration(NonMeasurementData d, DataSet dataset) {
 		'''
-			«DataTypes.getDataTypeBy(GenerationUtil.getDataTypeOfDataConversionAdjustment(d))» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p){						
-					if («d.name.toFirstLower» >= «dataAdj.fromInterval.lowerBound» && «d.name.toFirstLower» <= «dataAdj.fromInterval.upperBound»){												
-						
-						«d.toTypeName» oldMin =  «dataAdj.fromInterval.lowerBound.intValue»;
-						«d.toTypeName» oldMax =  «dataAdj.fromInterval.upperBound.intValue»;
-						«d.toTypeName» newMin =  «dataAdj.toInterval.lowerBound.intValue»;
-						«d.toTypeName» newMax =  «dataAdj.toInterval.upperBound.intValue»;
-						
-						return ((((p->«d.name.toFirstLower» - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin);
-					}
-					else{
-						//Do something
-					}
-				}
+ 		«d.toTypeName» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p) { return p->«d.name»; }
 		'''
-	}
+	}		
 	
-	def dispatch generatedAdjustedGetterDeclaration(LinearDataConversion dataAdj, MeasurementData d, DataSet dataset) {
-		'''
-			«d.toTypeName» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p){						
-					return (p->«d.name.toFirstLower» * «dataAdj.scalingFactor») + «dataAdj.offset»;
-				} 
-		'''
-	}
 	
-	dispatch def generateSetterDeclaration(MeasurementData d, DataSet dataset) {
-			'''
-				void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ) { p->«d.name.toFirstLower» = «d.name.toFirstLower»; }	
-			''' 
-	}	
+	
+	
+//	def dispatch generatedAdjustedGetterDeclaration(LinearDataConversion dataAdj, MeasurementData d, DataSet dataset) {
+//		'''
+//			«d.toTypeName» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p){						
+//					return (p->«d.name.toFirstLower» * «dataAdj.scalingFactor») + «dataAdj.offset»;
+//				} 
+//		'''
+//	}
+	
+ 	dispatch def generateSetterDeclaration(MeasurementData d, DataSet dataset) {
+ 			'''
+ 				«IF d.adjustments.empty == false»
+	 				«FOR dataAdj : d.adjustments»
+	 				«IF dataAdj instanceof DataRange»
+	 					void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ){
+	 						if («d.name.toFirstLower» >= «dataAdj.range.lowerBound» && «d.name.toFirstLower» <= «dataAdj.range.upperBound»)
+	 							 p->«d.name.toFirstLower» = «d.name.toFirstLower»;
+	 						else{
+	 								//Do something
+	 							}
+	 					}
+	 				«ENDIF»	
+	 				
+	 				«IF dataAdj instanceof DataConversion»						
+	 					«IF dataAdj instanceof LinearDataConversion»
+	 					void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ){						
+	 						p->«d.name.toFirstLower» =  «d.name.toFirstLower» *  «dataAdj.scalingFactor» +  «dataAdj.offset»;
+	 					} 
+	 					«ELSE»
+	 						«IF dataAdj instanceof LinearDataConversionWithInterval»
+	 						void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ){						
+	 							if («d.name.toFirstLower» >= «dataAdj.fromInterval.lowerBound» && «d.name.toFirstLower» <= «dataAdj.fromInterval.upperBound»){												
+	 								
+	 								«d.toTypeName» oldMin =  «dataAdj.fromInterval.lowerBound.intValue»;
+	 								«d.toTypeName» oldMax =  «dataAdj.fromInterval.upperBound.intValue»;
+	 								«d.toTypeName» newMin =  «dataAdj.toInterval.lowerBound.intValue»;
+	 								«d.toTypeName» newMax =  «dataAdj.toInterval.upperBound.intValue»;
+	 								
+	 								p->«d.name.toFirstLower» = «d.name.toFirstLower»;
+	 								p->«d.name.toFirstLower»Adjusted =  ((((«d.name.toFirstLower» - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin);
+	 							}
+	 							else{
+	 								//Do something
+	 							}
+	 						} 		
+	 						«ENDIF»
+	 					«ENDIF»
+	 				«ENDIF»				
+	 				«ENDFOR»	
+ 				«ELSE»
+ 					void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ) { p->«d.name.toFirstLower» = «d.name.toFirstLower»; }
+ 				«ENDIF»
+ 				''' 
+ 	}
+ 	
+ 	
 	
 	dispatch def generateSetterDeclaration(NonMeasurementData d, DataSet dataset) {
-		if (d.constant) {
 			'''
-				// no setter for constant value
-			'''
-		} else {
-			'''
+			«IF !d.constant»					
 				void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ) { p->«d.name.toFirstLower» = «d.name.toFirstLower»; }
+			«ELSE»
+			// no setter for constant value
+			«ENDIF»										
 			'''
-		}
+		
 	}
+	
+
 	
 	def generateEndiannessMethodsDeclarations(DataSet d){
 		'''
@@ -411,6 +485,29 @@ class CDTOFileGenerator extends CDTOGenerator {
 		'''
 			* \param		«dataset.name»: «IF !Strings.isNullOrEmpty(dataset.description)»«dataset.description»«ENDIF»
 		'''
+	}
+	
+	/**
+	 * @return true if the MeasurementData is adjusted 
+	 * with linear data conversion with interval
+	 */
+	def hasLinearDataConversionWithInterval(MeasurementData data){
+		return !data.adjustments.filter(LinearDataConversionWithInterval).empty
+	}
+	
+	def getReturnDataType(MeasurementData d) {
+		if (d.isAdjustedByLinearConversionWithInterval) {
+			return DataTypes.getDataTypeBy(GenerationUtil.getDataTypeOfDataConversionAdjustment(d))
+		}
+		
+		d.toTypeName
+	}
+	
+				/**
+	 * Checks, if the given MeasurementData-element was specified to be adjusted as linear conversion.
+	 */
+	def isAdjustedByLinearConversionWithInterval(MeasurementData data) {
+		return ((data.adjustments.size > 0) && (data.adjustments.get(0) instanceof LinearDataConversionWithInterval))
 	}
 	
 	/**

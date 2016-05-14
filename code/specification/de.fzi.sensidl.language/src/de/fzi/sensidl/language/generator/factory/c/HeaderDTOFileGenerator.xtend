@@ -136,7 +136,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	def generateInitDatasetPrototype(DataSet dataset) {
 		'''
 		/**
-		* @Initialization of the «dataset.name.toFirstUpper» dataset
+		* @Initialization of the «dataset.name.toFirstUpper» dataset (to give the initial values to const fields)
 		*/
 		void init«dataset.name.toFirstUpper»(«dataset.name.toFirstUpper»* p);
 		'''		
@@ -146,26 +146,36 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 * Generates the getter and setter methods prototypes for the data of this data set including used data sets.
 	 */
 	def generateDataMethodsPrototypesIncludeParentDataSet(DataSet d) {
-		var dataSet = d
+		var dataSets = new ArrayList<DataSet>() => [
+			add(d)
+			addAll(d.parentDataSet)
+		]
 		var methodsString =''''''
-		var parentDataSet = dataSet		
-		while (dataSet!==null) {
+		var parentDataSet = d		
+		for (dataSet : dataSets) {
 	
 			for (data : dataSet.eContents.filter(NonMeasurementData)) {
-				methodsString += generateGetterPrototype(data, parentDataSet)
-				methodsString += System.getProperty("line.separator");
-				methodsString += generateSetterPrototype(data, parentDataSet)
-				methodsString += System.getProperty("line.separator");
+				if (!data.excludedMethods.contains("getter")){
+					methodsString += generateGetterPrototype(data, parentDataSet)
+					methodsString += System.getProperty("line.separator");
+				}
+				if (!data.excludedMethods.contains("setter")){
+					methodsString += generateSetterPrototype(data, parentDataSet)
+					methodsString += System.getProperty("line.separator");
+				}
 			}
 			for (data : dataSet.eContents.filter(MeasurementData)) {
-				methodsString += generateGetterPrototype(data, parentDataSet)
-				methodsString += System.getProperty("line.separator");
-				methodsString += generateSetterPrototype(data, parentDataSet)
-				methodsString += System.getProperty("line.separator");
+				if (!data.excludedMethods.contains("getter")){
+					methodsString += generateGetterPrototype(data, parentDataSet)
+					methodsString += System.getProperty("line.separator");
+				}
+				if (!data.excludedMethods.contains("setter")){				
+					methodsString += generateSetterPrototype(data, parentDataSet)
+					methodsString += System.getProperty("line.separator");
+				}
 			}
-			dataSet = dataSet.parentDataSet.head //TODO: also use other parent data sets if there is more than one
 		}
-		return methodsString
+		return methodsString;
 	}	
 	
 	/** 
@@ -175,12 +185,36 @@ class HeaderDTOGenerator extends CDTOGenerator {
 		'''
 		«var dataType = d.getReturnDataType»
 		
+		«IF d.isAdjustedByLinearConversionWithInterval»
+		«generatedAdjustedGetterPrototypes(d, dataset)»
+		«ELSE»		
 		/**
 		* @return the «d.name.toFirstUpper»
 		*/
 		«dataType» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p);
+	
+		«ENDIF»				
 		'''
 	}
+	
+ 	/**
+ 	 * Generates the Getter Method for adjusted measurement data
+ 	 */
+ 	def generatedAdjustedGetterPrototypes(MeasurementData d, DataSet dataset) {
+ 		'''
+ 		/**
+ 		* @return the adjusted «d.name.toFirstUpper»
+ 		*/
+ 		«d.getReturnDataType» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p);
+ 		
+		/**
+ 		* @return the not adjusted «d.name.toFirstUpper»
+ 		*/
+ 		«d.toTypeName» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»NotAdjusted(«dataset.name.toFirstUpper»* p); 		
+ 		
+ 		'''
+ 	}	
+	 
 	
 	def getReturnDataType(MeasurementData d) {
 		if (d.isAdjustedByLinearConversionWithInterval) {
@@ -201,7 +235,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 * Generates the Setter Method for the measurement data
 	 */	
 	dispatch def generateSetterPrototype(MeasurementData d, DataSet dataset) {
-		'''
+		'''	
 		/**
 		 * @param pointer to dataset, «d.name.toFirstLower»
 		 *			the «d.name.toFirstLower» to set
@@ -229,13 +263,14 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 */	
 	dispatch def generateSetterPrototype(NonMeasurementData d, DataSet dataset) {
 		'''
-		«IF !d.constant»
+		«IF !d.constant»			
 		/**
 		 * @param pointer to dataset, «d.name.toFirstLower»
 		 *			the «d.name.toFirstLower» to set
 		 */
 		void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» );
-		
+		«ELSE»
+		// no setter for constant value
 		«ENDIF»
 		'''
 	}		
@@ -268,11 +303,14 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 * @param data
 	 * 			represents data which was measured by a sensor.
 	 */
-	dispatch def generateVariable(MeasurementData data) {
-		'''
-		«data.toTypeName» «GenerationUtil.toNameLower(data)»;
-		'''
-	}
+ 	dispatch def generateVariable(MeasurementData data) {
+ 		'''
+ 		«data.toTypeName» «GenerationUtil.toNameLower(data)»;
+ 		«IF data.isAdjustedByLinearConversionWithInterval»
+ 		«data.getReturnDataType» «GenerationUtil.toNameLower(data)»Adjusted;
+ 		«ENDIF»
+ 		'''
+ 	}	
 
 	/**
 	 * Generates a c variable for non-measured data in the struct.
