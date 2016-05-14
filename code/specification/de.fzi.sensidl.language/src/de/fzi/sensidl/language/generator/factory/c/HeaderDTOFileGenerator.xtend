@@ -171,7 +171,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 				}
 				if (!data.excludedMethods.contains("setter")){				
 					methodsString += generateSetterPrototype(data, parentDataSet)
-					methodsString += System.getProperty("line.separator");
+					methodsString += System.getProperty("line.separator"); 
 				}
 			}
 		}

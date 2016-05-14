@@ -284,7 +284,7 @@ class CDTOFileGenerator extends CDTOGenerator {
  			'''
  				«IF d.adjustments.empty == false»
 	 				«FOR dataAdj : d.adjustments»
-	 				«IF dataAdj instanceof DataRange»
+	 				«IF dataAdj instanceof DataRange» 
 	 					void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ){
 	 						if («d.name.toFirstLower» >= «dataAdj.range.lowerBound» && «d.name.toFirstLower» <= «dataAdj.range.upperBound»)
 	 							 p->«d.name.toFirstLower» = «d.name.toFirstLower»;
