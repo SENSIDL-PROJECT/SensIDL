@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uriMap:MappingContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uriMap="http:///www.eclipse.org/m2m/qvt/oml/MModelUriMap/1.0.0">
+  <mapping sourceURI="http://fzi.de/sensidl/design/1.0" targetURI="platform:/resource/de.fzi.sensidl.design/model/sensIDL.ecore"/>
+  <mapping sourceURI="http://www.eclipse.org/vorto/metamodel/InformationModel" targetURI="platform:/resource/de.fzi.sensidl.vorto.transformation/VortoMetaModel/InformationModel.ecore"/>
+  <mapping sourceURI="http://www.eclipse.org/vorto/metamodel/Functionblock" targetURI="platform:/resource/de.fzi.sensidl.vorto.transformation/VortoMetaModel/Functionblock.ecore"/>
+  <mapping sourceURI="http://www.eclipse.org/vorto/metamodel/Datatype" targetURI="platform:/resource/de.fzi.sensidl.vorto.transformation/VortoMetaModel/Datatype.ecore"/>
+</uriMap:MappingContainer>

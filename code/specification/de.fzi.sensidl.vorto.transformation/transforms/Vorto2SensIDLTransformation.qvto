@@ -1,0 +1,160 @@
+modeltype SensIDLModel "strict" uses "http://fzi.de/sensidl/design/1.0";
+modeltype VortoInformationModel "strict" uses "http://www.eclipse.org/vorto/metamodel/InformationModel";
+modeltype VortoFunctionblock "strict" uses "http://www.eclipse.org/vorto/metamodel/Functionblock";
+modeltype VortoDataTypes "strict" uses "http://www.eclipse.org/vorto/metamodel/Datatype";
+
+transformation Vorto2SensIDLTransformation(in Source: VortoInformationModel, out Target: SensIDLModel);
+
+main() {
+	log("Start with transformation");
+	
+	//var fbmodel :=  Source.rootObjects()[VortoInformationModel::InformationModel].properties.type;
+	//fbmodel -> map toSensorInterface();
+	Source.rootObjects()[VortoInformationModel::InformationModel].properties.type -> map toSensorInterface();	
+	
+	log("Finish transformation");
+}
+
+mapping VortoFunctionblock::FunctionblockModel::toSensorInterface() : SensIDLModel::SensorInterface {
+	log("Start with SensorInterface-transformation");
+
+	name := self.name;
+	description := self.description;
+	dataDescription := self.functionblock.map toDataDescription();
+	encodingSettings := createDefaultSettings();
+}
+
+query createDefaultSettings() : SensIDLModel::EncodingSettings {
+	return object SensIDLModel::EncodingSettings {
+		coding := SensIDLModel::Coding::SENSIDL_BINARY;
+		endianness := SensIDLModel::Endianness::BIG_ENDIAN;
+		alignment := 1;
+	};
+}
+
+mapping VortoFunctionblock::FunctionBlock::toDataDescription() : SensIDLModel::dataRepresentation::SensorDataDescription
+when {self.events -> size() > 0} {
+	log("Start with SensorDataDescription-transformation");
+	
+	dataSets := self.events -> map toDataSet();
+}
+
+mapping VortoFunctionblock::Event::toDataSet() : SensIDLModel::dataRepresentation::DataSet {
+	log("Start with DataSet-transformation");
+	
+	name := self.name;
+	data := self.properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)) -> map toNonMeasurementData();
+	
+	//var dataSets := self.properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::ObjectPropertyType)) -> map toSubDataSet();
+	//sensorDataDescription.dataSets += dataSets;
+	//subDataSets := dataSets;
+}
+
+mapping VortoDataTypes::Property::toSubDataSet() : SensIDLModel::dataRepresentation::DataSet 
+when {self.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclIsTypeOf(VortoDataTypes::Entity)} {
+	log("Start with DataSet-transformation");
+
+	name := self.name;
+	data := self.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity).properties 
+			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)) -> map toNonMeasurementData();
+	subDataSets := self.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity).properties
+			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::ObjectPropertyType)) -> map toSubDataSet();
+}
+
+mapping VortoDataTypes::Property::toNonMeasurementData() : SensIDLModel::dataRepresentation::NonMeasurementData {
+	log("Start with MeasurementData-transformation");
+
+	name := self.name;
+	description := self.description;
+	dataType := toDataType(self.type.oclAsType(VortoDataTypes::PrimitivePropertyType).type);
+}
+
+//Currently not in use.
+mapping VortoDataTypes::Property::toMeasurementData() : SensIDLModel::dataRepresentation::MeasurementData {
+	log("Start with MeasurementData-transformation");
+
+	name := self.name;
+	description := self.description;
+	dataType := toDataType(self.type.oclAsType(VortoDataTypes::PrimitivePropertyType).type);
+	adjustments := map toDataRange(self.Constraints);	
+	// unit := ...
+}
+
+mapping toDataRange(in constraints : OrderedSet(VortoDataTypes::Constraint)) : SensIDLModel::dataRepresentation::DataRange 
+when {
+	(constraints -> size() = 2) and 
+	(constraints -> exists(constraint | constraint.type = VortoDataTypes::ConstraintIntervalType::min)) and
+	(constraints -> exists(constraint | constraint.type = VortoDataTypes::ConstraintIntervalType::max))
+} {
+	range := object SensIDLModel::dataRepresentation::Interval {
+		lowerBound := getCorrespondingBound(constraints, true);
+		upperBound := getCorrespondingBound(constraints, false);
+	}
+}
+
+//At this stage integer insteat of double values are returned.
+query getCorrespondingBound(constraints : OrderedSet(VortoDataTypes::Constraint), isLowerBound : Boolean) : Integer {
+	if (isLowerBound) then {
+		constraints -> forEach(constraint) {
+			if (constraint.type = VortoDataTypes::ConstraintIntervalType::min) then {
+				return constraint.constraintValues.toInteger();
+			} endif;
+		};
+		
+		return 0;
+	} endif;
+	
+	constraints -> forEach(constraint) {
+			if (constraint.type = VortoDataTypes::ConstraintIntervalType::max) then {
+				return constraint.constraintValues.toInteger();
+			} endif;
+	};
+	
+	return 0;
+}
+
+query toDataType(primType : VortoDataTypes::PrimitiveType) :  SensIDLModel::dataRepresentation::DataType {
+	log("Start with DataType-transformation");
+	
+	if (primType = VortoDataTypes::PrimitiveType::string) then {
+		return SensIDLModel::dataRepresentation::DataType::STRING;
+	} endif;
+	
+	if (primType = VortoDataTypes::PrimitiveType::int) then {
+		return SensIDLModel::dataRepresentation::DataType::INT32;
+	} endif;
+	
+	if (primType = VortoDataTypes::PrimitiveType::float) then {
+		return SensIDLModel::dataRepresentation::DataType::FLOAT;
+	} endif;
+	
+	if (primType = VortoDataTypes::PrimitiveType::boolean) then {
+		return SensIDLModel::dataRepresentation::DataType::BOOLEAN;
+	} endif;
+	
+	if (primType = VortoDataTypes::PrimitiveType::datetime) then {
+		return SensIDLModel::dataRepresentation::DataType::UNDEFINED;
+	} endif;
+	
+	if (primType = VortoDataTypes::PrimitiveType::double) then {
+		return SensIDLModel::dataRepresentation::DataType::DOUBLE;
+	} endif;
+	
+	if (primType = VortoDataTypes::PrimitiveType::long) then {
+		return SensIDLModel::dataRepresentation::DataType::INT64;
+	} endif;
+	
+	if (primType = VortoDataTypes::PrimitiveType::short) then {
+		return SensIDLModel::dataRepresentation::DataType::INT16;
+	} endif;
+	
+	if (primType = VortoDataTypes::PrimitiveType::base64Binary) then {
+		return SensIDLModel::dataRepresentation::DataType::UNDEFINED;
+	} endif;
+	
+	if (primType = VortoDataTypes::PrimitiveType::byte) then {
+		return SensIDLModel::dataRepresentation::DataType::UINT8;
+	} endif;
+	
+	return return SensIDLModel::dataRepresentation::DataType::UNDEFINED;
+}

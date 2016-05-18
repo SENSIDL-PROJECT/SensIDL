@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datatype:Entity xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:datatype="http://www.eclipse.org/vorto/metamodel/Datatype" name="Info">
+  <properties name="deviceType" description="&quot;constant value = 40&quot;">
+    <type xsi:type="datatype:PrimitivePropertyType" type="byte"/>
+  </properties>
+</datatype:Entity>

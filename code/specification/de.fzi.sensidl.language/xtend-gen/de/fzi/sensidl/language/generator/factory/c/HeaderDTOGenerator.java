@@ -1,5 +1,6 @@
 package de.fzi.sensidl.language.generator.factory.c;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Strings;
 import com.google.common.collect.Iterables;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data;
@@ -25,7 +26,6 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
@@ -146,8 +146,8 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append("{");
     _builder.newLine();
     _builder.append("\t\t");
-    String _generateVariablesIncludeParentDataSet = this.generateVariablesIncludeParentDataSet(dataset);
-    _builder.append(_generateVariablesIncludeParentDataSet, "\t\t");
+    String _generateDataFieldsIncludeParentDataSet = this.generateDataFieldsIncludeParentDataSet(dataset);
+    _builder.append(_generateDataFieldsIncludeParentDataSet, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t\t\t");
     _builder.newLine();
@@ -203,7 +203,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
   /**
    * Generates the data fields for this data set including used data sets.
    */
-  public String generateVariablesIncludeParentDataSet(final DataSet d) {
+  public String generateDataFieldsIncludeParentDataSet(final DataSet d) {
     ArrayList<DataSet> _arrayList = new ArrayList<DataSet>();
     final Procedure1<ArrayList<DataSet>> _function = new Procedure1<ArrayList<DataSet>>() {
       @Override
@@ -243,7 +243,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     String _name = dataset.getName();
     String _firstUpper = StringExtensions.toFirstUpper(_name);
     _builder.append(_firstUpper, "");
-    _builder.append(" dataset");
+    _builder.append(" dataset (to give the initial values to const fields)");
     _builder.newLineIfNotEmpty();
     _builder.append("*/");
     _builder.newLine();
@@ -264,51 +264,77 @@ public class HeaderDTOGenerator extends CDTOGenerator {
    * Generates the getter and setter methods prototypes for the data of this data set including used data sets.
    */
   public String generateDataMethodsPrototypesIncludeParentDataSet(final DataSet d) {
-    DataSet dataSet = d;
+    ArrayList<DataSet> _arrayList = new ArrayList<DataSet>();
+    final Procedure1<ArrayList<DataSet>> _function = new Procedure1<ArrayList<DataSet>>() {
+      @Override
+      public void apply(final ArrayList<DataSet> it) {
+        it.add(d);
+        EList<DataSet> _parentDataSet = d.getParentDataSet();
+        it.addAll(_parentDataSet);
+      }
+    };
+    ArrayList<DataSet> dataSets = ObjectExtensions.<ArrayList<DataSet>>operator_doubleArrow(_arrayList, _function);
     StringConcatenation _builder = new StringConcatenation();
     String methodsString = _builder.toString();
-    DataSet parentDataSet = dataSet;
-    while ((dataSet != null)) {
+    DataSet parentDataSet = d;
+    for (final DataSet dataSet : dataSets) {
       {
         EList<EObject> _eContents = dataSet.eContents();
         Iterable<NonMeasurementData> _filter = Iterables.<NonMeasurementData>filter(_eContents, NonMeasurementData.class);
         for (final NonMeasurementData data : _filter) {
           {
-            String _methodsString = methodsString;
-            CharSequence _generateGetterPrototype = this.generateGetterPrototype(data, parentDataSet);
-            methodsString = (_methodsString + _generateGetterPrototype);
-            String _methodsString_1 = methodsString;
-            String _property = System.getProperty("line.separator");
-            methodsString = (_methodsString_1 + _property);
-            String _methodsString_2 = methodsString;
-            CharSequence _generateSetterPrototype = this.generateSetterPrototype(data, parentDataSet);
-            methodsString = (_methodsString_2 + _generateSetterPrototype);
-            String _methodsString_3 = methodsString;
-            String _property_1 = System.getProperty("line.separator");
-            methodsString = (_methodsString_3 + _property_1);
+            EList<String> _excludedMethods = data.getExcludedMethods();
+            boolean _contains = _excludedMethods.contains("getter");
+            boolean _not = (!_contains);
+            if (_not) {
+              String _methodsString = methodsString;
+              CharSequence _generateGetterPrototype = this.generateGetterPrototype(data, parentDataSet);
+              methodsString = (_methodsString + _generateGetterPrototype);
+              String _methodsString_1 = methodsString;
+              String _property = System.getProperty("line.separator");
+              methodsString = (_methodsString_1 + _property);
+            }
+            EList<String> _excludedMethods_1 = data.getExcludedMethods();
+            boolean _contains_1 = _excludedMethods_1.contains("setter");
+            boolean _not_1 = (!_contains_1);
+            if (_not_1) {
+              String _methodsString_2 = methodsString;
+              CharSequence _generateSetterPrototype = this.generateSetterPrototype(data, parentDataSet);
+              methodsString = (_methodsString_2 + _generateSetterPrototype);
+              String _methodsString_3 = methodsString;
+              String _property_1 = System.getProperty("line.separator");
+              methodsString = (_methodsString_3 + _property_1);
+            }
           }
         }
         EList<EObject> _eContents_1 = dataSet.eContents();
         Iterable<MeasurementData> _filter_1 = Iterables.<MeasurementData>filter(_eContents_1, MeasurementData.class);
         for (final MeasurementData data_1 : _filter_1) {
           {
-            String _methodsString = methodsString;
-            CharSequence _generateGetterPrototype = this.generateGetterPrototype(data_1, parentDataSet);
-            methodsString = (_methodsString + _generateGetterPrototype);
-            String _methodsString_1 = methodsString;
-            String _property = System.getProperty("line.separator");
-            methodsString = (_methodsString_1 + _property);
-            String _methodsString_2 = methodsString;
-            CharSequence _generateSetterPrototype = this.generateSetterPrototype(data_1, parentDataSet);
-            methodsString = (_methodsString_2 + _generateSetterPrototype);
-            String _methodsString_3 = methodsString;
-            String _property_1 = System.getProperty("line.separator");
-            methodsString = (_methodsString_3 + _property_1);
+            EList<String> _excludedMethods = data_1.getExcludedMethods();
+            boolean _contains = _excludedMethods.contains("getter");
+            boolean _not = (!_contains);
+            if (_not) {
+              String _methodsString = methodsString;
+              CharSequence _generateGetterPrototype = this.generateGetterPrototype(data_1, parentDataSet);
+              methodsString = (_methodsString + _generateGetterPrototype);
+              String _methodsString_1 = methodsString;
+              String _property = System.getProperty("line.separator");
+              methodsString = (_methodsString_1 + _property);
+            }
+            EList<String> _excludedMethods_1 = data_1.getExcludedMethods();
+            boolean _contains_1 = _excludedMethods_1.contains("setter");
+            boolean _not_1 = (!_contains_1);
+            if (_not_1) {
+              String _methodsString_2 = methodsString;
+              CharSequence _generateSetterPrototype = this.generateSetterPrototype(data_1, parentDataSet);
+              methodsString = (_methodsString_2 + _generateSetterPrototype);
+              String _methodsString_3 = methodsString;
+              String _property_1 = System.getProperty("line.separator");
+              methodsString = (_methodsString_3 + _property_1);
+            }
           }
         }
-        EList<DataSet> _parentDataSet = dataSet.getParentDataSet();
-        DataSet _head = IterableExtensions.<DataSet>head(_parentDataSet);
-        dataSet = _head;
       }
     }
     return methodsString;
@@ -322,16 +348,60 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     String dataType = this.getReturnDataType(d);
     _builder.newLineIfNotEmpty();
     _builder.newLine();
+    {
+      boolean _isAdjustedByLinearConversionWithInterval = this.isAdjustedByLinearConversionWithInterval(d);
+      if (_isAdjustedByLinearConversionWithInterval) {
+        CharSequence _generatedAdjustedGetterPrototypes = this.generatedAdjustedGetterPrototypes(d, dataset);
+        _builder.append(_generatedAdjustedGetterPrototypes, "");
+        _builder.newLineIfNotEmpty();
+      } else {
+        _builder.append("/**");
+        _builder.newLine();
+        _builder.append("* @return the ");
+        String _name = d.getName();
+        String _firstUpper = StringExtensions.toFirstUpper(_name);
+        _builder.append(_firstUpper, "");
+        _builder.newLineIfNotEmpty();
+        _builder.append("*/");
+        _builder.newLine();
+        _builder.append(dataType, "");
+        _builder.append(" get_");
+        String _name_1 = dataset.getName();
+        String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
+        _builder.append(_firstUpper_1, "");
+        _builder.append("_");
+        String _name_2 = d.getName();
+        String _replaceAll = _name_2.replaceAll("[^a-zA-Z0-9]", "");
+        _builder.append(_replaceAll, "");
+        _builder.append("(");
+        String _name_3 = dataset.getName();
+        String _firstUpper_2 = StringExtensions.toFirstUpper(_name_3);
+        _builder.append(_firstUpper_2, "");
+        _builder.append("* p);");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.newLine();
+      }
+    }
+    return _builder;
+  }
+  
+  /**
+   * Generates the Getter Method for adjusted measurement data
+   */
+  public CharSequence generatedAdjustedGetterPrototypes(final MeasurementData d, final DataSet dataset) {
+    StringConcatenation _builder = new StringConcatenation();
     _builder.append("/**");
     _builder.newLine();
-    _builder.append("* @return the ");
+    _builder.append("* @return the adjusted ");
     String _name = d.getName();
     String _firstUpper = StringExtensions.toFirstUpper(_name);
     _builder.append(_firstUpper, "");
     _builder.newLineIfNotEmpty();
     _builder.append("*/");
     _builder.newLine();
-    _builder.append(dataType, "");
+    String _returnDataType = this.getReturnDataType(d);
+    _builder.append(_returnDataType, "");
     _builder.append(" get_");
     String _name_1 = dataset.getName();
     String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
@@ -346,6 +416,34 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append(_firstUpper_2, "");
     _builder.append("* p);");
     _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append("* @return the not adjusted ");
+    String _name_4 = d.getName();
+    String _firstUpper_3 = StringExtensions.toFirstUpper(_name_4);
+    _builder.append(_firstUpper_3, "");
+    _builder.newLineIfNotEmpty();
+    _builder.append("*/");
+    _builder.newLine();
+    String _typeName = this.toTypeName(d);
+    _builder.append(_typeName, "");
+    _builder.append(" get_");
+    String _name_5 = dataset.getName();
+    String _firstUpper_4 = StringExtensions.toFirstUpper(_name_5);
+    _builder.append(_firstUpper_4, "");
+    _builder.append("_");
+    String _name_6 = d.getName();
+    String _replaceAll_1 = _name_6.replaceAll("[^a-zA-Z0-9]", "");
+    _builder.append(_replaceAll_1, "");
+    _builder.append("NotAdjusted(");
+    String _name_7 = dataset.getName();
+    String _firstUpper_5 = StringExtensions.toFirstUpper(_name_7);
+    _builder.append(_firstUpper_5, "");
+    _builder.append("* p); \t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
     return _builder;
   }
   
@@ -510,6 +608,8 @@ public class HeaderDTOGenerator extends CDTOGenerator {
         _builder.append(_firstLower_2, "");
         _builder.append(" );");
         _builder.newLineIfNotEmpty();
+      } else {
+        _builder.append("// no setter for constant value");
         _builder.newLine();
       }
     }
@@ -583,6 +683,18 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append(_nameLower, "");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
+    {
+      boolean _isAdjustedByLinearConversionWithInterval = this.isAdjustedByLinearConversionWithInterval(data);
+      if (_isAdjustedByLinearConversionWithInterval) {
+        String _returnDataType = this.getReturnDataType(data);
+        _builder.append(_returnDataType, "");
+        _builder.append(" ");
+        String _nameLower_1 = GenerationUtil.toNameLower(data);
+        _builder.append(_nameLower_1, "");
+        _builder.append("Adjusted;");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
   
@@ -600,6 +712,38 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append(_nameLower, "");
     _builder.append(";");
     return _builder;
+  }
+  
+  protected CharSequence _generateVariable(final ListData data) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _listType = this.getListType(data);
+    _builder.append(_listType, "");
+    _builder.append(" ");
+    String _nameLower = GenerationUtil.toNameLower(data);
+    _builder.append(_nameLower, "");
+    _builder.append("[10]; // static list of length 10 (does a dynamic list fit the requierements?)");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  /**
+   * return the type of the list
+   */
+  public String getListType(final ListData data) {
+    DataType _dataType = data.getDataType();
+    boolean _notEquals = (!Objects.equal(_dataType, DataType.UNDEFINED));
+    if (_notEquals) {
+      DataType _dataType_1 = data.getDataType();
+      return this.toTypeName(_dataType_1);
+    } else {
+      DataSet _dataTypeDataSet = data.getDataTypeDataSet();
+      boolean _notEquals_1 = (!Objects.equal(_dataTypeDataSet, null));
+      if (_notEquals_1) {
+        DataSet _dataTypeDataSet_1 = data.getDataTypeDataSet();
+        return _dataTypeDataSet_1.getName();
+      }
+    }
+    return null;
   }
   
   /**
@@ -714,7 +858,9 @@ public class HeaderDTOGenerator extends CDTOGenerator {
   }
   
   public CharSequence generateVariable(final Data data) {
-    if (data instanceof MeasurementData) {
+    if (data instanceof ListData) {
+      return _generateVariable((ListData)data);
+    } else if (data instanceof MeasurementData) {
       return _generateVariable((MeasurementData)data);
     } else if (data instanceof NonMeasurementData) {
       return _generateVariable((NonMeasurementData)data);

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<informationmodel:InformationModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:informationmodel="http://www.eclipse.org/vorto/metamodel/InformationModel"
+    name="eMeterInformationModel">
+  <properties
+      name="eMeterFunctionblockProperty">
+    <type href="eMeterFunctionblockModel.xmi#/"/>
+  </properties>
+</informationmodel:InformationModel>
