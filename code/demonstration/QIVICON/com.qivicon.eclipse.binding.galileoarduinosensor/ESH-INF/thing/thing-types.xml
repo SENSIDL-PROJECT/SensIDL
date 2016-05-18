@@ -41,7 +41,7 @@
 		<item-type>Number</item-type>
 		<label>Temperature</label>
 		<description>Current Temperature measured by the Arduino Sensor.</description>
-		<state readOnly="true" pattern="%s °C"></state>
+		<state readOnly="true" pattern="%s °F"></state>
 	</channel-type>
 	<channel-type id="light-channel">
 		<item-type>Number</item-type>
@@ -53,7 +53,7 @@
 		<item-type>Number</item-type>
 		<label>Temperature Threshold</label>
 		<description></description>
-		<state readOnly="false" pattern="%s °C"></state>
+		<state readOnly="false" pattern="%s °F"></state>
 	</channel-type>
 	<channel-type id="brightness_threshold">
 		<item-type>Number</item-type>

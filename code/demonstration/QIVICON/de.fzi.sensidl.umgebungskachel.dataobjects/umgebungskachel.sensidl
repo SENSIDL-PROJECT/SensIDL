@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ASCII"?>
+<de.fzi.sensidl.design:SensorInterface xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:de.fzi.sensidl.design="http://fzi.de/sensidl/design/1.0" xmlns:de.fzi.sensidl.design.sensidl="http://fzi.de/sensidl/design/representation/1.0" ID="__UnQ4BwwEeaDmfT6L1oxbA" name="Umgebungskachel" description=" communication interface between a sensor and a gateway">
+  <encodingSettings ID="__UpGEBwwEeaDmfT6L1oxbA" coding="SENSIDL_JSON"/>
+  <dataDescription ID="__UpGERwwEeaDmfT6L1oxbA">
+    <dataSets ID="__UpGEhwwEeaDmfT6L1oxbA" name="AlertThresholdBrightness" description=" data description for the brightness threshold ">
+      <data xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" ID="__UpGExwwEeaDmfT6L1oxbA" name="threshold_brightness" description=" Upper threshold that triggers an alert if the measured brightness is too high " dataType="DOUBLE" unit="&#x3a9;"/>
+    </dataSets>
+    <dataSets ID="__UpGFBwwEeaDmfT6L1oxbA" name="AlertThresholdTemperature" description=" data description for the temperature threshold ">
+      <data xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" ID="__UpGFRwwEeaDmfT6L1oxbA" name="threshold_temperature" description=" Upper threshold that triggers an alert if the measured temperature is too high " dataType="DOUBLE" unit="K">
+        <adjustments xsi:type="de.fzi.sensidl.design.sensidl:LinearDataConversion" ID="__UpGFhwwEeaDmfT6L1oxbA" scalingFactor="1.8" offset="32.0"/>
+      </data>
+    </dataSets>
+    <dataSets ID="__UpGFxwwEeaDmfT6L1oxbA" name="LedToggle" description=" data description for an switch that controls a light source ">
+      <data xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" ID="__UpGGBwwEeaDmfT6L1oxbA" name="led" description=" Switch for a light source that is either ON or OFF " dataType="STRING" unit=""/>
+    </dataSets>
+    <dataSets ID="__UptIBwwEeaDmfT6L1oxbA" name="SensorState" description=" data description of all values the sensor REST-API contains " parentDataSet="__UpGEhwwEeaDmfT6L1oxbA __UpGFBwwEeaDmfT6L1oxbA __UpGFxwwEeaDmfT6L1oxbA">
+      <data xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" ID="__UptIRwwEeaDmfT6L1oxbA" name="temperature" dataType="DOUBLE" unit="K">
+        <adjustments xsi:type="de.fzi.sensidl.design.sensidl:LinearDataConversion" ID="__UptIhwwEeaDmfT6L1oxbA" scalingFactor="1.8" offset="32.0"/>
+      </data>
+      <data xsi:type="de.fzi.sensidl.design.sensidl:MeasurementData" ID="__UptIxwwEeaDmfT6L1oxbA" name="brightness" dataType="DOUBLE" unit="&#x3a9;"/>
+    </dataSets>
+  </dataDescription>
+</de.fzi.sensidl.design:SensorInterface>

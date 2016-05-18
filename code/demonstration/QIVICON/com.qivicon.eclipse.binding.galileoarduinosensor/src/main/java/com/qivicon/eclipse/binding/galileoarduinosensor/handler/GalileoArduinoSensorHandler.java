@@ -7,6 +7,7 @@ import java.io.OutputStreamWriter;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -22,7 +23,8 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 
-import com.qivicon.eclipse.binding.galileoarduinosensor.dataobjects.*;
+//import com.qivicon.eclipse.binding.galileoarduinosensor.dataobjects.*;
+import de.fzi.sensidl.Umgebungskachel.*;
 
 /**
  * The {@link GalileoArduinoSensorHandler} is responsible for handling commands,
@@ -108,6 +110,19 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 		}
 
 	}
+	
+	@Override
+	public void handleConfigurationUpdate(Map<String, Object> configurationParmeters) {
+		// Get IP of the device entered by the user during configuration
+		deviceIP = (String) getConfig().get("host");
+		try {
+			// Get the Port of the device entered by the user during configuration
+			devicePort = ((BigDecimal) getConfig().get("port")).intValue();
+		} catch (Exception e) {
+			devicePort = 80;
+		}
+		super.handleConfigurationUpdate(configurationParmeters);
+	}
 
 	/**
 	 * This method fetches a status update from the rest API of the sensor device
@@ -181,11 +196,11 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 		SensorState state = gson.fromJson(reader, SensorState.class);
 		
 		//Update the Channels according to the received Data and update the Device State to ONLINE
-		updateState(LED_CHANNEL, OnOffType.valueOf(state.getLed()));
+		updateState(LED_CHANNEL, OnOffType.valueOf(state.getLedToggle().getLed()));
 		updateState(TEMP_CHANNEL, new DecimalType(state.getTemperature()));
 		updateState(LIGHT_CHANNEL, new DecimalType(state.getBrightness()));
-		updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(state.getThresholdbrightness()));
-		updateState(TEMP_THRESHOLD_CHANNEL, new DecimalType(state.getThresholdtemperature()));
+		updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(state.getAlertThresholdBrightness().getThresholdbrightness()));
+		updateState(TEMP_THRESHOLD_CHANNEL, new DecimalType(state.getAlertThresholdTemperature().getThresholdtemperature()));
 		updateStatus(ThingStatus.ONLINE);
 	}
 
@@ -200,7 +215,7 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 				getState();
 			}
 		};
-		updateJob = scheduler.scheduleAtFixedRate(update, 0, 10, TimeUnit.SECONDS);
+		updateJob = scheduler.scheduleAtFixedRate(update, 0, 5, TimeUnit.SECONDS);
 	}
 
 	/**
