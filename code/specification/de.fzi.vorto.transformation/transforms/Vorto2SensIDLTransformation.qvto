@@ -8,8 +8,6 @@ transformation Vorto2SensIDLTransformation(in Source: VortoInformationModel, out
 main() {
 	log("Start with transformation");
 	
-	//var fbmodel :=  Source.rootObjects()[VortoInformationModel::InformationModel].properties.type;
-	//fbmodel -> map toSensorInterface();
 	Source.rootObjects()[VortoInformationModel::InformationModel].properties.type -> map toSensorInterface();	
 	
 	log("Finish transformation");
