@@ -111,7 +111,7 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 			_builder.append("The data set \"" + localDataSet.getName() + "\"");
 			addID(localDataSet);
 			addContainment(localDataSet.getData(), "data", " contains", true);
-			addContainment(localDataSet.getParentDataSet(), "data set", "This data set uses the", false);
+			addContainment(localDataSet.getUsedDataSets(), "data set", "This data set uses the", false);
 			addContainment(localDataSet.getMethod(), "additional method", "It provides", true);
 			addDescription(localDataSet);
 			for (Data data : localDataSet.getData()) {

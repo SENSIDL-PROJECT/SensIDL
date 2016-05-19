@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<de.fzi.sensidl.design:SensorInterface xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:de.fzi.sensidl.design="http://fzi.de/sensidl/design/1.0" xmlns:de.fzi.sensidl.design.sensidl="http://fzi.de/sensidl/design/representation/1.0" xsi:schemaLocation="http://fzi.de/sensidl/design/1.0 ../../../de.fzi.sensidl.design/model/sensIDL.ecore http://fzi.de/sensidl/design/representation/1.0 ../../../de.fzi.sensidl.design/model/sensIDL.ecore#//dataRepresentation" name="eMeterFunctionblockModel">
+  <encodingSettings/>
+  <dataDescription>
+    <dataSets name="Info" usedByDataSets="//@dataDescription/@dataSets.1">
+      <data xsi:type="de.fzi.sensidl.design.sensidl:NonMeasurementData" name="deviceType" description="&quot;constant value = 40&quot;" dataType="UINT8"/>
+    </dataSets>
+    <dataSets name="Conductor" usedDataSets="//@dataDescription/@dataSets.0">
+      <data xsi:type="de.fzi.sensidl.design.sensidl:NonMeasurementData" name="recordType" description="value = 1, Distinct type for this data set." dataType="UINT8"/>
+      <data xsi:type="de.fzi.sensidl.design.sensidl:NonMeasurementData" name="voltage" dataType="FLOAT"/>
+      <data xsi:type="de.fzi.sensidl.design.sensidl:NonMeasurementData" name="power" dataType="FLOAT"/>
+      <data xsi:type="de.fzi.sensidl.design.sensidl:NonMeasurementData" name="powerFactor" dataType="INT16"/>
+      <data xsi:type="de.fzi.sensidl.design.sensidl:NonMeasurementData" name="identicator" dataType="UINT8"/>
+    </dataSets>
+  </dataDescription>
+</de.fzi.sensidl.design:SensorInterface>

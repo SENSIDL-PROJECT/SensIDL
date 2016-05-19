@@ -266,7 +266,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDataSet_SubDataSets() {
+	public EReference getDataSet_Data() {
 		return (EReference)dataSetEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -275,7 +275,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDataSet_Data() {
+	public EReference getDataSet_Method() {
 		return (EReference)dataSetEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -284,7 +284,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDataSet_ParentDataSet() {
+	public EReference getDataSet_UsedDataSets() {
 		return (EReference)dataSetEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -293,7 +293,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDataSet_Method() {
+	public EReference getDataSet_UsedByDataSets() {
 		return (EReference)dataSetEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -718,10 +718,10 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 
 		dataSetEClass = createEClass(DATA_SET);
 		createEReference(dataSetEClass, DATA_SET__SENSOR_DATA_DESCRIPTION);
-		createEReference(dataSetEClass, DATA_SET__SUB_DATA_SETS);
 		createEReference(dataSetEClass, DATA_SET__DATA);
-		createEReference(dataSetEClass, DATA_SET__PARENT_DATA_SET);
 		createEReference(dataSetEClass, DATA_SET__METHOD);
+		createEReference(dataSetEClass, DATA_SET__USED_DATA_SETS);
+		createEReference(dataSetEClass, DATA_SET__USED_BY_DATA_SETS);
 
 		dataEClass = createEClass(DATA);
 		createEReference(dataEClass, DATA__DATA_SET);
@@ -836,10 +836,10 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 
 		initEClass(dataSetEClass, DataSet.class, "DataSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDataSet_SensorDataDescription(), this.getSensorDataDescription(), this.getSensorDataDescription_DataSets(), "sensorDataDescription", null, 0, 1, DataSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDataSet_SubDataSets(), this.getDataSet(), this.getDataSet_ParentDataSet(), "subDataSets", null, 0, -1, DataSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDataSet_Data(), this.getData(), this.getData_DataSet(), "data", null, 0, -1, DataSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDataSet_ParentDataSet(), this.getDataSet(), this.getDataSet_SubDataSets(), "parentDataSet", null, 0, -1, DataSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDataSet_Method(), this.getMethod(), this.getMethod_DataSet(), "method", null, 0, -1, DataSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDataSet_UsedDataSets(), this.getDataSet(), this.getDataSet_UsedByDataSets(), "usedDataSets", null, 0, -1, DataSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDataSet_UsedByDataSets(), this.getDataSet(), this.getDataSet_UsedDataSets(), "usedByDataSets", null, 0, -1, DataSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataEClass, Data.class, "Data", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getData_DataSet(), this.getDataSet(), this.getDataSet_Data(), "dataSet", null, 0, 1, Data.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -108,8 +108,8 @@ public class SensidlSemanticSequencer extends AbstractDelegatingSemanticSequence
 	 * Constraint:
 	 *     (
 	 *         name=ID 
-	 *         parentDataSet+=[DataSet|ID]? 
-	 *         parentDataSet+=[DataSet|ID]* 
+	 *         usedDataSets+=[DataSet|ID]? 
+	 *         usedDataSets+=[DataSet|ID]* 
 	 *         ID=STRING? 
 	 *         description=DESCRIPTION? 
 	 *         (data+=Data | method+=Method)*

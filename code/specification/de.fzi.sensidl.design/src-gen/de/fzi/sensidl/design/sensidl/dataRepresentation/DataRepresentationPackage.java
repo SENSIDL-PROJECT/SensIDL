@@ -167,31 +167,13 @@ public interface DataRepresentationPackage extends EPackage {
 	int DATA_SET__SENSOR_DATA_DESCRIPTION = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Sub Data Sets</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_SET__SUB_DATA_SETS = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Data</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_SET__DATA = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Parent Data Set</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_SET__PARENT_DATA_SET = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int DATA_SET__DATA = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Method</b></em>' containment reference list.
@@ -200,7 +182,25 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_SET__METHOD = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int DATA_SET__METHOD = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Used Data Sets</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_SET__USED_DATA_SETS = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Used By Data Sets</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_SET__USED_BY_DATA_SETS = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Data Set</em>' class.
@@ -1198,17 +1198,6 @@ public interface DataRepresentationPackage extends EPackage {
 	EReference getDataSet_SensorDataDescription();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getSubDataSets <em>Sub Data Sets</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Sub Data Sets</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getSubDataSets()
-	 * @see #getDataSet()
-	 * @generated
-	 */
-	EReference getDataSet_SubDataSets();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getData <em>Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1220,17 +1209,6 @@ public interface DataRepresentationPackage extends EPackage {
 	EReference getDataSet_Data();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getParentDataSet <em>Parent Data Set</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Parent Data Set</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getParentDataSet()
-	 * @see #getDataSet()
-	 * @generated
-	 */
-	EReference getDataSet_ParentDataSet();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getMethod <em>Method</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1240,6 +1218,28 @@ public interface DataRepresentationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDataSet_Method();
+
+	/**
+	 * Returns the meta object for the reference list '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getUsedDataSets <em>Used Data Sets</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Used Data Sets</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getUsedDataSets()
+	 * @see #getDataSet()
+	 * @generated
+	 */
+	EReference getDataSet_UsedDataSets();
+
+	/**
+	 * Returns the meta object for the reference list '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getUsedByDataSets <em>Used By Data Sets</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Used By Data Sets</em>'.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getUsedByDataSets()
+	 * @see #getDataSet()
+	 * @generated
+	 */
+	EReference getDataSet_UsedByDataSets();
 
 	/**
 	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Data <em>Data</em>}'.
@@ -1769,14 +1769,6 @@ public interface DataRepresentationPackage extends EPackage {
 		EReference DATA_SET__SENSOR_DATA_DESCRIPTION = eINSTANCE.getDataSet_SensorDataDescription();
 
 		/**
-		 * The meta object literal for the '<em><b>Sub Data Sets</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATA_SET__SUB_DATA_SETS = eINSTANCE.getDataSet_SubDataSets();
-
-		/**
 		 * The meta object literal for the '<em><b>Data</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1785,20 +1777,28 @@ public interface DataRepresentationPackage extends EPackage {
 		EReference DATA_SET__DATA = eINSTANCE.getDataSet_Data();
 
 		/**
-		 * The meta object literal for the '<em><b>Parent Data Set</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATA_SET__PARENT_DATA_SET = eINSTANCE.getDataSet_ParentDataSet();
-
-		/**
 		 * The meta object literal for the '<em><b>Method</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference DATA_SET__METHOD = eINSTANCE.getDataSet_Method();
+
+		/**
+		 * The meta object literal for the '<em><b>Used Data Sets</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATA_SET__USED_DATA_SETS = eINSTANCE.getDataSet_UsedDataSets();
+
+		/**
+		 * The meta object literal for the '<em><b>Used By Data Sets</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATA_SET__USED_BY_DATA_SETS = eINSTANCE.getDataSet_UsedByDataSets();
 
 		/**
 		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataImpl <em>Data</em>}' class.

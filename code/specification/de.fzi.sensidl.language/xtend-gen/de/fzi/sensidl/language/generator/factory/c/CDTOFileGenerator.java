@@ -131,8 +131,8 @@ public class CDTOFileGenerator extends CDTOGenerator {
     _builder.append(_generateInitDatasetDeclaration, "");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
-    String _generateDataMethodsIncludeParentDataSet = this.generateDataMethodsIncludeParentDataSet(dataset);
-    _builder.append(_generateDataMethodsIncludeParentDataSet, "");
+    String _generateDataMethodsIncludeusedDataSets = this.generateDataMethodsIncludeusedDataSets(dataset);
+    _builder.append(_generateDataMethodsIncludeusedDataSets, "");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     CharSequence _generateEndiannessMethodsDeclarations = this.generateEndiannessMethodsDeclarations(dataset);
@@ -148,8 +148,8 @@ public class CDTOFileGenerator extends CDTOGenerator {
       @Override
       public void apply(final ArrayList<DataSet> it) {
         it.add(d);
-        EList<DataSet> _parentDataSet = d.getParentDataSet();
-        it.addAll(_parentDataSet);
+        EList<DataSet> _usedDataSets = d.getUsedDataSets();
+        it.addAll(_usedDataSets);
       }
     };
     ArrayList<DataSet> dataSets = ObjectExtensions.<ArrayList<DataSet>>operator_doubleArrow(_arrayList, _function);
@@ -234,20 +234,20 @@ public class CDTOFileGenerator extends CDTOGenerator {
   /**
    * Generates the getter and setter methods prototypes for the data of this data set including used data sets.
    */
-  public String generateDataMethodsIncludeParentDataSet(final DataSet d) {
+  public String generateDataMethodsIncludeusedDataSets(final DataSet d) {
     ArrayList<DataSet> _arrayList = new ArrayList<DataSet>();
     final Procedure1<ArrayList<DataSet>> _function = new Procedure1<ArrayList<DataSet>>() {
       @Override
       public void apply(final ArrayList<DataSet> it) {
         it.add(d);
-        EList<DataSet> _parentDataSet = d.getParentDataSet();
-        it.addAll(_parentDataSet);
+        EList<DataSet> _usedDataSets = d.getUsedDataSets();
+        it.addAll(_usedDataSets);
       }
     };
     ArrayList<DataSet> dataSets = ObjectExtensions.<ArrayList<DataSet>>operator_doubleArrow(_arrayList, _function);
     StringConcatenation _builder = new StringConcatenation();
     String methodsString = _builder.toString();
-    DataSet parentDataSet = d;
+    DataSet usedDataSets = d;
     for (final DataSet dataSet : dataSets) {
       {
         EList<EObject> _eContents = dataSet.eContents();
@@ -259,7 +259,7 @@ public class CDTOFileGenerator extends CDTOGenerator {
             boolean _not = (!_contains);
             if (_not) {
               String _methodsString = methodsString;
-              CharSequence _generateGetterDeclaration = this.generateGetterDeclaration(data, parentDataSet);
+              CharSequence _generateGetterDeclaration = this.generateGetterDeclaration(data, usedDataSets);
               methodsString = (_methodsString + _generateGetterDeclaration);
               String _methodsString_1 = methodsString;
               String _property = System.getProperty("line.separator");
@@ -270,7 +270,7 @@ public class CDTOFileGenerator extends CDTOGenerator {
             boolean _not_1 = (!_contains_1);
             if (_not_1) {
               String _methodsString_2 = methodsString;
-              CharSequence _generateSetterDeclaration = this.generateSetterDeclaration(data, parentDataSet);
+              CharSequence _generateSetterDeclaration = this.generateSetterDeclaration(data, usedDataSets);
               methodsString = (_methodsString_2 + _generateSetterDeclaration);
               String _methodsString_3 = methodsString;
               String _property_1 = System.getProperty("line.separator");
@@ -287,7 +287,7 @@ public class CDTOFileGenerator extends CDTOGenerator {
             boolean _not = (!_contains);
             if (_not) {
               String _methodsString = methodsString;
-              CharSequence _generateGetterDeclaration = this.generateGetterDeclaration(data_1, parentDataSet);
+              CharSequence _generateGetterDeclaration = this.generateGetterDeclaration(data_1, usedDataSets);
               methodsString = (_methodsString + _generateGetterDeclaration);
               String _methodsString_1 = methodsString;
               String _property = System.getProperty("line.separator");
@@ -298,7 +298,7 @@ public class CDTOFileGenerator extends CDTOGenerator {
             boolean _not_1 = (!_contains_1);
             if (_not_1) {
               String _methodsString_2 = methodsString;
-              CharSequence _generateSetterDeclaration = this.generateSetterDeclaration(data_1, parentDataSet);
+              CharSequence _generateSetterDeclaration = this.generateSetterDeclaration(data_1, usedDataSets);
               methodsString = (_methodsString_2 + _generateSetterDeclaration);
               String _methodsString_3 = methodsString;
               String _property_1 = System.getProperty("line.separator");
@@ -806,8 +806,8 @@ public class CDTOFileGenerator extends CDTOGenerator {
       }
     }
     _builder.append("\t\t");
-    String _swapEndiannessIncludeParentDataSet = this.swapEndiannessIncludeParentDataSet(dataset);
-    _builder.append(_swapEndiannessIncludeParentDataSet, "\t\t");
+    String _swapEndiannessIncludeusedDataSets = this.swapEndiannessIncludeusedDataSets(dataset);
+    _builder.append(_swapEndiannessIncludeusedDataSets, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("}");
@@ -859,8 +859,8 @@ public class CDTOFileGenerator extends CDTOGenerator {
     _builder.append("* p){");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
-    String _swapEndiannessIncludeParentDataSet = this.swapEndiannessIncludeParentDataSet(dataset);
-    _builder.append(_swapEndiannessIncludeParentDataSet, "\t\t");
+    String _swapEndiannessIncludeusedDataSets = this.swapEndiannessIncludeusedDataSets(dataset);
+    _builder.append(_swapEndiannessIncludeusedDataSets, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("}");
     _builder.newLine();
@@ -871,7 +871,7 @@ public class CDTOFileGenerator extends CDTOGenerator {
   /**
    * Helper function to swap endianness of all variables of the struct
    */
-  public String swapEndiannessIncludeParentDataSet(final DataSet d) {
+  public String swapEndiannessIncludeusedDataSets(final DataSet d) {
     DataSet dataSet = d;
     StringConcatenation _builder = new StringConcatenation();
     String methodsString = _builder.toString();
@@ -880,8 +880,8 @@ public class CDTOFileGenerator extends CDTOGenerator {
         String _methodsString = methodsString;
         CharSequence _swapEndianness = this.swapEndianness(dataSet);
         methodsString = (_methodsString + _swapEndianness);
-        EList<DataSet> _parentDataSet = dataSet.getParentDataSet();
-        DataSet _head = IterableExtensions.<DataSet>head(_parentDataSet);
+        EList<DataSet> _usedDataSets = dataSet.getUsedDataSets();
+        DataSet _head = IterableExtensions.<DataSet>head(_usedDataSets);
         dataSet = _head;
       }
     }

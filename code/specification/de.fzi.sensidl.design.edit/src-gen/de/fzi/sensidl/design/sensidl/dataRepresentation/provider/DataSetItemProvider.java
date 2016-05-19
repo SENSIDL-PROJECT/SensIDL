@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -45,8 +46,54 @@ public class DataSetItemProvider extends NamedElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addUsedDataSetsPropertyDescriptor(object);
+			addUsedByDataSetsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Used Data Sets feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUsedDataSetsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DataSet_usedDataSets_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DataSet_usedDataSets_feature", "_UI_DataSet_type"),
+				 DataRepresentationPackage.Literals.DATA_SET__USED_DATA_SETS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Used By Data Sets feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUsedByDataSetsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DataSet_usedByDataSets_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DataSet_usedByDataSets_feature", "_UI_DataSet_type"),
+				 DataRepresentationPackage.Literals.DATA_SET__USED_BY_DATA_SETS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -61,7 +108,6 @@ public class DataSetItemProvider extends NamedElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DataRepresentationPackage.Literals.DATA_SET__SUB_DATA_SETS);
 			childrenFeatures.add(DataRepresentationPackage.Literals.DATA_SET__DATA);
 			childrenFeatures.add(DataRepresentationPackage.Literals.DATA_SET__METHOD);
 		}
@@ -119,7 +165,6 @@ public class DataSetItemProvider extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DataSet.class)) {
-			case DataRepresentationPackage.DATA_SET__SUB_DATA_SETS:
 			case DataRepresentationPackage.DATA_SET__DATA:
 			case DataRepresentationPackage.DATA_SET__METHOD:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -138,11 +183,6 @@ public class DataSetItemProvider extends NamedElementItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DataRepresentationPackage.Literals.DATA_SET__SUB_DATA_SETS,
-				 DataRepresentationFactory.eINSTANCE.createDataSet()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -255,14 +255,14 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cUsesKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cParentDataSetAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final CrossReference cParentDataSetDataSetCrossReference_2_1_0 = (CrossReference)cParentDataSetAssignment_2_1.eContents().get(0);
-		private final RuleCall cParentDataSetDataSetIDTerminalRuleCall_2_1_0_1 = (RuleCall)cParentDataSetDataSetCrossReference_2_1_0.eContents().get(1);
+		private final Assignment cUsedDataSetsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final CrossReference cUsedDataSetsDataSetCrossReference_2_1_0 = (CrossReference)cUsedDataSetsAssignment_2_1.eContents().get(0);
+		private final RuleCall cUsedDataSetsDataSetIDTerminalRuleCall_2_1_0_1 = (RuleCall)cUsedDataSetsDataSetCrossReference_2_1_0.eContents().get(1);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cParentDataSetAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final CrossReference cParentDataSetDataSetCrossReference_3_1_0 = (CrossReference)cParentDataSetAssignment_3_1.eContents().get(0);
-		private final RuleCall cParentDataSetDataSetIDTerminalRuleCall_3_1_0_1 = (RuleCall)cParentDataSetDataSetCrossReference_3_1_0.eContents().get(1);
+		private final Assignment cUsedDataSetsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final CrossReference cUsedDataSetsDataSetCrossReference_3_1_0 = (CrossReference)cUsedDataSetsAssignment_3_1.eContents().get(0);
+		private final RuleCall cUsedDataSetsDataSetIDTerminalRuleCall_3_1_0_1 = (RuleCall)cUsedDataSetsDataSetCrossReference_3_1_0.eContents().get(1);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Keyword cWithIdentifierKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Keyword cColonKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
@@ -279,13 +279,13 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//DataSet returns dataRepresentation::DataSet:
-		//	"dataSet" name=ID ("uses" parentDataSet+=[dataRepresentation::DataSet])? (","
-		//	parentDataSet+=[dataRepresentation::DataSet])* ("with identifier" ":" ID=STRING)? description=DESCRIPTION? "{"
+		//	"dataSet" name=ID ("uses" usedDataSets+=[dataRepresentation::DataSet])? (","
+		//	usedDataSets+=[dataRepresentation::DataSet])* ("with identifier" ":" ID=STRING)? description=DESCRIPTION? "{"
 		//	(data+=Data | method+=Method)* "}";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"dataSet" name=ID ("uses" parentDataSet+=[dataRepresentation::DataSet])? (","
-		//parentDataSet+=[dataRepresentation::DataSet])* ("with identifier" ":" ID=STRING)? description=DESCRIPTION? "{"
+		//"dataSet" name=ID ("uses" usedDataSets+=[dataRepresentation::DataSet])? (","
+		//usedDataSets+=[dataRepresentation::DataSet])* ("with identifier" ":" ID=STRING)? description=DESCRIPTION? "{"
 		//(data+=Data | method+=Method)* "}"
 		public Group getGroup() { return cGroup; }
 
@@ -298,35 +298,35 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 
-		//("uses" parentDataSet+=[dataRepresentation::DataSet])?
+		//("uses" usedDataSets+=[dataRepresentation::DataSet])?
 		public Group getGroup_2() { return cGroup_2; }
 
 		//"uses"
 		public Keyword getUsesKeyword_2_0() { return cUsesKeyword_2_0; }
 
-		//parentDataSet+=[dataRepresentation::DataSet]
-		public Assignment getParentDataSetAssignment_2_1() { return cParentDataSetAssignment_2_1; }
+		//usedDataSets+=[dataRepresentation::DataSet]
+		public Assignment getUsedDataSetsAssignment_2_1() { return cUsedDataSetsAssignment_2_1; }
 
 		//[dataRepresentation::DataSet]
-		public CrossReference getParentDataSetDataSetCrossReference_2_1_0() { return cParentDataSetDataSetCrossReference_2_1_0; }
+		public CrossReference getUsedDataSetsDataSetCrossReference_2_1_0() { return cUsedDataSetsDataSetCrossReference_2_1_0; }
 
 		//ID
-		public RuleCall getParentDataSetDataSetIDTerminalRuleCall_2_1_0_1() { return cParentDataSetDataSetIDTerminalRuleCall_2_1_0_1; }
+		public RuleCall getUsedDataSetsDataSetIDTerminalRuleCall_2_1_0_1() { return cUsedDataSetsDataSetIDTerminalRuleCall_2_1_0_1; }
 
-		//("," parentDataSet+=[dataRepresentation::DataSet])*
+		//("," usedDataSets+=[dataRepresentation::DataSet])*
 		public Group getGroup_3() { return cGroup_3; }
 
 		//","
 		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
 
-		//parentDataSet+=[dataRepresentation::DataSet]
-		public Assignment getParentDataSetAssignment_3_1() { return cParentDataSetAssignment_3_1; }
+		//usedDataSets+=[dataRepresentation::DataSet]
+		public Assignment getUsedDataSetsAssignment_3_1() { return cUsedDataSetsAssignment_3_1; }
 
 		//[dataRepresentation::DataSet]
-		public CrossReference getParentDataSetDataSetCrossReference_3_1_0() { return cParentDataSetDataSetCrossReference_3_1_0; }
+		public CrossReference getUsedDataSetsDataSetCrossReference_3_1_0() { return cUsedDataSetsDataSetCrossReference_3_1_0; }
 
 		//ID
-		public RuleCall getParentDataSetDataSetIDTerminalRuleCall_3_1_0_1() { return cParentDataSetDataSetIDTerminalRuleCall_3_1_0_1; }
+		public RuleCall getUsedDataSetsDataSetIDTerminalRuleCall_3_1_0_1() { return cUsedDataSetsDataSetIDTerminalRuleCall_3_1_0_1; }
 
 		//("with identifier" ":" ID=STRING)?
 		public Group getGroup_4() { return cGroup_4; }
@@ -1776,8 +1776,8 @@ public class SensidlGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DataSet returns dataRepresentation::DataSet:
-	//	"dataSet" name=ID ("uses" parentDataSet+=[dataRepresentation::DataSet])? (","
-	//	parentDataSet+=[dataRepresentation::DataSet])* ("with identifier" ":" ID=STRING)? description=DESCRIPTION? "{"
+	//	"dataSet" name=ID ("uses" usedDataSets+=[dataRepresentation::DataSet])? (","
+	//	usedDataSets+=[dataRepresentation::DataSet])* ("with identifier" ":" ID=STRING)? description=DESCRIPTION? "{"
 	//	(data+=Data | method+=Method)* "}";
 	public DataSetElements getDataSetAccess() {
 		return pDataSet;

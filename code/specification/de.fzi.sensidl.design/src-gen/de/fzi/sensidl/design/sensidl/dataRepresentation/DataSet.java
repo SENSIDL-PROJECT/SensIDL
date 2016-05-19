@@ -15,10 +15,10 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getSensorDataDescription <em>Sensor Data Description</em>}</li>
- *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getSubDataSets <em>Sub Data Sets</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getData <em>Data</em>}</li>
- *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getParentDataSet <em>Parent Data Set</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getMethod <em>Method</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getUsedDataSets <em>Used Data Sets</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getUsedByDataSets <em>Used By Data Sets</em>}</li>
  * </ul>
  *
  * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getDataSet()
@@ -55,24 +55,6 @@ public interface DataSet extends NamedElement {
 	void setSensorDataDescription(SensorDataDescription value);
 
 	/**
-	 * Returns the value of the '<em><b>Sub Data Sets</b></em>' reference list.
-	 * The list contents are of type {@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet}.
-	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getParentDataSet <em>Parent Data Set</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Sub Data Sets</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sub Data Sets</em>' reference list.
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getDataSet_SubDataSets()
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getParentDataSet
-	 * @model opposite="parentDataSet"
-	 * @generated
-	 */
-	EList<DataSet> getSubDataSets();
-
-	/**
 	 * Returns the value of the '<em><b>Data</b></em>' containment reference list.
 	 * The list contents are of type {@link de.fzi.sensidl.design.sensidl.dataRepresentation.Data}.
 	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Data#getDataSet <em>Data Set</em>}'.
@@ -91,24 +73,6 @@ public interface DataSet extends NamedElement {
 	EList<Data> getData();
 
 	/**
-	 * Returns the value of the '<em><b>Parent Data Set</b></em>' reference list.
-	 * The list contents are of type {@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet}.
-	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getSubDataSets <em>Sub Data Sets</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Parent Data Set</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parent Data Set</em>' reference list.
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getDataSet_ParentDataSet()
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getSubDataSets
-	 * @model opposite="subDataSets"
-	 * @generated
-	 */
-	EList<DataSet> getParentDataSet();
-
-	/**
 	 * Returns the value of the '<em><b>Method</b></em>' containment reference list.
 	 * The list contents are of type {@link de.fzi.sensidl.design.sensidl.dataRepresentation.Method}.
 	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Method#getDataSet <em>Data Set</em>}'.
@@ -125,5 +89,41 @@ public interface DataSet extends NamedElement {
 	 * @generated
 	 */
 	EList<Method> getMethod();
+
+	/**
+	 * Returns the value of the '<em><b>Used Data Sets</b></em>' reference list.
+	 * The list contents are of type {@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet}.
+	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getUsedByDataSets <em>Used By Data Sets</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Used Data Sets</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Used Data Sets</em>' reference list.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getDataSet_UsedDataSets()
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getUsedByDataSets
+	 * @model opposite="usedByDataSets"
+	 * @generated
+	 */
+	EList<DataSet> getUsedDataSets();
+
+	/**
+	 * Returns the value of the '<em><b>Used By Data Sets</b></em>' reference list.
+	 * The list contents are of type {@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet}.
+	 * It is bidirectional and its opposite is '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getUsedDataSets <em>Used Data Sets</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Used By Data Sets</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Used By Data Sets</em>' reference list.
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getDataSet_UsedByDataSets()
+	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getUsedDataSets
+	 * @model opposite="usedDataSets"
+	 * @generated
+	 */
+	EList<DataSet> getUsedByDataSets();
 
 } // DataSet

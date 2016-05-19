@@ -121,7 +121,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 			
 			«generateInitDatasetDeclaration(dataset)»
 			
-			«generateDataMethodsIncludeParentDataSet(dataset)»
+			«generateDataMethodsIncludeusedDataSets(dataset)»
 			
 			«generateEndiannessMethodsDeclarations(dataset)»
 			
@@ -133,7 +133,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 		
 		var dataSets = new ArrayList<DataSet>() => [
 			add(d)
-			addAll(d.parentDataSet)
+			addAll(d.usedDataSets)
 		]
 		var methodsString =''''''
 		methodsString += generateInitTemplateStart(d)
@@ -176,32 +176,32 @@ class CDTOFileGenerator extends CDTOGenerator {
 	/**
 	 * Generates the getter and setter methods prototypes for the data of this data set including used data sets.
 	 */
-	def generateDataMethodsIncludeParentDataSet(DataSet d) {
+	def generateDataMethodsIncludeusedDataSets(DataSet d) {
 		var dataSets = new ArrayList<DataSet>() => [
 			add(d)
-			addAll(d.parentDataSet)
+			addAll(d.usedDataSets)
 		]
 		var methodsString =''''''
-		var parentDataSet = d	
+		var usedDataSets = d	
 		for (dataSet : dataSets) {
 	
 			for (data : dataSet.eContents.filter(NonMeasurementData)) {
 				if (!data.excludedMethods.contains("getter")){
-					methodsString += generateGetterDeclaration(data, parentDataSet)
+					methodsString += generateGetterDeclaration(data, usedDataSets)
 					methodsString += System.getProperty("line.separator");
 				}
 				if (!data.excludedMethods.contains("setter")){
-					methodsString += generateSetterDeclaration(data, parentDataSet)
+					methodsString += generateSetterDeclaration(data, usedDataSets)
 					methodsString += System.getProperty("line.separator");
 				}
 			}
 			for (data : dataSet.eContents.filter(MeasurementData)) {
 				if (!data.excludedMethods.contains("getter")){
-					methodsString += generateGetterDeclaration(data, parentDataSet)
+					methodsString += generateGetterDeclaration(data, usedDataSets)
 					methodsString += System.getProperty("line.separator");
 				}
 				if (!data.excludedMethods.contains("setter")){				
-					methodsString += generateSetterDeclaration(data, parentDataSet)
+					methodsString += generateSetterDeclaration(data, usedDataSets)
 					methodsString += System.getProperty("line.separator");
 				}
 			}
@@ -366,7 +366,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 				// if big endian device architecture then convert (little endian defined)
 				if(*(char *)&n != 1) {
 			«ENDIF»
-				«swapEndiannessIncludeParentDataSet(dataset)»
+				«swapEndiannessIncludeusedDataSets(dataset)»
 			}
 		}
 		
@@ -394,7 +394,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 	def generateSwapEndiannessOnDemand(DataSet dataset){
 		'''		
 		void swap_«dataset.name.toFirstUpper»_all_endianness(«dataset.name.toFirstUpper»* p){
-				«swapEndiannessIncludeParentDataSet(dataset)»
+				«swapEndiannessIncludeusedDataSets(dataset)»
 		}
 		
 		'''
@@ -403,13 +403,13 @@ class CDTOFileGenerator extends CDTOGenerator {
 	/**
 	 *  Helper function to swap endianness of all variables of the struct 
 	 */
-	def swapEndiannessIncludeParentDataSet(DataSet d){
+	def swapEndiannessIncludeusedDataSets(DataSet d){
 			var dataSet = d
 			var methodsString =''''''
 			while (dataSet!==null) {
 		
 				methodsString += swapEndianness(dataSet)
-				dataSet = dataSet.parentDataSet.head //TODO: also use other parent data sets if there is more than one
+				dataSet = dataSet.usedDataSets.head //TODO: also use other parent data sets if there is more than one
 			}
 			return methodsString
 	}	

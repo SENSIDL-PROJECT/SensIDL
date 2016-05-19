@@ -157,8 +157,8 @@ public class CSharpDTOGenerator implements IDTOGenerator {
     _builder.append("\t");
     _builder.newLine();
     _builder.append("\t");
-    String _generateDataFieldsIncludeParentDataSet = this.generateDataFieldsIncludeParentDataSet(d);
-    _builder.append(_generateDataFieldsIncludeParentDataSet, "\t");
+    String _generateDataFieldsIncludeusedDataSets = this.generateDataFieldsIncludeusedDataSets(d);
+    _builder.append(_generateDataFieldsIncludeusedDataSets, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("/// <summary>");
@@ -170,8 +170,8 @@ public class CSharpDTOGenerator implements IDTOGenerator {
     _builder.append("/// </summary>");
     _builder.newLine();
     _builder.append("\t");
-    String _generateConstructorIncludeParentDataSet = this.generateConstructorIncludeParentDataSet(d, className);
-    _builder.append(_generateConstructorIncludeParentDataSet, "\t");
+    String _generateConstructorIncludeusedDataSets = this.generateConstructorIncludeusedDataSets(d, className);
+    _builder.append(_generateConstructorIncludeusedDataSets, "\t");
     _builder.append("\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -206,8 +206,8 @@ public class CSharpDTOGenerator implements IDTOGenerator {
     _builder.append("\t");
     _builder.newLine();
     _builder.append("\t");
-    String _generateDataMethodsIncludeParentDataSet = this.generateDataMethodsIncludeParentDataSet(d);
-    _builder.append(_generateDataMethodsIncludeParentDataSet, "\t");
+    String _generateDataMethodsIncludeusedDataSets = this.generateDataMethodsIncludeusedDataSets(d);
+    _builder.append(_generateDataMethodsIncludeusedDataSets, "\t");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("}");
@@ -218,7 +218,7 @@ public class CSharpDTOGenerator implements IDTOGenerator {
   /**
    * Generates the data fields for this data set including used data sets.
    */
-  public String generateDataFieldsIncludeParentDataSet(final DataSet d) {
+  public String generateDataFieldsIncludeusedDataSets(final DataSet d) {
     DataSet dataSet = d;
     StringConcatenation _builder = new StringConcatenation();
     String dataFieldsString = _builder.toString();
@@ -246,8 +246,8 @@ public class CSharpDTOGenerator implements IDTOGenerator {
         dataFieldsString = (_dataFieldsString_1 + _property);
       }
     }
-    EList<DataSet> _parentDataSet = dataSet.getParentDataSet();
-    for (final DataSet pdataSet : _parentDataSet) {
+    EList<DataSet> _usedDataSets = dataSet.getUsedDataSets();
+    for (final DataSet pdataSet : _usedDataSets) {
       {
         EList<EObject> _eContents_2 = pdataSet.eContents();
         Iterable<NonMeasurementData> _filter_2 = Iterables.<NonMeasurementData>filter(_eContents_2, NonMeasurementData.class);
@@ -281,14 +281,14 @@ public class CSharpDTOGenerator implements IDTOGenerator {
   /**
    * Generates the constructor for this data set including used data sets.
    */
-  public String generateConstructorIncludeParentDataSet(final DataSet d, final String className) {
+  public String generateConstructorIncludeusedDataSets(final DataSet d, final String className) {
     DataSet dataSet = d;
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public ");
     _builder.append(className, "");
     _builder.append(" (");
-    CharSequence _generateConstructorArgumentsIncludeParentDataSets = this.generateConstructorArgumentsIncludeParentDataSets(d);
-    _builder.append(_generateConstructorArgumentsIncludeParentDataSets, "");
+    CharSequence _generateConstructorArgumentsIncludeusedDataSetss = this.generateConstructorArgumentsIncludeusedDataSetss(d);
+    _builder.append(_generateConstructorArgumentsIncludeusedDataSetss, "");
     _builder.append(")");
     _builder.newLineIfNotEmpty();
     _builder.append("{");
@@ -304,8 +304,8 @@ public class CSharpDTOGenerator implements IDTOGenerator {
     EList<EObject> _eContents_1 = dataSet.eContents();
     Iterable<NonMeasurementData> _filter_1 = Iterables.<NonMeasurementData>filter(_eContents_1, NonMeasurementData.class);
     Iterables.<NonMeasurementData>addAll(nonMeasurementDataList, _filter_1);
-    EList<DataSet> _parentDataSet = dataSet.getParentDataSet();
-    for (final DataSet pdataSet : _parentDataSet) {
+    EList<DataSet> _usedDataSets = dataSet.getUsedDataSets();
+    for (final DataSet pdataSet : _usedDataSets) {
       {
         EList<EObject> _eContents_2 = pdataSet.eContents();
         Iterable<MeasurementData> _filter_2 = Iterables.<MeasurementData>filter(_eContents_2, MeasurementData.class);
@@ -353,7 +353,7 @@ public class CSharpDTOGenerator implements IDTOGenerator {
   /**
    * Generates the getter and setter methods for the data of this data set including used data sets.
    */
-  public String generateDataMethodsIncludeParentDataSet(final DataSet d) {
+  public String generateDataMethodsIncludeusedDataSets(final DataSet d) {
     DataSet dataSet = d;
     StringConcatenation _builder = new StringConcatenation();
     String methodsString = _builder.toString();
@@ -365,8 +365,8 @@ public class CSharpDTOGenerator implements IDTOGenerator {
     EList<EObject> _eContents_1 = dataSet.eContents();
     Iterable<NonMeasurementData> _filter_1 = Iterables.<NonMeasurementData>filter(_eContents_1, NonMeasurementData.class);
     Iterables.<NonMeasurementData>addAll(nonMeasurementDataList, _filter_1);
-    EList<DataSet> _parentDataSet = dataSet.getParentDataSet();
-    for (final DataSet pdataSet : _parentDataSet) {
+    EList<DataSet> _usedDataSets = dataSet.getUsedDataSets();
+    for (final DataSet pdataSet : _usedDataSets) {
       {
         EList<EObject> _eContents_2 = dataSet.eContents();
         Iterable<MeasurementData> _filter_2 = Iterables.<MeasurementData>filter(_eContents_2, MeasurementData.class);
@@ -596,7 +596,7 @@ public class CSharpDTOGenerator implements IDTOGenerator {
   /**
    * Generates the Constructor arguments
    */
-  public CharSequence generateConstructorArgumentsIncludeParentDataSets(final DataSet d) {
+  public CharSequence generateConstructorArgumentsIncludeusedDataSetss(final DataSet d) {
     CharSequence _xblockexpression = null;
     {
       ArrayList<Data> dataList = new ArrayList<Data>();
@@ -615,8 +615,8 @@ public class CSharpDTOGenerator implements IDTOGenerator {
           dataList.add(data);
         }
       }
-      EList<DataSet> _parentDataSet = dataSet.getParentDataSet();
-      for (final DataSet pdataSet : _parentDataSet) {
+      EList<DataSet> _usedDataSets = dataSet.getUsedDataSets();
+      for (final DataSet pdataSet : _usedDataSets) {
         EList<EObject> _eContents_1 = pdataSet.eContents();
         Iterable<Data> _filter_1 = Iterables.<Data>filter(_eContents_1, Data.class);
         for (final Data data_1 : _filter_1) {

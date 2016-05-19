@@ -146,8 +146,8 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append("{");
     _builder.newLine();
     _builder.append("\t\t");
-    String _generateDataFieldsIncludeParentDataSet = this.generateDataFieldsIncludeParentDataSet(dataset);
-    _builder.append(_generateDataFieldsIncludeParentDataSet, "\t\t");
+    String _generateDataFieldsIncludeusedDataSets = this.generateDataFieldsIncludeusedDataSets(dataset);
+    _builder.append(_generateDataFieldsIncludeusedDataSets, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t\t\t");
     _builder.newLine();
@@ -170,8 +170,8 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append(_generateInitDatasetPrototype, "");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
-    String _generateDataMethodsPrototypesIncludeParentDataSet = this.generateDataMethodsPrototypesIncludeParentDataSet(dataset);
-    _builder.append(_generateDataMethodsPrototypesIncludeParentDataSet, "");
+    String _generateDataMethodsPrototypesIncludeusedDataSets = this.generateDataMethodsPrototypesIncludeusedDataSets(dataset);
+    _builder.append(_generateDataMethodsPrototypesIncludeusedDataSets, "");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t\t");
     _builder.newLine();
@@ -203,14 +203,14 @@ public class HeaderDTOGenerator extends CDTOGenerator {
   /**
    * Generates the data fields for this data set including used data sets.
    */
-  public String generateDataFieldsIncludeParentDataSet(final DataSet d) {
+  public String generateDataFieldsIncludeusedDataSets(final DataSet d) {
     ArrayList<DataSet> _arrayList = new ArrayList<DataSet>();
     final Procedure1<ArrayList<DataSet>> _function = new Procedure1<ArrayList<DataSet>>() {
       @Override
       public void apply(final ArrayList<DataSet> it) {
         it.add(d);
-        EList<DataSet> _parentDataSet = d.getParentDataSet();
-        it.addAll(_parentDataSet);
+        EList<DataSet> _usedDataSets = d.getUsedDataSets();
+        it.addAll(_usedDataSets);
       }
     };
     ArrayList<DataSet> dataSets = ObjectExtensions.<ArrayList<DataSet>>operator_doubleArrow(_arrayList, _function);
@@ -263,20 +263,20 @@ public class HeaderDTOGenerator extends CDTOGenerator {
   /**
    * Generates the getter and setter methods prototypes for the data of this data set including used data sets.
    */
-  public String generateDataMethodsPrototypesIncludeParentDataSet(final DataSet d) {
+  public String generateDataMethodsPrototypesIncludeusedDataSets(final DataSet d) {
     ArrayList<DataSet> _arrayList = new ArrayList<DataSet>();
     final Procedure1<ArrayList<DataSet>> _function = new Procedure1<ArrayList<DataSet>>() {
       @Override
       public void apply(final ArrayList<DataSet> it) {
         it.add(d);
-        EList<DataSet> _parentDataSet = d.getParentDataSet();
-        it.addAll(_parentDataSet);
+        EList<DataSet> _usedDataSets = d.getUsedDataSets();
+        it.addAll(_usedDataSets);
       }
     };
     ArrayList<DataSet> dataSets = ObjectExtensions.<ArrayList<DataSet>>operator_doubleArrow(_arrayList, _function);
     StringConcatenation _builder = new StringConcatenation();
     String methodsString = _builder.toString();
-    DataSet parentDataSet = d;
+    DataSet usedDataSets = d;
     for (final DataSet dataSet : dataSets) {
       {
         EList<EObject> _eContents = dataSet.eContents();
@@ -288,7 +288,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
             boolean _not = (!_contains);
             if (_not) {
               String _methodsString = methodsString;
-              CharSequence _generateGetterPrototype = this.generateGetterPrototype(data, parentDataSet);
+              CharSequence _generateGetterPrototype = this.generateGetterPrototype(data, usedDataSets);
               methodsString = (_methodsString + _generateGetterPrototype);
               String _methodsString_1 = methodsString;
               String _property = System.getProperty("line.separator");
@@ -299,7 +299,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
             boolean _not_1 = (!_contains_1);
             if (_not_1) {
               String _methodsString_2 = methodsString;
-              CharSequence _generateSetterPrototype = this.generateSetterPrototype(data, parentDataSet);
+              CharSequence _generateSetterPrototype = this.generateSetterPrototype(data, usedDataSets);
               methodsString = (_methodsString_2 + _generateSetterPrototype);
               String _methodsString_3 = methodsString;
               String _property_1 = System.getProperty("line.separator");
@@ -316,7 +316,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
             boolean _not = (!_contains);
             if (_not) {
               String _methodsString = methodsString;
-              CharSequence _generateGetterPrototype = this.generateGetterPrototype(data_1, parentDataSet);
+              CharSequence _generateGetterPrototype = this.generateGetterPrototype(data_1, usedDataSets);
               methodsString = (_methodsString + _generateGetterPrototype);
               String _methodsString_1 = methodsString;
               String _property = System.getProperty("line.separator");
@@ -327,7 +327,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
             boolean _not_1 = (!_contains_1);
             if (_not_1) {
               String _methodsString_2 = methodsString;
-              CharSequence _generateSetterPrototype = this.generateSetterPrototype(data_1, parentDataSet);
+              CharSequence _generateSetterPrototype = this.generateSetterPrototype(data_1, usedDataSets);
               methodsString = (_methodsString_2 + _generateSetterPrototype);
               String _methodsString_3 = methodsString;
               String _property_1 = System.getProperty("line.separator");

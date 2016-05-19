@@ -100,11 +100,11 @@ class CSharpDTOGenerator implements IDTOGenerator {
 				
 				private GeneratedCodeAttribute generatedCodeAttribute = new GeneratedCodeAttribute("SensIDLCodeGenerator", SerialVersionUid);
 				
-				«generateDataFieldsIncludeParentDataSet(d)»
+				«generateDataFieldsIncludeusedDataSets(d)»
 				/// <summary>
 				/// Constructor for the Data transfer object
 				/// </summary>
-				«generateConstructorIncludeParentDataSet(d, className)»	
+				«generateConstructorIncludeusedDataSets(d, className)»	
 				}
 				
 				«IF createEmptyConstructor»
@@ -116,7 +116,7 @@ class CSharpDTOGenerator implements IDTOGenerator {
 				}
 				«ENDIF»
 				
-				«generateDataMethodsIncludeParentDataSet(d)»
+				«generateDataMethodsIncludeusedDataSets(d)»
 
 			}
 		 '''
@@ -125,7 +125,7 @@ class CSharpDTOGenerator implements IDTOGenerator {
 	/**
 	 * Generates the data fields for this data set including used data sets.
 	 */
-	def generateDataFieldsIncludeParentDataSet(DataSet d) {
+	def generateDataFieldsIncludeusedDataSets(DataSet d) {
 		var dataSet = d
 		var dataFieldsString = ''''''
 		
@@ -138,7 +138,7 @@ class CSharpDTOGenerator implements IDTOGenerator {
 //				dataFieldsString += generateDataFields(data)
 //				dataFieldsString += System.getProperty("line.separator");
 //				}
-//			dataSet = dataSet.parentDataSet
+//			dataSet = dataSet.usedDataSets
 //		}
 
 		for (data : dataSet.eContents.filter(NonMeasurementData)) {
@@ -151,7 +151,7 @@ class CSharpDTOGenerator implements IDTOGenerator {
 			dataFieldsString += System.getProperty("line.separator");
 		}
 
-		for (DataSet pdataSet : dataSet.parentDataSet) {
+		for (DataSet pdataSet : dataSet.usedDataSets) {
 			for (data : pdataSet.eContents.filter(NonMeasurementData)) {
 				dataFieldsString += generateDataFields(data)
 				dataFieldsString += System.getProperty("line.separator");
@@ -170,10 +170,10 @@ class CSharpDTOGenerator implements IDTOGenerator {
 	/**
 	 * Generates the constructor for this data set including used data sets.
 	 */
-	def generateConstructorIncludeParentDataSet(DataSet d,String className) {
+	def generateConstructorIncludeusedDataSets(DataSet d,String className) {
 		var dataSet = d
 		var constructorString ='''
-		public «className» («d.generateConstructorArgumentsIncludeParentDataSets»)
+		public «className» («d.generateConstructorArgumentsIncludeusedDataSetss»)
 		{'''
 		constructorString += System.getProperty("line.separator");
 		var measurementDataList = new ArrayList<MeasurementData>
@@ -182,13 +182,13 @@ class CSharpDTOGenerator implements IDTOGenerator {
 //		while (dataSet!==null) {
 //			measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
 //			nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
-//			dataSet = dataSet.parentDataSet
+//			dataSet = dataSet.usedDataSets
 //		}
 		
 		measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
 		nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
 		
-		for (DataSet pdataSet : dataSet.parentDataSet){
+		for (DataSet pdataSet : dataSet.usedDataSets){
 			measurementDataList.addAll(pdataSet.eContents.filter(MeasurementData))
 			nonMeasurementDataList.addAll(pdataSet.eContents.filter(NonMeasurementData))
 		}
@@ -211,7 +211,7 @@ class CSharpDTOGenerator implements IDTOGenerator {
 	/**
 	 * Generates the getter and setter methods for the data of this data set including used data sets.
 	 */
-	def generateDataMethodsIncludeParentDataSet(DataSet d) {
+	def generateDataMethodsIncludeusedDataSets(DataSet d) {
 		var dataSet = d
 		var methodsString = ''''''
 		var measurementDataList = new ArrayList<MeasurementData>
@@ -220,12 +220,12 @@ class CSharpDTOGenerator implements IDTOGenerator {
 //		while (dataSet!==null) {
 //			measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
 //			nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
-//			dataSet = dataSet.parentDataSet
+//			dataSet = dataSet.usedDataSets
 //		}
 		measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
 		nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
 
-		for (DataSet pdataSet : dataSet.parentDataSet) {
+		for (DataSet pdataSet : dataSet.usedDataSets) {
 			measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
 			nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
 		}
@@ -315,7 +315,7 @@ class CSharpDTOGenerator implements IDTOGenerator {
 	/**
 	 * Generates the Constructor arguments
 	 */
-	def generateConstructorArgumentsIncludeParentDataSets(DataSet d) {
+	def generateConstructorArgumentsIncludeusedDataSetss(DataSet d) {
 		// create an ArrayList with all data that is not a constant NonMeasurementData (which will not be constructor arguments)
 		var dataList = new ArrayList<Data>();
 		var dataSet = d
@@ -331,7 +331,7 @@ class CSharpDTOGenerator implements IDTOGenerator {
 //					dataList.add(data)
 //				}
 //			}
-//			dataSet = dataSet.parentDataSet
+//			dataSet = dataSet.usedDataSets
 //		}
 
 		for (data : dataSet.eContents.filter(Data)) {
@@ -345,7 +345,7 @@ class CSharpDTOGenerator implements IDTOGenerator {
 			}
 		}
 
-		for (DataSet pdataSet : dataSet.parentDataSet) {
+		for (DataSet pdataSet : dataSet.usedDataSets) {
 			for (data : pdataSet.eContents.filter(Data)) {
 				if (data instanceof NonMeasurementData) {
 					var nmdata = data as NonMeasurementData

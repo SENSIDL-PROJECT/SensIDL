@@ -116,8 +116,8 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSensorDataDescriptionAccess().getIDAssignment_2_2(), "rule__SensorDataDescription__IDAssignment_2_2");
 					put(grammarAccess.getSensorDataDescriptionAccess().getDataSetsAssignment_4(), "rule__SensorDataDescription__DataSetsAssignment_4");
 					put(grammarAccess.getDataSetAccess().getNameAssignment_1(), "rule__DataSet__NameAssignment_1");
-					put(grammarAccess.getDataSetAccess().getParentDataSetAssignment_2_1(), "rule__DataSet__ParentDataSetAssignment_2_1");
-					put(grammarAccess.getDataSetAccess().getParentDataSetAssignment_3_1(), "rule__DataSet__ParentDataSetAssignment_3_1");
+					put(grammarAccess.getDataSetAccess().getUsedDataSetsAssignment_2_1(), "rule__DataSet__UsedDataSetsAssignment_2_1");
+					put(grammarAccess.getDataSetAccess().getUsedDataSetsAssignment_3_1(), "rule__DataSet__UsedDataSetsAssignment_3_1");
 					put(grammarAccess.getDataSetAccess().getIDAssignment_4_2(), "rule__DataSet__IDAssignment_4_2");
 					put(grammarAccess.getDataSetAccess().getDescriptionAssignment_5(), "rule__DataSet__DescriptionAssignment_5");
 					put(grammarAccess.getDataSetAccess().getDataAssignment_7_0(), "rule__DataSet__DataAssignment_7_0");

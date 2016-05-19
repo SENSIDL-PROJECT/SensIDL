@@ -128,8 +128,8 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
     EList<EObject> _eContents_1 = dataSet.eContents();
     Iterable<NonMeasurementData> _filter_1 = Iterables.<NonMeasurementData>filter(_eContents_1, NonMeasurementData.class);
     Iterables.<NonMeasurementData>addAll(nonMeasurementDataList, _filter_1);
-    EList<DataSet> _parentDataSet = dataSet.getParentDataSet();
-    for (final DataSet pdataSet : _parentDataSet) {
+    EList<DataSet> _usedDataSets = dataSet.getUsedDataSets();
+    for (final DataSet pdataSet : _usedDataSets) {
       {
         EList<EObject> _eContents_2 = pdataSet.eContents();
         Iterable<MeasurementData> _filter_2 = Iterables.<MeasurementData>filter(_eContents_2, MeasurementData.class);

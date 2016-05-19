@@ -2615,9 +2615,9 @@ rule__DataSet__Group_2__1__Impl
     }
 :
 (
-{ before(grammarAccess.getDataSetAccess().getParentDataSetAssignment_2_1()); }
-(rule__DataSet__ParentDataSetAssignment_2_1)
-{ after(grammarAccess.getDataSetAccess().getParentDataSetAssignment_2_1()); }
+{ before(grammarAccess.getDataSetAccess().getUsedDataSetsAssignment_2_1()); }
+(rule__DataSet__UsedDataSetsAssignment_2_1)
+{ after(grammarAccess.getDataSetAccess().getUsedDataSetsAssignment_2_1()); }
 )
 
 ;
@@ -2678,9 +2678,9 @@ rule__DataSet__Group_3__1__Impl
     }
 :
 (
-{ before(grammarAccess.getDataSetAccess().getParentDataSetAssignment_3_1()); }
-(rule__DataSet__ParentDataSetAssignment_3_1)
-{ after(grammarAccess.getDataSetAccess().getParentDataSetAssignment_3_1()); }
+{ before(grammarAccess.getDataSetAccess().getUsedDataSetsAssignment_3_1()); }
+(rule__DataSet__UsedDataSetsAssignment_3_1)
+{ after(grammarAccess.getDataSetAccess().getUsedDataSetsAssignment_3_1()); }
 )
 
 ;
@@ -6999,18 +6999,18 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__DataSet__ParentDataSetAssignment_2_1
+rule__DataSet__UsedDataSetsAssignment_2_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getDataSetAccess().getParentDataSetDataSetCrossReference_2_1_0()); }
+{ before(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetCrossReference_2_1_0()); }
 (
-{ before(grammarAccess.getDataSetAccess().getParentDataSetDataSetIDTerminalRuleCall_2_1_0_1()); }
-	RULE_ID{ after(grammarAccess.getDataSetAccess().getParentDataSetDataSetIDTerminalRuleCall_2_1_0_1()); }
+{ before(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetIDTerminalRuleCall_2_1_0_1()); }
+	RULE_ID{ after(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetIDTerminalRuleCall_2_1_0_1()); }
 )
-{ after(grammarAccess.getDataSetAccess().getParentDataSetDataSetCrossReference_2_1_0()); }
+{ after(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetCrossReference_2_1_0()); }
 )
 
 ;
@@ -7018,18 +7018,18 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__DataSet__ParentDataSetAssignment_3_1
+rule__DataSet__UsedDataSetsAssignment_3_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getDataSetAccess().getParentDataSetDataSetCrossReference_3_1_0()); }
+{ before(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetCrossReference_3_1_0()); }
 (
-{ before(grammarAccess.getDataSetAccess().getParentDataSetDataSetIDTerminalRuleCall_3_1_0_1()); }
-	RULE_ID{ after(grammarAccess.getDataSetAccess().getParentDataSetDataSetIDTerminalRuleCall_3_1_0_1()); }
+{ before(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetIDTerminalRuleCall_3_1_0_1()); }
+	RULE_ID{ after(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetIDTerminalRuleCall_3_1_0_1()); }
 )
-{ after(grammarAccess.getDataSetAccess().getParentDataSetDataSetCrossReference_3_1_0()); }
+{ after(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetCrossReference_3_1_0()); }
 )
 
 ;

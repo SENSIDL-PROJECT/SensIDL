@@ -34,29 +34,58 @@ mapping VortoFunctionblock::FunctionBlock::toDataDescription() : SensIDLModel::d
 when {self.events -> size() > 0} {
 	log("Start with SensorDataDescription-transformation");
 	
-	dataSets := self.events -> map toDataSet();
+	self.events -> forEach(event) {
+		dataSets +=  toDataSet(event) -> flatten();
+	}
 }
 
-mapping VortoFunctionblock::Event::toDataSet() : SensIDLModel::dataRepresentation::DataSet {
+query toDataSet(event : VortoFunctionblock::Event) : OrderedSet(SensIDLModel::dataRepresentation::DataSet) {
 	log("Start with DataSet-transformation");
 	
-	name := self.name;
-	data := self.properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)) -> map toNonMeasurementData();
+	var DataSets : OrderedSet(SensIDLModel::dataRepresentation::DataSet);
+	var DataSet : SensIDLModel::dataRepresentation::DataSet;
 	
-	//var dataSets := self.properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::ObjectPropertyType)) -> map toSubDataSet();
-	//sensorDataDescription.dataSets += dataSets;
-	//subDataSets := dataSets;
+	DataSet := object SensIDLModel::dataRepresentation::DataSet {
+		name := event.name;
+		data := event.properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)) 
+				-> map toNonMeasurementData();
+	};
+	
+	event.properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::ObjectPropertyType)) -> forEach(prop) {
+		var tempDataSet := PropertyToDataSet(prop);
+		DataSet.usedDataSets := tempDataSet;
+		DataSets += tempDataSet;
+	};
+	
+	DataSets += DataSet;
+	
+	return DataSets;
 }
 
-mapping VortoDataTypes::Property::toSubDataSet() : SensIDLModel::dataRepresentation::DataSet 
-when {self.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclIsTypeOf(VortoDataTypes::Entity)} {
+query PropertyToDataSet(proper : VortoDataTypes::Property) : OrderedSet(SensIDLModel::dataRepresentation::DataSet) 
+//when {self.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclIsTypeOf(VortoDataTypes::Entity)} 
+{
 	log("Start with DataSet-transformation");
-
-	name := self.name;
-	data := self.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity).properties 
+			
+	var DataSets : OrderedSet(SensIDLModel::dataRepresentation::DataSet);
+	var DataSet : SensIDLModel::dataRepresentation::DataSet;
+	
+	DataSet := object SensIDLModel::dataRepresentation::DataSet {
+		name := proper.name;
+		data := proper.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity).properties 
 			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)) -> map toNonMeasurementData();
-	subDataSets := self.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity).properties
-			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::ObjectPropertyType)) -> map toSubDataSet();
+	};
+	
+	proper.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity).properties
+			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::ObjectPropertyType)) -> forEach(prop) {
+		var tempDataSet := PropertyToDataSet(prop);
+		DataSet.usedDataSets := tempDataSet;
+		DataSets += tempDataSet;
+	};
+	
+	DataSets += DataSet;
+	
+	return DataSets;
 }
 
 mapping VortoDataTypes::Property::toNonMeasurementData() : SensIDLModel::dataRepresentation::NonMeasurementData {

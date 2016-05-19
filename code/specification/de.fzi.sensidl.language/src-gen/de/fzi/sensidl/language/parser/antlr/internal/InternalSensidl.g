@@ -464,7 +464,7 @@ ruleDataSet returns [EObject current=null]
         }
 	otherlv_3=RULE_ID
 	{
-		newLeafNode(otherlv_3, grammarAccess.getDataSetAccess().getParentDataSetDataSetCrossReference_2_1_0()); 
+		newLeafNode(otherlv_3, grammarAccess.getDataSetAccess().getUsedDataSetsDataSetCrossReference_2_1_0()); 
 	}
 
 )
@@ -481,7 +481,7 @@ ruleDataSet returns [EObject current=null]
         }
 	otherlv_5=RULE_ID
 	{
-		newLeafNode(otherlv_5, grammarAccess.getDataSetAccess().getParentDataSetDataSetCrossReference_3_1_0()); 
+		newLeafNode(otherlv_5, grammarAccess.getDataSetAccess().getUsedDataSetsDataSetCrossReference_3_1_0()); 
 	}
 
 )

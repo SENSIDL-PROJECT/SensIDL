@@ -213,14 +213,14 @@ public class JavaDTOGenerator implements IDTOGenerator {
     _builder.append("private static final long serialVersionUID = 1L;");
     _builder.newLine();
     _builder.append("\t");
-    CharSequence _generateDataFieldsIncludeParentDataSet = this.generateDataFieldsIncludeParentDataSet(d);
-    _builder.append(_generateDataFieldsIncludeParentDataSet, "\t");
+    CharSequence _generateDataFieldsIncludeusedDataSets = this.generateDataFieldsIncludeusedDataSets(d);
+    _builder.append(_generateDataFieldsIncludeusedDataSets, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.newLine();
     _builder.append("\t");
-    CharSequence _generateConstructorIncludeParentDataSet = this.generateConstructorIncludeParentDataSet(d, className);
-    _builder.append(_generateConstructorIncludeParentDataSet, "\t");
+    CharSequence _generateConstructorIncludeusedDataSets = this.generateConstructorIncludeusedDataSets(d, className);
+    _builder.append(_generateConstructorIncludeusedDataSets, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.newLine();
@@ -256,8 +256,8 @@ public class JavaDTOGenerator implements IDTOGenerator {
     _builder.append("\t");
     _builder.newLine();
     _builder.append("\t");
-    CharSequence _generateDataMethodsIncludeParentDataSet = this.generateDataMethodsIncludeParentDataSet(d);
-    _builder.append(_generateDataMethodsIncludeParentDataSet, "\t");
+    CharSequence _generateDataMethodsIncludeusedDataSets = this.generateDataMethodsIncludeusedDataSets(d);
+    _builder.append(_generateDataMethodsIncludeusedDataSets, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.newLine();
@@ -514,7 +514,7 @@ public class JavaDTOGenerator implements IDTOGenerator {
   /**
    * Generates the data fields for this data set including used data sets.
    */
-  public CharSequence generateDataFieldsIncludeParentDataSet(final DataSet d) {
+  public CharSequence generateDataFieldsIncludeusedDataSets(final DataSet d) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _eContents = d.eContents();
@@ -545,8 +545,8 @@ public class JavaDTOGenerator implements IDTOGenerator {
       }
     }
     {
-      EList<DataSet> _parentDataSet = d.getParentDataSet();
-      for(final DataSet dataSet : _parentDataSet) {
+      EList<DataSet> _usedDataSets = d.getUsedDataSets();
+      for(final DataSet dataSet : _usedDataSets) {
         CharSequence _generateDataFields_3 = this.generateDataFields(dataSet);
         _builder.append(_generateDataFields_3, "");
         _builder.newLineIfNotEmpty();
@@ -836,7 +836,7 @@ public class JavaDTOGenerator implements IDTOGenerator {
   /**
    * Generates the constructor for this data set including used data sets.
    */
-  public CharSequence generateConstructorIncludeParentDataSet(final DataSet d, final String className) {
+  public CharSequence generateConstructorIncludeusedDataSets(final DataSet d, final String className) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("/**");
     _builder.newLine();
@@ -849,8 +849,8 @@ public class JavaDTOGenerator implements IDTOGenerator {
     _builder.append("public ");
     _builder.append(className, "");
     _builder.append("(");
-    CharSequence _generateConstructorArgumentsIncludeParentDataSets = this.generateConstructorArgumentsIncludeParentDataSets(d);
-    _builder.append(_generateConstructorArgumentsIncludeParentDataSets, "");
+    CharSequence _generateConstructorArgumentsIncludeusedDataSetss = this.generateConstructorArgumentsIncludeusedDataSetss(d);
+    _builder.append(_generateConstructorArgumentsIncludeusedDataSetss, "");
     _builder.append(") {");
     _builder.newLineIfNotEmpty();
     {
@@ -955,8 +955,8 @@ public class JavaDTOGenerator implements IDTOGenerator {
       }
     }
     {
-      EList<DataSet> _parentDataSet = d.getParentDataSet();
-      for(final DataSet pdataSet : _parentDataSet) {
+      EList<DataSet> _usedDataSets = d.getUsedDataSets();
+      for(final DataSet pdataSet : _usedDataSets) {
         _builder.append("\t");
         _builder.append("this.");
         String _nameLower_8 = GenerationUtil.toNameLower(pdataSet);
@@ -976,7 +976,7 @@ public class JavaDTOGenerator implements IDTOGenerator {
   /**
    * Generates the Constructor arguments
    */
-  public CharSequence generateConstructorArgumentsIncludeParentDataSets(final DataSet d) {
+  public CharSequence generateConstructorArgumentsIncludeusedDataSetss(final DataSet d) {
     CharSequence _xblockexpression = null;
     {
       ArrayList<Data> dataList = new ArrayList<Data>();
@@ -1011,8 +1011,8 @@ public class JavaDTOGenerator implements IDTOGenerator {
           String firstElement = (_plus + _nameLower);
           dataList.remove(0);
           CharSequence _xifexpression_1 = null;
-          EList<DataSet> _parentDataSet = d.getParentDataSet();
-          int _size_1 = _parentDataSet.size();
+          EList<DataSet> _usedDataSets = d.getUsedDataSets();
+          int _size_1 = _usedDataSets.size();
           boolean _greaterThan_1 = (_size_1 > 0);
           if (_greaterThan_1) {
             StringConcatenation _builder = new StringConcatenation();
@@ -1028,8 +1028,8 @@ public class JavaDTOGenerator implements IDTOGenerator {
               }
             }
             {
-              EList<DataSet> _parentDataSet_1 = d.getParentDataSet();
-              for(final DataSet pdataSet : _parentDataSet_1) {
+              EList<DataSet> _usedDataSets_1 = d.getUsedDataSets();
+              for(final DataSet pdataSet : _usedDataSets_1) {
                 _builder.append(", ");
                 String _nameUpper = GenerationUtil.toNameUpper(pdataSet);
                 _builder.append(_nameUpper, "");
@@ -1074,7 +1074,7 @@ public class JavaDTOGenerator implements IDTOGenerator {
   /**
    * Generates the getter and setter methods for the data of this data set including used data sets.
    */
-  public CharSequence generateDataMethodsIncludeParentDataSet(final DataSet d) {
+  public CharSequence generateDataMethodsIncludeusedDataSets(final DataSet d) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _eContents = d.eContents();
@@ -1146,8 +1146,8 @@ public class JavaDTOGenerator implements IDTOGenerator {
       }
     }
     {
-      EList<DataSet> _parentDataSet = d.getParentDataSet();
-      for(final DataSet pdataSet : _parentDataSet) {
+      EList<DataSet> _usedDataSets = d.getUsedDataSets();
+      for(final DataSet pdataSet : _usedDataSets) {
         _builder.newLine();
         CharSequence _generateGetter_3 = this.generateGetter(pdataSet);
         _builder.append(_generateGetter_3, "");
@@ -2444,8 +2444,8 @@ public class JavaDTOGenerator implements IDTOGenerator {
   public CharSequence generateConverterMethods(final DataSet d) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      EList<DataSet> _parentDataSet = d.getParentDataSet();
-      for(final DataSet pdataSet : _parentDataSet) {
+      EList<DataSet> _usedDataSets = d.getUsedDataSets();
+      for(final DataSet pdataSet : _usedDataSets) {
         _builder.append("/**");
         _builder.newLine();
         _builder.append(" ");
@@ -2576,8 +2576,8 @@ public class JavaDTOGenerator implements IDTOGenerator {
       }
     }
     {
-      EList<DataSet> _parentDataSet = d.getParentDataSet();
-      for(final DataSet pdataSet : _parentDataSet) {
+      EList<DataSet> _usedDataSets = d.getUsedDataSets();
+      for(final DataSet pdataSet : _usedDataSets) {
         _builder.append("\t");
         String _nameLower_4 = GenerationUtil.toNameLower(pdataSet);
         _builder.append(_nameLower_4, "\t");

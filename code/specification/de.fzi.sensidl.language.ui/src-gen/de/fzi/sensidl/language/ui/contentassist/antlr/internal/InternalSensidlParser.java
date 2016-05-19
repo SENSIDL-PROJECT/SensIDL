@@ -7390,31 +7390,31 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataSet__Group_2__1__Impl"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2612:1: rule__DataSet__Group_2__1__Impl : ( ( rule__DataSet__ParentDataSetAssignment_2_1 ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2612:1: rule__DataSet__Group_2__1__Impl : ( ( rule__DataSet__UsedDataSetsAssignment_2_1 ) ) ;
     public final void rule__DataSet__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2616:1: ( ( ( rule__DataSet__ParentDataSetAssignment_2_1 ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2617:1: ( ( rule__DataSet__ParentDataSetAssignment_2_1 ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2616:1: ( ( ( rule__DataSet__UsedDataSetsAssignment_2_1 ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2617:1: ( ( rule__DataSet__UsedDataSetsAssignment_2_1 ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2617:1: ( ( rule__DataSet__ParentDataSetAssignment_2_1 ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2618:1: ( rule__DataSet__ParentDataSetAssignment_2_1 )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2617:1: ( ( rule__DataSet__UsedDataSetsAssignment_2_1 ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2618:1: ( rule__DataSet__UsedDataSetsAssignment_2_1 )
             {
-             before(grammarAccess.getDataSetAccess().getParentDataSetAssignment_2_1()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2619:1: ( rule__DataSet__ParentDataSetAssignment_2_1 )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2619:2: rule__DataSet__ParentDataSetAssignment_2_1
+             before(grammarAccess.getDataSetAccess().getUsedDataSetsAssignment_2_1()); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2619:1: ( rule__DataSet__UsedDataSetsAssignment_2_1 )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2619:2: rule__DataSet__UsedDataSetsAssignment_2_1
             {
-            pushFollow(FOLLOW_rule__DataSet__ParentDataSetAssignment_2_1_in_rule__DataSet__Group_2__1__Impl5403);
-            rule__DataSet__ParentDataSetAssignment_2_1();
+            pushFollow(FOLLOW_rule__DataSet__UsedDataSetsAssignment_2_1_in_rule__DataSet__Group_2__1__Impl5403);
+            rule__DataSet__UsedDataSetsAssignment_2_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getDataSetAccess().getParentDataSetAssignment_2_1()); 
+             after(grammarAccess.getDataSetAccess().getUsedDataSetsAssignment_2_1()); 
 
             }
 
@@ -7545,31 +7545,31 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataSet__Group_3__1__Impl"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2675:1: rule__DataSet__Group_3__1__Impl : ( ( rule__DataSet__ParentDataSetAssignment_3_1 ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2675:1: rule__DataSet__Group_3__1__Impl : ( ( rule__DataSet__UsedDataSetsAssignment_3_1 ) ) ;
     public final void rule__DataSet__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2679:1: ( ( ( rule__DataSet__ParentDataSetAssignment_3_1 ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2680:1: ( ( rule__DataSet__ParentDataSetAssignment_3_1 ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2679:1: ( ( ( rule__DataSet__UsedDataSetsAssignment_3_1 ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2680:1: ( ( rule__DataSet__UsedDataSetsAssignment_3_1 ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2680:1: ( ( rule__DataSet__ParentDataSetAssignment_3_1 ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2681:1: ( rule__DataSet__ParentDataSetAssignment_3_1 )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2680:1: ( ( rule__DataSet__UsedDataSetsAssignment_3_1 ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2681:1: ( rule__DataSet__UsedDataSetsAssignment_3_1 )
             {
-             before(grammarAccess.getDataSetAccess().getParentDataSetAssignment_3_1()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2682:1: ( rule__DataSet__ParentDataSetAssignment_3_1 )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2682:2: rule__DataSet__ParentDataSetAssignment_3_1
+             before(grammarAccess.getDataSetAccess().getUsedDataSetsAssignment_3_1()); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2682:1: ( rule__DataSet__UsedDataSetsAssignment_3_1 )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:2682:2: rule__DataSet__UsedDataSetsAssignment_3_1
             {
-            pushFollow(FOLLOW_rule__DataSet__ParentDataSetAssignment_3_1_in_rule__DataSet__Group_3__1__Impl5526);
-            rule__DataSet__ParentDataSetAssignment_3_1();
+            pushFollow(FOLLOW_rule__DataSet__UsedDataSetsAssignment_3_1_in_rule__DataSet__Group_3__1__Impl5526);
+            rule__DataSet__UsedDataSetsAssignment_3_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getDataSetAccess().getParentDataSetAssignment_3_1()); 
+             after(grammarAccess.getDataSetAccess().getUsedDataSetsAssignment_3_1()); 
 
             }
 
@@ -18780,9 +18780,9 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__DataSet__NameAssignment_1"
 
 
-    // $ANTLR start "rule__DataSet__ParentDataSetAssignment_2_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7002:1: rule__DataSet__ParentDataSetAssignment_2_1 : ( ( RULE_ID ) ) ;
-    public final void rule__DataSet__ParentDataSetAssignment_2_1() throws RecognitionException {
+    // $ANTLR start "rule__DataSet__UsedDataSetsAssignment_2_1"
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7002:1: rule__DataSet__UsedDataSetsAssignment_2_1 : ( ( RULE_ID ) ) ;
+    public final void rule__DataSet__UsedDataSetsAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -18793,17 +18793,17 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
             // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7007:1: ( ( RULE_ID ) )
             // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7008:1: ( RULE_ID )
             {
-             before(grammarAccess.getDataSetAccess().getParentDataSetDataSetCrossReference_2_1_0()); 
+             before(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetCrossReference_2_1_0()); 
             // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7009:1: ( RULE_ID )
             // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7010:1: RULE_ID
             {
-             before(grammarAccess.getDataSetAccess().getParentDataSetDataSetIDTerminalRuleCall_2_1_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__DataSet__ParentDataSetAssignment_2_114074); 
-             after(grammarAccess.getDataSetAccess().getParentDataSetDataSetIDTerminalRuleCall_2_1_0_1()); 
+             before(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetIDTerminalRuleCall_2_1_0_1()); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__DataSet__UsedDataSetsAssignment_2_114074); 
+             after(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetIDTerminalRuleCall_2_1_0_1()); 
 
             }
 
-             after(grammarAccess.getDataSetAccess().getParentDataSetDataSetCrossReference_2_1_0()); 
+             after(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetCrossReference_2_1_0()); 
 
             }
 
@@ -18822,12 +18822,12 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__DataSet__ParentDataSetAssignment_2_1"
+    // $ANTLR end "rule__DataSet__UsedDataSetsAssignment_2_1"
 
 
-    // $ANTLR start "rule__DataSet__ParentDataSetAssignment_3_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7021:1: rule__DataSet__ParentDataSetAssignment_3_1 : ( ( RULE_ID ) ) ;
-    public final void rule__DataSet__ParentDataSetAssignment_3_1() throws RecognitionException {
+    // $ANTLR start "rule__DataSet__UsedDataSetsAssignment_3_1"
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7021:1: rule__DataSet__UsedDataSetsAssignment_3_1 : ( ( RULE_ID ) ) ;
+    public final void rule__DataSet__UsedDataSetsAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -18838,17 +18838,17 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
             // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7026:1: ( ( RULE_ID ) )
             // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7027:1: ( RULE_ID )
             {
-             before(grammarAccess.getDataSetAccess().getParentDataSetDataSetCrossReference_3_1_0()); 
+             before(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetCrossReference_3_1_0()); 
             // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7028:1: ( RULE_ID )
             // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7029:1: RULE_ID
             {
-             before(grammarAccess.getDataSetAccess().getParentDataSetDataSetIDTerminalRuleCall_3_1_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__DataSet__ParentDataSetAssignment_3_114113); 
-             after(grammarAccess.getDataSetAccess().getParentDataSetDataSetIDTerminalRuleCall_3_1_0_1()); 
+             before(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetIDTerminalRuleCall_3_1_0_1()); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__DataSet__UsedDataSetsAssignment_3_114113); 
+             after(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetIDTerminalRuleCall_3_1_0_1()); 
 
             }
 
-             after(grammarAccess.getDataSetAccess().getParentDataSetDataSetCrossReference_3_1_0()); 
+             after(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetCrossReference_3_1_0()); 
 
             }
 
@@ -18867,7 +18867,7 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__DataSet__ParentDataSetAssignment_3_1"
+    // $ANTLR end "rule__DataSet__UsedDataSetsAssignment_3_1"
 
 
     // $ANTLR start "rule__DataSet__IDAssignment_4_2"
@@ -21940,12 +21940,12 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__DataSet__Group_2__1_in_rule__DataSet__Group_2__05317 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_40_in_rule__DataSet__Group_2__0__Impl5345 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataSet__Group_2__1__Impl_in_rule__DataSet__Group_2__15376 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataSet__ParentDataSetAssignment_2_1_in_rule__DataSet__Group_2__1__Impl5403 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DataSet__UsedDataSetsAssignment_2_1_in_rule__DataSet__Group_2__1__Impl5403 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataSet__Group_3__0__Impl_in_rule__DataSet__Group_3__05437 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_rule__DataSet__Group_3__1_in_rule__DataSet__Group_3__05440 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_34_in_rule__DataSet__Group_3__0__Impl5468 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataSet__Group_3__1__Impl_in_rule__DataSet__Group_3__15499 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataSet__ParentDataSetAssignment_3_1_in_rule__DataSet__Group_3__1__Impl5526 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DataSet__UsedDataSetsAssignment_3_1_in_rule__DataSet__Group_3__1__Impl5526 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataSet__Group_4__0__Impl_in_rule__DataSet__Group_4__05560 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_rule__DataSet__Group_4__1_in_rule__DataSet__Group_4__05563 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_31_in_rule__DataSet__Group_4__0__Impl5591 = new BitSet(new long[]{0x0000000000000002L});
@@ -22311,8 +22311,8 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_RULE_STRING_in_rule__SensorDataDescription__IDAssignment_2_213977 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDataSet_in_rule__SensorDataDescription__DataSetsAssignment_414008 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__DataSet__NameAssignment_114039 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__DataSet__ParentDataSetAssignment_2_114074 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__DataSet__ParentDataSetAssignment_3_114113 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__DataSet__UsedDataSetsAssignment_2_114074 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__DataSet__UsedDataSetsAssignment_3_114113 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__DataSet__IDAssignment_4_214148 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_DESCRIPTION_in_rule__DataSet__DescriptionAssignment_514179 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleData_in_rule__DataSet__DataAssignment_7_014210 = new BitSet(new long[]{0x0000000000000002L});

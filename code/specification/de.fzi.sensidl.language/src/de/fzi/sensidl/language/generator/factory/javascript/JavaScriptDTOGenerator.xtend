@@ -93,7 +93,7 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 		measurementDataList.addAll(dataSet.eContents.filter(MeasurementData))
 		nonMeasurementDataList.addAll(dataSet.eContents.filter(NonMeasurementData))
 		
-		for (DataSet pdataSet : dataSet.parentDataSet){
+		for (DataSet pdataSet : dataSet.usedDataSets){
 			measurementDataList.addAll(pdataSet.eContents.filter(MeasurementData))
 			nonMeasurementDataList.addAll(pdataSet.eContents.filter(NonMeasurementData))
 		}

@@ -120,9 +120,9 @@ class JavaDTOGenerator implements IDTOGenerator {
 			public class «className» {
 				
 				private static final long serialVersionUID = 1L;
-				«generateDataFieldsIncludeParentDataSet(d)»
+				«generateDataFieldsIncludeusedDataSets(d)»
 				
-				«generateConstructorIncludeParentDataSet(d, className)»
+				«generateConstructorIncludeusedDataSets(d, className)»
 				
 				«IF createEmptyConstructor»
 				/**
@@ -134,7 +134,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 				«ENDIF»
 				«d.generateMethods»
 				
-				«generateDataMethodsIncludeParentDataSet(d)»
+				«generateDataMethodsIncludeusedDataSets(d)»
 				
 				«IF !bigEndian»
 				«d.generateConverterMethods»
@@ -249,7 +249,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 	/**
 	 * Generates the data fields for this data set including used data sets.
 	 */
-	def generateDataFieldsIncludeParentDataSet(DataSet d) {
+	def generateDataFieldsIncludeusedDataSets(DataSet d) {
 		'''
 		«FOR data : d.eContents.filter(NonMeasurementData)»
 			
@@ -261,7 +261,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 		«FOR data : d.eContents.filter(ListData)»
 			«generateDataFields(data)»
 		«ENDFOR» 
-		«FOR dataSet : d.parentDataSet»
+		«FOR dataSet : d.usedDataSets»
 			«generateDataFields(dataSet)»
 		«ENDFOR»
 		'''
@@ -353,12 +353,12 @@ class JavaDTOGenerator implements IDTOGenerator {
 	/**
 	 * Generates the constructor for this data set including used data sets.
 	 */
-	def generateConstructorIncludeParentDataSet(DataSet d, String className) {
+	def generateConstructorIncludeusedDataSets(DataSet d, String className) {
 		'''
 			/**
 			 * Constructor for the Data transfer object
 			 */
-			public «className»(«d.generateConstructorArgumentsIncludeParentDataSets») {
+			public «className»(«d.generateConstructorArgumentsIncludeusedDataSetss») {
 				«FOR data : d.eContents.filter(MeasurementData)»
 					«IF data.hasLinearDataConversionWithInterval»
 						«IF data.excludedMethods.contains("setter")»
@@ -375,7 +375,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 						this.«GenerationUtil.toNameLower(data)» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («GenerationUtil.toNameLower(data)» - «data.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(data)»«ENDIF»;
 					«ENDIF»
 				«ENDFOR»
-				«FOR pdataSet : d.parentDataSet»
+				«FOR pdataSet : d.usedDataSets»
 					this.«GenerationUtil.toNameLower(pdataSet)» = «GenerationUtil.toNameLower(pdataSet)»;
 				«ENDFOR»
 			}
@@ -385,7 +385,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 	/**
 	 * Generates the Constructor arguments
 	 */
-	def generateConstructorArgumentsIncludeParentDataSets(DataSet d) {
+	def generateConstructorArgumentsIncludeusedDataSetss(DataSet d) {
 		// create an ArrayList with all data that is not a constant NonMeasurementData (which will not be constructor arguments)
 		var dataList = new ArrayList<Data>();
 		var dataSet = d
@@ -404,8 +404,8 @@ class JavaDTOGenerator implements IDTOGenerator {
 		if (dataList.size > 0) {
 			var firstElement = dataList.get(0).toTypeName + " " + GenerationUtil.toNameLower(dataList.get(0))
 			dataList.remove(0)
-			if(d.parentDataSet.size > 0){
-				'''«firstElement»«FOR data : dataList», «data.toTypeName» «GenerationUtil.toNameLower(data)»«ENDFOR»«FOR pdataSet : d.parentDataSet», «GenerationUtil.toNameUpper(pdataSet)» «GenerationUtil.toNameLower(pdataSet)»«ENDFOR»'''
+			if(d.usedDataSets.size > 0){
+				'''«firstElement»«FOR data : dataList», «data.toTypeName» «GenerationUtil.toNameLower(data)»«ENDFOR»«FOR pdataSet : d.usedDataSets», «GenerationUtil.toNameUpper(pdataSet)» «GenerationUtil.toNameLower(pdataSet)»«ENDFOR»'''
 			} else {
 				'''«firstElement»«FOR data : dataList», «data.toTypeName» «GenerationUtil.toNameLower(data)»«ENDFOR»'''
 			}
@@ -420,7 +420,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 	/**
 	 * Generates the getter and setter methods for the data of this data set including used data sets.
 	 */
-	def generateDataMethodsIncludeParentDataSet(DataSet d) {
+	def generateDataMethodsIncludeusedDataSets(DataSet d) {
 		'''
 		«FOR data : d.eContents.filter(MeasurementData)»
 			«IF !data.excludedMethods.contains("getter")»
@@ -445,7 +445,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 				
 				«generateSetter(data)»
 		«ENDFOR»
-		«FOR pdataSet : d.parentDataSet»
+		«FOR pdataSet : d.usedDataSets»
 			
 			«generateGetter(pdataSet)»
 			
@@ -890,7 +890,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 
 	def generateConverterMethods(DataSet d) {
 		'''
-			«FOR pdataSet : d.parentDataSet»
+			«FOR pdataSet : d.usedDataSets»
 				/**
 				 * Converts a big endian «GenerationUtil.toNameUpper(pdataSet)» Object into a little endian «GenerationUtil.toNameUpper(pdataSet)» Object
 				 *	
@@ -922,7 +922,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 						«GenerationUtil.toNameLower(data)» = «GenerationUtil.getSensorInterfaceName(data.eContainer)»«SensIDLConstants.UTILITY_CLASS_NAME».convertToLittleEndian(«GenerationUtil.toNameLower(data)»);
 					«ENDIF»
 				«ENDFOR»
-				«FOR pdataSet : d.parentDataSet»
+				«FOR pdataSet : d.usedDataSets»
 					«GenerationUtil.toNameLower(pdataSet)» = convertToLittleEndian(«GenerationUtil.toNameLower(pdataSet)»);
 				«ENDFOR»
 			}

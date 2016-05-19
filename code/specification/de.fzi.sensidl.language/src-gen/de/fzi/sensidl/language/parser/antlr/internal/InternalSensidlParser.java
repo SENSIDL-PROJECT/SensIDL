@@ -990,7 +990,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
                             
                     otherlv_3=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleDataSet899); 
 
-                    		newLeafNode(otherlv_3, grammarAccess.getDataSetAccess().getParentDataSetDataSetCrossReference_2_1_0()); 
+                    		newLeafNode(otherlv_3, grammarAccess.getDataSetAccess().getUsedDataSetsDataSetCrossReference_2_1_0()); 
                     	
 
                     }
@@ -1036,7 +1036,7 @@ public class InternalSensidlParser extends AbstractInternalAntlrParser {
             	            
             	    otherlv_5=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleDataSet934); 
 
-            	    		newLeafNode(otherlv_5, grammarAccess.getDataSetAccess().getParentDataSetDataSetCrossReference_3_1_0()); 
+            	    		newLeafNode(otherlv_5, grammarAccess.getDataSetAccess().getUsedDataSetsDataSetCrossReference_3_1_0()); 
             	    	
 
             	    }

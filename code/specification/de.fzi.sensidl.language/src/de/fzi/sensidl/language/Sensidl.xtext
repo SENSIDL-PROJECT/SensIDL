@@ -46,7 +46,7 @@ SensorDataDescription returns dataRepresentation::SensorDataDescription:
 ;
 
 DataSet returns dataRepresentation::DataSet:
-	"dataSet" name=ID ("uses" parentDataSet+=[dataRepresentation::DataSet])?("," parentDataSet+=[dataRepresentation::DataSet])* ("with identifier" ":" ID=STRING)? (description=DESCRIPTION)? "{"
+	"dataSet" name=ID ("uses" usedDataSets+=[dataRepresentation::DataSet])?("," usedDataSets+=[dataRepresentation::DataSet])* ("with identifier" ":" ID=STRING)? (description=DESCRIPTION)? "{"
 		((data+=Data) | (method+=Method))*
 	"}"
 ;

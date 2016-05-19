@@ -83,7 +83,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 						
 			typedef struct
 			{
-					«generateDataFieldsIncludeParentDataSet(dataset)»
+					«generateDataFieldsIncludeusedDataSets(dataset)»
 							
 			} «GenerationUtil.toNameUpper(dataset)»;
 			
@@ -91,7 +91,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 
 			«generateInitDatasetPrototype(dataset)»
 			
-			«generateDataMethodsPrototypesIncludeParentDataSet(dataset)»
+			«generateDataMethodsPrototypesIncludeusedDataSets(dataset)»
 						
 			«generateEndiannessMethodsPrototypes(dataset)»
 
@@ -112,10 +112,10 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	/**
 	 * Generates the data fields for this data set including used data sets.
 	 */
-	def generateDataFieldsIncludeParentDataSet(DataSet d) {
+	def generateDataFieldsIncludeusedDataSets(DataSet d) {
 		var dataSets = new ArrayList<DataSet>() => [
 			add(d)
-			addAll(d.parentDataSet)
+			addAll(d.usedDataSets)
 		]
 		var dataFieldsString =''''''
 				
@@ -145,32 +145,32 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	/**
 	 * Generates the getter and setter methods prototypes for the data of this data set including used data sets.
 	 */
-	def generateDataMethodsPrototypesIncludeParentDataSet(DataSet d) {
+	def generateDataMethodsPrototypesIncludeusedDataSets(DataSet d) {
 		var dataSets = new ArrayList<DataSet>() => [
 			add(d)
-			addAll(d.parentDataSet)
+			addAll(d.usedDataSets)
 		]
 		var methodsString =''''''
-		var parentDataSet = d		
+		var usedDataSets = d		
 		for (dataSet : dataSets) {
 	
 			for (data : dataSet.eContents.filter(NonMeasurementData)) {
 				if (!data.excludedMethods.contains("getter")){
-					methodsString += generateGetterPrototype(data, parentDataSet)
+					methodsString += generateGetterPrototype(data, usedDataSets)
 					methodsString += System.getProperty("line.separator");
 				}
 				if (!data.excludedMethods.contains("setter")){
-					methodsString += generateSetterPrototype(data, parentDataSet)
+					methodsString += generateSetterPrototype(data, usedDataSets)
 					methodsString += System.getProperty("line.separator");
 				}
 			}
 			for (data : dataSet.eContents.filter(MeasurementData)) {
 				if (!data.excludedMethods.contains("getter")){
-					methodsString += generateGetterPrototype(data, parentDataSet)
+					methodsString += generateGetterPrototype(data, usedDataSets)
 					methodsString += System.getProperty("line.separator");
 				}
 				if (!data.excludedMethods.contains("setter")){				
-					methodsString += generateSetterPrototype(data, parentDataSet)
+					methodsString += generateSetterPrototype(data, usedDataSets)
 					methodsString += System.getProperty("line.separator"); 
 				}
 			}
