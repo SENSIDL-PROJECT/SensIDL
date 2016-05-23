@@ -1,25 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<functionblock:FunctionblockModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:datatype="http://www.eclipse.org/vorto/metamodel/Datatype" xmlns:functionblock="http://www.eclipse.org/vorto/metamodel/Functionblock" name="eMeterFunctionblockModel">
-  <functionblock displayname="eMeter">
-    <events name="Conductor">
-      <properties name="recordType" description="value = 1, Distinct type for this data set.">
-        <type xsi:type="datatype:PrimitivePropertyType" type="byte"/>
+<functionblock:FunctionblockModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:datatype="http://www.eclipse.org/vorto/metamodel/Datatype"
+    xmlns:functionblock="http://www.eclipse.org/vorto/metamodel/Functionblock"
+    name="eMeterFunctionblockModel">
+  <functionblock
+      displayname="eMeter">
+    <events
+        name="Conductor">
+      <properties
+          name="recordType"
+          description="NonMeasurement">
+        <type
+            xsi:type="datatype:PrimitivePropertyType"
+            type="byte"/>
       </properties>
-      <properties name="voltage">
-        <type xsi:type="datatype:PrimitivePropertyType" type="float"/>
+      <properties
+          name="voltage"
+          description="Measurement">
+        <type
+            xsi:type="datatype:PrimitivePropertyType"
+            type="float"/>
       </properties>
-      <properties name="power">
-        <type xsi:type="datatype:PrimitivePropertyType" type="float"/>
+      <properties
+          name="power"
+          description="Measurement">
+        <type
+            xsi:type="datatype:PrimitivePropertyType"
+            type="float"/>
       </properties>
-      <properties name="powerFactor">
-        <type xsi:type="datatype:PrimitivePropertyType" type="short"/>
+      <properties
+          name="powerFactor"
+          description="Measurement">
+        <type
+            xsi:type="datatype:PrimitivePropertyType"
+            type="short"/>
       </properties>
-      <properties name="identicator">
-        <type xsi:type="datatype:PrimitivePropertyType" type="byte"/>
+      <properties
+          name="identicator"
+          description="Measurement">
+        <type
+            xsi:type="datatype:PrimitivePropertyType"
+            type="byte"/>
       </properties>
-      <properties name="Info">
-        <type xsi:type="datatype:ObjectPropertyType">
-          <type href="Info.xmi#/"/>
+      <properties
+          name="Info">
+        <type
+            xsi:type="datatype:ObjectPropertyType">
+          <type
+              href="Info.xmi#/"/>
         </type>
       </properties>
     </events>

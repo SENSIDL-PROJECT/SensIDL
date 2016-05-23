@@ -35,7 +35,7 @@ when {self.events -> size() > 0} {
 	log("Start with SensorDataDescription-transformation");
 	
 	self.events -> forEach(event) {
-		dataSets +=  toDataSet(event) -> flatten();
+		dataSets += toDataSet(event) -> flatten();
 	}
 }
 
@@ -48,7 +48,7 @@ query toDataSet(event : VortoFunctionblock::Event) : OrderedSet(SensIDLModel::da
 	DataSet := object SensIDLModel::dataRepresentation::DataSet {
 		name := event.name;
 		data := event.properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)) 
-				-> map toNonMeasurementData();
+				-> toData();
 	};
 	
 	event.properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::ObjectPropertyType)) -> forEach(prop) {
@@ -73,7 +73,7 @@ query PropertyToDataSet(proper : VortoDataTypes::Property) : OrderedSet(SensIDLM
 	DataSet := object SensIDLModel::dataRepresentation::DataSet {
 		name := proper.name;
 		data := proper.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity).properties 
-			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)) -> map toNonMeasurementData();
+			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)) -> toData();
 	};
 	
 	proper.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity).properties
@@ -88,15 +88,48 @@ query PropertyToDataSet(proper : VortoDataTypes::Property) : OrderedSet(SensIDLM
 	return DataSets;
 }
 
+query VortoDataTypes::Property::toData() : SensIDLModel::dataRepresentation::Data {
+	var data : SensIDLModel::dataRepresentation::Data;
+	
+	if (isNonMeasurement(self.description)) then {
+		data := self.map toNonMeasurementData();
+	} else {
+		data := self.map toMeasurementData();
+	} endif;
+	
+	//log(((dataInfos -> at(0)).toString() = "1").toString());
+	
+	return data;
+}
+
+query isNonMeasurement(description : String) : Boolean {
+	return (description.find("NonMeasurement") > 0);
+}
+
 mapping VortoDataTypes::Property::toNonMeasurementData() : SensIDLModel::dataRepresentation::NonMeasurementData {
 	log("Start with MeasurementData-transformation");
 
 	name := self.name;
 	description := self.description;
 	dataType := toDataType(self.type.oclAsType(VortoDataTypes::PrimitivePropertyType).type);
+	
+	if (hasValue(self.description)) then {
+		value := self.description.replaceAll("[^0-9]*", ""); 
+	} endif;
+	
+	if (isConstant(self.description)) then {
+		constant := true;
+	} endif;
 }
 
-//Currently not in use.
+query hasValue(description : String) : Boolean {
+	return (description.find("value") > 0);
+}
+
+query isConstant(description : String) : Boolean {
+	return (description.find("constant") > 0);
+}
+
 mapping VortoDataTypes::Property::toMeasurementData() : SensIDLModel::dataRepresentation::MeasurementData {
 	log("Start with MeasurementData-transformation");
 
@@ -127,8 +160,6 @@ query getCorrespondingBound(constraints : OrderedSet(VortoDataTypes::Constraint)
 				return constraint.constraintValues.toInteger();
 			} endif;
 		};
-		
-		return 0;
 	} endif;
 	
 	constraints -> forEach(constraint) {
