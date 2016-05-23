@@ -296,7 +296,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 	 				
 	 				«IF dataAdj instanceof DataConversion»						
 	 					«IF dataAdj instanceof LinearDataConversion»
-	 					void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ){						
+	 					void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»_WithDataConversion(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ){						
 	 						p->«d.name.toFirstLower» =  «d.name.toFirstLower» *  «dataAdj.scalingFactor» +  «dataAdj.offset»;
 	 					} 
 	 					«ELSE»
@@ -320,9 +320,9 @@ class CDTOFileGenerator extends CDTOGenerator {
 	 					«ENDIF»
 	 				«ENDIF»				
 	 				«ENDFOR»	
- 				«ELSE»
- 					void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ) { p->«d.name.toFirstLower» = «d.name.toFirstLower»; }
  				«ENDIF»
+ 				void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ) { p->«d.name.toFirstLower» = «d.name.toFirstLower»; }
+
  				''' 
  	}
  	

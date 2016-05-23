@@ -17,6 +17,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 import de.fzi.sensidl.design.sensidl.dataRepresentation.ListData
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
 
 /**
  * This class implements a part of the CDTOGenerator. This class is responsible for 
@@ -236,6 +237,19 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 */	
 	dispatch def generateSetterPrototype(MeasurementData d, DataSet dataset) {
 		'''	
+ 		«IF d.adjustments.empty == false»
+		 	«FOR dataAdj : d.adjustments»		
+			 	«IF dataAdj instanceof DataConversion»						
+			 		«IF dataAdj instanceof LinearDataConversion»
+			 		/**
+			 		 * @param pointer to dataset, adjust
+			 		 *			the adjust to set
+			 		 */
+			 		void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»_WithDataConversion(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» );					
+			 		«ENDIF»
+			 	«ENDIF»				
+		 	«ENDFOR»	 		
+		«ENDIF»						
 		/**
 		 * @param pointer to dataset, «d.name.toFirstLower»
 		 *			the «d.name.toFirstLower» to set
