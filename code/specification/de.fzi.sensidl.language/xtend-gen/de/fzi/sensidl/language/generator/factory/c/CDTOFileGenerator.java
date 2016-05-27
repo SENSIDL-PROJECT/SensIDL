@@ -512,7 +512,7 @@ public class CDTOFileGenerator extends CDTOGenerator {
                     String _name_9 = d.getName();
                     String _replaceAll_1 = _name_9.replaceAll("[^a-zA-Z0-9]", "");
                     _builder.append(_replaceAll_1, "");
-                    _builder.append("(");
+                    _builder.append("_WithDataConversion(");
                     String _name_10 = dataset.getName();
                     String _firstUpper_3 = StringExtensions.toFirstUpper(_name_10);
                     _builder.append(_firstUpper_3, "");
@@ -675,38 +675,38 @@ public class CDTOFileGenerator extends CDTOGenerator {
             }
           }
         }
-      } else {
-        _builder.append("void set_");
-        String _name_24 = dataset.getName();
-        String _firstUpper_6 = StringExtensions.toFirstUpper(_name_24);
-        _builder.append(_firstUpper_6, "");
-        _builder.append("_");
-        String _name_25 = d.getName();
-        String _replaceAll_3 = _name_25.replaceAll("[^a-zA-Z0-9]", "");
-        _builder.append(_replaceAll_3, "");
-        _builder.append("(");
-        String _name_26 = dataset.getName();
-        String _firstUpper_7 = StringExtensions.toFirstUpper(_name_26);
-        _builder.append(_firstUpper_7, "");
-        _builder.append("* p, ");
-        String _typeName_7 = this.toTypeName(d);
-        _builder.append(_typeName_7, "");
-        _builder.append(" ");
-        String _name_27 = d.getName();
-        String _firstLower_15 = StringExtensions.toFirstLower(_name_27);
-        _builder.append(_firstLower_15, "");
-        _builder.append(" ) { p->");
-        String _name_28 = d.getName();
-        String _firstLower_16 = StringExtensions.toFirstLower(_name_28);
-        _builder.append(_firstLower_16, "");
-        _builder.append(" = ");
-        String _name_29 = d.getName();
-        String _firstLower_17 = StringExtensions.toFirstLower(_name_29);
-        _builder.append(_firstLower_17, "");
-        _builder.append("; }");
-        _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("void set_");
+    String _name_24 = dataset.getName();
+    String _firstUpper_6 = StringExtensions.toFirstUpper(_name_24);
+    _builder.append(_firstUpper_6, "");
+    _builder.append("_");
+    String _name_25 = d.getName();
+    String _replaceAll_3 = _name_25.replaceAll("[^a-zA-Z0-9]", "");
+    _builder.append(_replaceAll_3, "");
+    _builder.append("(");
+    String _name_26 = dataset.getName();
+    String _firstUpper_7 = StringExtensions.toFirstUpper(_name_26);
+    _builder.append(_firstUpper_7, "");
+    _builder.append("* p, ");
+    String _typeName_7 = this.toTypeName(d);
+    _builder.append(_typeName_7, "");
+    _builder.append(" ");
+    String _name_27 = d.getName();
+    String _firstLower_15 = StringExtensions.toFirstLower(_name_27);
+    _builder.append(_firstLower_15, "");
+    _builder.append(" ) { p->");
+    String _name_28 = d.getName();
+    String _firstLower_16 = StringExtensions.toFirstLower(_name_28);
+    _builder.append(_firstLower_16, "");
+    _builder.append(" = ");
+    String _name_29 = d.getName();
+    String _firstLower_17 = StringExtensions.toFirstLower(_name_29);
+    _builder.append(_firstLower_17, "");
+    _builder.append("; }");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
     return _builder;
   }
   

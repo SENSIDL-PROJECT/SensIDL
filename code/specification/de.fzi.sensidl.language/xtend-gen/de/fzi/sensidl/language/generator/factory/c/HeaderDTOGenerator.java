@@ -5,8 +5,10 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Iterables;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataAdjustment;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.ListData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
@@ -483,43 +485,95 @@ public class HeaderDTOGenerator extends CDTOGenerator {
    */
   protected CharSequence _generateSetterPrototype(final MeasurementData d, final DataSet dataset) {
     StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<DataAdjustment> _adjustments = d.getAdjustments();
+      boolean _isEmpty = _adjustments.isEmpty();
+      boolean _equals = (_isEmpty == false);
+      if (_equals) {
+        {
+          EList<DataAdjustment> _adjustments_1 = d.getAdjustments();
+          for(final DataAdjustment dataAdj : _adjustments_1) {
+            {
+              if ((dataAdj instanceof DataConversion)) {
+                {
+                  if ((dataAdj instanceof LinearDataConversion)) {
+                    _builder.append("/**");
+                    _builder.newLine();
+                    _builder.append(" ");
+                    _builder.append("* @param pointer to dataset, adjust");
+                    _builder.newLine();
+                    _builder.append(" ");
+                    _builder.append("*\t\t\tthe adjust to set");
+                    _builder.newLine();
+                    _builder.append(" ");
+                    _builder.append("*/");
+                    _builder.newLine();
+                    _builder.append("void set_");
+                    String _name = dataset.getName();
+                    String _firstUpper = StringExtensions.toFirstUpper(_name);
+                    _builder.append(_firstUpper, "");
+                    _builder.append("_");
+                    String _name_1 = d.getName();
+                    String _replaceAll = _name_1.replaceAll("[^a-zA-Z0-9]", "");
+                    _builder.append(_replaceAll, "");
+                    _builder.append("_WithDataConversion(");
+                    String _name_2 = dataset.getName();
+                    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
+                    _builder.append(_firstUpper_1, "");
+                    _builder.append("* p, ");
+                    String _typeName = this.toTypeName(d);
+                    _builder.append(_typeName, "");
+                    _builder.append(" ");
+                    String _name_3 = d.getName();
+                    String _firstLower = StringExtensions.toFirstLower(_name_3);
+                    _builder.append(_firstLower, "");
+                    _builder.append(" );\t\t\t\t\t");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
     _builder.append("/**");
     _builder.newLine();
     _builder.append(" ");
     _builder.append("* @param pointer to dataset, ");
-    String _name = d.getName();
-    String _firstLower = StringExtensions.toFirstLower(_name);
-    _builder.append(_firstLower, " ");
+    String _name_4 = d.getName();
+    String _firstLower_1 = StringExtensions.toFirstLower(_name_4);
+    _builder.append(_firstLower_1, " ");
     _builder.newLineIfNotEmpty();
     _builder.append(" ");
     _builder.append("*\t\t\tthe ");
-    String _name_1 = d.getName();
-    String _firstLower_1 = StringExtensions.toFirstLower(_name_1);
-    _builder.append(_firstLower_1, " ");
+    String _name_5 = d.getName();
+    String _firstLower_2 = StringExtensions.toFirstLower(_name_5);
+    _builder.append(_firstLower_2, " ");
     _builder.append(" to set");
     _builder.newLineIfNotEmpty();
     _builder.append(" ");
     _builder.append("*/");
     _builder.newLine();
     _builder.append("void set_");
-    String _name_2 = dataset.getName();
-    String _firstUpper = StringExtensions.toFirstUpper(_name_2);
-    _builder.append(_firstUpper, "");
+    String _name_6 = dataset.getName();
+    String _firstUpper_2 = StringExtensions.toFirstUpper(_name_6);
+    _builder.append(_firstUpper_2, "");
     _builder.append("_");
-    String _name_3 = d.getName();
-    String _replaceAll = _name_3.replaceAll("[^a-zA-Z0-9]", "");
-    _builder.append(_replaceAll, "");
+    String _name_7 = d.getName();
+    String _replaceAll_1 = _name_7.replaceAll("[^a-zA-Z0-9]", "");
+    _builder.append(_replaceAll_1, "");
     _builder.append("(");
-    String _name_4 = dataset.getName();
-    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_4);
-    _builder.append(_firstUpper_1, "");
+    String _name_8 = dataset.getName();
+    String _firstUpper_3 = StringExtensions.toFirstUpper(_name_8);
+    _builder.append(_firstUpper_3, "");
     _builder.append("* p, ");
-    String _typeName = this.toTypeName(d);
-    _builder.append(_typeName, "");
+    String _typeName_1 = this.toTypeName(d);
+    _builder.append(_typeName_1, "");
     _builder.append(" ");
-    String _name_5 = d.getName();
-    String _firstLower_2 = StringExtensions.toFirstLower(_name_5);
-    _builder.append(_firstLower_2, "");
+    String _name_9 = d.getName();
+    String _firstLower_3 = StringExtensions.toFirstLower(_name_9);
+    _builder.append(_firstLower_3, "");
     _builder.append(" );");
     _builder.newLineIfNotEmpty();
     _builder.newLine();

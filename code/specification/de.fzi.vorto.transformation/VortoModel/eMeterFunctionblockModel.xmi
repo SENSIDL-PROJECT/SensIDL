@@ -5,9 +5,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:datatype="http://www.eclipse.org/vorto/metamodel/Datatype"
     xmlns:functionblock="http://www.eclipse.org/vorto/metamodel/Functionblock"
-    name="eMeterFunctionblockModel">
-  <functionblock
-      displayname="eMeter">
+    name="eMeter">
+  <functionblock>
     <events
         name="Conductor">
       <properties
@@ -19,10 +18,17 @@
       </properties>
       <properties
           name="voltage"
-          description="Measurement">
+          description="">
+        <Constraints
+            constraintValues="10"/>
+        <Constraints
+            type="MAX"
+            constraintValues="100"/>
         <type
             xsi:type="datatype:PrimitivePropertyType"
             type="float"/>
+        <propertyAttributes
+            xsi:type="datatype:EnumLiteralPropertyAttribute"/>
       </properties>
       <properties
           name="power"
@@ -30,6 +36,8 @@
         <type
             xsi:type="datatype:PrimitivePropertyType"
             type="float"/>
+        <propertyAttributes
+            xsi:type="datatype:EnumLiteralPropertyAttribute"/>
       </properties>
       <properties
           name="powerFactor"
@@ -37,6 +45,8 @@
         <type
             xsi:type="datatype:PrimitivePropertyType"
             type="short"/>
+        <propertyAttributes
+            xsi:type="datatype:EnumLiteralPropertyAttribute"/>
       </properties>
       <properties
           name="identicator"
@@ -44,6 +54,8 @@
         <type
             xsi:type="datatype:PrimitivePropertyType"
             type="byte"/>
+        <propertyAttributes
+            xsi:type="datatype:EnumLiteralPropertyAttribute"/>
       </properties>
       <properties
           name="Info">
@@ -52,7 +64,35 @@
           <type
               href="Info.xmi#/"/>
         </type>
+        <propertyAttributes
+            xsi:type="datatype:EnumLiteralPropertyAttribute"/>
       </properties>
     </events>
+    <operations
+        name="doSomething"
+        description="Conductor">
+      <params
+          xsi:type="functionblock:PrimitiveParam"
+          name="param1"
+          type="double"/>
+      <params
+          xsi:type="functionblock:RefParam"
+          name="param2">
+        <type
+            href="Info.xmi#/"/>
+      </params>
+      <returnType
+          xsi:type="functionblock:ReturnPrimitiveType"
+          returnType="double"/>
+    </operations>
+    <operations
+        name="getInfo"
+        description="Info">
+      <returnType
+          xsi:type="functionblock:ReturnObjectType">
+        <returnType
+            href="Info.xmi#/"/>
+      </returnType>
+    </operations>
   </functionblock>
 </functionblock:FunctionblockModel>

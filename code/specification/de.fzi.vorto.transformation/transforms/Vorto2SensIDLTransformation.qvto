@@ -13,8 +13,9 @@ main() {
 	log("Finish transformation");
 }
 
-mapping VortoFunctionblock::FunctionblockModel::toSensorInterface() : SensIDLModel::SensorInterface {
-	log("Start with SensorInterface-transformation");
+mapping VortoFunctionblock::FunctionblockModel::toSensorInterface() : SensIDLModel::SensorInterface 
+when {self -> size() > 0} {
+	log("Start with FunctionblockModelToSensorInterface-transformation");
 
 	name := self.name;
 	description := self.description;
@@ -31,86 +32,115 @@ query createDefaultSettings() : SensIDLModel::EncodingSettings {
 }
 
 mapping VortoFunctionblock::FunctionBlock::toDataDescription() : SensIDLModel::dataRepresentation::SensorDataDescription
-when {self.events -> size() > 0} {
-	log("Start with SensorDataDescription-transformation");
+when {(self -> size() > 0) and (self.events -> size() > 0)} {
+	log("Start with FunctionBlockToSensorDataDescription-transformation");
 	
-	self.events -> forEach(event) {
-		dataSets += toDataSet(event) -> flatten();
+	dataSets += self.events -> map toDataSet();
+	dataSets += getEntitiesOf(self.events -> properties -> flatten() -> asOrderedSet()) 
+				-> resolveone(SensIDLModel::dataRepresentation::DataSet);
+	
+	dataSets -> forEach(dataset) {
+		var methods : Sequence(VortoFunctionblock::Operation);
+		methods += self.operations -> select(operation | operation.description.find(dataset.name) > 0);
+		if (methods -> size() > 0) then {
+			dataset.method += methods -> map toMethod();	 
+		} endif;
 	}
 }
 
-query toDataSet(event : VortoFunctionblock::Event) : OrderedSet(SensIDLModel::dataRepresentation::DataSet) {
-	log("Start with DataSet-transformation");
+mapping VortoFunctionblock::Event::toDataSet() : SensIDLModel::dataRepresentation::DataSet {
+	log("Start with EventToDataSet-transformation");
 	
-	var DataSets : OrderedSet(SensIDLModel::dataRepresentation::DataSet);
-	var DataSet : SensIDLModel::dataRepresentation::DataSet;
-	
-	DataSet := object SensIDLModel::dataRepresentation::DataSet {
-		name := event.name;
-		data := event.properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)) 
-				-> toData();
-	};
-	
-	event.properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::ObjectPropertyType)) -> forEach(prop) {
-		var tempDataSet := PropertyToDataSet(prop);
-		DataSet.usedDataSets := tempDataSet;
-		DataSets += tempDataSet;
-	};
-	
-	DataSets += DataSet;
-	
-	return DataSets;
+	name := self.name;
+	data += self.properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType) and prop.propertyAttributes -> size() > 0) 
+			-> map toMeasurementData();
+	data += self.properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType) and prop.propertyAttributes -> size() = 0) 
+			-> map toNonMeasurementData();
+	usedDataSets += getPropertiesContainingEntities(self.properties).type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity)
+					-> map toDataSet();
 }
 
-query PropertyToDataSet(proper : VortoDataTypes::Property) : OrderedSet(SensIDLModel::dataRepresentation::DataSet) 
-//when {self.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclIsTypeOf(VortoDataTypes::Entity)} 
+mapping VortoDataTypes::Entity::toDataSet() : SensIDLModel::dataRepresentation::DataSet 
 {
-	log("Start with DataSet-transformation");
-			
-	var DataSets : OrderedSet(SensIDLModel::dataRepresentation::DataSet);
-	var DataSet : SensIDLModel::dataRepresentation::DataSet;
+	log("Start with PropertyToDataSet-transformation");
+
+	name := self.name;
+	data += self.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity).properties 
+			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)  and prop.propertyAttributes -> size() > 0) 
+			-> map toMeasurementData();
+	data += self.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity).properties 
+			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)  and prop.propertyAttributes -> size() = 0) 
+			-> map toNonMeasurementData();
+	usedDataSets += getPropertiesContainingEntities(self.properties).type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity)
+					-> map toDataSet();
+}
+
+query getPropertiesContainingEntities(properties : OrderedSet(VortoDataTypes::Property)) : OrderedSet(VortoDataTypes::Property) {
+	return properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::ObjectPropertyType))
+					  -> select(prop | prop.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclIsKindOf(VortoDataTypes::Entity));
+}
+
+query getEntitiesOf(properties : OrderedSet(VortoDataTypes::Property)) : OrderedSet(VortoDataTypes::Entity) {
+	var entities : OrderedSet(VortoDataTypes::Entity);
 	
-	DataSet := object SensIDLModel::dataRepresentation::DataSet {
-		name := proper.name;
-		data := proper.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity).properties 
-			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)) -> toData();
+	getPropertiesContainingEntities(properties) -> forEach(prop) {
+		entities += prop.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity);
 	};
 	
-	proper.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity).properties
-			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::ObjectPropertyType)) -> forEach(prop) {
-		var tempDataSet := PropertyToDataSet(prop);
-		DataSet.usedDataSets := tempDataSet;
-		DataSets += tempDataSet;
-	};
-	
-	DataSets += DataSet;
-	
-	return DataSets;
+	return entities;
 }
 
-query VortoDataTypes::Property::toData() : SensIDLModel::dataRepresentation::Data {
-	var data : SensIDLModel::dataRepresentation::Data;
-	
-	if (isNonMeasurement(self.description)) then {
-		data := self.map toNonMeasurementData();
-	} else {
-		data := self.map toMeasurementData();
-	} endif;
-	
-	//log(((dataInfos -> at(0)).toString() = "1").toString());
-	
-	return data;
-}
-
-query isNonMeasurement(description : String) : Boolean {
-	return (description.find("NonMeasurement") > 0);
-}
-
-mapping VortoDataTypes::Property::toNonMeasurementData() : SensIDLModel::dataRepresentation::NonMeasurementData {
-	log("Start with MeasurementData-transformation");
+mapping VortoFunctionblock::Operation::toMethod() : SensIDLModel::dataRepresentation::Method {
+	log("Start with OperationToMethod-transformation");
 
 	name := self.name;
 	description := self.description;
+	parameter += self.params -> map toMethodParameter();
+	returnType := toSimpleDataType(self.returnType);
+	returnTypeDataSet := self.returnType.oclAsType(VortoFunctionblock::ReturnObjectType).map toDataSetReturnType();
+}
+
+mapping VortoFunctionblock::ReturnObjectType::toDataSetReturnType() : SensIDLModel::dataRepresentation::DataSet {
+	init {
+		log("Start with ReturnObjectTypeToDataSet-transformation");
+		
+		result := self.returnType.oclAsType(VortoDataTypes::Entity).resolveone(SensIDLModel::dataRepresentation::DataSet);
+	}
+}
+
+query toSimpleDataType(returnType : VortoFunctionblock::ReturnType) : SensIDLModel::dataRepresentation::DataType {
+	if (returnType.oclIsTypeOf(VortoFunctionblock::ReturnObjectType)) then {
+		return null;
+	} endif;
+	
+	return toDataType(returnType.oclAsType(VortoFunctionblock::ReturnPrimitiveType).returnType);
+}
+
+mapping VortoFunctionblock::Param::toMethodParameter() : SensIDLModel::dataRepresentation::MethodParameter 
+disjuncts VortoFunctionblock::PrimitiveParam::toMethodParameter, VortoFunctionblock::RefParam::toMethodParameter {
+	
+}
+
+mapping VortoFunctionblock::PrimitiveParam::toMethodParameter() : SensIDLModel::dataRepresentation::MethodParameter {
+	log("Start with PrimitiveParamToMethodParameter-transformation");
+
+	name := self.name;
+	dataType := toDataType(self.type.oclAsType(VortoDataTypes::PrimitiveType));
+}
+
+mapping VortoFunctionblock::RefParam::toMethodParameter() : SensIDLModel::dataRepresentation::MethodParameter 
+when {self.type.oclIsTypeOf(VortoDataTypes::Entity)} {
+	log("Start with RefParamToMethodParameter-transformation");
+
+	name := self.name;
+	dataTypeDataSet := self.type.oclAsType(VortoDataTypes::Entity).resolveone(SensIDLModel::dataRepresentation::DataSet);
+}
+
+mapping VortoDataTypes::Property::toNonMeasurementData() : SensIDLModel::dataRepresentation::NonMeasurementData {
+	log("Start with PropertyToNonMeasurementData-transformation");
+
+	name := self.name;
+	description := getDescription(self.description);
 	dataType := toDataType(self.type.oclAsType(VortoDataTypes::PrimitivePropertyType).type);
 	
 	if (hasValue(self.description)) then {
@@ -122,6 +152,14 @@ mapping VortoDataTypes::Property::toNonMeasurementData() : SensIDLModel::dataRep
 	} endif;
 }
 
+query getDescription(description : String) : String {
+	if (description.length() = 0) then {
+		return "Not commented";
+	} endif;
+	
+	return description;
+}
+
 query hasValue(description : String) : Boolean {
 	return (description.find("value") > 0);
 }
@@ -131,10 +169,10 @@ query isConstant(description : String) : Boolean {
 }
 
 mapping VortoDataTypes::Property::toMeasurementData() : SensIDLModel::dataRepresentation::MeasurementData {
-	log("Start with MeasurementData-transformation");
+	log("Start with PropertyToMeasurementData-transformation.");
 
 	name := self.name;
-	description := self.description;
+	description := getDescription(self.description);
 	dataType := toDataType(self.type.oclAsType(VortoDataTypes::PrimitivePropertyType).type);
 	adjustments := map toDataRange(self.Constraints);	
 	// unit := ...
@@ -146,29 +184,17 @@ when {
 	(constraints -> exists(constraint | constraint.type = VortoDataTypes::ConstraintIntervalType::min)) and
 	(constraints -> exists(constraint | constraint.type = VortoDataTypes::ConstraintIntervalType::max))
 } {
+	log("Start with ConstraintToDataRange-transformation");
+
 	range := object SensIDLModel::dataRepresentation::Interval {
-		lowerBound := getCorrespondingBound(constraints, true);
-		upperBound := getCorrespondingBound(constraints, false);
+		lowerBound := getCorrespondingBound(constraints, ConstraintIntervalType::min);
+		upperBound := getCorrespondingBound(constraints, ConstraintIntervalType::max);
 	}
 }
 
 //At this stage integer insteat of double values are returned.
-query getCorrespondingBound(constraints : OrderedSet(VortoDataTypes::Constraint), isLowerBound : Boolean) : Integer {
-	if (isLowerBound) then {
-		constraints -> forEach(constraint) {
-			if (constraint.type = VortoDataTypes::ConstraintIntervalType::min) then {
-				return constraint.constraintValues.toInteger();
-			} endif;
-		};
-	} endif;
-	
-	constraints -> forEach(constraint) {
-			if (constraint.type = VortoDataTypes::ConstraintIntervalType::max) then {
-				return constraint.constraintValues.toInteger();
-			} endif;
-	};
-	
-	return 0;
+query getCorrespondingBound(constraints : OrderedSet(VortoDataTypes::Constraint), searchedType : VortoDataTypes::ConstraintIntervalType) : Integer {
+	return constraints -> select(con | con.type = searchedType) -> at(1).constraintValues.toInteger();
 }
 
 query toDataType(primType : VortoDataTypes::PrimitiveType) :  SensIDLModel::dataRepresentation::DataType {
@@ -214,5 +240,5 @@ query toDataType(primType : VortoDataTypes::PrimitiveType) :  SensIDLModel::data
 		return SensIDLModel::dataRepresentation::DataType::UINT8;
 	} endif;
 	
-	return return SensIDLModel::dataRepresentation::DataType::UNDEFINED;
+	return SensIDLModel::dataRepresentation::DataType::UNDEFINED;
 }
