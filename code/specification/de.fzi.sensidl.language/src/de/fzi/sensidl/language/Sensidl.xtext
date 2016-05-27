@@ -76,7 +76,7 @@ MeasurementData returns dataRepresentation::MeasurementData:
 ;
 
 NonMeasurementData returns dataRepresentation::NonMeasurementData:
-	 name=ID "as" (dataType=DataType|dataType=DataTypeNotAdjustable) (constant?='constant')? ("value" "=" value=STRING)? ("with identifier" ":" ID=STRING)?  ("exclude:"(((excludedMethods+="setter") ("," excludedMethods+="getter")?)| ((excludedMethods+="getter") ("," excludedMethods+="setter")?)))? (description=DESCRIPTION)?
+	 name=ID "as" (dataType=DataType|dataType=DataTypeNotAdjustable) ((constant?='constant' "value" "=" value=STRING) |  ("value" "=" value=STRING))?  ("with identifier" ":" ID=STRING)?  ("exclude:"(((excludedMethods+="setter") ("," excludedMethods+="getter")?)| ((excludedMethods+="getter") ("," excludedMethods+="setter")?)))? (description=DESCRIPTION)?
 ;
 
 MeasurementDataNotAdjustable returns dataRepresentation::MeasurementData:
