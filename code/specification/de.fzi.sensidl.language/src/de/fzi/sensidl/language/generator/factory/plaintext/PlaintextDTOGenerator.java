@@ -201,19 +201,24 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 				_builder.append("The method \"" + method.getName() + "\"");
 				addID(method);
 				_builder.append(" is ");
-				switch (method.getVisibility()) {
-					case ("+"):
-						_builder.append("public");
-						break;
-					case ("-"):
-						_builder.append("privat");
-						break;
-					case ("#"):
-						_builder.append("protected");
-						break;
-					case ("~"):
-						_builder.append("package");
-						break;
+				if (method.getVisibility() == null ){
+					_builder.append("public");
+				}
+				else{
+					switch (method.getVisibility()) {
+						case ("+"):
+							_builder.append("public");
+							break;
+						case ("-"):
+							_builder.append("private");
+							break;
+						case ("#"):
+							_builder.append("protected");
+							break;
+						case ("~"):
+							_builder.append("package");
+							break;
+					}
 				}
 				
 				if(method.getReturnType().getValue() != DataType.UNDEFINED_VALUE) {
