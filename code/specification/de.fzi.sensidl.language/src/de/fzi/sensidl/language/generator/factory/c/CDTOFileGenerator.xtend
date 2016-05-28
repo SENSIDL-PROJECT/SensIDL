@@ -19,6 +19,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 import de.fzi.sensidl.design.sensidl.Endianness
 import java.util.ArrayList
+import de.fzi.sensidl.design.sensidl.dataRepresentation.Method
 
 /**
  * This class implements a part of the CDTOGenerator. This class is responsible for 
@@ -121,7 +122,9 @@ class CDTOFileGenerator extends CDTOGenerator {
 			
 			«generateInitDatasetDeclaration(dataset)»
 			
-			«generateDataMethodsIncludeusedDataSets(dataset)»
+			«generateMethods(dataset)»
+			
+			«generateDataMethodsIncludeUsedDataSets(dataset)»
 			
 			«generateEndiannessMethodsDeclarations(dataset)»
 			
@@ -171,12 +174,67 @@ class CDTOFileGenerator extends CDTOGenerator {
 		
 		}
 		'''				
+	}	
+	
+	/** 
+	 * Generates Methods
+	 * 
+	 */
+	def generateMethods(DataSet d){
+		'''
+		«FOR method : d.eContents.filter(Method)»
+				
+				«method.methodReturnType» «method.name»(«method.getMethodParameter»){
+					//TODO: Auto Generated method stub
+					«IF !method.methodReturnType.equals("void")»
+					return 0;
+					«ENDIF»
+				}
+		«ENDFOR»
+		'''
+	}
+	
+	/**
+	 * Returns the return type of a method
+	 * 
+	 */
+	def getMethodReturnType(Method method){
+		if (method.returnType != DataType.UNDEFINED){
+			return method.returnType.toTypeName
+		} else if (method.returnTypeDataSet != null){
+			return method.returnTypeDataSet.name
+		} else {
+			return "void"
+		}
+	}		
+	
+	/**
+	 * Returns the parameter of a method
+	 * 
+	 */
+	def getMethodParameter(Method method) {
+		var str = ""
+		if (method.parameter.size > 0) {
+			if (method.parameter.head.dataType != DataType.UNDEFINED) {
+				str = method.parameter.head.dataType.toTypeName + " " + method.parameter.head.name
+			} else if (method.parameter.head.dataTypeDataSet != null) {
+				str = method.parameter.head.dataTypeDataSet.name + " " + method.parameter.head.name
+			}
+			for (p : method.parameter.tail) {
+				if (p.dataType != DataType.UNDEFINED) {
+					str += ", " + p.dataType.toTypeName + " " + p.name
+				} else if (p.dataTypeDataSet != null) {
+					str += ", " + p.dataTypeDataSet.name + " " + p.name
+				}
+			}
+		}
+		return str
 	}			
 	
 	/**
 	 * Generates the getter and setter methods prototypes for the data of this data set including used data sets.
 	 */
-	def generateDataMethodsIncludeusedDataSets(DataSet d) {
+	def generateDataMethodsIncludeUsedDataSets(DataSet d) {
 		var dataSets = new ArrayList<DataSet>() => [
 			add(d)
 			addAll(d.usedDataSets)

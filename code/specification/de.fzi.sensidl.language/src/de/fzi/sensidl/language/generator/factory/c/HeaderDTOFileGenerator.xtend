@@ -18,6 +18,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWith
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 import de.fzi.sensidl.design.sensidl.dataRepresentation.ListData
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
+import de.fzi.sensidl.design.sensidl.dataRepresentation.Method
 
 /**
  * This class implements a part of the CDTOGenerator. This class is responsible for 
@@ -84,7 +85,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 						
 			typedef struct
 			{
-					«generateDataFieldsIncludeusedDataSets(dataset)»
+					«generateDataFieldsIncludeUsedDataSets(dataset)»
 							
 			} «GenerationUtil.toNameUpper(dataset)»;
 			
@@ -92,7 +93,9 @@ class HeaderDTOGenerator extends CDTOGenerator {
 
 			«generateInitDatasetPrototype(dataset)»
 			
-			«generateDataMethodsPrototypesIncludeusedDataSets(dataset)»
+			«generateMethodsPrototypes(dataset)»
+			
+			«generateDataMethodsPrototypesIncludeUsedDataSets(dataset)»
 						
 			«generateEndiannessMethodsPrototypes(dataset)»
 
@@ -113,7 +116,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	/**
 	 * Generates the data fields for this data set including used data sets.
 	 */
-	def generateDataFieldsIncludeusedDataSets(DataSet d) {
+	def generateDataFieldsIncludeUsedDataSets(DataSet d) {
 		var dataSets = new ArrayList<DataSet>() => [
 			add(d)
 			addAll(d.usedDataSets)
@@ -143,10 +146,64 @@ class HeaderDTOGenerator extends CDTOGenerator {
 		'''		
 	}
 	
+	/** 
+	 * Generates Methods
+	 * 
+	 */	
+	def generateMethodsPrototypes(DataSet d){
+		'''
+		«FOR method : d.eContents.filter(Method)»
+				
+				/**
+				 * Method for «method.name»
+				 * «IF !Strings.isNullOrEmpty(method.description)»«method.description»«ENDIF»
+				 * @generated
+				 */	
+				«method.methodReturnType» «method.name»(«method.getMethodParameter»);
+		«ENDFOR»
+		'''
+	}	
+	/**
+	 * Returns the return type of a method
+	 * 
+	 */
+	def getMethodReturnType(Method method){
+		if (method.returnType != DataType.UNDEFINED){
+			return method.returnType.toTypeName
+		} else if (method.returnTypeDataSet != null){
+			return method.returnTypeDataSet.name
+		} else {
+			return "void"
+		}
+	}		
+	
+	/**
+	 * Returns the parameter of a method
+	 * 
+	 */
+	def getMethodParameter(Method method) {
+		var str = ""
+		if (method.parameter.size > 0) {
+			if (method.parameter.head.dataType != DataType.UNDEFINED) {
+				str = method.parameter.head.dataType.toTypeName + " " + method.parameter.head.name
+			} else if (method.parameter.head.dataTypeDataSet != null) {
+				str = method.parameter.head.dataTypeDataSet.name + " " + method.parameter.head.name
+			}
+			for (p : method.parameter.tail) {
+				if (p.dataType != DataType.UNDEFINED) {
+					str += ", " + p.dataType.toTypeName + " " + p.name
+				} else if (p.dataTypeDataSet != null) {
+					str += ", " + p.dataTypeDataSet.name + " " + p.name
+				}
+			}
+		}
+		return str
+	}		
+	
 	/**
 	 * Generates the getter and setter methods prototypes for the data of this data set including used data sets.
 	 */
-	def generateDataMethodsPrototypesIncludeusedDataSets(DataSet d) {
+	def generateDataMethodsPrototypesIncludeUsedDataSets(DataSet d) {
 		var dataSets = new ArrayList<DataSet>() => [
 			add(d)
 			addAll(d.usedDataSets)
