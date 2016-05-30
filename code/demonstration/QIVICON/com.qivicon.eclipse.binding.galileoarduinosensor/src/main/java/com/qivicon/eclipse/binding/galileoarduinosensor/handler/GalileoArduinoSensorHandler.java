@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.eclipse.smarthome.core.library.types.DecimalType;
 import org.eclipse.smarthome.core.library.types.OnOffType;
+import org.eclipse.smarthome.core.library.types.StringType;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingStatus;
@@ -38,6 +39,7 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 	private String deviceIP;
 	private int devicePort;
 	private ScheduledFuture<?> updateJob;
+	private boolean tempInCelsius;
 	
 	/**
 	 * Constructor called by QIVICON
@@ -56,6 +58,7 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 		super.initialize();
 		// Get IP of the device entered by the user during configuration
 		deviceIP = (String) getConfig().get("host");
+		tempInCelsius = ((String)getConfig().get("measurement")).equals("<B0>C");
 		try {
 			// Get the Port of the device entered by the user during configuration
 			devicePort = ((BigDecimal) getConfig().get("port")).intValue();
@@ -109,19 +112,6 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 				log.error("Unhandled command {} on {} : {}", command.toString(), this.getThing().getUID(), LED_CHANNEL);
 		}
 
-	}
-	
-	@Override
-	public void handleConfigurationUpdate(Map<String, Object> configurationParmeters) {
-		// Get IP of the device entered by the user during configuration
-		deviceIP = (String) getConfig().get("host");
-		try {
-			// Get the Port of the device entered by the user during configuration
-			devicePort = ((BigDecimal) getConfig().get("port")).intValue();
-		} catch (Exception e) {
-			devicePort = 80;
-		}
-		super.handleConfigurationUpdate(configurationParmeters);
 	}
 
 	/**
@@ -196,11 +186,12 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 		SensorState state = gson.fromJson(reader, SensorState.class);
 		
 		//Update the Channels according to the received Data and update the Device State to ONLINE
-		updateState(LED_CHANNEL, OnOffType.valueOf(state.getLedToggle().getLed()));
-		updateState(TEMP_CHANNEL, new DecimalType(state.getTemperature()));
+		updateState(LED_CHANNEL, OnOffType.valueOf(state.getLed()));
+		String temperature =(tempInCelsius)?state.getTemperaturec()+"°C":state.getTemperaturec()+"°F";
+		updateState(TEMP_CHANNEL, new StringType(temperature));
 		updateState(LIGHT_CHANNEL, new DecimalType(state.getBrightness()));
-		updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(state.getAlertThresholdBrightness().getThresholdbrightness()));
-		updateState(TEMP_THRESHOLD_CHANNEL, new DecimalType(state.getAlertThresholdTemperature().getThresholdtemperature()));
+		updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(state.getThresholdbrightness()));
+		updateState(TEMP_THRESHOLD_CHANNEL, new DecimalType(state.getThresholdtemperature()));
 		updateStatus(ThingStatus.ONLINE);
 	}
 
