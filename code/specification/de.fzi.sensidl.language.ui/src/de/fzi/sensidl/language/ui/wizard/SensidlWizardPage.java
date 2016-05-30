@@ -34,6 +34,9 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
  *
  */
 public class SensidlWizardPage extends WizardPage {
+	
+	private boolean vortoTransformation;
+	
 	/**
 	 * contains all generation languages that are shown in the generation
 	 * wizard. The languages are: <code>Java</code>,
@@ -79,11 +82,12 @@ public class SensidlWizardPage extends WizardPage {
 	 *            the generation language
 	 */
 	protected SensidlWizardPage(String pageName, String title, ImageDescriptor titleImage, String modelPath,
-			String path, String language) {
+			String path, String language, boolean vortoTransformation) {
 		super(pageName, title, titleImage);
 		this.text_ModelPath = modelPath;
 		this.text_Path = path;
 		this.text_language = language;
+		this.vortoTransformation = vortoTransformation;
 	}
 
 	@Override
@@ -106,6 +110,9 @@ public class SensidlWizardPage extends WizardPage {
 		position3_1.top = new FormAttachment(0, 0);
 		position3_1.right = new FormAttachment(100, 0);
 		button_FileSystemModelPath.setLayoutData(position3_1);
+		if (vortoTransformation) {
+			button_FileSystemModelPath.setEnabled(false);
+		}
 
 		button_WorkspaceModelPath = new Button(composite, SWT.PUSH);
 		button_WorkspaceModelPath.setText("Workspace...");
@@ -113,6 +120,9 @@ public class SensidlWizardPage extends WizardPage {
 		position3_2.top = new FormAttachment(0, 0);
 		position3_2.right = new FormAttachment(button_FileSystemModelPath, -5);
 		button_WorkspaceModelPath.setLayoutData(position3_2);
+		if (vortoTransformation) {
+			button_WorkspaceModelPath.setEnabled(false);
+		}
 
 		label_ModelPath = new Label(composite, SWT.READ_ONLY);
 		label_ModelPath.setText("Model: ");
@@ -120,6 +130,9 @@ public class SensidlWizardPage extends WizardPage {
 		position1.left = new FormAttachment(0, 0);
 		position1.top = new FormAttachment(0, 5);
 		label_ModelPath.setLayoutData(position1);
+		if (vortoTransformation) {
+			label_ModelPath.setEnabled(false);
+		}
 
 		textfield_ModelPath = new Text(composite, SWT.SINGLE);
 		textfield_ModelPath.setText(text_ModelPath);
@@ -128,6 +141,9 @@ public class SensidlWizardPage extends WizardPage {
 		position2.top = new FormAttachment(0, 5);
 		position2.right = new FormAttachment(button_WorkspaceModelPath, -5);
 		textfield_ModelPath.setLayoutData(position2);
+		if (vortoTransformation) {
+			textfield_ModelPath.setEnabled(false);
+		}
 
 		button_FileSystemModelPath.addSelectionListener(new SelectionListener() {
 

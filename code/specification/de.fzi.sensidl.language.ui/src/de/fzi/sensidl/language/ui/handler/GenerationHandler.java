@@ -52,7 +52,7 @@ public class GenerationHandler {
 	 *             Throws this Exception when there is no file at the given path
 	 * 
 	 */
-	public static boolean generate(String path, String modelPath, String language)
+	public static boolean generate(String path, String modelPath, String language, Resource sensidlmodel)
 			throws NoSidlFileException, FileNotFoundException {
 		setGenerationLanguage(language);
 		Injector injector = new SensidlStandaloneSetup().createInjectorAndDoEMFRegistration();
@@ -63,22 +63,24 @@ public class GenerationHandler {
 		}
 
 		// get resource
-		ResourceSet rs = new ResourceSetImpl();
-
 		Resource resource = null;
-		File file = new File(modelPath);
+		if (sensidlmodel != null) {
+			resource = sensidlmodel;
+		} else {
+			ResourceSet rs = new ResourceSetImpl();
+			File file = new File(modelPath);
 
-		// Exception handling for not existing input files
-		if (!file.exists()) {
-			throw new FileNotFoundException("File not found");
+			// Exception handling for not existing input files
+			if (!file.exists()) {
+				throw new FileNotFoundException("File not found");
+			}
+			// Exception handling for input files in the wrong format
+			if (!FilenameUtils.getExtension(modelPath).equals("sidl")) {
+				throw new NoSidlFileException("No SIDL file found");
+			}
+
+			resource = rs.getResource(URI.createURI(file.toURI().toString()), true);
 		}
-		// Exception handling for input files in the wrong format
-		if (!FilenameUtils.getExtension(modelPath).equals("sidl")) {
-			throw new NoSidlFileException("No SIDL file found");
-		}
-
-		resource = rs.getResource(URI.createURI(file.toURI().toString()), true);
-
 		// Use the JavaIoFileSystemAccess and set the path
 		final JavaIoFileSystemAccess fsa = new JavaIoFileSystemAccess();
 		fsa.setOutputPath(path);

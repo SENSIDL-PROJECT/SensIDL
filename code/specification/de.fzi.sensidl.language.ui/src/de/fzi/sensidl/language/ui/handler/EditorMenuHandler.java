@@ -36,7 +36,7 @@ public class EditorMenuHandler extends AbstractHandler implements IHandler {
 		loadSettings();
 
 		// open Wizard with ModelPath, Path and language as parameter
-		SensidlWizard swizard = new SensidlWizard(modelPath, path, language);
+		SensidlWizard swizard = new SensidlWizard(modelPath, path, language, null);
 		SensidlWizardDialog dialog = new SensidlWizardDialog(HandlerUtil.getActiveShell(event), swizard);
 		dialog.open();
 

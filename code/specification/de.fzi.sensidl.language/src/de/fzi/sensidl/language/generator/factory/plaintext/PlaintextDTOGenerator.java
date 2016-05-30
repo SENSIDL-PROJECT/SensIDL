@@ -136,7 +136,8 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 				_builder.append(" has the data type " + data.getDataType().getName() + ".");
 				_builder.newLineIfNotEmpty();
 				if (data instanceof MeasurementData) {
-					if (!((MeasurementData) data).getUnit().toString().isEmpty()) {
+//					if (!((MeasurementData) data).getUnit().toString().isEmpty()) {
+					if ( ((MeasurementData) data).getUnit() != null){
 						_builder.append("It has the unit " + ((MeasurementData) data).getUnit());
 					}
 					else {

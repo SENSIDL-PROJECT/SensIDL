@@ -22,28 +22,29 @@ import de.fzi.sensidl.language.ui.handler.GenerationHandler;
  * 
  */
 public class FileGenerationTest {
-	private static File					generationDirectory;
-	private static Map<String, Boolean>	map;
-	private static String[]				dataSets	= { "Conductor", "NeutralConductor", "Energy" };
+	private static File generationDirectory;
+	private static Map<String, Boolean> map;
+	private static String[] dataSets = { "Conductor", "NeutralConductor", "Energy" };
 
 	/**
 	 * Creates or empties the test generation directory.
 	 * 
 	 * @throws IOException
 	 */
-	@BeforeClass static public void setUp() throws IOException {
+	@BeforeClass
+	static public void setUp() throws IOException {
 		DataRepresentationPackageImpl.init();
 		generationDirectory = new File("test-gen/generator");
 		if (!generationDirectory.exists()) {
 			generationDirectory.mkdir();
-		}
-		else {
+		} else {
 			deleteGen();
 		}
 		map = new HashMap<String, Boolean>();
 	}
 
-	@Before public void addFiles() {
+	@Before
+	public void addFiles() {
 		map.put("sidlTestCode.sensidl", false);
 		map.put("EMeter.txt", false);
 	}
@@ -54,12 +55,13 @@ public class FileGenerationTest {
 	 * @throws IOException
 	 * @throws NoSidlFileException
 	 */
-	@Test public void javaFilesGenerationTest() throws IOException, NoSidlFileException {
+	@Test
+	public void javaFilesGenerationTest() throws IOException, NoSidlFileException {
 		for (int i = 0; i < dataSets.length; i++) {
 			map.put(dataSets[i] + ".java", false);
 		}
 		map.put("eMeterUtility.java", false);
-		GenerationHandler.generate(generationDirectory.getPath(), "resource/generator/sidlTestCode.sidl", "Java");
+		GenerationHandler.generate(generationDirectory.getPath(), "resource/generator/sidlTestCode.sidl", "Java", null);
 		checkGeneratedFiles();
 	}
 
@@ -69,11 +71,13 @@ public class FileGenerationTest {
 	 * @throws IOException
 	 * @throws NoSidlFileException
 	 */
-	@Test public void javascriptFilesGenerationTest() throws IOException, NoSidlFileException {
+	@Test
+	public void javascriptFilesGenerationTest() throws IOException, NoSidlFileException {
 		for (int i = 0; i < dataSets.length; i++) {
 			map.put(dataSets[i] + ".js", false);
 		}
-		GenerationHandler.generate(generationDirectory.getPath(), "resource/generator/sidlTestCode.sidl", "JavaScript");
+		GenerationHandler.generate(generationDirectory.getPath(), "resource/generator/sidlTestCode.sidl", "JavaScript",
+				null);
 		checkGeneratedFiles();
 	}
 
@@ -83,14 +87,15 @@ public class FileGenerationTest {
 	 * @throws IOException
 	 * @throws NoSidlFileException
 	 */
-	@Test public void CFilesGenerationTest() throws IOException, NoSidlFileException {
+	@Test
+	public void CFilesGenerationTest() throws IOException, NoSidlFileException {
 		for (int i = 0; i < dataSets.length; i++) {
 			map.put(dataSets[i] + ".c", false);
 			map.put(dataSets[i] + ".h", false);
 		}
 		map.put("DTOs.h", false);
 		map.put("eMeterUtility.h", false);
-		GenerationHandler.generate(generationDirectory.getPath(), "resource/generator/sidlTestCode.sidl", "C");
+		GenerationHandler.generate(generationDirectory.getPath(), "resource/generator/sidlTestCode.sidl", "C", null);
 		checkGeneratedFiles();
 	}
 
@@ -100,11 +105,14 @@ public class FileGenerationTest {
 	 * @throws IOException
 	 * @throws NoSidlFileException
 	 */
-	@Test @Ignore public void CSharpFilesGenerationTest() throws IOException {
+	@Test
+	@Ignore
+	public void CSharpFilesGenerationTest() throws IOException {
 		// not yet implemented
 	}
 
-	@After public void tearDown() throws IOException {
+	@After
+	public void tearDown() throws IOException {
 		deleteGen();
 		map.clear();
 	}
@@ -116,8 +124,7 @@ public class FileGenerationTest {
 		for (String file : generationDirectory.list()) {
 			if (map.containsKey(file)) {
 				map.put(file, true);
-			}
-			else {
+			} else {
 				throw new AssertionError(file + " should not get generated");
 			}
 		}

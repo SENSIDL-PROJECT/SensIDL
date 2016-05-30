@@ -44,7 +44,7 @@ public class LastSettingsGenerationHandler extends AbstractHandler implements IH
 		ErrorDialogHandler errorHandler = new ErrorDialogHandler();
 		try {
 			// start the generator with the GenerationHandler
-			GenerationHandler.generate(path, modelPath, language);
+			GenerationHandler.generate(path, modelPath, language, null);
 			MessageDialog.openInformation(new Shell(), "Info", "The code was successfully generated");
 		} catch (FileNotFoundException ex) {
 			errorHandler.execute(new Shell(), ex);

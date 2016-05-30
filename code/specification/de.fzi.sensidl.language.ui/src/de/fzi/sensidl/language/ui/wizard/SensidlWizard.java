@@ -5,6 +5,7 @@ import java.net.URL;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.Wizard;
@@ -28,6 +29,7 @@ public class SensidlWizard extends Wizard {
 	private String modelPath;
 	private String path;
 	private String language;
+	private Resource sensidlmodel;
 
 	/**
 	 * Constructor
@@ -40,10 +42,11 @@ public class SensidlWizard extends Wizard {
 	 * @param language
 	 *            the generation language
 	 */
-	public SensidlWizard(String modelPath, String path, String language) {
+	public SensidlWizard(String modelPath, String path, String language, Resource sensidlmodel) {
 		this.modelPath = modelPath;
 		this.path = path;
 		this.language = language;
+		this.sensidlmodel = sensidlmodel;
 	}
 
 	@Override
@@ -51,7 +54,7 @@ public class SensidlWizard extends Wizard {
 		Bundle bundle = Platform.getBundle("de.fzi.sensidl.language.ui");
 		URL fullPathString = BundleUtility.find(bundle, "images/SensIDL_logo.jpg");
 		sensidlWizardPage = new SensidlWizardPage("SensIDL - Code Generation", "SensIDL - Code Generation",
-				ImageDescriptor.createFromURL(fullPathString), modelPath, path, language);
+				ImageDescriptor.createFromURL(fullPathString), modelPath, path, language, sensidlmodel != null);
 
 		addPage(sensidlWizardPage);
 
@@ -79,7 +82,7 @@ public class SensidlWizard extends Wizard {
 		ErrorDialogHandler errorHandler = new ErrorDialogHandler();
 		try {
 			// start the generator with the GenerationHandler
-			GenerationHandler.generate(path, modelPath, sensidlWizardPage.getLanguage());
+			GenerationHandler.generate(path, modelPath, sensidlWizardPage.getLanguage(), sensidlmodel);
 			MessageDialog.openInformation(new Shell(), "Info", "The code was successfully generated");
 
 		} catch (FileNotFoundException ex) {
