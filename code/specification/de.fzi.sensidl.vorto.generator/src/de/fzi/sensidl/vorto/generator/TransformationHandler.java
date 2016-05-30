@@ -48,7 +48,7 @@ public class TransformationHandler {
 	 */
 	public void execute(InformationModel infomodel) {
 		// get transformation file
-		Bundle bundle = Platform.getBundle("de.fzi.vorto.transformation");
+		Bundle bundle = Platform.getBundle("de.fzi.sensidl.vorto.transformation");
 		URL fileURL = bundle.getEntry("transforms/Vorto2SensIDLTransformation.qvto");
 
 		TransformationExecutor executor = null;

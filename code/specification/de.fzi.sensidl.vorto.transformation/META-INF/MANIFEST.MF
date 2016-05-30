@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Transformation Plug-in
-Bundle-SymbolicName: de.fzi.vorto.transformation
+Bundle-SymbolicName: de.fzi.sensidl.vorto.transformation
 Bundle-Version: 1.0.0
 Bundle-Vendor: 
 Require-Bundle: org.eclipse.core.runtime,
