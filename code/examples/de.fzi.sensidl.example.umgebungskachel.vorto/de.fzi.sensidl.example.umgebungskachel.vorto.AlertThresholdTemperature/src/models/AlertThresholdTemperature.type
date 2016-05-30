@@ -1,0 +1,14 @@
+namespace de.fzi.sensidl.example.umgebungskachel.vorto.type
+version 1.0.0
+displayname "AlertThresholdTemperature"
+description "Type for AlertThresholdTemperature"
+category demo
+using de.fzi.sensidl.example.umgebungskachel.vorto.type.Unit ; 1.0.0
+
+entity AlertThresholdTemperature {
+	mandatory treshold_temeperature as double with {
+		measurementUnit : Unit.Celsius
+	}
+
+	"Upper threshold that triggers an alert if the measured temperature is too high"
+}

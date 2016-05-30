@@ -1,0 +1,14 @@
+namespace de.fzi.sensidl.example.umgebungskachel.vorto.type
+version 1.0.0
+displayname "LedToggle"
+description "Type for LedToggle"
+category demo
+using de.fzi.sensidl.example.umgebungskachel.vorto.type.Unit ; 1.0.0
+
+entity LedToggle {
+	mandatory led as string with {
+		measurementUnit : Unit.Dimensionless
+	}
+
+	"Switch for a light source that is either ON or OFF"
+}
