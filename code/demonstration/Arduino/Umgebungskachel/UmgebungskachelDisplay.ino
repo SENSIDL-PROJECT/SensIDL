@@ -27,7 +27,7 @@ void refreshDisplay() {
          showDisplay("Server is at:",(ethernetConnection)? getLocalIP() : getWifiIP());
       break;
       case 1:
-         showDisplay("Temperatur:",dtostrf(get_SensorState_temperature(&sensorState),0,3));
+         showDisplay("Temperatur:",dtostrf(get_SensorState_temperaturec(&sensorState),0,3));
       break;
       case 2:
         showDisplay("Licht:",dtostrf(get_SensorState_brightness(&sensorState),0,3));

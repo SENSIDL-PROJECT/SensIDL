@@ -7,7 +7,8 @@
   Reads the most recent data from the Umgebungskachel sensors and inserts it into the sensidl data structure
 **/
 void updateSensorData() {
-    set_SensorState_temperature(&sensorState, calculateTemperature());
+    set_SensorState_temperaturec(&sensorState, calculateTemperature());
+    set_SensorState_temperaturef_WithDataConversion(&sensorState, calculateTemperature());
     set_SensorState_brightness(&sensorState, calculateLightSensorResistance());
     ////sens.data.temperature = calculateTemperature();
     ////sens.data.brightness = calculateLightSensorResistance();
@@ -21,7 +22,7 @@ void isr() {
   updateSensorData();
   refreshDisplay();
   if(get_SensorState_brightness(&sensorState) < get_SensorState_thresholdbrightness(&sensorState) &&
-    get_SensorState_temperature(&sensorState) < get_SensorState_thresholdtemperature(&sensorState)) return;
+    get_SensorState_temperaturec(&sensorState) < get_SensorState_thresholdtemperature(&sensorState)) return;
     
   //Buzz if it is too warm or too dark
   digitalWrite(BUZZER,HIGH);

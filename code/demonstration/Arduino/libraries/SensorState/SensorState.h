@@ -1,7 +1,7 @@
 /**
 *File:							SensorState.h
 *Version:						
-*Generate at:					13/05/2016 13:10:08
+*Generate at:					30/05/2016 17:38:47
 *Further generated artifacts:	DTOs.h, AlertThresholdBrightness.h, AlertThresholdBrightness.c, 
 *								UmgebungskachelUtility.h, AlertThresholdTemperature.c, 
 *								AlertThresholdTemperature.h, LedToggle.c, SensorState.c, LedToggle.h
@@ -10,13 +10,15 @@
 /**\brief		 data description of all values the sensor REST-API contains   
 * \param		led: 
 *				Measured in unit:  
-* \param		threshold_temperature: 
-*				Measured in unit: °F 
-* \param		threshold_brightness: 
+* \param		temperature_c: 
 *				Measured in unit: ? 
-* \param		temperature: 
+* \param		temperature_f: 
 *				Measured in unit: °F 
 * \param		brightness: 
+*				Measured in unit: ? 
+* \param		threshold_temperature: 
+*				Measured in unit: ? 
+* \param		threshold_brightness: 
 *				Measured in unit: ? 
 */
 
@@ -30,25 +32,28 @@
 typedef struct
 {
 		char * led;
+		double temperature_c;
+		double temperature_f;
+		double brightness;
 		double threshold_temperature;
 		double threshold_brightness;
-		double temperature;
-		double brightness;
 				
 } SensorState;
 
 extern SensorState sensorState;
 
 /**
-* @Initialization of the SensorState dataset
+* @Initialization of the SensorState dataset (to give the initial values to const fields)
 */
 void initSensorState(SensorState* p);
+
 
 
 /**
 * @return the Led
 */
 char * get_SensorState_led(SensorState* p);
+	
 
 /**
  * @param pointer to dataset, led
@@ -59,9 +64,57 @@ void set_SensorState_led(SensorState* p, char * led );
 
 
 /**
+* @return the Temperature_c
+*/
+double get_SensorState_temperaturec(SensorState* p);
+	
+
+/**
+ * @param pointer to dataset, temperature_c
+ *			the temperature_c to set
+ */
+void set_SensorState_temperaturec(SensorState* p, double temperature_c );
+
+
+
+/**
+* @return the Temperature_f
+*/
+double get_SensorState_temperaturef(SensorState* p);
+	
+
+/**
+ * @param pointer to dataset, adjust
+ *			the adjust to set
+ */
+void set_SensorState_temperaturef_WithDataConversion(SensorState* p, double temperature_f );					
+/**
+ * @param pointer to dataset, temperature_f
+ *			the temperature_f to set
+ */
+void set_SensorState_temperaturef(SensorState* p, double temperature_f );
+
+
+
+/**
+* @return the Brightness
+*/
+double get_SensorState_brightness(SensorState* p);
+	
+
+/**
+ * @param pointer to dataset, brightness
+ *			the brightness to set
+ */
+void set_SensorState_brightness(SensorState* p, double brightness );
+
+
+
+/**
 * @return the Threshold_temperature
 */
 double get_SensorState_thresholdtemperature(SensorState* p);
+	
 
 /**
  * @param pointer to dataset, threshold_temperature
@@ -75,38 +128,13 @@ void set_SensorState_thresholdtemperature(SensorState* p, double threshold_tempe
 * @return the Threshold_brightness
 */
 double get_SensorState_thresholdbrightness(SensorState* p);
+	
 
 /**
  * @param pointer to dataset, threshold_brightness
  *			the threshold_brightness to set
  */
 void set_SensorState_thresholdbrightness(SensorState* p, double threshold_brightness );
-
-
-
-/**
-* @return the Temperature
-*/
-double get_SensorState_temperature(SensorState* p);
-
-/**
- * @param pointer to dataset, temperature
- *			the temperature to set
- */
-void set_SensorState_temperature(SensorState* p, double temperature );
-
-
-
-/**
-* @return the Brightness
-*/
-double get_SensorState_brightness(SensorState* p);
-
-/**
- * @param pointer to dataset, brightness
- *			the brightness to set
- */
-void set_SensorState_brightness(SensorState* p, double brightness );
 
 
 			
