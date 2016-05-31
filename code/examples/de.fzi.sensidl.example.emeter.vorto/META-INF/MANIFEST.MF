@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: de.fzi.sensidl.example.emeter.vorto
+Bundle-Vendor: FZI Forschungszentrum Informatik
+Bundle-Name: SensIDL Example Emeter Vorto
+Bundle-Version: 1.0.0.qualifier

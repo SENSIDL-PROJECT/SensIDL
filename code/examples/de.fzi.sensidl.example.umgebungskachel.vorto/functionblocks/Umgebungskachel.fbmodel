@@ -1,0 +1,72 @@
+namespace de.fzi.sensidl.example.umgebungskachel.vorto.fb
+version 1.0.0
+displayname "Umgebungskachel"
+description "Function block model for Umgebungskachel"
+category umgebungskachel
+using de.fzi.sensidl.example.umgebungskachel.vorto.type.Unit ; 1.0.0
+
+functionblock Umgebungskachel {
+	events {
+		AlertThresholdBrightness {
+			mandatory threshold_brightness as double with {
+				measurementUnit : Unit.Ohm
+			}
+
+			"Upper threshold that triggers an alert if the measured temperature is too high"
+		}
+
+		AlertThresholdTemperatureFahrenheit {
+			mandatory threshold_temperature as double with {
+				measurementUnit : Unit.Fahrenheit
+			}
+
+			"Upper threshold that triggers an alert if the measured temperature is too high"
+		}
+
+		AlertThresholdTemperature {
+			mandatory threshold_temperature as double with {
+				measurementUnit : Unit.Celsius
+			}
+
+			"Upper threshold that triggers an alert if the measured temperature is too high"
+		}
+
+		LedToggle {
+			mandatory led as string with {
+				measurementUnit : Unit.Dimensionless
+			}
+
+			"Switch for a light source that is either ON or OFF"
+		}
+
+		SensorState {
+			mandatory led as string with {
+				measurementUnit : Unit.Dimensionless
+			}
+
+			mandatory temperature_c as double with {
+				measurementUnit : Unit.Celsius
+			}
+
+			mandatory temperature_f as double with {
+				measurementUnit : Unit.Fahrenheit
+			}
+
+			"there is no possibility for data conversion in vorto"
+			mandatory brightness as double with {
+				measurementUnit : Unit.Ohm
+			}
+
+			mandatory treshold_temperature as double with {
+				measurementUnit : Unit.Celsius
+			}
+
+			mandatory treshold_brightness as double with {
+				measurementUnit : Unit.Ohm
+			}
+
+		}
+
+	}
+
+}

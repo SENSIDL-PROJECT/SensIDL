@@ -106,4 +106,52 @@
 			 description="Umgebungskachel Example"/>			
 		</example>
 	</extension>
+	
+	<!-- =================== umgebungskachel Vorto example =================== -->
+	<extension point="org.eclipse.ui.newWizards">
+		<wizard 
+			 id="de.fzi.sensidl.example.umgebungskachel.vorto"
+			 name="Umgebungskachel Vorto Example"
+			 class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+			 category="org.eclipse.ui.Examples/de.fzi.sensidl.examples"
+			 icon="icons/SensIDL_logo.jpg"
+			 project="true">
+			<description>SensIDL Umgebungskachel Vorto Example</description>
+		</wizard>
+	</extension>
+		
+	<extension point="org.eclipse.emf.common.ui.examples">
+		<example 
+			 wizardID="de.fzi.sensidl.example.umgebungskachel.vorto" 
+			 pageImage="icons/SensIDL_logo.jpg">
+		<projectDescriptor 
+			 name="de.fzi.sensidl.example.umgebungskachel.vorto" 
+			 contentURI="platform:/plugin/de.fzi.sensidl.example.umgebungskachel.vorto/" 
+			 description="Umgebungskachel Vorto Example"/>			
+		</example>
+	</extension>
+	
+	<!-- =================== umgebungskachel Emeter example =================== -->
+	<extension point="org.eclipse.ui.newWizards">
+		<wizard 
+			 id="de.fzi.sensidl.example.emeter.vorto"
+			 name="Emeter Vorto Example"
+			 class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+			 category="org.eclipse.ui.Examples/de.fzi.sensidl.examples"
+			 icon="icons/SensIDL_logo.jpg"
+			 project="true">
+			<description>SensIDL Emeter Vorto Example</description>
+		</wizard>
+	</extension>
+		
+	<extension point="org.eclipse.emf.common.ui.examples">
+		<example 
+			 wizardID="de.fzi.sensidl.example.emeter.vorto" 
+			 pageImage="icons/SensIDL_logo.jpg">
+		<projectDescriptor 
+			 name="de.fzi.sensidl.example.emeter.vorto" 
+			 contentURI="platform:/plugin/de.fzi.sensidl.example.emeter.vorto/" 
+			 description="Emeter Vorto Example"/>
+		</example>
+	</extension>
 </plugin>
