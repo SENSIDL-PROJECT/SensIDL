@@ -63,7 +63,7 @@
 		<item-type>Number</item-type>
 		<label>Temperature Threshold</label>
 		<description></description>
-		<state readOnly="false" pattern="%s °F"></state>
+		<state readOnly="false" pattern="%s °C"></state>
 	</channel-type>
 	<channel-type id="brightness_threshold">
 		<item-type>Number</item-type>

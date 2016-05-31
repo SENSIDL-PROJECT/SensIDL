@@ -7,7 +7,6 @@ import java.io.OutputStreamWriter;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Map;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -58,7 +57,7 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 		super.initialize();
 		// Get IP of the device entered by the user during configuration
 		deviceIP = (String) getConfig().get("host");
-		tempInCelsius = ((String)getConfig().get("measurement")).equals("<B0>C");
+		tempInCelsius = ((String)getConfig().get("measurement")).equals("°C");
 		try {
 			// Get the Port of the device entered by the user during configuration
 			devicePort = ((BigDecimal) getConfig().get("port")).intValue();
@@ -187,7 +186,7 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 		
 		//Update the Channels according to the received Data and update the Device State to ONLINE
 		updateState(LED_CHANNEL, OnOffType.valueOf(state.getLed()));
-		String temperature =(tempInCelsius)?state.getTemperaturec()+"°C":state.getTemperaturec()+"°F";
+		String temperature = (tempInCelsius)?state.getTemperaturec()+"°C":state.getTemperaturef()+"°F";
 		updateState(TEMP_CHANNEL, new StringType(temperature));
 		updateState(LIGHT_CHANNEL, new DecimalType(state.getBrightness()));
 		updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(state.getThresholdbrightness()));
