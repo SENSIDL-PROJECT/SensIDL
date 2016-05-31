@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datatype:Entity xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:datatype="http://www.eclipse.org/vorto/metamodel/Datatype" name="Timestamp">
+  <properties name="currentTime">
+    <type xsi:type="datatype:PrimitivePropertyType"/>
+  </properties>
+</datatype:Entity>

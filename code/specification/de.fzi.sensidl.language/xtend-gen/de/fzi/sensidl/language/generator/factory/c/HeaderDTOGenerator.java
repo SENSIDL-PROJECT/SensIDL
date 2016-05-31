@@ -12,6 +12,8 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.ListData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.Method;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData;
 import de.fzi.sensidl.language.generator.GenerationUtil;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
@@ -28,6 +30,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
@@ -148,8 +151,8 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append("{");
     _builder.newLine();
     _builder.append("\t\t");
-    String _generateDataFieldsIncludeusedDataSets = this.generateDataFieldsIncludeusedDataSets(dataset);
-    _builder.append(_generateDataFieldsIncludeusedDataSets, "\t\t");
+    String _generateDataFieldsIncludeUsedDataSets = this.generateDataFieldsIncludeUsedDataSets(dataset);
+    _builder.append(_generateDataFieldsIncludeUsedDataSets, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t\t\t");
     _builder.newLine();
@@ -172,8 +175,12 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append(_generateInitDatasetPrototype, "");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
-    String _generateDataMethodsPrototypesIncludeusedDataSets = this.generateDataMethodsPrototypesIncludeusedDataSets(dataset);
-    _builder.append(_generateDataMethodsPrototypesIncludeusedDataSets, "");
+    CharSequence _generateMethodsPrototypes = this.generateMethodsPrototypes(dataset);
+    _builder.append(_generateMethodsPrototypes, "");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    String _generateDataMethodsPrototypesIncludeUsedDataSets = this.generateDataMethodsPrototypesIncludeUsedDataSets(dataset);
+    _builder.append(_generateDataMethodsPrototypesIncludeUsedDataSets, "");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t\t");
     _builder.newLine();
@@ -205,7 +212,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
   /**
    * Generates the data fields for this data set including used data sets.
    */
-  public String generateDataFieldsIncludeusedDataSets(final DataSet d) {
+  public String generateDataFieldsIncludeUsedDataSets(final DataSet d) {
     ArrayList<DataSet> _arrayList = new ArrayList<DataSet>();
     final Procedure1<ArrayList<DataSet>> _function = new Procedure1<ArrayList<DataSet>>() {
       @Override
@@ -263,9 +270,155 @@ public class HeaderDTOGenerator extends CDTOGenerator {
   }
   
   /**
+   * Generates Methods
+   */
+  public CharSequence generateMethodsPrototypes(final DataSet d) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<EObject> _eContents = d.eContents();
+      Iterable<Method> _filter = Iterables.<Method>filter(_eContents, Method.class);
+      for(final Method method : _filter) {
+        _builder.newLine();
+        _builder.append("/**");
+        _builder.newLine();
+        _builder.append(" ");
+        _builder.append("* Method for ");
+        String _name = method.getName();
+        _builder.append(_name, " ");
+        _builder.newLineIfNotEmpty();
+        _builder.append(" ");
+        _builder.append("* ");
+        {
+          String _description = method.getDescription();
+          boolean _isNullOrEmpty = Strings.isNullOrEmpty(_description);
+          boolean _not = (!_isNullOrEmpty);
+          if (_not) {
+            String _description_1 = method.getDescription();
+            _builder.append(_description_1, " ");
+          }
+        }
+        _builder.newLineIfNotEmpty();
+        _builder.append(" ");
+        _builder.append("* @generated");
+        _builder.newLine();
+        _builder.append(" ");
+        _builder.append("*/\t");
+        _builder.newLine();
+        String _methodReturnType = this.getMethodReturnType(method);
+        _builder.append(_methodReturnType, "");
+        _builder.append(" ");
+        String _name_1 = method.getName();
+        _builder.append(_name_1, "");
+        _builder.append("(");
+        String _methodParameter = this.getMethodParameter(method);
+        _builder.append(_methodParameter, "");
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  /**
+   * Returns the return type of a method
+   */
+  public String getMethodReturnType(final Method method) {
+    DataType _returnType = method.getReturnType();
+    boolean _notEquals = (!Objects.equal(_returnType, DataType.UNDEFINED));
+    if (_notEquals) {
+      DataType _returnType_1 = method.getReturnType();
+      return this.toTypeName(_returnType_1);
+    } else {
+      DataSet _returnTypeDataSet = method.getReturnTypeDataSet();
+      boolean _notEquals_1 = (!Objects.equal(_returnTypeDataSet, null));
+      if (_notEquals_1) {
+        DataSet _returnTypeDataSet_1 = method.getReturnTypeDataSet();
+        return _returnTypeDataSet_1.getName();
+      } else {
+        return "void";
+      }
+    }
+  }
+  
+  /**
+   * Returns the parameter of a method
+   */
+  public String getMethodParameter(final Method method) {
+    String str = "";
+    EList<MethodParameter> _parameter = method.getParameter();
+    int _size = _parameter.size();
+    boolean _greaterThan = (_size > 0);
+    if (_greaterThan) {
+      EList<MethodParameter> _parameter_1 = method.getParameter();
+      MethodParameter _head = IterableExtensions.<MethodParameter>head(_parameter_1);
+      DataType _dataType = _head.getDataType();
+      boolean _notEquals = (!Objects.equal(_dataType, DataType.UNDEFINED));
+      if (_notEquals) {
+        EList<MethodParameter> _parameter_2 = method.getParameter();
+        MethodParameter _head_1 = IterableExtensions.<MethodParameter>head(_parameter_2);
+        DataType _dataType_1 = _head_1.getDataType();
+        String _typeName = this.toTypeName(_dataType_1);
+        String _plus = (_typeName + " ");
+        EList<MethodParameter> _parameter_3 = method.getParameter();
+        MethodParameter _head_2 = IterableExtensions.<MethodParameter>head(_parameter_3);
+        String _name = _head_2.getName();
+        String _plus_1 = (_plus + _name);
+        str = _plus_1;
+      } else {
+        EList<MethodParameter> _parameter_4 = method.getParameter();
+        MethodParameter _head_3 = IterableExtensions.<MethodParameter>head(_parameter_4);
+        DataSet _dataTypeDataSet = _head_3.getDataTypeDataSet();
+        boolean _notEquals_1 = (!Objects.equal(_dataTypeDataSet, null));
+        if (_notEquals_1) {
+          EList<MethodParameter> _parameter_5 = method.getParameter();
+          MethodParameter _head_4 = IterableExtensions.<MethodParameter>head(_parameter_5);
+          DataSet _dataTypeDataSet_1 = _head_4.getDataTypeDataSet();
+          String _name_1 = _dataTypeDataSet_1.getName();
+          String _plus_2 = (_name_1 + " ");
+          EList<MethodParameter> _parameter_6 = method.getParameter();
+          MethodParameter _head_5 = IterableExtensions.<MethodParameter>head(_parameter_6);
+          String _name_2 = _head_5.getName();
+          String _plus_3 = (_plus_2 + _name_2);
+          str = _plus_3;
+        }
+      }
+      EList<MethodParameter> _parameter_7 = method.getParameter();
+      Iterable<MethodParameter> _tail = IterableExtensions.<MethodParameter>tail(_parameter_7);
+      for (final MethodParameter p : _tail) {
+        DataType _dataType_2 = p.getDataType();
+        boolean _notEquals_2 = (!Objects.equal(_dataType_2, DataType.UNDEFINED));
+        if (_notEquals_2) {
+          String _str = str;
+          DataType _dataType_3 = p.getDataType();
+          String _typeName_1 = this.toTypeName(_dataType_3);
+          String _plus_4 = (", " + _typeName_1);
+          String _plus_5 = (_plus_4 + " ");
+          String _name_3 = p.getName();
+          String _plus_6 = (_plus_5 + _name_3);
+          str = (_str + _plus_6);
+        } else {
+          DataSet _dataTypeDataSet_2 = p.getDataTypeDataSet();
+          boolean _notEquals_3 = (!Objects.equal(_dataTypeDataSet_2, null));
+          if (_notEquals_3) {
+            String _str_1 = str;
+            DataSet _dataTypeDataSet_3 = p.getDataTypeDataSet();
+            String _name_4 = _dataTypeDataSet_3.getName();
+            String _plus_7 = (", " + _name_4);
+            String _plus_8 = (_plus_7 + " ");
+            String _name_5 = p.getName();
+            String _plus_9 = (_plus_8 + _name_5);
+            str = (_str_1 + _plus_9);
+          }
+        }
+      }
+    }
+    return str;
+  }
+  
+  /**
    * Generates the getter and setter methods prototypes for the data of this data set including used data sets.
    */
-  public String generateDataMethodsPrototypesIncludeusedDataSets(final DataSet d) {
+  public String generateDataMethodsPrototypesIncludeUsedDataSets(final DataSet d) {
     ArrayList<DataSet> _arrayList = new ArrayList<DataSet>();
     final Procedure1<ArrayList<DataSet>> _function = new Procedure1<ArrayList<DataSet>>() {
       @Override

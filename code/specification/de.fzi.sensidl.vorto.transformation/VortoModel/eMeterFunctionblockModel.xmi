@@ -68,6 +68,49 @@
             xsi:type="datatype:EnumLiteralPropertyAttribute"/>
       </properties>
     </events>
+    <events
+        name="NeutralConductor">
+      <properties
+          name="recordType"
+          description="value = 4">
+        <type
+            xsi:type="datatype:PrimitivePropertyType"
+            type="byte"/>
+      </properties>
+      <properties
+          name="current">
+        <type
+            xsi:type="datatype:PrimitivePropertyType"
+            type="float"/>
+        <propertyAttributes
+            xsi:type="datatype:EnumLiteralPropertyAttribute"/>
+      </properties>
+      <properties
+          name="powerFactor"
+          description="">
+        <type
+            xsi:type="datatype:PrimitivePropertyType"
+            type="short"/>
+        <propertyAttributes
+            xsi:type="datatype:EnumLiteralPropertyAttribute"/>
+      </properties>
+      <properties
+          name="Info">
+        <type
+            xsi:type="datatype:ObjectPropertyType">
+          <type
+              href="Info.xmi#/"/>
+        </type>
+      </properties>
+      <properties
+          name="TimeStamp">
+        <type
+            xsi:type="datatype:ObjectPropertyType">
+          <type
+              href="Timestamp.xmi#/"/>
+        </type>
+      </properties>
+    </events>
     <operations
         name="doSomething"
         description="Conductor">
@@ -81,6 +124,12 @@
         <type
             href="Info.xmi#/"/>
       </params>
+      <params
+          xsi:type="functionblock:RefParam"
+          name="param3">
+        <type
+            href="Timestamp.xmi#/"/>
+      </params>
       <returnType
           xsi:type="functionblock:ReturnPrimitiveType"
           returnType="double"/>
@@ -92,6 +141,15 @@
           xsi:type="functionblock:ReturnObjectType">
         <returnType
             href="Info.xmi#/"/>
+      </returnType>
+    </operations>
+    <operations
+        name="getTimeStamp"
+        description="NeutralConductor">
+      <returnType
+          xsi:type="functionblock:ReturnObjectType">
+        <returnType
+            href="Timestamp.xmi#/"/>
       </returnType>
     </operations>
   </functionblock>

@@ -1,3 +1,11 @@
+/**
+ * Vorto to SensIDL transformation. The following code represents a model-to-model
+ * transformation from an instance of the Corto-metamodel to an instance of the SensIDL-
+ * metamodel. The transformation itself is performed by the tansformation-language qvt-operational.
+ * 
+ * @author Max Scheerer
+ */
+
 modeltype SensIDLModel "strict" uses "http://fzi.de/sensidl/design/1.0";
 modeltype VortoInformationModel "strict" uses "http://www.eclipse.org/vorto/metamodel/InformationModel";
 modeltype VortoFunctionblock "strict" uses "http://www.eclipse.org/vorto/metamodel/Functionblock";
@@ -36,8 +44,10 @@ when {(self -> size() > 0) and (self.events -> size() > 0)} {
 	log("Start with FunctionBlockToSensorDataDescription-transformation");
 	
 	dataSets += self.events -> map toDataSet();
-	dataSets += getEntitiesOf(self.events -> properties -> flatten() -> asOrderedSet()) 
-				-> resolveone(SensIDLModel::dataRepresentation::DataSet);
+
+	getEntitiesOf(self.events -> properties -> flatten() -> asOrderedSet()) -> forEach(entity) {
+		dataSets += entity.resolveone(SensIDLModel::dataRepresentation::DataSet);
+	};
 	
 	dataSets -> forEach(dataset) {
 		var methods : Sequence(VortoFunctionblock::Operation);
@@ -60,9 +70,8 @@ mapping VortoFunctionblock::Event::toDataSet() : SensIDLModel::dataRepresentatio
 					-> map toDataSet();
 }
 
-mapping VortoDataTypes::Entity::toDataSet() : SensIDLModel::dataRepresentation::DataSet 
-{
-	log("Start with PropertyToDataSet-transformation");
+mapping VortoDataTypes::Entity::toDataSet() : SensIDLModel::dataRepresentation::DataSet {
+	log("Start with EntityToDataSet-transformation");
 
 	name := self.name;
 	data += self.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity).properties 
