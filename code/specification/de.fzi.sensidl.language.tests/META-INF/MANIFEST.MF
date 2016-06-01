@@ -24,5 +24,5 @@ Import-Package: de.fzi.sensidl.design.sensidl.dataRepresentation.impl,
  org.junit.runner.notification;version="4.5.0",
  org.junit.runners;version="4.5.0",
  org.junit.runners.model;version="4.5.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.fzi.sensidl.language

@@ -24,7 +24,7 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.xtend.standalone;bundle-version="2.8.4";visibility:=reexport,
  com.google.inject;bundle-version="3.0.0",
  org.eclipse.jdt.launching
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.fzi.sensidl.language,
  de.fzi.sensidl.language.formatting,
  de.fzi.sensidl.language.generator,

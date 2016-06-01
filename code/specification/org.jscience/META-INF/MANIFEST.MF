@@ -4,7 +4,7 @@ Bundle-Name: JScience
 Bundle-SymbolicName: org.jscience
 Bundle-Version: 4.3.1
 Bundle-ClassPath: jscience.jar
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: javax.measure,
  javax.measure.converter,
  javax.measure.quantity,
