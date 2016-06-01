@@ -16,7 +16,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.m2m.qvt.oml;bundle-version="3.5.0",
  de.fzi.sensidl.language.ui,
  org.eclipse.ui.workbench
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.ui.dialogs,
  org.eclipse.vorto.editor.infomodel
