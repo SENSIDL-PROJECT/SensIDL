@@ -6,11 +6,14 @@
 // Library Include of the generated Code
 #include "SensorState.h"
 
+
+#include "ArduinoJson.h"
 #include <Wire.h>
 #include "rgb_lcd.h"
 #include <Ethernet.h>
 #include <math.h>
 #include <TimerOne.h>
+
 
 
 //Define Sensor And Output Pins
@@ -106,7 +109,8 @@ void loop()
   String content = readClientRequest(client);
   
   // Call the parseFormJson function of the sensidl library
-  parseDatastructureFromJson(content);
+  if(!content.equals(""))
+    parseDatastructureFromJson(content);
   
   //refresh LED acccording to recieved data
   if(get_SensorState_led(&sensorState) == "ON") {

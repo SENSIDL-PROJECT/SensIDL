@@ -19,77 +19,31 @@ String datastructureToJson() {
 }
 
 void parseDatastructureFromJson(String json) {
-	int pos = 0;
-        String element = "";
-        String* e = &element;
-        *e = "TT";
-        String value = "";
-	pos = parsetoNextElement(json,pos,&element,&value);
-	while(pos != -1 && pos != -2) {
-		if(element == "led") {
-				if(value == "ON") set_SensorState_led(&sensorState,"ON");
-				if(value == "OFF") set_SensorState_led(&sensorState,"OFF");
-		} else 
-		if (element == "temperaturec") {			
-			set_SensorState_temperaturec(&sensorState,stringToDouble(value));
-		} else 
-		if (element == "brightness") {
-			set_SensorState_brightness(&sensorState,stringToDouble(value));
-		} else
-		if (element == "threshold_brightness") {
-			set_SensorState_thresholdbrightness(&sensorState,stringToDouble(value));
-		} else
-		if (element == "threshold_temperature") {
-			set_SensorState_thresholdtemperature(&sensorState,stringToDouble(value));
-		}
-		pos = parsetoNextElement(json,pos,&element,&value);
-	}
-}
+        DynamicJsonBuffer jsonBuffer;
+        char buff[json.length()+1];
+        json.toCharArray(buff,json.length()+1);
+        JsonObject& root = jsonBuffer.parseObject(buff);
 
-int parsetoNextElement(String json,int position, String* element, String* value) {
-	enum states {BEGINNING, READING_ELEMENT, WAITING_FOR_SEPARATOR, WAITING_FOR_VALUE, READING_VALUE_STRING, READING_VALUE_NUMBER, WAITING_FOR_END};
-	states state = BEGINNING;
-	*element = "";
-	*value = "";
-	while(json.length() > position) {
-		char c = json.charAt(position);
-		switch (state) {		
-			case BEGINNING:
-				if(c == '"') state = READING_ELEMENT;
-			break;			
-			case READING_ELEMENT:
-				if(c == '"') state = WAITING_FOR_SEPARATOR;
-				else *element += c;
-			break;			
-			case WAITING_FOR_SEPARATOR:
-				if(c == ':') state = WAITING_FOR_VALUE;
-				else if(c != ' ') return -2;
-			break;			
-			case WAITING_FOR_VALUE:
-				if(c != ' ') {
-					if(c == '"') state = READING_VALUE_STRING;
-					else if(c == ',') return ++position;
-					else {
-						*value += c;
-						state = READING_VALUE_NUMBER;
-					}
-				}
-			break;			
-			case READING_VALUE_STRING:
-				if(c == '"')  state = WAITING_FOR_END;
-				else *value += c;
-			break;			
-			case READING_VALUE_NUMBER:
-				if(c == ',' || c == '}') return ++position;
-				else *value +=c;
-			break;			
-			case WAITING_FOR_END:
-				if(c == ',' || c == '}') return ++position;
-			break;
-		}	
-		position ++;
+        if (!root.success()) {
+          Serial.println("parseObject() failed");
+          return;
+        }
+        if(root.containsKey("led")) {
+		if(((String)root["led"].asString()).equals("ON")) set_SensorState_led(&sensorState,"ON");
+		if(((String)root["led"].asString()).equals("OFF")) set_SensorState_led(&sensorState,"OFF");
+	} 
+	if (root.containsKey("temperaturec")) {			
+		set_SensorState_temperaturec(&sensorState,stringToDouble(root["temperaturec"].asString()));
+	} 
+	if (root.containsKey("brightness")) {
+		set_SensorState_brightness(&sensorState,stringToDouble(root["brightness"].asString()));
 	}
-	return -1;
+	if (root.containsKey("threshold_brightness")) {
+		set_SensorState_thresholdbrightness(&sensorState,stringToDouble(root["threshold_brightness"].asString()));
+	}
+	if (root.containsKey("threshold_temperature")) {
+		set_SensorState_thresholdtemperature(&sensorState,stringToDouble(root["threshold_temperature"].asString()));
+	}
 }
 
 double stringToDouble(String s) {
