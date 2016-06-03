@@ -12,6 +12,7 @@ import java.util.HashMap
 import java.util.List
 import de.fzi.sensidl.language.generator.factory.plaintext.PlaintextGenerator
 import de.fzi.sensidl.language.generator.factory.csharp.CSharpGenerator
+import de.fzi.sensidl.language.generator.factory.javatest.JavaTestGenerator
 
 /**
  * The SkeletonGenerationStep is a concrete subclass of the GenerationStep class. The main
@@ -50,12 +51,14 @@ class SkeletonGenerationStep extends GenerationStep {
 				val CSharpGenerator csharpgenerator = new CSharpGenerator()
 				val JavaScriptGenerator jsgenerator = new JavaScriptGenerator()
 				val PlaintextGenerator generator = new PlaintextGenerator()
+				val JavaTestGenerator jtgenerator = new JavaTestGenerator()
 				filesToGenerate => [
 					putAll(jgenerator.generateDTO(this.dataSet))
 					putAll(cgenerator.generateDTO(this.dataSet))
 					putAll(csharpgenerator.generateDTO(this.dataSet))
 					putAll(jsgenerator.generateDTO(this.dataSet))
 					putAll(generator.generateDTO(this.dataSet))
+					putAll(jtgenerator.generateDTO(this.dataSet))
 				]
 //				generator.generateDecoder
 //				generator.generateEncoder
@@ -63,9 +66,11 @@ class SkeletonGenerationStep extends GenerationStep {
 			put(GenerationLanguage.JAVA, [
 				val JavaGenerator generator = new JavaGenerator()
 				val PlaintextGenerator generator2 = new PlaintextGenerator()
+				val JavaTestGenerator jtgenerator = new JavaTestGenerator()
 				filesToGenerate => [
 					putAll(generator.generateDTO(this.dataSet))
 					putAll(generator2.generateDTO(this.dataSet))
+					putAll(jtgenerator.generateDTO(this.dataSet))
 				]
 //				generator.generateDecoder
 //				generator.generateEncoder
