@@ -164,7 +164,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 	def generateInitTemplateStart(DataSet dataset){
 		'''
 
-		void init«dataset.name.toFirstUpper»(«dataset.name.toFirstUpper»* p) {
+		void init_«dataset.name.toFirstUpper»(«dataset.name.toFirstUpper»* p) {
 
 		'''				
 	}
@@ -362,10 +362,10 @@ class CDTOFileGenerator extends CDTOGenerator {
 	 						void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ){						
 	 							if («d.name.toFirstLower» >= «dataAdj.fromInterval.lowerBound» && «d.name.toFirstLower» <= «dataAdj.fromInterval.upperBound»){												
 	 								
-	 								«d.toTypeName» oldMin =  «dataAdj.fromInterval.lowerBound.intValue»;
-	 								«d.toTypeName» oldMax =  «dataAdj.fromInterval.upperBound.intValue»;
-	 								«d.toTypeName» newMin =  «dataAdj.toInterval.lowerBound.intValue»;
-	 								«d.toTypeName» newMax =  «dataAdj.toInterval.upperBound.intValue»;
+	 								«d.getReturnDataType» oldMin =  «dataAdj.fromInterval.lowerBound.intValue»;
+	 								«d.getReturnDataType» oldMax =  «dataAdj.fromInterval.upperBound.intValue»;
+	 								«d.getReturnDataType» newMin =  «dataAdj.toInterval.lowerBound.intValue»;
+	 								«d.getReturnDataType» newMax =  «dataAdj.toInterval.upperBound.intValue»;
 	 								
 	 								p->«d.name.toFirstLower» = «d.name.toFirstLower»;
 	 								p->«d.name.toFirstLower»Adjusted =  ((((«d.name.toFirstLower» - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin);
@@ -378,8 +378,9 @@ class CDTOFileGenerator extends CDTOGenerator {
 	 					«ENDIF»
 	 				«ENDIF»				
 	 				«ENDFOR»	
+ 				«ELSE»
+ 					void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ) { p->«d.name.toFirstLower» = «d.name.toFirstLower»; }
  				«ENDIF»
- 				void set_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p, «d.toTypeName» «d.name.toFirstLower» ) { p->«d.name.toFirstLower» = «d.name.toFirstLower»; }
 
  				''' 
  	}
@@ -402,9 +403,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 	def generateEndiannessMethodsDeclarations(DataSet d){
 		'''
 			«generateAdjustAllEndianness(d)»
-			
-			«generateCheckLittleEndian()»
-			
+						
 			«generateSwapEndiannessOnDemand(d)»
 		'''						
 	}
@@ -431,20 +430,6 @@ class CDTOFileGenerator extends CDTOGenerator {
 		'''
 	}
 	
-	/**
-	 * Generates a method to check if the given architecture is little endian.
-	 */
-	def generateCheckLittleEndian(){
-		'''
-		bool check_little_endian(){
-			
-			int n = 1;
-			// true if little endian device architecture detected
-			return (*(char *)&n == 1);
-		} 
-			
-		'''
-	}
 	
 	/**
 	 * Generates a method to swap endianness of all variables of the struct

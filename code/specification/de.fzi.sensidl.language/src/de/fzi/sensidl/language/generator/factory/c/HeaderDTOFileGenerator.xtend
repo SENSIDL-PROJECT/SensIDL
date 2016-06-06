@@ -89,8 +89,6 @@ class HeaderDTOGenerator extends CDTOGenerator {
 							
 			} «GenerationUtil.toNameUpper(dataset)»;
 			
-			extern «GenerationUtil.toNameUpper(dataset)» «GenerationUtil.toNameLower(dataset)»;
-
 			«generateInitDatasetPrototype(dataset)»
 			
 			«generateMethodsPrototypes(dataset)»
@@ -106,9 +104,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	def generateEndiannessMethodsPrototypes(DataSet d){
 		'''
 			«generateAdjustAllEndiannessPrototype(d)»
-			
-			«generateCheckLittleEndianPrototype()»
-			
+						
 			«generateSwapEndiannessOnDemandPrototype(d)»
 		'''			
 	}
@@ -142,7 +138,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 		/**
 		* @Initialization of the «dataset.name.toFirstUpper» dataset (to give the initial values to const fields)
 		*/
-		void init«dataset.name.toFirstUpper»(«dataset.name.toFirstUpper»* p);
+		void init_«dataset.name.toFirstUpper»(«dataset.name.toFirstUpper»* p);
 		'''		
 	}
 	
@@ -376,9 +372,9 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 */
  	dispatch def generateVariable(MeasurementData data) {
  		'''
- 		«data.toTypeName» «GenerationUtil.toNameLower(data)»;
+ 		«data.toTypeName» «GenerationUtil.toNameLower(data)»;  // Unit: «data.unit», «IF data.description != null»«data.description»«ENDIF»
  		«IF data.isAdjustedByLinearConversionWithInterval»
- 		«data.getReturnDataType» «GenerationUtil.toNameLower(data)»Adjusted;
+ 		«data.getReturnDataType» «GenerationUtil.toNameLower(data)»Adjusted;  // Unit: «data.unit», «IF data.description != null»«data.description»«ENDIF»
  		«ENDIF»
  		'''
  	}	
@@ -389,7 +385,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 * 			represents variable or constant non-measured data.
 	 */
 	dispatch def generateVariable(NonMeasurementData data) {
-		'''«data.toTypeName» «GenerationUtil.toNameLower(data)»;'''
+		'''«data.toTypeName» «GenerationUtil.toNameLower(data)»;  «IF data.description != null»// «data.description»«ENDIF»'''
 	}
 	
  	dispatch def generateVariable(ListData data) {
@@ -437,19 +433,6 @@ class HeaderDTOGenerator extends CDTOGenerator {
 		'''
 	}	
 	
-	/**
-	 * Generates a method to check if the given architecture is little endian.
-	 */
-	def generateCheckLittleEndianPrototype() {
-		'''
-		/**
-		* Returns true if given architecture is little endian
-		*/		
-		bool check_little_endian();	
-			
-		'''
-	}	
-
 	/**
 	 * @see IDTOGenerator#addFileExtensionTo(String)
 	 */

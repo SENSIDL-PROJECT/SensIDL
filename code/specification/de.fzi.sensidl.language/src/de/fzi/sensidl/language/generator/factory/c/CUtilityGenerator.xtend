@@ -49,11 +49,18 @@ class CUtilityGenerator implements IUtilityGenerator{
 	}
 	
 	//TODO implement the utility class.
-	def generateUtility(String string) {
-		'''
-			#include <stdbool.h>
+	def generateUtility(String utilityNameDef) {
+		
 			
-			«generateEndiannessSwapFunctions()»
+		'''	
+		#ifndef «utilityNameDef.toUpperCase»_H
+		#define «utilityNameDef.toUpperCase»_H
+		#include <stdbool.h>
+		
+		«generateCheckLittleEndian()»
+		«generateEndiannessSwapFunctions()»
+			
+		#endif /* «utilityNameDef.toUpperCase»_H */
 		'''
 	}
 	
@@ -62,6 +69,18 @@ class CUtilityGenerator implements IUtilityGenerator{
 	 */
 	override addFileExtensionTo(String ClassName) {
 		ClassName + SensIDLConstants.HEADER_EXTENSION
+	}
+	
+	def generateCheckLittleEndian(){
+		'''
+			// Returns true if given architecture is little endian
+			static inline bool check_little_endian(){
+				
+				int n = 1;
+				// true if little endian device architecture detected
+				return (*(char *)&n == 1);
+			} 
+		'''	
 	}
 	
 	def generateEndiannessSwapFunctions(){
