@@ -4,6 +4,7 @@ import java.io.IOException
 import org.eclipse.vorto.codegen.api.IMappingContext
 import org.eclipse.vorto.codegen.api.IVortoCodeGenerator
 import org.eclipse.vorto.core.api.model.informationmodel.InformationModel
+import de.fzi.sensidl.language.generator.generationstep.skeletongenerationstep.SkeletonGenerationStep
 
 /**
  * SensIDL Vorto Generator. The Vorto Information model will be 
@@ -19,6 +20,7 @@ class SensIDLGenerator implements IVortoCodeGenerator {
 	 */
 	override generate(InformationModel infomodel, IMappingContext mappingContext) {
 		// execute the transformation handler
+		SkeletonGenerationStep.createSidlFile = true;
 		try {
 			new TransformationHandler().execute(infomodel)
 		} catch (IOException ex) {

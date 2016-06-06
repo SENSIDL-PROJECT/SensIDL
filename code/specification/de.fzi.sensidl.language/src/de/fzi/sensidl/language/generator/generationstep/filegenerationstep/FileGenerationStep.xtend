@@ -110,7 +110,7 @@ class FileGenerationStep extends GenerationStep {
 	
 	def getVersioningComment(ArrayList<String> fileExtensions, String currentFileName) {
 		'''
-		/**
+		/*
 		*File:							«currentFileName»
 		*Version:						
 		*Generate at:					«new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())»
