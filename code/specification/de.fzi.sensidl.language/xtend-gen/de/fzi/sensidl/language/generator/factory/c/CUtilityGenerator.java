@@ -63,13 +63,33 @@ public class CUtilityGenerator implements IUtilityGenerator {
     return _xblockexpression;
   }
   
-  public CharSequence generateUtility(final String string) {
+  public CharSequence generateUtility(final String utilityNameDef) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("#ifndef ");
+    String _upperCase = utilityNameDef.toUpperCase();
+    _builder.append(_upperCase, "");
+    _builder.append("_H");
+    _builder.newLineIfNotEmpty();
+    _builder.append("#define ");
+    String _upperCase_1 = utilityNameDef.toUpperCase();
+    _builder.append(_upperCase_1, "");
+    _builder.append("_H");
+    _builder.newLineIfNotEmpty();
     _builder.append("#include <stdbool.h>");
     _builder.newLine();
     _builder.newLine();
+    CharSequence _generateCheckLittleEndian = this.generateCheckLittleEndian();
+    _builder.append(_generateCheckLittleEndian, "");
+    _builder.newLineIfNotEmpty();
     CharSequence _generateEndiannessSwapFunctions = this.generateEndiannessSwapFunctions();
     _builder.append(_generateEndiannessSwapFunctions, "");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("#endif /* ");
+    String _upperCase_2 = utilityNameDef.toUpperCase();
+    _builder.append(_upperCase_2, "");
+    _builder.append("_H */");
     _builder.newLineIfNotEmpty();
     return _builder;
   }
@@ -80,6 +100,28 @@ public class CUtilityGenerator implements IUtilityGenerator {
   @Override
   public String addFileExtensionTo(final String ClassName) {
     return (ClassName + SensIDLConstants.HEADER_EXTENSION);
+  }
+  
+  public CharSequence generateCheckLittleEndian() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("// Returns true if given architecture is little endian");
+    _builder.newLine();
+    _builder.append("static inline bool check_little_endian(){");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("int n = 1;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("// true if little endian device architecture detected");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return (*(char *)&n == 1);");
+    _builder.newLine();
+    _builder.append("} ");
+    _builder.newLine();
+    return _builder;
   }
   
   public CharSequence generateEndiannessSwapFunctions() {

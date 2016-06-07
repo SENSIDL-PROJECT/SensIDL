@@ -1,0 +1,63 @@
+/* Describing Bluetooth with GATT protocol specification
+ * A Gatt characteristic is an attribute type.
+ * A Characteristics-Definition consists of a declaration and a value declaration Both include a list of Properties and permissions. Additionally, a characteristics definition may include several Descriptors
+ */
+
+sensorInterface Gatt_Characteristic {
+	encoding: SENSIDL_BINARY, endianness:LITTLE_ENDIAN, alignment: 1 BIT  //Multi octet fields: little endian except for value-field
+      sensorData {
+      	
+      	dataSet Characteristic uses aValue, Descriptor /** represents Characteristic Declaration*/{ 
+      		Handle as UINT32 exclude: getter /**0xNNNN Attribute Handle: 16 bit value assigned by servers to their own attributes, to access the attributes */ 
+      		Type_UUID as UINT64 constant value="10243"//AttributeTYpe: Uuid 
+      		Permission as UINT32 /**Attribute Permissions */
+  			Descriptors as list of Descriptor /* generates: getDescriptors():List<Descriptor>, 
+  			 * getDescriptors(Descriptor obj):Descriptor, addDescriptors(Descriptor descriptorsElement), 
+  			 * setDescriptors(List<Descriptor> descriptors)*/
+  			//+addDescriptor(Descriptor descriptor) as Method 
+  			//+getDescriptors() as Method //returns a List of Descriptors
+      		+getDescriptor(Uuid uuid):Descriptor as Method 
+      		+getService() as Method //public Service getService() returns the service the characteristic belongs to
+      		+writeCharacteristic() as Method 
+      		+readCharacteristic() as Method
+      		
+      	}
+      	
+      	dataSet aValue uses Properties, Uuid /**Attribute Value-Field of a Characteristic */ { 
+      		ValueHandle as UINT32 /** The Handler of the Attribute "Char_Value"" Length: 2 octets. Part of Attribute Value array**/ 
+      	}
+      	
+      	dataSet CharacteristicValue uses Uuid/** Value of a Characteristic, representation and format defined by descriptors */{
+      		ValueHandle as UINT32 exclude: setter// 0xNNNN
+      		Value as UINT32 
+      		CharValue_Permission as UINT32 in Dimensionless /** Specified by service or implementation **/
+      		setValue(INT32 val, INT32 formatType, INT32 offset):BOOLEAN as Method 
+      		 
+      	}
+      	
+      	dataSet Uuid {
+      		Uuid as UINT16 exclude: setter //16-bit Bluetooth UUID
+      		BleUuid as UINT64 exclude: setter//128-bit UUID
+      	}
+
+      	dataSet Properties{
+      		Property_Broadcast as INT32 constant value="1" // 0x01,
+      		Property_Read as INT32 constant value="2"// 0x02,
+      		Property_Write_no_response as INT32 constant value="4"// 0x04 
+      		Property_Write as INT32 constant value="8"// 0x08
+      		Property_Notify as INT32 constant value="16" //0x10, 
+      		Prperty_Indicate as INT32 constant value="32" //0x20,
+      		Property_Signed_write as INT32 constant value="64"// 0x40
+      		Property_Extended as INT32 constant value="128" //0x80	
+      	}
+      	
+      	dataSet Descriptor uses Uuid/**6 Descriptor-types: Extended Property, User Description, Client Characteristic Configuration, Server Characteristic Configuration, Presentation Format, AggregateFormat, */{
+      		Handle as UINT32
+      		DValue as UINT32 //depending on the descriptor typ:extendedPropertyBitField; UserDescription(String UTF-8); ConfigurationBits; Format, Exponent,Unit, NameSpace Description; ListOfHandlesForPresentationDeclaration
+      		Permission as UINT32 exclude: setter
+      		getCharactersitic():Characteristic as Method 
+      		
+      	}
+	 }
+ }		
+      	

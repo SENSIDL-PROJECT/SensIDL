@@ -215,7 +215,7 @@ public class CDTOFileGenerator extends CDTOGenerator {
   public CharSequence generateInitTemplateStart(final DataSet dataset) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.newLine();
-    _builder.append("void init");
+    _builder.append("void init_");
     String _name = dataset.getName();
     String _firstUpper = StringExtensions.toFirstUpper(_name);
     _builder.append(_firstUpper, "");
@@ -732,8 +732,8 @@ public class CDTOFileGenerator extends CDTOGenerator {
                         _builder.append("\t\t");
                         _builder.newLine();
                         _builder.append("\t\t");
-                        String _typeName_3 = this.toTypeName(d);
-                        _builder.append(_typeName_3, "\t\t");
+                        String _returnDataType = this.getReturnDataType(d);
+                        _builder.append(_returnDataType, "\t\t");
                         _builder.append(" oldMin =  ");
                         Interval _fromInterval_2 = ((LinearDataConversionWithInterval)dataAdj).getFromInterval();
                         double _lowerBound_2 = _fromInterval_2.getLowerBound();
@@ -742,8 +742,8 @@ public class CDTOFileGenerator extends CDTOGenerator {
                         _builder.append(";");
                         _builder.newLineIfNotEmpty();
                         _builder.append("\t\t");
-                        String _typeName_4 = this.toTypeName(d);
-                        _builder.append(_typeName_4, "\t\t");
+                        String _returnDataType_1 = this.getReturnDataType(d);
+                        _builder.append(_returnDataType_1, "\t\t");
                         _builder.append(" oldMax =  ");
                         Interval _fromInterval_3 = ((LinearDataConversionWithInterval)dataAdj).getFromInterval();
                         double _upperBound_2 = _fromInterval_3.getUpperBound();
@@ -752,8 +752,8 @@ public class CDTOFileGenerator extends CDTOGenerator {
                         _builder.append(";");
                         _builder.newLineIfNotEmpty();
                         _builder.append("\t\t");
-                        String _typeName_5 = this.toTypeName(d);
-                        _builder.append(_typeName_5, "\t\t");
+                        String _returnDataType_2 = this.getReturnDataType(d);
+                        _builder.append(_returnDataType_2, "\t\t");
                         _builder.append(" newMin =  ");
                         Interval _toInterval = ((LinearDataConversionWithInterval)dataAdj).getToInterval();
                         double _lowerBound_3 = _toInterval.getLowerBound();
@@ -762,8 +762,8 @@ public class CDTOFileGenerator extends CDTOGenerator {
                         _builder.append(";");
                         _builder.newLineIfNotEmpty();
                         _builder.append("\t\t");
-                        String _typeName_6 = this.toTypeName(d);
-                        _builder.append(_typeName_6, "\t\t");
+                        String _returnDataType_3 = this.getReturnDataType(d);
+                        _builder.append(_returnDataType_3, "\t\t");
                         _builder.append(" newMax =  ");
                         Interval _toInterval_1 = ((LinearDataConversionWithInterval)dataAdj).getToInterval();
                         double _upperBound_3 = _toInterval_1.getUpperBound();
@@ -817,37 +817,38 @@ public class CDTOFileGenerator extends CDTOGenerator {
             }
           }
         }
+      } else {
+        _builder.append("void set_");
+        String _name_24 = dataset.getName();
+        String _firstUpper_6 = StringExtensions.toFirstUpper(_name_24);
+        _builder.append(_firstUpper_6, "");
+        _builder.append("_");
+        String _name_25 = d.getName();
+        String _replaceAll_3 = _name_25.replaceAll("[^a-zA-Z0-9]", "");
+        _builder.append(_replaceAll_3, "");
+        _builder.append("(");
+        String _name_26 = dataset.getName();
+        String _firstUpper_7 = StringExtensions.toFirstUpper(_name_26);
+        _builder.append(_firstUpper_7, "");
+        _builder.append("* p, ");
+        String _typeName_3 = this.toTypeName(d);
+        _builder.append(_typeName_3, "");
+        _builder.append(" ");
+        String _name_27 = d.getName();
+        String _firstLower_15 = StringExtensions.toFirstLower(_name_27);
+        _builder.append(_firstLower_15, "");
+        _builder.append(" ) { p->");
+        String _name_28 = d.getName();
+        String _firstLower_16 = StringExtensions.toFirstLower(_name_28);
+        _builder.append(_firstLower_16, "");
+        _builder.append(" = ");
+        String _name_29 = d.getName();
+        String _firstLower_17 = StringExtensions.toFirstLower(_name_29);
+        _builder.append(_firstLower_17, "");
+        _builder.append("; }");
+        _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("void set_");
-    String _name_24 = dataset.getName();
-    String _firstUpper_6 = StringExtensions.toFirstUpper(_name_24);
-    _builder.append(_firstUpper_6, "");
-    _builder.append("_");
-    String _name_25 = d.getName();
-    String _replaceAll_3 = _name_25.replaceAll("[^a-zA-Z0-9]", "");
-    _builder.append(_replaceAll_3, "");
-    _builder.append("(");
-    String _name_26 = dataset.getName();
-    String _firstUpper_7 = StringExtensions.toFirstUpper(_name_26);
-    _builder.append(_firstUpper_7, "");
-    _builder.append("* p, ");
-    String _typeName_7 = this.toTypeName(d);
-    _builder.append(_typeName_7, "");
-    _builder.append(" ");
-    String _name_27 = d.getName();
-    String _firstLower_15 = StringExtensions.toFirstLower(_name_27);
-    _builder.append(_firstLower_15, "");
-    _builder.append(" ) { p->");
-    String _name_28 = d.getName();
-    String _firstLower_16 = StringExtensions.toFirstLower(_name_28);
-    _builder.append(_firstLower_16, "");
-    _builder.append(" = ");
-    String _name_29 = d.getName();
-    String _firstLower_17 = StringExtensions.toFirstLower(_name_29);
-    _builder.append(_firstLower_17, "");
-    _builder.append("; }");
-    _builder.newLineIfNotEmpty();
     _builder.newLine();
     return _builder;
   }
@@ -900,10 +901,7 @@ public class CDTOFileGenerator extends CDTOGenerator {
     CharSequence _generateAdjustAllEndianness = this.generateAdjustAllEndianness(d);
     _builder.append(_generateAdjustAllEndianness, "");
     _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    CharSequence _generateCheckLittleEndian = this.generateCheckLittleEndian();
-    _builder.append(_generateCheckLittleEndian, "");
-    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
     _builder.newLine();
     CharSequence _generateSwapEndiannessOnDemand = this.generateSwapEndiannessOnDemand(d);
     _builder.append(_generateSwapEndiannessOnDemand, "");
@@ -956,31 +954,6 @@ public class CDTOFileGenerator extends CDTOGenerator {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    _builder.newLine();
-    return _builder;
-  }
-  
-  /**
-   * Generates a method to check if the given architecture is little endian.
-   */
-  public CharSequence generateCheckLittleEndian() {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("bool check_little_endian(){");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("int n = 1;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("// true if little endian device architecture detected");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("return (*(char *)&n == 1);");
-    _builder.newLine();
-    _builder.append("} ");
-    _builder.newLine();
-    _builder.append("\t");
     _builder.newLine();
     return _builder;
   }

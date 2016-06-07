@@ -169,7 +169,7 @@ public class FileGenerationStep extends GenerationStep {
   
   public CharSequence getVersioningComment(final ArrayList<String> fileExtensions, final String currentFileName) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("/**");
+    _builder.append("/*");
     _builder.newLine();
     _builder.append("*File:\t\t\t\t\t\t\t");
     _builder.append(currentFileName, "");

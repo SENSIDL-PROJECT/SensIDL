@@ -28,7 +28,10 @@
             xsi:type="datatype:PrimitivePropertyType"
             type="float"/>
         <propertyAttributes
-            xsi:type="datatype:EnumLiteralPropertyAttribute"/>
+            xsi:type="datatype:EnumLiteralPropertyAttribute">
+          <value
+              href="Unit.xmi#//@enums.0"/>
+        </propertyAttributes>
       </properties>
       <properties
           name="power"
@@ -37,7 +40,10 @@
             xsi:type="datatype:PrimitivePropertyType"
             type="float"/>
         <propertyAttributes
-            xsi:type="datatype:EnumLiteralPropertyAttribute"/>
+            xsi:type="datatype:EnumLiteralPropertyAttribute">
+          <value
+              href="Unit.xmi#//@enums.3"/>
+        </propertyAttributes>
       </properties>
       <properties
           name="powerFactor"
@@ -46,7 +52,10 @@
             xsi:type="datatype:PrimitivePropertyType"
             type="short"/>
         <propertyAttributes
-            xsi:type="datatype:EnumLiteralPropertyAttribute"/>
+            xsi:type="datatype:EnumLiteralPropertyAttribute">
+          <value
+              href="Unit.xmi#//@enums.2"/>
+        </propertyAttributes>
       </properties>
       <properties
           name="identicator"
@@ -83,7 +92,10 @@
             xsi:type="datatype:PrimitivePropertyType"
             type="float"/>
         <propertyAttributes
-            xsi:type="datatype:EnumLiteralPropertyAttribute"/>
+            xsi:type="datatype:EnumLiteralPropertyAttribute">
+          <value
+              href="Unit.xmi#//@enums.1"/>
+        </propertyAttributes>
       </properties>
       <properties
           name="powerFactor"
@@ -92,7 +104,10 @@
             xsi:type="datatype:PrimitivePropertyType"
             type="short"/>
         <propertyAttributes
-            xsi:type="datatype:EnumLiteralPropertyAttribute"/>
+            xsi:type="datatype:EnumLiteralPropertyAttribute">
+          <value
+              href="Unit.xmi#//@enums.2"/>
+        </propertyAttributes>
       </properties>
       <properties
           name="Info">

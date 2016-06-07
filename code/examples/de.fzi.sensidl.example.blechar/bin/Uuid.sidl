@@ -1,0 +1,10 @@
+sensorInterface Uuid {
+	encoding: SENSIDL_BINARY, endianness: LITTLE_ENDIAN, alignment: 1 BIT  
+      sensorData {
+      	
+      	dataSet Uuid {
+      		Uuid as UINT64      //128 bit Uuid
+      		BLEUuid as UINT16  // 16 bit Ble Uuid as defined by Assigned Numbers
+      		}
+      	}
+}

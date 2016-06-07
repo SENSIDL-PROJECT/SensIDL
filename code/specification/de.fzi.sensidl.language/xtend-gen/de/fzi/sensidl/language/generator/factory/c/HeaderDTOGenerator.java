@@ -162,15 +162,6 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
-    _builder.append("extern ");
-    String _nameUpper_1 = GenerationUtil.toNameUpper(dataset);
-    _builder.append(_nameUpper_1, "");
-    _builder.append(" ");
-    String _nameLower = GenerationUtil.toNameLower(dataset);
-    _builder.append(_nameLower, "");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
     CharSequence _generateInitDatasetPrototype = this.generateInitDatasetPrototype(dataset);
     _builder.append(_generateInitDatasetPrototype, "");
     _builder.newLineIfNotEmpty();
@@ -198,10 +189,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     CharSequence _generateAdjustAllEndiannessPrototype = this.generateAdjustAllEndiannessPrototype(d);
     _builder.append(_generateAdjustAllEndiannessPrototype, "");
     _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    CharSequence _generateCheckLittleEndianPrototype = this.generateCheckLittleEndianPrototype();
-    _builder.append(_generateCheckLittleEndianPrototype, "");
-    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
     _builder.newLine();
     CharSequence _generateSwapEndiannessOnDemandPrototype = this.generateSwapEndiannessOnDemandPrototype(d);
     _builder.append(_generateSwapEndiannessOnDemandPrototype, "");
@@ -256,7 +244,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("*/");
     _builder.newLine();
-    _builder.append("void init");
+    _builder.append("void init_");
     String _name_1 = dataset.getName();
     String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
     _builder.append(_firstUpper_1, "");
@@ -888,7 +876,18 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append(" ");
     String _nameLower = GenerationUtil.toNameLower(data);
     _builder.append(_nameLower, "");
-    _builder.append(";");
+    _builder.append(";  // Unit: ");
+    Unit<?> _unit = data.getUnit();
+    _builder.append(_unit, "");
+    _builder.append(", ");
+    {
+      String _description = data.getDescription();
+      boolean _notEquals = (!Objects.equal(_description, null));
+      if (_notEquals) {
+        String _description_1 = data.getDescription();
+        _builder.append(_description_1, "");
+      }
+    }
     _builder.newLineIfNotEmpty();
     {
       boolean _isAdjustedByLinearConversionWithInterval = this.isAdjustedByLinearConversionWithInterval(data);
@@ -898,7 +897,18 @@ public class HeaderDTOGenerator extends CDTOGenerator {
         _builder.append(" ");
         String _nameLower_1 = GenerationUtil.toNameLower(data);
         _builder.append(_nameLower_1, "");
-        _builder.append("Adjusted;");
+        _builder.append("Adjusted;  // Unit: ");
+        Unit<?> _unit_1 = data.getUnit();
+        _builder.append(_unit_1, "");
+        _builder.append(", ");
+        {
+          String _description_2 = data.getDescription();
+          boolean _notEquals_1 = (!Objects.equal(_description_2, null));
+          if (_notEquals_1) {
+            String _description_3 = data.getDescription();
+            _builder.append(_description_3, "");
+          }
+        }
         _builder.newLineIfNotEmpty();
       }
     }
@@ -917,7 +927,16 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append(" ");
     String _nameLower = GenerationUtil.toNameLower(data);
     _builder.append(_nameLower, "");
-    _builder.append(";");
+    _builder.append(";  ");
+    {
+      String _description = data.getDescription();
+      boolean _notEquals = (!Objects.equal(_description, null));
+      if (_notEquals) {
+        _builder.append("// ");
+        String _description_1 = data.getDescription();
+        _builder.append(_description_1, "");
+      }
+    }
     return _builder;
   }
   
@@ -1001,24 +1020,6 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append(_firstUpper_1, "");
     _builder.append("* p);");
     _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    return _builder;
-  }
-  
-  /**
-   * Generates a method to check if the given architecture is little endian.
-   */
-  public CharSequence generateCheckLittleEndianPrototype() {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("/**");
-    _builder.newLine();
-    _builder.append("* Returns true if given architecture is little endian");
-    _builder.newLine();
-    _builder.append("*/\t\t");
-    _builder.newLine();
-    _builder.append("bool check_little_endian();\t");
-    _builder.newLine();
-    _builder.append("\t");
     _builder.newLine();
     return _builder;
   }

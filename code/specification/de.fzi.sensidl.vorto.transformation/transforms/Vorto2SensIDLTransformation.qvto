@@ -6,6 +6,8 @@
  * @author Max Scheerer
  */
 
+import trans.util.UnitCreator;
+
 modeltype SensIDLModel "strict" uses "http://fzi.de/sensidl/design/1.0";
 modeltype VortoInformationModel "strict" uses "http://www.eclipse.org/vorto/metamodel/InformationModel";
 modeltype VortoFunctionblock "strict" uses "http://www.eclipse.org/vorto/metamodel/Functionblock";
@@ -177,14 +179,15 @@ query isConstant(description : String) : Boolean {
 	return (description.find("constant") > 0);
 }
 
-mapping VortoDataTypes::Property::toMeasurementData() : SensIDLModel::dataRepresentation::MeasurementData {
+mapping VortoDataTypes::Property::toMeasurementData() : SensIDLModel::dataRepresentation::MeasurementData 
+when {self.propertyAttributes -> size() = 1 and self.propertyAttributes -> at(1).oclIsTypeOf(VortoDataTypes::EnumLiteralPropertyAttribute)} {
 	log("Start with PropertyToMeasurementData-transformation.");
 
 	name := self.name;
 	description := getDescription(self.description);
 	dataType := toDataType(self.type.oclAsType(VortoDataTypes::PrimitivePropertyType).type);
 	adjustments := map toDataRange(self.Constraints);	
-	// unit := ...
+	unit := createUnitFrom(self.propertyAttributes -> at(1).oclAsType(VortoDataTypes::EnumLiteralPropertyAttribute).value.name).oclAsType(SensIDLModel::dataRepresentation::Unit);
 }
 
 mapping toDataRange(in constraints : OrderedSet(VortoDataTypes::Constraint)) : SensIDLModel::dataRepresentation::DataRange 
