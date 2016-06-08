@@ -20,6 +20,7 @@ import java.util.ArrayList
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
+import de.fzi.sensidl.language.extensions.todo.SensIDLTodoTaskCustomizer
 
 /**
  * Java code generator for the SensIDL Model. 
@@ -158,7 +159,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 				 * @generated
 				 */	
 				«method.getMethodVisibility» «method.methodReturnType» «method.name»(«method.getMethodParameter»){
-					//TODO: Auto Generated method stub
+					//«SensIDLTodoTaskCustomizer.sensIDLTodoTag»: Auto Generated method stub
 					«IF !method.methodReturnType.equals("void")»
 					return null;
 					«ENDIF»
@@ -899,7 +900,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 				 *
 				 */
 				public «GenerationUtil.toNameUpper(pdataSet)» convertToLittleEndian(«GenerationUtil.toNameUpper(pdataSet)» «GenerationUtil.toNameLower(pdataSet)»){
-					//TODO: implement Method
+					//«SensIDLTodoTaskCustomizer.sensIDLTodoTag»: implement Method
 					return null;
 				}
 			«ENDFOR»

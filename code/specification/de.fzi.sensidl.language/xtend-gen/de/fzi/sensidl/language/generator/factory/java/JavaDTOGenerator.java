@@ -19,6 +19,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Method;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData;
+import de.fzi.sensidl.language.extensions.todo.SensIDLTodoTaskCustomizer;
 import de.fzi.sensidl.language.generator.GenerationUtil;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
@@ -316,8 +317,11 @@ public class JavaDTOGenerator implements IDTOGenerator {
         _builder.append("){");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
-        _builder.append("//TODO: Auto Generated method stub");
-        _builder.newLine();
+        _builder.append("//");
+        String _sensIDLTodoTag = SensIDLTodoTaskCustomizer.getSensIDLTodoTag();
+        _builder.append(_sensIDLTodoTag, "\t");
+        _builder.append(": Auto Generated method stub");
+        _builder.newLineIfNotEmpty();
         {
           String _methodReturnType_1 = this.getMethodReturnType(method);
           boolean _equals = _methodReturnType_1.equals("void");
@@ -2493,8 +2497,11 @@ public class JavaDTOGenerator implements IDTOGenerator {
         _builder.append("){");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
-        _builder.append("//TODO: implement Method");
-        _builder.newLine();
+        _builder.append("//");
+        String _sensIDLTodoTag = SensIDLTodoTaskCustomizer.getSensIDLTodoTag();
+        _builder.append(_sensIDLTodoTag, "\t");
+        _builder.append(": implement Method");
+        _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("return null;");
         _builder.newLine();

@@ -2,18 +2,16 @@ package de.fzi.sensidl.language.generator.factory.java
 
 import de.fzi.sensidl.design.sensidl.Endianness
 import de.fzi.sensidl.design.sensidl.SensorInterface
-import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
-import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData
+import de.fzi.sensidl.language.extensions.todo.SensIDLTodoTaskCustomizer
 import de.fzi.sensidl.language.generator.GenerationUtil
 import de.fzi.sensidl.language.generator.SensIDLConstants
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider
 import de.fzi.sensidl.language.generator.factory.IDTOGenerator
 import de.fzi.sensidl.language.generator.factory.IUtilityGenerator
-import java.util.ArrayList
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
@@ -210,7 +208,7 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 			ObjectInputStream ois = null;
 			ois = new ObjectInputStream(in);
 			Object o = ois.readObject();
-			T unmarshalledObject = (T) o; // TODO: Ensure the type conversion is valid
+			T unmarshalledObject = (T) o; // «SensIDLTodoTaskCustomizer.sensIDLTodoTag»: Ensure the type conversion is valid
 			in.close();
 			if (in != null) {
 				ois.close();
@@ -226,7 +224,7 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 		 * Method responsible for serializing Byte-Array
 		 */
 		public static «GenerationUtil.toNameUpper(d)» marshal«GenerationUtil.toNameUpper(d)»ByteArray() {
-			//TODO: implement Method
+			//«SensIDLTodoTaskCustomizer.sensIDLTodoTag»: implement Method
 			return null;
 		}
 		'''
@@ -402,7 +400,7 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 		 *
 		 */
 		public static String convertToLittleEndian(String str) {
-			//TODO: implement Method
+			//«SensIDLTodoTaskCustomizer.sensIDLTodoTag»: implement Method
 			return str;
 		}
 		
@@ -414,7 +412,7 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 		 *
 		 */
 		public static boolean convertToLittleEndian(boolean bool) {
-			//TODO: implement Method
+			//«SensIDLTodoTaskCustomizer.sensIDLTodoTag»: implement Method
 			return bool;
 		}
 	'''
