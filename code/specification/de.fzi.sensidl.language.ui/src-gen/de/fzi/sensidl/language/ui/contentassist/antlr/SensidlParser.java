@@ -103,7 +103,7 @@ public class SensidlParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLinearDataConversionAccess().getGroup(), "rule__LinearDataConversion__Group__0");
 					put(grammarAccess.getLinearDataConversionWithIntervalAccess().getGroup(), "rule__LinearDataConversionWithInterval__Group__0");
 					put(grammarAccess.getDOUBLEAccess().getGroup(), "rule__DOUBLE__Group__0");
-					put(grammarAccess.getDOUBLEAccess().getGroup_1(), "rule__DOUBLE__Group_1__0");
+					put(grammarAccess.getDOUBLEAccess().getGroup_2(), "rule__DOUBLE__Group_2__0");
 					put(grammarAccess.getUNITAccess().getGroup(), "rule__UNIT__Group__0");
 					put(grammarAccess.getUNITAccess().getGroup_1(), "rule__UNIT__Group_1__0");
 					put(grammarAccess.getSensorInterfaceAccess().getNameAssignment_1(), "rule__SensorInterface__NameAssignment_1");

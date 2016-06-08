@@ -131,7 +131,7 @@ LinearDataConversionWithInterval returns dataRepresentation::LinearDataConversio
 	)
 ;
 
-DOUBLE returns ecore::EDouble: INT ('.' INT)?;
+DOUBLE returns ecore::EDouble: '-'? INT ('.' INT)?;
 //BOOLEAN returns ecore::EBoolean: 'true' | 'false';
 //UNIT returns dataRepresentation::Unit: STRING;
 //terminal UNIT returns dataRepresentation::Unit : '^'?('a'..'z'|'A'..'Z'/**'_'*/) ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_ANY_OTHER", "RULE_DESCRIPTION", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'SENSIDL_BINARY'", "'SENSIDL_JSON'", "'BIG_ENDIAN'", "'LITTLE_ENDIAN'", "'STRING'", "'BOOLEAN'", "'INT8'", "'UINT8'", "'INT16'", "'UINT16'", "'INT32'", "'UINT32'", "'INT64'", "'UINT64'", "'FLOAT'", "'DOUBLE'", "'sensorInterface'", "'{'", "'}'", "'with identifier'", "':'", "'encoding'", "','", "'endianness'", "'alignment'", "'BIT'", "'sensorData'", "'dataSet'", "'uses'", "'('", "')'", "'as'", "'Method'", "'list'", "'of'", "'in'", "'adjusted'", "'exclude:'", "'value'", "'='", "'exclude'", "'with range'", "'['", "';'", "']'", "'with scaling factor'", "'and offset'", "'by linear mapping'", "'=>'", "'.'", "'+'", "'-'", "'#'", "'~'", "'setter'", "'getter'", "'constant'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_ANY_OTHER", "RULE_DESCRIPTION", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'SENSIDL_BINARY'", "'SENSIDL_JSON'", "'BIG_ENDIAN'", "'LITTLE_ENDIAN'", "'STRING'", "'BOOLEAN'", "'INT8'", "'UINT8'", "'INT16'", "'UINT16'", "'INT32'", "'UINT32'", "'INT64'", "'UINT64'", "'FLOAT'", "'DOUBLE'", "'sensorInterface'", "'{'", "'}'", "'with identifier'", "':'", "'encoding'", "','", "'endianness'", "'alignment'", "'BIT'", "'sensorData'", "'dataSet'", "'uses'", "'('", "')'", "'as'", "'Method'", "'list'", "'of'", "'in'", "'adjusted'", "'exclude:'", "'value'", "'='", "'exclude'", "'with range'", "'['", "';'", "']'", "'with scaling factor'", "'and offset'", "'by linear mapping'", "'=>'", "'-'", "'.'", "'+'", "'#'", "'~'", "'setter'", "'getter'", "'constant'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -1729,7 +1729,7 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
                     throw nvae;
                 }
             }
-            else if ( ((LA1_0>=62 && LA1_0<=65)) ) {
+            else if ( (LA1_0==61||(LA1_0>=63 && LA1_0<=65)) ) {
                 alt1=2;
             }
             else {
@@ -1816,12 +1816,12 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
             // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:666:1: ( ( ( rule__Method__VisibilityAssignment_0_0 ) ) | ( ( rule__Method__VisibilityAssignment_0_1 ) ) | ( ( rule__Method__VisibilityAssignment_0_2 ) ) | ( ( rule__Method__VisibilityAssignment_0_3 ) ) )
             int alt2=4;
             switch ( input.LA(1) ) {
-            case 62:
+            case 63:
                 {
                 alt2=1;
                 }
                 break;
-            case 63:
+            case 61:
                 {
                 alt2=2;
                 }
@@ -7257,7 +7257,7 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
                 int alt29=2;
                 int LA29_0 = input.LA(1);
 
-                if ( (LA29_0==RULE_ID||(LA29_0>=62 && LA29_0<=65)) ) {
+                if ( (LA29_0==RULE_ID||LA29_0==61||(LA29_0>=63 && LA29_0<=65)) ) {
                     alt29=1;
                 }
 
@@ -7968,7 +7968,7 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
             int alt30=2;
             int LA30_0 = input.LA(1);
 
-            if ( ((LA30_0>=62 && LA30_0<=65)) ) {
+            if ( (LA30_0==61||(LA30_0>=63 && LA30_0<=65)) ) {
                 alt30=1;
             }
             switch (alt30) {
@@ -17976,21 +17976,38 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DOUBLE__Group__0__Impl"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6705:1: rule__DOUBLE__Group__0__Impl : ( RULE_INT ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6705:1: rule__DOUBLE__Group__0__Impl : ( ( '-' )? ) ;
     public final void rule__DOUBLE__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6709:1: ( ( RULE_INT ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6710:1: ( RULE_INT )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6709:1: ( ( ( '-' )? ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6710:1: ( ( '-' )? )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6710:1: ( RULE_INT )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6711:1: RULE_INT
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6710:1: ( ( '-' )? )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6711:1: ( '-' )?
             {
-             before(grammarAccess.getDOUBLEAccess().getINTTerminalRuleCall_0()); 
-            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__DOUBLE__Group__0__Impl13471); 
-             after(grammarAccess.getDOUBLEAccess().getINTTerminalRuleCall_0()); 
+             before(grammarAccess.getDOUBLEAccess().getHyphenMinusKeyword_0()); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6712:1: ( '-' )?
+            int alt53=2;
+            int LA53_0 = input.LA(1);
+
+            if ( (LA53_0==61) ) {
+                alt53=1;
+            }
+            switch (alt53) {
+                case 1 :
+                    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6713:2: '-'
+                    {
+                    match(input,61,FOLLOW_61_in_rule__DOUBLE__Group__0__Impl13473); 
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getDOUBLEAccess().getHyphenMinusKeyword_0()); 
 
             }
 
@@ -18013,17 +18030,22 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DOUBLE__Group__1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6722:1: rule__DOUBLE__Group__1 : rule__DOUBLE__Group__1__Impl ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6724:1: rule__DOUBLE__Group__1 : rule__DOUBLE__Group__1__Impl rule__DOUBLE__Group__2 ;
     public final void rule__DOUBLE__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6726:1: ( rule__DOUBLE__Group__1__Impl )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6727:2: rule__DOUBLE__Group__1__Impl
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6728:1: ( rule__DOUBLE__Group__1__Impl rule__DOUBLE__Group__2 )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6729:2: rule__DOUBLE__Group__1__Impl rule__DOUBLE__Group__2
             {
-            pushFollow(FOLLOW_rule__DOUBLE__Group__1__Impl_in_rule__DOUBLE__Group__113500);
+            pushFollow(FOLLOW_rule__DOUBLE__Group__1__Impl_in_rule__DOUBLE__Group__113506);
             rule__DOUBLE__Group__1__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__DOUBLE__Group__2_in_rule__DOUBLE__Group__113509);
+            rule__DOUBLE__Group__2();
 
             state._fsp--;
 
@@ -18046,42 +18068,21 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DOUBLE__Group__1__Impl"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6733:1: rule__DOUBLE__Group__1__Impl : ( ( rule__DOUBLE__Group_1__0 )? ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6736:1: rule__DOUBLE__Group__1__Impl : ( RULE_INT ) ;
     public final void rule__DOUBLE__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6737:1: ( ( ( rule__DOUBLE__Group_1__0 )? ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6738:1: ( ( rule__DOUBLE__Group_1__0 )? )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6740:1: ( ( RULE_INT ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6741:1: ( RULE_INT )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6738:1: ( ( rule__DOUBLE__Group_1__0 )? )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6739:1: ( rule__DOUBLE__Group_1__0 )?
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6741:1: ( RULE_INT )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6742:1: RULE_INT
             {
-             before(grammarAccess.getDOUBLEAccess().getGroup_1()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6740:1: ( rule__DOUBLE__Group_1__0 )?
-            int alt53=2;
-            int LA53_0 = input.LA(1);
-
-            if ( (LA53_0==61) ) {
-                alt53=1;
-            }
-            switch (alt53) {
-                case 1 :
-                    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6740:2: rule__DOUBLE__Group_1__0
-                    {
-                    pushFollow(FOLLOW_rule__DOUBLE__Group_1__0_in_rule__DOUBLE__Group__1__Impl13527);
-                    rule__DOUBLE__Group_1__0();
-
-                    state._fsp--;
-
-
-                    }
-                    break;
-
-            }
-
-             after(grammarAccess.getDOUBLEAccess().getGroup_1()); 
+             before(grammarAccess.getDOUBLEAccess().getINTTerminalRuleCall_1()); 
+            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__DOUBLE__Group__1__Impl13536); 
+             after(grammarAccess.getDOUBLEAccess().getINTTerminalRuleCall_1()); 
 
             }
 
@@ -18103,23 +18104,18 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__DOUBLE__Group__1__Impl"
 
 
-    // $ANTLR start "rule__DOUBLE__Group_1__0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6754:1: rule__DOUBLE__Group_1__0 : rule__DOUBLE__Group_1__0__Impl rule__DOUBLE__Group_1__1 ;
-    public final void rule__DOUBLE__Group_1__0() throws RecognitionException {
+    // $ANTLR start "rule__DOUBLE__Group__2"
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6753:1: rule__DOUBLE__Group__2 : rule__DOUBLE__Group__2__Impl ;
+    public final void rule__DOUBLE__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6758:1: ( rule__DOUBLE__Group_1__0__Impl rule__DOUBLE__Group_1__1 )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6759:2: rule__DOUBLE__Group_1__0__Impl rule__DOUBLE__Group_1__1
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6757:1: ( rule__DOUBLE__Group__2__Impl )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6758:2: rule__DOUBLE__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__DOUBLE__Group_1__0__Impl_in_rule__DOUBLE__Group_1__013562);
-            rule__DOUBLE__Group_1__0__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_rule__DOUBLE__Group_1__1_in_rule__DOUBLE__Group_1__013565);
-            rule__DOUBLE__Group_1__1();
+            pushFollow(FOLLOW_rule__DOUBLE__Group__2__Impl_in_rule__DOUBLE__Group__213565);
+            rule__DOUBLE__Group__2__Impl();
 
             state._fsp--;
 
@@ -18138,25 +18134,46 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__DOUBLE__Group_1__0"
+    // $ANTLR end "rule__DOUBLE__Group__2"
 
 
-    // $ANTLR start "rule__DOUBLE__Group_1__0__Impl"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6766:1: rule__DOUBLE__Group_1__0__Impl : ( '.' ) ;
-    public final void rule__DOUBLE__Group_1__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__DOUBLE__Group__2__Impl"
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6764:1: rule__DOUBLE__Group__2__Impl : ( ( rule__DOUBLE__Group_2__0 )? ) ;
+    public final void rule__DOUBLE__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6770:1: ( ( '.' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6771:1: ( '.' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6768:1: ( ( ( rule__DOUBLE__Group_2__0 )? ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6769:1: ( ( rule__DOUBLE__Group_2__0 )? )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6771:1: ( '.' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6772:1: '.'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6769:1: ( ( rule__DOUBLE__Group_2__0 )? )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6770:1: ( rule__DOUBLE__Group_2__0 )?
             {
-             before(grammarAccess.getDOUBLEAccess().getFullStopKeyword_1_0()); 
-            match(input,61,FOLLOW_61_in_rule__DOUBLE__Group_1__0__Impl13593); 
-             after(grammarAccess.getDOUBLEAccess().getFullStopKeyword_1_0()); 
+             before(grammarAccess.getDOUBLEAccess().getGroup_2()); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6771:1: ( rule__DOUBLE__Group_2__0 )?
+            int alt54=2;
+            int LA54_0 = input.LA(1);
+
+            if ( (LA54_0==62) ) {
+                alt54=1;
+            }
+            switch (alt54) {
+                case 1 :
+                    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6771:2: rule__DOUBLE__Group_2__0
+                    {
+                    pushFollow(FOLLOW_rule__DOUBLE__Group_2__0_in_rule__DOUBLE__Group__2__Impl13592);
+                    rule__DOUBLE__Group_2__0();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getDOUBLEAccess().getGroup_2()); 
 
             }
 
@@ -18175,21 +18192,26 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__DOUBLE__Group_1__0__Impl"
+    // $ANTLR end "rule__DOUBLE__Group__2__Impl"
 
 
-    // $ANTLR start "rule__DOUBLE__Group_1__1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6785:1: rule__DOUBLE__Group_1__1 : rule__DOUBLE__Group_1__1__Impl ;
-    public final void rule__DOUBLE__Group_1__1() throws RecognitionException {
+    // $ANTLR start "rule__DOUBLE__Group_2__0"
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6787:1: rule__DOUBLE__Group_2__0 : rule__DOUBLE__Group_2__0__Impl rule__DOUBLE__Group_2__1 ;
+    public final void rule__DOUBLE__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6789:1: ( rule__DOUBLE__Group_1__1__Impl )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6790:2: rule__DOUBLE__Group_1__1__Impl
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6791:1: ( rule__DOUBLE__Group_2__0__Impl rule__DOUBLE__Group_2__1 )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6792:2: rule__DOUBLE__Group_2__0__Impl rule__DOUBLE__Group_2__1
             {
-            pushFollow(FOLLOW_rule__DOUBLE__Group_1__1__Impl_in_rule__DOUBLE__Group_1__113624);
-            rule__DOUBLE__Group_1__1__Impl();
+            pushFollow(FOLLOW_rule__DOUBLE__Group_2__0__Impl_in_rule__DOUBLE__Group_2__013629);
+            rule__DOUBLE__Group_2__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__DOUBLE__Group_2__1_in_rule__DOUBLE__Group_2__013632);
+            rule__DOUBLE__Group_2__1();
 
             state._fsp--;
 
@@ -18208,25 +18230,25 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__DOUBLE__Group_1__1"
+    // $ANTLR end "rule__DOUBLE__Group_2__0"
 
 
-    // $ANTLR start "rule__DOUBLE__Group_1__1__Impl"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6796:1: rule__DOUBLE__Group_1__1__Impl : ( RULE_INT ) ;
-    public final void rule__DOUBLE__Group_1__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__DOUBLE__Group_2__0__Impl"
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6799:1: rule__DOUBLE__Group_2__0__Impl : ( '.' ) ;
+    public final void rule__DOUBLE__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6800:1: ( ( RULE_INT ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6801:1: ( RULE_INT )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6803:1: ( ( '.' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6804:1: ( '.' )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6801:1: ( RULE_INT )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6802:1: RULE_INT
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6804:1: ( '.' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6805:1: '.'
             {
-             before(grammarAccess.getDOUBLEAccess().getINTTerminalRuleCall_1_1()); 
-            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__DOUBLE__Group_1__1__Impl13651); 
-             after(grammarAccess.getDOUBLEAccess().getINTTerminalRuleCall_1_1()); 
+             before(grammarAccess.getDOUBLEAccess().getFullStopKeyword_2_0()); 
+            match(input,62,FOLLOW_62_in_rule__DOUBLE__Group_2__0__Impl13660); 
+             after(grammarAccess.getDOUBLEAccess().getFullStopKeyword_2_0()); 
 
             }
 
@@ -18245,25 +18267,95 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__DOUBLE__Group_1__1__Impl"
+    // $ANTLR end "rule__DOUBLE__Group_2__0__Impl"
+
+
+    // $ANTLR start "rule__DOUBLE__Group_2__1"
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6818:1: rule__DOUBLE__Group_2__1 : rule__DOUBLE__Group_2__1__Impl ;
+    public final void rule__DOUBLE__Group_2__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6822:1: ( rule__DOUBLE__Group_2__1__Impl )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6823:2: rule__DOUBLE__Group_2__1__Impl
+            {
+            pushFollow(FOLLOW_rule__DOUBLE__Group_2__1__Impl_in_rule__DOUBLE__Group_2__113691);
+            rule__DOUBLE__Group_2__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__DOUBLE__Group_2__1"
+
+
+    // $ANTLR start "rule__DOUBLE__Group_2__1__Impl"
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6829:1: rule__DOUBLE__Group_2__1__Impl : ( RULE_INT ) ;
+    public final void rule__DOUBLE__Group_2__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6833:1: ( ( RULE_INT ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6834:1: ( RULE_INT )
+            {
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6834:1: ( RULE_INT )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6835:1: RULE_INT
+            {
+             before(grammarAccess.getDOUBLEAccess().getINTTerminalRuleCall_2_1()); 
+            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__DOUBLE__Group_2__1__Impl13718); 
+             after(grammarAccess.getDOUBLEAccess().getINTTerminalRuleCall_2_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__DOUBLE__Group_2__1__Impl"
 
 
     // $ANTLR start "rule__UNIT__Group__0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6817:1: rule__UNIT__Group__0 : rule__UNIT__Group__0__Impl rule__UNIT__Group__1 ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6850:1: rule__UNIT__Group__0 : rule__UNIT__Group__0__Impl rule__UNIT__Group__1 ;
     public final void rule__UNIT__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6821:1: ( rule__UNIT__Group__0__Impl rule__UNIT__Group__1 )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6822:2: rule__UNIT__Group__0__Impl rule__UNIT__Group__1
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6854:1: ( rule__UNIT__Group__0__Impl rule__UNIT__Group__1 )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6855:2: rule__UNIT__Group__0__Impl rule__UNIT__Group__1
             {
-            pushFollow(FOLLOW_rule__UNIT__Group__0__Impl_in_rule__UNIT__Group__013684);
+            pushFollow(FOLLOW_rule__UNIT__Group__0__Impl_in_rule__UNIT__Group__013751);
             rule__UNIT__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__UNIT__Group__1_in_rule__UNIT__Group__013687);
+            pushFollow(FOLLOW_rule__UNIT__Group__1_in_rule__UNIT__Group__013754);
             rule__UNIT__Group__1();
 
             state._fsp--;
@@ -18287,47 +18379,47 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UNIT__Group__0__Impl"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6829:1: rule__UNIT__Group__0__Impl : ( ( RULE_ID )* ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6862:1: rule__UNIT__Group__0__Impl : ( ( RULE_ID )* ) ;
     public final void rule__UNIT__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6833:1: ( ( ( RULE_ID )* ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6834:1: ( ( RULE_ID )* )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6866:1: ( ( ( RULE_ID )* ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6867:1: ( ( RULE_ID )* )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6834:1: ( ( RULE_ID )* )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6835:1: ( RULE_ID )*
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6867:1: ( ( RULE_ID )* )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6868:1: ( RULE_ID )*
             {
              before(grammarAccess.getUNITAccess().getIDTerminalRuleCall_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6836:1: ( RULE_ID )*
-            loop54:
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6869:1: ( RULE_ID )*
+            loop55:
             do {
-                int alt54=2;
-                int LA54_0 = input.LA(1);
+                int alt55=2;
+                int LA55_0 = input.LA(1);
 
-                if ( (LA54_0==RULE_ID) ) {
-                    int LA54_2 = input.LA(2);
+                if ( (LA55_0==RULE_ID) ) {
+                    int LA55_2 = input.LA(2);
 
-                    if ( (LA54_2==EOF||(LA54_2>=RULE_ID && LA54_2<=RULE_DESCRIPTION)||(LA54_2>=30 && LA54_2<=31)||(LA54_2>=48 && LA54_2<=49)||LA54_2==52||(LA54_2>=62 && LA54_2<=65)) ) {
-                        alt54=1;
+                    if ( (LA55_2==EOF||(LA55_2>=RULE_ID && LA55_2<=RULE_DESCRIPTION)||(LA55_2>=30 && LA55_2<=31)||(LA55_2>=48 && LA55_2<=49)||LA55_2==52||LA55_2==61||(LA55_2>=63 && LA55_2<=65)) ) {
+                        alt55=1;
                     }
 
 
                 }
 
 
-                switch (alt54) {
+                switch (alt55) {
             	case 1 :
-            	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6836:3: RULE_ID
+            	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6869:3: RULE_ID
             	    {
-            	    match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__UNIT__Group__0__Impl13715); 
+            	    match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__UNIT__Group__0__Impl13782); 
 
             	    }
             	    break;
 
             	default :
-            	    break loop54;
+            	    break loop55;
                 }
             } while (true);
 
@@ -18354,16 +18446,16 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UNIT__Group__1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6846:1: rule__UNIT__Group__1 : rule__UNIT__Group__1__Impl ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6879:1: rule__UNIT__Group__1 : rule__UNIT__Group__1__Impl ;
     public final void rule__UNIT__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6850:1: ( rule__UNIT__Group__1__Impl )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6851:2: rule__UNIT__Group__1__Impl
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6883:1: ( rule__UNIT__Group__1__Impl )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6884:2: rule__UNIT__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__UNIT__Group__1__Impl_in_rule__UNIT__Group__113746);
+            pushFollow(FOLLOW_rule__UNIT__Group__1__Impl_in_rule__UNIT__Group__113813);
             rule__UNIT__Group__1__Impl();
 
             state._fsp--;
@@ -18387,35 +18479,35 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UNIT__Group__1__Impl"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6857:1: rule__UNIT__Group__1__Impl : ( ( rule__UNIT__Group_1__0 )* ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6890:1: rule__UNIT__Group__1__Impl : ( ( rule__UNIT__Group_1__0 )* ) ;
     public final void rule__UNIT__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6861:1: ( ( ( rule__UNIT__Group_1__0 )* ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6862:1: ( ( rule__UNIT__Group_1__0 )* )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6894:1: ( ( ( rule__UNIT__Group_1__0 )* ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6895:1: ( ( rule__UNIT__Group_1__0 )* )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6862:1: ( ( rule__UNIT__Group_1__0 )* )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6863:1: ( rule__UNIT__Group_1__0 )*
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6895:1: ( ( rule__UNIT__Group_1__0 )* )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6896:1: ( rule__UNIT__Group_1__0 )*
             {
              before(grammarAccess.getUNITAccess().getGroup_1()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6864:1: ( rule__UNIT__Group_1__0 )*
-            loop55:
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6897:1: ( rule__UNIT__Group_1__0 )*
+            loop56:
             do {
-                int alt55=2;
-                int LA55_0 = input.LA(1);
+                int alt56=2;
+                int LA56_0 = input.LA(1);
 
-                if ( (LA55_0==RULE_ANY_OTHER) ) {
-                    alt55=1;
+                if ( (LA56_0==RULE_ANY_OTHER) ) {
+                    alt56=1;
                 }
 
 
-                switch (alt55) {
+                switch (alt56) {
             	case 1 :
-            	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6864:2: rule__UNIT__Group_1__0
+            	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6897:2: rule__UNIT__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__UNIT__Group_1__0_in_rule__UNIT__Group__1__Impl13773);
+            	    pushFollow(FOLLOW_rule__UNIT__Group_1__0_in_rule__UNIT__Group__1__Impl13840);
             	    rule__UNIT__Group_1__0();
 
             	    state._fsp--;
@@ -18425,7 +18517,7 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop55;
+            	    break loop56;
                 }
             } while (true);
 
@@ -18452,21 +18544,21 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UNIT__Group_1__0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6878:1: rule__UNIT__Group_1__0 : rule__UNIT__Group_1__0__Impl rule__UNIT__Group_1__1 ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6911:1: rule__UNIT__Group_1__0 : rule__UNIT__Group_1__0__Impl rule__UNIT__Group_1__1 ;
     public final void rule__UNIT__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6882:1: ( rule__UNIT__Group_1__0__Impl rule__UNIT__Group_1__1 )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6883:2: rule__UNIT__Group_1__0__Impl rule__UNIT__Group_1__1
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6915:1: ( rule__UNIT__Group_1__0__Impl rule__UNIT__Group_1__1 )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6916:2: rule__UNIT__Group_1__0__Impl rule__UNIT__Group_1__1
             {
-            pushFollow(FOLLOW_rule__UNIT__Group_1__0__Impl_in_rule__UNIT__Group_1__013808);
+            pushFollow(FOLLOW_rule__UNIT__Group_1__0__Impl_in_rule__UNIT__Group_1__013875);
             rule__UNIT__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__UNIT__Group_1__1_in_rule__UNIT__Group_1__013811);
+            pushFollow(FOLLOW_rule__UNIT__Group_1__1_in_rule__UNIT__Group_1__013878);
             rule__UNIT__Group_1__1();
 
             state._fsp--;
@@ -18490,20 +18582,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UNIT__Group_1__0__Impl"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6890:1: rule__UNIT__Group_1__0__Impl : ( RULE_ANY_OTHER ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6923:1: rule__UNIT__Group_1__0__Impl : ( RULE_ANY_OTHER ) ;
     public final void rule__UNIT__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6894:1: ( ( RULE_ANY_OTHER ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6895:1: ( RULE_ANY_OTHER )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6927:1: ( ( RULE_ANY_OTHER ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6928:1: ( RULE_ANY_OTHER )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6895:1: ( RULE_ANY_OTHER )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6896:1: RULE_ANY_OTHER
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6928:1: ( RULE_ANY_OTHER )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6929:1: RULE_ANY_OTHER
             {
              before(grammarAccess.getUNITAccess().getANY_OTHERTerminalRuleCall_1_0()); 
-            match(input,RULE_ANY_OTHER,FOLLOW_RULE_ANY_OTHER_in_rule__UNIT__Group_1__0__Impl13838); 
+            match(input,RULE_ANY_OTHER,FOLLOW_RULE_ANY_OTHER_in_rule__UNIT__Group_1__0__Impl13905); 
              after(grammarAccess.getUNITAccess().getANY_OTHERTerminalRuleCall_1_0()); 
 
             }
@@ -18527,16 +18619,16 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UNIT__Group_1__1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6907:1: rule__UNIT__Group_1__1 : rule__UNIT__Group_1__1__Impl ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6940:1: rule__UNIT__Group_1__1 : rule__UNIT__Group_1__1__Impl ;
     public final void rule__UNIT__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6911:1: ( rule__UNIT__Group_1__1__Impl )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6912:2: rule__UNIT__Group_1__1__Impl
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6944:1: ( rule__UNIT__Group_1__1__Impl )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6945:2: rule__UNIT__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__UNIT__Group_1__1__Impl_in_rule__UNIT__Group_1__113867);
+            pushFollow(FOLLOW_rule__UNIT__Group_1__1__Impl_in_rule__UNIT__Group_1__113934);
             rule__UNIT__Group_1__1__Impl();
 
             state._fsp--;
@@ -18560,47 +18652,47 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UNIT__Group_1__1__Impl"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6918:1: rule__UNIT__Group_1__1__Impl : ( ( RULE_ID )* ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6951:1: rule__UNIT__Group_1__1__Impl : ( ( RULE_ID )* ) ;
     public final void rule__UNIT__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6922:1: ( ( ( RULE_ID )* ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6923:1: ( ( RULE_ID )* )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6955:1: ( ( ( RULE_ID )* ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6956:1: ( ( RULE_ID )* )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6923:1: ( ( RULE_ID )* )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6924:1: ( RULE_ID )*
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6956:1: ( ( RULE_ID )* )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6957:1: ( RULE_ID )*
             {
              before(grammarAccess.getUNITAccess().getIDTerminalRuleCall_1_1()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6925:1: ( RULE_ID )*
-            loop56:
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6958:1: ( RULE_ID )*
+            loop57:
             do {
-                int alt56=2;
-                int LA56_0 = input.LA(1);
+                int alt57=2;
+                int LA57_0 = input.LA(1);
 
-                if ( (LA56_0==RULE_ID) ) {
-                    int LA56_2 = input.LA(2);
+                if ( (LA57_0==RULE_ID) ) {
+                    int LA57_2 = input.LA(2);
 
-                    if ( (LA56_2==EOF||(LA56_2>=RULE_ID && LA56_2<=RULE_DESCRIPTION)||(LA56_2>=30 && LA56_2<=31)||(LA56_2>=48 && LA56_2<=49)||LA56_2==52||(LA56_2>=62 && LA56_2<=65)) ) {
-                        alt56=1;
+                    if ( (LA57_2==EOF||(LA57_2>=RULE_ID && LA57_2<=RULE_DESCRIPTION)||(LA57_2>=30 && LA57_2<=31)||(LA57_2>=48 && LA57_2<=49)||LA57_2==52||LA57_2==61||(LA57_2>=63 && LA57_2<=65)) ) {
+                        alt57=1;
                     }
 
 
                 }
 
 
-                switch (alt56) {
+                switch (alt57) {
             	case 1 :
-            	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6925:3: RULE_ID
+            	    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6958:3: RULE_ID
             	    {
-            	    match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__UNIT__Group_1__1__Impl13895); 
+            	    match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__UNIT__Group_1__1__Impl13962); 
 
             	    }
             	    break;
 
             	default :
-            	    break loop56;
+            	    break loop57;
                 }
             } while (true);
 
@@ -18627,20 +18719,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SensorInterface__NameAssignment_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6940:1: rule__SensorInterface__NameAssignment_1 : ( RULE_ID ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6973:1: rule__SensorInterface__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__SensorInterface__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6944:1: ( ( RULE_ID ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6945:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6977:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6978:1: ( RULE_ID )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6945:1: ( RULE_ID )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6946:1: RULE_ID
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6978:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6979:1: RULE_ID
             {
              before(grammarAccess.getSensorInterfaceAccess().getNameIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SensorInterface__NameAssignment_113935); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SensorInterface__NameAssignment_114002); 
              after(grammarAccess.getSensorInterfaceAccess().getNameIDTerminalRuleCall_1_0()); 
 
             }
@@ -18664,20 +18756,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SensorInterface__DescriptionAssignment_2"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6955:1: rule__SensorInterface__DescriptionAssignment_2 : ( RULE_DESCRIPTION ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6988:1: rule__SensorInterface__DescriptionAssignment_2 : ( RULE_DESCRIPTION ) ;
     public final void rule__SensorInterface__DescriptionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6959:1: ( ( RULE_DESCRIPTION ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6960:1: ( RULE_DESCRIPTION )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6992:1: ( ( RULE_DESCRIPTION ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6993:1: ( RULE_DESCRIPTION )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6960:1: ( RULE_DESCRIPTION )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6961:1: RULE_DESCRIPTION
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6993:1: ( RULE_DESCRIPTION )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6994:1: RULE_DESCRIPTION
             {
              before(grammarAccess.getSensorInterfaceAccess().getDescriptionDESCRIPTIONTerminalRuleCall_2_0()); 
-            match(input,RULE_DESCRIPTION,FOLLOW_RULE_DESCRIPTION_in_rule__SensorInterface__DescriptionAssignment_213966); 
+            match(input,RULE_DESCRIPTION,FOLLOW_RULE_DESCRIPTION_in_rule__SensorInterface__DescriptionAssignment_214033); 
              after(grammarAccess.getSensorInterfaceAccess().getDescriptionDESCRIPTIONTerminalRuleCall_2_0()); 
 
             }
@@ -18701,20 +18793,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SensorInterface__IDAssignment_3_2"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6970:1: rule__SensorInterface__IDAssignment_3_2 : ( RULE_STRING ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7003:1: rule__SensorInterface__IDAssignment_3_2 : ( RULE_STRING ) ;
     public final void rule__SensorInterface__IDAssignment_3_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6974:1: ( ( RULE_STRING ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6975:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7007:1: ( ( RULE_STRING ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7008:1: ( RULE_STRING )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6975:1: ( RULE_STRING )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6976:1: RULE_STRING
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7008:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7009:1: RULE_STRING
             {
              before(grammarAccess.getSensorInterfaceAccess().getIDSTRINGTerminalRuleCall_3_2_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__SensorInterface__IDAssignment_3_213997); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__SensorInterface__IDAssignment_3_214064); 
              after(grammarAccess.getSensorInterfaceAccess().getIDSTRINGTerminalRuleCall_3_2_0()); 
 
             }
@@ -18738,20 +18830,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SensorInterface__EncodingSettingsAssignment_5"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6985:1: rule__SensorInterface__EncodingSettingsAssignment_5 : ( ruleEncodingSettings ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7018:1: rule__SensorInterface__EncodingSettingsAssignment_5 : ( ruleEncodingSettings ) ;
     public final void rule__SensorInterface__EncodingSettingsAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6989:1: ( ( ruleEncodingSettings ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6990:1: ( ruleEncodingSettings )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7022:1: ( ( ruleEncodingSettings ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7023:1: ( ruleEncodingSettings )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6990:1: ( ruleEncodingSettings )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:6991:1: ruleEncodingSettings
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7023:1: ( ruleEncodingSettings )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7024:1: ruleEncodingSettings
             {
              before(grammarAccess.getSensorInterfaceAccess().getEncodingSettingsEncodingSettingsParserRuleCall_5_0()); 
-            pushFollow(FOLLOW_ruleEncodingSettings_in_rule__SensorInterface__EncodingSettingsAssignment_514028);
+            pushFollow(FOLLOW_ruleEncodingSettings_in_rule__SensorInterface__EncodingSettingsAssignment_514095);
             ruleEncodingSettings();
 
             state._fsp--;
@@ -18779,20 +18871,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SensorInterface__DataDescriptionAssignment_6"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7000:1: rule__SensorInterface__DataDescriptionAssignment_6 : ( ruleSensorDataDescription ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7033:1: rule__SensorInterface__DataDescriptionAssignment_6 : ( ruleSensorDataDescription ) ;
     public final void rule__SensorInterface__DataDescriptionAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7004:1: ( ( ruleSensorDataDescription ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7005:1: ( ruleSensorDataDescription )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7037:1: ( ( ruleSensorDataDescription ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7038:1: ( ruleSensorDataDescription )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7005:1: ( ruleSensorDataDescription )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7006:1: ruleSensorDataDescription
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7038:1: ( ruleSensorDataDescription )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7039:1: ruleSensorDataDescription
             {
              before(grammarAccess.getSensorInterfaceAccess().getDataDescriptionSensorDataDescriptionParserRuleCall_6_0()); 
-            pushFollow(FOLLOW_ruleSensorDataDescription_in_rule__SensorInterface__DataDescriptionAssignment_614059);
+            pushFollow(FOLLOW_ruleSensorDataDescription_in_rule__SensorInterface__DataDescriptionAssignment_614126);
             ruleSensorDataDescription();
 
             state._fsp--;
@@ -18820,20 +18912,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EncodingSettings__CodingAssignment_2"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7015:1: rule__EncodingSettings__CodingAssignment_2 : ( ruleCoding ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7048:1: rule__EncodingSettings__CodingAssignment_2 : ( ruleCoding ) ;
     public final void rule__EncodingSettings__CodingAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7019:1: ( ( ruleCoding ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7020:1: ( ruleCoding )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7052:1: ( ( ruleCoding ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7053:1: ( ruleCoding )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7020:1: ( ruleCoding )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7021:1: ruleCoding
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7053:1: ( ruleCoding )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7054:1: ruleCoding
             {
              before(grammarAccess.getEncodingSettingsAccess().getCodingCodingEnumRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleCoding_in_rule__EncodingSettings__CodingAssignment_214090);
+            pushFollow(FOLLOW_ruleCoding_in_rule__EncodingSettings__CodingAssignment_214157);
             ruleCoding();
 
             state._fsp--;
@@ -18861,20 +18953,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EncodingSettings__EndiannessAssignment_6"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7030:1: rule__EncodingSettings__EndiannessAssignment_6 : ( ruleEndianness ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7063:1: rule__EncodingSettings__EndiannessAssignment_6 : ( ruleEndianness ) ;
     public final void rule__EncodingSettings__EndiannessAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7034:1: ( ( ruleEndianness ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7035:1: ( ruleEndianness )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7067:1: ( ( ruleEndianness ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7068:1: ( ruleEndianness )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7035:1: ( ruleEndianness )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7036:1: ruleEndianness
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7068:1: ( ruleEndianness )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7069:1: ruleEndianness
             {
              before(grammarAccess.getEncodingSettingsAccess().getEndiannessEndiannessEnumRuleCall_6_0()); 
-            pushFollow(FOLLOW_ruleEndianness_in_rule__EncodingSettings__EndiannessAssignment_614121);
+            pushFollow(FOLLOW_ruleEndianness_in_rule__EncodingSettings__EndiannessAssignment_614188);
             ruleEndianness();
 
             state._fsp--;
@@ -18902,20 +18994,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EncodingSettings__AlignmentAssignment_10"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7045:1: rule__EncodingSettings__AlignmentAssignment_10 : ( RULE_INT ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7078:1: rule__EncodingSettings__AlignmentAssignment_10 : ( RULE_INT ) ;
     public final void rule__EncodingSettings__AlignmentAssignment_10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7049:1: ( ( RULE_INT ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7050:1: ( RULE_INT )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7082:1: ( ( RULE_INT ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7083:1: ( RULE_INT )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7050:1: ( RULE_INT )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7051:1: RULE_INT
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7083:1: ( RULE_INT )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7084:1: RULE_INT
             {
              before(grammarAccess.getEncodingSettingsAccess().getAlignmentINTTerminalRuleCall_10_0()); 
-            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__EncodingSettings__AlignmentAssignment_1014152); 
+            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__EncodingSettings__AlignmentAssignment_1014219); 
              after(grammarAccess.getEncodingSettingsAccess().getAlignmentINTTerminalRuleCall_10_0()); 
 
             }
@@ -18939,20 +19031,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EncodingSettings__IDAssignment_12_2"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7060:1: rule__EncodingSettings__IDAssignment_12_2 : ( RULE_STRING ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7093:1: rule__EncodingSettings__IDAssignment_12_2 : ( RULE_STRING ) ;
     public final void rule__EncodingSettings__IDAssignment_12_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7064:1: ( ( RULE_STRING ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7065:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7097:1: ( ( RULE_STRING ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7098:1: ( RULE_STRING )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7065:1: ( RULE_STRING )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7066:1: RULE_STRING
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7098:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7099:1: RULE_STRING
             {
              before(grammarAccess.getEncodingSettingsAccess().getIDSTRINGTerminalRuleCall_12_2_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__EncodingSettings__IDAssignment_12_214183); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__EncodingSettings__IDAssignment_12_214250); 
              after(grammarAccess.getEncodingSettingsAccess().getIDSTRINGTerminalRuleCall_12_2_0()); 
 
             }
@@ -18976,20 +19068,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SensorDataDescription__IDAssignment_2_2"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7075:1: rule__SensorDataDescription__IDAssignment_2_2 : ( RULE_STRING ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7108:1: rule__SensorDataDescription__IDAssignment_2_2 : ( RULE_STRING ) ;
     public final void rule__SensorDataDescription__IDAssignment_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7079:1: ( ( RULE_STRING ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7080:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7112:1: ( ( RULE_STRING ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7113:1: ( RULE_STRING )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7080:1: ( RULE_STRING )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7081:1: RULE_STRING
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7113:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7114:1: RULE_STRING
             {
              before(grammarAccess.getSensorDataDescriptionAccess().getIDSTRINGTerminalRuleCall_2_2_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__SensorDataDescription__IDAssignment_2_214214); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__SensorDataDescription__IDAssignment_2_214281); 
              after(grammarAccess.getSensorDataDescriptionAccess().getIDSTRINGTerminalRuleCall_2_2_0()); 
 
             }
@@ -19013,20 +19105,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__SensorDataDescription__DataSetsAssignment_4"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7090:1: rule__SensorDataDescription__DataSetsAssignment_4 : ( ruleDataSet ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7123:1: rule__SensorDataDescription__DataSetsAssignment_4 : ( ruleDataSet ) ;
     public final void rule__SensorDataDescription__DataSetsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7094:1: ( ( ruleDataSet ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7095:1: ( ruleDataSet )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7127:1: ( ( ruleDataSet ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7128:1: ( ruleDataSet )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7095:1: ( ruleDataSet )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7096:1: ruleDataSet
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7128:1: ( ruleDataSet )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7129:1: ruleDataSet
             {
              before(grammarAccess.getSensorDataDescriptionAccess().getDataSetsDataSetParserRuleCall_4_0()); 
-            pushFollow(FOLLOW_ruleDataSet_in_rule__SensorDataDescription__DataSetsAssignment_414245);
+            pushFollow(FOLLOW_ruleDataSet_in_rule__SensorDataDescription__DataSetsAssignment_414312);
             ruleDataSet();
 
             state._fsp--;
@@ -19054,20 +19146,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataSet__NameAssignment_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7105:1: rule__DataSet__NameAssignment_1 : ( RULE_ID ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7138:1: rule__DataSet__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__DataSet__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7109:1: ( ( RULE_ID ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7110:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7142:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7143:1: ( RULE_ID )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7110:1: ( RULE_ID )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7111:1: RULE_ID
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7143:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7144:1: RULE_ID
             {
              before(grammarAccess.getDataSetAccess().getNameIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__DataSet__NameAssignment_114276); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__DataSet__NameAssignment_114343); 
              after(grammarAccess.getDataSetAccess().getNameIDTerminalRuleCall_1_0()); 
 
             }
@@ -19091,24 +19183,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataSet__UsedDataSetsAssignment_2_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7120:1: rule__DataSet__UsedDataSetsAssignment_2_1 : ( ( RULE_ID ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7153:1: rule__DataSet__UsedDataSetsAssignment_2_1 : ( ( RULE_ID ) ) ;
     public final void rule__DataSet__UsedDataSetsAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7124:1: ( ( ( RULE_ID ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7125:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7157:1: ( ( ( RULE_ID ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7158:1: ( ( RULE_ID ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7125:1: ( ( RULE_ID ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7126:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7158:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7159:1: ( RULE_ID )
             {
              before(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetCrossReference_2_1_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7127:1: ( RULE_ID )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7128:1: RULE_ID
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7160:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7161:1: RULE_ID
             {
              before(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetIDTerminalRuleCall_2_1_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__DataSet__UsedDataSetsAssignment_2_114311); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__DataSet__UsedDataSetsAssignment_2_114378); 
              after(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetIDTerminalRuleCall_2_1_0_1()); 
 
             }
@@ -19136,24 +19228,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataSet__UsedDataSetsAssignment_3_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7139:1: rule__DataSet__UsedDataSetsAssignment_3_1 : ( ( RULE_ID ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7172:1: rule__DataSet__UsedDataSetsAssignment_3_1 : ( ( RULE_ID ) ) ;
     public final void rule__DataSet__UsedDataSetsAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7143:1: ( ( ( RULE_ID ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7144:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7176:1: ( ( ( RULE_ID ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7177:1: ( ( RULE_ID ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7144:1: ( ( RULE_ID ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7145:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7177:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7178:1: ( RULE_ID )
             {
              before(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetCrossReference_3_1_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7146:1: ( RULE_ID )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7147:1: RULE_ID
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7179:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7180:1: RULE_ID
             {
              before(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetIDTerminalRuleCall_3_1_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__DataSet__UsedDataSetsAssignment_3_114350); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__DataSet__UsedDataSetsAssignment_3_114417); 
              after(grammarAccess.getDataSetAccess().getUsedDataSetsDataSetIDTerminalRuleCall_3_1_0_1()); 
 
             }
@@ -19181,20 +19273,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataSet__IDAssignment_4_2"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7158:1: rule__DataSet__IDAssignment_4_2 : ( RULE_STRING ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7191:1: rule__DataSet__IDAssignment_4_2 : ( RULE_STRING ) ;
     public final void rule__DataSet__IDAssignment_4_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7162:1: ( ( RULE_STRING ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7163:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7195:1: ( ( RULE_STRING ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7196:1: ( RULE_STRING )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7163:1: ( RULE_STRING )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7164:1: RULE_STRING
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7196:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7197:1: RULE_STRING
             {
              before(grammarAccess.getDataSetAccess().getIDSTRINGTerminalRuleCall_4_2_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__DataSet__IDAssignment_4_214385); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__DataSet__IDAssignment_4_214452); 
              after(grammarAccess.getDataSetAccess().getIDSTRINGTerminalRuleCall_4_2_0()); 
 
             }
@@ -19218,20 +19310,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataSet__DescriptionAssignment_5"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7173:1: rule__DataSet__DescriptionAssignment_5 : ( RULE_DESCRIPTION ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7206:1: rule__DataSet__DescriptionAssignment_5 : ( RULE_DESCRIPTION ) ;
     public final void rule__DataSet__DescriptionAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7177:1: ( ( RULE_DESCRIPTION ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7178:1: ( RULE_DESCRIPTION )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7210:1: ( ( RULE_DESCRIPTION ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7211:1: ( RULE_DESCRIPTION )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7178:1: ( RULE_DESCRIPTION )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7179:1: RULE_DESCRIPTION
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7211:1: ( RULE_DESCRIPTION )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7212:1: RULE_DESCRIPTION
             {
              before(grammarAccess.getDataSetAccess().getDescriptionDESCRIPTIONTerminalRuleCall_5_0()); 
-            match(input,RULE_DESCRIPTION,FOLLOW_RULE_DESCRIPTION_in_rule__DataSet__DescriptionAssignment_514416); 
+            match(input,RULE_DESCRIPTION,FOLLOW_RULE_DESCRIPTION_in_rule__DataSet__DescriptionAssignment_514483); 
              after(grammarAccess.getDataSetAccess().getDescriptionDESCRIPTIONTerminalRuleCall_5_0()); 
 
             }
@@ -19255,20 +19347,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataSet__DataAssignment_7_0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7188:1: rule__DataSet__DataAssignment_7_0 : ( ruleData ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7221:1: rule__DataSet__DataAssignment_7_0 : ( ruleData ) ;
     public final void rule__DataSet__DataAssignment_7_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7192:1: ( ( ruleData ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7193:1: ( ruleData )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7225:1: ( ( ruleData ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7226:1: ( ruleData )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7193:1: ( ruleData )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7194:1: ruleData
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7226:1: ( ruleData )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7227:1: ruleData
             {
              before(grammarAccess.getDataSetAccess().getDataDataParserRuleCall_7_0_0()); 
-            pushFollow(FOLLOW_ruleData_in_rule__DataSet__DataAssignment_7_014447);
+            pushFollow(FOLLOW_ruleData_in_rule__DataSet__DataAssignment_7_014514);
             ruleData();
 
             state._fsp--;
@@ -19296,20 +19388,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataSet__MethodAssignment_7_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7203:1: rule__DataSet__MethodAssignment_7_1 : ( ruleMethod ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7236:1: rule__DataSet__MethodAssignment_7_1 : ( ruleMethod ) ;
     public final void rule__DataSet__MethodAssignment_7_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7207:1: ( ( ruleMethod ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7208:1: ( ruleMethod )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7240:1: ( ( ruleMethod ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7241:1: ( ruleMethod )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7208:1: ( ruleMethod )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7209:1: ruleMethod
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7241:1: ( ruleMethod )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7242:1: ruleMethod
             {
              before(grammarAccess.getDataSetAccess().getMethodMethodParserRuleCall_7_1_0()); 
-            pushFollow(FOLLOW_ruleMethod_in_rule__DataSet__MethodAssignment_7_114478);
+            pushFollow(FOLLOW_ruleMethod_in_rule__DataSet__MethodAssignment_7_114545);
             ruleMethod();
 
             state._fsp--;
@@ -19337,24 +19429,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Method__VisibilityAssignment_0_0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7218:1: rule__Method__VisibilityAssignment_0_0 : ( ( '+' ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7251:1: rule__Method__VisibilityAssignment_0_0 : ( ( '+' ) ) ;
     public final void rule__Method__VisibilityAssignment_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7222:1: ( ( ( '+' ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7223:1: ( ( '+' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7255:1: ( ( ( '+' ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7256:1: ( ( '+' ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7223:1: ( ( '+' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7224:1: ( '+' )
-            {
-             before(grammarAccess.getMethodAccess().getVisibilityPlusSignKeyword_0_0_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7225:1: ( '+' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7226:1: '+'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7256:1: ( ( '+' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7257:1: ( '+' )
             {
              before(grammarAccess.getMethodAccess().getVisibilityPlusSignKeyword_0_0_0()); 
-            match(input,62,FOLLOW_62_in_rule__Method__VisibilityAssignment_0_014514); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7258:1: ( '+' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7259:1: '+'
+            {
+             before(grammarAccess.getMethodAccess().getVisibilityPlusSignKeyword_0_0_0()); 
+            match(input,63,FOLLOW_63_in_rule__Method__VisibilityAssignment_0_014581); 
              after(grammarAccess.getMethodAccess().getVisibilityPlusSignKeyword_0_0_0()); 
 
             }
@@ -19382,24 +19474,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Method__VisibilityAssignment_0_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7241:1: rule__Method__VisibilityAssignment_0_1 : ( ( '-' ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7274:1: rule__Method__VisibilityAssignment_0_1 : ( ( '-' ) ) ;
     public final void rule__Method__VisibilityAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7245:1: ( ( ( '-' ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7246:1: ( ( '-' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7278:1: ( ( ( '-' ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7279:1: ( ( '-' ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7246:1: ( ( '-' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7247:1: ( '-' )
-            {
-             before(grammarAccess.getMethodAccess().getVisibilityHyphenMinusKeyword_0_1_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7248:1: ( '-' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7249:1: '-'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7279:1: ( ( '-' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7280:1: ( '-' )
             {
              before(grammarAccess.getMethodAccess().getVisibilityHyphenMinusKeyword_0_1_0()); 
-            match(input,63,FOLLOW_63_in_rule__Method__VisibilityAssignment_0_114558); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7281:1: ( '-' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7282:1: '-'
+            {
+             before(grammarAccess.getMethodAccess().getVisibilityHyphenMinusKeyword_0_1_0()); 
+            match(input,61,FOLLOW_61_in_rule__Method__VisibilityAssignment_0_114625); 
              after(grammarAccess.getMethodAccess().getVisibilityHyphenMinusKeyword_0_1_0()); 
 
             }
@@ -19427,24 +19519,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Method__VisibilityAssignment_0_2"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7264:1: rule__Method__VisibilityAssignment_0_2 : ( ( '#' ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7297:1: rule__Method__VisibilityAssignment_0_2 : ( ( '#' ) ) ;
     public final void rule__Method__VisibilityAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7268:1: ( ( ( '#' ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7269:1: ( ( '#' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7301:1: ( ( ( '#' ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7302:1: ( ( '#' ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7269:1: ( ( '#' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7270:1: ( '#' )
-            {
-             before(grammarAccess.getMethodAccess().getVisibilityNumberSignKeyword_0_2_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7271:1: ( '#' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7272:1: '#'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7302:1: ( ( '#' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7303:1: ( '#' )
             {
              before(grammarAccess.getMethodAccess().getVisibilityNumberSignKeyword_0_2_0()); 
-            match(input,64,FOLLOW_64_in_rule__Method__VisibilityAssignment_0_214602); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7304:1: ( '#' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7305:1: '#'
+            {
+             before(grammarAccess.getMethodAccess().getVisibilityNumberSignKeyword_0_2_0()); 
+            match(input,64,FOLLOW_64_in_rule__Method__VisibilityAssignment_0_214669); 
              after(grammarAccess.getMethodAccess().getVisibilityNumberSignKeyword_0_2_0()); 
 
             }
@@ -19472,24 +19564,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Method__VisibilityAssignment_0_3"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7287:1: rule__Method__VisibilityAssignment_0_3 : ( ( '~' ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7320:1: rule__Method__VisibilityAssignment_0_3 : ( ( '~' ) ) ;
     public final void rule__Method__VisibilityAssignment_0_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7291:1: ( ( ( '~' ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7292:1: ( ( '~' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7324:1: ( ( ( '~' ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7325:1: ( ( '~' ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7292:1: ( ( '~' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7293:1: ( '~' )
-            {
-             before(grammarAccess.getMethodAccess().getVisibilityTildeKeyword_0_3_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7294:1: ( '~' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7295:1: '~'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7325:1: ( ( '~' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7326:1: ( '~' )
             {
              before(grammarAccess.getMethodAccess().getVisibilityTildeKeyword_0_3_0()); 
-            match(input,65,FOLLOW_65_in_rule__Method__VisibilityAssignment_0_314646); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7327:1: ( '~' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7328:1: '~'
+            {
+             before(grammarAccess.getMethodAccess().getVisibilityTildeKeyword_0_3_0()); 
+            match(input,65,FOLLOW_65_in_rule__Method__VisibilityAssignment_0_314713); 
              after(grammarAccess.getMethodAccess().getVisibilityTildeKeyword_0_3_0()); 
 
             }
@@ -19517,20 +19609,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Method__NameAssignment_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7310:1: rule__Method__NameAssignment_1 : ( RULE_ID ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7343:1: rule__Method__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Method__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7314:1: ( ( RULE_ID ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7315:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7347:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7348:1: ( RULE_ID )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7315:1: ( RULE_ID )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7316:1: RULE_ID
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7348:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7349:1: RULE_ID
             {
              before(grammarAccess.getMethodAccess().getNameIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Method__NameAssignment_114685); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Method__NameAssignment_114752); 
              after(grammarAccess.getMethodAccess().getNameIDTerminalRuleCall_1_0()); 
 
             }
@@ -19554,20 +19646,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Method__ParameterAssignment_3"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7325:1: rule__Method__ParameterAssignment_3 : ( ruleMethodParameter ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7358:1: rule__Method__ParameterAssignment_3 : ( ruleMethodParameter ) ;
     public final void rule__Method__ParameterAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7329:1: ( ( ruleMethodParameter ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7330:1: ( ruleMethodParameter )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7362:1: ( ( ruleMethodParameter ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7363:1: ( ruleMethodParameter )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7330:1: ( ruleMethodParameter )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7331:1: ruleMethodParameter
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7363:1: ( ruleMethodParameter )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7364:1: ruleMethodParameter
             {
              before(grammarAccess.getMethodAccess().getParameterMethodParameterParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleMethodParameter_in_rule__Method__ParameterAssignment_314716);
+            pushFollow(FOLLOW_ruleMethodParameter_in_rule__Method__ParameterAssignment_314783);
             ruleMethodParameter();
 
             state._fsp--;
@@ -19595,20 +19687,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Method__ParameterAssignment_4_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7340:1: rule__Method__ParameterAssignment_4_1 : ( ruleMethodParameter ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7373:1: rule__Method__ParameterAssignment_4_1 : ( ruleMethodParameter ) ;
     public final void rule__Method__ParameterAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7344:1: ( ( ruleMethodParameter ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7345:1: ( ruleMethodParameter )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7377:1: ( ( ruleMethodParameter ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7378:1: ( ruleMethodParameter )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7345:1: ( ruleMethodParameter )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7346:1: ruleMethodParameter
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7378:1: ( ruleMethodParameter )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7379:1: ruleMethodParameter
             {
              before(grammarAccess.getMethodAccess().getParameterMethodParameterParserRuleCall_4_1_0()); 
-            pushFollow(FOLLOW_ruleMethodParameter_in_rule__Method__ParameterAssignment_4_114747);
+            pushFollow(FOLLOW_ruleMethodParameter_in_rule__Method__ParameterAssignment_4_114814);
             ruleMethodParameter();
 
             state._fsp--;
@@ -19636,20 +19728,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Method__ReturnTypeAssignment_6_1_0_0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7355:1: rule__Method__ReturnTypeAssignment_6_1_0_0 : ( ruleDataType ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7388:1: rule__Method__ReturnTypeAssignment_6_1_0_0 : ( ruleDataType ) ;
     public final void rule__Method__ReturnTypeAssignment_6_1_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7359:1: ( ( ruleDataType ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7360:1: ( ruleDataType )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7392:1: ( ( ruleDataType ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7393:1: ( ruleDataType )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7360:1: ( ruleDataType )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7361:1: ruleDataType
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7393:1: ( ruleDataType )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7394:1: ruleDataType
             {
              before(grammarAccess.getMethodAccess().getReturnTypeDataTypeEnumRuleCall_6_1_0_0_0()); 
-            pushFollow(FOLLOW_ruleDataType_in_rule__Method__ReturnTypeAssignment_6_1_0_014778);
+            pushFollow(FOLLOW_ruleDataType_in_rule__Method__ReturnTypeAssignment_6_1_0_014845);
             ruleDataType();
 
             state._fsp--;
@@ -19677,20 +19769,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Method__ReturnTypeAssignment_6_1_0_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7370:1: rule__Method__ReturnTypeAssignment_6_1_0_1 : ( ruleDataTypeNotAdjustable ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7403:1: rule__Method__ReturnTypeAssignment_6_1_0_1 : ( ruleDataTypeNotAdjustable ) ;
     public final void rule__Method__ReturnTypeAssignment_6_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7374:1: ( ( ruleDataTypeNotAdjustable ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7375:1: ( ruleDataTypeNotAdjustable )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7407:1: ( ( ruleDataTypeNotAdjustable ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7408:1: ( ruleDataTypeNotAdjustable )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7375:1: ( ruleDataTypeNotAdjustable )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7376:1: ruleDataTypeNotAdjustable
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7408:1: ( ruleDataTypeNotAdjustable )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7409:1: ruleDataTypeNotAdjustable
             {
              before(grammarAccess.getMethodAccess().getReturnTypeDataTypeNotAdjustableEnumRuleCall_6_1_0_1_0()); 
-            pushFollow(FOLLOW_ruleDataTypeNotAdjustable_in_rule__Method__ReturnTypeAssignment_6_1_0_114809);
+            pushFollow(FOLLOW_ruleDataTypeNotAdjustable_in_rule__Method__ReturnTypeAssignment_6_1_0_114876);
             ruleDataTypeNotAdjustable();
 
             state._fsp--;
@@ -19718,24 +19810,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Method__ReturnTypeDataSetAssignment_6_1_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7385:1: rule__Method__ReturnTypeDataSetAssignment_6_1_1 : ( ( RULE_ID ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7418:1: rule__Method__ReturnTypeDataSetAssignment_6_1_1 : ( ( RULE_ID ) ) ;
     public final void rule__Method__ReturnTypeDataSetAssignment_6_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7389:1: ( ( ( RULE_ID ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7390:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7422:1: ( ( ( RULE_ID ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7423:1: ( ( RULE_ID ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7390:1: ( ( RULE_ID ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7391:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7423:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7424:1: ( RULE_ID )
             {
              before(grammarAccess.getMethodAccess().getReturnTypeDataSetDataSetCrossReference_6_1_1_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7392:1: ( RULE_ID )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7393:1: RULE_ID
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7425:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7426:1: RULE_ID
             {
              before(grammarAccess.getMethodAccess().getReturnTypeDataSetDataSetIDTerminalRuleCall_6_1_1_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Method__ReturnTypeDataSetAssignment_6_1_114844); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Method__ReturnTypeDataSetAssignment_6_1_114911); 
              after(grammarAccess.getMethodAccess().getReturnTypeDataSetDataSetIDTerminalRuleCall_6_1_1_0_1()); 
 
             }
@@ -19763,20 +19855,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Method__IDAssignment_9_2"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7404:1: rule__Method__IDAssignment_9_2 : ( RULE_STRING ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7437:1: rule__Method__IDAssignment_9_2 : ( RULE_STRING ) ;
     public final void rule__Method__IDAssignment_9_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7408:1: ( ( RULE_STRING ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7409:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7441:1: ( ( RULE_STRING ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7442:1: ( RULE_STRING )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7409:1: ( RULE_STRING )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7410:1: RULE_STRING
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7442:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7443:1: RULE_STRING
             {
              before(grammarAccess.getMethodAccess().getIDSTRINGTerminalRuleCall_9_2_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Method__IDAssignment_9_214879); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Method__IDAssignment_9_214946); 
              after(grammarAccess.getMethodAccess().getIDSTRINGTerminalRuleCall_9_2_0()); 
 
             }
@@ -19800,20 +19892,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Method__DescriptionAssignment_10"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7419:1: rule__Method__DescriptionAssignment_10 : ( RULE_DESCRIPTION ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7452:1: rule__Method__DescriptionAssignment_10 : ( RULE_DESCRIPTION ) ;
     public final void rule__Method__DescriptionAssignment_10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7423:1: ( ( RULE_DESCRIPTION ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7424:1: ( RULE_DESCRIPTION )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7456:1: ( ( RULE_DESCRIPTION ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7457:1: ( RULE_DESCRIPTION )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7424:1: ( RULE_DESCRIPTION )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7425:1: RULE_DESCRIPTION
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7457:1: ( RULE_DESCRIPTION )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7458:1: RULE_DESCRIPTION
             {
              before(grammarAccess.getMethodAccess().getDescriptionDESCRIPTIONTerminalRuleCall_10_0()); 
-            match(input,RULE_DESCRIPTION,FOLLOW_RULE_DESCRIPTION_in_rule__Method__DescriptionAssignment_1014910); 
+            match(input,RULE_DESCRIPTION,FOLLOW_RULE_DESCRIPTION_in_rule__Method__DescriptionAssignment_1014977); 
              after(grammarAccess.getMethodAccess().getDescriptionDESCRIPTIONTerminalRuleCall_10_0()); 
 
             }
@@ -19837,20 +19929,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MethodParameter__DataTypeAssignment_0_0_0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7434:1: rule__MethodParameter__DataTypeAssignment_0_0_0 : ( ruleDataType ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7467:1: rule__MethodParameter__DataTypeAssignment_0_0_0 : ( ruleDataType ) ;
     public final void rule__MethodParameter__DataTypeAssignment_0_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7438:1: ( ( ruleDataType ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7439:1: ( ruleDataType )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7471:1: ( ( ruleDataType ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7472:1: ( ruleDataType )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7439:1: ( ruleDataType )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7440:1: ruleDataType
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7472:1: ( ruleDataType )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7473:1: ruleDataType
             {
              before(grammarAccess.getMethodParameterAccess().getDataTypeDataTypeEnumRuleCall_0_0_0_0()); 
-            pushFollow(FOLLOW_ruleDataType_in_rule__MethodParameter__DataTypeAssignment_0_0_014941);
+            pushFollow(FOLLOW_ruleDataType_in_rule__MethodParameter__DataTypeAssignment_0_0_015008);
             ruleDataType();
 
             state._fsp--;
@@ -19878,20 +19970,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MethodParameter__DataTypeAssignment_0_0_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7449:1: rule__MethodParameter__DataTypeAssignment_0_0_1 : ( ruleDataTypeNotAdjustable ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7482:1: rule__MethodParameter__DataTypeAssignment_0_0_1 : ( ruleDataTypeNotAdjustable ) ;
     public final void rule__MethodParameter__DataTypeAssignment_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7453:1: ( ( ruleDataTypeNotAdjustable ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7454:1: ( ruleDataTypeNotAdjustable )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7486:1: ( ( ruleDataTypeNotAdjustable ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7487:1: ( ruleDataTypeNotAdjustable )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7454:1: ( ruleDataTypeNotAdjustable )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7455:1: ruleDataTypeNotAdjustable
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7487:1: ( ruleDataTypeNotAdjustable )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7488:1: ruleDataTypeNotAdjustable
             {
              before(grammarAccess.getMethodParameterAccess().getDataTypeDataTypeNotAdjustableEnumRuleCall_0_0_1_0()); 
-            pushFollow(FOLLOW_ruleDataTypeNotAdjustable_in_rule__MethodParameter__DataTypeAssignment_0_0_114972);
+            pushFollow(FOLLOW_ruleDataTypeNotAdjustable_in_rule__MethodParameter__DataTypeAssignment_0_0_115039);
             ruleDataTypeNotAdjustable();
 
             state._fsp--;
@@ -19919,24 +20011,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MethodParameter__DataTypeDataSetAssignment_0_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7464:1: rule__MethodParameter__DataTypeDataSetAssignment_0_1 : ( ( RULE_ID ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7497:1: rule__MethodParameter__DataTypeDataSetAssignment_0_1 : ( ( RULE_ID ) ) ;
     public final void rule__MethodParameter__DataTypeDataSetAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7468:1: ( ( ( RULE_ID ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7469:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7501:1: ( ( ( RULE_ID ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7502:1: ( ( RULE_ID ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7469:1: ( ( RULE_ID ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7470:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7502:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7503:1: ( RULE_ID )
             {
              before(grammarAccess.getMethodParameterAccess().getDataTypeDataSetDataSetCrossReference_0_1_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7471:1: ( RULE_ID )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7472:1: RULE_ID
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7504:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7505:1: RULE_ID
             {
              before(grammarAccess.getMethodParameterAccess().getDataTypeDataSetDataSetIDTerminalRuleCall_0_1_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__MethodParameter__DataTypeDataSetAssignment_0_115007); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__MethodParameter__DataTypeDataSetAssignment_0_115074); 
              after(grammarAccess.getMethodParameterAccess().getDataTypeDataSetDataSetIDTerminalRuleCall_0_1_0_1()); 
 
             }
@@ -19964,20 +20056,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MethodParameter__NameAssignment_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7483:1: rule__MethodParameter__NameAssignment_1 : ( RULE_ID ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7516:1: rule__MethodParameter__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__MethodParameter__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7487:1: ( ( RULE_ID ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7488:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7520:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7521:1: ( RULE_ID )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7488:1: ( RULE_ID )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7489:1: RULE_ID
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7521:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7522:1: RULE_ID
             {
              before(grammarAccess.getMethodParameterAccess().getNameIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__MethodParameter__NameAssignment_115042); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__MethodParameter__NameAssignment_115109); 
              after(grammarAccess.getMethodParameterAccess().getNameIDTerminalRuleCall_1_0()); 
 
             }
@@ -20001,20 +20093,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ListData__NameAssignment_0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7498:1: rule__ListData__NameAssignment_0 : ( RULE_ID ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7531:1: rule__ListData__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__ListData__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7502:1: ( ( RULE_ID ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7503:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7535:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7536:1: ( RULE_ID )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7503:1: ( RULE_ID )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7504:1: RULE_ID
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7536:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7537:1: RULE_ID
             {
              before(grammarAccess.getListDataAccess().getNameIDTerminalRuleCall_0_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__ListData__NameAssignment_015073); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__ListData__NameAssignment_015140); 
              after(grammarAccess.getListDataAccess().getNameIDTerminalRuleCall_0_0()); 
 
             }
@@ -20038,20 +20130,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ListData__DataTypeAssignment_4_0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7513:1: rule__ListData__DataTypeAssignment_4_0 : ( ruleDataType ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7546:1: rule__ListData__DataTypeAssignment_4_0 : ( ruleDataType ) ;
     public final void rule__ListData__DataTypeAssignment_4_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7517:1: ( ( ruleDataType ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7518:1: ( ruleDataType )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7550:1: ( ( ruleDataType ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7551:1: ( ruleDataType )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7518:1: ( ruleDataType )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7519:1: ruleDataType
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7551:1: ( ruleDataType )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7552:1: ruleDataType
             {
              before(grammarAccess.getListDataAccess().getDataTypeDataTypeEnumRuleCall_4_0_0()); 
-            pushFollow(FOLLOW_ruleDataType_in_rule__ListData__DataTypeAssignment_4_015104);
+            pushFollow(FOLLOW_ruleDataType_in_rule__ListData__DataTypeAssignment_4_015171);
             ruleDataType();
 
             state._fsp--;
@@ -20079,24 +20171,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ListData__DataTypeDataSetAssignment_4_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7528:1: rule__ListData__DataTypeDataSetAssignment_4_1 : ( ( RULE_ID ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7561:1: rule__ListData__DataTypeDataSetAssignment_4_1 : ( ( RULE_ID ) ) ;
     public final void rule__ListData__DataTypeDataSetAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7532:1: ( ( ( RULE_ID ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7533:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7565:1: ( ( ( RULE_ID ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7566:1: ( ( RULE_ID ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7533:1: ( ( RULE_ID ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7534:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7566:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7567:1: ( RULE_ID )
             {
              before(grammarAccess.getListDataAccess().getDataTypeDataSetDataSetCrossReference_4_1_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7535:1: ( RULE_ID )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7536:1: RULE_ID
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7568:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7569:1: RULE_ID
             {
              before(grammarAccess.getListDataAccess().getDataTypeDataSetDataSetIDTerminalRuleCall_4_1_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__ListData__DataTypeDataSetAssignment_4_115139); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__ListData__DataTypeDataSetAssignment_4_115206); 
              after(grammarAccess.getListDataAccess().getDataTypeDataSetDataSetIDTerminalRuleCall_4_1_0_1()); 
 
             }
@@ -20124,20 +20216,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementData__NameAssignment_0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7547:1: rule__MeasurementData__NameAssignment_0 : ( RULE_ID ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7580:1: rule__MeasurementData__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__MeasurementData__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7551:1: ( ( RULE_ID ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7552:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7584:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7585:1: ( RULE_ID )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7552:1: ( RULE_ID )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7553:1: RULE_ID
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7585:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7586:1: RULE_ID
             {
              before(grammarAccess.getMeasurementDataAccess().getNameIDTerminalRuleCall_0_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__MeasurementData__NameAssignment_015174); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__MeasurementData__NameAssignment_015241); 
              after(grammarAccess.getMeasurementDataAccess().getNameIDTerminalRuleCall_0_0()); 
 
             }
@@ -20161,20 +20253,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementData__DataTypeAssignment_2"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7562:1: rule__MeasurementData__DataTypeAssignment_2 : ( ruleDataType ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7595:1: rule__MeasurementData__DataTypeAssignment_2 : ( ruleDataType ) ;
     public final void rule__MeasurementData__DataTypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7566:1: ( ( ruleDataType ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7567:1: ( ruleDataType )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7599:1: ( ( ruleDataType ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7600:1: ( ruleDataType )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7567:1: ( ruleDataType )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7568:1: ruleDataType
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7600:1: ( ruleDataType )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7601:1: ruleDataType
             {
              before(grammarAccess.getMeasurementDataAccess().getDataTypeDataTypeEnumRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleDataType_in_rule__MeasurementData__DataTypeAssignment_215205);
+            pushFollow(FOLLOW_ruleDataType_in_rule__MeasurementData__DataTypeAssignment_215272);
             ruleDataType();
 
             state._fsp--;
@@ -20202,20 +20294,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementData__UnitAssignment_4"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7577:1: rule__MeasurementData__UnitAssignment_4 : ( ruleUNIT ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7610:1: rule__MeasurementData__UnitAssignment_4 : ( ruleUNIT ) ;
     public final void rule__MeasurementData__UnitAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7581:1: ( ( ruleUNIT ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7582:1: ( ruleUNIT )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7614:1: ( ( ruleUNIT ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7615:1: ( ruleUNIT )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7582:1: ( ruleUNIT )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7583:1: ruleUNIT
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7615:1: ( ruleUNIT )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7616:1: ruleUNIT
             {
              before(grammarAccess.getMeasurementDataAccess().getUnitUNITParserRuleCall_4_0()); 
-            pushFollow(FOLLOW_ruleUNIT_in_rule__MeasurementData__UnitAssignment_415236);
+            pushFollow(FOLLOW_ruleUNIT_in_rule__MeasurementData__UnitAssignment_415303);
             ruleUNIT();
 
             state._fsp--;
@@ -20243,20 +20335,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementData__IDAssignment_5_2"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7592:1: rule__MeasurementData__IDAssignment_5_2 : ( RULE_STRING ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7625:1: rule__MeasurementData__IDAssignment_5_2 : ( RULE_STRING ) ;
     public final void rule__MeasurementData__IDAssignment_5_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7596:1: ( ( RULE_STRING ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7597:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7629:1: ( ( RULE_STRING ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7630:1: ( RULE_STRING )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7597:1: ( RULE_STRING )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7598:1: RULE_STRING
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7630:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7631:1: RULE_STRING
             {
              before(grammarAccess.getMeasurementDataAccess().getIDSTRINGTerminalRuleCall_5_2_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__MeasurementData__IDAssignment_5_215267); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__MeasurementData__IDAssignment_5_215334); 
              after(grammarAccess.getMeasurementDataAccess().getIDSTRINGTerminalRuleCall_5_2_0()); 
 
             }
@@ -20280,20 +20372,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementData__AdjustmentsAssignment_6_0_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7607:1: rule__MeasurementData__AdjustmentsAssignment_6_0_1 : ( ruleDataConversion ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7640:1: rule__MeasurementData__AdjustmentsAssignment_6_0_1 : ( ruleDataConversion ) ;
     public final void rule__MeasurementData__AdjustmentsAssignment_6_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7611:1: ( ( ruleDataConversion ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7612:1: ( ruleDataConversion )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7644:1: ( ( ruleDataConversion ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7645:1: ( ruleDataConversion )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7612:1: ( ruleDataConversion )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7613:1: ruleDataConversion
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7645:1: ( ruleDataConversion )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7646:1: ruleDataConversion
             {
              before(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataConversionParserRuleCall_6_0_1_0()); 
-            pushFollow(FOLLOW_ruleDataConversion_in_rule__MeasurementData__AdjustmentsAssignment_6_0_115298);
+            pushFollow(FOLLOW_ruleDataConversion_in_rule__MeasurementData__AdjustmentsAssignment_6_0_115365);
             ruleDataConversion();
 
             state._fsp--;
@@ -20321,20 +20413,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementData__AdjustmentsAssignment_6_1_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7622:1: rule__MeasurementData__AdjustmentsAssignment_6_1_1 : ( ruleDataRange ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7655:1: rule__MeasurementData__AdjustmentsAssignment_6_1_1 : ( ruleDataRange ) ;
     public final void rule__MeasurementData__AdjustmentsAssignment_6_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7626:1: ( ( ruleDataRange ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7627:1: ( ruleDataRange )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7659:1: ( ( ruleDataRange ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7660:1: ( ruleDataRange )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7627:1: ( ruleDataRange )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7628:1: ruleDataRange
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7660:1: ( ruleDataRange )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7661:1: ruleDataRange
             {
              before(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataRangeParserRuleCall_6_1_1_0()); 
-            pushFollow(FOLLOW_ruleDataRange_in_rule__MeasurementData__AdjustmentsAssignment_6_1_115329);
+            pushFollow(FOLLOW_ruleDataRange_in_rule__MeasurementData__AdjustmentsAssignment_6_1_115396);
             ruleDataRange();
 
             state._fsp--;
@@ -20362,20 +20454,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementData__AdjustmentsAssignment_6_2_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7637:1: rule__MeasurementData__AdjustmentsAssignment_6_2_1 : ( ruleDataConversion ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7670:1: rule__MeasurementData__AdjustmentsAssignment_6_2_1 : ( ruleDataConversion ) ;
     public final void rule__MeasurementData__AdjustmentsAssignment_6_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7641:1: ( ( ruleDataConversion ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7642:1: ( ruleDataConversion )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7674:1: ( ( ruleDataConversion ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7675:1: ( ruleDataConversion )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7642:1: ( ruleDataConversion )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7643:1: ruleDataConversion
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7675:1: ( ruleDataConversion )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7676:1: ruleDataConversion
             {
              before(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataConversionParserRuleCall_6_2_1_0()); 
-            pushFollow(FOLLOW_ruleDataConversion_in_rule__MeasurementData__AdjustmentsAssignment_6_2_115360);
+            pushFollow(FOLLOW_ruleDataConversion_in_rule__MeasurementData__AdjustmentsAssignment_6_2_115427);
             ruleDataConversion();
 
             state._fsp--;
@@ -20403,20 +20495,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementData__AdjustmentsAssignment_6_2_3"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7652:1: rule__MeasurementData__AdjustmentsAssignment_6_2_3 : ( ruleDataRange ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7685:1: rule__MeasurementData__AdjustmentsAssignment_6_2_3 : ( ruleDataRange ) ;
     public final void rule__MeasurementData__AdjustmentsAssignment_6_2_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7656:1: ( ( ruleDataRange ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7657:1: ( ruleDataRange )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7689:1: ( ( ruleDataRange ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7690:1: ( ruleDataRange )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7657:1: ( ruleDataRange )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7658:1: ruleDataRange
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7690:1: ( ruleDataRange )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7691:1: ruleDataRange
             {
              before(grammarAccess.getMeasurementDataAccess().getAdjustmentsDataRangeParserRuleCall_6_2_3_0()); 
-            pushFollow(FOLLOW_ruleDataRange_in_rule__MeasurementData__AdjustmentsAssignment_6_2_315391);
+            pushFollow(FOLLOW_ruleDataRange_in_rule__MeasurementData__AdjustmentsAssignment_6_2_315458);
             ruleDataRange();
 
             state._fsp--;
@@ -20444,24 +20536,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementData__ExcludedMethodsAssignment_7_1_0_0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7667:1: rule__MeasurementData__ExcludedMethodsAssignment_7_1_0_0 : ( ( 'setter' ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7700:1: rule__MeasurementData__ExcludedMethodsAssignment_7_1_0_0 : ( ( 'setter' ) ) ;
     public final void rule__MeasurementData__ExcludedMethodsAssignment_7_1_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7671:1: ( ( ( 'setter' ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7672:1: ( ( 'setter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7704:1: ( ( ( 'setter' ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7705:1: ( ( 'setter' ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7672:1: ( ( 'setter' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7673:1: ( 'setter' )
-            {
-             before(grammarAccess.getMeasurementDataAccess().getExcludedMethodsSetterKeyword_7_1_0_0_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7674:1: ( 'setter' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7675:1: 'setter'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7705:1: ( ( 'setter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7706:1: ( 'setter' )
             {
              before(grammarAccess.getMeasurementDataAccess().getExcludedMethodsSetterKeyword_7_1_0_0_0()); 
-            match(input,66,FOLLOW_66_in_rule__MeasurementData__ExcludedMethodsAssignment_7_1_0_015427); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7707:1: ( 'setter' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7708:1: 'setter'
+            {
+             before(grammarAccess.getMeasurementDataAccess().getExcludedMethodsSetterKeyword_7_1_0_0_0()); 
+            match(input,66,FOLLOW_66_in_rule__MeasurementData__ExcludedMethodsAssignment_7_1_0_015494); 
              after(grammarAccess.getMeasurementDataAccess().getExcludedMethodsSetterKeyword_7_1_0_0_0()); 
 
             }
@@ -20489,24 +20581,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementData__ExcludedMethodsAssignment_7_1_0_1_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7690:1: rule__MeasurementData__ExcludedMethodsAssignment_7_1_0_1_1 : ( ( 'getter' ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7723:1: rule__MeasurementData__ExcludedMethodsAssignment_7_1_0_1_1 : ( ( 'getter' ) ) ;
     public final void rule__MeasurementData__ExcludedMethodsAssignment_7_1_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7694:1: ( ( ( 'getter' ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7695:1: ( ( 'getter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7727:1: ( ( ( 'getter' ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7728:1: ( ( 'getter' ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7695:1: ( ( 'getter' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7696:1: ( 'getter' )
-            {
-             before(grammarAccess.getMeasurementDataAccess().getExcludedMethodsGetterKeyword_7_1_0_1_1_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7697:1: ( 'getter' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7698:1: 'getter'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7728:1: ( ( 'getter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7729:1: ( 'getter' )
             {
              before(grammarAccess.getMeasurementDataAccess().getExcludedMethodsGetterKeyword_7_1_0_1_1_0()); 
-            match(input,67,FOLLOW_67_in_rule__MeasurementData__ExcludedMethodsAssignment_7_1_0_1_115471); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7730:1: ( 'getter' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7731:1: 'getter'
+            {
+             before(grammarAccess.getMeasurementDataAccess().getExcludedMethodsGetterKeyword_7_1_0_1_1_0()); 
+            match(input,67,FOLLOW_67_in_rule__MeasurementData__ExcludedMethodsAssignment_7_1_0_1_115538); 
              after(grammarAccess.getMeasurementDataAccess().getExcludedMethodsGetterKeyword_7_1_0_1_1_0()); 
 
             }
@@ -20534,24 +20626,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementData__ExcludedMethodsAssignment_7_1_1_0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7713:1: rule__MeasurementData__ExcludedMethodsAssignment_7_1_1_0 : ( ( 'getter' ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7746:1: rule__MeasurementData__ExcludedMethodsAssignment_7_1_1_0 : ( ( 'getter' ) ) ;
     public final void rule__MeasurementData__ExcludedMethodsAssignment_7_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7717:1: ( ( ( 'getter' ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7718:1: ( ( 'getter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7750:1: ( ( ( 'getter' ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7751:1: ( ( 'getter' ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7718:1: ( ( 'getter' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7719:1: ( 'getter' )
-            {
-             before(grammarAccess.getMeasurementDataAccess().getExcludedMethodsGetterKeyword_7_1_1_0_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7720:1: ( 'getter' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7721:1: 'getter'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7751:1: ( ( 'getter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7752:1: ( 'getter' )
             {
              before(grammarAccess.getMeasurementDataAccess().getExcludedMethodsGetterKeyword_7_1_1_0_0()); 
-            match(input,67,FOLLOW_67_in_rule__MeasurementData__ExcludedMethodsAssignment_7_1_1_015515); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7753:1: ( 'getter' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7754:1: 'getter'
+            {
+             before(grammarAccess.getMeasurementDataAccess().getExcludedMethodsGetterKeyword_7_1_1_0_0()); 
+            match(input,67,FOLLOW_67_in_rule__MeasurementData__ExcludedMethodsAssignment_7_1_1_015582); 
              after(grammarAccess.getMeasurementDataAccess().getExcludedMethodsGetterKeyword_7_1_1_0_0()); 
 
             }
@@ -20579,24 +20671,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementData__ExcludedMethodsAssignment_7_1_1_1_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7736:1: rule__MeasurementData__ExcludedMethodsAssignment_7_1_1_1_1 : ( ( 'setter' ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7769:1: rule__MeasurementData__ExcludedMethodsAssignment_7_1_1_1_1 : ( ( 'setter' ) ) ;
     public final void rule__MeasurementData__ExcludedMethodsAssignment_7_1_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7740:1: ( ( ( 'setter' ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7741:1: ( ( 'setter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7773:1: ( ( ( 'setter' ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7774:1: ( ( 'setter' ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7741:1: ( ( 'setter' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7742:1: ( 'setter' )
-            {
-             before(grammarAccess.getMeasurementDataAccess().getExcludedMethodsSetterKeyword_7_1_1_1_1_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7743:1: ( 'setter' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7744:1: 'setter'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7774:1: ( ( 'setter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7775:1: ( 'setter' )
             {
              before(grammarAccess.getMeasurementDataAccess().getExcludedMethodsSetterKeyword_7_1_1_1_1_0()); 
-            match(input,66,FOLLOW_66_in_rule__MeasurementData__ExcludedMethodsAssignment_7_1_1_1_115559); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7776:1: ( 'setter' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7777:1: 'setter'
+            {
+             before(grammarAccess.getMeasurementDataAccess().getExcludedMethodsSetterKeyword_7_1_1_1_1_0()); 
+            match(input,66,FOLLOW_66_in_rule__MeasurementData__ExcludedMethodsAssignment_7_1_1_1_115626); 
              after(grammarAccess.getMeasurementDataAccess().getExcludedMethodsSetterKeyword_7_1_1_1_1_0()); 
 
             }
@@ -20624,20 +20716,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementData__DescriptionAssignment_8"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7759:1: rule__MeasurementData__DescriptionAssignment_8 : ( RULE_DESCRIPTION ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7792:1: rule__MeasurementData__DescriptionAssignment_8 : ( RULE_DESCRIPTION ) ;
     public final void rule__MeasurementData__DescriptionAssignment_8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7763:1: ( ( RULE_DESCRIPTION ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7764:1: ( RULE_DESCRIPTION )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7796:1: ( ( RULE_DESCRIPTION ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7797:1: ( RULE_DESCRIPTION )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7764:1: ( RULE_DESCRIPTION )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7765:1: RULE_DESCRIPTION
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7797:1: ( RULE_DESCRIPTION )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7798:1: RULE_DESCRIPTION
             {
              before(grammarAccess.getMeasurementDataAccess().getDescriptionDESCRIPTIONTerminalRuleCall_8_0()); 
-            match(input,RULE_DESCRIPTION,FOLLOW_RULE_DESCRIPTION_in_rule__MeasurementData__DescriptionAssignment_815598); 
+            match(input,RULE_DESCRIPTION,FOLLOW_RULE_DESCRIPTION_in_rule__MeasurementData__DescriptionAssignment_815665); 
              after(grammarAccess.getMeasurementDataAccess().getDescriptionDESCRIPTIONTerminalRuleCall_8_0()); 
 
             }
@@ -20661,20 +20753,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NonMeasurementData__NameAssignment_0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7774:1: rule__NonMeasurementData__NameAssignment_0 : ( RULE_ID ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7807:1: rule__NonMeasurementData__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__NonMeasurementData__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7778:1: ( ( RULE_ID ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7779:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7811:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7812:1: ( RULE_ID )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7779:1: ( RULE_ID )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7780:1: RULE_ID
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7812:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7813:1: RULE_ID
             {
              before(grammarAccess.getNonMeasurementDataAccess().getNameIDTerminalRuleCall_0_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__NonMeasurementData__NameAssignment_015629); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__NonMeasurementData__NameAssignment_015696); 
              after(grammarAccess.getNonMeasurementDataAccess().getNameIDTerminalRuleCall_0_0()); 
 
             }
@@ -20698,20 +20790,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NonMeasurementData__DataTypeAssignment_2_0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7789:1: rule__NonMeasurementData__DataTypeAssignment_2_0 : ( ruleDataType ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7822:1: rule__NonMeasurementData__DataTypeAssignment_2_0 : ( ruleDataType ) ;
     public final void rule__NonMeasurementData__DataTypeAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7793:1: ( ( ruleDataType ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7794:1: ( ruleDataType )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7826:1: ( ( ruleDataType ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7827:1: ( ruleDataType )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7794:1: ( ruleDataType )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7795:1: ruleDataType
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7827:1: ( ruleDataType )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7828:1: ruleDataType
             {
              before(grammarAccess.getNonMeasurementDataAccess().getDataTypeDataTypeEnumRuleCall_2_0_0()); 
-            pushFollow(FOLLOW_ruleDataType_in_rule__NonMeasurementData__DataTypeAssignment_2_015660);
+            pushFollow(FOLLOW_ruleDataType_in_rule__NonMeasurementData__DataTypeAssignment_2_015727);
             ruleDataType();
 
             state._fsp--;
@@ -20739,20 +20831,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NonMeasurementData__DataTypeAssignment_2_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7804:1: rule__NonMeasurementData__DataTypeAssignment_2_1 : ( ruleDataTypeNotAdjustable ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7837:1: rule__NonMeasurementData__DataTypeAssignment_2_1 : ( ruleDataTypeNotAdjustable ) ;
     public final void rule__NonMeasurementData__DataTypeAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7808:1: ( ( ruleDataTypeNotAdjustable ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7809:1: ( ruleDataTypeNotAdjustable )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7841:1: ( ( ruleDataTypeNotAdjustable ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7842:1: ( ruleDataTypeNotAdjustable )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7809:1: ( ruleDataTypeNotAdjustable )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7810:1: ruleDataTypeNotAdjustable
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7842:1: ( ruleDataTypeNotAdjustable )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7843:1: ruleDataTypeNotAdjustable
             {
              before(grammarAccess.getNonMeasurementDataAccess().getDataTypeDataTypeNotAdjustableEnumRuleCall_2_1_0()); 
-            pushFollow(FOLLOW_ruleDataTypeNotAdjustable_in_rule__NonMeasurementData__DataTypeAssignment_2_115691);
+            pushFollow(FOLLOW_ruleDataTypeNotAdjustable_in_rule__NonMeasurementData__DataTypeAssignment_2_115758);
             ruleDataTypeNotAdjustable();
 
             state._fsp--;
@@ -20780,24 +20872,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NonMeasurementData__ConstantAssignment_3_0_0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7819:1: rule__NonMeasurementData__ConstantAssignment_3_0_0 : ( ( 'constant' ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7852:1: rule__NonMeasurementData__ConstantAssignment_3_0_0 : ( ( 'constant' ) ) ;
     public final void rule__NonMeasurementData__ConstantAssignment_3_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7823:1: ( ( ( 'constant' ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7824:1: ( ( 'constant' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7856:1: ( ( ( 'constant' ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7857:1: ( ( 'constant' ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7824:1: ( ( 'constant' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7825:1: ( 'constant' )
-            {
-             before(grammarAccess.getNonMeasurementDataAccess().getConstantConstantKeyword_3_0_0_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7826:1: ( 'constant' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7827:1: 'constant'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7857:1: ( ( 'constant' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7858:1: ( 'constant' )
             {
              before(grammarAccess.getNonMeasurementDataAccess().getConstantConstantKeyword_3_0_0_0()); 
-            match(input,68,FOLLOW_68_in_rule__NonMeasurementData__ConstantAssignment_3_0_015727); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7859:1: ( 'constant' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7860:1: 'constant'
+            {
+             before(grammarAccess.getNonMeasurementDataAccess().getConstantConstantKeyword_3_0_0_0()); 
+            match(input,68,FOLLOW_68_in_rule__NonMeasurementData__ConstantAssignment_3_0_015794); 
              after(grammarAccess.getNonMeasurementDataAccess().getConstantConstantKeyword_3_0_0_0()); 
 
             }
@@ -20825,20 +20917,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NonMeasurementData__ValueAssignment_3_0_3"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7842:1: rule__NonMeasurementData__ValueAssignment_3_0_3 : ( RULE_STRING ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7875:1: rule__NonMeasurementData__ValueAssignment_3_0_3 : ( RULE_STRING ) ;
     public final void rule__NonMeasurementData__ValueAssignment_3_0_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7846:1: ( ( RULE_STRING ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7847:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7879:1: ( ( RULE_STRING ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7880:1: ( RULE_STRING )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7847:1: ( RULE_STRING )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7848:1: RULE_STRING
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7880:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7881:1: RULE_STRING
             {
              before(grammarAccess.getNonMeasurementDataAccess().getValueSTRINGTerminalRuleCall_3_0_3_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__NonMeasurementData__ValueAssignment_3_0_315766); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__NonMeasurementData__ValueAssignment_3_0_315833); 
              after(grammarAccess.getNonMeasurementDataAccess().getValueSTRINGTerminalRuleCall_3_0_3_0()); 
 
             }
@@ -20862,20 +20954,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NonMeasurementData__ValueAssignment_3_1_2"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7857:1: rule__NonMeasurementData__ValueAssignment_3_1_2 : ( RULE_STRING ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7890:1: rule__NonMeasurementData__ValueAssignment_3_1_2 : ( RULE_STRING ) ;
     public final void rule__NonMeasurementData__ValueAssignment_3_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7861:1: ( ( RULE_STRING ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7862:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7894:1: ( ( RULE_STRING ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7895:1: ( RULE_STRING )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7862:1: ( RULE_STRING )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7863:1: RULE_STRING
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7895:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7896:1: RULE_STRING
             {
              before(grammarAccess.getNonMeasurementDataAccess().getValueSTRINGTerminalRuleCall_3_1_2_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__NonMeasurementData__ValueAssignment_3_1_215797); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__NonMeasurementData__ValueAssignment_3_1_215864); 
              after(grammarAccess.getNonMeasurementDataAccess().getValueSTRINGTerminalRuleCall_3_1_2_0()); 
 
             }
@@ -20899,20 +20991,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NonMeasurementData__IDAssignment_4_2"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7872:1: rule__NonMeasurementData__IDAssignment_4_2 : ( RULE_STRING ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7905:1: rule__NonMeasurementData__IDAssignment_4_2 : ( RULE_STRING ) ;
     public final void rule__NonMeasurementData__IDAssignment_4_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7876:1: ( ( RULE_STRING ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7877:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7909:1: ( ( RULE_STRING ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7910:1: ( RULE_STRING )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7877:1: ( RULE_STRING )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7878:1: RULE_STRING
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7910:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7911:1: RULE_STRING
             {
              before(grammarAccess.getNonMeasurementDataAccess().getIDSTRINGTerminalRuleCall_4_2_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__NonMeasurementData__IDAssignment_4_215828); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__NonMeasurementData__IDAssignment_4_215895); 
              after(grammarAccess.getNonMeasurementDataAccess().getIDSTRINGTerminalRuleCall_4_2_0()); 
 
             }
@@ -20936,24 +21028,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_0_0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7887:1: rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_0_0 : ( ( 'setter' ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7920:1: rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_0_0 : ( ( 'setter' ) ) ;
     public final void rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7891:1: ( ( ( 'setter' ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7892:1: ( ( 'setter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7924:1: ( ( ( 'setter' ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7925:1: ( ( 'setter' ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7892:1: ( ( 'setter' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7893:1: ( 'setter' )
-            {
-             before(grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsSetterKeyword_5_1_0_0_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7894:1: ( 'setter' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7895:1: 'setter'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7925:1: ( ( 'setter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7926:1: ( 'setter' )
             {
              before(grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsSetterKeyword_5_1_0_0_0()); 
-            match(input,66,FOLLOW_66_in_rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_0_015864); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7927:1: ( 'setter' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7928:1: 'setter'
+            {
+             before(grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsSetterKeyword_5_1_0_0_0()); 
+            match(input,66,FOLLOW_66_in_rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_0_015931); 
              after(grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsSetterKeyword_5_1_0_0_0()); 
 
             }
@@ -20981,24 +21073,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_0_1_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7910:1: rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_0_1_1 : ( ( 'getter' ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7943:1: rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_0_1_1 : ( ( 'getter' ) ) ;
     public final void rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7914:1: ( ( ( 'getter' ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7915:1: ( ( 'getter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7947:1: ( ( ( 'getter' ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7948:1: ( ( 'getter' ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7915:1: ( ( 'getter' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7916:1: ( 'getter' )
-            {
-             before(grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsGetterKeyword_5_1_0_1_1_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7917:1: ( 'getter' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7918:1: 'getter'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7948:1: ( ( 'getter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7949:1: ( 'getter' )
             {
              before(grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsGetterKeyword_5_1_0_1_1_0()); 
-            match(input,67,FOLLOW_67_in_rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_0_1_115908); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7950:1: ( 'getter' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7951:1: 'getter'
+            {
+             before(grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsGetterKeyword_5_1_0_1_1_0()); 
+            match(input,67,FOLLOW_67_in_rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_0_1_115975); 
              after(grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsGetterKeyword_5_1_0_1_1_0()); 
 
             }
@@ -21026,24 +21118,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_1_0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7933:1: rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_1_0 : ( ( 'getter' ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7966:1: rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_1_0 : ( ( 'getter' ) ) ;
     public final void rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7937:1: ( ( ( 'getter' ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7938:1: ( ( 'getter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7970:1: ( ( ( 'getter' ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7971:1: ( ( 'getter' ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7938:1: ( ( 'getter' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7939:1: ( 'getter' )
-            {
-             before(grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsGetterKeyword_5_1_1_0_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7940:1: ( 'getter' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7941:1: 'getter'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7971:1: ( ( 'getter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7972:1: ( 'getter' )
             {
              before(grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsGetterKeyword_5_1_1_0_0()); 
-            match(input,67,FOLLOW_67_in_rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_1_015952); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7973:1: ( 'getter' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7974:1: 'getter'
+            {
+             before(grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsGetterKeyword_5_1_1_0_0()); 
+            match(input,67,FOLLOW_67_in_rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_1_016019); 
              after(grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsGetterKeyword_5_1_1_0_0()); 
 
             }
@@ -21071,24 +21163,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_1_1_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7956:1: rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_1_1_1 : ( ( 'setter' ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7989:1: rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_1_1_1 : ( ( 'setter' ) ) ;
     public final void rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7960:1: ( ( ( 'setter' ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7961:1: ( ( 'setter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7993:1: ( ( ( 'setter' ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7994:1: ( ( 'setter' ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7961:1: ( ( 'setter' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7962:1: ( 'setter' )
-            {
-             before(grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsSetterKeyword_5_1_1_1_1_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7963:1: ( 'setter' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7964:1: 'setter'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7994:1: ( ( 'setter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7995:1: ( 'setter' )
             {
              before(grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsSetterKeyword_5_1_1_1_1_0()); 
-            match(input,66,FOLLOW_66_in_rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_1_1_115996); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7996:1: ( 'setter' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7997:1: 'setter'
+            {
+             before(grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsSetterKeyword_5_1_1_1_1_0()); 
+            match(input,66,FOLLOW_66_in_rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_1_1_116063); 
              after(grammarAccess.getNonMeasurementDataAccess().getExcludedMethodsSetterKeyword_5_1_1_1_1_0()); 
 
             }
@@ -21116,20 +21208,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NonMeasurementData__DescriptionAssignment_6"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7979:1: rule__NonMeasurementData__DescriptionAssignment_6 : ( RULE_DESCRIPTION ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8012:1: rule__NonMeasurementData__DescriptionAssignment_6 : ( RULE_DESCRIPTION ) ;
     public final void rule__NonMeasurementData__DescriptionAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7983:1: ( ( RULE_DESCRIPTION ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7984:1: ( RULE_DESCRIPTION )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8016:1: ( ( RULE_DESCRIPTION ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8017:1: ( RULE_DESCRIPTION )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7984:1: ( RULE_DESCRIPTION )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7985:1: RULE_DESCRIPTION
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8017:1: ( RULE_DESCRIPTION )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8018:1: RULE_DESCRIPTION
             {
              before(grammarAccess.getNonMeasurementDataAccess().getDescriptionDESCRIPTIONTerminalRuleCall_6_0()); 
-            match(input,RULE_DESCRIPTION,FOLLOW_RULE_DESCRIPTION_in_rule__NonMeasurementData__DescriptionAssignment_616035); 
+            match(input,RULE_DESCRIPTION,FOLLOW_RULE_DESCRIPTION_in_rule__NonMeasurementData__DescriptionAssignment_616102); 
              after(grammarAccess.getNonMeasurementDataAccess().getDescriptionDESCRIPTIONTerminalRuleCall_6_0()); 
 
             }
@@ -21153,20 +21245,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementDataNotAdjustable__NameAssignment_0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7994:1: rule__MeasurementDataNotAdjustable__NameAssignment_0 : ( RULE_ID ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8027:1: rule__MeasurementDataNotAdjustable__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__MeasurementDataNotAdjustable__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7998:1: ( ( RULE_ID ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7999:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8031:1: ( ( RULE_ID ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8032:1: ( RULE_ID )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:7999:1: ( RULE_ID )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8000:1: RULE_ID
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8032:1: ( RULE_ID )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8033:1: RULE_ID
             {
              before(grammarAccess.getMeasurementDataNotAdjustableAccess().getNameIDTerminalRuleCall_0_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__MeasurementDataNotAdjustable__NameAssignment_016066); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__MeasurementDataNotAdjustable__NameAssignment_016133); 
              after(grammarAccess.getMeasurementDataNotAdjustableAccess().getNameIDTerminalRuleCall_0_0()); 
 
             }
@@ -21190,20 +21282,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementDataNotAdjustable__DataTypeAssignment_2"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8009:1: rule__MeasurementDataNotAdjustable__DataTypeAssignment_2 : ( ruleDataTypeNotAdjustable ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8042:1: rule__MeasurementDataNotAdjustable__DataTypeAssignment_2 : ( ruleDataTypeNotAdjustable ) ;
     public final void rule__MeasurementDataNotAdjustable__DataTypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8013:1: ( ( ruleDataTypeNotAdjustable ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8014:1: ( ruleDataTypeNotAdjustable )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8046:1: ( ( ruleDataTypeNotAdjustable ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8047:1: ( ruleDataTypeNotAdjustable )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8014:1: ( ruleDataTypeNotAdjustable )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8015:1: ruleDataTypeNotAdjustable
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8047:1: ( ruleDataTypeNotAdjustable )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8048:1: ruleDataTypeNotAdjustable
             {
              before(grammarAccess.getMeasurementDataNotAdjustableAccess().getDataTypeDataTypeNotAdjustableEnumRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleDataTypeNotAdjustable_in_rule__MeasurementDataNotAdjustable__DataTypeAssignment_216097);
+            pushFollow(FOLLOW_ruleDataTypeNotAdjustable_in_rule__MeasurementDataNotAdjustable__DataTypeAssignment_216164);
             ruleDataTypeNotAdjustable();
 
             state._fsp--;
@@ -21231,20 +21323,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementDataNotAdjustable__UnitAssignment_4"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8024:1: rule__MeasurementDataNotAdjustable__UnitAssignment_4 : ( ruleUNIT ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8057:1: rule__MeasurementDataNotAdjustable__UnitAssignment_4 : ( ruleUNIT ) ;
     public final void rule__MeasurementDataNotAdjustable__UnitAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8028:1: ( ( ruleUNIT ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8029:1: ( ruleUNIT )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8061:1: ( ( ruleUNIT ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8062:1: ( ruleUNIT )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8029:1: ( ruleUNIT )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8030:1: ruleUNIT
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8062:1: ( ruleUNIT )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8063:1: ruleUNIT
             {
              before(grammarAccess.getMeasurementDataNotAdjustableAccess().getUnitUNITParserRuleCall_4_0()); 
-            pushFollow(FOLLOW_ruleUNIT_in_rule__MeasurementDataNotAdjustable__UnitAssignment_416128);
+            pushFollow(FOLLOW_ruleUNIT_in_rule__MeasurementDataNotAdjustable__UnitAssignment_416195);
             ruleUNIT();
 
             state._fsp--;
@@ -21272,20 +21364,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementDataNotAdjustable__IDAssignment_5_2"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8039:1: rule__MeasurementDataNotAdjustable__IDAssignment_5_2 : ( RULE_STRING ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8072:1: rule__MeasurementDataNotAdjustable__IDAssignment_5_2 : ( RULE_STRING ) ;
     public final void rule__MeasurementDataNotAdjustable__IDAssignment_5_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8043:1: ( ( RULE_STRING ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8044:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8076:1: ( ( RULE_STRING ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8077:1: ( RULE_STRING )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8044:1: ( RULE_STRING )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8045:1: RULE_STRING
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8077:1: ( RULE_STRING )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8078:1: RULE_STRING
             {
              before(grammarAccess.getMeasurementDataNotAdjustableAccess().getIDSTRINGTerminalRuleCall_5_2_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__MeasurementDataNotAdjustable__IDAssignment_5_216159); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__MeasurementDataNotAdjustable__IDAssignment_5_216226); 
              after(grammarAccess.getMeasurementDataNotAdjustableAccess().getIDSTRINGTerminalRuleCall_5_2_0()); 
 
             }
@@ -21309,24 +21401,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_0_0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8054:1: rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_0_0 : ( ( 'setter' ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8087:1: rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_0_0 : ( ( 'setter' ) ) ;
     public final void rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8058:1: ( ( ( 'setter' ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8059:1: ( ( 'setter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8091:1: ( ( ( 'setter' ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8092:1: ( ( 'setter' ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8059:1: ( ( 'setter' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8060:1: ( 'setter' )
-            {
-             before(grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsSetterKeyword_6_2_0_0_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8061:1: ( 'setter' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8062:1: 'setter'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8092:1: ( ( 'setter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8093:1: ( 'setter' )
             {
              before(grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsSetterKeyword_6_2_0_0_0()); 
-            match(input,66,FOLLOW_66_in_rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_0_016195); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8094:1: ( 'setter' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8095:1: 'setter'
+            {
+             before(grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsSetterKeyword_6_2_0_0_0()); 
+            match(input,66,FOLLOW_66_in_rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_0_016262); 
              after(grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsSetterKeyword_6_2_0_0_0()); 
 
             }
@@ -21354,24 +21446,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_0_1_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8077:1: rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_0_1_1 : ( ( 'getter' ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8110:1: rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_0_1_1 : ( ( 'getter' ) ) ;
     public final void rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8081:1: ( ( ( 'getter' ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8082:1: ( ( 'getter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8114:1: ( ( ( 'getter' ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8115:1: ( ( 'getter' ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8082:1: ( ( 'getter' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8083:1: ( 'getter' )
-            {
-             before(grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsGetterKeyword_6_2_0_1_1_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8084:1: ( 'getter' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8085:1: 'getter'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8115:1: ( ( 'getter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8116:1: ( 'getter' )
             {
              before(grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsGetterKeyword_6_2_0_1_1_0()); 
-            match(input,67,FOLLOW_67_in_rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_0_1_116239); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8117:1: ( 'getter' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8118:1: 'getter'
+            {
+             before(grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsGetterKeyword_6_2_0_1_1_0()); 
+            match(input,67,FOLLOW_67_in_rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_0_1_116306); 
              after(grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsGetterKeyword_6_2_0_1_1_0()); 
 
             }
@@ -21399,24 +21491,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_1_0"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8100:1: rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_1_0 : ( ( 'getter' ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8133:1: rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_1_0 : ( ( 'getter' ) ) ;
     public final void rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8104:1: ( ( ( 'getter' ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8105:1: ( ( 'getter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8137:1: ( ( ( 'getter' ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8138:1: ( ( 'getter' ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8105:1: ( ( 'getter' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8106:1: ( 'getter' )
-            {
-             before(grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsGetterKeyword_6_2_1_0_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8107:1: ( 'getter' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8108:1: 'getter'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8138:1: ( ( 'getter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8139:1: ( 'getter' )
             {
              before(grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsGetterKeyword_6_2_1_0_0()); 
-            match(input,67,FOLLOW_67_in_rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_1_016283); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8140:1: ( 'getter' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8141:1: 'getter'
+            {
+             before(grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsGetterKeyword_6_2_1_0_0()); 
+            match(input,67,FOLLOW_67_in_rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_1_016350); 
              after(grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsGetterKeyword_6_2_1_0_0()); 
 
             }
@@ -21444,24 +21536,24 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_1_1_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8123:1: rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_1_1_1 : ( ( 'setter' ) ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8156:1: rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_1_1_1 : ( ( 'setter' ) ) ;
     public final void rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8127:1: ( ( ( 'setter' ) ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8128:1: ( ( 'setter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8160:1: ( ( ( 'setter' ) ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8161:1: ( ( 'setter' ) )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8128:1: ( ( 'setter' ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8129:1: ( 'setter' )
-            {
-             before(grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsSetterKeyword_6_2_1_1_1_0()); 
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8130:1: ( 'setter' )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8131:1: 'setter'
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8161:1: ( ( 'setter' ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8162:1: ( 'setter' )
             {
              before(grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsSetterKeyword_6_2_1_1_1_0()); 
-            match(input,66,FOLLOW_66_in_rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_1_1_116327); 
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8163:1: ( 'setter' )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8164:1: 'setter'
+            {
+             before(grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsSetterKeyword_6_2_1_1_1_0()); 
+            match(input,66,FOLLOW_66_in_rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_1_1_116394); 
              after(grammarAccess.getMeasurementDataNotAdjustableAccess().getExcludedMethodsSetterKeyword_6_2_1_1_1_0()); 
 
             }
@@ -21489,20 +21581,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MeasurementDataNotAdjustable__DescriptionAssignment_7"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8146:1: rule__MeasurementDataNotAdjustable__DescriptionAssignment_7 : ( RULE_DESCRIPTION ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8179:1: rule__MeasurementDataNotAdjustable__DescriptionAssignment_7 : ( RULE_DESCRIPTION ) ;
     public final void rule__MeasurementDataNotAdjustable__DescriptionAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8150:1: ( ( RULE_DESCRIPTION ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8151:1: ( RULE_DESCRIPTION )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8183:1: ( ( RULE_DESCRIPTION ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8184:1: ( RULE_DESCRIPTION )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8151:1: ( RULE_DESCRIPTION )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8152:1: RULE_DESCRIPTION
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8184:1: ( RULE_DESCRIPTION )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8185:1: RULE_DESCRIPTION
             {
              before(grammarAccess.getMeasurementDataNotAdjustableAccess().getDescriptionDESCRIPTIONTerminalRuleCall_7_0()); 
-            match(input,RULE_DESCRIPTION,FOLLOW_RULE_DESCRIPTION_in_rule__MeasurementDataNotAdjustable__DescriptionAssignment_716366); 
+            match(input,RULE_DESCRIPTION,FOLLOW_RULE_DESCRIPTION_in_rule__MeasurementDataNotAdjustable__DescriptionAssignment_716433); 
              after(grammarAccess.getMeasurementDataNotAdjustableAccess().getDescriptionDESCRIPTIONTerminalRuleCall_7_0()); 
 
             }
@@ -21526,20 +21618,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DataRange__RangeAssignment_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8161:1: rule__DataRange__RangeAssignment_1 : ( ruleInterval ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8194:1: rule__DataRange__RangeAssignment_1 : ( ruleInterval ) ;
     public final void rule__DataRange__RangeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8165:1: ( ( ruleInterval ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8166:1: ( ruleInterval )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8198:1: ( ( ruleInterval ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8199:1: ( ruleInterval )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8166:1: ( ruleInterval )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8167:1: ruleInterval
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8199:1: ( ruleInterval )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8200:1: ruleInterval
             {
              before(grammarAccess.getDataRangeAccess().getRangeIntervalParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleInterval_in_rule__DataRange__RangeAssignment_116397);
+            pushFollow(FOLLOW_ruleInterval_in_rule__DataRange__RangeAssignment_116464);
             ruleInterval();
 
             state._fsp--;
@@ -21567,20 +21659,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Interval__LowerBoundAssignment_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8176:1: rule__Interval__LowerBoundAssignment_1 : ( ruleDOUBLE ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8209:1: rule__Interval__LowerBoundAssignment_1 : ( ruleDOUBLE ) ;
     public final void rule__Interval__LowerBoundAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8180:1: ( ( ruleDOUBLE ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8181:1: ( ruleDOUBLE )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8213:1: ( ( ruleDOUBLE ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8214:1: ( ruleDOUBLE )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8181:1: ( ruleDOUBLE )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8182:1: ruleDOUBLE
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8214:1: ( ruleDOUBLE )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8215:1: ruleDOUBLE
             {
              before(grammarAccess.getIntervalAccess().getLowerBoundDOUBLEParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleDOUBLE_in_rule__Interval__LowerBoundAssignment_116428);
+            pushFollow(FOLLOW_ruleDOUBLE_in_rule__Interval__LowerBoundAssignment_116495);
             ruleDOUBLE();
 
             state._fsp--;
@@ -21608,20 +21700,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Interval__UpperBoundAssignment_3"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8191:1: rule__Interval__UpperBoundAssignment_3 : ( ruleDOUBLE ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8224:1: rule__Interval__UpperBoundAssignment_3 : ( ruleDOUBLE ) ;
     public final void rule__Interval__UpperBoundAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8195:1: ( ( ruleDOUBLE ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8196:1: ( ruleDOUBLE )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8228:1: ( ( ruleDOUBLE ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8229:1: ( ruleDOUBLE )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8196:1: ( ruleDOUBLE )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8197:1: ruleDOUBLE
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8229:1: ( ruleDOUBLE )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8230:1: ruleDOUBLE
             {
              before(grammarAccess.getIntervalAccess().getUpperBoundDOUBLEParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleDOUBLE_in_rule__Interval__UpperBoundAssignment_316459);
+            pushFollow(FOLLOW_ruleDOUBLE_in_rule__Interval__UpperBoundAssignment_316526);
             ruleDOUBLE();
 
             state._fsp--;
@@ -21649,20 +21741,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LinearDataConversion__ScalingFactorAssignment_2"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8206:1: rule__LinearDataConversion__ScalingFactorAssignment_2 : ( ruleDOUBLE ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8239:1: rule__LinearDataConversion__ScalingFactorAssignment_2 : ( ruleDOUBLE ) ;
     public final void rule__LinearDataConversion__ScalingFactorAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8210:1: ( ( ruleDOUBLE ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8211:1: ( ruleDOUBLE )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8243:1: ( ( ruleDOUBLE ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8244:1: ( ruleDOUBLE )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8211:1: ( ruleDOUBLE )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8212:1: ruleDOUBLE
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8244:1: ( ruleDOUBLE )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8245:1: ruleDOUBLE
             {
              before(grammarAccess.getLinearDataConversionAccess().getScalingFactorDOUBLEParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleDOUBLE_in_rule__LinearDataConversion__ScalingFactorAssignment_216490);
+            pushFollow(FOLLOW_ruleDOUBLE_in_rule__LinearDataConversion__ScalingFactorAssignment_216557);
             ruleDOUBLE();
 
             state._fsp--;
@@ -21690,20 +21782,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LinearDataConversion__OffsetAssignment_5"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8221:1: rule__LinearDataConversion__OffsetAssignment_5 : ( ruleDOUBLE ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8254:1: rule__LinearDataConversion__OffsetAssignment_5 : ( ruleDOUBLE ) ;
     public final void rule__LinearDataConversion__OffsetAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8225:1: ( ( ruleDOUBLE ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8226:1: ( ruleDOUBLE )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8258:1: ( ( ruleDOUBLE ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8259:1: ( ruleDOUBLE )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8226:1: ( ruleDOUBLE )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8227:1: ruleDOUBLE
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8259:1: ( ruleDOUBLE )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8260:1: ruleDOUBLE
             {
              before(grammarAccess.getLinearDataConversionAccess().getOffsetDOUBLEParserRuleCall_5_0()); 
-            pushFollow(FOLLOW_ruleDOUBLE_in_rule__LinearDataConversion__OffsetAssignment_516521);
+            pushFollow(FOLLOW_ruleDOUBLE_in_rule__LinearDataConversion__OffsetAssignment_516588);
             ruleDOUBLE();
 
             state._fsp--;
@@ -21731,20 +21823,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LinearDataConversionWithInterval__FromIntervalAssignment_1"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8236:1: rule__LinearDataConversionWithInterval__FromIntervalAssignment_1 : ( ruleInterval ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8269:1: rule__LinearDataConversionWithInterval__FromIntervalAssignment_1 : ( ruleInterval ) ;
     public final void rule__LinearDataConversionWithInterval__FromIntervalAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8240:1: ( ( ruleInterval ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8241:1: ( ruleInterval )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8273:1: ( ( ruleInterval ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8274:1: ( ruleInterval )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8241:1: ( ruleInterval )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8242:1: ruleInterval
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8274:1: ( ruleInterval )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8275:1: ruleInterval
             {
              before(grammarAccess.getLinearDataConversionWithIntervalAccess().getFromIntervalIntervalParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleInterval_in_rule__LinearDataConversionWithInterval__FromIntervalAssignment_116552);
+            pushFollow(FOLLOW_ruleInterval_in_rule__LinearDataConversionWithInterval__FromIntervalAssignment_116619);
             ruleInterval();
 
             state._fsp--;
@@ -21772,20 +21864,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LinearDataConversionWithInterval__ToIntervalAssignment_3"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8251:1: rule__LinearDataConversionWithInterval__ToIntervalAssignment_3 : ( ruleInterval ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8284:1: rule__LinearDataConversionWithInterval__ToIntervalAssignment_3 : ( ruleInterval ) ;
     public final void rule__LinearDataConversionWithInterval__ToIntervalAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8255:1: ( ( ruleInterval ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8256:1: ( ruleInterval )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8288:1: ( ( ruleInterval ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8289:1: ( ruleInterval )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8256:1: ( ruleInterval )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8257:1: ruleInterval
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8289:1: ( ruleInterval )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8290:1: ruleInterval
             {
              before(grammarAccess.getLinearDataConversionWithIntervalAccess().getToIntervalIntervalParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleInterval_in_rule__LinearDataConversionWithInterval__ToIntervalAssignment_316583);
+            pushFollow(FOLLOW_ruleInterval_in_rule__LinearDataConversionWithInterval__ToIntervalAssignment_316650);
             ruleInterval();
 
             state._fsp--;
@@ -21813,20 +21905,20 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LinearDataConversionWithInterval__DataTypeAssignment_5"
-    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8266:1: rule__LinearDataConversionWithInterval__DataTypeAssignment_5 : ( ruleDataType ) ;
+    // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8299:1: rule__LinearDataConversionWithInterval__DataTypeAssignment_5 : ( ruleDataType ) ;
     public final void rule__LinearDataConversionWithInterval__DataTypeAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8270:1: ( ( ruleDataType ) )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8271:1: ( ruleDataType )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8303:1: ( ( ruleDataType ) )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8304:1: ( ruleDataType )
             {
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8271:1: ( ruleDataType )
-            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8272:1: ruleDataType
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8304:1: ( ruleDataType )
+            // ../de.fzi.sensidl.language.ui/src-gen/de/fzi/sensidl/language/ui/contentassist/antlr/internal/InternalSensidl.g:8305:1: ruleDataType
             {
              before(grammarAccess.getLinearDataConversionWithIntervalAccess().getDataTypeDataTypeEnumRuleCall_5_0()); 
-            pushFollow(FOLLOW_ruleDataType_in_rule__LinearDataConversionWithInterval__DataTypeAssignment_516614);
+            pushFollow(FOLLOW_ruleDataType_in_rule__LinearDataConversionWithInterval__DataTypeAssignment_516681);
             ruleDataType();
 
             state._fsp--;
@@ -21860,45 +21952,45 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     static final String DFA7_eotS =
         "\23\uffff";
     static final String DFA7_eofS =
-        "\3\uffff\14\21\4\uffff";
+        "\4\uffff\14\20\3\uffff";
     static final String DFA7_minS =
-        "\1\5\1\53\1\20\14\5\4\uffff";
+        "\1\5\1\53\1\20\1\uffff\14\5\3\uffff";
     static final String DFA7_maxS =
-        "\1\5\1\53\1\55\14\104\4\uffff";
+        "\1\5\1\53\1\55\1\uffff\14\104\3\uffff";
     static final String DFA7_acceptS =
-        "\17\uffff\1\4\1\1\1\2\1\3";
+        "\3\uffff\1\4\14\uffff\1\2\1\3\1\1";
     static final String DFA7_specialS =
         "\23\uffff}>";
     static final String[] DFA7_transitionS = {
             "\1\1",
             "\1\2",
-            "\1\15\1\16\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\21"+
-            "\uffff\1\17",
-            "\1\21\1\uffff\1\21\26\uffff\2\21\17\uffff\1\20\1\uffff\2\21"+
-            "\13\uffff\4\21\2\uffff\1\21",
-            "\1\21\1\uffff\1\21\26\uffff\2\21\17\uffff\1\20\1\uffff\2\21"+
-            "\13\uffff\4\21\2\uffff\1\21",
-            "\1\21\1\uffff\1\21\26\uffff\2\21\17\uffff\1\20\1\uffff\2\21"+
-            "\13\uffff\4\21\2\uffff\1\21",
-            "\1\21\1\uffff\1\21\26\uffff\2\21\17\uffff\1\20\1\uffff\2\21"+
-            "\13\uffff\4\21\2\uffff\1\21",
-            "\1\21\1\uffff\1\21\26\uffff\2\21\17\uffff\1\20\1\uffff\2\21"+
-            "\13\uffff\4\21\2\uffff\1\21",
-            "\1\21\1\uffff\1\21\26\uffff\2\21\17\uffff\1\20\1\uffff\2\21"+
-            "\13\uffff\4\21\2\uffff\1\21",
-            "\1\21\1\uffff\1\21\26\uffff\2\21\17\uffff\1\20\1\uffff\2\21"+
-            "\13\uffff\4\21\2\uffff\1\21",
-            "\1\21\1\uffff\1\21\26\uffff\2\21\17\uffff\1\20\1\uffff\2\21"+
-            "\13\uffff\4\21\2\uffff\1\21",
-            "\1\21\1\uffff\1\21\26\uffff\2\21\17\uffff\1\20\1\uffff\2\21"+
-            "\13\uffff\4\21\2\uffff\1\21",
-            "\1\21\1\uffff\1\21\26\uffff\2\21\17\uffff\1\20\1\uffff\2\21"+
-            "\13\uffff\4\21\2\uffff\1\21",
-            "\1\21\1\uffff\1\21\26\uffff\2\21\17\uffff\1\22\1\uffff\2\21"+
-            "\13\uffff\4\21\2\uffff\1\21",
-            "\1\21\1\uffff\1\21\26\uffff\2\21\17\uffff\1\22\1\uffff\2\21"+
-            "\13\uffff\4\21\2\uffff\1\21",
+            "\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\17\21"+
+            "\uffff\1\3",
             "",
+            "\1\20\1\uffff\1\20\26\uffff\2\20\17\uffff\1\21\1\uffff\2\20"+
+            "\12\uffff\1\20\1\uffff\3\20\2\uffff\1\20",
+            "\1\20\1\uffff\1\20\26\uffff\2\20\17\uffff\1\21\1\uffff\2\20"+
+            "\12\uffff\1\20\1\uffff\3\20\2\uffff\1\20",
+            "\1\20\1\uffff\1\20\26\uffff\2\20\17\uffff\1\22\1\uffff\2\20"+
+            "\12\uffff\1\20\1\uffff\3\20\2\uffff\1\20",
+            "\1\20\1\uffff\1\20\26\uffff\2\20\17\uffff\1\22\1\uffff\2\20"+
+            "\12\uffff\1\20\1\uffff\3\20\2\uffff\1\20",
+            "\1\20\1\uffff\1\20\26\uffff\2\20\17\uffff\1\22\1\uffff\2\20"+
+            "\12\uffff\1\20\1\uffff\3\20\2\uffff\1\20",
+            "\1\20\1\uffff\1\20\26\uffff\2\20\17\uffff\1\22\1\uffff\2\20"+
+            "\12\uffff\1\20\1\uffff\3\20\2\uffff\1\20",
+            "\1\20\1\uffff\1\20\26\uffff\2\20\17\uffff\1\22\1\uffff\2\20"+
+            "\12\uffff\1\20\1\uffff\3\20\2\uffff\1\20",
+            "\1\20\1\uffff\1\20\26\uffff\2\20\17\uffff\1\22\1\uffff\2\20"+
+            "\12\uffff\1\20\1\uffff\3\20\2\uffff\1\20",
+            "\1\20\1\uffff\1\20\26\uffff\2\20\17\uffff\1\22\1\uffff\2\20"+
+            "\12\uffff\1\20\1\uffff\3\20\2\uffff\1\20",
+            "\1\20\1\uffff\1\20\26\uffff\2\20\17\uffff\1\22\1\uffff\2\20"+
+            "\12\uffff\1\20\1\uffff\3\20\2\uffff\1\20",
+            "\1\20\1\uffff\1\20\26\uffff\2\20\17\uffff\1\22\1\uffff\2\20"+
+            "\12\uffff\1\20\1\uffff\3\20\2\uffff\1\20",
+            "\1\20\1\uffff\1\20\26\uffff\2\20\17\uffff\1\22\1\uffff\2\20"+
+            "\12\uffff\1\20\1\uffff\3\20\2\uffff\1\20",
             "",
             "",
             ""
@@ -21938,80 +22030,87 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
         }
     }
     static final String DFA9_eotS =
-        "\56\uffff";
+        "\64\uffff";
     static final String DFA9_eofS =
-        "\21\uffff\1\26\7\uffff\1\26\12\uffff\12\26";
+        "\25\uffff\1\32\7\uffff\1\32\14\uffff\12\32";
     static final String DFA9_minS =
-        "\1\60\1\65\1\40\1\66\1\uffff\2\4\1\72\1\67\1\4\1\40\2\4\1\72\1"+
-        "\4\1\67\1\70\1\5\1\4\1\74\1\4\2\uffff\1\70\1\66\1\5\1\4\1\67\2\4"+
-        "\1\67\1\70\1\4\1\53\1\70\1\22\12\5";
+        "\1\60\1\65\1\40\1\66\1\uffff\3\4\1\72\1\4\1\67\1\4\1\40\2\4\1\72"+
+        "\1\4\1\67\1\4\1\70\1\4\1\5\1\4\1\74\1\4\2\uffff\1\70\1\66\1\5\2"+
+        "\4\1\67\2\4\1\67\1\4\1\70\1\4\1\53\1\70\1\22\12\5";
     static final String DFA9_maxS =
-        "\1\60\1\73\1\40\1\66\1\uffff\2\4\2\75\1\4\1\40\2\4\1\72\1\4\1\67"+
-        "\1\75\1\101\1\4\1\74\1\4\2\uffff\1\70\1\66\1\101\1\4\1\75\2\4\1"+
-        "\67\1\75\1\4\1\53\1\70\1\33\12\101";
+        "\1\60\1\73\1\40\1\66\1\uffff\2\75\1\4\1\76\1\4\1\76\1\4\1\40\1"+
+        "\4\1\75\1\72\1\75\1\67\1\4\1\76\1\4\1\101\1\4\1\74\1\4\2\uffff\1"+
+        "\70\1\66\1\101\1\75\1\4\1\76\1\4\1\75\1\67\1\4\1\76\1\4\1\53\1\70"+
+        "\1\33\12\101";
     static final String DFA9_acceptS =
-        "\4\uffff\1\2\20\uffff\1\3\1\1\27\uffff";
+        "\4\uffff\1\2\24\uffff\1\3\1\1\31\uffff";
     static final String DFA9_specialS =
-        "\56\uffff}>";
+        "\64\uffff}>";
     static final String[] DFA9_transitionS = {
             "\1\1",
             "\1\4\3\uffff\1\2\1\uffff\1\3",
             "\1\5",
             "\1\6",
             "",
-            "\1\7",
+            "\1\10\70\uffff\1\7",
+            "\1\12\70\uffff\1\11",
             "\1\10",
-            "\1\12\2\uffff\1\11",
-            "\1\14\5\uffff\1\13",
-            "\1\15",
-            "\1\16",
+            "\1\14\3\uffff\1\13",
+            "\1\12",
+            "\1\16\6\uffff\1\15",
             "\1\17",
             "\1\20",
-            "\1\12",
             "\1\21",
+            "\1\23\70\uffff\1\22",
             "\1\14",
-            "\1\23\4\uffff\1\22",
-            "\1\26\1\uffff\1\26\26\uffff\1\26\3\uffff\1\25\16\uffff\1\26"+
-            "\13\uffff\1\24\4\26",
-            "\1\27",
-            "\1\30",
-            "\1\31",
-            "",
-            "",
+            "\1\25\70\uffff\1\24",
+            "\1\16",
             "\1\23",
-            "\1\32",
-            "\1\26\1\uffff\1\26\26\uffff\1\26\3\uffff\1\25\16\uffff\1\26"+
-            "\14\uffff\4\26",
+            "\1\27\5\uffff\1\26",
+            "\1\25",
+            "\1\32\1\uffff\1\32\26\uffff\1\32\3\uffff\1\31\16\uffff\1\32"+
+            "\13\uffff\1\32\1\30\3\32",
             "\1\33",
-            "\1\35\5\uffff\1\34",
-            "\1\36",
-            "\1\37",
+            "\1\34",
             "\1\35",
-            "\1\41\4\uffff\1\40",
-            "\1\42",
+            "",
+            "",
+            "\1\27",
+            "\1\36",
+            "\1\32\1\uffff\1\32\26\uffff\1\32\3\uffff\1\31\16\uffff\1\32"+
+            "\13\uffff\1\32\1\uffff\3\32",
+            "\1\40\70\uffff\1\37",
+            "\1\40",
+            "\1\42\6\uffff\1\41",
             "\1\43",
-            "\1\41",
-            "\1\44\1\45\1\46\1\47\1\50\1\51\1\52\1\53\1\54\1\55",
-            "\1\26\1\uffff\1\26\26\uffff\1\26\3\uffff\1\25\16\uffff\1\26"+
-            "\14\uffff\4\26",
-            "\1\26\1\uffff\1\26\26\uffff\1\26\3\uffff\1\25\16\uffff\1\26"+
-            "\14\uffff\4\26",
-            "\1\26\1\uffff\1\26\26\uffff\1\26\3\uffff\1\25\16\uffff\1\26"+
-            "\14\uffff\4\26",
-            "\1\26\1\uffff\1\26\26\uffff\1\26\3\uffff\1\25\16\uffff\1\26"+
-            "\14\uffff\4\26",
-            "\1\26\1\uffff\1\26\26\uffff\1\26\3\uffff\1\25\16\uffff\1\26"+
-            "\14\uffff\4\26",
-            "\1\26\1\uffff\1\26\26\uffff\1\26\3\uffff\1\25\16\uffff\1\26"+
-            "\14\uffff\4\26",
-            "\1\26\1\uffff\1\26\26\uffff\1\26\3\uffff\1\25\16\uffff\1\26"+
-            "\14\uffff\4\26",
-            "\1\26\1\uffff\1\26\26\uffff\1\26\3\uffff\1\25\16\uffff\1\26"+
-            "\14\uffff\4\26",
-            "\1\26\1\uffff\1\26\26\uffff\1\26\3\uffff\1\25\16\uffff\1\26"+
-            "\14\uffff\4\26",
-            "\1\26\1\uffff\1\26\26\uffff\1\26\3\uffff\1\25\16\uffff\1\26"+
-            "\14\uffff\4\26"
+            "\1\45\70\uffff\1\44",
+            "\1\42",
+            "\1\45",
+            "\1\47\5\uffff\1\46",
+            "\1\50",
+            "\1\51",
+            "\1\47",
+            "\1\52\1\53\1\54\1\55\1\56\1\57\1\60\1\61\1\62\1\63",
+            "\1\32\1\uffff\1\32\26\uffff\1\32\3\uffff\1\31\16\uffff\1\32"+
+            "\13\uffff\1\32\1\uffff\3\32",
+            "\1\32\1\uffff\1\32\26\uffff\1\32\3\uffff\1\31\16\uffff\1\32"+
+            "\13\uffff\1\32\1\uffff\3\32",
+            "\1\32\1\uffff\1\32\26\uffff\1\32\3\uffff\1\31\16\uffff\1\32"+
+            "\13\uffff\1\32\1\uffff\3\32",
+            "\1\32\1\uffff\1\32\26\uffff\1\32\3\uffff\1\31\16\uffff\1\32"+
+            "\13\uffff\1\32\1\uffff\3\32",
+            "\1\32\1\uffff\1\32\26\uffff\1\32\3\uffff\1\31\16\uffff\1\32"+
+            "\13\uffff\1\32\1\uffff\3\32",
+            "\1\32\1\uffff\1\32\26\uffff\1\32\3\uffff\1\31\16\uffff\1\32"+
+            "\13\uffff\1\32\1\uffff\3\32",
+            "\1\32\1\uffff\1\32\26\uffff\1\32\3\uffff\1\31\16\uffff\1\32"+
+            "\13\uffff\1\32\1\uffff\3\32",
+            "\1\32\1\uffff\1\32\26\uffff\1\32\3\uffff\1\31\16\uffff\1\32"+
+            "\13\uffff\1\32\1\uffff\3\32",
+            "\1\32\1\uffff\1\32\26\uffff\1\32\3\uffff\1\31\16\uffff\1\32"+
+            "\13\uffff\1\32\1\uffff\3\32",
+            "\1\32\1\uffff\1\32\26\uffff\1\32\3\uffff\1\31\16\uffff\1\32"+
+            "\13\uffff\1\32\1\uffff\3\32"
     };
 
     static final short[] DFA9_eot = DFA.unpackEncodedString(DFA9_eotS);
@@ -22277,12 +22376,12 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__DataSet__Group__5__Impl_in_rule__DataSet__Group__55104 = new BitSet(new long[]{0x00000104A0000080L});
     public static final BitSet FOLLOW_rule__DataSet__Group__6_in_rule__DataSet__Group__55107 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataSet__DescriptionAssignment_5_in_rule__DataSet__Group__5__Impl5134 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataSet__Group__6__Impl_in_rule__DataSet__Group__65165 = new BitSet(new long[]{0xC000000040000020L,0x0000000000000003L});
+    public static final BitSet FOLLOW_rule__DataSet__Group__6__Impl_in_rule__DataSet__Group__65165 = new BitSet(new long[]{0xA000000040000020L,0x0000000000000003L});
     public static final BitSet FOLLOW_rule__DataSet__Group__7_in_rule__DataSet__Group__65168 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_29_in_rule__DataSet__Group__6__Impl5196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataSet__Group__7__Impl_in_rule__DataSet__Group__75227 = new BitSet(new long[]{0xC000000040000020L,0x0000000000000003L});
+    public static final BitSet FOLLOW_rule__DataSet__Group__7__Impl_in_rule__DataSet__Group__75227 = new BitSet(new long[]{0xA000000040000020L,0x0000000000000003L});
     public static final BitSet FOLLOW_rule__DataSet__Group__8_in_rule__DataSet__Group__75230 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataSet__Alternatives_7_in_rule__DataSet__Group__7__Impl5257 = new BitSet(new long[]{0xC000000000000022L,0x0000000000000003L});
+    public static final BitSet FOLLOW_rule__DataSet__Alternatives_7_in_rule__DataSet__Group__7__Impl5257 = new BitSet(new long[]{0xA000000000000022L,0x0000000000000003L});
     public static final BitSet FOLLOW_rule__DataSet__Group__8__Impl_in_rule__DataSet__Group__85288 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_30_in_rule__DataSet__Group__8__Impl5316 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataSet__Group_2__0__Impl_in_rule__DataSet__Group_2__05365 = new BitSet(new long[]{0x0000000000000020L});
@@ -22303,7 +22402,7 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_32_in_rule__DataSet__Group_4__1__Impl5704 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataSet__Group_4__2__Impl_in_rule__DataSet__Group_4__25735 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataSet__IDAssignment_4_2_in_rule__DataSet__Group_4__2__Impl5762 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Method__Group__0__Impl_in_rule__Method__Group__05798 = new BitSet(new long[]{0xC000000000000020L,0x0000000000000003L});
+    public static final BitSet FOLLOW_rule__Method__Group__0__Impl_in_rule__Method__Group__05798 = new BitSet(new long[]{0xA000000000000020L,0x0000000000000003L});
     public static final BitSet FOLLOW_rule__Method__Group__1_in_rule__Method__Group__05801 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Method__Alternatives_0_in_rule__Method__Group__0__Impl5828 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Method__Group__1__Impl_in_rule__Method__Group__15859 = new BitSet(new long[]{0x0000020000000000L});
@@ -22588,13 +22687,13 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_53_in_rule__DataRange__Group__0__Impl12284 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataRange__Group__1__Impl_in_rule__DataRange__Group__112315 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataRange__RangeAssignment_1_in_rule__DataRange__Group__1__Impl12342 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Interval__Group__0__Impl_in_rule__Interval__Group__012376 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__Interval__Group__0__Impl_in_rule__Interval__Group__012376 = new BitSet(new long[]{0x2000000000000010L});
     public static final BitSet FOLLOW_rule__Interval__Group__1_in_rule__Interval__Group__012379 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_54_in_rule__Interval__Group__0__Impl12407 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Interval__Group__1__Impl_in_rule__Interval__Group__112438 = new BitSet(new long[]{0x0080000000000000L});
     public static final BitSet FOLLOW_rule__Interval__Group__2_in_rule__Interval__Group__112441 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Interval__LowerBoundAssignment_1_in_rule__Interval__Group__1__Impl12468 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Interval__Group__2__Impl_in_rule__Interval__Group__212498 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__Interval__Group__2__Impl_in_rule__Interval__Group__212498 = new BitSet(new long[]{0x2000000000000010L});
     public static final BitSet FOLLOW_rule__Interval__Group__3_in_rule__Interval__Group__212501 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_55_in_rule__Interval__Group__2__Impl12529 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Interval__Group__3__Impl_in_rule__Interval__Group__312560 = new BitSet(new long[]{0x0100000000000000L});
@@ -22605,7 +22704,7 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__LinearDataConversion__Group__0__Impl_in_rule__LinearDataConversion__Group__012689 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_rule__LinearDataConversion__Group__1_in_rule__LinearDataConversion__Group__012692 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_57_in_rule__LinearDataConversion__Group__0__Impl12720 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__LinearDataConversion__Group__1__Impl_in_rule__LinearDataConversion__Group__112751 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__LinearDataConversion__Group__1__Impl_in_rule__LinearDataConversion__Group__112751 = new BitSet(new long[]{0x2000000000000010L});
     public static final BitSet FOLLOW_rule__LinearDataConversion__Group__2_in_rule__LinearDataConversion__Group__112754 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_32_in_rule__LinearDataConversion__Group__1__Impl12782 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__LinearDataConversion__Group__2__Impl_in_rule__LinearDataConversion__Group__212813 = new BitSet(new long[]{0x0400000000000000L});
@@ -22614,7 +22713,7 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__LinearDataConversion__Group__3__Impl_in_rule__LinearDataConversion__Group__312873 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_rule__LinearDataConversion__Group__4_in_rule__LinearDataConversion__Group__312876 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_58_in_rule__LinearDataConversion__Group__3__Impl12904 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__LinearDataConversion__Group__4__Impl_in_rule__LinearDataConversion__Group__412935 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__LinearDataConversion__Group__4__Impl_in_rule__LinearDataConversion__Group__412935 = new BitSet(new long[]{0x2000000000000010L});
     public static final BitSet FOLLOW_rule__LinearDataConversion__Group__5_in_rule__LinearDataConversion__Group__412938 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_32_in_rule__LinearDataConversion__Group__4__Impl12966 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__LinearDataConversion__Group__5__Impl_in_rule__LinearDataConversion__Group__512997 = new BitSet(new long[]{0x0000000000000002L});
@@ -22636,104 +22735,107 @@ public class InternalSensidlParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_43_in_rule__LinearDataConversionWithInterval__Group__4__Impl13341 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__LinearDataConversionWithInterval__Group__5__Impl_in_rule__LinearDataConversionWithInterval__Group__513372 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__LinearDataConversionWithInterval__DataTypeAssignment_5_in_rule__LinearDataConversionWithInterval__Group__5__Impl13399 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DOUBLE__Group__0__Impl_in_rule__DOUBLE__Group__013441 = new BitSet(new long[]{0x2000000000000000L});
+    public static final BitSet FOLLOW_rule__DOUBLE__Group__0__Impl_in_rule__DOUBLE__Group__013441 = new BitSet(new long[]{0x2000000000000010L});
     public static final BitSet FOLLOW_rule__DOUBLE__Group__1_in_rule__DOUBLE__Group__013444 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_rule__DOUBLE__Group__0__Impl13471 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DOUBLE__Group__1__Impl_in_rule__DOUBLE__Group__113500 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DOUBLE__Group_1__0_in_rule__DOUBLE__Group__1__Impl13527 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DOUBLE__Group_1__0__Impl_in_rule__DOUBLE__Group_1__013562 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__DOUBLE__Group_1__1_in_rule__DOUBLE__Group_1__013565 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_rule__DOUBLE__Group_1__0__Impl13593 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DOUBLE__Group_1__1__Impl_in_rule__DOUBLE__Group_1__113624 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_rule__DOUBLE__Group_1__1__Impl13651 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UNIT__Group__0__Impl_in_rule__UNIT__Group__013684 = new BitSet(new long[]{0x0000000000000060L});
-    public static final BitSet FOLLOW_rule__UNIT__Group__1_in_rule__UNIT__Group__013687 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__UNIT__Group__0__Impl13715 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_rule__UNIT__Group__1__Impl_in_rule__UNIT__Group__113746 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UNIT__Group_1__0_in_rule__UNIT__Group__1__Impl13773 = new BitSet(new long[]{0x0000000000000042L});
-    public static final BitSet FOLLOW_rule__UNIT__Group_1__0__Impl_in_rule__UNIT__Group_1__013808 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rule__UNIT__Group_1__1_in_rule__UNIT__Group_1__013811 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ANY_OTHER_in_rule__UNIT__Group_1__0__Impl13838 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__UNIT__Group_1__1__Impl_in_rule__UNIT__Group_1__113867 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__UNIT__Group_1__1__Impl13895 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__SensorInterface__NameAssignment_113935 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DESCRIPTION_in_rule__SensorInterface__DescriptionAssignment_213966 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__SensorInterface__IDAssignment_3_213997 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEncodingSettings_in_rule__SensorInterface__EncodingSettingsAssignment_514028 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSensorDataDescription_in_rule__SensorInterface__DataDescriptionAssignment_614059 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCoding_in_rule__EncodingSettings__CodingAssignment_214090 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEndianness_in_rule__EncodingSettings__EndiannessAssignment_614121 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_rule__EncodingSettings__AlignmentAssignment_1014152 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__EncodingSettings__IDAssignment_12_214183 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__SensorDataDescription__IDAssignment_2_214214 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataSet_in_rule__SensorDataDescription__DataSetsAssignment_414245 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__DataSet__NameAssignment_114276 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__DataSet__UsedDataSetsAssignment_2_114311 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__DataSet__UsedDataSetsAssignment_3_114350 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__DataSet__IDAssignment_4_214385 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DESCRIPTION_in_rule__DataSet__DescriptionAssignment_514416 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleData_in_rule__DataSet__DataAssignment_7_014447 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMethod_in_rule__DataSet__MethodAssignment_7_114478 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_62_in_rule__Method__VisibilityAssignment_0_014514 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_63_in_rule__Method__VisibilityAssignment_0_114558 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_64_in_rule__Method__VisibilityAssignment_0_214602 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_rule__Method__VisibilityAssignment_0_314646 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Method__NameAssignment_114685 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMethodParameter_in_rule__Method__ParameterAssignment_314716 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMethodParameter_in_rule__Method__ParameterAssignment_4_114747 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataType_in_rule__Method__ReturnTypeAssignment_6_1_0_014778 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeNotAdjustable_in_rule__Method__ReturnTypeAssignment_6_1_0_114809 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Method__ReturnTypeDataSetAssignment_6_1_114844 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Method__IDAssignment_9_214879 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DESCRIPTION_in_rule__Method__DescriptionAssignment_1014910 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataType_in_rule__MethodParameter__DataTypeAssignment_0_0_014941 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeNotAdjustable_in_rule__MethodParameter__DataTypeAssignment_0_0_114972 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__MethodParameter__DataTypeDataSetAssignment_0_115007 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__MethodParameter__NameAssignment_115042 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__ListData__NameAssignment_015073 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataType_in_rule__ListData__DataTypeAssignment_4_015104 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__ListData__DataTypeDataSetAssignment_4_115139 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__MeasurementData__NameAssignment_015174 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataType_in_rule__MeasurementData__DataTypeAssignment_215205 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUNIT_in_rule__MeasurementData__UnitAssignment_415236 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__MeasurementData__IDAssignment_5_215267 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataConversion_in_rule__MeasurementData__AdjustmentsAssignment_6_0_115298 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataRange_in_rule__MeasurementData__AdjustmentsAssignment_6_1_115329 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataConversion_in_rule__MeasurementData__AdjustmentsAssignment_6_2_115360 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataRange_in_rule__MeasurementData__AdjustmentsAssignment_6_2_315391 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_66_in_rule__MeasurementData__ExcludedMethodsAssignment_7_1_0_015427 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_rule__MeasurementData__ExcludedMethodsAssignment_7_1_0_1_115471 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_rule__MeasurementData__ExcludedMethodsAssignment_7_1_1_015515 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_66_in_rule__MeasurementData__ExcludedMethodsAssignment_7_1_1_1_115559 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DESCRIPTION_in_rule__MeasurementData__DescriptionAssignment_815598 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__NonMeasurementData__NameAssignment_015629 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataType_in_rule__NonMeasurementData__DataTypeAssignment_2_015660 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeNotAdjustable_in_rule__NonMeasurementData__DataTypeAssignment_2_115691 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_68_in_rule__NonMeasurementData__ConstantAssignment_3_0_015727 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__NonMeasurementData__ValueAssignment_3_0_315766 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__NonMeasurementData__ValueAssignment_3_1_215797 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__NonMeasurementData__IDAssignment_4_215828 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_66_in_rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_0_015864 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_0_1_115908 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_1_015952 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_66_in_rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_1_1_115996 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DESCRIPTION_in_rule__NonMeasurementData__DescriptionAssignment_616035 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__MeasurementDataNotAdjustable__NameAssignment_016066 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeNotAdjustable_in_rule__MeasurementDataNotAdjustable__DataTypeAssignment_216097 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUNIT_in_rule__MeasurementDataNotAdjustable__UnitAssignment_416128 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__MeasurementDataNotAdjustable__IDAssignment_5_216159 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_66_in_rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_0_016195 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_0_1_116239 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_1_016283 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_66_in_rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_1_1_116327 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DESCRIPTION_in_rule__MeasurementDataNotAdjustable__DescriptionAssignment_716366 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInterval_in_rule__DataRange__RangeAssignment_116397 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDOUBLE_in_rule__Interval__LowerBoundAssignment_116428 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDOUBLE_in_rule__Interval__UpperBoundAssignment_316459 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDOUBLE_in_rule__LinearDataConversion__ScalingFactorAssignment_216490 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDOUBLE_in_rule__LinearDataConversion__OffsetAssignment_516521 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInterval_in_rule__LinearDataConversionWithInterval__FromIntervalAssignment_116552 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInterval_in_rule__LinearDataConversionWithInterval__ToIntervalAssignment_316583 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataType_in_rule__LinearDataConversionWithInterval__DataTypeAssignment_516614 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_rule__DOUBLE__Group__0__Impl13473 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DOUBLE__Group__1__Impl_in_rule__DOUBLE__Group__113506 = new BitSet(new long[]{0x4000000000000000L});
+    public static final BitSet FOLLOW_rule__DOUBLE__Group__2_in_rule__DOUBLE__Group__113509 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_rule__DOUBLE__Group__1__Impl13536 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DOUBLE__Group__2__Impl_in_rule__DOUBLE__Group__213565 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DOUBLE__Group_2__0_in_rule__DOUBLE__Group__2__Impl13592 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DOUBLE__Group_2__0__Impl_in_rule__DOUBLE__Group_2__013629 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__DOUBLE__Group_2__1_in_rule__DOUBLE__Group_2__013632 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_62_in_rule__DOUBLE__Group_2__0__Impl13660 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DOUBLE__Group_2__1__Impl_in_rule__DOUBLE__Group_2__113691 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_rule__DOUBLE__Group_2__1__Impl13718 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UNIT__Group__0__Impl_in_rule__UNIT__Group__013751 = new BitSet(new long[]{0x0000000000000060L});
+    public static final BitSet FOLLOW_rule__UNIT__Group__1_in_rule__UNIT__Group__013754 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__UNIT__Group__0__Impl13782 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_rule__UNIT__Group__1__Impl_in_rule__UNIT__Group__113813 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UNIT__Group_1__0_in_rule__UNIT__Group__1__Impl13840 = new BitSet(new long[]{0x0000000000000042L});
+    public static final BitSet FOLLOW_rule__UNIT__Group_1__0__Impl_in_rule__UNIT__Group_1__013875 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__UNIT__Group_1__1_in_rule__UNIT__Group_1__013878 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ANY_OTHER_in_rule__UNIT__Group_1__0__Impl13905 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UNIT__Group_1__1__Impl_in_rule__UNIT__Group_1__113934 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__UNIT__Group_1__1__Impl13962 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__SensorInterface__NameAssignment_114002 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DESCRIPTION_in_rule__SensorInterface__DescriptionAssignment_214033 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__SensorInterface__IDAssignment_3_214064 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEncodingSettings_in_rule__SensorInterface__EncodingSettingsAssignment_514095 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSensorDataDescription_in_rule__SensorInterface__DataDescriptionAssignment_614126 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCoding_in_rule__EncodingSettings__CodingAssignment_214157 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEndianness_in_rule__EncodingSettings__EndiannessAssignment_614188 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_rule__EncodingSettings__AlignmentAssignment_1014219 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__EncodingSettings__IDAssignment_12_214250 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__SensorDataDescription__IDAssignment_2_214281 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataSet_in_rule__SensorDataDescription__DataSetsAssignment_414312 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__DataSet__NameAssignment_114343 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__DataSet__UsedDataSetsAssignment_2_114378 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__DataSet__UsedDataSetsAssignment_3_114417 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__DataSet__IDAssignment_4_214452 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DESCRIPTION_in_rule__DataSet__DescriptionAssignment_514483 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleData_in_rule__DataSet__DataAssignment_7_014514 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMethod_in_rule__DataSet__MethodAssignment_7_114545 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_63_in_rule__Method__VisibilityAssignment_0_014581 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_61_in_rule__Method__VisibilityAssignment_0_114625 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_64_in_rule__Method__VisibilityAssignment_0_214669 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_rule__Method__VisibilityAssignment_0_314713 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Method__NameAssignment_114752 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMethodParameter_in_rule__Method__ParameterAssignment_314783 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMethodParameter_in_rule__Method__ParameterAssignment_4_114814 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataType_in_rule__Method__ReturnTypeAssignment_6_1_0_014845 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeNotAdjustable_in_rule__Method__ReturnTypeAssignment_6_1_0_114876 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Method__ReturnTypeDataSetAssignment_6_1_114911 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Method__IDAssignment_9_214946 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DESCRIPTION_in_rule__Method__DescriptionAssignment_1014977 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataType_in_rule__MethodParameter__DataTypeAssignment_0_0_015008 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeNotAdjustable_in_rule__MethodParameter__DataTypeAssignment_0_0_115039 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__MethodParameter__DataTypeDataSetAssignment_0_115074 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__MethodParameter__NameAssignment_115109 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__ListData__NameAssignment_015140 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataType_in_rule__ListData__DataTypeAssignment_4_015171 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__ListData__DataTypeDataSetAssignment_4_115206 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__MeasurementData__NameAssignment_015241 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataType_in_rule__MeasurementData__DataTypeAssignment_215272 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUNIT_in_rule__MeasurementData__UnitAssignment_415303 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__MeasurementData__IDAssignment_5_215334 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataConversion_in_rule__MeasurementData__AdjustmentsAssignment_6_0_115365 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataRange_in_rule__MeasurementData__AdjustmentsAssignment_6_1_115396 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataConversion_in_rule__MeasurementData__AdjustmentsAssignment_6_2_115427 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataRange_in_rule__MeasurementData__AdjustmentsAssignment_6_2_315458 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_rule__MeasurementData__ExcludedMethodsAssignment_7_1_0_015494 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_67_in_rule__MeasurementData__ExcludedMethodsAssignment_7_1_0_1_115538 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_67_in_rule__MeasurementData__ExcludedMethodsAssignment_7_1_1_015582 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_rule__MeasurementData__ExcludedMethodsAssignment_7_1_1_1_115626 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DESCRIPTION_in_rule__MeasurementData__DescriptionAssignment_815665 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__NonMeasurementData__NameAssignment_015696 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataType_in_rule__NonMeasurementData__DataTypeAssignment_2_015727 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeNotAdjustable_in_rule__NonMeasurementData__DataTypeAssignment_2_115758 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_68_in_rule__NonMeasurementData__ConstantAssignment_3_0_015794 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__NonMeasurementData__ValueAssignment_3_0_315833 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__NonMeasurementData__ValueAssignment_3_1_215864 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__NonMeasurementData__IDAssignment_4_215895 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_0_015931 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_67_in_rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_0_1_115975 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_67_in_rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_1_016019 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_rule__NonMeasurementData__ExcludedMethodsAssignment_5_1_1_1_116063 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DESCRIPTION_in_rule__NonMeasurementData__DescriptionAssignment_616102 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__MeasurementDataNotAdjustable__NameAssignment_016133 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeNotAdjustable_in_rule__MeasurementDataNotAdjustable__DataTypeAssignment_216164 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUNIT_in_rule__MeasurementDataNotAdjustable__UnitAssignment_416195 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__MeasurementDataNotAdjustable__IDAssignment_5_216226 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_0_016262 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_67_in_rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_0_1_116306 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_67_in_rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_1_016350 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_rule__MeasurementDataNotAdjustable__ExcludedMethodsAssignment_6_2_1_1_116394 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DESCRIPTION_in_rule__MeasurementDataNotAdjustable__DescriptionAssignment_716433 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInterval_in_rule__DataRange__RangeAssignment_116464 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDOUBLE_in_rule__Interval__LowerBoundAssignment_116495 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDOUBLE_in_rule__Interval__UpperBoundAssignment_316526 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDOUBLE_in_rule__LinearDataConversion__ScalingFactorAssignment_216557 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDOUBLE_in_rule__LinearDataConversion__OffsetAssignment_516588 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInterval_in_rule__LinearDataConversionWithInterval__FromIntervalAssignment_116619 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInterval_in_rule__LinearDataConversionWithInterval__ToIntervalAssignment_316650 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataType_in_rule__LinearDataConversionWithInterval__DataTypeAssignment_516681 = new BitSet(new long[]{0x0000000000000002L});
 
 }
