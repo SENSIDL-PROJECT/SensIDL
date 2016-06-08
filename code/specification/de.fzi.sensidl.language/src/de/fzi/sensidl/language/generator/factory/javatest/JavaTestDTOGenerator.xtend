@@ -1,6 +1,5 @@
 package de.fzi.sensidl.language.generator.factory.javatest
 
-import de.fzi.sensidl.design.sensidl.SensorInterface
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
@@ -55,7 +54,7 @@ class JavaTestDTOGenerator implements IDTOGenerator {
 	}
 
 	/**
-	 * Generates the .java file for each data transfer object.
+	 * Generates the .java file for the tests of each data set.
 	 * @see IDTOGenerator#generate()
 	 */
 	override generate() {
@@ -66,55 +65,14 @@ class JavaTestDTOGenerator implements IDTOGenerator {
 				filesToGenerate.put("src/de/fzi/sensidl/" + GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer) +"/" + addFileExtensionTo(GenerationUtil.toNameUpper(d)+"Test"), generateClassBody(GenerationUtil.toNameUpper(d)+"Test", d))
 				logger.info("File: " + addFileExtensionTo(GenerationUtil.toNameUpper(d)+"Test") + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
 			}
-			filesToGenerate.put("src/de/fzi/sensidl/" + GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer) +"/" + addFileExtensionTo(GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer)+"Test"), generateSensorInterfaceTest(GenerationUtil.getSensorInterface(this.dataSet.get(0).eContainer)))
-			logger.info("File: " + addFileExtensionTo(GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer)+"Test") + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
 		} 
 		else	{
 			for (d : this.dataSet) {
 				filesToGenerate.put(addFileExtensionTo(GenerationUtil.toNameUpper(d)+"Test"), generateClassBody(GenerationUtil.toNameUpper(d)+"Test", d))
 				logger.info("File: " + addFileExtensionTo(GenerationUtil.toNameUpper(d)+"Test") + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
 			}
-			filesToGenerate.put(addFileExtensionTo(GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer)+"Test"), generateSensorInterfaceTest(GenerationUtil.getSensorInterface(this.dataSet.get(0).eContainer)))
-			logger.info("File: " + addFileExtensionTo(GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer)+"Test") + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
 		}
 		filesToGenerate
-	}
-	
-	def generateSensorInterfaceTest(SensorInterface si) {
-		'''
-		«IF createProject»
-			package de.fzi.sensidl.«si.name»;
-		«ELSE»
-			package «si.name».«si.name»;
-		«ENDIF» 
-		
-		import org.junit.After;
-		import org.junit.Before;
-		«si.dataDescription.dataSets.generateImports»
-		
-		
-		/**
-		 * General test cases for «si.name»
-		 * @generated
-		 */
-		public class «si.name»Test {
-			«FOR d : si.dataDescription.dataSets»
-				private «d.name.toFirstUpper» «d.name.toFirstLower»;
-			«ENDFOR»
-		
-			@Before public void setUp() {
-				«FOR d : si.dataDescription.dataSets»
-					«d.name.toFirstLower» = new «d.name.toFirstUpper»();
-				«ENDFOR»
-			}
-
-			@After public void tearDown() {
-				«FOR d : si.dataDescription.dataSets»
-					«d.name.toFirstLower» = null;
-				«ENDFOR»	
-			}
-		}
-		 '''
 	}
 
 	/**
@@ -136,7 +94,7 @@ class JavaTestDTOGenerator implements IDTOGenerator {
 			import java.util.ArrayList;
 			import java.util.List;
 			import «d.sensorDataDescription.sensorInterface.name».«d.name.toFirstUpper».«d.name.toFirstUpper»;
-			«d.usedDataSets.generateImports»
+			«d.usedDataSets.imports»
 			
 			
 			/**
@@ -158,14 +116,19 @@ class JavaTestDTOGenerator implements IDTOGenerator {
 				«d.generateSetterTests»
 				«d.generateInitialValueTests»
 				«d.generateExcludedMethodsTest»
-				«d.generateRangeAdjustmentTest»
-				«d.generateLinearDataConversionAdjustmentTest»
-				«d.generateLinearDataConversionWithIntervalAdjustmentTest»
+				«d.generateRangeAdjustmentTests»
+				«d.generateLinearDataConversionTests»
+				«d.generateLinearDataConversionWithIntervalTests»
 				«d.generateListTests»
 			}
 		 '''
 	}
-		
+	
+// ------------------------------ Test Methods ------------------------------
+	
+	/**
+	 * Generates test cases for all list datas of a data set.
+	 */	
 	def generateListTests(DataSet d) {
 		'''
 			«FOR data : d.data.filter(ListData)»
@@ -195,12 +158,10 @@ class JavaTestDTOGenerator implements IDTOGenerator {
 		'''		
 	}
 	
-	def getNumberWithCast(DataType type,Object number) {
-		'''
-		«type.necessaryCast»«toDataType(type,Double.valueOf(number.toString))»«type.addDataTypeExtention()»'''
-	}
-	
-	def generateLinearDataConversionWithIntervalAdjustmentTest(DataSet d) {
+	/**
+	 * Generates test cases for all measurement datas with linear data conversion with interval of a data set.
+	 */	
+	def generateLinearDataConversionWithIntervalTests(DataSet d) {
 		'''
 			«FOR data : d.data.filter(MeasurementData)»
 				«FOR adj : data.adjustments»
@@ -215,9 +176,9 @@ class JavaTestDTOGenerator implements IDTOGenerator {
 							«data.toTypeName» minValue = «data.dataType.getNumberWithCast(adj.fromInterval.lowerBound)»;
 							«data.toTypeName» maxValue = «data.dataType.getNumberWithCast(adj.fromInterval.upperBound)»;
 							«data.toTypeName» midValue = «data.dataType.getNumberWithCast((adj.fromInterval.upperBound-adj.fromInterval.lowerBound)/2+adj.fromInterval.lowerBound)»;
-							«adj.dataType.toTypeName» minValueAdj = («adj.dataType.toSimpleTypeName») («generateLinearDataConversionWithInterval(adj.fromInterval.lowerBound,adj.fromInterval.lowerBound,adj.fromInterval.upperBound,adj.toInterval.lowerBound,adj.toInterval.upperBound)»
-							«adj.dataType.toTypeName» maxValueAdj = («adj.dataType.toSimpleTypeName») («generateLinearDataConversionWithInterval(adj.fromInterval.upperBound,adj.fromInterval.lowerBound,adj.fromInterval.upperBound,adj.toInterval.lowerBound,adj.toInterval.upperBound)»
-							«adj.dataType.toTypeName» midValueAdj = («adj.dataType.toSimpleTypeName») («generateLinearDataConversionWithInterval(data.dataType.toDataType((adj.fromInterval.upperBound-adj.fromInterval.lowerBound)/2+adj.fromInterval.lowerBound).doubleValue,adj.fromInterval.lowerBound,adj.fromInterval.upperBound,adj.toInterval.lowerBound,adj.toInterval.upperBound)»
+							«adj.dataType.toTypeName» minValueAdj = («adj.dataType.toSimpleTypeName») («getLinearDataConversionWithInterval(adj.fromInterval.lowerBound,adj.fromInterval.lowerBound,adj.fromInterval.upperBound,adj.toInterval.lowerBound,adj.toInterval.upperBound)»
+							«adj.dataType.toTypeName» maxValueAdj = («adj.dataType.toSimpleTypeName») («getLinearDataConversionWithInterval(adj.fromInterval.upperBound,adj.fromInterval.lowerBound,adj.fromInterval.upperBound,adj.toInterval.lowerBound,adj.toInterval.upperBound)»
+							«adj.dataType.toTypeName» midValueAdj = («adj.dataType.toSimpleTypeName») («getLinearDataConversionWithInterval(data.dataType.toDataType((adj.fromInterval.upperBound-adj.fromInterval.lowerBound)/2+adj.fromInterval.lowerBound).doubleValue,adj.fromInterval.lowerBound,adj.fromInterval.upperBound,adj.toInterval.lowerBound,adj.toInterval.upperBound)»
 							«d.name.toFirstLower».set«data.name.toFirstUpper»WithDataConversion(minValue);
 							«IF !data.excludedMethods.contains("getter")»
 								assertTrue(«d.name.toFirstLower».get«data.name.toFirstUpper»().equals(minValueAdj));
@@ -293,14 +254,11 @@ class JavaTestDTOGenerator implements IDTOGenerator {
 			«ENDFOR»
 		'''
 	}
-	
-	def generateLinearDataConversionWithInterval(Number independentVariable, double oldMin, double oldMax, double newMin, double newMax) {
-		'''
-		(((«independentVariable.doubleValue()» - «oldMin») * («newMax» - «newMin»)) / («oldMax» - «oldMin»)) + «newMin»);
-		'''
-	}
-	
-	def generateLinearDataConversionAdjustmentTest(DataSet d) {
+
+	/**
+	 * Generates test cases for all measurement datas with linear data conversion of a data set.
+	 */	
+	def generateLinearDataConversionTests(DataSet d) {
 		'''
 			«FOR data : d.data.filter(MeasurementData)»
 				«FOR adj : data.adjustments»
@@ -355,7 +313,10 @@ class JavaTestDTOGenerator implements IDTOGenerator {
 		'''
 	}
 	
-	def generateRangeAdjustmentTest(DataSet d) {
+	/**
+	 * Generates test cases for all measurement datas with range adjustment of a data set.
+	 */	
+	def generateRangeAdjustmentTests(DataSet d) {
 		'''
 			«FOR data : d.data.filter(MeasurementData)»
 				«FOR adj : data.adjustments»
@@ -447,6 +408,9 @@ class JavaTestDTOGenerator implements IDTOGenerator {
 		'''
 	}
 	
+	/**
+	 * Generates test cases for all excluded methods of a data set.
+	 */	
 	def generateExcludedMethodsTest(DataSet d) {
 		'''
 			«FOR data : d.data»
@@ -470,14 +434,9 @@ class JavaTestDTOGenerator implements IDTOGenerator {
 		'''
 	}	
 	
-	def generateImports(EList<DataSet> dataSets) {
-		'''
-			«FOR dataSet : dataSets»
-				import «dataSet.sensorDataDescription.sensorInterface.name».«dataSet.name.toFirstUpper».«dataSet.name.toFirstUpper»;
-			«ENDFOR»
-		'''
-	}
-	
+	/**
+	 * Generates a test case for the constructor of a data set.
+	 */	
 	def generateConstructorTest(DataSet d) {
 		'''
 			/**
@@ -485,83 +444,51 @@ class JavaTestDTOGenerator implements IDTOGenerator {
 			 * @generated
 			 */	
 			@org.junit.Test public void testConstructor() {
-				«d.attributes»
-				«d.name.toFirstLower» = new «d.name.toFirstUpper»(«d.attributesInLine»);
-				«d.assertments»
-			}
-			
-		'''
-	}
-	
-	def getAttributes(DataSet d){	
-		'''
-			«FOR data : d.data»
-				«IF data instanceof NonMeasurementData»
-					«IF !data.constant»
-						«data.toTypeName» «data.name» = «data.minValue»«data.dataType.addDataTypeExtention()»;
+				«FOR data : d.data»
+					«IF data instanceof NonMeasurementData»
+						«IF !data.constant»
+							«data.toTypeName» «data.name» = «data.minValue»«data.dataType.dataTypeExtention»;
+						«ENDIF»
+					«ELSEIF data instanceof MeasurementData»
+						«data.toTypeName» «data.name» = «data.minValue»«data.dataType.dataTypeExtention»;
 					«ENDIF»
-				«ELSEIF data instanceof MeasurementData»
-					«data.toTypeName» «data.name» = «data.minValue»«data.dataType.addDataTypeExtention()»;
-				«ENDIF»
-			«ENDFOR»
-			«FOR dataSet : d.usedDataSets»
-				«dataSet.name.toFirstUpper» «dataSet.name.toFirstLower» = new «dataSet.name.toFirstUpper»();
-			«ENDFOR»
-		'''
-	}
-		
-	def getAssertments(DataSet d){	
-		'''
-			«FOR data : d.data»
-				«IF data instanceof NonMeasurementData»
-					«IF !data.constant»
+				«ENDFOR»
+				«FOR dataSet : d.usedDataSets»
+					«dataSet.name.toFirstUpper» «dataSet.name.toFirstLower» = new «dataSet.name.toFirstUpper»();
+				«ENDFOR» 
+				«d.name.toFirstLower» = new «d.name.toFirstUpper»(«d.attributesInLine»);
+				«FOR data : d.data»
+					«IF data instanceof NonMeasurementData»
+						«IF !data.constant»
+							«IF !data.excludedMethods.contains("getter")»
+								assertTrue(«d.name.toFirstLower».get«data.name.toFirstUpper»().equals(«data.name»));
+							«ELSE»
+								//no getter for «data.name.toFirstUpper»
+							«ENDIF»		
+						«ENDIF»
+					«ELSEIF data instanceof MeasurementData»
 						«IF !data.excludedMethods.contains("getter")»
-							assertTrue(«d.name.toFirstLower».get«data.name.toFirstUpper»().equals(«data.name»));
+							«IF data.adjustedByLinearDataConversionWithInterval»
+								assertTrue(«d.name.toFirstLower».get«data.name.toFirstUpper»NotAdjusted().equals(«data.name»));
+							«ELSE»
+								assertTrue(«d.name.toFirstLower».get«data.name.toFirstUpper»().equals(«data.name»));
+							«ENDIF»
 						«ELSE»
 							//no getter for «data.name.toFirstUpper»
-						«ENDIF»		
+						«ENDIF»	
 					«ENDIF»
-				«ELSEIF data instanceof MeasurementData»
-					«IF !data.excludedMethods.contains("getter")»
-						«IF data.adjustedByLinearMappingWithInterval»
-							assertTrue(«d.name.toFirstLower».get«data.name.toFirstUpper»NotAdjusted().equals(«data.name»));
-						«ELSE»
-							assertTrue(«d.name.toFirstLower».get«data.name.toFirstUpper»().equals(«data.name»));
-						«ENDIF»
-					«ELSE»
-						//no getter for «data.name.toFirstUpper»
-					«ENDIF»	
-				«ENDIF»
-			«ENDFOR»
-			«FOR dataSet : d.usedDataSets»
-				assertTrue(«d.name.toFirstLower».get«dataSet.name.toFirstUpper»().equals(«dataSet.name.toFirstLower»));
-			«ENDFOR»
+				«ENDFOR»
+				«FOR dataSet : d.usedDataSets»
+					assertTrue(«d.name.toFirstLower».get«dataSet.name.toFirstUpper»().equals(«dataSet.name.toFirstLower»));
+				«ENDFOR»
+			}
+			
 		'''
 	}
 	
-	def getAttributesInLine(DataSet d){	
-		var s="";
-		for (data : d.data) {
-			if( data instanceof NonMeasurementData) {
-				if(!data.constant) {
-					s += data.name +","
-				}
-			}
-			else if (data instanceof MeasurementData) {
-				s += data.name +","
-			}
-		}
-		for (dataSet : d.usedDataSets) {
-				s += dataSet.name.toFirstLower +","
-		}
-		if(s.empty) {
-			return ""
-		}
-		else {
-			return s.substring(0,s.length-1)
-		}
-	}
-			
+	/**
+	 * Generates test cases for the initial value of non measurement datas of a data set.
+	 */	
 	def generateInitialValueTests(DataSet d) {
 		'''
 		«FOR data : d.data.filter(NonMeasurementData)»
@@ -584,47 +511,9 @@ class JavaTestDTOGenerator implements IDTOGenerator {
 		'''
 	}
 	
-	def adjustedByLinearMappingWithInterval(Data d) {
-		if(d instanceof MeasurementData) {
-			return d.adjustments.exists[adj | adj instanceof LinearDataConversionWithInterval]
-		}
-		return false
-	}
-	
-	def generateSetterTest(Data data,DataSet d) {
-		'''
-			/**
-			 * Testcase for setter of «data.name.toFirstUpper»
-			 * @generated
-			 */	
-			@org.junit.Test public void test«data.name.toFirstUpper»Setter() {
-				«data.toTypeName» minValue = «data.minValue»«data.dataType.addDataTypeExtention()»;
-				«data.toTypeName» maxValue = «data.maxValue»«data.dataType.addDataTypeExtention()»;
-				«d.name.toFirstLower».set«data.name.toFirstUpper»(minValue);
-				«IF !data.excludedMethods.contains("getter")»
-					«IF data.adjustedByLinearMappingWithInterval»
-						assertTrue(«d.name.toFirstLower».get«data.name.toFirstUpper»NotAdjusted().equals(minValue));
-					«ELSE»
-						assertTrue(«d.name.toFirstLower».get«data.name.toFirstUpper»().equals(minValue));
-					«ENDIF»
-				«ELSE»
-					//no getter for «data.name.toFirstUpper»
-				«ENDIF»
-				«d.name.toFirstLower».set«data.name.toFirstUpper»(maxValue);
-				«IF !data.excludedMethods.contains("getter")»
-					«IF data.adjustedByLinearMappingWithInterval»
-						assertTrue(«d.name.toFirstLower».get«data.name.toFirstUpper»NotAdjusted().equals(maxValue));
-					«ELSE»
-						assertTrue(«d.name.toFirstLower».get«data.name.toFirstUpper»().equals(maxValue));
-					«ENDIF»
-				«ELSE»
-					//no getter for «data.name.toFirstUpper»
-				«ENDIF»
-			}
-			
-		'''
-	}
-	
+	/**
+	 * Generates test cases for setters of the datas of a data set.
+	 */	
 	def generateSetterTests(DataSet d){	
 		'''
 		«FOR data : d.data.filter(Data)»
@@ -641,11 +530,11 @@ class JavaTestDTOGenerator implements IDTOGenerator {
 					}
 					
 				«ELSEIF !data.excludedMethods.contains("setter")»
-					«generateSetterTest(data,d)»
+					«data.setterTest»
 				«ENDIF»				
 			«ELSEIF data instanceof MeasurementData»
 				«IF !data.excludedMethods.contains("setter")»
-					«generateSetterTest(data,d)»
+					«data.setterTest»
 				«ENDIF»		
 			«ENDIF»
 		«ENDFOR»
@@ -664,11 +553,204 @@ class JavaTestDTOGenerator implements IDTOGenerator {
 		'''
 	}
 	
-	def hasSetter(Data data) {
-		if(data instanceof NonMeasurementData) {
-			return !(data.constant || data.excludedMethods.contains("setter"));
+// ------------------------------ Other Methods ------------------------------
+		
+	/**
+	 * returns the parameters of a constructor of this data set in a single line
+	 */
+	private def getAttributesInLine(DataSet d){	
+		var s="";
+		for (data : d.data) {
+			if( data instanceof NonMeasurementData) {
+				if(!data.constant) {
+					s += data.name +","
+				}
+			}
+			else if (data instanceof MeasurementData) {
+				s += data.name +","
+			}
 		}
-		return !data.excludedMethods.contains("setter");
+		for (dataSet : d.usedDataSets) {
+				s += dataSet.name.toFirstLower +","
+		}
+		if(s.empty) {
+			return ""
+		}
+		else {
+			return s.substring(0,s.length-1)
+		}
+	}
+		
+	/**
+	 * returns the imports necessary for the test cases
+	 */
+	private def getImports(EList<DataSet> dataSets) {
+		'''
+			«FOR dataSet : dataSets»
+				import «dataSet.sensorDataDescription.sensorInterface.name».«dataSet.name.toFirstUpper».«dataSet.name.toFirstUpper»;
+			«ENDFOR»
+		'''
+	}		
+		
+	/**
+	 * generates a setter test for a data
+	 */
+	private def getSetterTest(Data data) {
+		'''
+			/**
+			 * Testcase for setter of «data.name.toFirstUpper»
+			 * @generated
+			 */	
+			@org.junit.Test public void test«data.name.toFirstUpper»Setter() {
+				«data.toTypeName» minValue = «data.minValue»«data.dataType.dataTypeExtention»;
+				«data.toTypeName» maxValue = «data.maxValue»«data.dataType.dataTypeExtention»;
+				«data.dataSet.name.toFirstLower».set«data.name.toFirstUpper»(minValue);
+				«IF !data.excludedMethods.contains("getter")»
+					«IF data.adjustedByLinearDataConversionWithInterval»
+						assertTrue(«data.dataSet.name.toFirstLower».get«data.name.toFirstUpper»NotAdjusted().equals(minValue));
+					«ELSE»
+						assertTrue(«data.dataSet.name.toFirstLower».get«data.name.toFirstUpper»().equals(minValue));
+					«ENDIF»
+				«ELSE»
+					//no getter for «data.name.toFirstUpper»
+				«ENDIF»
+				«data.dataSet.name.toFirstLower».set«data.name.toFirstUpper»(maxValue);
+				«IF !data.excludedMethods.contains("getter")»
+					«IF data.adjustedByLinearDataConversionWithInterval»
+						assertTrue(«data.dataSet.name.toFirstLower».get«data.name.toFirstUpper»NotAdjusted().equals(maxValue));
+					«ELSE»
+						assertTrue(«data.dataSet.name.toFirstLower».get«data.name.toFirstUpper»().equals(maxValue));
+					«ENDIF»
+				«ELSE»
+					//no getter for «data.name.toFirstUpper»
+				«ENDIF»
+			}
+			
+		'''
+	}
+	
+	/**
+	 * returns the appropriate simple type name suitable for casting for dataType if necessary
+	 */
+	private def getNecessaryCast(DataType d){
+		return switch (d) {
+			case INT8: "(byte) "
+			case UINT8: "(byte) "
+			case INT16: "(short) "
+			case UINT16: "(short) "
+			default: ""
+		}
+	}
+		
+	/**
+	 * returns the appropriate data type extention for numbers in java
+	 */
+	private def getDataTypeExtention(DataType d) {
+		return switch (d) {
+			case INT64: "L"
+			case UINT64: "L"
+			case FLOAT: "F" 
+			default: ""
+		}
+	}
+		
+	/**
+	 * returns the formula of a linear data conversion with interval with appropriate numbers
+	 */
+	private def getLinearDataConversionWithInterval(Number independentVariable, double oldMin, double oldMax, double newMin, double newMax) {
+		'''
+		(((«independentVariable.doubleValue()» - «oldMin») * («newMax» - «newMin»)) / («oldMax» - «oldMin»)) + «newMin»);
+		'''
+	}
+			
+	/**
+	 * returns the formula of a linear data conversion with interval with appropriate numbers
+	 */
+	private def getNumberWithCast(DataType type,Object number) {
+		'''
+		«type.necessaryCast»«toDataType(type,Double.valueOf(number.toString))»«type.dataTypeExtention»'''
+	}
+			
+	/**
+	 * returns the minimal value of the data type of this data
+	 */
+	private def getMinValue(Data d) {
+		return switch (d.dataType) {
+			case INT8: Byte.MIN_VALUE
+			case UINT8: Byte.MIN_VALUE
+			case INT16: Short.MIN_VALUE
+			case UINT16: Short.MIN_VALUE
+			case INT32: Integer.MIN_VALUE
+			case UINT32: Integer.MIN_VALUE
+			case INT64: Long.MIN_VALUE
+			case UINT64: Long.MIN_VALUE
+			case FLOAT: (-Float.MAX_VALUE)
+			case DOUBLE: (-Double.MAX_VALUE)
+			case BOOLEAN: false
+			case STRING: "\"test\""
+			default: ""
+		}
+	}
+				
+	/**
+	 * returns the maximal value of the data type of this data
+	 */
+	private def getMaxValue(Data d) {
+		return switch (d.dataType) {
+			case INT8: Byte.MAX_VALUE
+			case UINT8: Byte.MAX_VALUE
+			case INT16: Short.MAX_VALUE
+			case UINT16: Short.MAX_VALUE
+			case INT32: Integer.MAX_VALUE
+			case UINT32: Integer.MAX_VALUE
+			case INT64: Long.MAX_VALUE
+			case UINT64: Long.MAX_VALUE
+			case FLOAT: Float.MAX_VALUE
+			case DOUBLE: Double.MAX_VALUE
+			case BOOLEAN: true
+			case STRING: "\"test\""
+			default: ""
+		}
+	}
+				
+	/**
+	 * converts this value to a value of this data type
+	 */
+	private def toDataType(DataType d, Double value) {
+		return switch (d) {
+			case INT8: value.byteValue
+			case UINT8: value.byteValue
+			case INT16: value.shortValue
+			case UINT16: value.shortValue
+			case INT32: value.intValue
+			case UINT32: value.intValue
+			case INT64: value.longValue
+			case UINT64: value.longValue
+			case FLOAT: value.floatValue
+			case DOUBLE: value
+			default: 0
+		}
+	}
+	
+	/**
+	 * returns the appropriate simple type name suitable for casting for dataType
+	 */
+	private def toSimpleTypeName(DataType d){
+		return switch (d) {
+			case INT8: "byte"
+			case UINT8: "byte"
+			case INT16: "short"
+			case UINT16: "short"
+			case INT32: "int"
+			case UINT32: "int"
+			case INT64: "long"
+			case UINT64: "long"
+			case FLOAT: "float"
+			case DOUBLE: "double"
+			case BOOLEAN: "boolean"
+			case STRING: "String"
+			default: ""
+		}
 	}
 	
 	/**
@@ -693,7 +775,11 @@ class JavaTestDTOGenerator implements IDTOGenerator {
 		}
 	}
 	
-	def toTypeName(DataType d) {
+	/**
+	 * Maps to the corresponding language data type.
+	 * @see IDTOGenerator#toTypeName(Data)
+	 */
+	private def toTypeName(DataType d) {
 		return switch (d) {
 			case INT8: Byte.name
 			case UINT8: Byte.name
@@ -711,102 +797,20 @@ class JavaTestDTOGenerator implements IDTOGenerator {
 		}
 	}
 	
-	def getMinValue(Data d) {
-		return switch (d.dataType) {
-			case INT8: Byte.MIN_VALUE
-			case UINT8: Byte.MIN_VALUE
-			case INT16: Short.MIN_VALUE
-			case UINT16: Short.MIN_VALUE
-			case INT32: Integer.MIN_VALUE
-			case UINT32: Integer.MIN_VALUE
-			case INT64: Long.MIN_VALUE
-			case UINT64: Long.MIN_VALUE
-			case FLOAT: (-Float.MAX_VALUE)
-			case DOUBLE: (-Double.MAX_VALUE)
-			case BOOLEAN: false
-			case STRING: "\"test\""
-			default: ""
-		}
-	}
-	
-	def getMaxValue(Data d) {
-		return switch (d.dataType) {
-			case INT8: Byte.MAX_VALUE
-			case UINT8: Byte.MAX_VALUE
-			case INT16: Short.MAX_VALUE
-			case UINT16: Short.MAX_VALUE
-			case INT32: Integer.MAX_VALUE
-			case UINT32: Integer.MAX_VALUE
-			case INT64: Long.MAX_VALUE
-			case UINT64: Long.MAX_VALUE
-			case FLOAT: Float.MAX_VALUE
-			case DOUBLE: Double.MAX_VALUE
-			case BOOLEAN: true
-			case STRING: "\"test\""
-			default: ""
-		}
-	}
-	
-	def toDataType(DataType d, Double value) {
-		return switch (d) {
-			case INT8: value.byteValue
-			case UINT8: value.byteValue
-			case INT16: value.shortValue
-			case UINT16: value.shortValue
-			case INT32: value.intValue
-			case UINT32: value.intValue
-			case INT64: value.longValue
-			case UINT64: value.longValue
-			case FLOAT: value.floatValue
-			case DOUBLE: value
-			default: 0
-		}
+	/**
+	 * adds .java to a string
+	 */
+	override addFileExtensionTo(String ClassName) {
+		return ClassName + SensIDLConstants.JAVA_EXTENSION
 	}
 	
 	/**
-	 * returns the appropriate simple type name suitable for casting for dataType
+	 * returns if a data is adjusted by linear data conversion with interval
 	 */
-	def toSimpleTypeName(DataType d){
-		return switch (d) {
-			case INT8: "byte"
-			case UINT8: "byte"
-			case INT16: "short"
-			case UINT16: "short"
-			case INT32: "int"
-			case UINT32: "int"
-			case INT64: "long"
-			case UINT64: "long"
-			case FLOAT: "float"
-			case DOUBLE: "double"
-			case BOOLEAN: "boolean"
-			case STRING: "String"
-			default: ""
+	private def isAdjustedByLinearDataConversionWithInterval(Data d) {
+		if(d instanceof MeasurementData) {
+			return d.adjustments.exists[adj | adj instanceof LinearDataConversionWithInterval]
 		}
-	}
-	
-	def addDataTypeExtention(DataType d) {
-		return switch (d) {
-			case INT64: "L"
-			case UINT64: "L"
-			case FLOAT: "F"
-			default: ""
-		}
-	}
-	
-		/**
-	 * returns the appropriate simple type name suitable for casting for dataType
-	 */
-	def necessaryCast(DataType d){
-		return switch (d) {
-			case INT8: "(byte) "
-			case UINT8: "(byte) "
-			case INT16: "(short) "
-			case UINT16: "(short) "
-			default: ""
-		}
-	}
-	
-	override addFileExtensionTo(String ClassName) {
-		return ClassName + SensIDLConstants.JAVA_EXTENSION
+		return false
 	}
 }
