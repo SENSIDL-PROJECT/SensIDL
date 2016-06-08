@@ -76,11 +76,11 @@ mapping VortoDataTypes::Entity::toDataSet() : SensIDLModel::dataRepresentation::
 	log("Start with EntityToDataSet-transformation");
 
 	name := self.name;
-	data += self.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity).properties 
-			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)  and prop.propertyAttributes -> size() > 0) 
+	data += self.properties
+			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType) and prop.propertyAttributes -> size() > 0) 
 			-> map toMeasurementData();
-	data += self.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity).properties 
-			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)  and prop.propertyAttributes -> size() = 0) 
+	data += self.properties
+			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType) and prop.propertyAttributes -> size() = 0) 
 			-> map toNonMeasurementData();
 	usedDataSets += getPropertiesContainingEntities(self.properties).type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity)
 					-> map toDataSet();
@@ -88,7 +88,7 @@ mapping VortoDataTypes::Entity::toDataSet() : SensIDLModel::dataRepresentation::
 
 query getPropertiesContainingEntities(properties : OrderedSet(VortoDataTypes::Property)) : OrderedSet(VortoDataTypes::Property) {
 	return properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::ObjectPropertyType))
-					  -> select(prop | prop.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclIsKindOf(VortoDataTypes::Entity));
+					  -> select(prop | prop.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclIsTypeOf(VortoDataTypes::Entity));
 }
 
 query getEntitiesOf(properties : OrderedSet(VortoDataTypes::Property)) : OrderedSet(VortoDataTypes::Entity) {
