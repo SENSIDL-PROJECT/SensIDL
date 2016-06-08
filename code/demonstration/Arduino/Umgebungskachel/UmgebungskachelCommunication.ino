@@ -7,7 +7,24 @@ void initDatastructure() {
 
 String datastructureToJson() {
   
-	String json = "{";
+        DynamicJsonBuffer jsonBuffer;
+        JsonObject& root = jsonBuffer.createObject();
+        JsonObject& ledToggle = root.createNestedObject("LedToggle");
+        JsonObject& alertTemp = root.createNestedObject("AlertThresholdTemperature");
+        JsonObject& alertBright = root.createNestedObject("AlertThresholdBrightness");
+        
+        ledToggle["led"] = get_SensorState_led(&sensorState);
+        alertTemp["threshold_temperature"] = get_SensorState_thresholdtemperature(&sensorState);
+        alertBright["threshold_brightness"] = get_SensorState_thresholdbrightness(&sensorState);
+        
+        root["temperature"] = get_SensorState_temperaturec(&sensorState);
+        root["brightness"] = get_SensorState_brightness(&sensorState);
+        
+        int len = root.measurePrettyLength();
+        char json[len+1];
+        root.prettyPrintTo(json, sizeof(json));
+        return json;
+        /*String json = "{";
 	json += "\"led\":\"" + (String)get_SensorState_led(&sensorState) + "\",";
 	json += "\"temperature_f\":"+ dtostrf(get_SensorState_temperaturef(&sensorState),0,4) + ",";
         json += "\"temperature_c\":"+ dtostrf(get_SensorState_temperaturec(&sensorState),0,4) + ",";
@@ -15,7 +32,7 @@ String datastructureToJson() {
 	json += "\"threshold_brightness\":"+ dtostrf(get_SensorState_thresholdbrightness(&sensorState),0,4) + ",";
 	json += "\"threshold_temperature\":"+ dtostrf(get_SensorState_thresholdtemperature(&sensorState),0,4);
 	json += "}";
-	return json;
+	return json;*/
 }
 
 void parseDatastructureFromJson(String json) {
