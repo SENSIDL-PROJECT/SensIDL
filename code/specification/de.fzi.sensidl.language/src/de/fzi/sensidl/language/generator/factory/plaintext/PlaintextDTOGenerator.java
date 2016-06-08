@@ -22,6 +22,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.ListData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Method;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MethodParameter;
@@ -133,10 +134,13 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 						_builder.append("It");
 					}
 				}
+				else if (data instanceof ListData) {
+					_builder.append("The list data \"" + data.getName() + "\"");
+					addID(data);
+				}
 				_builder.append(" has the data type " + data.getDataType().getName() + ".");
 				_builder.newLineIfNotEmpty();
 				if (data instanceof MeasurementData) {
-//					if (!((MeasurementData) data).getUnit().toString().isEmpty()) {
 					if ( ((MeasurementData) data).getUnit() != null){
 						_builder.append("It has the unit " + ((MeasurementData) data).getUnit());
 					}
@@ -221,7 +225,6 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 							break;
 					}
 				}
-				
 				if(method.getReturnType().getValue() != DataType.UNDEFINED_VALUE) {
 					_builder.append(" and its return value is of the data type " + method.getReturnType() + ".");
 				}
