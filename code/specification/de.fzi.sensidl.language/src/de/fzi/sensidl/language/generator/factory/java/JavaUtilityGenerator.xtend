@@ -102,7 +102,7 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 			 *
 			 * @generated
 			 */
-			class «className» {
+			public class «className» {
 				«IF this.data.size > 0»
 					«generateConversionMethods»
 				«ENDIF»

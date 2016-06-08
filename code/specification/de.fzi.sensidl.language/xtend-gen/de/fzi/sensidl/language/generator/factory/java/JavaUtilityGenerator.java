@@ -174,7 +174,7 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
     _builder.append(" ");
     _builder.append("*/");
     _builder.newLine();
-    _builder.append("class ");
+    _builder.append("public class ");
     _builder.append(className, "");
     _builder.append(" {");
     _builder.newLineIfNotEmpty();
