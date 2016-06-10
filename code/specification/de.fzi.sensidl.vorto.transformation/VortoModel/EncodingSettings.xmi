@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datatype:Entity xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:datatype="http://www.eclipse.org/vorto/metamodel/Datatype" name="EncodingSettings">
+  <properties name="Coding">
+    <propertyAttributes xsi:type="datatype:EnumLiteralPropertyAttribute">
+      <value href="Coding.xmi#//@enums.0"/>
+    </propertyAttributes>
+  </properties>
+  <properties name="Endianness" description="">
+    <propertyAttributes xsi:type="datatype:EnumLiteralPropertyAttribute">
+      <value href="Endianness.xmi#//@enums.1"/>
+    </propertyAttributes>
+  </properties>
+  <properties name="Alignment">
+    <propertyAttributes xsi:type="datatype:EnumLiteralPropertyAttribute">
+      <value href="Alignment.xmi#//@enums.0"/>
+    </propertyAttributes>
+  </properties>
+</datatype:Entity>
