@@ -1,10 +1,12 @@
 package de.fzi.sensidl.vorto.generator
 
-import java.io.IOException
-import org.eclipse.vorto.codegen.api.IMappingContext
-import org.eclipse.vorto.codegen.api.IVortoCodeGenerator
-import org.eclipse.vorto.core.api.model.informationmodel.InformationModel
 import de.fzi.sensidl.language.generator.generationstep.skeletongenerationstep.SkeletonGenerationStep
+import java.io.IOException
+import org.eclipse.vorto.codegen.api.IVortoCodeGenerator
+import org.eclipse.vorto.codegen.api.mapping.InvocationContext
+import org.eclipse.vorto.core.api.model.informationmodel.InformationModel
+
+import static de.fzi.sensidl.language.generator.generationstep.skeletongenerationstep.SkeletonGenerationStep.*
 
 /**
  * SensIDL Vorto Generator. The Vorto Information model will be 
@@ -18,7 +20,7 @@ class SensIDLGenerator implements IVortoCodeGenerator {
 	 * Start the transformation from the vorto information model to 
 	 * the sensidl model (which will start the sensidl generation process)
 	 */
-	override generate(InformationModel infomodel, IMappingContext mappingContext) {
+	override generate(InformationModel infomodel, InvocationContext mappingContext) {
 		// execute the transformation handler
 		SkeletonGenerationStep.createSidlFile = true;
 		try {
