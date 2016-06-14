@@ -1,9 +1,11 @@
-/**
+/*
 *File:							LedToggle.java
 *Version:						
-*Generate at:					30/05/2016 17:38:47
+*Generate at:					14/06/2016 16:12:36
 *Further generated artifacts:	AlertThresholdBrightness.java, UmgebungskachelUtility.java, 
-*								AlertThresholdTemperature.java, SensorState.java
+*								AlertThresholdTemperature.java, AlertThresholdTemperatureTest.java, 
+*								LedToggleTest.java, SensorStateTest.java, SensorState.java, 
+*								AlertThresholdBrightnessTest.java
 */
 
 package de.fzi.sensidl.Umgebungskachel;

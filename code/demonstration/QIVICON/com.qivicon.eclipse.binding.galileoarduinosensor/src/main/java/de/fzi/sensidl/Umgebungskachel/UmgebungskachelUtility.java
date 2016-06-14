@@ -1,9 +1,10 @@
-/**
+/*
 *File:							UmgebungskachelUtility.java
 *Version:						
-*Generate at:					30/05/2016 17:38:47
+*Generate at:					14/06/2016 16:12:36
 *Further generated artifacts:	AlertThresholdBrightness.java, AlertThresholdTemperature.java, 
-*								SensorState.java, LedToggle.java
+*								AlertThresholdTemperatureTest.java, LedToggleTest.java, 
+*								SensorStateTest.java, SensorState.java, LedToggle.java, AlertThresholdBrightnessTest.java
 */
 
 package de.fzi.sensidl.Umgebungskachel;
@@ -87,10 +88,9 @@ public class UmgebungskachelUtility {
 	 */
 	public static <T> T unmarshalJSON(BufferedReader dataset, T obj) { 
 		
-		/*Gson gson = new Gson();
+		Gson gson = new Gson();
 		BufferedReader br = dataset;
-		obj = gson.fromJson(br, obj.getClass());
-		return obj;*/
+		obj = (T)gson.fromJson(br, obj.getClass());
 		return obj;
 	}
 	
@@ -111,7 +111,7 @@ public class UmgebungskachelUtility {
 		ObjectInputStream ois = null;
 		ois = new ObjectInputStream(in);
 		Object o = ois.readObject();
-		T unmarshalledObject = (T) o; // TODO: Ensure the type conversion is valid
+		T unmarshalledObject = (T) o; // SENSIDL_TODO: Ensure the type conversion is valid
 		in.close();
 		if (in != null) {
 			ois.close();
@@ -123,28 +123,28 @@ public class UmgebungskachelUtility {
 	 * Method responsible for serializing Byte-Array
 	 */
 	public static AlertThresholdBrightness marshalAlertThresholdBrightnessByteArray() {
-		//TODO: implement Method
+		//SENSIDL_TODO: implement Method
 		return null;
 	}
 	/**
 	 * Method responsible for serializing Byte-Array
 	 */
 	public static AlertThresholdTemperature marshalAlertThresholdTemperatureByteArray() {
-		//TODO: implement Method
+		//SENSIDL_TODO: implement Method
 		return null;
 	}
 	/**
 	 * Method responsible for serializing Byte-Array
 	 */
 	public static LedToggle marshalLedToggleByteArray() {
-		//TODO: implement Method
+		//SENSIDL_TODO: implement Method
 		return null;
 	}
 	/**
 	 * Method responsible for serializing Byte-Array
 	 */
 	public static SensorState marshalSensorStateByteArray() {
-		//TODO: implement Method
+		//SENSIDL_TODO: implement Method
 		return null;
 	}
 }

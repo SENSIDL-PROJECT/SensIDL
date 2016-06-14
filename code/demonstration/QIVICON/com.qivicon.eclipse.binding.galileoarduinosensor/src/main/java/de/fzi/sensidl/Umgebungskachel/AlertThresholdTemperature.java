@@ -1,9 +1,10 @@
-/**
+/*
 *File:							AlertThresholdTemperature.java
 *Version:						
-*Generate at:					30/05/2016 17:38:47
+*Generate at:					14/06/2016 16:12:36
 *Further generated artifacts:	AlertThresholdBrightness.java, UmgebungskachelUtility.java, 
-*								SensorState.java, LedToggle.java
+*								AlertThresholdTemperatureTest.java, LedToggleTest.java, SensorStateTest.java, 
+*								SensorState.java, LedToggle.java, AlertThresholdBrightnessTest.java
 */
 
 package de.fzi.sensidl.Umgebungskachel;
@@ -43,10 +44,34 @@ public class AlertThresholdTemperature {
 	}
 	
 	/**
+	 * Method for getTemperatureWithDataConversion
+	 *  Calculates the temperature in °F instead of Celsius 
+	 * @generated
+	 */	
+	public java.lang.Double getTemperatureWithDataConversion(){
+		//SENSIDL_TODO: Auto Generated method stub
+		return null;
+	}
+	
+	/**
 	 * @return the threshold_temperature
 	 */
 	public java.lang.Double getThresholdtemperature() {
 		return this.threshold_temperature;
+	}
+	/**
+	 * @param threshold_temperature
+	 *            the threshold_temperature to set
+	 */
+	public void setThresholdtemperatureWithDataConversion(java.lang.Double threshold_temperature) {
+		try {
+			final double offset = 32.0;
+			final double scalingFactor = 1.8;
+			
+			this.threshold_temperature = (double) UmgebungskachelUtility.linearConversion(threshold_temperature, scalingFactor, offset);
+		} catch (IllegalArgumentException e) {
+			//Do something
+		}
 	}
 	/**
 	 * @param threshold_temperature  

@@ -2,6 +2,8 @@ package com.qivicon.eclipse.binding.galileoarduinosensor.handler;
 
 import static com.qivicon.eclipse.binding.galileoarduinosensor.GalileoArduinoSensorBindingConstants.*;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.math.BigDecimal;
@@ -182,15 +184,20 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 	 */
 	private void parseAndUpdateSensorData(InputStreamReader reader) {
 		Gson gson = new Gson();
-		SensorState state = gson.fromJson(reader, SensorState.class);
-		
+		SensorState state = null;
+		try {
+			state = gson.fromJson(reader, SensorState.class);
+		} catch (Exception e) {
+			log.error("Error while parsing json string"+e.getMessage());
+			return;
+		}
 		//Update the Channels according to the received Data and update the Device State to ONLINE
-		updateState(LED_CHANNEL, OnOffType.valueOf(state.getLed()));
-		String temperature = (tempInCelsius)?state.getTemperaturec()+"°C":state.getTemperaturef()+"°F";
+		updateState(LED_CHANNEL, OnOffType.valueOf(state.getLedToggle().getLed()));
+		String temperature = (tempInCelsius)?state.getTemperature()+"°C":state.getTemperatureWithDataConversion()+"°F";
 		updateState(TEMP_CHANNEL, new StringType(temperature));
 		updateState(LIGHT_CHANNEL, new DecimalType(state.getBrightness()));
-		updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(state.getThresholdbrightness()));
-		updateState(TEMP_THRESHOLD_CHANNEL, new DecimalType(state.getThresholdtemperature()));
+		updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(state.getAlertThresholdBrightness().getThresholdbrightness()));
+		updateState(TEMP_THRESHOLD_CHANNEL, new DecimalType(state.getAlertThresholdTemperature().getThresholdtemperature()));
 		updateStatus(ThingStatus.ONLINE);
 	}
 
