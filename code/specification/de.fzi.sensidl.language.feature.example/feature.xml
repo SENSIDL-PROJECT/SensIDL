@@ -13,14 +13,47 @@
          id="de.fzi.sensidl.example.eddystone"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
    <plugin
          id="de.fzi.sensidl.example.emeter"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="de.fzi.sensidl.example.blechar"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="de.fzi.sensidl.example.emeter.vorto"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"/>
+
+   <plugin
+         id="de.fzi.sensidl.example.umgebungskachel"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="de.fzi.sensidl.example.umgebungskachel.vorto"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"/>
+
+   <plugin
+         id="de.fzi.sensidl.examples"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
          unpack="false"/>
 
 </feature>
