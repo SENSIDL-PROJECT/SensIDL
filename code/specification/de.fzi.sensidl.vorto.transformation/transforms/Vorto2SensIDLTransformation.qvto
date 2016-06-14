@@ -6,6 +6,8 @@
  * @author Max Scheerer
  */
 
+import trans.util.UnitCreator;
+
 modeltype SensIDLModel "strict" uses "http://fzi.de/sensidl/design/1.0";
 modeltype VortoInformationModel "strict" uses "http://www.eclipse.org/vorto/metamodel/InformationModel";
 modeltype VortoFunctionblock "strict" uses "http://www.eclipse.org/vorto/metamodel/Functionblock";
@@ -14,11 +16,11 @@ modeltype VortoDataTypes "strict" uses "http://www.eclipse.org/vorto/metamodel/D
 transformation Vorto2SensIDLTransformation(in Source: VortoInformationModel, out Target: SensIDLModel);
 
 main() {
-	log("Start with transformation");
+	log("Start with transformation.");
 	
 	Source.rootObjects()[VortoInformationModel::InformationModel].properties.type -> map toSensorInterface();	
 	
-	log("Finish transformation");
+	log("Finish transformation.");
 }
 
 mapping VortoFunctionblock::FunctionblockModel::toSensorInterface() : SensIDLModel::SensorInterface 
@@ -28,7 +30,59 @@ when {self -> size() > 0} {
 	name := self.name;
 	description := self.description;
 	dataDescription := self.functionblock.map toDataDescription();
-	encodingSettings := createDefaultSettings();
+	
+	try {
+		encodingSettings := self.functionblock._configuration.xmap toEncodingSettings();
+	} except (ex:AssertionFailed) {
+		
+		log("EncodingSettings did not fullfill precondition. Default-EncodingSettings will create.");
+		
+		encodingSettings := createDefaultSettings();	
+	};
+}
+
+mapping VortoFunctionblock::Configuration::toEncodingSettings() : SensIDLModel::EncodingSettings 
+when {	
+	(self -> size() > 0) and 
+	(self.properties -> size() = 1) and
+	(self.properties -> at(1).type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclIsTypeOf(VortoDataTypes::Entity))
+} {
+	log("Start with ConfigurationToEncodingSettings-transformation.");
+
+	var entity := self.properties -> at(1).type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity);
+	
+	coding := getSensIDLCodingFrom(entity.properties -> selectOne(prop | prop.name = "Coding").propertyAttributes
+													 -> at(1).oclAsType(VortoDataTypes::EnumLiteralPropertyAttribute));
+													 
+	endianness := getSensIDLEndiannessFrom(entity.properties -> selectOne(prop | prop.name = "Endianness").propertyAttributes
+													 		 -> at(1).oclAsType(VortoDataTypes::EnumLiteralPropertyAttribute));
+													 		 
+	alignment := getSensIDLAlignment(entity.properties -> selectOne(prop | prop.name = "Alignment").propertyAttributes
+													   -> at(1).oclAsType(VortoDataTypes::EnumLiteralPropertyAttribute));
+}
+
+query getSensIDLAlignment(vortoAlignment : VortoDataTypes::EnumLiteralPropertyAttribute) : Integer {
+	return vortoAlignment.value.name.toInteger();
+}
+
+query getSensIDLEndiannessFrom(vortoEndianness : VortoDataTypes::EnumLiteralPropertyAttribute) : SensIDLModel::Endianness {
+	var sensIDLEndianness : SensIDLModel::Endianness := SensIDLModel::Endianness::BIG_ENDIAN;
+	
+	if (vortoEndianness.value.name = SensIDLModel::Endianness::LITTLE_ENDIAN.toString()) then {
+		sensIDLEndianness := SensIDLModel::Endianness::LITTLE_ENDIAN;
+	} endif;
+	
+	return sensIDLEndianness;
+}
+
+query getSensIDLCodingFrom(vortoCoding : VortoDataTypes::EnumLiteralPropertyAttribute) : SensIDLModel::Coding {
+	var sensIdlCoding : SensIDLModel::Coding := SensIDLModel::Coding::SENSIDL_BINARY;
+	
+	if (vortoCoding.value.name = SensIDLModel::Coding::SENSIDL_JSON.toString()) then {
+		sensIdlCoding := SensIDLModel::Coding::SENSIDL_JSON;
+	} endif;
+	
+	return sensIdlCoding
 }
 
 query createDefaultSettings() : SensIDLModel::EncodingSettings {
@@ -40,8 +94,11 @@ query createDefaultSettings() : SensIDLModel::EncodingSettings {
 }
 
 mapping VortoFunctionblock::FunctionBlock::toDataDescription() : SensIDLModel::dataRepresentation::SensorDataDescription
-when {(self -> size() > 0) and (self.events -> size() > 0)} {
-	log("Start with FunctionBlockToSensorDataDescription-transformation");
+when {
+	(self -> size() > 0) and 
+	(self.events -> size() > 0)
+} {
+	log("Start with FunctionBlockToSensorDataDescription-transformation.");
 	
 	dataSets += self.events -> map toDataSet();
 
@@ -59,7 +116,7 @@ when {(self -> size() > 0) and (self.events -> size() > 0)} {
 }
 
 mapping VortoFunctionblock::Event::toDataSet() : SensIDLModel::dataRepresentation::DataSet {
-	log("Start with EventToDataSet-transformation");
+	log("Start with EventToDataSet-transformation.");
 	
 	name := self.name;
 	data += self.properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType) and prop.propertyAttributes -> size() > 0) 
@@ -71,14 +128,14 @@ mapping VortoFunctionblock::Event::toDataSet() : SensIDLModel::dataRepresentatio
 }
 
 mapping VortoDataTypes::Entity::toDataSet() : SensIDLModel::dataRepresentation::DataSet {
-	log("Start with EntityToDataSet-transformation");
+	log("Start with EntityToDataSet-transformation.");
 
 	name := self.name;
-	data += self.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity).properties 
-			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)  and prop.propertyAttributes -> size() > 0) 
+	data += self.properties
+			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType) and prop.propertyAttributes -> size() > 0) 
 			-> map toMeasurementData();
-	data += self.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity).properties 
-			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)  and prop.propertyAttributes -> size() = 0) 
+	data += self.properties
+			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType) and prop.propertyAttributes -> size() = 0) 
 			-> map toNonMeasurementData();
 	usedDataSets += getPropertiesContainingEntities(self.properties).type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity)
 					-> map toDataSet();
@@ -86,7 +143,7 @@ mapping VortoDataTypes::Entity::toDataSet() : SensIDLModel::dataRepresentation::
 
 query getPropertiesContainingEntities(properties : OrderedSet(VortoDataTypes::Property)) : OrderedSet(VortoDataTypes::Property) {
 	return properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::ObjectPropertyType))
-					  -> select(prop | prop.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclIsKindOf(VortoDataTypes::Entity));
+					  -> select(prop | prop.type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclIsTypeOf(VortoDataTypes::Entity));
 }
 
 query getEntitiesOf(properties : OrderedSet(VortoDataTypes::Property)) : OrderedSet(VortoDataTypes::Entity) {
@@ -100,7 +157,7 @@ query getEntitiesOf(properties : OrderedSet(VortoDataTypes::Property)) : Ordered
 }
 
 mapping VortoFunctionblock::Operation::toMethod() : SensIDLModel::dataRepresentation::Method {
-	log("Start with OperationToMethod-transformation");
+	log("Start with OperationToMethod-transformation.");
 
 	name := self.name;
 	description := self.description;
@@ -111,7 +168,7 @@ mapping VortoFunctionblock::Operation::toMethod() : SensIDLModel::dataRepresenta
 
 mapping VortoFunctionblock::ReturnObjectType::toDataSetReturnType() : SensIDLModel::dataRepresentation::DataSet {
 	init {
-		log("Start with ReturnObjectTypeToDataSet-transformation");
+		log("Start with ReturnObjectTypeToDataSet-transformation.");
 		
 		result := self.returnType.oclAsType(VortoDataTypes::Entity).resolveone(SensIDLModel::dataRepresentation::DataSet);
 	}
@@ -131,7 +188,7 @@ disjuncts VortoFunctionblock::PrimitiveParam::toMethodParameter, VortoFunctionbl
 }
 
 mapping VortoFunctionblock::PrimitiveParam::toMethodParameter() : SensIDLModel::dataRepresentation::MethodParameter {
-	log("Start with PrimitiveParamToMethodParameter-transformation");
+	log("Start with PrimitiveParamToMethodParameter-transformation.");
 
 	name := self.name;
 	dataType := toDataType(self.type.oclAsType(VortoDataTypes::PrimitiveType));
@@ -139,14 +196,14 @@ mapping VortoFunctionblock::PrimitiveParam::toMethodParameter() : SensIDLModel::
 
 mapping VortoFunctionblock::RefParam::toMethodParameter() : SensIDLModel::dataRepresentation::MethodParameter 
 when {self.type.oclIsTypeOf(VortoDataTypes::Entity)} {
-	log("Start with RefParamToMethodParameter-transformation");
+	log("Start with RefParamToMethodParameter-transformation.");
 
 	name := self.name;
 	dataTypeDataSet := self.type.oclAsType(VortoDataTypes::Entity).resolveone(SensIDLModel::dataRepresentation::DataSet);
 }
 
 mapping VortoDataTypes::Property::toNonMeasurementData() : SensIDLModel::dataRepresentation::NonMeasurementData {
-	log("Start with PropertyToNonMeasurementData-transformation");
+	log("Start with PropertyToNonMeasurementData-transformation.");
 
 	name := self.name;
 	description := getDescription(self.description);
@@ -177,14 +234,18 @@ query isConstant(description : String) : Boolean {
 	return (description.find("constant") > 0);
 }
 
-mapping VortoDataTypes::Property::toMeasurementData() : SensIDLModel::dataRepresentation::MeasurementData {
+mapping VortoDataTypes::Property::toMeasurementData() : SensIDLModel::dataRepresentation::MeasurementData 
+when {
+	(self.propertyAttributes -> size() = 1) and 
+	(self.propertyAttributes -> at(1).oclIsTypeOf(VortoDataTypes::EnumLiteralPropertyAttribute))
+} {
 	log("Start with PropertyToMeasurementData-transformation.");
 
 	name := self.name;
 	description := getDescription(self.description);
 	dataType := toDataType(self.type.oclAsType(VortoDataTypes::PrimitivePropertyType).type);
 	adjustments := map toDataRange(self.Constraints);	
-	// unit := ...
+	unit := createUnitFrom(self.propertyAttributes -> at(1).oclAsType(VortoDataTypes::EnumLiteralPropertyAttribute).value.name).oclAsType(SensIDLModel::dataRepresentation::Unit);
 }
 
 mapping toDataRange(in constraints : OrderedSet(VortoDataTypes::Constraint)) : SensIDLModel::dataRepresentation::DataRange 
@@ -193,7 +254,7 @@ when {
 	(constraints -> exists(constraint | constraint.type = VortoDataTypes::ConstraintIntervalType::min)) and
 	(constraints -> exists(constraint | constraint.type = VortoDataTypes::ConstraintIntervalType::max))
 } {
-	log("Start with ConstraintToDataRange-transformation");
+	log("Start with ConstraintToDataRange-transformation.");
 
 	range := object SensIDLModel::dataRepresentation::Interval {
 		lowerBound := getCorrespondingBound(constraints, ConstraintIntervalType::min);
@@ -201,13 +262,12 @@ when {
 	}
 }
 
-//At this stage integer insteat of double values are returned.
-query getCorrespondingBound(constraints : OrderedSet(VortoDataTypes::Constraint), searchedType : VortoDataTypes::ConstraintIntervalType) : Integer {
-	return constraints -> select(con | con.type = searchedType) -> at(1).constraintValues.toInteger();
+query getCorrespondingBound(constraints : OrderedSet(VortoDataTypes::Constraint), searchedType : VortoDataTypes::ConstraintIntervalType) : Real {
+	return constraints -> select(con | con.type = searchedType) -> at(1).constraintValues.toReal();
 }
 
 query toDataType(primType : VortoDataTypes::PrimitiveType) :  SensIDLModel::dataRepresentation::DataType {
-	log("Start with DataType-transformation");
+	log("Start with DataType-transformation.");
 	
 	if (primType = VortoDataTypes::PrimitiveType::string) then {
 		return SensIDLModel::dataRepresentation::DataType::STRING;
