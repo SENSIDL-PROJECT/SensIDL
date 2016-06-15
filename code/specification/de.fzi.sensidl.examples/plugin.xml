@@ -7,6 +7,31 @@
 			parentCategory="org.eclipse.ui.Examples" />
 	</extension>
 	
+	<!-- =================== unittest example =================== -->
+	<extension point="org.eclipse.ui.newWizards">
+		<wizard 
+			 id="de.fzi.sensidl.example.unittest"
+			 name="UnitTest Example"
+			 class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+			 category="org.eclipse.ui.Examples/de.fzi.sensidl.examples"
+			 icon="icons/SensIDL_logo.jpg"
+			 project="true">
+			<description>SensIDL UnitTest Example</description>
+		</wizard>
+	</extension>
+		
+	<extension point="org.eclipse.emf.common.ui.examples">
+		<example 
+			 wizardID="de.fzi.sensidl.example.unittest" 
+			 pageImage="icons/SensIDL_logo.jpg">
+		<fileToOpen location="de.fzi.sensidl.example.unittest/src/unitTestExample.sidl"/>	
+		<projectDescriptor 
+			 name="de.fzi.sensidl.example.unittest" 
+			 contentURI="platform:/plugin/de.fzi.sensidl.example.unittest/" 
+			 description="UnitTest Example"/>
+		</example>
+	</extension>
+	
 	<!-- =================== blechar example =================== -->
 	<extension point="org.eclipse.ui.newWizards">
 		<wizard 
