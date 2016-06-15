@@ -17,7 +17,11 @@ public class UnitCreator {
 		}
 		
 		if (!value.equals(DIMENSIONLESS)) {
-			dummy = (Object) Unit.valueOf(value);
+			try {
+				dummy = (Object) Unit.valueOf(value);
+			} catch (IllegalArgumentException ex) {
+				
+			}
 		}
 		
 		return dummy;
