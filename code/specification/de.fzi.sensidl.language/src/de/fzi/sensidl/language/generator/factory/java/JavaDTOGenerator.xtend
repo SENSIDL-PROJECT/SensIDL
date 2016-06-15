@@ -768,21 +768,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 	 * @see IDTOGenerator#toTypeName(Data)
 	 */
 	override toTypeName(Data d) {
-		return switch (d.dataType) {
-			case INT8: Byte.name
-			case UINT8: Byte.name
-			case INT16: Short.name
-			case UINT16: Short.name
-			case INT32: Integer.name
-			case UINT32: Integer.name
-			case INT64: Long.name
-			case UINT64: Long.name
-			case FLOAT: Float.name
-			case DOUBLE: Double.name
-			case BOOLEAN: Boolean.name
-			case STRING: String.name
-			default: ""
-		}
+		return toTypeName(d.dataType)
 	}
 	
 	/**
@@ -820,21 +806,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 	 * returns the appropriate simple type name suitable for casting
 	 */
 	def toSimpleTypeName(Data d){
-		return switch (d.dataType) {
-			case INT8: "byte"
-			case UINT8: "byte"
-			case INT16: "short"
-			case UINT16: "short"
-			case INT32: "int"
-			case UINT32: "int"
-			case INT64: "long"
-			case UINT64: "long"
-			case FLOAT: "float"
-			case DOUBLE: "double"
-			case BOOLEAN: "boolean"
-			case STRING: "String"
-			default: ""
-		}
+		return toSimpleTypeName(d.dataType)
 	}
 	
 	/**

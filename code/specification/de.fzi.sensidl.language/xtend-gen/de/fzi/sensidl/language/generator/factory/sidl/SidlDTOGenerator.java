@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 /**
  * The sild file generator for the SensIDL Model.
@@ -25,6 +26,10 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
  */
 @SuppressWarnings("all")
 public class SidlDTOGenerator implements IDTOGenerator {
+  private static String OHM_SIGN = "Ω";
+  
+  private static String CORRECT_OHM_SIGN_REPRESENTATION = "Ohm";
+  
   private static Logger logger = Logger.getLogger(SidlDTOGenerator.class);
   
   private List<DataSet> dataSet;
@@ -171,12 +176,16 @@ public class SidlDTOGenerator implements IDTOGenerator {
     if ((d instanceof MeasurementData)) {
       CharSequence _xifexpression_1 = null;
       Unit<?> _unit = ((MeasurementData) d).getUnit();
-      boolean _notEquals = (!Objects.equal(_unit, null));
-      if (_notEquals) {
+      String _string = _unit.toString();
+      boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_string);
+      boolean _not = (!_isNullOrEmpty);
+      if (_not) {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("in ");
         Unit<?> _unit_1 = ((MeasurementData)d).getUnit();
-        _builder.append(_unit_1, "");
+        String _string_1 = _unit_1.toString();
+        String _convertUnitStringIfNecessary = this.convertUnitStringIfNecessary(_string_1);
+        _builder.append(_convertUnitStringIfNecessary, "");
         _xifexpression_1 = _builder;
       } else {
         StringConcatenation _builder_1 = new StringConcatenation();
@@ -189,6 +198,14 @@ public class SidlDTOGenerator implements IDTOGenerator {
       _xifexpression = _builder_2;
     }
     return _xifexpression;
+  }
+  
+  public String convertUnitStringIfNecessary(final String unit) {
+    boolean _equals = unit.equals(SidlDTOGenerator.OHM_SIGN);
+    if (_equals) {
+      return SidlDTOGenerator.CORRECT_OHM_SIGN_REPRESENTATION;
+    }
+    return unit;
   }
   
   /**

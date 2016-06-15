@@ -278,7 +278,7 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
     _builder.append("BufferedReader br = dataset;");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("obj = gson.fromJson(br, obj.getClass());");
+    _builder.append("obj = (T) gson.fromJson(br, obj.getClass());");
     _builder.newLine();
     {
       if ((!this.bigEndian)) {

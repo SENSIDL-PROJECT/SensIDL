@@ -17,6 +17,9 @@ import org.eclipse.emf.ecore.EObject
  * @author Sven Eckhardt
  */
 class SidlDTOGenerator implements IDTOGenerator {
+	
+	private static var String OHM_SIGN = "Ω";
+	private static var String CORRECT_OHM_SIGN_REPRESENTATION = "Ohm";
 
 	private static Logger logger = Logger.getLogger(SidlDTOGenerator)
 
@@ -96,14 +99,22 @@ class SidlDTOGenerator implements IDTOGenerator {
 	 */
 	def createUnit(Data d) {
 		if (d instanceof MeasurementData) {
-			if ((d as MeasurementData).getUnit != null) {
-				'''in «d.unit»'''
+			if (!((d as MeasurementData).getUnit.toString.isNullOrEmpty)) {
+				'''in «d.unit.toString.convertUnitStringIfNecessary»'''
 			} else {
 				'''in Dimensionless'''
 			}
 		} else {
 			''''''
 		}
+	}
+	
+	def convertUnitStringIfNecessary(String unit) {
+		if (unit.equals(OHM_SIGN)) {
+			return CORRECT_OHM_SIGN_REPRESENTATION;
+		}
+		
+		return unit;
 	}
 
 	/**

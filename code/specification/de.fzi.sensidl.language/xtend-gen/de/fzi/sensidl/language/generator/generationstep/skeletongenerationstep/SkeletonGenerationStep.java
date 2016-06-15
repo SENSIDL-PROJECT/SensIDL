@@ -8,8 +8,8 @@ import de.fzi.sensidl.language.generator.elementfilter.ElementFilter;
 import de.fzi.sensidl.language.generator.factory.c.CGenerator;
 import de.fzi.sensidl.language.generator.factory.csharp.CSharpGenerator;
 import de.fzi.sensidl.language.generator.factory.java.JavaGenerator;
+import de.fzi.sensidl.language.generator.factory.java.unittest.JavaUnitTestGenerator;
 import de.fzi.sensidl.language.generator.factory.javascript.JavaScriptGenerator;
-import de.fzi.sensidl.language.generator.factory.javatest.JavaTestGenerator;
 import de.fzi.sensidl.language.generator.factory.plaintext.PlaintextGenerator;
 import de.fzi.sensidl.language.generator.factory.sidl.SidlGenerator;
 import de.fzi.sensidl.language.generator.generationstep.GenerationStep;
@@ -66,7 +66,7 @@ public class SkeletonGenerationStep extends GenerationStep {
             final CSharpGenerator csharpgenerator = new CSharpGenerator();
             final JavaScriptGenerator jsgenerator = new JavaScriptGenerator();
             final PlaintextGenerator generator = new PlaintextGenerator();
-            final JavaTestGenerator jtgenerator = new JavaTestGenerator();
+            final JavaUnitTestGenerator jutgenerator = new JavaUnitTestGenerator();
             final SidlGenerator sgenerator = new SidlGenerator();
             final Procedure1<HashMap<String, CharSequence>> _function = new Procedure1<HashMap<String, CharSequence>>() {
               @Override
@@ -81,7 +81,7 @@ public class SkeletonGenerationStep extends GenerationStep {
                 it.putAll(_generateDTO_3);
                 HashMap<String, CharSequence> _generateDTO_4 = generator.generateDTO(SkeletonGenerationStep.this.dataSet);
                 it.putAll(_generateDTO_4);
-                HashMap<String, CharSequence> _generateDTO_5 = jtgenerator.generateDTO(SkeletonGenerationStep.this.dataSet);
+                HashMap<String, CharSequence> _generateDTO_5 = jutgenerator.generateDTO(SkeletonGenerationStep.this.dataSet);
                 it.putAll(_generateDTO_5);
                 if (SkeletonGenerationStep.createSidlFile) {
                   HashMap<String, CharSequence> _generateDTO_6 = sgenerator.generateDTO(SkeletonGenerationStep.this.dataSet);
@@ -100,7 +100,7 @@ public class SkeletonGenerationStep extends GenerationStep {
           public void execute() {
             final JavaGenerator generator = new JavaGenerator();
             final PlaintextGenerator generator2 = new PlaintextGenerator();
-            final JavaTestGenerator jtgenerator = new JavaTestGenerator();
+            final JavaUnitTestGenerator jutgenerator = new JavaUnitTestGenerator();
             final SidlGenerator sgenerator = new SidlGenerator();
             final Procedure1<HashMap<String, CharSequence>> _function = new Procedure1<HashMap<String, CharSequence>>() {
               @Override
@@ -109,7 +109,7 @@ public class SkeletonGenerationStep extends GenerationStep {
                 it.putAll(_generateDTO);
                 HashMap<String, CharSequence> _generateDTO_1 = generator2.generateDTO(SkeletonGenerationStep.this.dataSet);
                 it.putAll(_generateDTO_1);
-                HashMap<String, CharSequence> _generateDTO_2 = jtgenerator.generateDTO(SkeletonGenerationStep.this.dataSet);
+                HashMap<String, CharSequence> _generateDTO_2 = jutgenerator.generateDTO(SkeletonGenerationStep.this.dataSet);
                 it.putAll(_generateDTO_2);
                 if (SkeletonGenerationStep.createSidlFile) {
                   HashMap<String, CharSequence> _generateDTO_3 = sgenerator.generateDTO(SkeletonGenerationStep.this.dataSet);

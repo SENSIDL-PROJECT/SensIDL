@@ -7,16 +7,7 @@
     xmlns:functionblock="http://www.eclipse.org/vorto/metamodel/Functionblock"
     name="eMeter">
   <functionblock>
-    <configuration>
-      <properties
-          name="EncodingSettings">
-        <type
-            xsi:type="datatype:ObjectPropertyType">
-          <type
-              href="EncodingSettings.xmi#/"/>
-        </type>
-      </properties>
-    </configuration>
+    <configuration/>
     <events
         name="Conductor">
       <properties
@@ -37,11 +28,6 @@
         <type
             xsi:type="datatype:PrimitivePropertyType"
             type="float"/>
-        <propertyAttributes
-            xsi:type="datatype:EnumLiteralPropertyAttribute">
-          <value
-              href="Unit.xmi#//@enums.0"/>
-        </propertyAttributes>
       </properties>
       <properties
           name="power"
@@ -49,11 +35,6 @@
         <type
             xsi:type="datatype:PrimitivePropertyType"
             type="float"/>
-        <propertyAttributes
-            xsi:type="datatype:EnumLiteralPropertyAttribute">
-          <value
-              href="Unit.xmi#//@enums.3"/>
-        </propertyAttributes>
       </properties>
       <properties
           name="powerFactor"
@@ -61,11 +42,6 @@
         <type
             xsi:type="datatype:PrimitivePropertyType"
             type="short"/>
-        <propertyAttributes
-            xsi:type="datatype:EnumLiteralPropertyAttribute">
-          <value
-              href="Unit.xmi#//@enums.2"/>
-        </propertyAttributes>
       </properties>
       <properties
           name="identicator"
@@ -73,8 +49,6 @@
         <type
             xsi:type="datatype:PrimitivePropertyType"
             type="byte"/>
-        <propertyAttributes
-            xsi:type="datatype:EnumLiteralPropertyAttribute"/>
       </properties>
       <properties
           name="Info">
@@ -83,8 +57,6 @@
           <type
               href="Info.xmi#/"/>
         </type>
-        <propertyAttributes
-            xsi:type="datatype:EnumLiteralPropertyAttribute"/>
       </properties>
     </events>
     <events
@@ -101,11 +73,6 @@
         <type
             xsi:type="datatype:PrimitivePropertyType"
             type="float"/>
-        <propertyAttributes
-            xsi:type="datatype:EnumLiteralPropertyAttribute">
-          <value
-              href="Unit.xmi#//@enums.1"/>
-        </propertyAttributes>
       </properties>
       <properties
           name="powerFactor"
@@ -113,11 +80,6 @@
         <type
             xsi:type="datatype:PrimitivePropertyType"
             type="short"/>
-        <propertyAttributes
-            xsi:type="datatype:EnumLiteralPropertyAttribute">
-          <value
-              href="Unit.xmi#//@enums.2"/>
-        </propertyAttributes>
       </properties>
       <properties
           name="Info">

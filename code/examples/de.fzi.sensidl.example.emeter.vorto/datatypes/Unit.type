@@ -5,8 +5,9 @@ description "Type for Unit"
 category EMeter
 
 enum Unit {
-	Voltage "Measurement unit: Voltage",
-	Ampere "Measurement unit: Ampere",
-	Watt "Measurement unit: Watt",
-	KiloWatt "Measurement unit: KiloWatt",
+	V "Measurement unit: Voltage",
+	A "Measurement unit: Ampere",
+	W "Measurement unit: Watt",
+	kW "Measurement unit: KiloWatt",
+	Ohm "Measurement unit: Ohm",
 	Dimensionless "No unit"}

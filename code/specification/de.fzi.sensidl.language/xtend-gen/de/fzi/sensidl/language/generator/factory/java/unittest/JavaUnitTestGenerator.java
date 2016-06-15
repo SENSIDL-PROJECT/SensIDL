@@ -1,27 +1,27 @@
-package de.fzi.sensidl.language.generator.factory.javatest;
+package de.fzi.sensidl.language.generator.factory.java.unittest;
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.language.generator.factory.ICodeGenerator;
-import de.fzi.sensidl.language.generator.factory.javatest.JavaTestDTOGenerator;
+import de.fzi.sensidl.language.generator.factory.java.unittest.JavaUnitTestDTOGenerator;
 import java.util.HashMap;
 import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * The JavaGenerator represents a concrete implementation of The ICodeGenerator and implements the
- * code-generator for the language Java.
+ * The JavaUnitTestGenerator represents a concrete implementation of The ICodeGenerator and implements the
+ * unit test code-generator for the language Java.
  * 
- * @author Max Scheerer
+ * @author Max Peters
  */
 @SuppressWarnings("all")
-public class JavaTestGenerator implements ICodeGenerator {
+public class JavaUnitTestGenerator implements ICodeGenerator {
   /**
    * @see ICodeGenerator#generateDTO()
    */
   @Override
   public HashMap<String, CharSequence> generateDTO(final List<DataSet> dataSet) {
-    JavaTestDTOGenerator _javaTestDTOGenerator = new JavaTestDTOGenerator(dataSet);
-    return _javaTestDTOGenerator.generate();
+    JavaUnitTestDTOGenerator _javaUnitTestDTOGenerator = new JavaUnitTestDTOGenerator(dataSet);
+    return _javaUnitTestDTOGenerator.generate();
   }
   
   /**

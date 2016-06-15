@@ -2160,54 +2160,8 @@ public class JavaDTOGenerator implements IDTOGenerator {
    */
   @Override
   public String toTypeName(final Data d) {
-    String _switchResult = null;
     DataType _dataType = d.getDataType();
-    if (_dataType != null) {
-      switch (_dataType) {
-        case INT8:
-          _switchResult = Byte.class.getName();
-          break;
-        case UINT8:
-          _switchResult = Byte.class.getName();
-          break;
-        case INT16:
-          _switchResult = Short.class.getName();
-          break;
-        case UINT16:
-          _switchResult = Short.class.getName();
-          break;
-        case INT32:
-          _switchResult = Integer.class.getName();
-          break;
-        case UINT32:
-          _switchResult = Integer.class.getName();
-          break;
-        case INT64:
-          _switchResult = Long.class.getName();
-          break;
-        case UINT64:
-          _switchResult = Long.class.getName();
-          break;
-        case FLOAT:
-          _switchResult = Float.class.getName();
-          break;
-        case DOUBLE:
-          _switchResult = Double.class.getName();
-          break;
-        case BOOLEAN:
-          _switchResult = Boolean.class.getName();
-          break;
-        case STRING:
-          _switchResult = String.class.getName();
-          break;
-        default:
-          _switchResult = "";
-          break;
-      }
-    } else {
-      _switchResult = "";
-    }
-    return _switchResult;
+    return this.toTypeName(_dataType);
   }
   
   /**
@@ -2267,29 +2221,7 @@ public class JavaDTOGenerator implements IDTOGenerator {
    * returns true if the DataType is an unsigned DataType
    */
   public boolean isUnsigned(final DataType d) {
-    boolean _or = false;
-    boolean _or_1 = false;
-    boolean _or_2 = false;
-    boolean _equals = Objects.equal(d, DataType.UINT8);
-    if (_equals) {
-      _or_2 = true;
-    } else {
-      boolean _equals_1 = Objects.equal(d, DataType.UINT16);
-      _or_2 = _equals_1;
-    }
-    if (_or_2) {
-      _or_1 = true;
-    } else {
-      boolean _equals_2 = Objects.equal(d, DataType.UINT32);
-      _or_1 = _equals_2;
-    }
-    if (_or_1) {
-      _or = true;
-    } else {
-      boolean _equals_3 = Objects.equal(d, DataType.UINT64);
-      _or = _equals_3;
-    }
-    if (_or) {
+    if ((((Objects.equal(d, DataType.UINT8) || Objects.equal(d, DataType.UINT16)) || Objects.equal(d, DataType.UINT32)) || Objects.equal(d, DataType.UINT64))) {
       return true;
     }
     return false;
@@ -2299,54 +2231,8 @@ public class JavaDTOGenerator implements IDTOGenerator {
    * returns the appropriate simple type name suitable for casting
    */
   public String toSimpleTypeName(final Data d) {
-    String _switchResult = null;
     DataType _dataType = d.getDataType();
-    if (_dataType != null) {
-      switch (_dataType) {
-        case INT8:
-          _switchResult = "byte";
-          break;
-        case UINT8:
-          _switchResult = "byte";
-          break;
-        case INT16:
-          _switchResult = "short";
-          break;
-        case UINT16:
-          _switchResult = "short";
-          break;
-        case INT32:
-          _switchResult = "int";
-          break;
-        case UINT32:
-          _switchResult = "int";
-          break;
-        case INT64:
-          _switchResult = "long";
-          break;
-        case UINT64:
-          _switchResult = "long";
-          break;
-        case FLOAT:
-          _switchResult = "float";
-          break;
-        case DOUBLE:
-          _switchResult = "double";
-          break;
-        case BOOLEAN:
-          _switchResult = "boolean";
-          break;
-        case STRING:
-          _switchResult = "String";
-          break;
-        default:
-          _switchResult = "";
-          break;
-      }
-    } else {
-      _switchResult = "";
-    }
-    return _switchResult;
+    return this.toSimpleTypeName(_dataType);
   }
   
   /**
@@ -2414,15 +2300,7 @@ public class JavaDTOGenerator implements IDTOGenerator {
     }
     EList<DataAdjustment> _adjustments_1 = d.getAdjustments();
     Iterable<LinearDataConversionWithInterval> conversion = Iterables.<LinearDataConversionWithInterval>filter(_adjustments_1, LinearDataConversionWithInterval.class);
-    boolean _or = false;
-    boolean _isEmpty_1 = IterableExtensions.isEmpty(conversion);
-    if (_isEmpty_1) {
-      _or = true;
-    } else {
-      boolean _equals = Objects.equal(conversion, null);
-      _or = _equals;
-    }
-    if (_or) {
+    if ((IterableExtensions.isEmpty(conversion) || Objects.equal(conversion, null))) {
       return null;
     }
     LinearDataConversionWithInterval _head = IterableExtensions.<LinearDataConversionWithInterval>head(conversion);
