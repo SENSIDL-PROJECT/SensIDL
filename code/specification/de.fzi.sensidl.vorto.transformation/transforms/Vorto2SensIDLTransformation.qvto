@@ -1,6 +1,6 @@
 /**
  * Vorto to SensIDL transformation. The following code represents a model-to-model
- * transformation from an instance of the Corto-metamodel to an instance of the SensIDL-
+ * transformation from an instance of the Vorto-metamodel to an instance of the SensIDL-
  * metamodel. The transformation itself is performed by the tansformation-language qvt-operational.
  * 
  * @author Max Scheerer
@@ -31,14 +31,12 @@ when {self -> size() > 0} {
 	description := self.description;
 	dataDescription := self.functionblock.map toDataDescription();
 	
-	try {
-		encodingSettings := self.functionblock._configuration.xmap toEncodingSettings();
-	} except (ex:AssertionFailed) {
+	encodingSettings := self.functionblock._configuration.map toEncodingSettings();
+	if (encodingSettings = null) then {
+		log("EncodingSettings did not fullfill precondition. Default-EncodingSettings are going to be generated.");
 		
-		log("EncodingSettings did not fullfill precondition. Default-EncodingSettings will create.");
-		
-		encodingSettings := createDefaultSettings();	
-	};
+		encodingSettings := createDefaultSettings();
+	} endif;
 }
 
 mapping VortoFunctionblock::Configuration::toEncodingSettings() : SensIDLModel::EncodingSettings 
