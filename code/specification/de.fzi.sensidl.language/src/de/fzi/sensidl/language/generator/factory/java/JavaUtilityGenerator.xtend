@@ -147,7 +147,7 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 			
 			Gson gson = new Gson();
 			BufferedReader br = dataset;
-			obj = gson.fromJson(br, obj.getClass());
+			obj = (T) gson.fromJson(br, obj.getClass());
 			«IF !bigEndian»
 			// use little endianness 
 			«FOR DataSet dataSet : this.dataSets»
