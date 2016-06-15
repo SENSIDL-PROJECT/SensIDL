@@ -2,11 +2,8 @@ package de.fzi.sensidl.language.generator.factory.plaintext;
 
 import java.util.HashMap;
 import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
-
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
-import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.language.generator.factory.ICodeGenerator;
 
 /**

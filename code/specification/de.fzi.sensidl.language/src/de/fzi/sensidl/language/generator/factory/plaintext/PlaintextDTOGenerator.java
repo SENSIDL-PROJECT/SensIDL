@@ -207,7 +207,7 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 				addID(method);
 				_builder.append(" is ");
 				if (method.getVisibility() == null ){
-					_builder.append("public"); 
+					_builder.append("package-private");
 				}
 				else{
 					switch (method.getVisibility()) {
@@ -221,7 +221,7 @@ public class PlaintextDTOGenerator implements IDTOGenerator {
 							_builder.append("protected");
 							break;
 						case ("~"):
-							_builder.append("package");
+							_builder.append("package-private");
 							break;
 					}
 				}
