@@ -34,8 +34,6 @@ import de.fzi.sensidl.language.extensions.todo.SensIDLTodoTaskCustomizer
  
 class JavaDTOGenerator implements IDTOGenerator {
 	private static Logger logger = Logger.getLogger(JavaDTOGenerator)
-	
-	private boolean createEmptyConstructor = true
 
 	private List<DataSet> dataSet
 	
@@ -125,14 +123,13 @@ class JavaDTOGenerator implements IDTOGenerator {
 				
 				«generateConstructorIncludeusedDataSets(d, className)»
 				
-				«IF createEmptyConstructor»
 				/**
 				 * empty constructor for the Data transfer object
 				 */
 				public «className»() {
 				
 				}
-				«ENDIF»
+				
 				«d.generateMethods»
 				
 				«generateDataMethodsIncludeusedDataSets(d)»
@@ -355,6 +352,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 	 * Generates the constructor for this data set including used data sets.
 	 */
 	def generateConstructorIncludeusedDataSets(DataSet d, String className) {
+		if (d.getNonConstantData.size > 0) {
 		'''
 			/**
 			 * Constructor for the Data transfer object
@@ -381,12 +379,33 @@ class JavaDTOGenerator implements IDTOGenerator {
 				«ENDFOR»
 			}
 		'''
+		} else {
+			''''''
+		}
 	}
 	
 	/**
 	 * Generates the Constructor arguments
 	 */
 	def generateConstructorArgumentsIncludeusedDataSetss(DataSet d) {
+		if (d.getNonConstantData.size > 0) {
+			var firstElement = d.getNonConstantData.get(0).toTypeName + " " + GenerationUtil.toNameLower(d.getNonConstantData.get(0))
+			d.getNonConstantData.remove(0)
+			if(d.usedDataSets.size > 0){
+				'''«firstElement»«FOR data : d.getNonConstantData», «data.toTypeName» «GenerationUtil.toNameLower(data)»«ENDFOR»«FOR pdataSet : d.usedDataSets», «GenerationUtil.toNameUpper(pdataSet)» «GenerationUtil.toNameLower(pdataSet)»«ENDFOR»'''
+			} else {
+				'''«firstElement»«FOR data : d.getNonConstantData», «data.toTypeName» «GenerationUtil.toNameLower(data)»«ENDFOR»'''
+			}
+		} else {
+			''''''
+		}
+	}
+	
+	
+	/**
+	 * returns all non constant data (i.e. all measurement data and all non constant non measurement data)
+	 */
+	def getNonConstantData(DataSet d){
 		// create an ArrayList with all data that is not a constant NonMeasurementData (which will not be constructor arguments)
 		var dataList = new ArrayList<Data>();
 		var dataSet = d
@@ -401,19 +420,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 				dataList.add(data)
 			}
 		}
-
-		if (dataList.size > 0) {
-			var firstElement = dataList.get(0).toTypeName + " " + GenerationUtil.toNameLower(dataList.get(0))
-			dataList.remove(0)
-			if(d.usedDataSets.size > 0){
-				'''«firstElement»«FOR data : dataList», «data.toTypeName» «GenerationUtil.toNameLower(data)»«ENDFOR»«FOR pdataSet : d.usedDataSets», «GenerationUtil.toNameUpper(pdataSet)» «GenerationUtil.toNameLower(pdataSet)»«ENDFOR»'''
-			} else {
-				'''«firstElement»«FOR data : dataList», «data.toTypeName» «GenerationUtil.toNameLower(data)»«ENDFOR»'''
-			}
-		} else {
-			createEmptyConstructor = false;
-			''''''
-		}
+		return dataList
 	}
 
 // ------------------------------ Getter and Setter ------------------------------
