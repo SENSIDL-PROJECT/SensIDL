@@ -388,13 +388,14 @@ class JavaDTOGenerator implements IDTOGenerator {
 	 * Generates the Constructor arguments
 	 */
 	def generateConstructorArgumentsIncludeusedDataSetss(DataSet d) {
-		if (d.getNonConstantData.size > 0) {
-			var firstElement = d.getNonConstantData.get(0).toTypeName + " " + GenerationUtil.toNameLower(d.getNonConstantData.get(0))
-			d.getNonConstantData.remove(0)
+		var dataList = d.getNonConstantData
+		if (dataList.size > 0) {
+			var firstElement = dataList.get(0).toTypeName + " " + GenerationUtil.toNameLower(dataList.get(0))
+			dataList.remove(0)
 			if(d.usedDataSets.size > 0){
-				'''«firstElement»«FOR data : d.getNonConstantData», «data.toTypeName» «GenerationUtil.toNameLower(data)»«ENDFOR»«FOR pdataSet : d.usedDataSets», «GenerationUtil.toNameUpper(pdataSet)» «GenerationUtil.toNameLower(pdataSet)»«ENDFOR»'''
+				'''«firstElement»«FOR data : dataList», «data.toTypeName» «GenerationUtil.toNameLower(data)»«ENDFOR»«FOR pdataSet : d.usedDataSets», «GenerationUtil.toNameUpper(pdataSet)» «GenerationUtil.toNameLower(pdataSet)»«ENDFOR»'''
 			} else {
-				'''«firstElement»«FOR data : d.getNonConstantData», «data.toTypeName» «GenerationUtil.toNameLower(data)»«ENDFOR»'''
+				'''«firstElement»«FOR data :dataList», «data.toTypeName» «GenerationUtil.toNameLower(data)»«ENDFOR»'''
 			}
 		} else {
 			''''''
