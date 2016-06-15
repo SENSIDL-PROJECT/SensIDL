@@ -1,12 +1,16 @@
 namespace de.fzi.sensidl.example.umgebungskachel.vorto.type
-version 1.0.0
+version 1.0.1
 displayname "Unit"
 description "Type for Umgebungskachel Unit"
 category umgebungskachel
 
 enum Unit {
-	Celsius,
-	Fahrenheit,
-	Ohm,
+	C
+	/*Measurement Unit: Degree Celsius */,
+	F
+	/*Measurement Unit: Degree Fahrenheit */,
+	Ohm
+	/*Measurement Unit: Degree Ohm */,
 	Dimensionless
+	/*Measurement Unit: Dimensionless */
 }

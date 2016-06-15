@@ -1,9 +1,9 @@
 namespace de.fzi.sensidl.example.umgebungskachel.vorto
-version 1.0.0
+version 1.0.1
 displayname "UmgebungskachelInformationModel"
 description "Information model for UmgebungskachelInformationModel"
-category demo
-using de.fzi.sensidl.example.umgebungskachel.vorto.fb.Umgebungskachel ; 1.0.0
+category umgebungskachel
+using de.fzi.sensidl.example.umgebungskachel.vorto.fb.Umgebungskachel ; 1.0.1
 
 infomodel UmgebungskachelInformationModel {
 

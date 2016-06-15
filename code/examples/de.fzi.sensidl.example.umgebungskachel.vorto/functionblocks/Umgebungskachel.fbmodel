@@ -1,9 +1,9 @@
 namespace de.fzi.sensidl.example.umgebungskachel.vorto.fb
-version 1.0.0
+version 1.0.1
 displayname "Umgebungskachel"
 description "Function block model for Umgebungskachel"
 category umgebungskachel
-using de.fzi.sensidl.example.umgebungskachel.vorto.type.Unit ; 1.0.0
+using de.fzi.sensidl.example.umgebungskachel.vorto.type.Unit ; 1.0.1
 
 functionblock Umgebungskachel {
 	events {
@@ -17,7 +17,7 @@ functionblock Umgebungskachel {
 
 		AlertThresholdTemperatureFahrenheit {
 			mandatory threshold_temperature as double with {
-				measurementUnit : Unit.Fahrenheit
+				measurementUnit : Unit.F
 			}
 
 			"Upper threshold that triggers an alert if the measured temperature is too high"
@@ -25,7 +25,7 @@ functionblock Umgebungskachel {
 
 		AlertThresholdTemperature {
 			mandatory threshold_temperature as double with {
-				measurementUnit : Unit.Celsius
+				measurementUnit : Unit.C
 			}
 
 			"Upper threshold that triggers an alert if the measured temperature is too high"
@@ -45,11 +45,11 @@ functionblock Umgebungskachel {
 			}
 
 			mandatory temperature_c as double with {
-				measurementUnit : Unit.Celsius
+				measurementUnit : Unit.C
 			}
 
 			mandatory temperature_f as double with {
-				measurementUnit : Unit.Fahrenheit
+				measurementUnit : Unit.F
 			}
 
 			"there is no possibility for data conversion in vorto"
@@ -58,7 +58,7 @@ functionblock Umgebungskachel {
 			}
 
 			mandatory treshold_temperature as double with {
-				measurementUnit : Unit.Celsius
+				measurementUnit : Unit.C
 			}
 
 			mandatory treshold_brightness as double with {
