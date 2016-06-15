@@ -49,8 +49,14 @@ public class AlertThresholdTemperature {
 	 * @generated
 	 */	
 	public java.lang.Double getTemperatureWithDataConversion(){
-		//SENSIDL_TODO: Auto Generated method stub
-		return null;
+		try {
+			final double offset = 32.0;
+			final double scalingFactor = (9.0/5.0);
+			
+			return (double) UmgebungskachelUtility.linearConversion(threshold_temperature, scalingFactor, offset);
+		} catch (IllegalArgumentException e) {
+			return null;
+		}
 	}
 	
 	/**
@@ -65,8 +71,8 @@ public class AlertThresholdTemperature {
 	 */
 	public void setThresholdtemperatureWithDataConversion(java.lang.Double threshold_temperature) {
 		try {
-			final double offset = 32.0;
-			final double scalingFactor = 1.8;
+			final double offset = (-32.0 * (5.0/9.0));
+			final double scalingFactor = (5.0/9.0);
 			
 			this.threshold_temperature = (double) UmgebungskachelUtility.linearConversion(threshold_temperature, scalingFactor, offset);
 		} catch (IllegalArgumentException e) {

@@ -73,10 +73,10 @@ public class SensorState {
 	 */	
 	public java.lang.Double getTemperatureWithDataConversion(){
 		try {
-			final double offset = -32.0*(5/9);
-			final double scalingFactor = (5/9);
+			final double offset = 32;
+			final double scalingFactor = (9.0/5.0);
 			
-			return (double) UmgebungskachelUtility.linearConversion(temperature, scalingFactor, offset);
+			return UmgebungskachelUtility.linearConversion(temperature, scalingFactor, offset);
 		} catch (IllegalArgumentException e) {
 			return null;
 		}

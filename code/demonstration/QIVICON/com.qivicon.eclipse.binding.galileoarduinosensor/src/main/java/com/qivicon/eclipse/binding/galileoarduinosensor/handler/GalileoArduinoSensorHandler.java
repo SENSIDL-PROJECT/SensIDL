@@ -96,7 +96,13 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 					 * Then parse it to a json Object and send it to the Sensor (sendState() Method)*/
 					AlertThresholdTemperature s = new AlertThresholdTemperature();
 					DecimalType number = (DecimalType)command;
-					s.setThresholdtemperature(number.doubleValue());
+					
+					//If the UI displays Fahrenheit values -> use the setter with conversion
+					if(tempInCelsius)
+						s.setThresholdtemperature(number.doubleValue());
+					else 
+						s.setThresholdtemperatureWithDataConversion(number.doubleValue());
+					
 					sendState(s);
 				}
 		} //Else Check if the Light Threshold changed
@@ -193,11 +199,18 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 		}
 		//Update the Channels according to the received Data and update the Device State to ONLINE
 		updateState(LED_CHANNEL, OnOffType.valueOf(state.getLedToggle().getLed()));
-		String temperature = (tempInCelsius)?state.getTemperature()+"°C":state.getTemperatureWithDataConversion()+"°F";
+		
+		String temperature = (tempInCelsius)?round2(state.getTemperature())+"°C":round2(state.getTemperatureWithDataConversion())+"°F";
 		updateState(TEMP_CHANNEL, new StringType(temperature));
-		updateState(LIGHT_CHANNEL, new DecimalType(state.getBrightness()));
-		updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(state.getAlertThresholdBrightness().getThresholdbrightness()));
-		updateState(TEMP_THRESHOLD_CHANNEL, new DecimalType(state.getAlertThresholdTemperature().getThresholdtemperature()));
+		
+		updateState(LIGHT_CHANNEL, new DecimalType(round2(state.getBrightness())));
+		updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(round2(state.getAlertThresholdBrightness().getThresholdbrightness())));
+		
+		AlertThresholdTemperature att = state.getAlertThresholdTemperature();
+		double temp_threshold = (tempInCelsius)?att.getThresholdtemperature():att.getTemperatureWithDataConversion();
+		updateState(TEMP_THRESHOLD_CHANNEL, new DecimalType(round2(temp_threshold)));
+		
+		//Tell Qivcon, the thing is online and reachable.
 		updateStatus(ThingStatus.ONLINE);
 	}
 
@@ -213,6 +226,13 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 			}
 		};
 		updateJob = scheduler.scheduleAtFixedRate(update, 0, 5, TimeUnit.SECONDS);
+	}
+	/**
+	 * Simple method, to round a double value to two digits
+	 * @return rounded value
+	 */
+	private double round2(double x) {
+		return Math.round(x*100.0)/100.0;
 	}
 
 	/**
