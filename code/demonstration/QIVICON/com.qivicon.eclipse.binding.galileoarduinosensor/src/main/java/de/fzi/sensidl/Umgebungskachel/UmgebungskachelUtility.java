@@ -1,10 +1,11 @@
 /*
 *File:							UmgebungskachelUtility.java
 *Version:						
-*Generate at:					14/06/2016 16:12:36
-*Further generated artifacts:	AlertThresholdBrightness.java, AlertThresholdTemperature.java, 
-*								AlertThresholdTemperatureTest.java, LedToggleTest.java, 
-*								SensorStateTest.java, SensorState.java, LedToggle.java, AlertThresholdBrightnessTest.java
+*Generate at:					15/06/2016 13:51:12
+*Further generated artifacts:	SensorState.java, AlertThresholdTemperature.java, 
+*								AlertThresholdTemperatureTest.java, LedToggle.java, AlertThresholdBrightness.java, 
+*								AlertThresholdBrightnessTest.java, LedToggleTest.java, 
+*								SensorStateTest.java
 */
 
 package de.fzi.sensidl.Umgebungskachel;
@@ -90,7 +91,7 @@ public class UmgebungskachelUtility {
 		
 		Gson gson = new Gson();
 		BufferedReader br = dataset;
-		obj = (T)gson.fromJson(br, obj.getClass());
+		obj = (T) gson.fromJson(br, obj.getClass());
 		return obj;
 	}
 	

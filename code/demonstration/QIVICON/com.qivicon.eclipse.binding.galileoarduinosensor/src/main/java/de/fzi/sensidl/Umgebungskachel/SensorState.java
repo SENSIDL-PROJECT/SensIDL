@@ -1,10 +1,11 @@
 /*
 *File:							SensorState.java
 *Version:						
-*Generate at:					14/06/2016 16:12:36
-*Further generated artifacts:	AlertThresholdBrightness.java, UmgebungskachelUtility.java, 
-*								AlertThresholdTemperature.java, AlertThresholdTemperatureTest.java, 
-*								LedToggleTest.java, SensorStateTest.java, LedToggle.java, AlertThresholdBrightnessTest.java
+*Generate at:					15/06/2016 13:51:12
+*Further generated artifacts:	UmgebungskachelUtility.java, AlertThresholdTemperature.java, 
+*								AlertThresholdTemperatureTest.java, LedToggle.java, AlertThresholdBrightness.java, 
+*								AlertThresholdBrightnessTest.java, LedToggleTest.java, 
+*								SensorStateTest.java
 */
 
 package de.fzi.sensidl.Umgebungskachel;
@@ -22,41 +23,41 @@ public class SensorState {
 	
 	private static final long serialVersionUID = 1L;
 	/*
-	 *  The measured and adjusted temperature of the Umgebungkachel sensor 
+	 *  measured temperature of the sensor
 	 * 
 	 * Unit: ?
 	 */
 	private java.lang.Double temperature;
 	
 	/*
-	 *  The measured brightness of the Umgebungkachel sensor 
+	 *  measured brightness of the sensor
 	 * 
 	 * Unit: ?
 	 */
 	private java.lang.Double brightness;
 	
 	/*	
-	 *  data description for an switch that controls a light source 
+	 *  data description for the brightness threshold 
 	 */
-	private LedToggle ledToggle;
+	private AlertThresholdBrightness alertThresholdBrightness;
 	/*	
 	 *  data description for the temperature threshold 
 	 */
 	private AlertThresholdTemperature alertThresholdTemperature;
 	/*	
-	 *  data description for the brightness threshold 
+	 *  data description for an switch that controls a light source 
 	 */
-	private AlertThresholdBrightness alertThresholdBrightness;
+	private LedToggle ledToggle;
 	
 	/**
 	 * Constructor for the Data transfer object
 	 */
-	public SensorState(java.lang.Double temperature, java.lang.Double brightness, LedToggle ledToggle, AlertThresholdTemperature alertThresholdTemperature, AlertThresholdBrightness alertThresholdBrightness) {
+	public SensorState(java.lang.Double temperature, java.lang.Double brightness, AlertThresholdBrightness alertThresholdBrightness, AlertThresholdTemperature alertThresholdTemperature, LedToggle ledToggle) {
 		this.temperature = temperature;
 		this.brightness = brightness;
-		this.ledToggle = ledToggle;
-		this.alertThresholdTemperature = alertThresholdTemperature;
 		this.alertThresholdBrightness = alertThresholdBrightness;
+		this.alertThresholdTemperature = alertThresholdTemperature;
+		this.ledToggle = ledToggle;
 	}
 	
 	/**
@@ -68,7 +69,7 @@ public class SensorState {
 	
 	/**
 	 * Method for getTemperatureWithDataConversion
-	 *  Calculates the temperature in °F instead of Celsius 
+	 *  Calculates the temperature in °F instead  of Celsius
 	 * @generated
 	 */	
 	public java.lang.Double getTemperatureWithDataConversion(){
@@ -94,8 +95,8 @@ public class SensorState {
 	 */
 	public void setTemperatureWithDataConversion(java.lang.Double temperature) {
 		try {
-			final double offset = 32.0;
-			final double scalingFactor = 1.8;
+			final double offset = -17.777;
+			final double scalingFactor = 0.555;
 			
 			this.temperature = (double) UmgebungskachelUtility.linearConversion(temperature, scalingFactor, offset);
 		} catch (IllegalArgumentException e) {
@@ -128,19 +129,19 @@ public class SensorState {
 	
 	
 	/**
-	 * @return the ledToggle
+	 * @return the alertThresholdBrightness
 	 *
 	 */
-	public LedToggle getLedToggle() {
-		return this.ledToggle;
+	public AlertThresholdBrightness getAlertThresholdBrightness() {
+		return this.alertThresholdBrightness;
 	}
 	
 	/**
 	 * @param info
-	 *            the ledToggle to set
+	 *            the alertThresholdBrightness to set
 	 */
-	public void setLedToggle(LedToggle ledToggle) {
-		this.ledToggle = ledToggle;
+	public void setAlertThresholdBrightness(AlertThresholdBrightness alertThresholdBrightness) {
+		this.alertThresholdBrightness = alertThresholdBrightness;
 	}
 	
 	/**
@@ -160,19 +161,19 @@ public class SensorState {
 	}
 	
 	/**
-	 * @return the alertThresholdBrightness
+	 * @return the ledToggle
 	 *
 	 */
-	public AlertThresholdBrightness getAlertThresholdBrightness() {
-		return this.alertThresholdBrightness;
+	public LedToggle getLedToggle() {
+		return this.ledToggle;
 	}
 	
 	/**
 	 * @param info
-	 *            the alertThresholdBrightness to set
+	 *            the ledToggle to set
 	 */
-	public void setAlertThresholdBrightness(AlertThresholdBrightness alertThresholdBrightness) {
-		this.alertThresholdBrightness = alertThresholdBrightness;
+	public void setLedToggle(LedToggle ledToggle) {
+		this.ledToggle = ledToggle;
 	}
 	
 }

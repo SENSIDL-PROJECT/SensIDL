@@ -1,10 +1,10 @@
 /*
 *File:							AlertThresholdTemperature.java
 *Version:						
-*Generate at:					14/06/2016 16:12:36
-*Further generated artifacts:	AlertThresholdBrightness.java, UmgebungskachelUtility.java, 
-*								AlertThresholdTemperatureTest.java, LedToggleTest.java, SensorStateTest.java, 
-*								SensorState.java, LedToggle.java, AlertThresholdBrightnessTest.java
+*Generate at:					15/06/2016 13:51:12
+*Further generated artifacts:	SensorState.java, UmgebungskachelUtility.java, AlertThresholdTemperatureTest.java, 
+*								LedToggle.java, AlertThresholdBrightness.java, 
+*								AlertThresholdBrightnessTest.java, LedToggleTest.java, SensorStateTest.java
 */
 
 package de.fzi.sensidl.Umgebungskachel;
@@ -44,16 +44,16 @@ public class AlertThresholdTemperature {
 	}
 	
 	/**
-	 * Method for getTemperatureWithDataConversion
-	 *  Calculates the temperature in °F instead of Celsius 
+	 * Method for getThresholdtemperatureWithDataConversion
+	 *  Calculates the threshold_temperature in °F instead  of Celsius
 	 * @generated
 	 */	
-	public java.lang.Double getTemperatureWithDataConversion(){
+	public java.lang.Double getThresholdtemperatureWithDataConversion(){
 		try {
-			final double offset = 32.0;
+			final double offset = 32;
 			final double scalingFactor = (9.0/5.0);
 			
-			return (double) UmgebungskachelUtility.linearConversion(threshold_temperature, scalingFactor, offset);
+			return UmgebungskachelUtility.linearConversion(threshold_temperature, scalingFactor, offset);
 		} catch (IllegalArgumentException e) {
 			return null;
 		}
@@ -71,8 +71,8 @@ public class AlertThresholdTemperature {
 	 */
 	public void setThresholdtemperatureWithDataConversion(java.lang.Double threshold_temperature) {
 		try {
-			final double offset = (-32.0 * (5.0/9.0));
-			final double scalingFactor = (5.0/9.0);
+			final double offset = -17.777;
+			final double scalingFactor = 0.555;
 			
 			this.threshold_temperature = (double) UmgebungskachelUtility.linearConversion(threshold_temperature, scalingFactor, offset);
 		} catch (IllegalArgumentException e) {

@@ -23,7 +23,6 @@ import org.eclipse.smarthome.core.types.Command;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.Gson;
 
 //import com.qivicon.eclipse.binding.galileoarduinosensor.dataobjects.*;
 import de.fzi.sensidl.Umgebungskachel.*;
@@ -157,7 +156,7 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 	private void sendState(Object newState) {
 		try {
 			String path = "http://" + deviceIP + ":" + devicePort;
-			String json = new Gson().toJson(newState);
+			String json = UmgebungskachelUtility.marshalJSON(newState);
 
 			//Connect to the device via http and send a Java class containing the Data as a Json string.
 			URL url = new URL(path);
@@ -189,10 +188,9 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 	 * @param reader
 	 */
 	private void parseAndUpdateSensorData(InputStreamReader reader) {
-		Gson gson = new Gson();
-		SensorState state = null;
+		SensorState state = new SensorState();
 		try {
-			state = gson.fromJson(reader, SensorState.class);
+			state = UmgebungskachelUtility.unmarshalJSON(new BufferedReader(reader), state);
 		} catch (Exception e) {
 			log.error("Error while parsing json string"+e.getMessage());
 			return;
@@ -207,7 +205,7 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 		updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(round2(state.getAlertThresholdBrightness().getThresholdbrightness())));
 		
 		AlertThresholdTemperature att = state.getAlertThresholdTemperature();
-		double temp_threshold = (tempInCelsius)?att.getThresholdtemperature():att.getTemperatureWithDataConversion();
+		double temp_threshold = (tempInCelsius)?att.getThresholdtemperature():att.getThresholdtemperatureWithDataConversion();
 		updateState(TEMP_THRESHOLD_CHANNEL, new DecimalType(round2(temp_threshold)));
 		
 		//Tell Qivcon, the thing is online and reachable.
