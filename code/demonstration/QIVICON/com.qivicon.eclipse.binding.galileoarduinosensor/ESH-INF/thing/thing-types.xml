@@ -29,14 +29,14 @@
 				<default>80</default>
 			</parameter>
 			<parameter name="measurement" type="text" required="true">
-+                               <label>Einheit der Temperaturmessung</label>
-+                               <description>This value describes in which unit, the Temperature is measured at the Sensor</description>
-+                               <default>°C</default>
-+                               <options>
-+                                       <option value="°C">°C</option>
-+                                       <option value="°F">°F</option>
-+                               </options>
-+                       </parameter>
+	            <label>Einheit der Temperaturmessung</label>
+				<description>This value describes in which unit, the Temperature is measured at the Sensor</description>
+				<default>°C</default>
+               	<options>
+					<option value="°C">°C</option>
+					<option value="°F">°F</option>
+				</options>
+			</parameter>
 			
 		</config-description>
 	</thing-type>
@@ -61,9 +61,9 @@
 	</channel-type>	
 	<channel-type id="temperature_threshold">
 		<item-type>Number</item-type>
-		<label>Temperature Threshold</label>
+		<label>Temperature Threshold(°C/°F)</label>
 		<description></description>
-		<state readOnly="false" pattern="%s °C"></state>
+		<state readOnly="false"> <!-- pattern="%s °C"--> </state>
 	</channel-type>
 	<channel-type id="brightness_threshold">
 		<item-type>Number</item-type>
