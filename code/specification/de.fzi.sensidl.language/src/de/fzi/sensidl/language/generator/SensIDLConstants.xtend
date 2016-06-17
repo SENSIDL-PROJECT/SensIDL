@@ -41,6 +41,18 @@ class SensIDLConstants {
 	}
 	
 	def static String getVisibilityOf(String visibilityIdentifier) {
+		instantiateIfNecessary
+		
+		identifierToVisibility.get(visibilityIdentifier)
+	}
+	
+	def static String getDefaultVisibility() {
+		instantiateIfNecessary
+		
+		identifierToVisibility.get(PRIVATE_IDENTIFIER)
+	}
+	
+	private static def instantiateIfNecessary() {
 		if (identifierToVisibility == null) {
 			identifierToVisibility = new HashMap<String, String> => [
 				put(PUBLIC_IDENTIFIER, PUBLIC_VISIBILITY)
@@ -49,11 +61,5 @@ class SensIDLConstants {
 				put(EMPTY_IDENTIFIER, EMPTY_VISIBILITY)
 			]
 		}
-		
-		identifierToVisibility.get(visibilityIdentifier)
-	}
-	
-	def static String getDefaultVisibility() {
-		identifierToVisibility.get(PRIVATE_IDENTIFIER)
 	}
 }

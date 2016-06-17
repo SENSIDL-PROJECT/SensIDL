@@ -71,27 +71,38 @@ public class SensIDLConstants {
   public static String getVisibilityOf(final String visibilityIdentifier) {
     String _xblockexpression = null;
     {
-      boolean _equals = Objects.equal(SensIDLConstants.identifierToVisibility, null);
-      if (_equals) {
-        HashMap<String, String> _hashMap = new HashMap<String, String>();
-        final Procedure1<HashMap<String, String>> _function = new Procedure1<HashMap<String, String>>() {
-          @Override
-          public void apply(final HashMap<String, String> it) {
-            it.put(SensIDLConstants.PUBLIC_IDENTIFIER, SensIDLConstants.PUBLIC_VISIBILITY);
-            it.put(SensIDLConstants.PRIVATE_IDENTIFIER, SensIDLConstants.PRIVATE_VISIBLITY);
-            it.put(SensIDLConstants.PROTECTED_IDENTIFIER, SensIDLConstants.PROTECTED_VISIBILITY);
-            it.put(SensIDLConstants.EMPTY_IDENTIFIER, SensIDLConstants.EMPTY_VISIBILITY);
-          }
-        };
-        HashMap<String, String> _doubleArrow = ObjectExtensions.<HashMap<String, String>>operator_doubleArrow(_hashMap, _function);
-        SensIDLConstants.identifierToVisibility = _doubleArrow;
-      }
+      SensIDLConstants.instantiateIfNecessary();
       _xblockexpression = SensIDLConstants.identifierToVisibility.get(visibilityIdentifier);
     }
     return _xblockexpression;
   }
   
   public static String getDefaultVisibility() {
-    return SensIDLConstants.identifierToVisibility.get(SensIDLConstants.PRIVATE_IDENTIFIER);
+    String _xblockexpression = null;
+    {
+      SensIDLConstants.instantiateIfNecessary();
+      _xblockexpression = SensIDLConstants.identifierToVisibility.get(SensIDLConstants.PRIVATE_IDENTIFIER);
+    }
+    return _xblockexpression;
+  }
+  
+  private static HashMap<String, String> instantiateIfNecessary() {
+    HashMap<String, String> _xifexpression = null;
+    boolean _equals = Objects.equal(SensIDLConstants.identifierToVisibility, null);
+    if (_equals) {
+      HashMap<String, String> _hashMap = new HashMap<String, String>();
+      final Procedure1<HashMap<String, String>> _function = new Procedure1<HashMap<String, String>>() {
+        @Override
+        public void apply(final HashMap<String, String> it) {
+          it.put(SensIDLConstants.PUBLIC_IDENTIFIER, SensIDLConstants.PUBLIC_VISIBILITY);
+          it.put(SensIDLConstants.PRIVATE_IDENTIFIER, SensIDLConstants.PRIVATE_VISIBLITY);
+          it.put(SensIDLConstants.PROTECTED_IDENTIFIER, SensIDLConstants.PROTECTED_VISIBILITY);
+          it.put(SensIDLConstants.EMPTY_IDENTIFIER, SensIDLConstants.EMPTY_VISIBILITY);
+        }
+      };
+      HashMap<String, String> _doubleArrow = ObjectExtensions.<HashMap<String, String>>operator_doubleArrow(_hashMap, _function);
+      _xifexpression = SensIDLConstants.identifierToVisibility = _doubleArrow;
+    }
+    return _xifexpression;
   }
 }
