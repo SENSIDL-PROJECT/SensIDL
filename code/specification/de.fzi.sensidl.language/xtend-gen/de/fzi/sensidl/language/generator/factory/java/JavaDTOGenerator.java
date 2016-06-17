@@ -47,6 +47,12 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
  */
 @SuppressWarnings("all")
 public class JavaDTOGenerator implements IDTOGenerator {
+  private final static String LONG_FORMATTED = "l";
+  
+  private final static String FLOAT_FORMATTED = "f";
+  
+  private final static String DOUBLE_FORMATTED = ".0";
+  
   private static Logger logger = Logger.getLogger(JavaDTOGenerator.class);
   
   private List<DataSet> dataSet;
@@ -752,8 +758,8 @@ public class JavaDTOGenerator implements IDTOGenerator {
               _builder.append(_value_1, "");
               _builder.append("\"");
             } else {
-              String _value_2 = d.getValue();
-              _builder.append(_value_2, "");
+              String _formatedValue = this.getFormatedValue(d);
+              _builder.append(_formatedValue, "");
             }
           }
         }
@@ -786,8 +792,8 @@ public class JavaDTOGenerator implements IDTOGenerator {
       String _nameLower = GenerationUtil.toNameLower(d);
       _builder_1.append(_nameLower, "");
       {
-        String _value_3 = d.getValue();
-        boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_value_3);
+        String _value_2 = d.getValue();
+        boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_value_2);
         boolean _not = (!_isNullOrEmpty);
         if (_not) {
           _builder_1.append(" = ");
@@ -796,12 +802,12 @@ public class JavaDTOGenerator implements IDTOGenerator {
             boolean _equals_1 = Objects.equal(_dataType_3, DataType.STRING);
             if (_equals_1) {
               _builder_1.append("\"");
-              String _value_4 = d.getValue();
-              _builder_1.append(_value_4, "");
+              String _value_3 = d.getValue();
+              _builder_1.append(_value_3, "");
               _builder_1.append("\"");
             } else {
-              String _value_5 = d.getValue();
-              _builder_1.append(_value_5, "");
+              String _formatedValue_1 = this.getFormatedValue(d);
+              _builder_1.append(_formatedValue_1, "");
             }
           }
         }
@@ -811,6 +817,36 @@ public class JavaDTOGenerator implements IDTOGenerator {
       _xifexpression = _builder_1;
     }
     return _xifexpression;
+  }
+  
+  private String getFormatedValue(final NonMeasurementData data) {
+    String _xblockexpression = null;
+    {
+      String value = data.getValue();
+      String _typeName = this.toTypeName(data);
+      String _name = Long.class.getName();
+      boolean _equals = _typeName.equals(_name);
+      if (_equals) {
+        String _value = value;
+        value = (_value + JavaDTOGenerator.LONG_FORMATTED);
+      }
+      String _typeName_1 = this.toTypeName(data);
+      String _name_1 = Float.class.getName();
+      boolean _equals_1 = _typeName_1.equals(_name_1);
+      if (_equals_1) {
+        String _value_1 = value;
+        value = (_value_1 + JavaDTOGenerator.FLOAT_FORMATTED);
+      }
+      String _typeName_2 = this.toTypeName(data);
+      String _name_2 = Double.class.getName();
+      boolean _equals_2 = _typeName_2.equals(_name_2);
+      if (_equals_2) {
+        String _value_2 = value;
+        value = (_value_2 + JavaDTOGenerator.DOUBLE_FORMATTED);
+      }
+      _xblockexpression = value;
+    }
+    return _xblockexpression;
   }
   
   /**

@@ -33,6 +33,10 @@ import de.fzi.sensidl.language.extensions.todo.SensIDLTodoTaskCustomizer
  */
  
 class JavaDTOGenerator implements IDTOGenerator {
+	private static val LONG_FORMATTED = "l"
+	private static val FLOAT_FORMATTED = "f";
+	private static val DOUBLE_FORMATTED = ".0";
+	
 	private static Logger logger = Logger.getLogger(JavaDTOGenerator)
 
 	private List<DataSet> dataSet
@@ -325,7 +329,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 				«ENDIF»
 				 */
 				«ENDIF» 
-				private «d.toTypeName» «d.name.toUpperCase» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («d.value» - «d.toTypeName».MAX_VALUE)«ELSE»«IF d.dataType == DataType.STRING»"«d.value»"«ELSE»«d.value»«ENDIF»«ENDIF»;
+				private «d.toTypeName» «d.name.toUpperCase» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («d.value» - «d.toTypeName».MAX_VALUE)«ELSE»«IF d.dataType == DataType.STRING»"«d.value»"«ELSE»«d.formatedValue»«ENDIF»«ENDIF»;
 			'''
 		} else {
 			'''
@@ -334,10 +338,28 @@ class JavaDTOGenerator implements IDTOGenerator {
 				  *«d.description»
 				  */
 				«ENDIF» 
-				private «d.toTypeName» «GenerationUtil.toNameLower(d)»«IF !d.value.nullOrEmpty» = «IF d.dataType == DataType.STRING»"«d.value»"«ELSE»«d.value»«ENDIF»«ENDIF»;
+				private «d.toTypeName» «GenerationUtil.toNameLower(d)»«IF !d.value.nullOrEmpty» = «IF d.dataType == DataType.STRING»"«d.value»"«ELSE»«d.formatedValue»«ENDIF»«ENDIF»;
 			'''
 		}
 
+	}
+	
+	private def getFormatedValue(NonMeasurementData data) {
+		var value = data.value;
+		
+		if (data.toTypeName.equals(Long.name)) {
+			value += LONG_FORMATTED
+		}
+		
+		if (data.toTypeName.equals(Float.name)) {
+			value += FLOAT_FORMATTED
+		}
+		
+		if (data.toTypeName.equals(Double.name)) {
+			value += DOUBLE_FORMATTED;
+		}
+		
+		value;
 	}
 	
 	
