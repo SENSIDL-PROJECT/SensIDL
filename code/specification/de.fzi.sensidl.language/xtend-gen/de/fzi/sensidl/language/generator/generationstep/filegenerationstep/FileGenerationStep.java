@@ -104,7 +104,15 @@ public class FileGenerationStep extends GenerationStep {
   public ArrayList<String> createExtensions(final String fileExtension) {
     final String editedCExtension = Files.getFileExtension(SensIDLConstants.C_EXTENSION);
     final String editedHeaderExtension = Files.getFileExtension(SensIDLConstants.HEADER_EXTENSION);
-    if ((fileExtension.equals(editedCExtension) || fileExtension.equals(editedHeaderExtension))) {
+    boolean _or = false;
+    boolean _equals = fileExtension.equals(editedCExtension);
+    if (_equals) {
+      _or = true;
+    } else {
+      boolean _equals_1 = fileExtension.equals(editedHeaderExtension);
+      _or = _equals_1;
+    }
+    if (_or) {
       ArrayList<String> _arrayList = new ArrayList<String>();
       final Procedure1<ArrayList<String>> _function = new Procedure1<ArrayList<String>>() {
         @Override

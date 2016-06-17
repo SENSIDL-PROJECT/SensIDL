@@ -117,12 +117,24 @@ public class GenerationUtil {
    * @return the name of the DataConversion data type.
    */
   public static DataType getDataTypeOfDataConversionAdjustment(final MeasurementData data) {
-    if (((data.getAdjustments().size() <= 0) && (!(data.getAdjustments().get(0) instanceof DataConversion)))) {
+    boolean _and = false;
+    EList<DataAdjustment> _adjustments = data.getAdjustments();
+    int _size = _adjustments.size();
+    boolean _lessEqualsThan = (_size <= 0);
+    if (!_lessEqualsThan) {
+      _and = false;
+    } else {
+      EList<DataAdjustment> _adjustments_1 = data.getAdjustments();
+      DataAdjustment _get = _adjustments_1.get(0);
+      boolean _not = (!(_get instanceof DataConversion));
+      _and = _not;
+    }
+    if (_and) {
       return null;
     }
-    EList<DataAdjustment> _adjustments = data.getAdjustments();
-    DataAdjustment _get = _adjustments.get(0);
-    return GenerationUtil.getDataTypeOfAdjustment(((DataConversion) _get));
+    EList<DataAdjustment> _adjustments_2 = data.getAdjustments();
+    DataAdjustment _get_1 = _adjustments_2.get(0);
+    return GenerationUtil.getDataTypeOfAdjustment(((DataConversion) _get_1));
   }
   
   private static DataType _getDataTypeOfAdjustment(final LinearDataConversion conversion) {

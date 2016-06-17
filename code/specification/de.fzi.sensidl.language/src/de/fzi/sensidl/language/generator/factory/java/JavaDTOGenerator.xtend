@@ -171,15 +171,9 @@ class JavaDTOGenerator implements IDTOGenerator {
 	 */
 	def getMethodVisibility(Method method) {
 		if (method.visibility != null) {
-			switch (method.visibility) {
-				case '+': "public"
-				case '#': "protected"
-				case '~': ""
-				case '-': "private"
-				default: "public"
-			}
+			SensIDLConstants.getVisibilityOf(method.visibility)
 		} else {
-			return "public"
+			SensIDLConstants.defaultVisibility
 		}
 	}
 	

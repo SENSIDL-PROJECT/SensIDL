@@ -421,7 +421,16 @@ public class JavaScriptDTOGenerator implements IDTOGenerator {
           boolean _not = (!_isConstant_1);
           if (_not) {
             {
-              if (((!d.equals(last)) || (!Objects.equal(last, null)))) {
+              boolean _or = false;
+              boolean _equals = d.equals(last);
+              boolean _not_1 = (!_equals);
+              if (_not_1) {
+                _or = true;
+              } else {
+                boolean _notEquals = (!Objects.equal(last, null));
+                _or = _notEquals;
+              }
+              if (_or) {
                 _builder.append(",");
               }
             }

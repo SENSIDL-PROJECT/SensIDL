@@ -607,7 +607,18 @@ public class HeaderDTOGenerator extends CDTOGenerator {
    * Checks, if the given MeasurementData-element was specified to be adjusted as linear conversion.
    */
   public boolean isAdjustedByLinearConversionWithInterval(final MeasurementData data) {
-    return ((data.getAdjustments().size() > 0) && (data.getAdjustments().get(0) instanceof LinearDataConversionWithInterval));
+    boolean _and = false;
+    EList<DataAdjustment> _adjustments = data.getAdjustments();
+    int _size = _adjustments.size();
+    boolean _greaterThan = (_size > 0);
+    if (!_greaterThan) {
+      _and = false;
+    } else {
+      EList<DataAdjustment> _adjustments_1 = data.getAdjustments();
+      DataAdjustment _get = _adjustments_1.get(0);
+      _and = (_get instanceof LinearDataConversionWithInterval);
+    }
+    return _and;
   }
   
   /**
