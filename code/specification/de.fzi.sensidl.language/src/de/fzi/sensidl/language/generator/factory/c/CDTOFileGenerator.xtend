@@ -117,9 +117,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 			*/
 			
 			#include "«GenerationUtil.toNameUpper(dataset) + SensIDLConstants.HEADER_EXTENSION»"
-			
-			«GenerationUtil.toNameUpper(dataset)» «GenerationUtil.toNameLower(dataset)»;
-			
+						
 			«generateInitDatasetDeclaration(dataset)»
 			
 			«generateMethods(dataset)»
@@ -127,6 +125,8 @@ class CDTOFileGenerator extends CDTOGenerator {
 			«generateDataMethodsIncludeUsedDataSets(dataset)»
 			
 			«generateEndiannessMethodsDeclarations(dataset)»
+			
+			«generateMarshalingJSONMethods(dataset)»
 			
 		'''	
 	}
@@ -516,6 +516,69 @@ class CDTOFileGenerator extends CDTOGenerator {
 			«ENDFOR»
 		'''
 		
+	}
+	
+		/**
+	 * Generates methods to marshal JSON and unmarshal JSON.
+	 * @param dataset
+	 */	
+	def generateMarshalingJSONMethods(DataSet dataset){
+		'''
+		«generateMarshalJSON(dataset)»
+		
+		«generateUnmarshalJSON(dataset)»
+		'''
+	}
+	
+	def generateMarshalJSON(DataSet d){
+		
+		var dataSets = new ArrayList<DataSet>() => [
+		add(d)
+		addAll(d.usedDataSets)
+		]
+		'''
+		char * marshalJSON_«d.name.toFirstUpper»(«d.name.toFirstUpper»* p){
+			 
+			JsonNode *jsonObject = json_mkobject();
+	
+			«FOR dataSet : dataSets»
+				«FOR data : dataSet.data»
+					«IF !data.excludedMethods.contains("getter")»
+					json_append_member(jsonObject, "«GenerationUtil.toNameLower(data)»", json_mknumber(get_«dataSet.name.toFirstUpper»_«data.name.replaceAll("[^a-zA-Z0-9]", "")»(p)));
+					«ELSE»
+					json_append_member(jsonObject, "«GenerationUtil.toNameLower(data)»", json_mknumber(0));
+					«ENDIF»
+				«ENDFOR»
+			«ENDFOR»
+			
+			return json_stringify(jsonObject, "\t");
+		}
+		'''
+			
+	}		
+	
+	def generateUnmarshalJSON(DataSet d){
+		
+		var dataSets = new ArrayList<DataSet>() => [
+		add(d)
+		addAll(d.usedDataSets)
+		]
+		'''
+		void unmarshalJSON_«d.name.toFirstUpper»(«d.name.toFirstUpper»* p, const char *jsonString){
+			
+			JsonNode *jsonObject = json_decode(jsonString);
+			
+			«FOR dataSet : dataSets»
+				«FOR data : dataSet.data»
+					if (json_find_member(jsonObject, "«GenerationUtil.toNameLower(data)»") != NULL)
+						p->«data.name» = json_find_member(jsonObject, "«GenerationUtil.toNameLower(data)»")->number_;
+				«ENDFOR»
+			«ENDFOR»			
+			
+			json_delete(jsonObject);
+		}
+
+		'''
 	}	
 	
 		

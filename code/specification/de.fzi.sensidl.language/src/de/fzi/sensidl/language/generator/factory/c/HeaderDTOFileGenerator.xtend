@@ -81,6 +81,9 @@ class HeaderDTOGenerator extends CDTOGenerator {
 			
 			#include <stdint.h> 
 			#include "«GenerationUtil.getUtilityFileName(dataset, SensIDLConstants.HEADER_EXTENSION)»"
+			#include "json.h" // please download json.c and json.h files 
+							  // from: https://github.com/rustyrussell/ccan/tree/master/ccan/json
+							  // and add them to the project in order to use JSON marshalling methods
 						
 						
 			typedef struct
@@ -96,6 +99,8 @@ class HeaderDTOGenerator extends CDTOGenerator {
 			«generateDataMethodsPrototypesIncludeUsedDataSets(dataset)»
 						
 			«generateEndiannessMethodsPrototypes(dataset)»
+			
+			«generateMarshalingJSONMethods(dataset)»
 
 			#endif
 		'''
@@ -431,6 +436,39 @@ class HeaderDTOGenerator extends CDTOGenerator {
 		void swap_«dataset.name.toFirstUpper»_all_endianness(«dataset.name.toFirstUpper»* p);
 		
 		'''
+	}
+	
+	/**
+	 * Generates methods to marshal JSON and unmarshal JSON.
+	 * @param dataset
+	 */	
+	def generateMarshalingJSONMethods(DataSet dataset){
+		'''
+		«generateMarshalJSON(dataset)»
+		
+		«generateUnmarshalJSON(dataset)»
+		
+		'''
+	}
+	
+	def generateMarshalJSON(DataSet d){
+		'''
+		/**
+		* @return the JSON String of «d.name.toFirstUpper»
+		*/
+		char * marshalJSON_«d.name.toFirstUpper»(«d.name.toFirstUpper»* p);
+
+	'''
+	}
+	
+	def generateUnmarshalJSON(DataSet d){
+		'''
+		/**
+		* fill the «d.name.toFirstUpper» struct based on its JSON String
+		*/
+		void unmarshalJSON_«d.name.toFirstUpper»(«d.name.toFirstUpper»* p, const char *json);
+
+	'''
 	}	
 	
 	/**
