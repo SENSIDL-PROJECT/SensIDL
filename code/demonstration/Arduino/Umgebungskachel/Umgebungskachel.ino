@@ -3,12 +3,18 @@
     Implements a sensor demonstrator for the Qivicon platform on a Intel Galileo Board (Arduino).
     This file contains the imports, global variables and also the loop and setup methods that are essential for an Arduino sketch.
 **/
-#include "Sensidl_light.h"
+// Library Include of the generated Code
+#include "SensorState.h"
+
+
+#include "ArduinoJson.h"
 #include <Wire.h>
 #include "rgb_lcd.h"
 #include <Ethernet.h>
 #include <math.h>
 #include <TimerOne.h>
+
+
 
 //Define Sensor And Output Pins
 #define LED 8
@@ -23,8 +29,6 @@ rgb_lcd lcd;
 //Network connection
 boolean ethernetConnection = false;
 
-//Data Structure Library
-Sensidl_light sens;
 
 // the media access control (ethernet hardware) address for the shield:
 byte MAC[] = { 0x98, 0x4F, 0xEE, 0x05, 0x4C, 0x74 };
@@ -77,9 +81,9 @@ void setup()
  showDisplay("Server is at:",(ethernetConnection)? getLocalIP() : getWifiIP());
  lcd.setRGB(150,255,0);
  
- //initial values for the thresholds
- sens.data.threshold_brightness = 15;
- sens.data.threshold_temperature = 29;
+ //initialize Datastructure and values of the thresholds
+ initSensorState(&sensorState);
+ initDatastructure();
  
  //setup an interrupt for a touch event
  attachInterrupt(2, touchEvent, CHANGE);
@@ -105,12 +109,13 @@ void loop()
   String content = readClientRequest(client);
   
   // Call the parseFormJson function of the sensidl library
-  sens.parseFromJson(content);
+  if(!content.equals(""))
+    parseDatastructureFromJson(content);
   
   //refresh LED acccording to recieved data
-  if(sens.data.led == "ON") {
+  if(get_SensorState_led(&sensorState) == "ON") {
     digitalWrite(LED, HIGH);  
-  } else if (sens.data.led == "OFF") {
+  } else if (get_SensorState_led(&sensorState) == "OFF") {
     digitalWrite(LED, LOW);  
   }
   
@@ -119,10 +124,10 @@ void loop()
   
   // check current led state and update it
   if (digitalRead(LED) == HIGH) {
-   sens.data.led = "ON";
+   set_SensorState_led(&sensorState,"ON");
   }
   else {
-   sens.data.led = "OFF";
+   set_SensorState_led(&sensorState,"OFF");
   }
   
   //Update the Temperature and the Light Resistance and refresh the lcd display
@@ -130,7 +135,7 @@ void loop()
   refreshDisplay();
   
   //write the generated json data to the client
-  client.println(sens.toJson());
+  client.println(datastructureToJson());
 
   // give the web browser time to receive the data
   delay(1);

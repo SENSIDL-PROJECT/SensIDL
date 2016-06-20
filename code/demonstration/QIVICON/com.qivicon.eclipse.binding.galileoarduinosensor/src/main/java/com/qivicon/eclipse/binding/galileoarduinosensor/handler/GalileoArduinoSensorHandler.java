@@ -2,6 +2,8 @@ package com.qivicon.eclipse.binding.galileoarduinosensor.handler;
 
 import static com.qivicon.eclipse.binding.galileoarduinosensor.GalileoArduinoSensorBindingConstants.*;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.math.BigDecimal;
@@ -12,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.eclipse.smarthome.core.library.types.DecimalType;
 import org.eclipse.smarthome.core.library.types.OnOffType;
+import org.eclipse.smarthome.core.library.types.StringType;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingStatus;
@@ -20,9 +23,9 @@ import org.eclipse.smarthome.core.types.Command;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.Gson;
 
-import com.qivicon.eclipse.binding.galileoarduinosensor.dataobjects.*;
+//import com.qivicon.eclipse.binding.galileoarduinosensor.dataobjects.*;
+import de.fzi.sensidl.Umgebungskachel.*;
 
 /**
  * The {@link GalileoArduinoSensorHandler} is responsible for handling commands,
@@ -36,6 +39,7 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 	private String deviceIP;
 	private int devicePort;
 	private ScheduledFuture<?> updateJob;
+	private boolean tempInCelsius;
 	
 	/**
 	 * Constructor called by QIVICON
@@ -54,6 +58,7 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 		super.initialize();
 		// Get IP of the device entered by the user during configuration
 		deviceIP = (String) getConfig().get("host");
+		tempInCelsius = ((String)getConfig().get("measurement")).equals("°C");
 		try {
 			// Get the Port of the device entered by the user during configuration
 			devicePort = ((BigDecimal) getConfig().get("port")).intValue();
@@ -90,7 +95,13 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 					 * Then parse it to a json Object and send it to the Sensor (sendState() Method)*/
 					AlertThresholdTemperature s = new AlertThresholdTemperature();
 					DecimalType number = (DecimalType)command;
-					s.setThresholdtemperature(number.doubleValue());
+					
+					//If the UI displays Fahrenheit values -> use the setter with conversion
+					if(tempInCelsius)
+						s.setThresholdtemperature(number.doubleValue());
+					else 
+						s.setThresholdtemperatureWithDataConversion(number.doubleValue());
+					
 					sendState(s);
 				}
 		} //Else Check if the Light Threshold changed
@@ -145,7 +156,7 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 	private void sendState(Object newState) {
 		try {
 			String path = "http://" + deviceIP + ":" + devicePort;
-			String json = new Gson().toJson(newState);
+			String json = UmgebungskachelUtility.marshalJSON(newState);
 
 			//Connect to the device via http and send a Java class containing the Data as a Json string.
 			URL url = new URL(path);
@@ -177,15 +188,27 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 	 * @param reader
 	 */
 	private void parseAndUpdateSensorData(InputStreamReader reader) {
-		Gson gson = new Gson();
-		SensorState state = gson.fromJson(reader, SensorState.class);
-		
+		SensorState state = new SensorState();
+		try {
+			state = UmgebungskachelUtility.unmarshalJSON(new BufferedReader(reader), state);
+		} catch (Exception e) {
+			log.error("Error while parsing json string"+e.getMessage());
+			return;
+		}
 		//Update the Channels according to the received Data and update the Device State to ONLINE
-		updateState(LED_CHANNEL, OnOffType.valueOf(state.getLed()));
-		updateState(TEMP_CHANNEL, new DecimalType(state.getTemperature()));
-		updateState(LIGHT_CHANNEL, new DecimalType(state.getBrightness()));
-		updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(state.getThresholdbrightness()));
-		updateState(TEMP_THRESHOLD_CHANNEL, new DecimalType(state.getThresholdtemperature()));
+		updateState(LED_CHANNEL, OnOffType.valueOf(state.getLedToggle().getLed()));
+		
+		String temperature = (tempInCelsius)?round2(state.getTemperature())+"°C":round2(state.getTemperatureWithDataConversion())+"°F";
+		updateState(TEMP_CHANNEL, new StringType(temperature));
+		
+		updateState(LIGHT_CHANNEL, new DecimalType(round2(state.getBrightness())));
+		updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(round2(state.getAlertThresholdBrightness().getThresholdbrightness())));
+		
+		AlertThresholdTemperature att = state.getAlertThresholdTemperature();
+		double temp_threshold = (tempInCelsius)?att.getThresholdtemperature():att.getThresholdtemperatureWithDataConversion();
+		updateState(TEMP_THRESHOLD_CHANNEL, new DecimalType(round2(temp_threshold)));
+		
+		//Tell Qivcon, the thing is online and reachable.
 		updateStatus(ThingStatus.ONLINE);
 	}
 
@@ -200,7 +223,14 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 				getState();
 			}
 		};
-		updateJob = scheduler.scheduleAtFixedRate(update, 0, 10, TimeUnit.SECONDS);
+		updateJob = scheduler.scheduleAtFixedRate(update, 0, 5, TimeUnit.SECONDS);
+	}
+	/**
+	 * Simple method, to round a double value to two digits
+	 * @return rounded value
+	 */
+	private double round2(double x) {
+		return Math.round(x*100.0)/100.0;
 	}
 
 	/**

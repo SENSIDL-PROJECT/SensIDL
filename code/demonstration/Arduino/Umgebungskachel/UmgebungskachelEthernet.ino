@@ -22,11 +22,14 @@ String readClientRequest(EthernetClient client) {
     if (client.available()) {
           //read char
           char c = client.read();
-          if(content) data +=c;
-          else        request += c;
+          if(content)  data    += c;
+          else         request += c;
           
-          //Header finished after two newlines
-          if(request.endsWith("\r\n\r\n") && content == false){
+          if(content == true) {
+            if (contentRemaining == 1) break;
+            contentRemaining --;
+          }          
+          else if(request.endsWith("\r\n\r\n")){ //Header finished after two newlines
             content = true;
             if(request.indexOf("Content-Length: ") > -1) { //If Content exists, read it
               String substr = request.substring(request.indexOf("Content-Length: ")+16);
@@ -36,11 +39,6 @@ String readClientRequest(EthernetClient client) {
             } else {
               break;
             }
-          }
-          
-          if(content == true) {
-           if (contentRemaining == 0) break;
-            contentRemaining --;
           }
     } else {
       break;
