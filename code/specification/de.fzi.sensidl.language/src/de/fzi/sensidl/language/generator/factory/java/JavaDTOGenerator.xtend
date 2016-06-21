@@ -103,7 +103,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			package de.fzi.sensidl.«GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer)»;
 			 
 			«ELSE»
-			package «GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer)».«className»;
+			package «GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer)»;
 			 
 			«ENDIF» 
 			«IF !bigEndian»

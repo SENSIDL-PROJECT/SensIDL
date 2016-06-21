@@ -80,7 +80,7 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 			«IF createProject»
 			package de.fzi.sensidl.«GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer)»;
 			«ELSE»
-			package «GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer)».«className»;
+			package «GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer)»;
 			«ENDIF» 
 			
 			import static org.junit.Assert.assertTrue;
