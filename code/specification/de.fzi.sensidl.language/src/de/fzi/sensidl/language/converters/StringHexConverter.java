@@ -17,45 +17,39 @@ public class StringHexConverter implements IValueConverter<String> {
 	final static private int DEC_BASE = 10;
 	final static private int MAX_8_BIT_VALUE = 255;
 	final static private int MAX_16_BIT_VALUE = 65535;
+    final static private String BOLEAN_REPRESENTATION_TRUE = "true";
+    final static private String BOLEAN_REPRESENTATION_FALSE = "false";
+    final static private String ERROR_INVALID_STRING = "Invalid string.";
+    final static private String ERROR_DATA_TYPE_NOT_SUPPORTED = "Data type not supported";
+    final static private String EMPTY_STRING = "";
 
 	@Override
-	public String toValue(String string, INode node) throws ValueConverterException {
+	public String toValue(final String string, final INode node) throws ValueConverterException {
 		int base = DEC_BASE;
 
-		string = string.replaceAll(QUOTATION_MARK, "");
+        String localString = removeQuotationMarksFrom(string);
+        
+        if (isNullOrEmpty(localString)) {
+			throw new ValueConverterException(ERROR_INVALID_STRING, node, null);
+		}
+        
 		NonMeasurementData data = (NonMeasurementData) node.getSemanticElement();
 
-		// if the DataType is String, return the String
-		if (data.getDataType().getValue() == DataType.STRING_VALUE) {
-			return string;
+		if (hasStringTypeValue(data)
+            || !containsNonMeasurementData(node)) {
+			return localString;
 		}
 
-		// if the DataType is Boolean, return either true or false
-		if (data.getDataType().getValue() == DataType.BOOLEAN_VALUE) {
-			if (string.toLowerCase().equals("true")) {
-				return "true";
-			} else if (string.toLowerCase().equals("false")) {
-				return "false";
-			} else {
-				throw new ValueConverterException("No valide string.", node, null);
-			}
-
+		if (hasBooleanTypeValue(data)) {
+            return getBooleanRepresentationFrom(localString);
 		}
 
-		if (!(node.getSemanticElement() instanceof NonMeasurementData)) {
-			return string;
-		}
-
-		if (string == null || string == "") {
-			throw new ValueConverterException("No valide string.", node, null);
-		}
-
-		if (isHex(string)) {
+		if (isHex(localString)) {
 			base = HEX_BASE;
-			string = string.replaceAll(HEX_INDICATOR, "");
+			localString = removeHexIndicatorFrom(localString);
 		} else {
-			if (!isNumber(string)) {
-				throw new ValueConverterException("No valide string.", node, null);
+			if (!isNumber(localString)) {
+				throw new ValueConverterException(ERROR_INVALID_STRING, node, null);
 			}
 		}
 
@@ -63,47 +57,81 @@ public class StringHexConverter implements IValueConverter<String> {
 
 		switch (data.getDataType().getValue()) {
 		case DataType.INT8_VALUE:
-			value = Byte.parseByte(string, base);
+			value = Byte.parseByte(localString, base);
 			return value.toString();
 		case DataType.UINT8_VALUE:
-			value = Integer.parseUnsignedInt(string, base) & MAX_8_BIT_VALUE;
+			value = Integer.parseUnsignedInt(localString, base) & MAX_8_BIT_VALUE;
 			return value.toString();
 		case DataType.INT16_VALUE:
-			value = Short.parseShort(string, base);
+			value = Short.parseShort(localString, base);
 			return value.toString();
 		case DataType.UINT16_VALUE:
-			value = Integer.parseUnsignedInt(string, base) & MAX_16_BIT_VALUE;
+			value = Integer.parseUnsignedInt(localString, base) & MAX_16_BIT_VALUE;
 			return value.toString();
 		case DataType.INT32_VALUE:
-			value = Integer.parseInt(string, base);
+			value = Integer.parseInt(localString, base);
 			return value.toString();
 		case DataType.UINT32_VALUE:
-			value = Integer.parseUnsignedInt(string, base);
+			value = Integer.parseUnsignedInt(localString, base);
 			return value.toString();
 		case DataType.INT64_VALUE:
-			value = Long.parseLong(string, base);
+			value = Long.parseLong(localString, base);
 			return value.toString();
 		case DataType.UINT64_VALUE:
-			value = Long.parseUnsignedLong(string, base);
+			value = Long.parseUnsignedLong(localString, base);
 			return value.toString();
 		case DataType.FLOAT_VALUE:
-			value = Integer.parseInt(string, base);
+			value = Integer.parseInt(localString, base);
 			return value.toString();
 		case DataType.DOUBLE_VALUE:
-			value = Long.parseLong(string, base);
+			value = Long.parseLong(localString, base);
 			return value.toString();
 		default:
-			throw new ValueConverterException("Data type not supported", node, null);
+			throw new ValueConverterException(ERROR_DATA_TYPE_NOT_SUPPORTED, node, null);
 		}
 	}
+    
+    private String removeQuotationMarksFrom(String stringWithQuotationMarks) {
+        return stringWithQuotationMarks.replaceAll(QUOTATION_MARK, EMPTY_STRING);
+    }
 
 	private Boolean isNumber(String string) {
-		return string.replaceAll(REGEX_FOR_NUMBERS, "").equals("");
+		return string.replaceAll(REGEX_FOR_NUMBERS, EMPTY_STRING).equals(EMPTY_STRING);
 	}
 
 	private Boolean isHex(String string) {
 		return string.matches(HEX_REGEX);
 	}
+
+    private Boolean hasStringTypeValue(NonMeasurementData data) {
+        return data.getDataType().getValue() == DataType.STRING_VALUE;
+    }
+    
+    private Boolean hasBooleanTypeValue(NonMeasurementData data) {
+        return data.getDataType().getValue() == DataType.BOOLEAN_VALUE;
+    }
+    
+    private String getBooleanRepresentationFrom(String booleanString) {
+        if (BOLEAN_REPRESENTATION_TRUE.equals(booleanString.toLowerCase())) {
+            return BOLEAN_REPRESENTATION_TRUE;
+        } else if (BOLEAN_REPRESENTATION_FALSE.equals(booleanString.toLowerCase())) {
+            return BOLEAN_REPRESENTATION_FALSE;
+        } else {
+            throw new ValueConverterException(ERROR_INVALID_STRING, node, null);
+        }
+    }
+    
+    private String removeHexIndicatorFrom(String stringWithHexIndicator) {
+        return stringWithHexIndicator.replaceAll(HEX_INDICATOR, EMPTY_STRING);
+    }
+    
+    private Boolean containsNonMeasurementData(INode node) {
+        return node.getSemanticElement() instanceof NonMeasurementData
+    }
+    
+    private Boolean isNullOrEmpty(String string) {
+        return null == string || 0 == string.length;
+    }
 
 	@Override
 	public String toString(String value) throws ValueConverterException {
