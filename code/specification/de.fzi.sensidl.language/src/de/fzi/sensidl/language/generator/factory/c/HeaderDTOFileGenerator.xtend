@@ -81,9 +81,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 			
 			#include <stdint.h> 
 			#include "«GenerationUtil.getUtilityFileName(dataset, SensIDLConstants.HEADER_EXTENSION)»"
-			#include "json.h" // please download json.c and json.h files 
-							  // from: https://github.com/rustyrussell/ccan/tree/master/ccan/json
-							  // and add them to the project in order to use JSON marshalling methods
+
 						
 						
 			typedef struct

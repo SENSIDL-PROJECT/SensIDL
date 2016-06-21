@@ -35,7 +35,7 @@ class CUtilityGenerator implements IUtilityGenerator{
 	 //Notice: List<MeasurementData> data can be null. The data-list has to be checked
 	 //if it is empty or not.
 	override generate() {
-		logger.info("Start with code-generation of the java utility class.")
+		logger.info("Start with code-generation of the c utility class.")
 
 		val filesToGenerate = new HashMap
 		val utilityName = GenerationUtil.getUtilityName(this.currentSensorInterface)
@@ -56,6 +56,9 @@ class CUtilityGenerator implements IUtilityGenerator{
 		#ifndef «utilityNameDef.toUpperCase»_H
 		#define «utilityNameDef.toUpperCase»_H
 		#include <stdbool.h>
+		#include "json.h"   // please download json.c and json.h files 
+							// from: https://github.com/rustyrussell/ccan/tree/master/ccan/json
+							// and add them to the project in order to use JSON marshalling methods		
 		
 		«generateCheckLittleEndian()»
 		«generateEndiannessSwapFunctions()»

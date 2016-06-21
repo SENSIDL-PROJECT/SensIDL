@@ -571,7 +571,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 			«FOR dataSet : dataSets»
 				«FOR data : dataSet.data»
 					if (json_find_member(jsonObject, "«GenerationUtil.toNameLower(data)»") != NULL)
-						p->«data.name» = json_find_member(jsonObject, "«GenerationUtil.toNameLower(data)»")->number_;
+						p->«data.name» = («data.toTypeName») json_find_member(jsonObject, "«GenerationUtil.toNameLower(data)»")->number_;
 				«ENDFOR»
 			«ENDFOR»			
 			
