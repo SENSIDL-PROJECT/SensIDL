@@ -12,6 +12,10 @@
          id="de.fzi.sensidl.language.feature.sdk"
          version="0.0.0"/>
 
+   <includes
+         id="de.fzi.sensidl.language.feature.vorto"
+         version="0.0.0"/>
+
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="de.fzi.sensidl.design"/>
