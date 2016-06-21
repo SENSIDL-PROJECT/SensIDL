@@ -23,7 +23,7 @@ public class SensorState {
 	
 	private static final long serialVersionUID = 1L;
 	/*
-	 * Unit: °F
+	 * Unit: F
 	 */
 	private java.lang.Double temperature;
 	

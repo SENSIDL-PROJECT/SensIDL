@@ -45,7 +45,7 @@ public class AlertThresholdTemperature {
 	
 	/**
 	 * Method for getThresholdtemperatureWithDataConversion
-	 *  Calculates the threshold_temperature in °F instead  of Celsius
+	 *  Calculates the threshold_temperature in F instead  of Celsius
 	 * @generated
 	 */	
 	public java.lang.Double getThresholdtemperatureWithDataConversion(){
