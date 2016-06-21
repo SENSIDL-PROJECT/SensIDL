@@ -90,8 +90,6 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 			import org.junit.Before;
 			import java.util.ArrayList;
 			import java.util.List;
-			import «d.sensorDataDescription.sensorInterface.name».«d.name.toFirstUpper».«d.name.toFirstUpper»;
-			«d.usedDataSets.imports»
 			
 			
 			/**
