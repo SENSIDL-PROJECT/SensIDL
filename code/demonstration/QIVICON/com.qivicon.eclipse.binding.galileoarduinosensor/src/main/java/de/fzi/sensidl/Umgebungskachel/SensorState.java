@@ -69,7 +69,7 @@ public class SensorState {
 	
 	/**
 	 * Method for getTemperatureWithDataConversion
-	 *  Calculates the temperature in F instead  of Celsius
+	 *  Calculates the temperature in °F instead  of Celsius 
 	 * @generated
 	 */	
 	public java.lang.Double getTemperatureWithDataConversion(){

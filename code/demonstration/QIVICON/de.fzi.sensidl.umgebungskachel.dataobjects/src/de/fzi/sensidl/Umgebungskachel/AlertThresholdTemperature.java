@@ -24,7 +24,7 @@ public class AlertThresholdTemperature {
 	/*
 	 *  Upper threshold that triggers an alert if the measured temperature is too high 
 	 * 
-	 * Unit: F
+	 * Unit: °F
 	 */
 	private java.lang.Double threshold_temperature;
 	
