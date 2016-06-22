@@ -375,15 +375,15 @@ class JavaDTOGenerator implements IDTOGenerator {
 			 */
 			public «className»(«d.generateConstructorArgumentsIncludeusedDataSetss») {
 				«FOR data : d.eContents.filter(MeasurementData)»
-					«IF data.hasLinearDataConversionWithInterval»
-						«IF data.excludedMethods.contains("setter")»
-							//set«GenerationUtil.toNameUpper(data)»(«GenerationUtil.toNameLower(data)»); // no setter was generated
-						«ELSE»
-							set«GenerationUtil.toNameUpper(data)»(«GenerationUtil.toNameLower(data)»);
-						«ENDIF»
-					«ELSE»
+«««					«IF data.hasLinearDataConversionWithInterval»
+«««						«IF data.excludedMethods.contains("setter")»
+«««							//set«GenerationUtil.toNameUpper(data)»(«GenerationUtil.toNameLower(data)»); // no setter was generated
+«««						«ELSE»
+«««							set«GenerationUtil.toNameUpper(data)»(«GenerationUtil.toNameLower(data)»);
+«««						«ENDIF»
+«««					«ELSE»
 						this.«GenerationUtil.toNameLower(data)» = «IF data.dataType.isUnsigned»(«data.toSimpleTypeName») («GenerationUtil.toNameLower(data)» - «data.toTypeName».MAX_VALUE)«ELSE»«GenerationUtil.toNameLower(data)»«ENDIF»;
-					«ENDIF»
+«««					«ENDIF»
 				«ENDFOR»
 				«FOR data : d.eContents.filter(NonMeasurementData)»
 					«IF !data.constant»
