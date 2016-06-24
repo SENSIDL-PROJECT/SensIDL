@@ -93,16 +93,24 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 			
 			
 			/**
-			 * Test cases for «className.substring(0,className.length-4)».java
+			 * Test cases of «className.substring(0,className.length-4)».
 			 * @generated
 			 */
 			public class «className» {
 				private «d.name.toFirstUpper» «d.name.toFirstLower»;
-
+				
+				/**
+				 * Sets up the test environment.
+				 * @generated
+				 */	
 				@Before public void setUp() {
 					«d.name.toFirstLower» = new «d.name.toFirstUpper»();
 				}
-
+				
+				/**
+				 * Cleans the test environment.
+				 * @generated
+				 */	
 				@After public void tearDown() {
 					«d.name.toFirstLower» = null;
 				}
@@ -128,7 +136,8 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 		'''
 			«FOR data : d.data.filter(ListData)»
 				/**
-				 * test setter of list «data.name.toFirstUpper»
+				 * Test case for setter of list «data.name.toFirstUpper».
+				 * testing basic functionality
 				 * @generated
 				 */	
 				@org.junit.Test public void test«data.name.toFirstUpper»ListSetter() {
@@ -139,7 +148,8 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 					}
 				
 				/**
-				 * test add to list «data.name.toFirstUpper»
+				 * Test case for add(*) of «data.name.toFirstUpper».
+				 * testing basic functionality
 				 * @generated
 				 */	
 				@org.junit.Test public void test«data.name.toFirstUpper»AddToList() {
@@ -163,7 +173,7 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 					«IF adj instanceof LinearDataConversionWithInterval»
 						«IF !data.excludedMethods.contains("setter")»
 						/**
-						 * Testcase for setter with linear data conversion with interval of «data.name.toFirstUpper»
+						 * Test case for setter with linear data conversion with interval of «data.name.toFirstUpper».
 						 * testing conversion
 						 * @generated
 						 */	
@@ -195,7 +205,7 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 						}
 						
 						/**
-						 * Testcase for setter with linear data conversion with interval of «data.name.toFirstUpper»
+						 * Test case for setter with linear data conversion with interval of «data.name.toFirstUpper».
 						 * testing overflow
 						 * @generated
 						 */	
@@ -214,7 +224,7 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 						}
 						
 						/**
-						 * Testcase for setter with linear data conversion with interval of «data.name.toFirstUpper»
+						 * Test case for setter with linear data conversion with interval of «data.name.toFirstUpper».
 						 * testing underflow
 						 * @generated
 						 */	
@@ -234,7 +244,8 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 						
 						«ELSE»
 						/**
-						 * excluded SetterWithDataConversion test for «data.name.toFirstUpper»
+						 * Test case for excluded setter with linear data conversion with interval of «data.name.toFirstUpper».
+						 * testing existence
 						 * @generated
 						 */	
 						@org.junit.Test public void test«data.name.toFirstUpper»ExcludedSetterWithDataConversion() {
@@ -260,7 +271,7 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 					«IF adj instanceof LinearDataConversion»
 						«IF !data.excludedMethods.contains("setter")»
 						/**
-						 * Testcase for setter with linear data conversion of «data.name.toFirstUpper»
+						 * Test case for setter with linear data conversion of «data.name.toFirstUpper».
 						 * testing conversion
 						 * @generated
 						 */	
@@ -276,7 +287,7 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 						}
 						
 						/**
-						 * Testcase for setter with linear data conversion of «data.name.toFirstUpper»
+						 * Test case for setter with linear data conversion of «data.name.toFirstUpper».
 						 * testing overflow
 						 * @generated
 						 */	
@@ -292,7 +303,8 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 						
 						«ELSE»
 						/**
-						 * excluded SetterWithDataConversion test for «data.name.toFirstUpper»
+						 * Test case for excluded setter with linear data conversion of «data.name.toFirstUpper».
+						 * testing existence
 						 * @generated
 						 */	
 						@org.junit.Test public void test«data.name.toFirstUpper»ExcludedSetterWithDataConversion() {
@@ -318,7 +330,7 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 					«IF adj instanceof DataRange»
 						«IF !data.excludedMethods.contains("setter")»
 						/**
-						 * Testcase for Setter with Range of «data.name.toFirstUpper»
+						 * Test case for setter with range of «data.name.toFirstUpper».
 						 * testing range overflow
 						 * @generated
 						 */	
@@ -337,7 +349,7 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 						}
 						
 						/**
-						 * Testcase for setter with range of «data.name.toFirstUpper»
+						 * Test case for setter with range of «data.name.toFirstUpper».
 						 * testing range underflow
 						 * @generated
 						 */	
@@ -357,7 +369,7 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 						}
 						
 						/**
-						 * Testcase for setter with range of «data.name.toFirstUpper»
+						 * Test case for setter with range of «data.name.toFirstUpper».
 						 * testing with valid values
 						 * @generated
 						 */	
@@ -387,7 +399,8 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 						
 						«ELSE»
 						/**
-						 * excluded SetterWithRange test for «data.name.toFirstUpper»
+						 * Test case for excluded setter with range of «data.name.toFirstUpper».
+						 * testing existence
 						 * @generated
 						 */	
 						@org.junit.Test public void test«data.name.toFirstUpper»ExcludedSetterWithRange() {
@@ -411,7 +424,8 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 			«FOR data : d.data»
 				«FOR method : data.excludedMethods»
 					/**
-					 * Testcase for excluded «method» of «data.name.toFirstUpper»
+					 * Test case for excluded «method» of «data.name.toFirstUpper».
+					 * testing existence
 					 * @generated
 					 */	
 					@org.junit.Test public void test«data.name.toFirstUpper»Excluded«method.toFirstUpper»() {
@@ -435,7 +449,8 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 	def generateConstructorTest(DataSet d) {
 		'''
 			/**
-			 * «d.name.toFirstUpper» constructor test 
+			 * Test case for constructor of «d.name.toFirstUpper».
+			 * testing basic functionality
 			 * @generated
 			 */	
 			@org.junit.Test public void testConstructor() {
@@ -489,7 +504,8 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 		«FOR data : d.data.filter(NonMeasurementData)»
 			«IF data.value!=null»
 				/**
-				 * «data.name.toFirstUpper» initial value test
+				 * Test case for initial value of non measurement data «data.name.toFirstUpper».
+				 * testing if initial value is set correctly
 				 * @generated
 				 */	
 				@org.junit.Test public void test«data.name.toFirstUpper»InitialValue() {
@@ -515,7 +531,8 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 			«IF data instanceof NonMeasurementData»
 				«IF data.constant»
 					/**
-					 * constant data test for «data.name.toFirstUpper»
+					 * Test case for constant non measurement data «data.name.toFirstUpper».
+					 * testing if there is no setter for constant datas
 					 * @generated
 					 */	
 					@org.junit.Test public void testConstant«data.name.toFirstUpper»() {
@@ -535,7 +552,8 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 		«ENDFOR»
 		«FOR dataSet : d.usedDataSets»
 			/**
-			 * Testcase for setter of «dataSet.name.toFirstUpper»
+			 * Test case for setter of «dataSet.name.toFirstUpper».
+			 * testing basic functionality
 			 * @generated
 			 */	
 			@org.junit.Test public void test«dataSet.name.toFirstUpper»Setter() {
@@ -593,7 +611,8 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 	private def getSetterTest(Data data) {
 		'''
 			/**
-			 * Testcase for setter of «data.name.toFirstUpper»
+			 * Test case for setter of «data.name.toFirstUpper».
+			 * testing basic functionality
 			 * @generated
 			 */	
 			@org.junit.Test public void test«data.name.toFirstUpper»Setter() {
