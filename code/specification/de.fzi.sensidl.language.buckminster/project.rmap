@@ -13,12 +13,12 @@
   <rm:locator pattern="^de\.fzi\.sensidl(?:\..+)?$" searchPathRef="project" />
   <rm:locator pattern="^org\.jscience" searchPathRef="project" />
   
+  <rm:locator pattern="^org\.eclipse\.vorto(?:\..+)?$" searchPathRef="vorto"/>
+  
   <rm:locator pattern="^org\.eclipse\.(?:xtext|xpand|xtend|xtend2|emf\.mwe|emf\.mwe2)(?:\..+)?$" searchPathRef="xtext"/>
   <rm:locator pattern="^com\.google.*" searchPathRef="xtext"/>
   <rm:locator pattern="^org\.antlr.*" searchPathRef="xtext"/>
   <rm:locator pattern="javax.inject" searchPathRef="xtext"/>
-  
-  <rm:locator pattern="^org\.eclipse\.vorto.*" searchPathRef="vorto"/>
 
   <rm:locator searchPathRef="eclipse"/>
   

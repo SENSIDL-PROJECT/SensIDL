@@ -19,12 +19,11 @@
       <import plugin="org.eclipse.xtext.common.types"/>
       <import plugin="de.fzi.sensidl.design"/>
       <import plugin="org.eclipse.xtend.standalone" version="2.8.4" match="greaterOrEqual"/>
-      <import plugin="com.google.guava" version="15.0.0" match="greaterOrEqual"/>
       <import plugin="com.google.inject" version="3.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.launching"/>
       <import plugin="org.apache.log4j"/>
-      <import plugin="org.eclipse.swt"/>
-      <import plugin="org.eclipse.xtext.ui"/>
       <import plugin="de.fzi.sensidl.language"/>
+      <import plugin="org.eclipse.xtext.ui"/>
       <import plugin="org.eclipse.ui.editors" version="3.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.ide" version="3.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xtext.ui.shared"/>
@@ -35,6 +34,10 @@
       <import plugin="org.eclipse.compare"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.core.filesystem" version="1.5.0" match="greaterOrEqual"/>
+      <import plugin="com.google.guava" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.launching" version="3.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.help" version="3.6.0" match="greaterOrEqual"/>
+      <import plugin="org.apache.commons.io"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="de.fzi.sensidl.design.edit"/>
@@ -43,6 +46,7 @@
       <import plugin="org.junit"/>
       <import plugin="de.fzi.sensidl.language.ui"/>
       <import plugin="org.eclipse.xtext.junit4"/>
+      <import plugin="com.google.guava" version="15.0.0" match="greaterOrEqual"/>
       <import plugin="org.hamcrest.core"/>
    </requires>
 

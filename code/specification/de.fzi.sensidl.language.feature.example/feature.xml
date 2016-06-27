@@ -9,6 +9,14 @@
       SensIDL Examples
    </description>
 
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.emf.common.ui"/>
+   </requires>
+
    <plugin
          id="de.fzi.sensidl.example.eddystone"
          download-size="0"
