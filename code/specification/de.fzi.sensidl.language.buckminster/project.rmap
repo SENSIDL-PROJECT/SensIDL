@@ -3,7 +3,7 @@
   <rm:property key="projects.location" value="${workspace.root}"/>
   <rm:property key="eclipse.download" value="http://download.eclipse.org"/>
   <rm:property key="xtext.p2.repository" value="${eclipse.download}/modeling/tmf/xtext/updates/composite/releases/"/>
-  <rm:property key="vorto.repository" value="${eclipse.download}/vorto/update/nightly-snapshots/"/>
+  <rm:property key="vorto.repository" value="${eclipse.download}/vorto/update/milestones/"/>
   <rm:property key="qvto.repository" value="${eclipse.download}/mmt/qvto/updates/releases/"/>
   <rm:property key="eclipse.target.platform" value="${eclipse.download}/releases/mars"/>
   

@@ -42,7 +42,8 @@
          id="de.fzi.sensidl.example.emeter.vorto"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"/>
+         version="1.0.0.qualifier"
+         unpack="false"/>
 
    <plugin
          id="de.fzi.sensidl.example.umgebungskachel"
@@ -55,7 +56,8 @@
          id="de.fzi.sensidl.example.umgebungskachel.vorto"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"/>
+         version="1.0.0.qualifier"
+         unpack="false"/>
 
    <plugin
          id="de.fzi.sensidl.examples"
