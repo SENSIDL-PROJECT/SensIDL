@@ -28,8 +28,7 @@ functionblock EMeter {
 
 			"Power factor for this conductor. 0 if not available."
 			mandatory identicator as byte "Identifier to correlate measurements for different conductors"
-			mandatory deviceType as byte "constant value = 40"
-			mandatory info as de.fzi.sensidl.example.emeter.vorto.type.Info
+			mandatory info as Info
 		}
 
 		NeutralConductor {
@@ -42,8 +41,7 @@ functionblock EMeter {
 				measurementUnit : Unit.Dimensionless
 			}
 
-			mandatory deviceType as byte "constant value = 40"
-			mandatory info as de.fzi.sensidl.example.emeter.vorto.type.Info
+			mandatory info as Info
 		}
 
 		Energy {
@@ -63,8 +61,7 @@ functionblock EMeter {
 			}
 
 			"Energy amount for conductor L3."
-			mandatory deviceType as byte "constant value = 40"
-			mandatory info as de.fzi.sensidl.example.emeter.vorto.type.Info
+			mandatory info as Info
 		}
 
 	}
