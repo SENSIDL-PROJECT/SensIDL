@@ -117,10 +117,7 @@ mapping VortoFunctionblock::Event::toDataSet() : SensIDLModel::dataRepresentatio
 	log("Start with EventToDataSet-transformation.");
 	
 	name := self.name;
-	data += self.properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType) and prop.propertyAttributes -> size() > 0) 
-			-> map toMeasurementData();
-	data += self.properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType) and prop.propertyAttributes -> size() = 0) 
-			-> map toNonMeasurementData();
+	data := getCorrespondingMapping(self.properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)));
 	usedDataSets += getPropertiesContainingEntities(self.properties).type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity)
 					-> map toDataSet();
 }
@@ -129,14 +126,25 @@ mapping VortoDataTypes::Entity::toDataSet() : SensIDLModel::dataRepresentation::
 	log("Start with EntityToDataSet-transformation.");
 
 	name := self.name;
-	data += self.properties
-			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType) and prop.propertyAttributes -> size() > 0) 
-			-> map toMeasurementData();
-	data += self.properties
-			-> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType) and prop.propertyAttributes -> size() = 0) 
-			-> map toNonMeasurementData();
+	data := getCorrespondingMapping(self.properties -> select(prop | prop.type.oclIsTypeOf(VortoDataTypes::PrimitivePropertyType)));
 	usedDataSets += getPropertiesContainingEntities(self.properties).type.oclAsType(VortoDataTypes::ObjectPropertyType).type.oclAsType(VortoDataTypes::Entity)
 					-> map toDataSet();
+}
+
+query getCorrespondingMapping(properties : Set(VortoDataTypes::Property)) : Set(SensIDLModel::dataRepresentation::Data) {
+	var data : Set(SensIDLModel::dataRepresentation::Data);
+	
+	properties -> forEach(prop) {
+		if (prop.propertyAttributes -> size() > 0) then {
+			data += prop.map toMeasurementData(); 
+		} endif;
+		
+		if (prop.propertyAttributes -> size() = 0) then {
+			data += prop.map toNonMeasurementData();
+		} endif;
+	};
+	
+	return data;
 }
 
 query getPropertiesContainingEntities(properties : OrderedSet(VortoDataTypes::Property)) : OrderedSet(VortoDataTypes::Property) {
