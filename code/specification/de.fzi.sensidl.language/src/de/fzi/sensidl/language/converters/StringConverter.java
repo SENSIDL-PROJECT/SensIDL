@@ -98,8 +98,13 @@ public class StringConverter implements IValueConverter<String> {
 	}
 
 	private boolean needToBeConverted(INode node) {
-		return (node.getSemanticElement() instanceof NonMeasurementData) || 
-				(((NonMeasurementData) node.getSemanticElement()).getDataType().getValue() == DataType.STRING_VALUE);
+		boolean needToBeConverted = true;
+		
+		if (node.getSemanticElement() instanceof NonMeasurementData) {
+			needToBeConverted = (((NonMeasurementData) node.getSemanticElement()).getDataType().getValue() != DataType.STRING_VALUE);
+		}
+		
+		return needToBeConverted;
 	}
 
 	@Override
