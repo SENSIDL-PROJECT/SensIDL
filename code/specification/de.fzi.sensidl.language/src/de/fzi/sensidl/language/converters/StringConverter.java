@@ -98,7 +98,7 @@ public class StringConverter implements IValueConverter<String> {
 	}
 
 	private boolean needToBeConverted(INode node) {
-		boolean needToBeConverted = true;
+		boolean needToBeConverted = false;
 		
 		if (node.getSemanticElement() instanceof NonMeasurementData) {
 			needToBeConverted = (((NonMeasurementData) node.getSemanticElement()).getDataType().getValue() != DataType.STRING_VALUE);
