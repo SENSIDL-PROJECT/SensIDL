@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getData <em>Data</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getMethod <em>Method</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getUsedDataSets <em>Used Data Sets</em>}</li>
- *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getUsedByDataSets <em>Used By Data Sets</em>}</li>
  * </ul>
  *
  * @generated
@@ -67,16 +66,6 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * @ordered
 	 */
 	protected EList<DataSet> usedDataSets;
-
-	/**
-	 * The cached value of the '{@link #getUsedByDataSets() <em>Used By Data Sets</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUsedByDataSets()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<DataSet> usedByDataSets;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -169,21 +158,9 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 */
 	public EList<DataSet> getUsedDataSets() {
 		if (usedDataSets == null) {
-			usedDataSets = new EObjectWithInverseResolvingEList.ManyInverse<DataSet>(DataSet.class, this, DataRepresentationPackage.DATA_SET__USED_DATA_SETS, DataRepresentationPackage.DATA_SET__USED_BY_DATA_SETS);
+			usedDataSets = new EObjectResolvingEList<DataSet>(DataSet.class, this, DataRepresentationPackage.DATA_SET__USED_DATA_SETS);
 		}
 		return usedDataSets;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<DataSet> getUsedByDataSets() {
-		if (usedByDataSets == null) {
-			usedByDataSets = new EObjectWithInverseResolvingEList.ManyInverse<DataSet>(DataSet.class, this, DataRepresentationPackage.DATA_SET__USED_BY_DATA_SETS, DataRepresentationPackage.DATA_SET__USED_DATA_SETS);
-		}
-		return usedByDataSets;
 	}
 
 	/**
@@ -203,10 +180,6 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getData()).basicAdd(otherEnd, msgs);
 			case DataRepresentationPackage.DATA_SET__METHOD:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMethod()).basicAdd(otherEnd, msgs);
-			case DataRepresentationPackage.DATA_SET__USED_DATA_SETS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getUsedDataSets()).basicAdd(otherEnd, msgs);
-			case DataRepresentationPackage.DATA_SET__USED_BY_DATA_SETS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getUsedByDataSets()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -225,10 +198,6 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 				return ((InternalEList<?>)getData()).basicRemove(otherEnd, msgs);
 			case DataRepresentationPackage.DATA_SET__METHOD:
 				return ((InternalEList<?>)getMethod()).basicRemove(otherEnd, msgs);
-			case DataRepresentationPackage.DATA_SET__USED_DATA_SETS:
-				return ((InternalEList<?>)getUsedDataSets()).basicRemove(otherEnd, msgs);
-			case DataRepresentationPackage.DATA_SET__USED_BY_DATA_SETS:
-				return ((InternalEList<?>)getUsedByDataSets()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -263,8 +232,6 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 				return getMethod();
 			case DataRepresentationPackage.DATA_SET__USED_DATA_SETS:
 				return getUsedDataSets();
-			case DataRepresentationPackage.DATA_SET__USED_BY_DATA_SETS:
-				return getUsedByDataSets();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -293,10 +260,6 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 				getUsedDataSets().clear();
 				getUsedDataSets().addAll((Collection<? extends DataSet>)newValue);
 				return;
-			case DataRepresentationPackage.DATA_SET__USED_BY_DATA_SETS:
-				getUsedByDataSets().clear();
-				getUsedByDataSets().addAll((Collection<? extends DataSet>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -321,9 +284,6 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 			case DataRepresentationPackage.DATA_SET__USED_DATA_SETS:
 				getUsedDataSets().clear();
 				return;
-			case DataRepresentationPackage.DATA_SET__USED_BY_DATA_SETS:
-				getUsedByDataSets().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -344,8 +304,6 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 				return method != null && !method.isEmpty();
 			case DataRepresentationPackage.DATA_SET__USED_DATA_SETS:
 				return usedDataSets != null && !usedDataSets.isEmpty();
-			case DataRepresentationPackage.DATA_SET__USED_BY_DATA_SETS:
-				return usedByDataSets != null && !usedByDataSets.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

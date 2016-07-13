@@ -65,9 +65,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="method" upperBound="-1"
           eType="#//dataRepresentation/Method" containment="true" eOpposite="#//dataRepresentation/Method/dataSet"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="usedDataSets" upperBound="-1"
-          eType="#//dataRepresentation/DataSet" eOpposite="#//dataRepresentation/DataSet/usedByDataSets"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="usedByDataSets" upperBound="-1"
-          eType="#//dataRepresentation/DataSet" eOpposite="#//dataRepresentation/DataSet/usedDataSets"/>
+          eType="#//dataRepresentation/DataSet"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Data" abstract="true" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="dataSet" eType="#//dataRepresentation/DataSet"

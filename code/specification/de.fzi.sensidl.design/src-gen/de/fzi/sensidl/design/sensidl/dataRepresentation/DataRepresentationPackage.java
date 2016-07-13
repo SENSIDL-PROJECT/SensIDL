@@ -194,22 +194,13 @@ public interface DataRepresentationPackage extends EPackage {
 	int DATA_SET__USED_DATA_SETS = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Used By Data Sets</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_SET__USED_BY_DATA_SETS = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
 	 * The number of structural features of the '<em>Data Set</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_SET_FEATURE_COUNT = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int DATA_SET_FEATURE_COUNT = sensidlPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Data Set</em>' class.
@@ -1231,17 +1222,6 @@ public interface DataRepresentationPackage extends EPackage {
 	EReference getDataSet_UsedDataSets();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getUsedByDataSets <em>Used By Data Sets</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Used By Data Sets</em>'.
-	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet#getUsedByDataSets()
-	 * @see #getDataSet()
-	 * @generated
-	 */
-	EReference getDataSet_UsedByDataSets();
-
-	/**
 	 * Returns the meta object for class '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.Data <em>Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1791,14 +1771,6 @@ public interface DataRepresentationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DATA_SET__USED_DATA_SETS = eINSTANCE.getDataSet_UsedDataSets();
-
-		/**
-		 * The meta object literal for the '<em><b>Used By Data Sets</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATA_SET__USED_BY_DATA_SETS = eINSTANCE.getDataSet_UsedByDataSets();
 
 		/**
 		 * The meta object literal for the '{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataImpl <em>Data</em>}' class.
