@@ -250,8 +250,12 @@ when {
 	name := self.name;
 	description := getDescription(self.description);
 	dataType := toDataType(self.type.oclAsType(VortoDataTypes::PrimitivePropertyType).type);
-	adjustments := map toDataRange(self.Constraints);	
+	adjustments := getDataRange(self.constraintRule);	
 	unit := createUnitFrom(self.propertyAttributes -> at(1).oclAsType(VortoDataTypes::EnumLiteralPropertyAttribute).value.name).oclAsType(SensIDLModel::dataRepresentation::Unit);
+}
+
+query getDataRange(rule : VortoDataTypes::ConstraintRule) : SensIDLModel::dataRepresentation::DataRange {
+	return map toDataRange(rule.Constraints); 
 }
 
 mapping toDataRange(in constraints : OrderedSet(VortoDataTypes::Constraint)) : SensIDLModel::dataRepresentation::DataRange 
