@@ -131,8 +131,8 @@ mapping VortoDataTypes::Entity::toDataSet() : SensIDLModel::dataRepresentation::
 					-> map toDataSet();
 }
 
-query getCorrespondingMapping(properties : Set(VortoDataTypes::Property)) : Set(SensIDLModel::dataRepresentation::Data) {
-	var data : Set(SensIDLModel::dataRepresentation::Data);
+query getCorrespondingMapping(properties : OrderedSet(VortoDataTypes::Property)) : Set(SensIDLModel::dataRepresentation::Data) {
+	var data : OrderedSet(SensIDLModel::dataRepresentation::Data);
 	
 	properties -> forEach(prop) {
 		if (prop.propertyAttributes -> size() > 0) then {

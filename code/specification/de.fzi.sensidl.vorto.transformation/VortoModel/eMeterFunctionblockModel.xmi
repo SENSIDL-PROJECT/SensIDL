@@ -20,14 +20,21 @@
       <properties
           name="voltage"
           description="">
-        <Constraints
-            constraintValues="10"/>
-        <Constraints
-            type="MAX"
-            constraintValues="100"/>
+        <constraintRule>
+          <Constraints
+              constraintValues="0"/>
+          <Constraints
+              type="MAX"
+              constraintValues="255"/>
+        </constraintRule>
         <type
             xsi:type="datatype:PrimitivePropertyType"
             type="float"/>
+        <propertyAttributes
+            xsi:type="datatype:EnumLiteralPropertyAttribute">
+          <value
+              href="Unit.xmi#//@enums.0"/>
+        </propertyAttributes>
       </properties>
       <properties
           name="power"
@@ -35,6 +42,11 @@
         <type
             xsi:type="datatype:PrimitivePropertyType"
             type="float"/>
+        <propertyAttributes
+            xsi:type="datatype:EnumLiteralPropertyAttribute">
+          <value
+              href="Unit.xmi#//@enums.3"/>
+        </propertyAttributes>
       </properties>
       <properties
           name="powerFactor"
@@ -42,6 +54,11 @@
         <type
             xsi:type="datatype:PrimitivePropertyType"
             type="short"/>
+        <propertyAttributes
+            xsi:type="datatype:EnumLiteralPropertyAttribute">
+          <value
+              href="Unit.xmi#//@enums.2"/>
+        </propertyAttributes>
       </properties>
       <properties
           name="identicator"
@@ -73,6 +90,11 @@
         <type
             xsi:type="datatype:PrimitivePropertyType"
             type="float"/>
+        <propertyAttributes
+            xsi:type="datatype:EnumLiteralPropertyAttribute">
+          <value
+              href="Unit.xmi#//@enums.1"/>
+        </propertyAttributes>
       </properties>
       <properties
           name="powerFactor"
@@ -80,6 +102,11 @@
         <type
             xsi:type="datatype:PrimitivePropertyType"
             type="short"/>
+        <propertyAttributes
+            xsi:type="datatype:EnumLiteralPropertyAttribute">
+          <value
+              href="Unit.xmi#//@enums.2"/>
+        </propertyAttributes>
       </properties>
       <properties
           name="Info">
