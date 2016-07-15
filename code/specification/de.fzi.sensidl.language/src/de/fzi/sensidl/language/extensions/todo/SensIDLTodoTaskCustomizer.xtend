@@ -24,7 +24,6 @@ class SensIDLTodoTaskCustomizer {
 		val jdt = new ScopedPreferenceStore(InstanceScope.INSTANCE, JDT_PROPERTIES_QUALIFIER);
 		
 		addSensIDLTodoTag(jdt);
-        addSensIDLTodoTagPriority(jdt);
         
         try {
             jdt.save();
@@ -41,14 +40,12 @@ class SensIDLTodoTaskCustomizer {
         
         taskTags = taskTags + "," + SENSIDL_TODO_TAG;
         jdt.putValue(TODO_TASK_TAG_PROPERTY_QUALIFIER, taskTags);
+        
+        addSensIDLTodoTagPriority(jdt);
 	}
 	
 	private static def addSensIDLTodoTagPriority(ScopedPreferenceStore jdt) {
 		var taskPriorities = jdt.getString(TODO_TASK_PRIORITY_PROPERTY_QUALIFIER);
-		if (taskPriorities.contains(SENSIDL_TODO_TAG_PRIORITY)) {
-			return;
-		}
-		 
         taskPriorities = taskPriorities + "," + SENSIDL_TODO_TAG_PRIORITY;
         jdt.putValue(TODO_TASK_PRIORITY_PROPERTY_QUALIFIER, taskPriorities);
 	}
