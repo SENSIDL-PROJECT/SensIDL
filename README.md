@@ -7,4 +7,4 @@ SENSIDL
 
 A generic framework for implementing sensor communication interfaces.
 
-For mor information please take a look at our [wiki](https://github.com/SENSIDL-PROJECT/SensIDL/wiki) and feel free to [contact us](http://sensidl-project.github.io/SensIDL/).
+For more information please take a look at our [wiki](https://github.com/SENSIDL-PROJECT/SensIDL/wiki) and feel free to [contact us](http://sensidl-project.github.io/SensIDL/).
