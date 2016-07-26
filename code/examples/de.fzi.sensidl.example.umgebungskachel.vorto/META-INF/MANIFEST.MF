@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: de.fzi.sensidl.example.umgebungskachel.vorto
-Bundle-Vendor: FZI Forschungszentrum Informatik
 Bundle-Name: SensIDL Example Umgebungskachel Vorto
+Bundle-SymbolicName: de.fzi.sensidl.example.umgebungskachel.vorto
 Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: FZI Forschungszentrum Informatik

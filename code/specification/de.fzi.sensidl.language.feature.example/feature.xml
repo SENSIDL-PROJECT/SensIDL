@@ -3,7 +3,8 @@
       id="de.fzi.sensidl.language.feature.example"
       label="SensIDL Examples"
       version="1.0.0.qualifier"
-      provider-name="FZI Forschungszentrum Informatik">
+      provider-name="FZI Forschungszentrum Informatik"
+      plugin="de.fzi.sensidl.language.feature.example.branding">
 
    <description>
       SensIDL Examples
@@ -65,5 +66,11 @@
          install-size="0"
          version="1.0.0.qualifier"
          unpack="false"/>
+
+   <plugin
+         id="de.fzi.sensidl.language.feature.example.branding"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
 </feature>
