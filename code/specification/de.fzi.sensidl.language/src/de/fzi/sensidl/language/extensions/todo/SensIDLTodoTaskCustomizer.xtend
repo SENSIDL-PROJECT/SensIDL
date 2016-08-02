@@ -32,21 +32,33 @@ class SensIDLTodoTaskCustomizer {
         }
 	}
 	
-	private static def addSensIDLTodoTag(ScopedPreferenceStore jdt) {
-		var taskTags = jdt.getString(TODO_TASK_TAG_PROPERTY_QUALIFIER);
-        if (taskTags.contains(SENSIDL_TODO_TAG)) {
-            return;
+	private static def addSensIDLTodoTag(ScopedPreferenceStore jdt) {		
+		try {
+			var taskTags = jdt.getString(TODO_TASK_TAG_PROPERTY_QUALIFIER);		
+		
+	        if (taskTags.contains(SENSIDL_TODO_TAG)) {
+	            return;
+	        }
+	        
+	        taskTags = taskTags + "," + SENSIDL_TODO_TAG;	        
+	        jdt.putValue(TODO_TASK_TAG_PROPERTY_QUALIFIER, taskTags);
+	        
+	    } catch (Exception e) {
+            logger.error("Error occurred, registering SensIDL todo tag failed.",e);            
         }
-        
-        taskTags = taskTags + "," + SENSIDL_TODO_TAG;
-        jdt.putValue(TODO_TASK_TAG_PROPERTY_QUALIFIER, taskTags);
         
         addSensIDLTodoTagPriority(jdt);
 	}
 	
 	private static def addSensIDLTodoTagPriority(ScopedPreferenceStore jdt) {
-		var taskPriorities = jdt.getString(TODO_TASK_PRIORITY_PROPERTY_QUALIFIER);
-        taskPriorities = taskPriorities + "," + SENSIDL_TODO_TAG_PRIORITY;
-        jdt.putValue(TODO_TASK_PRIORITY_PROPERTY_QUALIFIER, taskPriorities);
+		try {
+			var taskPriorities = jdt.getString(TODO_TASK_PRIORITY_PROPERTY_QUALIFIER);			
+		
+        	taskPriorities = taskPriorities + "," + SENSIDL_TODO_TAG_PRIORITY;
+        	jdt.putValue(TODO_TASK_PRIORITY_PROPERTY_QUALIFIER, taskPriorities);
+        	
+       	} catch (Exception e) {
+       		logger.error("Error occurred, SensIDL todo tag priority couldn't be set.");
+       	}
 	}
 }
