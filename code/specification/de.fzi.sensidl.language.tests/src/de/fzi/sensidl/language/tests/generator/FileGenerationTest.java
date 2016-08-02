@@ -59,6 +59,7 @@ public class FileGenerationTest {
 	public void javaFilesGenerationTest() throws IOException, NoSidlFileException {
 		for (int i = 0; i < dataSets.length; i++) {
 			map.put(dataSets[i] + ".java", false);
+			map.put(dataSets[i] + "Test.java", false);
 		}
 		map.put("eMeterUtility.java", false);
 		GenerationHandler.generate(generationDirectory.getPath(), "resource/generator/sidlTestCode.sidl", "Java", null);
