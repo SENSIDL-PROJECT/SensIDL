@@ -4,7 +4,7 @@
 **/
 
 //Global variable, that determines which data value is shown on the display
-int onDisplay = 0;
+int onDisplay = 1;
 
 /**
   touchEvent is called by an interrupt, that is started by a press on the touch sensor.
@@ -22,19 +22,22 @@ void touchEvent() {
   This method displays the currently selected Sensor on the lc(d) display
 **/
 void refreshDisplay() {
-    switch (onDisplay % 4) {
+    switch (onDisplay % 5) {
       case 0:
          showDisplay("Server is at:",(ethernetConnection)? getLocalIP() : getWifiIP());
       break;
       case 1:
-         showDisplay("Temperatur:",dtostrf(get_SensorState_temperaturec(&sensorState),0,3));
+         showDisplay("Temperature:",dtostrf(get_SensorState_temperaturec(&sensorState),0,3));
       break;
       case 2:
-        showDisplay("Licht:",dtostrf(get_SensorState_brightness(&sensorState),0,3));
+        showDisplay("Light:",dtostrf(get_SensorState_brightness(&sensorState),0,3));
       break;
       case 3:
         showDisplay("LED:",get_SensorState_led(&sensorState));
       break;      
+      case 4:
+        showDisplay("Humidity:",dtostrf(humid,0,0));
+      break;
     }  
 }
 

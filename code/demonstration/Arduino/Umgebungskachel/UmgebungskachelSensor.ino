@@ -7,18 +7,19 @@
   Reads the most recent data from the Umgebungskachel sensors and inserts it into the sensidl data structure
 **/
 void updateSensorData() {
+    
     set_SensorState_temperaturec(&sensorState, calculateTemperature());
     set_SensorState_temperaturef_WithDataConversion(&sensorState, calculateTemperature());
     set_SensorState_brightness(&sensorState, calculateLightSensorResistance());
-    ////sens.data.temperature = calculateTemperature();
-    ////sens.data.brightness = calculateLightSensorResistance();
+    float tmp = calculateHumidity();
+    if(tmp>=0) humid = tmp;
 }
 
 /**
   This is the Interrupt Service Routine for the TimerOne Library that is called each 1000000 µs (1s).
   It updates the sensor data, refreshes the display and eventually toggles the buzzer.
 **/
-void isr() {  
+void isr() {
   updateSensorData();
   refreshDisplay();
   if(get_SensorState_brightness(&sensorState) < get_SensorState_thresholdbrightness(&sensorState) &&
@@ -48,4 +49,10 @@ float calculateLightSensorResistance() {
   int sensorData = analogRead(LIGHT_SENSOR); //Read the Sensor Data
   float resistance = (float)(1023-sensorData)*10/sensorData; //Calculate the Sensor Resistance in Kilo Ohm
   return (float)resistance;
+}
+
+float calculateHumidity() {
+  float h = dht.readHumidity();
+  if(isnan(h))  return -1;
+  return h;
 }

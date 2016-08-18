@@ -10,6 +10,7 @@
 #include "ArduinoJson.h"
 #include <Wire.h>
 #include "rgb_lcd.h"
+#include "DHT.h"
 #include <Ethernet.h>
 #include <math.h>
 #include <TimerOne.h>
@@ -21,7 +22,16 @@
 #define LIGHT_SENSOR 0
 #define TEMP_SENSOR 1
 #define TOUCH_SENSOR 2
-#define BUZZER 3
+#define BUZZER 6
+
+//Definitions for the DHT11 Sensor
+#define DHTIN 4
+#define DHTOUT 5
+#define DHTTYPE DHT11
+float humid=0;
+
+//Start dht library
+DHT dht(DHTIN,DHTOUT, DHTTYPE);
 
 //LCD Display
 rgb_lcd lcd;
@@ -47,6 +57,7 @@ void setup()
  
  //First try to connect via Wifi
  showDisplay("Initializing ...","Wireless!"); 
+ 
  //Two separated Calls to the linux system, to activate the wlan interface
  system("ifup wlan0");
  delay(8000);
@@ -81,12 +92,15 @@ void setup()
  showDisplay("Server is at:",(ethernetConnection)? getLocalIP() : getWifiIP());
  lcd.setRGB(150,255,0);
  
+ //Setup Dht Library
+ dht.begin(); 
+ 
  //initialize Datastructure and values of the thresholds
  initSensorState(&sensorState);
  initDatastructure();
  
  //setup an interrupt for a touch event
- attachInterrupt(2, touchEvent, CHANGE);
+ attachInterrupt(TOUCH_SENSOR, touchEvent, CHANGE);
  
  //Initialize the TimerOne Library with a 1s Period
  Timer1.initialize(1000000); 
