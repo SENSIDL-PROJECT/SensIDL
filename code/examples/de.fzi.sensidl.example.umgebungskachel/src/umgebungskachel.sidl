@@ -25,7 +25,7 @@ endianness : BIG_ENDIAN , alignment : 1 BIT
 
 		dataSet SensorState uses AlertThresholdBrightness, AlertThresholdTemperature , LedToggle, AlertThresholdHumidity
 			/** data description of all values the sensor REST-API contains */{ 
-			temperature as DOUBLE in °C /** measured temperature of the sensor*/
+			temperature as DOUBLE in °C adjusted with scaling factor : 0.555 and offset : -17.777/** measured temperature of the sensor*/
 			brightness as DOUBLE in Ohm /** measured brightness of the sensor*/
 			humidity as INT8 in %			 
 			
