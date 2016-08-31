@@ -1,12 +1,19 @@
-sensorInterface Umgebungskachel /** communication interface between a sensor and a gateway*/{
-	encoding : SENSIDL_JSON, endianness : BIG_ENDIAN , alignment : 1 BIT
-	sensorData { 
+sensorInterface Umgebungskachel /** , communication interface between a sensor and a gateway*/
+{
+encoding : SENSIDL_JSON,
+endianness : BIG_ENDIAN , alignment : 1 BIT
+	sensorData {
+		
 		dataSet AlertThresholdBrightness /** data description for the brightness threshold */ {
 			threshold_brightness as DOUBLE in Ohm /** Upper threshold that triggers an alert if the measured brightness is too high */
 		}
 		
+		dataSet AlertThresholdHumidity {
+			threshold_humidity as INT8 in %
+		}
+		
 		dataSet AlertThresholdTemperature /** data description for the temperature threshold */{
-			threshold_temperature as DOUBLE in °C adjusted with scaling factor : 0.555 and offset : -17.777 
+			threshold_temperature as DOUBLE in °C 
 			/** Upper threshold that triggers an alert if the measured temperature is too high */
 			
 			+getThresholdtemperatureWithDataConversion():DOUBLE as Method /** Calculates the threshold_temperature in °F instead  of Celsius*/			
@@ -16,9 +23,11 @@ sensorInterface Umgebungskachel /** communication interface between a sensor and
 			led as STRING in Dimensionless /** Switch for a light source that is either ON or OFF */
 		}
 
-		dataSet SensorState uses AlertThresholdBrightness, AlertThresholdTemperature, LedToggle/** data description of all values the sensor REST-API contains */{ 
-			temperature as DOUBLE in °C adjusted with scaling factor : 0.555 and offset : -17.777 /** measured temperature of the sensor*/
+		dataSet SensorState uses AlertThresholdBrightness, AlertThresholdTemperature , LedToggle, AlertThresholdHumidity
+			/** data description of all values the sensor REST-API contains */{ 
+			temperature as DOUBLE in °C /** measured temperature of the sensor*/
 			brightness as DOUBLE in Ohm /** measured brightness of the sensor*/
+			humidity as INT8 in %			 
 			
 			+getTemperatureWithDataConversion():DOUBLE as Method /** Calculates the temperature in °F instead  of Celsius*/
 		}
