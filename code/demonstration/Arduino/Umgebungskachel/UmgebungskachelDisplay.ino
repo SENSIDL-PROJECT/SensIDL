@@ -27,7 +27,7 @@ void refreshDisplay() {
          showDisplay("Server is at:",(ethernetConnection)? getLocalIP() : getWifiIP());
       break;
       case 1:
-         showDisplay("Temperature:",dtostrf(get_SensorState_temperaturec(&sensorState),0,3));
+         showDisplay("Temperature:",dtostrf(get_SensorState_temperature(&sensorState),0,3));
       break;
       case 2:
         showDisplay("Light:",dtostrf(get_SensorState_brightness(&sensorState),0,3));
@@ -36,7 +36,7 @@ void refreshDisplay() {
         showDisplay("LED:",get_SensorState_led(&sensorState));
       break;      
       case 4:
-        showDisplay("Humidity:",dtostrf(humid,0,0));
+        showDisplay("Humidity:",dtostrf(get_SensorState_humidity(&sensorState),0,3));
       break;
     }  
 }

@@ -2,6 +2,7 @@ void initDatastructure() {
    //initial values for the thresholds
    set_SensorState_thresholdtemperature(&sensorState, 29.0 );
    set_SensorState_thresholdbrightness(&sensorState, 15.0 );
+   set_SensorState_thresholdhumidity(&sensorState, 70);
    set_SensorState_led(&sensorState, "OFF");  
 }
 
@@ -12,13 +13,16 @@ String datastructureToJson() {
         JsonObject& ledToggle = root.createNestedObject("ledToggle");
         JsonObject& alertTemp = root.createNestedObject("alertThresholdTemperature");
         JsonObject& alertBright = root.createNestedObject("alertThresholdBrightness");
+        JsonObject& alertHumid = root.createNestedObject("alertThresholdHumidity");
         
         ledToggle["led"] = get_SensorState_led(&sensorState);
         alertTemp["threshold_temperature"] = get_SensorState_thresholdtemperature(&sensorState);
         alertBright["threshold_brightness"] = get_SensorState_thresholdbrightness(&sensorState);
+        alertHumid["threshold_humidity"] = get_SensorState_thresholdhumidity(&sensorState);
         
-        root["temperature"] = get_SensorState_temperaturec(&sensorState);
+        root["temperature"] = get_SensorState_temperature(&sensorState);
         root["brightness"] = get_SensorState_brightness(&sensorState);
+        root["humidity"] = get_SensorState_humidity(&sensorState);
         
         int len = root.measurePrettyLength();
         char json[len+1];

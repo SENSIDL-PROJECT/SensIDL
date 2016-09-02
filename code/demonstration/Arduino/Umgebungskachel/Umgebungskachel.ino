@@ -28,7 +28,6 @@
 #define DHTIN 4
 #define DHTOUT 5
 #define DHTTYPE DHT11
-float humid=0;
 
 //Start dht library
 DHT dht(DHTIN,DHTOUT, DHTTYPE);
@@ -38,6 +37,8 @@ rgb_lcd lcd;
 
 //Network connection
 boolean ethernetConnection = false;
+
+SensorState sensorState;
 
 
 // the media access control (ethernet hardware) address for the shield:
@@ -60,9 +61,9 @@ void setup()
  
  //Two separated Calls to the linux system, to activate the wlan interface
  system("ifup wlan0");
- delay(8000);
+ delay(3000);
  system("ifup wlan0");
- delay(5000);
+ delay(3000);
  
  if(getWifiIP() == "no IP") {
    //No wifi connection. Try connecting via ethernet
@@ -96,7 +97,6 @@ void setup()
  dht.begin(); 
  
  //initialize Datastructure and values of the thresholds
- initSensorState(&sensorState);
  initDatastructure();
  
  //setup an interrupt for a touch event

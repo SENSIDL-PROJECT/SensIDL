@@ -1,25 +1,20 @@
-/**
+/*
 *File:							SensorState.h
 *Version:						
-*Generate at:					30/05/2016 17:38:47
-*Further generated artifacts:	DTOs.h, AlertThresholdBrightness.h, AlertThresholdBrightness.c, 
-*								UmgebungskachelUtility.h, AlertThresholdTemperature.c, 
-*								AlertThresholdTemperature.h, LedToggle.c, SensorState.c, LedToggle.h
+*Generate at:					31/08/2016 12:23:19
+*Further generated artifacts:	DTOs.h, AlertThresholdTemperature.c, AlertThresholdBrightness.h, 
+*								AlertThresholdTemperature.h, LedToggle.c, SensorState.c, 
+*								LedToggle.h, AlertThresholdBrightness.c, AlertThresholdHumidity.c, 
+*								AlertThresholdHumidity.h, UmgebungskachelUtility.h
 */
 
 /**\brief		 data description of all values the sensor REST-API contains   
-* \param		led: 
-*				Measured in unit:  
-* \param		temperature_c: 
+* \param		temperature:  measured temperature of the sensor
 *				Measured in unit: ? 
-* \param		temperature_f: 
-*				Measured in unit: °F 
-* \param		brightness: 
+* \param		brightness:  measured brightness of the sensor
 *				Measured in unit: ? 
-* \param		threshold_temperature: 
-*				Measured in unit: ? 
-* \param		threshold_brightness: 
-*				Measured in unit: ? 
+* \param		humidity: 
+*				Measured in unit: % 
 */
 
 #ifndef SENSORSTATE_H
@@ -27,72 +22,46 @@
 
 #include <stdint.h> 
 #include "UmgebungskachelUtility.h"
+
 			
 			
 typedef struct
 {
-		char * led;
-		double temperature_c;
-		double temperature_f;
-		double brightness;
-		double threshold_temperature;
-		double threshold_brightness;
+		double temperature;  // Unit: ?,  measured temperature of the sensor
+		double brightness;  // Unit: ?,  measured brightness of the sensor
+		int8_t humidity;  // Unit: %, 
+		double threshold_brightness;  // Unit: ?,  Upper threshold that triggers an alert if the measured brightness is too high 
+		double threshold_temperature;  // Unit: ?,  Upper threshold that triggers an alert if the measured temperature is too high 
+		char * led;  // Unit: ,  Switch for a light source that is either ON or OFF 
+		int8_t threshold_humidity;  // Unit: %, 
 				
 } SensorState;
-
-extern SensorState sensorState;
 
 /**
 * @Initialization of the SensorState dataset (to give the initial values to const fields)
 */
-void initSensorState(SensorState* p);
-
+void init_SensorState(SensorState* p);
 
 
 /**
-* @return the Led
+ * Method for getTemperatureWithDataConversion
+ *  Calculates the temperature in °F instead  of Celsius
+ * @generated
+ */	
+double getTemperatureWithDataConversion();
+
+
+/**
+* @return the Temperature
 */
-char * get_SensorState_led(SensorState* p);
+double get_SensorState_temperature(SensorState* p);
 	
 
 /**
- * @param pointer to dataset, led
- *			the led to set
+ * @param pointer to dataset, temperature
+ *			the temperature to set
  */
-void set_SensorState_led(SensorState* p, char * led );
-
-
-
-/**
-* @return the Temperature_c
-*/
-double get_SensorState_temperaturec(SensorState* p);
-	
-
-/**
- * @param pointer to dataset, temperature_c
- *			the temperature_c to set
- */
-void set_SensorState_temperaturec(SensorState* p, double temperature_c );
-
-
-
-/**
-* @return the Temperature_f
-*/
-double get_SensorState_temperaturef(SensorState* p);
-	
-
-/**
- * @param pointer to dataset, adjust
- *			the adjust to set
- */
-void set_SensorState_temperaturef_WithDataConversion(SensorState* p, double temperature_f );					
-/**
- * @param pointer to dataset, temperature_f
- *			the temperature_f to set
- */
-void set_SensorState_temperaturef(SensorState* p, double temperature_f );
+void set_SensorState_temperature(SensorState* p, double temperature );
 
 
 
@@ -111,16 +80,16 @@ void set_SensorState_brightness(SensorState* p, double brightness );
 
 
 /**
-* @return the Threshold_temperature
+* @return the Humidity
 */
-double get_SensorState_thresholdtemperature(SensorState* p);
+int8_t get_SensorState_humidity(SensorState* p);
 	
 
 /**
- * @param pointer to dataset, threshold_temperature
- *			the threshold_temperature to set
+ * @param pointer to dataset, humidity
+ *			the humidity to set
  */
-void set_SensorState_thresholdtemperature(SensorState* p, double threshold_temperature );
+void set_SensorState_humidity(SensorState* p, int8_t humidity );
 
 
 
@@ -137,23 +106,72 @@ double get_SensorState_thresholdbrightness(SensorState* p);
 void set_SensorState_thresholdbrightness(SensorState* p, double threshold_brightness );
 
 
+
+/**
+* @return the Threshold_temperature
+*/
+double get_SensorState_thresholdtemperature(SensorState* p);
+	
+
+/**
+ * @param pointer to dataset, threshold_temperature
+ *			the threshold_temperature to set
+ */
+void set_SensorState_thresholdtemperature(SensorState* p, double threshold_temperature );
+
+
+
+/**
+* @return the Led
+*/
+char * get_SensorState_led(SensorState* p);
+	
+
+/**
+ * @param pointer to dataset, led
+ *			the led to set
+ */
+void set_SensorState_led(SensorState* p, char * led );
+
+
+
+/**
+* @return the Threshold_humidity
+*/
+int8_t get_SensorState_thresholdhumidity(SensorState* p);
+	
+
+/**
+ * @param pointer to dataset, threshold_humidity
+ *			the threshold_humidity to set
+ */
+void set_SensorState_thresholdhumidity(SensorState* p, int8_t threshold_humidity );
+
+
 			
 /**
 * Adjusts all data atributes of a struct to given endianness depending on the machine architecture
 */
 void adjust_SensorState_allEndianness(SensorState* p);
 
-
-/**
-* Returns true if given architecture is little endian
-*/		
-bool check_little_endian();	
-	
-
+			
 /**
 * Swaps Endianness between little endian and big endian
 */				
 void swap_SensorState_all_endianness(SensorState* p);
+
+
+/**
+* @return the JSON String of SensorState
+*/
+char * marshalJSON_SensorState(SensorState* p);
+
+
+/**
+* fill the SensorState struct based on its JSON String
+*/
+void unmarshalJSON_SensorState(SensorState* p, const char *json);
+
 
 
 #endif

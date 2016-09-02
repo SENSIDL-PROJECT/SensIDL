@@ -8,11 +8,13 @@
 **/
 void updateSensorData() {
     
-    set_SensorState_temperaturec(&sensorState, calculateTemperature());
-    set_SensorState_temperaturef_WithDataConversion(&sensorState, calculateTemperature());
+    set_SensorState_temperature(&sensorState, calculateTemperature());    
     set_SensorState_brightness(&sensorState, calculateLightSensorResistance());
+    
     float tmp = calculateHumidity();
-    if(tmp>=0) humid = tmp;
+    if(tmp>=1) set_SensorState_humidity(&sensorState, tmp);
+    
+    
 }
 
 /**
@@ -22,8 +24,13 @@ void updateSensorData() {
 void isr() {
   updateSensorData();
   refreshDisplay();
+  lcd.setRGB(150,255,0);
   if(get_SensorState_brightness(&sensorState) < get_SensorState_thresholdbrightness(&sensorState) &&
-    get_SensorState_temperaturec(&sensorState) < get_SensorState_thresholdtemperature(&sensorState)) return;
+    get_SensorState_temperature(&sensorState) < get_SensorState_thresholdtemperature(&sensorState) &&
+    get_SensorState_humidity(&sensorState) < get_SensorState_thresholdhumidity(&sensorState))  return;
+  
+  //Change Display Color
+  lcd.setRGB(255,128,0);
     
   //Buzz if it is too warm or too dark
   digitalWrite(BUZZER,HIGH);
