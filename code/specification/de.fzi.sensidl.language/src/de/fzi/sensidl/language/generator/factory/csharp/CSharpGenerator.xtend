@@ -59,4 +59,12 @@ class CSharpGenerator implements ICodeGenerator {
 	def generateUtilityClass(List<MeasurementData> data, boolean createProject) {
 		new CSharpUtilityGenerator(data, createProject).generate
 	}
+	
+	/**
+ 	*@see ICodeGenerator#generateOpcUa(List<DataSet> dataSet)
+ 	*/
+	override generateOpcUa(List<DataSet> dataSet) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }

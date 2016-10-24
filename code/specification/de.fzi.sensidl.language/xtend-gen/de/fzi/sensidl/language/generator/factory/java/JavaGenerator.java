@@ -3,6 +3,7 @@ package de.fzi.sensidl.language.generator.factory.java;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.language.generator.factory.ICodeGenerator;
 import de.fzi.sensidl.language.generator.factory.java.JavaDTOGenerator;
+import de.fzi.sensidl.language.generator.factory.java.JavaOpcUaGenerator;
 import de.fzi.sensidl.language.generator.factory.java.JavaPluginProjectGenerator;
 import de.fzi.sensidl.language.generator.factory.java.JavaUtilityGenerator;
 import java.util.HashMap;
@@ -75,5 +76,14 @@ public class JavaGenerator implements ICodeGenerator {
   public HashMap<String, CharSequence> generateUtilityClass(final List<EObject> data, final boolean createProject) {
     JavaUtilityGenerator _javaUtilityGenerator = new JavaUtilityGenerator(data, createProject);
     return _javaUtilityGenerator.generate();
+  }
+  
+  /**
+   * @see ICodeGenerator#generateOpcUa(List<MeasurementData>)
+   */
+  @Override
+  public HashMap<String, CharSequence> generateOpcUa(final List<DataSet> dataSet) {
+    JavaOpcUaGenerator _javaOpcUaGenerator = new JavaOpcUaGenerator(dataSet);
+    return _javaOpcUaGenerator.generateOpcUaServer();
   }
 }

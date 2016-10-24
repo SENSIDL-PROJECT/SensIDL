@@ -43,4 +43,12 @@ public interface ICodeGenerator {
    * 		  represented as CharSequence.
    */
   public abstract HashMap<String, CharSequence> generateUtilityClass(final List<EObject> data);
+  
+  /**
+   * Defines the method which calls the implementation
+   * for a language specific opc ua generator.
+   * @return a HashMap which maps the filename to generation-code
+   * 		  represented as CharSequence.
+   */
+  public abstract HashMap<String, CharSequence> generateOpcUa(final List<DataSet> dataSet);
 }

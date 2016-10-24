@@ -44,7 +44,7 @@ public class SensidlWizardPage extends WizardPage {
 	 * <code>C</code>, <code>C#</code> and <code>All</code>
 	 */
 	public static final String[] GENERATION_LANGUAGES_STRINGS = new String[] { "Java", "Java Plug-in Project",
-			"JavaScript", "C", "C#", "All" };
+			"JavaScript", "C", "C#", "OPC UA", "All" };
 
 	// first row Elements
 	private Label label_ModelPath;

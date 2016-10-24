@@ -44,4 +44,12 @@ interface ICodeGenerator {
  	* 		  represented as CharSequence.
  	*/
 	def HashMap<String, CharSequence> generateUtilityClass(List<EObject> data);
+	
+	/**
+	 * Defines the method which calls the implementation
+ 	 * for a language specific opc ua generator.
+ 	 * @return a HashMap which maps the filename to generation-code 
+ 	 * 		  represented as CharSequence.
+	 */
+	def HashMap<String, CharSequence> generateOpcUa(List<DataSet> dataSet);
 }

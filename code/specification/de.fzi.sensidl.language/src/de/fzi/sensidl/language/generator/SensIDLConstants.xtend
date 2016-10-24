@@ -37,6 +37,7 @@ class SensIDLConstants {
 		JAVASCRIPT,
 		CSHARP,
 		C,
+		OPCUA,
 		PLAINTEXT
 	}
 	

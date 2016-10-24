@@ -42,6 +42,13 @@ class JavaUnitTestGenerator implements ICodeGenerator {
 	override generateUtilityClass(List<EObject> data) {
 		
 	}
+	
+	/**
+	 * @see ICodeGenerator#generateOpcUa(List<MeasurementData>)
+	 */
+	override generateOpcUa(List<DataSet> dataSet) {
+		
+	}
 
 
 }

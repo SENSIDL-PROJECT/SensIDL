@@ -51,4 +51,12 @@ class CGenerator implements ICodeGenerator {
 	override generateUtilityClass(List<EObject> data) {
 		new CUtilityGenerator(data).generate
 	}
+	
+	/**
+	 * @see ICodeGenerator#generateOpcUa(List<MeasurementData>)
+	 */
+	override generateOpcUa(List<DataSet> dataSet) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }

@@ -46,4 +46,12 @@ public class SidlGenerator implements ICodeGenerator {
   public HashMap<String, CharSequence> generateUtilityClass(final List<EObject> data) {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
+  
+  /**
+   * @see ICodeGenerator#generateOpcUa(List<MeasurementData>)
+   */
+  @Override
+  public HashMap<String, CharSequence> generateOpcUa(final List<DataSet> dataSet) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  }
 }

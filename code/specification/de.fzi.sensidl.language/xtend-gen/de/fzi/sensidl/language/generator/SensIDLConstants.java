@@ -25,6 +25,8 @@ public class SensIDLConstants {
     
     C,
     
+    OPCUA,
+    
     PLAINTEXT;
   }
   

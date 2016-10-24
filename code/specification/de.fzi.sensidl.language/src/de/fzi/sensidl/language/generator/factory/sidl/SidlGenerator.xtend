@@ -43,5 +43,12 @@ class SidlGenerator implements ICodeGenerator {
 		// TODO has to be implemented
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
+	
+	/**
+	 * @see ICodeGenerator#generateOpcUa(List<MeasurementData>)
+	 */
+	override generateOpcUa(List<DataSet> dataSet) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
 
 }

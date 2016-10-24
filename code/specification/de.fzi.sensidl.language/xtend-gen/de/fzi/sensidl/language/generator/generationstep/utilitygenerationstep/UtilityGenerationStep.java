@@ -158,6 +158,12 @@ public class UtilityGenerationStep extends GenerationStep {
           }
         };
         it.put(SensIDLConstants.GenerationLanguage.JAVASCRIPT, _function_5);
+        final IExecuter _function_6 = new IExecuter() {
+          @Override
+          public void execute() {
+          }
+        };
+        it.put(SensIDLConstants.GenerationLanguage.OPCUA, _function_6);
       }
     };
     return ObjectExtensions.<HashMap<SensIDLConstants.GenerationLanguage, IExecuter>>operator_doubleArrow(_hashMap, _function);

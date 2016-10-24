@@ -14,6 +14,7 @@ import org.eclipse.xtext.service.AbstractGenericModule;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.sun.nio.file.SensitivityWatchEventModifier;
 
 import de.fzi.sensidl.language.SensidlStandaloneSetup;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
@@ -136,6 +137,9 @@ public class GenerationHandler {
 		case "C":
 			generationLanguage = SensIDLConstants.GenerationLanguage.C;
 			break;
+		case "OPC UA":
+		    generationLanguage = SensIDLConstants.GenerationLanguage.OPCUA;
+		    break;
 		case "All":
 			generationLanguage = SensIDLConstants.GenerationLanguage.ALL;
 			break;

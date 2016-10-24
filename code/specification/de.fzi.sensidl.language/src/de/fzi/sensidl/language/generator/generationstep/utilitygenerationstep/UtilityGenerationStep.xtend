@@ -71,6 +71,9 @@ class UtilityGenerationStep extends GenerationStep {
 			put(GenerationLanguage.JAVASCRIPT, [
 				//filesToGenerate => [putAll(generator.generateDTO)]
 			])
+			put(GenerationLanguage.OPCUA, [
+				
+			])
 		]
 	}
 }

@@ -67,6 +67,7 @@ class SkeletonGenerationStep extends GenerationStep {
 						putAll(sgenerator.generateDTO(this.dataSet))
 						createSidlFile = false;
 					}
+					putAll(jgenerator.generateOpcUa(this.dataSet))
 				]
 //				generator.generateDecoder
 //				generator.generateEncoder
@@ -87,6 +88,16 @@ class SkeletonGenerationStep extends GenerationStep {
 				]
 //				generator.generateDecoder
 //				generator.generateEncoder
+			])
+			put(GenerationLanguage.OPCUA, [
+				val JavaGenerator generator = new JavaGenerator()
+				val PlaintextGenerator generator2 = new PlaintextGenerator()
+				val JavaUnitTestGenerator jutgenerator = new JavaUnitTestGenerator()
+				filesToGenerate => [
+					putAll(generator.generateOpcUa(this.dataSet))
+					//putAll(generator2.generateOpcUa(this.dataSet))
+					//putAll(jutgenerator.generateOpcUa(this.dataSet))
+				]
 			])
 			put(GenerationLanguage.JAVA_PLUGIN_PROJECT, [
 				val JavaGenerator generator = new JavaGenerator()

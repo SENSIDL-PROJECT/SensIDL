@@ -42,4 +42,12 @@ class JavaScriptGenerator implements ICodeGenerator {
 	override generateUtilityClass(List<EObject> data) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
+	
+	/**
+	 * @see ICodeGenerator#generateOpcUa(List<MeasurementData>)
+	 */
+	override generateOpcUa(List<DataSet> dataSet) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }

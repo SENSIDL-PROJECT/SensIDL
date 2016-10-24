@@ -120,14 +120,7 @@ public class CDTOFileGenerator extends CDTOGenerator {
     _builder.append(_plus, "");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    String _nameUpper_1 = GenerationUtil.toNameUpper(dataset);
-    _builder.append(_nameUpper_1, "");
-    _builder.append(" ");
-    String _nameLower = GenerationUtil.toNameLower(dataset);
-    _builder.append(_nameLower, "");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
     _builder.newLine();
     String _generateInitDatasetDeclaration = this.generateInitDatasetDeclaration(dataset);
     _builder.append(_generateInitDatasetDeclaration, "");
@@ -143,6 +136,10 @@ public class CDTOFileGenerator extends CDTOGenerator {
     _builder.newLine();
     CharSequence _generateEndiannessMethodsDeclarations = this.generateEndiannessMethodsDeclarations(dataset);
     _builder.append(_generateEndiannessMethodsDeclarations, "");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    CharSequence _generateMarshalingJSONMethods = this.generateMarshalingJSONMethods(dataset);
+    _builder.append(_generateMarshalingJSONMethods, "");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     return _builder;
@@ -1248,6 +1245,174 @@ public class CDTOFileGenerator extends CDTOGenerator {
   }
   
   /**
+   * Generates methods to marshal JSON and unmarshal JSON.
+   * @param dataset
+   */
+  public CharSequence generateMarshalingJSONMethods(final DataSet dataset) {
+    StringConcatenation _builder = new StringConcatenation();
+    CharSequence _generateMarshalJSON = this.generateMarshalJSON(dataset);
+    _builder.append(_generateMarshalJSON, "");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    CharSequence _generateUnmarshalJSON = this.generateUnmarshalJSON(dataset);
+    _builder.append(_generateUnmarshalJSON, "");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public CharSequence generateMarshalJSON(final DataSet d) {
+    CharSequence _xblockexpression = null;
+    {
+      ArrayList<DataSet> _arrayList = new ArrayList<DataSet>();
+      final Procedure1<ArrayList<DataSet>> _function = new Procedure1<ArrayList<DataSet>>() {
+        @Override
+        public void apply(final ArrayList<DataSet> it) {
+          it.add(d);
+          EList<DataSet> _usedDataSets = d.getUsedDataSets();
+          it.addAll(_usedDataSets);
+        }
+      };
+      ArrayList<DataSet> dataSets = ObjectExtensions.<ArrayList<DataSet>>operator_doubleArrow(_arrayList, _function);
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("char * marshalJSON_");
+      String _name = d.getName();
+      String _firstUpper = StringExtensions.toFirstUpper(_name);
+      _builder.append(_firstUpper, "");
+      _builder.append("(");
+      String _name_1 = d.getName();
+      String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
+      _builder.append(_firstUpper_1, "");
+      _builder.append("* p){");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t ");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("JsonNode *jsonObject = json_mkobject();");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.newLine();
+      {
+        for(final DataSet dataSet : dataSets) {
+          {
+            EList<Data> _data = dataSet.getData();
+            for(final Data data : _data) {
+              {
+                EList<String> _excludedMethods = data.getExcludedMethods();
+                boolean _contains = _excludedMethods.contains("getter");
+                boolean _not = (!_contains);
+                if (_not) {
+                  _builder.append("\t");
+                  _builder.append("json_append_member(jsonObject, \"");
+                  String _nameLower = GenerationUtil.toNameLower(data);
+                  _builder.append(_nameLower, "\t");
+                  _builder.append("\", json_mknumber(get_");
+                  String _name_2 = dataSet.getName();
+                  String _firstUpper_2 = StringExtensions.toFirstUpper(_name_2);
+                  _builder.append(_firstUpper_2, "\t");
+                  _builder.append("_");
+                  String _name_3 = data.getName();
+                  String _replaceAll = _name_3.replaceAll("[^a-zA-Z0-9]", "");
+                  _builder.append(_replaceAll, "\t");
+                  _builder.append("(p)));");
+                  _builder.newLineIfNotEmpty();
+                } else {
+                  _builder.append("\t");
+                  _builder.append("json_append_member(jsonObject, \"");
+                  String _nameLower_1 = GenerationUtil.toNameLower(data);
+                  _builder.append(_nameLower_1, "\t");
+                  _builder.append("\", json_mknumber(0));");
+                  _builder.newLineIfNotEmpty();
+                }
+              }
+            }
+          }
+        }
+      }
+      _builder.append("\t");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("return json_stringify(jsonObject, \"\\t\");");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      _xblockexpression = _builder;
+    }
+    return _xblockexpression;
+  }
+  
+  public CharSequence generateUnmarshalJSON(final DataSet d) {
+    CharSequence _xblockexpression = null;
+    {
+      ArrayList<DataSet> _arrayList = new ArrayList<DataSet>();
+      final Procedure1<ArrayList<DataSet>> _function = new Procedure1<ArrayList<DataSet>>() {
+        @Override
+        public void apply(final ArrayList<DataSet> it) {
+          it.add(d);
+          EList<DataSet> _usedDataSets = d.getUsedDataSets();
+          it.addAll(_usedDataSets);
+        }
+      };
+      ArrayList<DataSet> dataSets = ObjectExtensions.<ArrayList<DataSet>>operator_doubleArrow(_arrayList, _function);
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("void unmarshalJSON_");
+      String _name = d.getName();
+      String _firstUpper = StringExtensions.toFirstUpper(_name);
+      _builder.append(_firstUpper, "");
+      _builder.append("(");
+      String _name_1 = d.getName();
+      String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
+      _builder.append(_firstUpper_1, "");
+      _builder.append("* p, const char *jsonString){");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("JsonNode *jsonObject = json_decode(jsonString);");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.newLine();
+      {
+        for(final DataSet dataSet : dataSets) {
+          {
+            EList<Data> _data = dataSet.getData();
+            for(final Data data : _data) {
+              _builder.append("\t");
+              _builder.append("if (json_find_member(jsonObject, \"");
+              String _nameLower = GenerationUtil.toNameLower(data);
+              _builder.append(_nameLower, "\t");
+              _builder.append("\") != NULL)");
+              _builder.newLineIfNotEmpty();
+              _builder.append("\t");
+              _builder.append("\t");
+              _builder.append("p->");
+              String _name_2 = data.getName();
+              _builder.append(_name_2, "\t\t");
+              _builder.append(" = (");
+              String _typeName = this.toTypeName(data);
+              _builder.append(_typeName, "\t\t");
+              _builder.append(") json_find_member(jsonObject, \"");
+              String _nameLower_1 = GenerationUtil.toNameLower(data);
+              _builder.append(_nameLower_1, "\t\t");
+              _builder.append("\")->number_;");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+        }
+      }
+      _builder.append("\t");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("json_delete(jsonObject);");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
+      _builder.newLine();
+      _xblockexpression = _builder;
+    }
+    return _xblockexpression;
+  }
+  
+  /**
    * Generates a description for a dataset.
    * @param dataset
    * 			represents the dataset.
@@ -1299,18 +1464,7 @@ public class CDTOFileGenerator extends CDTOGenerator {
    * Checks, if the given MeasurementData-element was specified to be adjusted as linear conversion.
    */
   public boolean isAdjustedByLinearConversionWithInterval(final MeasurementData data) {
-    boolean _and = false;
-    EList<DataAdjustment> _adjustments = data.getAdjustments();
-    int _size = _adjustments.size();
-    boolean _greaterThan = (_size > 0);
-    if (!_greaterThan) {
-      _and = false;
-    } else {
-      EList<DataAdjustment> _adjustments_1 = data.getAdjustments();
-      DataAdjustment _get = _adjustments_1.get(0);
-      _and = (_get instanceof LinearDataConversionWithInterval);
-    }
-    return _and;
+    return ((data.getAdjustments().size() > 0) && (data.getAdjustments().get(0) instanceof LinearDataConversionWithInterval));
   }
   
   /**

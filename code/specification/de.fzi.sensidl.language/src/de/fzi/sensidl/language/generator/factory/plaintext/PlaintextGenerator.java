@@ -45,4 +45,13 @@ public class PlaintextGenerator implements ICodeGenerator {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	/**
+     * @see ICodeGenerator#generateOpcUa(List<MeasurementData>)
+     */
+    @Override
+    public HashMap<String, CharSequence> generateOpcUa(List<DataSet> dataSet) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    }
 }

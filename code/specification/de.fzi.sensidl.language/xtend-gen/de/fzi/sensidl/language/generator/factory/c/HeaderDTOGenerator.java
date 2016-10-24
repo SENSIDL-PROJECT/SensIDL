@@ -142,6 +142,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.append(_utilityFileName, "");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
+    _builder.newLine();
     _builder.append("\t\t\t");
     _builder.newLine();
     _builder.append("\t\t\t");
@@ -177,6 +178,10 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     _builder.newLine();
     CharSequence _generateEndiannessMethodsPrototypes = this.generateEndiannessMethodsPrototypes(dataset);
     _builder.append(_generateEndiannessMethodsPrototypes, "");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    CharSequence _generateMarshalingJSONMethods = this.generateMarshalingJSONMethods(dataset);
+    _builder.append(_generateMarshalingJSONMethods, "");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("#endif");
@@ -607,18 +612,7 @@ public class HeaderDTOGenerator extends CDTOGenerator {
    * Checks, if the given MeasurementData-element was specified to be adjusted as linear conversion.
    */
   public boolean isAdjustedByLinearConversionWithInterval(final MeasurementData data) {
-    boolean _and = false;
-    EList<DataAdjustment> _adjustments = data.getAdjustments();
-    int _size = _adjustments.size();
-    boolean _greaterThan = (_size > 0);
-    if (!_greaterThan) {
-      _and = false;
-    } else {
-      EList<DataAdjustment> _adjustments_1 = data.getAdjustments();
-      DataAdjustment _get = _adjustments_1.get(0);
-      _and = (_get instanceof LinearDataConversionWithInterval);
-    }
-    return _and;
+    return ((data.getAdjustments().size() > 0) && (data.getAdjustments().get(0) instanceof LinearDataConversionWithInterval));
   }
   
   /**
@@ -1019,6 +1013,74 @@ public class HeaderDTOGenerator extends CDTOGenerator {
     String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
     _builder.append(_firstUpper_1, "");
     _builder.append("* p);");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    return _builder;
+  }
+  
+  /**
+   * Generates methods to marshal JSON and unmarshal JSON.
+   * @param dataset
+   */
+  public CharSequence generateMarshalingJSONMethods(final DataSet dataset) {
+    StringConcatenation _builder = new StringConcatenation();
+    CharSequence _generateMarshalJSON = this.generateMarshalJSON(dataset);
+    _builder.append(_generateMarshalJSON, "");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    CharSequence _generateUnmarshalJSON = this.generateUnmarshalJSON(dataset);
+    _builder.append(_generateUnmarshalJSON, "");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generateMarshalJSON(final DataSet d) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append("* @return the JSON String of ");
+    String _name = d.getName();
+    String _firstUpper = StringExtensions.toFirstUpper(_name);
+    _builder.append(_firstUpper, "");
+    _builder.newLineIfNotEmpty();
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("char * marshalJSON_");
+    String _name_1 = d.getName();
+    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
+    _builder.append(_firstUpper_1, "");
+    _builder.append("(");
+    String _name_2 = d.getName();
+    String _firstUpper_2 = StringExtensions.toFirstUpper(_name_2);
+    _builder.append(_firstUpper_2, "");
+    _builder.append("* p);");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generateUnmarshalJSON(final DataSet d) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("/**");
+    _builder.newLine();
+    _builder.append("* fill the ");
+    String _name = d.getName();
+    String _firstUpper = StringExtensions.toFirstUpper(_name);
+    _builder.append(_firstUpper, "");
+    _builder.append(" struct based on its JSON String");
+    _builder.newLineIfNotEmpty();
+    _builder.append("*/");
+    _builder.newLine();
+    _builder.append("void unmarshalJSON_");
+    String _name_1 = d.getName();
+    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
+    _builder.append(_firstUpper_1, "");
+    _builder.append("(");
+    String _name_2 = d.getName();
+    String _firstUpper_2 = StringExtensions.toFirstUpper(_name_2);
+    _builder.append(_firstUpper_2, "");
+    _builder.append("* p, const char *json);");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     return _builder;

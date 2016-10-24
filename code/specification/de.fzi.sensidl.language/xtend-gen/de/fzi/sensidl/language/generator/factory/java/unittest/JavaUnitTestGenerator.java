@@ -47,4 +47,12 @@ public class JavaUnitTestGenerator implements ICodeGenerator {
   public HashMap<String, CharSequence> generateUtilityClass(final List<EObject> data) {
     return null;
   }
+  
+  /**
+   * @see ICodeGenerator#generateOpcUa(List<MeasurementData>)
+   */
+  @Override
+  public HashMap<String, CharSequence> generateOpcUa(final List<DataSet> dataSet) {
+    return null;
+  }
 }

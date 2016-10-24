@@ -168,8 +168,6 @@ public class JavaDTOGenerator implements IDTOGenerator {
         EObject _eContainer_1 = _get_1.eContainer();
         String _sensorInterfaceName_1 = GenerationUtil.getSensorInterfaceName(_eContainer_1);
         _builder.append(_sensorInterfaceName_1, "");
-        _builder.append(".");
-        _builder.append(className, "");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
         _builder.append(" ");
@@ -878,63 +876,32 @@ public class JavaDTOGenerator implements IDTOGenerator {
         EList<EObject> _eContents = d.eContents();
         Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(_eContents, MeasurementData.class);
         for(final MeasurementData data : _filter) {
+          _builder.append("\t");
+          _builder.append("this.");
+          String _nameLower = GenerationUtil.toNameLower(data);
+          _builder.append(_nameLower, "\t");
+          _builder.append(" = ");
           {
-            boolean _hasLinearDataConversionWithInterval = this.hasLinearDataConversionWithInterval(data);
-            if (_hasLinearDataConversionWithInterval) {
-              {
-                EList<String> _excludedMethods = data.getExcludedMethods();
-                boolean _contains = _excludedMethods.contains("setter");
-                if (_contains) {
-                  _builder.append("\t");
-                  _builder.append("//set");
-                  String _nameUpper = GenerationUtil.toNameUpper(data);
-                  _builder.append(_nameUpper, "\t");
-                  _builder.append("(");
-                  String _nameLower = GenerationUtil.toNameLower(data);
-                  _builder.append(_nameLower, "\t");
-                  _builder.append("); // no setter was generated");
-                  _builder.newLineIfNotEmpty();
-                } else {
-                  _builder.append("\t");
-                  _builder.append("set");
-                  String _nameUpper_1 = GenerationUtil.toNameUpper(data);
-                  _builder.append(_nameUpper_1, "\t");
-                  _builder.append("(");
-                  String _nameLower_1 = GenerationUtil.toNameLower(data);
-                  _builder.append(_nameLower_1, "\t");
-                  _builder.append(");");
-                  _builder.newLineIfNotEmpty();
-                }
-              }
+            DataType _dataType = data.getDataType();
+            boolean _isUnsigned = this.isUnsigned(_dataType);
+            if (_isUnsigned) {
+              _builder.append("(");
+              String _simpleTypeName = this.toSimpleTypeName(data);
+              _builder.append(_simpleTypeName, "\t");
+              _builder.append(") (");
+              String _nameLower_1 = GenerationUtil.toNameLower(data);
+              _builder.append(_nameLower_1, "\t");
+              _builder.append(" - ");
+              String _typeName = this.toTypeName(data);
+              _builder.append(_typeName, "\t");
+              _builder.append(".MAX_VALUE)");
             } else {
-              _builder.append("\t");
-              _builder.append("this.");
               String _nameLower_2 = GenerationUtil.toNameLower(data);
               _builder.append(_nameLower_2, "\t");
-              _builder.append(" = ");
-              {
-                DataType _dataType = data.getDataType();
-                boolean _isUnsigned = this.isUnsigned(_dataType);
-                if (_isUnsigned) {
-                  _builder.append("(");
-                  String _simpleTypeName = this.toSimpleTypeName(data);
-                  _builder.append(_simpleTypeName, "\t");
-                  _builder.append(") (");
-                  String _nameLower_3 = GenerationUtil.toNameLower(data);
-                  _builder.append(_nameLower_3, "\t");
-                  _builder.append(" - ");
-                  String _typeName = this.toTypeName(data);
-                  _builder.append(_typeName, "\t");
-                  _builder.append(".MAX_VALUE)");
-                } else {
-                  String _nameLower_4 = GenerationUtil.toNameLower(data);
-                  _builder.append(_nameLower_4, "\t");
-                }
-              }
-              _builder.append(";");
-              _builder.newLineIfNotEmpty();
             }
           }
+          _builder.append(";");
+          _builder.newLineIfNotEmpty();
         }
       }
       {
@@ -947,8 +914,8 @@ public class JavaDTOGenerator implements IDTOGenerator {
             if (_not) {
               _builder.append("\t");
               _builder.append("this.");
-              String _nameLower_5 = GenerationUtil.toNameLower(data_1);
-              _builder.append(_nameLower_5, "\t");
+              String _nameLower_3 = GenerationUtil.toNameLower(data_1);
+              _builder.append(_nameLower_3, "\t");
               _builder.append(" = ");
               {
                 DataType _dataType_1 = data_1.getDataType();
@@ -958,15 +925,15 @@ public class JavaDTOGenerator implements IDTOGenerator {
                   String _simpleTypeName_1 = this.toSimpleTypeName(data_1);
                   _builder.append(_simpleTypeName_1, "\t");
                   _builder.append(") (");
-                  String _nameLower_6 = GenerationUtil.toNameLower(data_1);
-                  _builder.append(_nameLower_6, "\t");
+                  String _nameLower_4 = GenerationUtil.toNameLower(data_1);
+                  _builder.append(_nameLower_4, "\t");
                   _builder.append(" - ");
                   String _typeName_1 = this.toTypeName(data_1);
                   _builder.append(_typeName_1, "\t");
                   _builder.append(".MAX_VALUE)");
                 } else {
-                  String _nameLower_7 = GenerationUtil.toNameLower(data_1);
-                  _builder.append(_nameLower_7, "\t");
+                  String _nameLower_5 = GenerationUtil.toNameLower(data_1);
+                  _builder.append(_nameLower_5, "\t");
                 }
               }
               _builder.append(";");
@@ -980,11 +947,11 @@ public class JavaDTOGenerator implements IDTOGenerator {
         for(final DataSet pdataSet : _usedDataSets) {
           _builder.append("\t");
           _builder.append("this.");
-          String _nameLower_8 = GenerationUtil.toNameLower(pdataSet);
-          _builder.append(_nameLower_8, "\t");
+          String _nameLower_6 = GenerationUtil.toNameLower(pdataSet);
+          _builder.append(_nameLower_6, "\t");
           _builder.append(" = ");
-          String _nameLower_9 = GenerationUtil.toNameLower(pdataSet);
-          _builder.append(_nameLower_9, "\t");
+          String _nameLower_7 = GenerationUtil.toNameLower(pdataSet);
+          _builder.append(_nameLower_7, "\t");
           _builder.append(";");
           _builder.newLineIfNotEmpty();
         }
@@ -2246,29 +2213,7 @@ public class JavaDTOGenerator implements IDTOGenerator {
    * returns true if the DataType is an unsigned DataType
    */
   public boolean isUnsigned(final DataType d) {
-    boolean _or = false;
-    boolean _or_1 = false;
-    boolean _or_2 = false;
-    boolean _equals = Objects.equal(d, DataType.UINT8);
-    if (_equals) {
-      _or_2 = true;
-    } else {
-      boolean _equals_1 = Objects.equal(d, DataType.UINT16);
-      _or_2 = _equals_1;
-    }
-    if (_or_2) {
-      _or_1 = true;
-    } else {
-      boolean _equals_2 = Objects.equal(d, DataType.UINT32);
-      _or_1 = _equals_2;
-    }
-    if (_or_1) {
-      _or = true;
-    } else {
-      boolean _equals_3 = Objects.equal(d, DataType.UINT64);
-      _or = _equals_3;
-    }
-    if (_or) {
+    if ((((Objects.equal(d, DataType.UINT8) || Objects.equal(d, DataType.UINT16)) || Objects.equal(d, DataType.UINT32)) || Objects.equal(d, DataType.UINT64))) {
       return true;
     }
     return false;
@@ -2347,15 +2292,7 @@ public class JavaDTOGenerator implements IDTOGenerator {
     }
     EList<DataAdjustment> _adjustments_1 = d.getAdjustments();
     Iterable<LinearDataConversionWithInterval> conversion = Iterables.<LinearDataConversionWithInterval>filter(_adjustments_1, LinearDataConversionWithInterval.class);
-    boolean _or = false;
-    boolean _isEmpty_1 = IterableExtensions.isEmpty(conversion);
-    if (_isEmpty_1) {
-      _or = true;
-    } else {
-      boolean _equals = Objects.equal(conversion, null);
-      _or = _equals;
-    }
-    if (_or) {
+    if ((IterableExtensions.isEmpty(conversion) || Objects.equal(conversion, null))) {
       return null;
     }
     LinearDataConversionWithInterval _head = IterableExtensions.<LinearDataConversionWithInterval>head(conversion);

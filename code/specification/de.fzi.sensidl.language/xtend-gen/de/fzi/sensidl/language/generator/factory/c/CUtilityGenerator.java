@@ -46,7 +46,7 @@ public class CUtilityGenerator implements IUtilityGenerator {
   public HashMap<String, CharSequence> generate() {
     HashMap<String, CharSequence> _xblockexpression = null;
     {
-      CUtilityGenerator.logger.info("Start with code-generation of the java utility class.");
+      CUtilityGenerator.logger.info("Start with code-generation of the c utility class.");
       final HashMap<String, CharSequence> filesToGenerate = new HashMap<String, CharSequence>();
       final String utilityName = GenerationUtil.getUtilityName(this.currentSensorInterface);
       String _addFileExtensionTo = this.addFileExtensionTo(utilityName);
@@ -76,6 +76,14 @@ public class CUtilityGenerator implements IUtilityGenerator {
     _builder.append("_H");
     _builder.newLineIfNotEmpty();
     _builder.append("#include <stdbool.h>");
+    _builder.newLine();
+    _builder.append("#include \"json.h\"   // please download json.c and json.h files ");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t");
+    _builder.append("// from: https://github.com/rustyrussell/ccan/tree/master/ccan/json");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t");
+    _builder.append("// and add them to the project in order to use JSON marshalling methods\t\t");
     _builder.newLine();
     _builder.newLine();
     CharSequence _generateCheckLittleEndian = this.generateCheckLittleEndian();

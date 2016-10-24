@@ -78,4 +78,12 @@ public class CSharpGenerator implements ICodeGenerator {
     CSharpUtilityGenerator _cSharpUtilityGenerator = new CSharpUtilityGenerator(data, createProject);
     return _cSharpUtilityGenerator.generate();
   }
+  
+  /**
+   * @see ICodeGenerator#generateOpcUa(List<DataSet> dataSet)
+   */
+  @Override
+  public HashMap<String, CharSequence> generateOpcUa(final List<DataSet> dataSet) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  }
 }

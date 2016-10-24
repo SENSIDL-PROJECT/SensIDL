@@ -71,4 +71,12 @@ public class CGenerator implements ICodeGenerator {
     CUtilityGenerator _cUtilityGenerator = new CUtilityGenerator(data);
     return _cUtilityGenerator.generate();
   }
+  
+  /**
+   * @see ICodeGenerator#generateOpcUa(List<MeasurementData>)
+   */
+  @Override
+  public HashMap<String, CharSequence> generateOpcUa(final List<DataSet> dataSet) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  }
 }

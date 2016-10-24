@@ -58,4 +58,12 @@ class JavaGenerator implements ICodeGenerator {
 	def generateUtilityClass(List<EObject> data, boolean createProject) {
 		new JavaUtilityGenerator(data, createProject).generate
 	}
+	
+	/**
+	 * @see ICodeGenerator#generateOpcUa(List<MeasurementData>)
+	 */
+	override generateOpcUa(List<DataSet> dataSet) {
+		new JavaOpcUaGenerator(dataSet).generateOpcUaServer
+	}
+	
 }

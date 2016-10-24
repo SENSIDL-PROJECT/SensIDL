@@ -88,6 +88,8 @@ public class SkeletonGenerationStep extends GenerationStep {
                   it.putAll(_generateDTO_6);
                   SkeletonGenerationStep.createSidlFile = false;
                 }
+                HashMap<String, CharSequence> _generateOpcUa = jgenerator.generateOpcUa(SkeletonGenerationStep.this.dataSet);
+                it.putAll(_generateOpcUa);
               }
             };
             ObjectExtensions.<HashMap<String, CharSequence>>operator_doubleArrow(
@@ -128,6 +130,24 @@ public class SkeletonGenerationStep extends GenerationStep {
           public void execute() {
             final JavaGenerator generator = new JavaGenerator();
             final PlaintextGenerator generator2 = new PlaintextGenerator();
+            final JavaUnitTestGenerator jutgenerator = new JavaUnitTestGenerator();
+            final Procedure1<HashMap<String, CharSequence>> _function = new Procedure1<HashMap<String, CharSequence>>() {
+              @Override
+              public void apply(final HashMap<String, CharSequence> it) {
+                HashMap<String, CharSequence> _generateOpcUa = generator.generateOpcUa(SkeletonGenerationStep.this.dataSet);
+                it.putAll(_generateOpcUa);
+              }
+            };
+            ObjectExtensions.<HashMap<String, CharSequence>>operator_doubleArrow(
+              GenerationStep.filesToGenerate, _function);
+          }
+        };
+        it.put(SensIDLConstants.GenerationLanguage.OPCUA, _function_2);
+        final IExecuter _function_3 = new IExecuter() {
+          @Override
+          public void execute() {
+            final JavaGenerator generator = new JavaGenerator();
+            final PlaintextGenerator generator2 = new PlaintextGenerator();
             final SidlGenerator sgenerator = new SidlGenerator();
             final Procedure1<HashMap<String, CharSequence>> _function = new Procedure1<HashMap<String, CharSequence>>() {
               @Override
@@ -147,8 +167,8 @@ public class SkeletonGenerationStep extends GenerationStep {
               GenerationStep.filesToGenerate, _function);
           }
         };
-        it.put(SensIDLConstants.GenerationLanguage.JAVA_PLUGIN_PROJECT, _function_2);
-        final IExecuter _function_3 = new IExecuter() {
+        it.put(SensIDLConstants.GenerationLanguage.JAVA_PLUGIN_PROJECT, _function_3);
+        final IExecuter _function_4 = new IExecuter() {
           @Override
           public void execute() {
             final CGenerator generator = new CGenerator();
@@ -172,8 +192,8 @@ public class SkeletonGenerationStep extends GenerationStep {
               GenerationStep.filesToGenerate, _function);
           }
         };
-        it.put(SensIDLConstants.GenerationLanguage.C, _function_3);
-        final IExecuter _function_4 = new IExecuter() {
+        it.put(SensIDLConstants.GenerationLanguage.C, _function_4);
+        final IExecuter _function_5 = new IExecuter() {
           @Override
           public void execute() {
             final CSharpGenerator generator = new CSharpGenerator();
@@ -197,8 +217,8 @@ public class SkeletonGenerationStep extends GenerationStep {
               GenerationStep.filesToGenerate, _function);
           }
         };
-        it.put(SensIDLConstants.GenerationLanguage.CSHARP, _function_4);
-        final IExecuter _function_5 = new IExecuter() {
+        it.put(SensIDLConstants.GenerationLanguage.CSHARP, _function_5);
+        final IExecuter _function_6 = new IExecuter() {
           @Override
           public void execute() {
             final JavaScriptGenerator generator = new JavaScriptGenerator();
@@ -222,8 +242,8 @@ public class SkeletonGenerationStep extends GenerationStep {
               GenerationStep.filesToGenerate, _function);
           }
         };
-        it.put(SensIDLConstants.GenerationLanguage.JAVASCRIPT, _function_5);
-        final IExecuter _function_6 = new IExecuter() {
+        it.put(SensIDLConstants.GenerationLanguage.JAVASCRIPT, _function_6);
+        final IExecuter _function_7 = new IExecuter() {
           @Override
           public void execute() {
             final PlaintextGenerator generator = new PlaintextGenerator();
@@ -241,7 +261,7 @@ public class SkeletonGenerationStep extends GenerationStep {
               GenerationStep.filesToGenerate, _function);
           }
         };
-        it.put(SensIDLConstants.GenerationLanguage.PLAINTEXT, _function_6);
+        it.put(SensIDLConstants.GenerationLanguage.PLAINTEXT, _function_7);
       }
     };
     return ObjectExtensions.<HashMap<SensIDLConstants.GenerationLanguage, IExecuter>>operator_doubleArrow(_hashMap, _function);
