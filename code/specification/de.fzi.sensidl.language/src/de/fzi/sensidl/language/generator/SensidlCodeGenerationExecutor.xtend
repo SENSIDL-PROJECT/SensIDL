@@ -4,7 +4,6 @@ import de.fzi.sensidl.language.generator.SensIDLConstants.GenerationLanguage
 import de.fzi.sensidl.language.generator.elementfilter.DataSetFilter
 import de.fzi.sensidl.language.generator.elementfilter.ElementFilter
 import de.fzi.sensidl.language.generator.elementfilter.UtilityDataFilter
-import de.fzi.sensidl.language.generator.factory.java.MavenProjectCreater
 import de.fzi.sensidl.language.generator.generationstep.GenerationStep
 import de.fzi.sensidl.language.generator.generationstep.filegenerationstep.FileGenerationStep
 import de.fzi.sensidl.language.generator.generationstep.skeletongenerationstep.SkeletonGenerationStep
