@@ -6,7 +6,8 @@
   <rm:property key="vorto.repository" value="${eclipse.download}/vorto/update/milestones/"/>
   <rm:property key="qvto.repository" value="${eclipse.download}/mmt/qvto/updates/releases/"/>
   <rm:property key="eclipse.target.platform" value="${eclipse.download}/releases/mars"/>
-  <rm:property key="eclipse.ocl.p2.repository" value="${eclipse.download}/modeling/mdt/ocl/updates/releases/"/>
+  <rm:property key="eclipse.ocl.p2.repository" value="${eclipse.download}/modeling/mdt/ocl/updates/releases/" />
+  <rm:property key="eclipse.m2e.p2.repository" value="${eclipse.download}/technology/m2e/releases/" />
   
   <rm:locator pattern="^de\.fzi\.sensidl\.language(?:\..+)?$" searchPathRef="project"/>
   <rm:locator pattern="^de\.fzi\.sensidl\.design(?:\..+)?$" searchPathRef="project"/>
@@ -22,6 +23,7 @@
   <rm:locator pattern="javax.inject" searchPathRef="xtext"/>
   
   <rm:locator pattern="^org\.eclipse\.ocl(?:\..+)?$" searchPathRef="ocl"/>
+  <rm:locator pattern="^org\.eclipse\.m2e(?:\..+)?$ searchPathRef="m2e" />
 
   <rm:locator searchPathRef="eclipse"/>
   
@@ -68,6 +70,15 @@
       <rm:property key="buckminster.source" value="false"/>
       <rm:uri format="{0}">
         <bc:propertyRef key="eclipse.ocl.p2.repository"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  
+  <rm:searchPath name="m2e">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false">
+      <rm:property key="buckminster.source" value="false"/>
+      <rm:uri format="{0}">
+        <bc:propertyRef key="eclipse.m2e.p2.repository"/>
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
