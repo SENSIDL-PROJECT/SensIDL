@@ -23,7 +23,7 @@
   <rm:locator pattern="javax.inject" searchPathRef="xtext"/>
   
   <rm:locator pattern="^org\.eclipse\.ocl(?:\..+)?$" searchPathRef="ocl"/>
-  <rm:locator pattern="^org\.eclipse\.m2e(?:\..+)?$ searchPathRef="m2e" />
+  <rm:locator pattern="^org\.eclipse\.m2e(?:\..+)?$" searchPathRef="m2e" />
 
   <rm:locator searchPathRef="eclipse"/>
   
