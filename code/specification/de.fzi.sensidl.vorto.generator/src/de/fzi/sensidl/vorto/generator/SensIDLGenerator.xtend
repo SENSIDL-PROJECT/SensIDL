@@ -3,7 +3,7 @@ package de.fzi.sensidl.vorto.generator
 import de.fzi.sensidl.language.generator.generationstep.skeletongenerationstep.SkeletonGenerationStep
 import java.io.IOException
 import org.eclipse.vorto.codegen.api.IVortoCodeGenerator
-import org.eclipse.vorto.codegen.api.mapping.InvocationContext
+import org.eclipse.vorto.codegen.api.InvocationContext
 import org.eclipse.vorto.core.api.model.informationmodel.InformationModel
 
 import static de.fzi.sensidl.language.generator.generationstep.skeletongenerationstep.SkeletonGenerationStep.*
