@@ -10,11 +10,11 @@ package de.fzi.sensidl.design.sensidl.dataRepresentation;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData#isConstant <em>Constant</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getNonMeasurementData()
  * @model

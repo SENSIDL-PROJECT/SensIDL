@@ -25,11 +25,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.SensorDataDescriptionImpl#getDataSets <em>Data Sets</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.SensorDataDescriptionImpl#getSensorInterface <em>Sensor Interface</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

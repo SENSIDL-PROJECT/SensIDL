@@ -1,15 +1,19 @@
 package de.fzi.sensidl.language.ui.wizard;
 
-import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.net.URL;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.internal.util.BundleUtility;
 import org.osgi.framework.Bundle;
 
+import de.fzi.sensidl.language.ui.exception.NoSidlFileException;
 import de.fzi.sensidl.language.ui.handler.GenerationHandler;
 import de.fzi.sensidl.language.ui.handler.SettingsHandler;
 
@@ -25,6 +29,7 @@ public class SensidlWizard extends Wizard {
 	private String modelPath;
 	private String path;
 	private String language;
+	private Resource sensidlmodel;
 
 	/**
 	 * Constructor
@@ -37,18 +42,19 @@ public class SensidlWizard extends Wizard {
 	 * @param language
 	 *            the generation language
 	 */
-	public SensidlWizard(String modelPath, String path, String language) {
+	public SensidlWizard(String modelPath, String path, String language, Resource sensidlmodel) {
 		this.modelPath = modelPath;
 		this.path = path;
 		this.language = language;
+		this.sensidlmodel = sensidlmodel;
 	}
 
 	@Override
 	public void addPages() {
 		Bundle bundle = Platform.getBundle("de.fzi.sensidl.language.ui");
 		URL fullPathString = BundleUtility.find(bundle, "images/SensIDL_logo.jpg");
-		sensidlWizardPage = new SensidlWizardPage("SensIDL Tooling Wizard", "SensIDL Tooling Wizard",
-				ImageDescriptor.createFromURL(fullPathString), modelPath, path, language);
+		sensidlWizardPage = new SensidlWizardPage("SensIDL - Code Generation", "SensIDL - Code Generation",
+				ImageDescriptor.createFromURL(fullPathString), modelPath, path, language, sensidlmodel != null);
 
 		addPage(sensidlWizardPage);
 
@@ -72,13 +78,27 @@ public class SensidlWizard extends Wizard {
 			path = sensidlWizardPage.getTextPath();
 		}
 
+		// Exception handling to give user feedback
+		ErrorDialogHandler errorHandler = new ErrorDialogHandler();
 		try {
-			GenerationHandler.generate(path, modelPath, sensidlWizardPage.getLanguage());
-		} catch (IOException e) {
-			System.out.println("File not found");
+			// start the generator with the GenerationHandler
+			GenerationHandler.generate(path, modelPath, sensidlWizardPage.getLanguage(), sensidlmodel);
+			MessageDialog.openInformation(new Shell(), "Info", "The code was successfully generated");
+
+		} catch (FileNotFoundException ex) {
+			errorHandler.execute(new Shell(), ex);
+			return false;
+		} catch (NoSidlFileException ex) {
+			errorHandler.execute(new Shell(), ex);
+			return false;
+		} catch (Exception ex) {
+			errorHandler.execute(new Shell(), ex);
+			return false;
 		}
 
-		SettingsHandler.saveSettings(sensidlWizardPage.getTextPath(), sensidlWizardPage.getLanguage());
+		SettingsHandler.saveSettings(sensidlWizardPage.getTextModelPath(), sensidlWizardPage.getTextPath(),
+				sensidlWizardPage.getLanguage());
 		return true;
 	}
+
 }

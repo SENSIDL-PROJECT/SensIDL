@@ -1,0 +1,175 @@
+sensorInterface unitTestExample {
+	encoding: SENSIDL_BINARY, endianness: BIG_ENDIAN, alignment: 1 BIT
+	sensorData {
+		dataSet TestDataSet1	uses TestDataSet2{
+			nmcvalue1 as INT8 constant value = "5"
+			nmcvalue2 as INT16 constant value = "5"
+			nmcvalue3 as INT32 constant value = "5"
+			nmcvalue4 as INT64 constant value = "5"
+			nmcvalue5 as FLOAT constant value = "5"
+			nmcvalue6 as DOUBLE constant value = "5"
+			
+			value1 as INT8 in W
+			value2 as INT16 in °C 
+			value3 as INT32 in °C 
+			value4 as INT64 in °C
+			value5 as FLOAT in °C
+			value6 as DOUBLE in °C 
+			
+			rvalue1 as INT8 in °C adjusted with range [ 0;5 ] 
+			rvalue2 as INT16 in °C adjusted with range [ 0;5 ] 
+			rvalue3 as INT32 in °C adjusted with range [ 0;5 ]
+			rvalue4 as INT64 in °C adjusted with range [ 0;5 ]
+			rvalue5 as FLOAT in °C adjusted with range [ 0;5 ]
+			rvalue6 as DOUBLE in °C adjusted with range [ 0;5 ]
+			
+			sovalue1 as INT8 in °C adjusted with scaling factor : 3 and offset : 2
+			sovalue2 as INT16 in °C adjusted with scaling factor : 3 and offset : 2
+			sovalue3 as INT32 in °C adjusted with scaling factor : 3 and offset : 2
+			sovalue4 as INT64 in °C adjusted with scaling factor : 3 and offset : 2
+			sovalue5 as FLOAT in °C adjusted with scaling factor : 3 and offset : 2
+			sovalue6 as DOUBLE in °C adjusted with scaling factor : 3 and offset : 2
+			
+			lmvalue1 as INT8 in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as DOUBLE 
+			lmvalue2 as INT16 in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as FLOAT
+			lmvalue3 as INT32 in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as INT64
+			lmvalue4 as INT64 in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as INT32
+			lmvalue5 as FLOAT in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as INT16
+			lmvalue6 as DOUBLE in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as INT8
+			
+			list1 as list of DOUBLE  
+			list2 as list of FLOAT
+			list3 as list of INT64
+			list4 as list of INT32 
+			list5 as list of INT16
+			list6 as list of INT8
+		}	
+		dataSet TestDataSet2 {	
+			#m1 () as Method 
+			+m2 () as Method
+			-m3 () as Method
+			~m4 () as Method
+			m5 () as Method
+			
+		}	
+		dataSet TestDataSet3 {	
+			nmcvalue1 as INT8 constant value = "5" exclude:getter
+			nmcvalue2 as INT16 constant value = "5" exclude:getter
+			nmcvalue3 as INT32 constant value = "5" exclude:getter 
+			nmcvalue4 as INT64 constant value = "5" exclude:getter
+			nmcvalue5 as FLOAT constant value = "5" exclude:getter
+			nmcvalue6 as DOUBLE constant value = "5" exclude:getter
+			
+			value1 as INT8 in °C exclude:getter
+			value2 as INT16 in °C exclude:getter
+			value3 as INT32 in °C exclude:getter 
+			value4 as INT64 in °C exclude:getter
+			value5 as FLOAT in °C exclude:getter
+			value6 as DOUBLE in °C exclude:getter
+			
+			rvalue1 as INT8 in °C adjusted with range [ 0;5 ] exclude:getter 
+			rvalue2 as INT16 in °C adjusted with range [ 0;5 ] exclude:getter 
+			rvalue3 as INT32 in °C adjusted with range [ 0;5 ] exclude:getter
+			rvalue4 as INT64 in °C adjusted with range [ 0;5 ] exclude:getter
+			rvalue5 as FLOAT in °C adjusted with range [ 0;5 ] exclude:getter
+			rvalue6 as DOUBLE in °C adjusted with range [ 0;5 ] exclude:getter
+			
+			sovalue1 as INT8 in °C adjusted with scaling factor : 3 and offset : 2 exclude:getter
+			sovalue2 as INT16 in °C adjusted with scaling factor : 3 and offset : 2 exclude:getter
+			sovalue3 as INT32 in °C adjusted with scaling factor : 3 and offset : 2 exclude:getter
+			sovalue4 as INT64 in °C adjusted with scaling factor : 3 and offset : 2 exclude:getter
+			sovalue5 as FLOAT in °C adjusted with scaling factor : 3 and offset : 2 exclude:getter
+			sovalue6 as DOUBLE in °C adjusted with scaling factor : 3 and offset : 2 exclude:getter
+			
+			lmvalue1 as INT8 in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as DOUBLE exclude:getter 
+			lmvalue2 as INT16 in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as FLOAT exclude:getter
+			lmvalue3 as INT32 in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as INT64 exclude:getter
+			lmvalue4 as INT64 in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as INT32 exclude:getter
+			lmvalue5 as FLOAT in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as INT16 exclude:getter
+			lmvalue6 as DOUBLE in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as INT8 exclude:getter
+			
+			list1 as list of DOUBLE  
+			list2 as list of FLOAT 
+			list3 as list of INT64 
+			list4 as list of INT32  
+			list5 as list of INT16
+			list6 as list of INT8
+			
+			Name(TestDataSet2 Name):TestDataSet3 as Method 
+		}	
+		dataSet TestDataSet4 {	
+			nmcvalue1 as INT8 constant value = "5" exclude:setter
+			nmcvalue2 as INT16 constant value = "5" exclude:setter
+			nmcvalue3 as INT32 constant value = "5" exclude:setter 
+			nmcvalue4 as INT64 constant value = "5" exclude:setter
+			nmcvalue5 as FLOAT constant value = "5" exclude:setter
+			nmcvalue6 as DOUBLE constant value = "5" exclude:setter
+			
+			value1 as INT8 in °C exclude:setter
+			value2 as INT16 in °C exclude:setter
+			value3 as INT32 in °C exclude:setter 
+			value4 as INT64 in °C exclude:setter
+			value5 as FLOAT in °C exclude:setter
+			value6 as DOUBLE in °C exclude:setter
+			
+			rvalue1 as INT8 in °C adjusted with range [ 0;5 ] exclude:setter 
+			rvalue2 as INT16 in °C adjusted with range [ 0;5 ] exclude:setter 
+			rvalue3 as INT32 in °C adjusted with range [ 0;5 ] exclude:setter
+			rvalue4 as INT64 in °C adjusted with range [ 0;5 ] exclude:setter
+			rvalue5 as FLOAT in °C adjusted with range [ 0;5 ] exclude:setter
+			rvalue6 as DOUBLE in °C adjusted with range [ 0;5 ] exclude:setter
+			
+			sovalue1 as INT8 in °C adjusted with scaling factor : 3 and offset : 2 exclude:setter
+			sovalue2 as INT16 in °C adjusted with scaling factor : 3 and offset : 2 exclude:setter
+			sovalue3 as INT32 in °C adjusted with scaling factor : 3 and offset : 2 exclude:setter
+			sovalue4 as INT64 in °C adjusted with scaling factor : 3 and offset : 2 exclude:setter
+			sovalue5 as FLOAT in °C adjusted with scaling factor : 3 and offset : 2 exclude:setter
+			sovalue6 as DOUBLE in °C adjusted with scaling factor : 3 and offset : 2 exclude:setter
+			
+			lmvalue1 as INT8 in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as DOUBLE exclude:setter 
+			lmvalue2 as INT16 in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as FLOAT exclude:setter
+			lmvalue3 as INT32 in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as INT64 exclude:setter
+			lmvalue4 as INT64 in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as INT32 exclude:setter
+			lmvalue5 as FLOAT in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as INT16 exclude:setter
+			lmvalue6 as DOUBLE in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as INT8 exclude:setter
+			
+			list1 as list of DOUBLE  
+			list2 as list of FLOAT 
+			list3 as list of INT64 
+			list4 as list of INT32  
+			list5 as list of INT16
+			list6 as list of INT8
+		}	
+		dataSet TestDataSet5 {	
+			nmcvalue1 as UINT8 constant value = "5" exclude:setter
+			nmcvalue2 as UINT16 constant value = "5" exclude:setter
+			nmcvalue3 as UINT32 constant value = "5" exclude:setter 
+			nmcvalue4 as UINT64 constant value = "5" exclude:setter
+			
+			value1 as UINT8 in °C exclude:setter
+			value2 as UINT16 in °C exclude:setter
+			value3 as UINT32 in °C exclude:setter 
+			value4 as UINT64 in °C exclude:setter
+			
+			rvalue1 as UINT8 in °C adjusted with range [ 0;5 ] exclude:setter 
+			rvalue2 as UINT16 in °C adjusted with range [ 0;5 ] exclude:setter 
+			rvalue3 as UINT32 in °C adjusted with range [ 0;5 ] exclude:setter
+			rvalue4 as UINT64 in °C adjusted with range [ 0;5 ] exclude:setter
+			
+			sovalue1 as UINT8 in °C adjusted with scaling factor : 3 and offset : 2 exclude:setter
+			sovalue2 as UINT16 in °C adjusted with scaling factor : 3 and offset : 2 exclude:setter
+			sovalue3 as UINT32 in °C adjusted with scaling factor : 3 and offset : 2 exclude:setter
+			sovalue4 as UINT64 in °C adjusted with scaling factor : 3 and offset : 2 exclude:setter
+			
+			lmvalue1 as UINT8 in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as DOUBLE exclude:setter 
+			lmvalue2 as UINT16 in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as FLOAT exclude:setter
+			lmvalue3 as UINT32 in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as INT64 exclude:setter
+			lmvalue4 as UINT64 in °C adjusted by linear mapping [ 0;5 ] => [ 10 ; 20]  as INT32 exclude:setter
+			
+			list3 as list of UINT64 
+			list4 as list of UINT32  
+			list5 as list of UINT16
+			list6 as list of UINT8
+		}			
+	} 
+}     

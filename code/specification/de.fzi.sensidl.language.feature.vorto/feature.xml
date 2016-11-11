@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="de.fzi.sensidl.language.feature.vorto"
+      label="SensIDL Vorto Generator"
+      version="1.0.0.qualifier"
+      provider-name="FZI Forschungszentrum Informatik"
+      plugin="de.fzi.sensidl.language.feature.vorto.branding">
+
+   <description>
+      SensIDL Vorto Generator to generate Code from a Vorto model with the SensIDL Generator
+   </description>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.vorto.core"/>
+      <import plugin="org.eclipse.vorto.codegen"/>
+      <import plugin="com.google.guava"/>
+      <import plugin="org.eclipse.xtext.xbase.lib"/>
+      <import plugin="org.eclipse.xtend.lib"/>
+      <import plugin="org.eclipse.xtend.lib.macro"/>
+      <import plugin="org.eclipse.emf.common"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.m2m.qvt.oml" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="de.fzi.sensidl.language.ui"/>
+      <import plugin="org.eclipse.ui.workbench"/>
+      <import plugin="org.jscience"/>
+   </requires>
+
+   <plugin
+         id="de.fzi.sensidl.vorto.generator"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="de.fzi.sensidl.vorto.transformation"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"/>
+
+   <plugin
+         id="de.fzi.sensidl.vorto.transformation.util"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="de.fzi.sensidl.language.feature.vorto.branding"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+</feature>

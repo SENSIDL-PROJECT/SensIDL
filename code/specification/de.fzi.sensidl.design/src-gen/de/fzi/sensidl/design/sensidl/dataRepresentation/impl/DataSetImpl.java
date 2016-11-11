@@ -5,6 +5,7 @@ package de.fzi.sensidl.design.sensidl.dataRepresentation.impl;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
+import de.fzi.sensidl.design.sensidl.dataRepresentation.Method;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
 import de.fzi.sensidl.design.sensidl.impl.NamedElementImpl;
 import java.util.Collection;
@@ -15,7 +16,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -25,27 +26,17 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getSensorDataDescription <em>Sensor Data Description</em>}</li>
- *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getSubDataSets <em>Sub Data Sets</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getData <em>Data</em>}</li>
- *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getParentDataSet <em>Parent Data Set</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getMethod <em>Method</em>}</li>
+ *   <li>{@link de.fzi.sensidl.design.sensidl.dataRepresentation.impl.DataSetImpl#getUsedDataSets <em>Used Data Sets</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class DataSetImpl extends NamedElementImpl implements DataSet {
-	/**
-	 * The cached value of the '{@link #getSubDataSets() <em>Sub Data Sets</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSubDataSets()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<DataSet> subDataSets;
-
 	/**
 	 * The cached value of the '{@link #getData() <em>Data</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -57,14 +48,24 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	protected EList<Data> data;
 
 	/**
-	 * The cached value of the '{@link #getParentDataSet() <em>Parent Data Set</em>}' reference.
+	 * The cached value of the '{@link #getMethod() <em>Method</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParentDataSet()
+	 * @see #getMethod()
 	 * @generated
 	 * @ordered
 	 */
-	protected DataSet parentDataSet;
+	protected EList<Method> method;
+
+	/**
+	 * The cached value of the '{@link #getUsedDataSets() <em>Used Data Sets</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUsedDataSets()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<DataSet> usedDataSets;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -131,18 +132,6 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DataSet> getSubDataSets() {
-		if (subDataSets == null) {
-			subDataSets = new EObjectWithInverseResolvingEList<DataSet>(DataSet.class, this, DataRepresentationPackage.DATA_SET__SUB_DATA_SETS, DataRepresentationPackage.DATA_SET__PARENT_DATA_SET);
-		}
-		return subDataSets;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<Data> getData() {
 		if (data == null) {
 			data = new EObjectContainmentWithInverseEList<Data>(Data.class, this, DataRepresentationPackage.DATA_SET__DATA, DataRepresentationPackage.DATA__DATA_SET);
@@ -155,16 +144,11 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataSet getParentDataSet() {
-		if (parentDataSet != null && parentDataSet.eIsProxy()) {
-			InternalEObject oldParentDataSet = (InternalEObject)parentDataSet;
-			parentDataSet = (DataSet)eResolveProxy(oldParentDataSet);
-			if (parentDataSet != oldParentDataSet) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DataRepresentationPackage.DATA_SET__PARENT_DATA_SET, oldParentDataSet, parentDataSet));
-			}
+	public EList<Method> getMethod() {
+		if (method == null) {
+			method = new EObjectContainmentWithInverseEList<Method>(Method.class, this, DataRepresentationPackage.DATA_SET__METHOD, DataRepresentationPackage.METHOD__DATA_SET);
 		}
-		return parentDataSet;
+		return method;
 	}
 
 	/**
@@ -172,42 +156,11 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataSet basicGetParentDataSet() {
-		return parentDataSet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetParentDataSet(DataSet newParentDataSet, NotificationChain msgs) {
-		DataSet oldParentDataSet = parentDataSet;
-		parentDataSet = newParentDataSet;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DataRepresentationPackage.DATA_SET__PARENT_DATA_SET, oldParentDataSet, newParentDataSet);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<DataSet> getUsedDataSets() {
+		if (usedDataSets == null) {
+			usedDataSets = new EObjectResolvingEList<DataSet>(DataSet.class, this, DataRepresentationPackage.DATA_SET__USED_DATA_SETS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setParentDataSet(DataSet newParentDataSet) {
-		if (newParentDataSet != parentDataSet) {
-			NotificationChain msgs = null;
-			if (parentDataSet != null)
-				msgs = ((InternalEObject)parentDataSet).eInverseRemove(this, DataRepresentationPackage.DATA_SET__SUB_DATA_SETS, DataSet.class, msgs);
-			if (newParentDataSet != null)
-				msgs = ((InternalEObject)newParentDataSet).eInverseAdd(this, DataRepresentationPackage.DATA_SET__SUB_DATA_SETS, DataSet.class, msgs);
-			msgs = basicSetParentDataSet(newParentDataSet, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DataRepresentationPackage.DATA_SET__PARENT_DATA_SET, newParentDataSet, newParentDataSet));
+		return usedDataSets;
 	}
 
 	/**
@@ -223,14 +176,10 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetSensorDataDescription((SensorDataDescription)otherEnd, msgs);
-			case DataRepresentationPackage.DATA_SET__SUB_DATA_SETS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubDataSets()).basicAdd(otherEnd, msgs);
 			case DataRepresentationPackage.DATA_SET__DATA:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getData()).basicAdd(otherEnd, msgs);
-			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
-				if (parentDataSet != null)
-					msgs = ((InternalEObject)parentDataSet).eInverseRemove(this, DataRepresentationPackage.DATA_SET__SUB_DATA_SETS, DataSet.class, msgs);
-				return basicSetParentDataSet((DataSet)otherEnd, msgs);
+			case DataRepresentationPackage.DATA_SET__METHOD:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMethod()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -245,12 +194,10 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 		switch (featureID) {
 			case DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION:
 				return basicSetSensorDataDescription(null, msgs);
-			case DataRepresentationPackage.DATA_SET__SUB_DATA_SETS:
-				return ((InternalEList<?>)getSubDataSets()).basicRemove(otherEnd, msgs);
 			case DataRepresentationPackage.DATA_SET__DATA:
 				return ((InternalEList<?>)getData()).basicRemove(otherEnd, msgs);
-			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
-				return basicSetParentDataSet(null, msgs);
+			case DataRepresentationPackage.DATA_SET__METHOD:
+				return ((InternalEList<?>)getMethod()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -279,13 +226,12 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 		switch (featureID) {
 			case DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION:
 				return getSensorDataDescription();
-			case DataRepresentationPackage.DATA_SET__SUB_DATA_SETS:
-				return getSubDataSets();
 			case DataRepresentationPackage.DATA_SET__DATA:
 				return getData();
-			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
-				if (resolve) return getParentDataSet();
-				return basicGetParentDataSet();
+			case DataRepresentationPackage.DATA_SET__METHOD:
+				return getMethod();
+			case DataRepresentationPackage.DATA_SET__USED_DATA_SETS:
+				return getUsedDataSets();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -302,16 +248,17 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 			case DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION:
 				setSensorDataDescription((SensorDataDescription)newValue);
 				return;
-			case DataRepresentationPackage.DATA_SET__SUB_DATA_SETS:
-				getSubDataSets().clear();
-				getSubDataSets().addAll((Collection<? extends DataSet>)newValue);
-				return;
 			case DataRepresentationPackage.DATA_SET__DATA:
 				getData().clear();
 				getData().addAll((Collection<? extends Data>)newValue);
 				return;
-			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
-				setParentDataSet((DataSet)newValue);
+			case DataRepresentationPackage.DATA_SET__METHOD:
+				getMethod().clear();
+				getMethod().addAll((Collection<? extends Method>)newValue);
+				return;
+			case DataRepresentationPackage.DATA_SET__USED_DATA_SETS:
+				getUsedDataSets().clear();
+				getUsedDataSets().addAll((Collection<? extends DataSet>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -328,14 +275,14 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 			case DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION:
 				setSensorDataDescription((SensorDataDescription)null);
 				return;
-			case DataRepresentationPackage.DATA_SET__SUB_DATA_SETS:
-				getSubDataSets().clear();
-				return;
 			case DataRepresentationPackage.DATA_SET__DATA:
 				getData().clear();
 				return;
-			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
-				setParentDataSet((DataSet)null);
+			case DataRepresentationPackage.DATA_SET__METHOD:
+				getMethod().clear();
+				return;
+			case DataRepresentationPackage.DATA_SET__USED_DATA_SETS:
+				getUsedDataSets().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -351,12 +298,12 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 		switch (featureID) {
 			case DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION:
 				return getSensorDataDescription() != null;
-			case DataRepresentationPackage.DATA_SET__SUB_DATA_SETS:
-				return subDataSets != null && !subDataSets.isEmpty();
 			case DataRepresentationPackage.DATA_SET__DATA:
 				return data != null && !data.isEmpty();
-			case DataRepresentationPackage.DATA_SET__PARENT_DATA_SET:
-				return parentDataSet != null;
+			case DataRepresentationPackage.DATA_SET__METHOD:
+				return method != null && !method.isEmpty();
+			case DataRepresentationPackage.DATA_SET__USED_DATA_SETS:
+				return usedDataSets != null && !usedDataSets.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

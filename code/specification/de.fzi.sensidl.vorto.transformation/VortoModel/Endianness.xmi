@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datatype:Enum xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:datatype="http://www.eclipse.org/vorto/metamodel/Datatype" name="Endianness">
+  <enums name="BIG_ENDIAN"/>
+  <enums name="LITTLE_ENDIAN"/>
+</datatype:Enum>

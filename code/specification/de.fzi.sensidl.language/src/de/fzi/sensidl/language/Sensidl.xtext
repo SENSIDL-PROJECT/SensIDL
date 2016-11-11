@@ -6,6 +6,8 @@
  * @author Max Scheerer
  * @author Emre Taspolatoglu
  * @author Sven Eckhardt
+ * @author Max Peters
+ * @author Fabian Scheytt
  * 
  */
 
@@ -17,29 +19,16 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 import "http://fzi.de/sensidl/design/1.0" as sensidl
 import "http://fzi.de/sensidl/design/representation/1.0" as dataRepresentation
 
-IdentifiableElement returns sensidl::IdentifiableElement: 
-	NamedElement |
-	EncodingSettings |
-	SensorDataDescription |
-	DataAdjustment |
-	Interval
-;
-
-NamedElement returns sensidl::NamedElement:
-	SensorInterface | 
-	DataSet |
-	Data
-;
 
 SensorInterface returns sensidl::SensorInterface: 
-	"sensorInterface" name=ID (description=DESCRIPTION)? ("with" "identifier" ":" ID=STRING)? "{"
+	"sensorInterface" name=ID (description=DESCRIPTION)? ("with identifier" ":" ID=STRING)? "{"
 		encodingSettings=EncodingSettings
 		dataDescription=SensorDataDescription
 	"}"
 ;
 
 EncodingSettings returns sensidl::EncodingSettings: 
-	"encoding" coding=Coding "with" endianness=Endianness "alignment" alignment=INT "BIT" ("with" "identifier" ":" ID=STRING)? 
+	"encoding" ":" coding=Coding "," "endianness" ":" endianness=Endianness "," "alignment" ":" alignment=INT "BIT" ("with identifier" ":" ID=STRING)? 
 ;
 
 enum Coding returns sensidl::Coding:
@@ -51,30 +40,52 @@ enum Endianness returns sensidl::Endianness:
 ;
 
 SensorDataDescription returns dataRepresentation::SensorDataDescription: 
-	"sensorData" {dataRepresentation::SensorDataDescription} ("with" "identifier" ":" ID=STRING)? "{"
+	"sensorData" {dataRepresentation::SensorDataDescription} ("with identifier" ":" ID=STRING)? "{"
 		(dataSets+=DataSet)*
 	"}"
 ;
 
 DataSet returns dataRepresentation::DataSet:
-	"dataSet" name=ID ("with" "identifier" ID=STRING)? (description=DESCRIPTION)? "{"
-//		(subDataSets+=DataSet)?
-		(data+=Data)*
+	"dataSet" name=ID ("uses" usedDataSets+=[dataRepresentation::DataSet])?("," usedDataSets+=[dataRepresentation::DataSet])* ("with identifier" ":" ID=STRING)? (description=DESCRIPTION)? "{"
+		((data+=Data) | (method+=Method))*
 	"}"
+;
+
+Method returns dataRepresentation::Method:
+	(visibility='+'|visibility='-'|visibility='#'|visibility='~')? name = ID"(" (parameter+=MethodParameter)? (","parameter+=MethodParameter)* ")"(":" ((returnType=DataType | returnType=DataTypeNotAdjustable)| returnTypeDataSet=[dataRepresentation::DataSet]))? "as" "Method" ("with identifier" ":" ID=STRING)? (description=DESCRIPTION)?
+;
+
+MethodParameter returns dataRepresentation::MethodParameter:
+	((dataType=DataType | dataType=DataTypeNotAdjustable)| dataTypeDataSet=[dataRepresentation::DataSet]) name=ID
 ;
 
 Data returns dataRepresentation::Data:
 	MeasurementData |
-	NonMeasurementData
+	NonMeasurementData |
+	MeasurementDataNotAdjustable|
+	ListData
+;
+
+ListData returns dataRepresentation::ListData:
+	name=ID "as" "list" "of" (dataType=DataType | dataTypeDataSet=[dataRepresentation::DataSet])
 ;
 
 MeasurementData returns dataRepresentation::MeasurementData:
-	name=ID "as" dataType=DataType "in" unit=UNIT ("with" "identifier" ":" ID=STRING)?
-	("adjusted by" adjustments+=DataAdjustment ("," adjustments+=DataAdjustment)*)? (description=DESCRIPTION)? 
+	name=ID "as" dataType=DataType "in" unit=UNIT ("with identifier" ":" ID=STRING)?
+	(("adjusted" adjustments+=DataConversion) | ("adjusted" adjustments+=DataRange) | ("adjusted" adjustments+=DataConversion "," adjustments+=DataRange))?  ("exclude:"(((excludedMethods+="setter") ("," excludedMethods+="getter")?)| ((excludedMethods+="getter") ("," excludedMethods+="setter")?)))? (description=DESCRIPTION)?
 ;
 
 NonMeasurementData returns dataRepresentation::NonMeasurementData:
-	 name=ID "as" dataType=DataType (constant?='constant')? ("value" "=" value=STRING)? ("with" "identifier" ":" ID=STRING)? (description=DESCRIPTION)?
+	 name=ID "as" (dataType=DataType|dataType=DataTypeNotAdjustable) ((constant?='constant' "value" "=" value=STRING) |  ("value" "=" value=STRING))?  ("with identifier" ":" ID=STRING)?  ("exclude:"(((excludedMethods+="setter") ("," excludedMethods+="getter")?)| ((excludedMethods+="getter") ("," excludedMethods+="setter")?)))? (description=DESCRIPTION)?
+;
+
+MeasurementDataNotAdjustable returns dataRepresentation::MeasurementData:
+	name=ID "as" dataType=DataTypeNotAdjustable "in" unit=UNIT ("with identifier" ":" ID=STRING)?  ("exclude" ":"(((excludedMethods+="setter") ("," excludedMethods+="getter")?)| ((excludedMethods+="getter") ("," excludedMethods+="setter")?)))? (description=DESCRIPTION)?
+;
+
+enum DataTypeNotAdjustable returns dataRepresentation::DataType: 
+	STRING |
+	BOOLEAN
 ;
 
 enum DataType returns dataRepresentation::DataType:
@@ -90,17 +101,17 @@ enum DataType returns dataRepresentation::DataType:
 	DOUBLE
 ;
 
-DataAdjustment returns dataRepresentation::DataAdjustment:
-	DataRange |
-	DataConversion
-;
+//DataAdjustment returns dataRepresentation::DataAdjustment:
+//	DataRange |
+//	DataConversion
+//;
 
 DataRange returns dataRepresentation::DataRange:
-	"with" "range" range=Interval ";"  
+	"with range" range=Interval
 ;
 
 Interval returns dataRepresentation::Interval:
-	lowerBound=DOUBLE";"upperBound=DOUBLE
+	"["lowerBound=DOUBLE";"upperBound=DOUBLE"]"
 ;
 
 DataConversion returns dataRepresentation::DataConversion:
@@ -110,22 +121,24 @@ DataConversion returns dataRepresentation::DataConversion:
 
 LinearDataConversion returns dataRepresentation::LinearDataConversion:	
 	(
-		"with" "scaling factor"":" scalingFactor=DOUBLE "and" "offset"":"offset=DOUBLE  
+		"with scaling factor" ":" scalingFactor=DOUBLE "and offset" ":"offset=DOUBLE  
 	)
 ;
 
 LinearDataConversionWithInterval returns dataRepresentation::LinearDataConversionWithInterval: 
 	(
-		"linear mapping" "[" fromInterval=Interval"]" "=>" "["toInterval=Interval"]" 
+		"by linear mapping"  fromInterval=Interval "=>" toInterval=Interval "as" dataType=DataType
 	)
 ;
 
-DOUBLE returns ecore::EDouble: INT ('.' INT)?;
+DOUBLE returns ecore::EDouble: '-'? INT ('.' INT)?;
 //BOOLEAN returns ecore::EBoolean: 'true' | 'false';
 //UNIT returns dataRepresentation::Unit: STRING;
 //terminal UNIT returns dataRepresentation::Unit : '^'?('a'..'z'|'A'..'Z'/**'_'*/) ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
-UNIT returns dataRepresentation::Unit: ID;
+UNIT returns dataRepresentation::Unit:
+	ID* ((ANY_OTHER) ID*)*
+;
 
 terminal ML_COMMENT: '/*'!('*') -> '*/'; // multi-line comments can't start with '/**'
 

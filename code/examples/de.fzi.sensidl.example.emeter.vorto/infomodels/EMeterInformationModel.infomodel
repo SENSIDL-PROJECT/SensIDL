@@ -1,0 +1,13 @@
+namespace de.fzi.sensidl.example.emeter.vorto
+version 1.0.0
+displayname "EMeterInformationModel"
+description "Information model for EMeterInformationModel"
+category demo
+using de.fzi.sensidl.example.emeter.vorto.EMeter ; 1.0.0
+
+infomodel EMeterInformationModel {
+
+	functionblocks {
+		emeter as EMeter
+	}
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datatype:Entity xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:datatype="http://www.eclipse.org/vorto/metamodel/Datatype" name="EncodingSettings">
+  <properties name="Coding"/>
+  <properties name="Endianness" description=""/>
+  <properties name="Alignment"/>
+</datatype:Entity>

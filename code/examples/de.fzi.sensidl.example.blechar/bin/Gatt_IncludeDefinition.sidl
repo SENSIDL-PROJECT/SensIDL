@@ -1,0 +1,18 @@
+sensorInterface Gatt_Include_Definition {
+	encoding: SENSIDL_BINARY, endianness: LITTLE_ENDIAN, alignment: 1 BIT  
+      sensorData {
+		dataSet Include_Declaration uses aValue{
+      		Handle as UINT16 /**0xNNNN, Attribute _Handle*/
+      		Uuid as UINT16 constant value="10240" /** Attribute_type_set Fixed UUID for "include"=0x2800 */ 
+      		Permission as STRING constant value="Read_Only, no authentication, no_authorization" /** Attribute_Permission. Constant **/
+      	}
+      	dataSet aValue{
+      		Service_attribute_handler as UINT16 /** The Attribute Handle of the included service */ 
+      		End_Group_Handle as UINT16  
+      		Service_UUID as UINT16 /** Service_UUID from Service_Definition_Declaration **/
+      	
+      	}
+      	
+     }
+}
+    

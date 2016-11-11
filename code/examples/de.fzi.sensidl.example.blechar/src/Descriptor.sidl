@@ -1,0 +1,109 @@
+sensorInterface GattDescriptor {
+	encoding: SENSIDL_BINARY, endianness: LITTLE_ENDIAN, alignment: 1 BIT  
+      sensorData {
+      	
+      	dataSet Descriptor uses aValue{
+      		Handle as UINT16 //0xNNNN Attribute Handle: 16 bit value assigned by servers to their own attributes, to access the attributes
+      		UUID as UINT64 constant value="" /** constant value for type "characteristic" hex:0x2803. Attribute Type, to identify the attribute (by UUID)*/ 
+      		Permission as /*UINT16*/ STRING constant value="Read_Only, no authentication, no_authorization" //Attribute Permission value
+      		}
+      	
+      	dataSet aValue{
+      		// empty, defined by specific Descriptor
+      	}
+      	dataSet ExtendedProperties_Descriptor_Declaration uses ExtendedPropertiesBitField{
+      		Handle as UINT16 //0xNNNN
+      		Uuid as UINT16 constant value="10496" /** Constant value for attribute type "extended properties Descriptor" hex:0x2900 **/
+      		Permissions as STRING constant value=" Read_Only, no authentication, no_authorization"
+      	}
+      	dataSet ExtendedPropertiesBitField{
+      		Propertie_relieable_write as UINT16 constant value="1" //0x0001
+      		Propertie_writeable_Auxiliaries as UINT16 constant value="2" //0x0002
+      		Propertie_RFU as UINT16 constant value ="65532"//0xFFFC
+      	}
+      	dataSet UserDescription_Descriptor_Declaration{
+      		Handle as UINT16 //0xNNNN
+      		Uuid as UINT64 constant value="10497" /** Constant value for attribute type "eUser Description Descriptor" hex:0x2901 **/
+      		Value as STRING //Char_User_Desription UTF8
+      		Permissions as STRING //defined by service oder implementation
+      	}
+      	
+      	dataSet ClientCharConfig_Descriptor_Declaration uses CConfigurationBitField { 
+      		Handle as UINT16 //0xNNNN
+      		Uuid as UINT64 constant value="10498" /** Constant value for attribute type "Client Characteristics Configuration Descriptor" hex:0x2902 **/
+      		Permissions as STRING in Dimensionless //Readable with no authentication or authorization, writeable with authentication and authorization defined by higher layer spec or implementation
+      	}
+      	
+      	dataSet CConfigurationBitField /** Attribute Value of Client Config Descriptor */{
+      		Atribute_Value_Notification as UINT16 constant value="1" //0x0001
+      		Attribute_Value_Indication_ as UINT16 constant value="2" //0x0002
+      		Attribute_Value_RFU as UINT16 constant value="65524" // hex=0xFFF4
+      	}
+        dataSet ServerChar_Descriptor_Declaration uses SConfigurationBitField{ 
+      		SDD_Handle as UINT16 //0xNNNN/** defines how the characteristics may be configured by a specific server **/
+      		Server_UUID as UINT64 constant value="10499" /** Constant value for attribute type "Server Characteristics Configuration Descriptor" hex:0x2903 **/
+      		ServerConfig_Permissions as STRING // Readable with no authentication or authorization, writeable with authentication and authorization defined by higher layer spec or implementation
+      	}
+      	dataSet SConfigurationBitField  /** Attribute Value of Server Config Descriptor */{
+      		Attribute_Broadcast as UINT16 constant value="1"// 0x0001
+      		Attribute_RFU as UINT16 constant value="65522" //hex=0xFFF2
+      	}
+      		
+      	//**LITTLE_Endian /Quelle endianness: S.544 core_Spec(volume 3 Part G section 3.3)**/
+      	dataSet CharPresentationFormat_Descriptor_Declaration uses aValueD{ 
+      		CPFDD_Handle as UINT16 //0xNNNN
+      		PresentationFormatDecl_UUID as UINT64 constant value="10500" /** Constant value for attribute type "Characteristics Presentation Format Descriptor" hex:0x2904 **/
+      		
+      		Presentation_Permission as STRING constant value="Read_Only, no authentication, no_authorization"
+     	}
+     	dataSet aValueD uses FormatField /** Attribute Value includes "Format" as defined in FormatField length 1 octet, "Exponent" used with integer values, length 1 octet, "Unit" length 2 octets is a UUID defined by Assigned Numbers and "NameSpace" length 1 octet used to identify the organization as defined in the
+Assigned Numbers document [ and "Descripton" length 2octets, an enumerated value as defined in the Assigned Numbers
+document [1] from the organization identified by the Name Space field. **/{
+     		Exponent as UINT8
+     		Unit as UINT16
+     		Namespace as UINT8
+     		Description as UINT16
+		}
+     	
+      	dataSet FormatField{ //characteristic format types, defines how char_Value is formatted
+      		Format_RFU as UINT8 constant value="0" //reserved for future use. hex= 0x00
+      		Format_Bboolean as UINT8 constant value="1"//(0=false, 1=true)
+      		Format_2bit as UINT8 constant value="2" //unsigned 2-bit int
+      		Format_Nibble as UINT8 constant value="3"//0x03 unsigned 4bit int
+      		Format_Uint8 as UINT8 constant value ="4" //0x04 uint8
+      		Format_Uint12 as UINT8 constant value="5" //0x05 uint12
+      		Format_Uint16 as UINT8 constant value="6" //0x06 unint16
+      		Format_Uint24 as UINT8 constant value="7" //0x07 uint24
+      		Format_Uint32 as UINT8 constant value="8" //0x08 uint32
+      		Format_Uint48 as UINT8 constant value="9" //0x09 uint48
+      		Format_Uint64 as UINT8 constant value="10" //0x0A uint64
+      		Format_Uint128 as UINT8 constant value="11" //0x0B uint128
+      		Format_Sint8 as UINT8 constant value="12" //0x0C sint8
+      		Format_Sint12 as UINT8 constant value="13" //0x0D sint12
+      		Format_Sint16 as UINT8 constant value="14" //0x0E sint16
+      		Format_Sint24 as UINT8 constant value="15" //0x0F sint24
+      		Format_Sint32 as UINT8 constant value="16" //0x10 sint32
+      		Format_Sint48 as UINT8 constant value="17" //0x11 sint48
+      		Format_Sint64 as UINT8 constant value="18" //0x12 sint64
+      		Format_Sint128 as UINT8 constant value="19" // sint128
+      		Format_Float32 as UINT8 constant value="20" //0x14 float32 32-bit floating pint
+      		Format_Float64 as UINT8 constant value="21" //0x15 float64 64-bit floating point
+      		Format_SFloat as UINT8 constant value="22" //0x16 SFLOAT
+      		Format_Float as UINT8 constant value="23" //0x17 FLOAT
+      		Format_DUINT16 as UINT8 constant value="24" //0x18 duint16
+      		Format_UTF8S as UINT8 constant value="25" //0x19 utf8 string
+      		Format_UTF16s as UINT8 constant value="26" //0x1A utf16 string
+      		Format_OpaqueStructure as UINT8 constant value="27" //0x1B opaque struct
+      		Format_RFU2 as UINT8  //0x1c- 0xFF reserved for future use
+      	
+      	}	
+      	 ///** if more than one CharPresentationFormatDeclaration exist.**/
+      	
+      	dataSet CharAggregateFormat_Descriptor_Declaration{ 
+      		Handle as UINT16 //0xNNNN
+      		Uuid as UINT64 constant value="10501" /** Constant value for attribute type "Aggregate Format Descriptor" hex:0x2905 **/
+      		Value as UINT16/** List of Attribute Handles for CharPresenbtationFormatDeclaration, catenation of multiple 16-bit Attribute Handle values into a single Attribute Value.**/
+      		Permissions as STRING constant value=" Read_Only, no authentication, no_authorization"
+      	}
+      	}
+      	}

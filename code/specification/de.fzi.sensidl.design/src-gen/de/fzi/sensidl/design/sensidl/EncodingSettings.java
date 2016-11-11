@@ -10,13 +10,13 @@ package de.fzi.sensidl.design.sensidl;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link de.fzi.sensidl.design.sensidl.EncodingSettings#getSensorInterface <em>Sensor Interface</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.EncodingSettings#getCoding <em>Coding</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.EncodingSettings#getEndianness <em>Endianness</em>}</li>
  *   <li>{@link de.fzi.sensidl.design.sensidl.EncodingSettings#getAlignment <em>Alignment</em>}</li>
  * </ul>
- * </p>
  *
  * @see de.fzi.sensidl.design.sensidl.sensidlPackage#getEncodingSettings()
  * @model

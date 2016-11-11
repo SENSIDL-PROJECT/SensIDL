@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datatype:Enum xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:datatype="http://www.eclipse.org/vorto/metamodel/Datatype" name="Unit">
+  <enums name="V" description="Voltage"/>
+  <enums name="A" description="Ampere"/>
+  <enums name="Dimensionless" description="Dimensionless"/>
+  <enums name="W" description="Watt"/>
+</datatype:Enum>

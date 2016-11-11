@@ -1,0 +1,24 @@
+/* A service definition includes a service declaration and my include "include declarations" and "characteristic declarations"*
+ * p.523: representation of Attributes* The Attribute Handle is an index corresponding to a specific Attribute. The
+Attribute Type is a UUID that describes the Attribute Value. The Attribute Value
+is the data described by the Attribute Type and indexed by the Attribute Handle.
+The Attributes are ordered by increasing Attribute Handle values. Attribute
+Handle values may begin at any value between 0x0001 and 0xFFFF." (Bluetooth core Specificationv4.2)*/
+
+
+sensorInterface Gatt_Service_Definition {
+	encoding: SENSIDL_BINARY, endianness: LITTLE_ENDIAN, alignment: 1 BIT  
+      sensorData {
+      	
+      	dataSet Service uses Uuid{
+      		Handle as UINT16 /** Attribute Handle 0xNNNN */
+      		Service_UUID as UINT32       /** Attribute_Value 16-bit Bluetooth uuid or 128-bit UUID **/
+      		Service_Permission as STRING constant value="Read_Only, no_authentication, no_authorization" /** Attribute_Permissions**/
+      	}
+      	dataSet Uuid /** Attribute Type of Attribute "Service_Declaration*/{
+      		primaryServiceUuid as UINT16 constant value="10240"
+      		secondaryServiceUuid as UINT16 constant value="10241"
+      	}
+      	
+      }
+}
