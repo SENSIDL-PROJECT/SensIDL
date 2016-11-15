@@ -31,22 +31,6 @@ class CSharpGenerator implements ICodeGenerator {
 	}
 	
 	/**
- 	*@see ICodeGenerator#generateEncoder()
- 	*/
-	override generateEncoder() {
-		//TODO has to be implemented
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-	
-	/**
- 	*@see ICodeGenerator#generateDecoder()
- 	*/
-	override generateDecoder() {
-		//TODO has to be implemented
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-	
-	/**
  	*@see ICodeGenerator#generateUtilityClass()
  	*/
 	override generateUtilityClass(List<EObject> data) {

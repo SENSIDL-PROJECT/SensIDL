@@ -8,7 +8,7 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
 import de.fzi.sensidl.language.generator.GenerationUtil;
-import de.fzi.sensidl.language.generator.templates.EPLicense;
+import de.fzi.sensidl.language.generator.templates.EclipsePuplicLicenseTemplate;
 import de.fzi.sensidl.language.generator.templates.ITemplate;
 import de.fzi.sensidl.language.generator.templates.java.opcua.OpcUaDataType;
 import de.fzi.sensidl.language.generator.templates.java.opcua.OpcUaUtil;
@@ -34,6 +34,8 @@ public class OpcUaDataSetTemplate extends ITemplate<DataSet> {
   
   private final static String EMPTY_STRING = "";
   
+  private final String packagePrefix;
+  
   private final ArrayList<CharSequence> members = new ArrayList<CharSequence>();
   
   private final ArrayList<CharSequence> constructors = new ArrayList<CharSequence>();
@@ -43,8 +45,9 @@ public class OpcUaDataSetTemplate extends ITemplate<DataSet> {
   /**
    * The constructor.
    */
-  public OpcUaDataSetTemplate(final DataSet newElement) {
+  public OpcUaDataSetTemplate(final DataSet newElement, final String newPackagePrefix) {
     super(newElement);
+    this.packagePrefix = newPackagePrefix;
     this.addMembers();
     this.addConstructors();
     this.addMethodsToImplement();
@@ -59,11 +62,12 @@ public class OpcUaDataSetTemplate extends ITemplate<DataSet> {
   @Override
   public CharSequence getCode() {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _text = EPLicense.getText();
+    CharSequence _text = EclipsePuplicLicenseTemplate.getText();
     _builder.append(_text, "");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("package ");
+    _builder.append(this.packagePrefix, "");
     SensorInterface _sensorInterface = GenerationUtil.getSensorInterface(this.element);
     String _defaultPackageName = OpcUaUtil.getDefaultPackageName(_sensorInterface);
     _builder.append(_defaultPackageName, "");

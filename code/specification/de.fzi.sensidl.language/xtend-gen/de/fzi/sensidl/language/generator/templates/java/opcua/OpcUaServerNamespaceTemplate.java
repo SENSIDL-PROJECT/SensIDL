@@ -4,7 +4,7 @@ import com.google.common.base.Objects;
 import de.fzi.sensidl.design.sensidl.SensorInterface;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet;
 import de.fzi.sensidl.design.sensidl.dataRepresentation.SensorDataDescription;
-import de.fzi.sensidl.language.generator.templates.EPLicense;
+import de.fzi.sensidl.language.generator.templates.EclipsePuplicLicenseTemplate;
 import de.fzi.sensidl.language.generator.templates.ITemplate;
 import de.fzi.sensidl.language.generator.templates.java.opcua.OpcUaUtil;
 import java.util.ArrayList;
@@ -22,14 +22,17 @@ public class OpcUaServerNamespaceTemplate extends ITemplate<SensorInterface> {
   
   private String dataSetInterfaceObjectName;
   
+  private String packagePrefix;
+  
   private ArrayList<CharSequence> dataSetInterfaceImplementer = new ArrayList<CharSequence>();
   
   /**
    * The constructor.
    * @param newElement - SensorInterface-element which is needed for the code-generation.
    */
-  public OpcUaServerNamespaceTemplate(final SensorInterface newElement) {
+  public OpcUaServerNamespaceTemplate(final SensorInterface newElement, final String newPackagePrefix) {
     super(newElement);
+    this.packagePrefix = newPackagePrefix;
     CharSequence _defaultInterfaceName = OpcUaUtil.getDefaultInterfaceName(this.element);
     String _string = _defaultInterfaceName.toString();
     this.dataSetInterfaceClassName = _string;
@@ -131,11 +134,12 @@ public class OpcUaServerNamespaceTemplate extends ITemplate<SensorInterface> {
   @Override
   public CharSequence getCode() {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _text = EPLicense.getText();
+    CharSequence _text = EclipsePuplicLicenseTemplate.getText();
     _builder.append(_text, "");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("package ");
+    _builder.append(this.packagePrefix, "");
     String _defaultPackageName = OpcUaUtil.getDefaultPackageName(this.element);
     _builder.append(_defaultPackageName, "");
     _builder.append(";");
@@ -215,14 +219,6 @@ public class OpcUaServerNamespaceTemplate extends ITemplate<SensorInterface> {
     _builder.newLine();
     _builder.append("import org.slf4j.LoggerFactory;");
     _builder.newLine();
-    _builder.newLine();
-    _builder.append("import ");
-    String _defaultPackageName_1 = OpcUaUtil.getDefaultPackageName(this.element);
-    _builder.append(_defaultPackageName_1, "");
-    _builder.append(".");
-    _builder.append(this.dataSetInterfaceClassName, "");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("import com.google.common.collect.Lists;");
     _builder.newLine();

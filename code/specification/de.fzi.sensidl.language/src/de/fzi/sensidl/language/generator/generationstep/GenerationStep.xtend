@@ -1,54 +1,50 @@
 package de.fzi.sensidl.language.generator.generationstep
 
-import de.fzi.sensidl.language.generator.IExecuter
 import de.fzi.sensidl.language.generator.SensIDLConstants.GenerationLanguage
 import java.util.HashMap
+import de.fzi.sensidl.language.generator.SensIDLConstants
 
 /**
  * The GenerationStep-class is the superclass of different generation steps. 
  * There exist a couple of subclasses which forms together the general generation-process.
  */
-abstract class GenerationStep {
+abstract class GenerationStep {	
 	protected static var HashMap<String, CharSequence> filesToGenerate
 	protected static var GenerationLanguage generationLanguage
+	protected static var String javaPackagePrefix
 	
 	/**
 	 * This static method is used to reset the generation configurations for a new generation task.
 	 * @param newGenerationLanguage Corresponds to the desired language that you want to generate.
 	 */
-	public def static void init(GenerationLanguage newGenerationLanguage) {
+	public def static void setGlobalSettings(GenerationLanguage newGenerationLanguage) {
+		
+		resetFilesToGenerate
+		
+		generationLanguage = newGenerationLanguage
+		javaPackagePrefix = SensIDLConstants.JAVA_DEFAULT_PACKAGE_PREFIX
+		
+	}
+	
+	protected def static void setJavaPackagePrefix(String newJavaPackagePrefix) {
+		
+		javaPackagePrefix = newJavaPackagePrefix
+		
+	}
+	
+	private def static resetFilesToGenerate() {
+		
 		if (filesToGenerate == null) {
 			filesToGenerate = new HashMap
 		} else {
 			filesToGenerate.clear
 		}
-		
-		generationLanguage = newGenerationLanguage
+
 	}
 	
 	/**
-	 * This static method is used to reset the generation configurations for a new generation task.
-	 * @param executer Represents a HashMap which maps the specific generation language to a IExecuter-
-	 * 				   object. 
+	 * Starts the generation task.
 	 */
-	protected def void startGenerationTask(HashMap<GenerationLanguage, IExecuter> executer) {
-		
-		if (generationLanguage.equals(GenerationLanguage.NONE)) {
-			return
-		}
-		
-//		if (generationLanguage.equals(GenerationLanguage.ALL)) {
-//			executer.values.forEach[IExecuter exec | exec.execute]
-//			return
-//		}
-		
-		executer.get(generationLanguage).execute
-	}
+	public abstract def void startGenerationTask()
 	
-	/**
-	 * This abstract method has to be implemented from a specific GenerationStep-subclass. 
-	 * The generation process consists of a sequence of generation steps. In each step the 
-	 * subclass implementing this method can perform there individual generation task.
-	 */
-	abstract def void startGenerationTask()
 }

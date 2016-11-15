@@ -33,18 +33,18 @@ public class JavaOpcUaGenerator implements IOpcUaGenerator {
    * list of DataSet-elements.
    * @param newDataSet - represents the list of DataSet-elements.
    */
-  public JavaOpcUaGenerator(final List<DataSet> datasets) {
+  public JavaOpcUaGenerator(final List<DataSet> datasets, final String packagePrefix) {
     DataSet _get = datasets.get(0);
     final SensorInterface sensorInterface = GenerationUtil.getSensorInterface(_get);
     ArrayList<ITemplate<?>> _arrayList = new ArrayList<ITemplate<?>>();
     final Procedure1<ArrayList<ITemplate<?>>> _function = new Procedure1<ArrayList<ITemplate<?>>>() {
       @Override
       public void apply(final ArrayList<ITemplate<?>> it) {
-        OpcUaServerTemplate _opcUaServerTemplate = new OpcUaServerTemplate(sensorInterface);
+        OpcUaServerTemplate _opcUaServerTemplate = new OpcUaServerTemplate(sensorInterface, packagePrefix);
         it.add(_opcUaServerTemplate);
-        OpcUaServerNamespaceTemplate _opcUaServerNamespaceTemplate = new OpcUaServerNamespaceTemplate(sensorInterface);
+        OpcUaServerNamespaceTemplate _opcUaServerNamespaceTemplate = new OpcUaServerNamespaceTemplate(sensorInterface, packagePrefix);
         it.add(_opcUaServerNamespaceTemplate);
-        OpcUaDataSetInterfaceTemplate _opcUaDataSetInterfaceTemplate = new OpcUaDataSetInterfaceTemplate(sensorInterface);
+        OpcUaDataSetInterfaceTemplate _opcUaDataSetInterfaceTemplate = new OpcUaDataSetInterfaceTemplate(sensorInterface, packagePrefix);
         it.add(_opcUaDataSetInterfaceTemplate);
       }
     };
@@ -53,7 +53,7 @@ public class JavaOpcUaGenerator implements IOpcUaGenerator {
     final Consumer<DataSet> _function_1 = new Consumer<DataSet>() {
       @Override
       public void accept(final DataSet dataset) {
-        OpcUaDataSetTemplate _opcUaDataSetTemplate = new OpcUaDataSetTemplate(dataset);
+        OpcUaDataSetTemplate _opcUaDataSetTemplate = new OpcUaDataSetTemplate(dataset, packagePrefix);
         JavaOpcUaGenerator.this.templates.add(_opcUaDataSetTemplate);
       }
     };

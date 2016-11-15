@@ -1,7 +1,7 @@
 package de.fzi.sensidl.language.generator.templates.java.opcua;
 
 import de.fzi.sensidl.design.sensidl.SensorInterface;
-import de.fzi.sensidl.language.generator.templates.EPLicense;
+import de.fzi.sensidl.language.generator.templates.EclipsePuplicLicenseTemplate;
 import de.fzi.sensidl.language.generator.templates.ITemplate;
 import de.fzi.sensidl.language.generator.templates.java.opcua.OpcUaUtil;
 import java.util.ArrayList;
@@ -17,11 +17,14 @@ public class OpcUaDataSetInterfaceTemplate extends ITemplate<SensorInterface> {
   
   private final List<String> signatures;
   
+  private final String packagePrefix;
+  
   /**
    * The constructor.
    */
-  public OpcUaDataSetInterfaceTemplate(final SensorInterface newElement) {
+  public OpcUaDataSetInterfaceTemplate(final SensorInterface newElement, final String newPackagePrefix) {
     super(newElement);
+    this.packagePrefix = newPackagePrefix;
     ArrayList<String> _arrayList = new ArrayList<String>();
     final Procedure1<ArrayList<String>> _function = new Procedure1<ArrayList<String>>() {
       @Override
@@ -50,11 +53,12 @@ public class OpcUaDataSetInterfaceTemplate extends ITemplate<SensorInterface> {
   @Override
   public CharSequence getCode() {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _text = EPLicense.getText();
+    CharSequence _text = EclipsePuplicLicenseTemplate.getText();
     _builder.append(_text, "");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("package ");
+    _builder.append(this.packagePrefix, "");
     String _defaultPackageName = OpcUaUtil.getDefaultPackageName(this.element);
     _builder.append(_defaultPackageName, "");
     _builder.append(";");

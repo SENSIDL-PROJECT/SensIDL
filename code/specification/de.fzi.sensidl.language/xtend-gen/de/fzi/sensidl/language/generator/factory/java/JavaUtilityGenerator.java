@@ -28,15 +28,15 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class JavaUtilityGenerator implements IUtilityGenerator {
-  private static Logger logger = Logger.getLogger(JavaUtilityGenerator.class);
+  private final static Logger logger = Logger.getLogger(JavaUtilityGenerator.class);
   
-  private List<MeasurementData> data;
+  private final List<MeasurementData> data;
   
-  private List<DataSet> dataSets;
+  private final List<DataSet> dataSets;
   
-  private SensorInterface currentSensorInterface;
+  private final SensorInterface currentSensorInterface;
   
-  private boolean createProject = false;
+  private final String packagePrefix;
   
   private boolean bigEndian;
   
@@ -45,7 +45,7 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
    * list of elements.
    * @param newData - represents the list of EObject-elements.
    */
-  public JavaUtilityGenerator(final List<EObject> newData) {
+  public JavaUtilityGenerator(final List<EObject> newData, final String newPackagePrefix) {
     Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(newData, MeasurementData.class);
     List<MeasurementData> _list = IterableExtensions.<MeasurementData>toList(_filter);
     this.data = _list;
@@ -55,25 +55,7 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
     Iterable<SensorInterface> _filter_2 = Iterables.<SensorInterface>filter(newData, SensorInterface.class);
     SensorInterface _get = ((SensorInterface[])Conversions.unwrapArray(_filter_2, SensorInterface.class))[0];
     this.currentSensorInterface = _get;
-  }
-  
-  /**
-   * The constructor calls the constructor of the superclass to set a
-   * list of Data-elements and a member-variable.
-   * @param newData - represents the list of DataSet-elements.
-   * @param createProject - indicates if a project should be created.
-   */
-  public JavaUtilityGenerator(final List<EObject> newData, final boolean createProject) {
-    Iterable<MeasurementData> _filter = Iterables.<MeasurementData>filter(newData, MeasurementData.class);
-    List<MeasurementData> _list = IterableExtensions.<MeasurementData>toList(_filter);
-    this.data = _list;
-    Iterable<DataSet> _filter_1 = Iterables.<DataSet>filter(newData, DataSet.class);
-    List<DataSet> _list_1 = IterableExtensions.<DataSet>toList(_filter_1);
-    this.dataSets = _list_1;
-    Iterable<SensorInterface> _filter_2 = Iterables.<SensorInterface>filter(newData, SensorInterface.class);
-    SensorInterface _get = ((SensorInterface[])Conversions.unwrapArray(_filter_2, SensorInterface.class))[0];
-    this.currentSensorInterface = _get;
-    this.createProject = createProject;
+    this.packagePrefix = newPackagePrefix;
   }
   
   /**
@@ -91,25 +73,15 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
       Endianness _endianness = _encodingSettings.getEndianness();
       boolean _equals = Objects.equal(_endianness, Endianness.BIG_ENDIAN);
       this.bigEndian = _equals;
-      if (this.createProject) {
-        String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(this.currentSensorInterface);
-        String _plus = ("src/de/fzi/sensidl/" + _sensorInterfaceName);
-        String _plus_1 = (_plus + "/");
-        String _addFileExtensionTo = this.addFileExtensionTo(utilityName);
-        String _plus_2 = (_plus_1 + _addFileExtensionTo);
-        CharSequence _generateClassBody = this.generateClassBody(utilityName);
-        filesToGenerate.put(_plus_2, _generateClassBody);
-      } else {
-        String _addFileExtensionTo_1 = this.addFileExtensionTo(utilityName);
-        CharSequence _generateClassBody_1 = this.generateClassBody(utilityName);
-        filesToGenerate.put(_addFileExtensionTo_1, _generateClassBody_1);
-      }
-      String _addFileExtensionTo_2 = this.addFileExtensionTo(utilityName);
-      String _plus_3 = ("File: " + _addFileExtensionTo_2);
-      String _plus_4 = (_plus_3 + " was generated in ");
-      String _plus_5 = (_plus_4 + 
+      String _addFileExtensionTo = this.addFileExtensionTo(utilityName);
+      CharSequence _generateClassBody = this.generateClassBody(utilityName);
+      filesToGenerate.put(_addFileExtensionTo, _generateClassBody);
+      String _addFileExtensionTo_1 = this.addFileExtensionTo(utilityName);
+      String _plus = ("File: " + _addFileExtensionTo_1);
+      String _plus_1 = (_plus + " was generated in ");
+      String _plus_2 = (_plus_1 + 
         SensIDLOutputConfigurationProvider.SENSIDL_GEN);
-      JavaUtilityGenerator.logger.info(_plus_5);
+      JavaUtilityGenerator.logger.info(_plus_2);
       _xblockexpression = filesToGenerate;
     }
     return _xblockexpression;
@@ -117,25 +89,13 @@ public class JavaUtilityGenerator implements IUtilityGenerator {
   
   public CharSequence generateClassBody(final String className) {
     StringConcatenation _builder = new StringConcatenation();
-    {
-      if (this.createProject) {
-        _builder.append("package de.fzi.sensidl.");
-        String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(this.currentSensorInterface);
-        _builder.append(_sensorInterfaceName, "");
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
-        _builder.append(" ");
-        _builder.newLine();
-      } else {
-        _builder.append("package ");
-        String _sensorInterfaceName_1 = GenerationUtil.getSensorInterfaceName(this.currentSensorInterface);
-        _builder.append(_sensorInterfaceName_1, "");
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
-        _builder.append(" ");
-        _builder.newLine();
-      }
-    }
+    _builder.append("package ");
+    _builder.append(this.packagePrefix, "");
+    String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(this.currentSensorInterface);
+    _builder.append(_sensorInterfaceName, "");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
     _builder.append("import java.io.BufferedReader;");
     _builder.newLine();
     _builder.append("import java.io.ByteArrayInputStream;");

@@ -6,12 +6,13 @@ import de.fzi.sensidl.language.generator.templates.ITemplate
 import java.util.ArrayList
 import java.util.List
 import org.eclipse.emf.common.util.BasicEList
-import de.fzi.sensidl.language.generator.templates.EPLicense
+import de.fzi.sensidl.language.generator.templates.EclipsePuplicLicenseTemplate
 
 class OpcUaServerNamespaceTemplate extends ITemplate<SensorInterface> {
 	
 	private var String dataSetInterfaceClassName
 	private var String dataSetInterfaceObjectName
+	private var String packagePrefix
 	
 	private var dataSetInterfaceImplementer = new ArrayList<CharSequence>
 	
@@ -19,8 +20,11 @@ class OpcUaServerNamespaceTemplate extends ITemplate<SensorInterface> {
 	 * The constructor.
 	 * @param newElement - SensorInterface-element which is needed for the code-generation.
 	 */
-	new(SensorInterface newElement) {
+	new(SensorInterface newElement, String newPackagePrefix) {
+		
 		super(newElement)
+		
+		packagePrefix = newPackagePrefix
 		
 		dataSetInterfaceClassName =  OpcUaUtil.getDefaultInterfaceName(this.element).toString;
 		dataSetInterfaceObjectName = dataSetInterfaceClassName.toFirstLower + "s"
@@ -95,9 +99,9 @@ class OpcUaServerNamespaceTemplate extends ITemplate<SensorInterface> {
 	 */
 	override getCode() {
 		'''
-		«EPLicense.text»
+		«EclipsePuplicLicenseTemplate.text»
 		
-		package «OpcUaUtil.getDefaultPackageName(this.element)»;
+		package «packagePrefix»«OpcUaUtil.getDefaultPackageName(this.element)»;
 		
 		import static org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.Unsigned.ubyte;
 		
@@ -137,8 +141,6 @@ class OpcUaServerNamespaceTemplate extends ITemplate<SensorInterface> {
 		import org.eclipse.milo.opcua.stack.core.types.structured.WriteValue;
 		import org.slf4j.Logger;
 		import org.slf4j.LoggerFactory;
-		
-		import «OpcUaUtil.getDefaultPackageName(this.element)».«dataSetInterfaceClassName»;
 		
 		import com.google.common.collect.Lists;
 		

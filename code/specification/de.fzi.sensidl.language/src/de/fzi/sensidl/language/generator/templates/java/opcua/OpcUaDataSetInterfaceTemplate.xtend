@@ -4,20 +4,23 @@ import de.fzi.sensidl.language.generator.templates.ITemplate
 import de.fzi.sensidl.design.sensidl.SensorInterface
 import java.util.ArrayList
 import java.util.List
-import de.fzi.sensidl.language.generator.templates.EPLicense
+import de.fzi.sensidl.language.generator.templates.EclipsePuplicLicenseTemplate
 
 class OpcUaDataSetInterfaceTemplate extends ITemplate<SensorInterface> {
 	
 	public static val DEFAULT_KEYWORD = "default";
 	
 	private val List<String> signatures;
+	private val String packagePrefix
 	
 	/**
 	 * The constructor.
 	 */
-	new(SensorInterface newElement) {
+	new(SensorInterface newElement, String newPackagePrefix) {
 		
 		super(newElement)
+		
+		packagePrefix = newPackagePrefix
 		
 		signatures = new ArrayList => [
 		
@@ -41,9 +44,9 @@ class OpcUaDataSetInterfaceTemplate extends ITemplate<SensorInterface> {
 	override getCode() {
 		
 		'''
-		«EPLicense.text»
+		«EclipsePuplicLicenseTemplate.text»
 		
-		package «OpcUaUtil.getDefaultPackageName(this.element)»;
+		package «packagePrefix»«OpcUaUtil.getDefaultPackageName(this.element)»;
 		
 		import java.util.List;
 		

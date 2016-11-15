@@ -1,6 +1,5 @@
 package de.fzi.sensidl.language.generator.elementfilter;
 
-import java.util.List;
 import org.eclipse.emf.ecore.resource.Resource;
 
 /**
@@ -23,5 +22,5 @@ public abstract class ElementFilter {
    * up to filter a particular collection of sensidl-elements.
    * @return the list of the filtered data.
    */
-  public abstract <T extends Object> List<T> filterData();
+  public abstract <T extends Object> T filterData();
 }

@@ -1,3 +1,10 @@
 /.GenerationStep.java._trace
 /.GenerationStep.xtendbin
 /GenerationStep.java
+/.DTOGenerationStep.java._trace
+/.FileGenerationStep.java._trace
+/.UtilityGenerationStep.java._trace
+/DTOGenerationStep.java
+/FileGenerationStep.java
+/UtilityGenerationStep.java
+/.ProjectGenerationStep.java._trace

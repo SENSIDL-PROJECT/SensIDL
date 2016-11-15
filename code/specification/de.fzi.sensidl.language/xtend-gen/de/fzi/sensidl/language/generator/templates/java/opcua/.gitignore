@@ -7,3 +7,8 @@
 /OpcUaUtil.java
 /.OpcUaDataType.java._trace
 /.OpcUaDataTypeMapper.java._trace
+/OpcUaDataSetInterfaceTemplate.java
+/OpcUaDataSetTemplate.java
+/OpcUaDataType.java
+/OpcUaServerNamespaceTemplate.java
+/OpcUaServerTemplate.java

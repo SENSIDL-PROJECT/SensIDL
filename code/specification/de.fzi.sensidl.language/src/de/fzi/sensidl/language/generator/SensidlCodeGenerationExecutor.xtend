@@ -1,14 +1,7 @@
 package de.fzi.sensidl.language.generator
 
 import de.fzi.sensidl.language.generator.SensIDLConstants.GenerationLanguage
-import de.fzi.sensidl.language.generator.elementfilter.DataSetFilter
-import de.fzi.sensidl.language.generator.elementfilter.ElementFilter
-import de.fzi.sensidl.language.generator.elementfilter.UtilityDataFilter
-import de.fzi.sensidl.language.generator.generationstep.GenerationStep
-import de.fzi.sensidl.language.generator.generationstep.filegenerationstep.FileGenerationStep
-import de.fzi.sensidl.language.generator.generationstep.skeletongenerationstep.SkeletonGenerationStep
-import de.fzi.sensidl.language.generator.generationstep.utilitygenerationstep.UtilityGenerationStep
-import java.util.ArrayList
+import de.fzi.sensidl.language.generator.job.GenerationJobFactory
 import javax.naming.OperationNotSupportedException
 import org.apache.log4j.Logger
 import org.eclipse.emf.ecore.resource.Resource
@@ -32,19 +25,15 @@ class SensidlCodeGenerationExecutor implements ISensidlCodeGenerator {
 	 * @param fsa   Corresponds to the IFileSystemAccess-object which is used for the file-generation.
 	 */
 	override doGenerate(Resource input, IFileSystemAccess fsa) {
-		GenerationStep.init(generationLanguage)
-		ElementFilter.init(input)
 		
-		val generationChain = new ArrayList<GenerationStep> => [
-			add(new SkeletonGenerationStep(new DataSetFilter()))
-			add(new UtilityGenerationStep(new UtilityDataFilter()))
-			add(new FileGenerationStep(fsa))
-		]
+		val generationJob = GenerationJobFactory.getGenerationJobBy(new GenerationParameter(input, fsa, generationLanguage));
 
 		try {
+			
 			logger.info("Start with code-generation.")
 			
-			generationChain.forEach[generationStep | generationStep.startGenerationTask]
+			generationJob.start
+			
 		} catch (OperationNotSupportedException e) {
 			logger.error("Start to generate code-templates which does not exist.", e)
 		} catch (Exception e) {

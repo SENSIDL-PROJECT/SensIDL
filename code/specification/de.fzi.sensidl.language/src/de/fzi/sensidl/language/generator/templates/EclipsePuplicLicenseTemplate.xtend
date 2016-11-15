@@ -1,6 +1,6 @@
 package de.fzi.sensidl.language.generator.templates
 
-class EPLicense {
+class EclipsePuplicLicenseTemplate {
 	
 	public static def getText() {
 		

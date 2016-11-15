@@ -1,16 +1,15 @@
 package de.fzi.sensidl.language.generator.templates.java.opcua
 
+import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
+import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
+import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData
 import de.fzi.sensidl.language.generator.GenerationUtil
+import de.fzi.sensidl.language.generator.templates.EclipsePuplicLicenseTemplate
 import de.fzi.sensidl.language.generator.templates.ITemplate
 import java.util.ArrayList
-import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
-import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
-import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
-import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData
 import java.util.List
-import java.util.Optional
-import de.fzi.sensidl.language.generator.templates.EPLicense
 
 class OpcUaDataSetTemplate extends ITemplate<DataSet> {
 	
@@ -20,6 +19,8 @@ class OpcUaDataSetTemplate extends ITemplate<DataSet> {
 	private static val DEFAULT_BOOLEAN_VALUE = "false"
 	private static val EMPTY_STRING = ""
 	
+	private val String packagePrefix
+	
 	private val members = new ArrayList<CharSequence>
 	private val constructors = new ArrayList<CharSequence>
 	private val methodsToImplement = new ArrayList<CharSequence>
@@ -27,9 +28,11 @@ class OpcUaDataSetTemplate extends ITemplate<DataSet> {
 	/**
 	 * The constructor.
 	 */
-	new(DataSet newElement) {
+	new(DataSet newElement, String newPackagePrefix) {
 		
 		super(newElement)
+		
+		packagePrefix = newPackagePrefix
 		
 		addMembers();
 		addConstructors();
@@ -45,9 +48,9 @@ class OpcUaDataSetTemplate extends ITemplate<DataSet> {
 	 */
 	override getCode() {
 		'''
-		«EPLicense.text»
+		«EclipsePuplicLicenseTemplate.text»
 		
-		package «OpcUaUtil.getDefaultPackageName(GenerationUtil.getSensorInterface(this.element))»;
+		package «packagePrefix»«OpcUaUtil.getDefaultPackageName(GenerationUtil.getSensorInterface(this.element))»;
 				
 		import org.eclipse.milo.opcua.stack.core.Identifiers;
 		import org.eclipse.milo.opcua.stack.core.types.builtin.NodeId;

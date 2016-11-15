@@ -2,19 +2,25 @@ package de.fzi.sensidl.language.generator.templates.java.opcua
 
 import de.fzi.sensidl.design.sensidl.SensorInterface
 import de.fzi.sensidl.language.generator.templates.ITemplate
-import de.fzi.sensidl.language.generator.templates.EPLicense
+import de.fzi.sensidl.language.generator.templates.EclipsePuplicLicenseTemplate
 
 class OpcUaServerTemplate extends ITemplate<SensorInterface> {
 	
 	private static val CLASS_NAME_SUFFIX = "OpcUaServer"
 	private static val DEFAULT_PORT = 12686
 	
+	private val String packagePrefix
+	
 	/**
 	 * The constructor.
 	 * @param newElement - SensorInterface-element which is needed for the code-generation.
 	 */
-	new(SensorInterface newElement) {
+	new(SensorInterface newElement, String newPackagePrefix) {
+		
 		super(newElement)
+		
+		packagePrefix = newPackagePrefix
+		
 	}
 	
 	/**
@@ -23,9 +29,9 @@ class OpcUaServerTemplate extends ITemplate<SensorInterface> {
 	 */
 	override getCode() { 
 		'''
-		«EPLicense.text»
+		«EclipsePuplicLicenseTemplate.text»
 		
-		package «OpcUaUtil.getDefaultPackageName(this.element)»;
+		package «packagePrefix»«OpcUaUtil.getDefaultPackageName(this.element)»;
 		
 		import org.eclipse.milo.opcua.sdk.server.OpcUaServer;
 		import org.eclipse.milo.opcua.sdk.server.api.config.OpcUaServerConfig;

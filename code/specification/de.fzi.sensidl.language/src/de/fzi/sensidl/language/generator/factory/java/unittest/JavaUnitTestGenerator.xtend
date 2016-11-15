@@ -13,27 +13,24 @@ import org.eclipse.emf.ecore.EObject
  */
 class JavaUnitTestGenerator implements ICodeGenerator {
 
+	private var String packagePrefix
+	
+	new() {
+		
+		
+	}
+	
+	new (String packagePrefix) {
+		
+		this.packagePrefix = packagePrefix
+		
+	} 
+
 	/**
  	* @see ICodeGenerator#generateDTO()
  	*/
 	override generateDTO(List<DataSet> dataSet) {
-		new de.fzi.sensidl.language.generator.factory.java.unittest.JavaUnitTestDTOGenerator(dataSet).generate
-	}
-
-	/**
- 	* @see ICodeGenerator#generateEncoder()
- 	*/
-	override generateEncoder() {
-		// TODO has to be implemented
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-
-	/**
- 	* @see ICodeGenerator#generateDecoder()
- 	*/
-	override generateDecoder() {
-		// TODO has to be implemented
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		new de.fzi.sensidl.language.generator.factory.java.unittest.JavaUnitTestDTOGenerator(dataSet, packagePrefix).generate
 	}
 
 	/**

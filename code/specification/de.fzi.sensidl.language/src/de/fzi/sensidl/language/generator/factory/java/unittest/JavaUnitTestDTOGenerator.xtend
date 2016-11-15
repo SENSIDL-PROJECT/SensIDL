@@ -26,28 +26,19 @@ import org.eclipse.emf.common.util.EList
  */
  
 class JavaUnitTestDTOGenerator implements IDTOGenerator {
-	private static Logger logger = Logger.getLogger(JavaUnitTestDTOGenerator)
-	private List<DataSet> dataSet
-	private boolean createProject = false
+	private static val Logger logger = Logger.getLogger(JavaUnitTestDTOGenerator)
+	
+	private val String packagePrefix
+	private val List<DataSet> dataSet
 		
 	/**
 	 * The constructor calls the constructor of the superclass to set a
 	 * list of DataSet-elements.
 	 * @param newDataSet - represents the list of DataSet-elements.
 	 */
-	new(List<DataSet> newDataSet) {
+	new(List<DataSet> newDataSet, String newPackagePrefix) {
 		this.dataSet = newDataSet
-	}
-	
-	/**
-	 * The constructor calls the constructor of the superclass to set a
-	 * list of DataSet-elements and a member-variable.
-	 * @param newDataSet - represents the list of DataSet-elements.
-	 * @param createProject - indicates if a project should be created.
-	 */
-	new(List<DataSet> newDataSet,boolean createProject) {
-		this.dataSet = newDataSet
-		this.createProject = createProject
+		this.packagePrefix = newPackagePrefix
 	}
 
 	/**
@@ -57,18 +48,12 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 	override generate() {
 		logger.info("Start with code-generation of a java test data transfer object.")
 		val filesToGenerate = new HashMap			
-		if (createProject) {
-			for (d : this.dataSet) {
-				filesToGenerate.put("src/de/fzi/sensidl/" + GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer) +"/" + addFileExtensionTo(GenerationUtil.toNameUpper(d)+"Test"), generateClassBody(GenerationUtil.toNameUpper(d)+"Test", d))
-				logger.info("File: " + addFileExtensionTo(GenerationUtil.toNameUpper(d)+"Test") + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
-			}
-		} 
-		else	{
-			for (d : this.dataSet) {
-				filesToGenerate.put(addFileExtensionTo(GenerationUtil.toNameUpper(d)+"Test"), generateClassBody(GenerationUtil.toNameUpper(d)+"Test", d))
-				logger.info("File: " + addFileExtensionTo(GenerationUtil.toNameUpper(d)+"Test") + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
-			}
+
+		for (d : this.dataSet) {
+			filesToGenerate.put(addFileExtensionTo(GenerationUtil.toNameUpper(d)+"Test"), generateClassBody(GenerationUtil.toNameUpper(d)+"Test", d))
+			logger.info("File: " + addFileExtensionTo(GenerationUtil.toNameUpper(d)+"Test") + " was generated in " + SensIDLOutputConfigurationProvider.SENSIDL_GEN)
 		}
+		
 		filesToGenerate
 	}
 
@@ -77,11 +62,7 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 	 */
 	def generateClassBody(String className, DataSet d) {
 		'''
-			«IF createProject»
-			package de.fzi.sensidl.«GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer)»;
-			«ELSE»
-			package «GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer)»;
-			«ENDIF» 
+			package «packagePrefix»«GenerationUtil.getSensorInterfaceName(this.dataSet.get(0).eContainer)»;
 			
 			import static org.junit.Assert.assertTrue;
 			import java.lang.reflect.Method;

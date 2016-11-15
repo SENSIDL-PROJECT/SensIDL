@@ -70,6 +70,12 @@ public class SensIDLConstants {
   
   private static HashMap<String, String> identifierToVisibility;
   
+  public final static String JAVA_PROJECT_PACKAGE_PATH = "src/de/fzi/sensidl/";
+  
+  public final static String JAVA_PROJECT_PACKAGE_PREFIX = "de.fzi.sensidl.";
+  
+  public final static String JAVA_DEFAULT_PACKAGE_PREFIX = "";
+  
   public static String getVisibilityOf(final String visibilityIdentifier) {
     String _xblockexpression = null;
     {

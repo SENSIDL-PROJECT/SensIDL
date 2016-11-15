@@ -1,14 +1,16 @@
-package de.fzi.sensidl.language.generator.generationstep.filegenerationstep
+package de.fzi.sensidl.language.generator.generationstep
 
 import com.google.common.io.Files
-import de.fzi.sensidl.language.generator.generationstep.GenerationStep
+import de.fzi.sensidl.language.generator.SensIDLConstants
 import java.text.SimpleDateFormat
 import java.util.ArrayList
 import java.util.Date
 import java.util.HashMap
+import org.apache.commons.io.FilenameUtils
 import org.apache.log4j.Logger
+import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.xtext.generator.IFileSystemAccess
-import de.fzi.sensidl.language.generator.SensIDLConstants
+import org.eclipse.core.resources.IResource
 
 /**
  * The FileGenerationStep is a concrete subclass of the GenerationStep class. 
@@ -20,8 +22,13 @@ class FileGenerationStep extends GenerationStep {
 	private val static SEPARATION_STRING = ", "
 	private val static UNIFIED_TAB_DISTANCE = "\t\t\t\t\t\t\t\t"
 	private val static START_SYMBOL = "*"
+	private val static DEFAUL_FILE_PATH = ""
+	private val static TEXT_FILE_EXTENSION = "txt"
 	
 	private val IFileSystemAccess fsa;
+	
+	private static var String filePath;
+	
 	private var HashMap<String, ArrayList<String>> fileCache;
 	
 	/**
@@ -31,6 +38,13 @@ class FileGenerationStep extends GenerationStep {
 	new(IFileSystemAccess newFsa) {
 		fsa = newFsa
 		fileCache = new HashMap
+		filePath = DEFAUL_FILE_PATH
+	}
+	
+	public static def setFilePath(String newFilePath) {
+		
+		filePath = newFilePath
+		
 	}
 	
 	/**
@@ -42,10 +56,42 @@ class FileGenerationStep extends GenerationStep {
 			
 			insertVersioningCommentTo(file)
 			
-			fsa.generateFile(file, filesToGenerate.get(file))
+			fsa.generateFile(getFilePathOf(file), getContentOf(file))
 			
 			logger.info("File " + file + " was successfully generated")
 		}
+		
+		refreshWorkspace
+	}
+	
+	private def refreshWorkspace() {
+
+		ResourcesPlugin.getWorkspace().getRoot().getProjects().forEach[eachProject | eachProject.refreshLocal(IResource.DEPTH_INFINITE, null)]
+
+	}
+	
+	private def getContentOf(String file) {
+		
+		filesToGenerate.get(file)
+		
+	}
+	
+	private def getFilePathOf(String file) {
+		
+		if (isTextFile(file)) {
+			
+			return file
+			
+		}
+		
+		filePath + file
+		
+	}
+	
+	def isTextFile(String file) {
+		
+		FilenameUtils.getExtension(file).equals(TEXT_FILE_EXTENSION)
+		
 	}
 	
 	def insertVersioningCommentTo(String file) {

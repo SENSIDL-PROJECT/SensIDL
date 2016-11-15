@@ -5,7 +5,6 @@ import de.fzi.sensidl.language.generator.factory.ICodeGenerator
 import java.util.ArrayList
 import java.util.HashMap
 import java.util.List
-import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 import org.eclipse.emf.ecore.EObject
 
 /**
@@ -27,22 +26,6 @@ class CGenerator implements ICodeGenerator {
 		generators.forEach[generator | filesToGenerate.putAll(generator.generate)]
 		
 		filesToGenerate
-	}
-	
-	/**
- 	*@see ICodeGenerator#generateEncoder()
- 	*/
-	override generateEncoder() {
-		//TODO has to be implemented
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-	
-	/**
- 	*@see ICodeGenerator#generateDecoder()
- 	*/
-	override generateDecoder() {
-		//TODO has to be implemented
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
 	/**

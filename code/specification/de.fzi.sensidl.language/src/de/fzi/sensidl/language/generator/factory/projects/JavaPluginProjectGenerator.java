@@ -1,4 +1,4 @@
-package de.fzi.sensidl.language.generator.factory.java;
+package de.fzi.sensidl.language.generator.factory.projects;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -32,10 +32,34 @@ import org.osgi.framework.Bundle;
  * 
  * @author Sven Eckhardt
  */
-public class JavaPluginProjectGenerator {
+public class JavaPluginProjectGenerator extends ProjectGenerator {
 
-	private static String projectName;
+	private String projectName;
+	private String projectPath;
 
+	/**
+	 * The Constructor.
+	 * @param projectName - Specifies the name of the generated project.
+	 */
+	public JavaPluginProjectGenerator(String projectName) {
+		
+		this.projectName = projectName;
+		this.projectPath = "";
+		
+	}
+	
+	public String getProjectPath() {
+		
+		return this.projectPath;
+		
+	}
+	
+	private void setProjectPath(String projectPath) {
+		
+		this.projectPath = projectPath;
+		
+	}
+	
 	/**
 	 * Create a Java Plug-in Project with the given name.
 	 * 
@@ -45,7 +69,7 @@ public class JavaPluginProjectGenerator {
 	 * @throws CoreException
 	 * @throws IOException
 	 */
-	public static IProject createPluginProject() throws CoreException, IOException {
+	public IProject createProject() throws Exception {
 		// get project on workspace
 		IProject project = null;
 
@@ -55,17 +79,13 @@ public class JavaPluginProjectGenerator {
 		// Remove old project if there is one with the same name. Show a Message
 		// Dialog if the old project will be deleted
 		if (project.exists()) {
-			final boolean[] result = new boolean[1];
-			PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
-				public void run() {
-					result[0] = MessageDialog.openQuestion(new Shell(), "'" + projectName + "'" + "already exists",
-							"Warning: " + "'" + projectName + "' already exists. Should this project be deleted?");
-				}
-			});
-			if (result[0]) {
+			
+			if (this.deleteExistingProjectWith(projectName)) {
 				project.delete(true, true, null);
-			} else
-				return null;
+			} else {
+				throw new Exception("Project already exist.");
+			}
+				
 		}
 
 		// create Java project
@@ -81,6 +101,8 @@ public class JavaPluginProjectGenerator {
 		project.open(null);
 		project.setDescription(projectDescription, null);
 
+		setProjectPath(project.getLocation().toOSString());
+		
 		// create src folder
 		IFolder srcFolder = project.getFolder("src");
 		if (!srcFolder.exists()) {
@@ -128,28 +150,18 @@ public class JavaPluginProjectGenerator {
 	}
 
 	/**
-	 * Set the project name
-	 * 
-	 * @param project
-	 *            The project-name to set.
-	 */
-	public static void setProjectName(String project) {
-		projectName = project;
-	}
-
-	/**
 	 * Get the project name
 	 * 
 	 * @return the project name
 	 */
-	public static String getProjectName() {
+	public String getProjectName() {
 		return projectName;
 	}
 
 	/*
 	 * creates the MANIFEST.MF
 	 */
-	private static void createManifest(String projectName, IProject project) throws CoreException, IOException {
+	private void createManifest(String projectName, IProject project) throws CoreException, IOException {
 		StringBuilder content = new StringBuilder("Manifest-Version: 1.0\n");
 		content.append("Bundle-ManifestVersion: 2\n");
 		content.append("Bundle-Name: " + projectName + "\n");
@@ -165,7 +177,7 @@ public class JavaPluginProjectGenerator {
 	/*
 	 * create build.properties
 	 */
-	private static void createBuildProperties(IProject project, String srcFolder) throws CoreException, IOException {
+	private void createBuildProperties(IProject project, String srcFolder) throws CoreException, IOException {
 		StringBuilder content = new StringBuilder("source.. = " + srcFolder + "/");
 		content.append("\n");
 		content.append("bin.includes = META-INF/,\\\n.");
@@ -175,7 +187,7 @@ public class JavaPluginProjectGenerator {
 	/*
 	 * creates a file from the given parameters
 	 */
-	private static IFile createFile(String name, IContainer container, String content)
+	private IFile createFile(String name, IContainer container, String content)
 			throws CoreException, IOException {
 		IFile file = container.getFile(new Path(name));
 		createDirectory(file.getParent());
@@ -194,7 +206,7 @@ public class JavaPluginProjectGenerator {
 	/*
 	 * creates non-existing directories recursively
 	 */
-	private static void createDirectory(IContainer container) throws CoreException {
+	private void createDirectory(IContainer container) throws CoreException {
 		if (!container.exists()) {
 			if (!container.getParent().exists()) {
 				createDirectory(container.getParent());

@@ -22,22 +22,6 @@ public interface ICodeGenerator {
   
   /**
    * Defines the method which calls the implementation
-   * for a language specific encoder object.
-   * @return a HashMap which maps the filename to generation-code
-   * 		  represented as CharSequence.
-   */
-  public abstract HashMap<String, CharSequence> generateEncoder();
-  
-  /**
-   * Defines the method which calls the implementation
-   * for a language specific decoder object.
-   * @return a HashMap which maps the filename to generation-code
-   * 		  represented as CharSequence.
-   */
-  public abstract HashMap<String, CharSequence> generateDecoder();
-  
-  /**
-   * Defines the method which calls the implementation
    * for a language specific utility class.
    * @return a HashMap which maps the filename to generation-code
    * 		  represented as CharSequence.

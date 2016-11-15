@@ -47,17 +47,17 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
  */
 @SuppressWarnings("all")
 public class JavaDTOGenerator implements IDTOGenerator {
+  private final static Logger logger = Logger.getLogger(JavaDTOGenerator.class);
+  
   private final static String LONG_FORMATTED = "l";
   
   private final static String FLOAT_FORMATTED = "f";
   
   private final static String DOUBLE_FORMATTED = ".0";
   
-  private static Logger logger = Logger.getLogger(JavaDTOGenerator.class);
+  private final String packagePrefix;
   
-  private List<DataSet> dataSet;
-  
-  private boolean createProject = false;
+  private final List<DataSet> dataSet;
   
   private boolean bigEndian;
   
@@ -66,19 +66,9 @@ public class JavaDTOGenerator implements IDTOGenerator {
    * list of DataSet-elements.
    * @param newDataSet - represents the list of DataSet-elements.
    */
-  public JavaDTOGenerator(final List<DataSet> newDataSet) {
+  public JavaDTOGenerator(final List<DataSet> newDataSet, final String newPackagePrefix) {
     this.dataSet = newDataSet;
-  }
-  
-  /**
-   * The constructor calls the constructor of the superclass to set a
-   * list of DataSet-elements and a member-variable.
-   * @param newDataSet - represents the list of DataSet-elements.
-   * @param createProject - indicates if a project should be created.
-   */
-  public JavaDTOGenerator(final List<DataSet> newDataSet, final boolean createProject) {
-    this.dataSet = newDataSet;
-    this.createProject = createProject;
+    this.packagePrefix = newPackagePrefix;
   }
   
   /**
@@ -91,54 +81,21 @@ public class JavaDTOGenerator implements IDTOGenerator {
     {
       JavaDTOGenerator.logger.info("Start with code-generation of a java data transfer object.");
       final HashMap<String, CharSequence> filesToGenerate = new HashMap<String, CharSequence>();
-      DataSet _get = this.dataSet.get(0);
-      EObject _eContainer = _get.eContainer();
-      SensorInterface _sensorInterface = GenerationUtil.getSensorInterface(_eContainer);
-      EncodingSettings _encodingSettings = _sensorInterface.getEncodingSettings();
-      Endianness _endianness = _encodingSettings.getEndianness();
-      boolean _equals = Objects.equal(_endianness, Endianness.BIG_ENDIAN);
-      if (_equals) {
-        this.bigEndian = true;
-      } else {
-        this.bigEndian = false;
-      }
-      if (this.createProject) {
-        for (final DataSet d : this.dataSet) {
-          {
-            DataSet _get_1 = this.dataSet.get(0);
-            EObject _eContainer_1 = _get_1.eContainer();
-            String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(_eContainer_1);
-            String _plus = ("src/de/fzi/sensidl/" + _sensorInterfaceName);
-            String _plus_1 = (_plus + "/");
-            String _nameUpper = GenerationUtil.toNameUpper(d);
-            String _addFileExtensionTo = this.addFileExtensionTo(_nameUpper);
-            String _plus_2 = (_plus_1 + _addFileExtensionTo);
-            String _nameUpper_1 = GenerationUtil.toNameUpper(d);
-            CharSequence _generateClassBody = this.generateClassBody(_nameUpper_1, d);
-            filesToGenerate.put(_plus_2, _generateClassBody);
-            String _nameUpper_2 = GenerationUtil.toNameUpper(d);
-            String _addFileExtensionTo_1 = this.addFileExtensionTo(_nameUpper_2);
-            String _plus_3 = ("File: " + _addFileExtensionTo_1);
-            String _plus_4 = (_plus_3 + " was generated in ");
-            String _plus_5 = (_plus_4 + SensIDLOutputConfigurationProvider.SENSIDL_GEN);
-            JavaDTOGenerator.logger.info(_plus_5);
-          }
-        }
-      } else {
-        for (final DataSet d_1 : this.dataSet) {
-          {
-            String _nameUpper = GenerationUtil.toNameUpper(d_1);
-            String _addFileExtensionTo = this.addFileExtensionTo(_nameUpper);
-            String _nameUpper_1 = GenerationUtil.toNameUpper(d_1);
-            CharSequence _generateClassBody = this.generateClassBody(_nameUpper_1, d_1);
-            filesToGenerate.put(_addFileExtensionTo, _generateClassBody);
-            String _nameUpper_2 = GenerationUtil.toNameUpper(d_1);
-            String _addFileExtensionTo_1 = this.addFileExtensionTo(_nameUpper_2);
-            String _plus = ("File: " + _addFileExtensionTo_1);
-            String _plus_1 = (_plus + " was generated in ");
-            String _plus_2 = (_plus_1 + SensIDLOutputConfigurationProvider.SENSIDL_GEN);
-            JavaDTOGenerator.logger.info(_plus_2);
-          }
+      boolean _isBigEndian = this.isBigEndian();
+      this.bigEndian = _isBigEndian;
+      for (final DataSet d : this.dataSet) {
+        {
+          String _nameUpper = GenerationUtil.toNameUpper(d);
+          String _addFileExtensionTo = this.addFileExtensionTo(_nameUpper);
+          String _nameUpper_1 = GenerationUtil.toNameUpper(d);
+          CharSequence _generateClassBody = this.generateClassBody(_nameUpper_1, d);
+          filesToGenerate.put(_addFileExtensionTo, _generateClassBody);
+          String _nameUpper_2 = GenerationUtil.toNameUpper(d);
+          String _addFileExtensionTo_1 = this.addFileExtensionTo(_nameUpper_2);
+          String _plus = ("File: " + _addFileExtensionTo_1);
+          String _plus_1 = (_plus + " was generated in ");
+          String _plus_2 = (_plus_1 + SensIDLOutputConfigurationProvider.SENSIDL_GEN);
+          JavaDTOGenerator.logger.info(_plus_2);
         }
       }
       _xblockexpression = filesToGenerate;
@@ -146,34 +103,30 @@ public class JavaDTOGenerator implements IDTOGenerator {
     return _xblockexpression;
   }
   
+  private boolean isBigEndian() {
+    DataSet _get = this.dataSet.get(0);
+    EObject _eContainer = _get.eContainer();
+    SensorInterface _sensorInterface = GenerationUtil.getSensorInterface(_eContainer);
+    EncodingSettings _encodingSettings = _sensorInterface.getEncodingSettings();
+    Endianness _endianness = _encodingSettings.getEndianness();
+    return Objects.equal(_endianness, Endianness.BIG_ENDIAN);
+  }
+  
   /**
-   * Generates the Classes
+   * Generates the class
    */
   public CharSequence generateClassBody(final String className, final DataSet d) {
     StringConcatenation _builder = new StringConcatenation();
-    {
-      if (this.createProject) {
-        _builder.append("package de.fzi.sensidl.");
-        DataSet _get = this.dataSet.get(0);
-        EObject _eContainer = _get.eContainer();
-        String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(_eContainer);
-        _builder.append(_sensorInterfaceName, "");
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
-        _builder.append(" ");
-        _builder.newLine();
-      } else {
-        _builder.append("package ");
-        DataSet _get_1 = this.dataSet.get(0);
-        EObject _eContainer_1 = _get_1.eContainer();
-        String _sensorInterfaceName_1 = GenerationUtil.getSensorInterfaceName(_eContainer_1);
-        _builder.append(_sensorInterfaceName_1, "");
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
-        _builder.append(" ");
-        _builder.newLine();
-      }
-    }
+    _builder.append("package ");
+    _builder.append(this.packagePrefix, "");
+    DataSet _get = this.dataSet.get(0);
+    EObject _eContainer = _get.eContainer();
+    String _sensorInterfaceName = GenerationUtil.getSensorInterfaceName(_eContainer);
+    _builder.append(_sensorInterfaceName, "");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append(" ");
+    _builder.newLine();
     {
       if ((!this.bigEndian)) {
         _builder.append("import java.nio.ByteBuffer;");
@@ -184,11 +137,6 @@ public class JavaDTOGenerator implements IDTOGenerator {
         _builder.newLine();
       }
     }
-    _builder.newLine();
-    _builder.append("import java.util.ArrayList;");
-    _builder.newLine();
-    _builder.append("import java.util.List;");
-    _builder.newLine();
     _builder.append(" ");
     _builder.newLine();
     _builder.append("/**");

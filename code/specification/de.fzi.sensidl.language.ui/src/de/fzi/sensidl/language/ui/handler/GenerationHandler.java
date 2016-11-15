@@ -14,12 +14,10 @@ import org.eclipse.xtext.service.AbstractGenericModule;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.sun.nio.file.SensitivityWatchEventModifier;
 
 import de.fzi.sensidl.language.SensidlStandaloneSetup;
 import de.fzi.sensidl.language.generator.SensIDLConstants;
 import de.fzi.sensidl.language.generator.SensidlGenerator;
-import de.fzi.sensidl.language.generator.factory.java.JavaPluginProjectGenerator;
 import de.fzi.sensidl.language.ui.exception.NoSidlFileException;
 
 /**
@@ -57,11 +55,6 @@ public class GenerationHandler {
 			throws NoSidlFileException, FileNotFoundException {
 		setGenerationLanguage(language);
 		Injector injector = new SensidlStandaloneSetup().createInjectorAndDoEMFRegistration();
-
-		// Set JavaprojectGenerator variables if needed
-		if (generationLanguage == SensIDLConstants.GenerationLanguage.JAVA_PLUGIN_PROJECT) {
-			JavaPluginProjectGenerator.setProjectName(path.substring(path.lastIndexOf('/') + 1));
-		}
 
 		// get resource
 		Resource resource = null;

@@ -3,7 +3,7 @@ package de.fzi.sensidl.language.generator.templates;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
-public class EPLicense {
+public class EclipsePuplicLicenseTemplate {
   public static CharSequence getText() {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("/*");

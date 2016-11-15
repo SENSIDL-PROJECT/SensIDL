@@ -1,7 +1,7 @@
 package de.fzi.sensidl.language.generator.templates.java.opcua;
 
 import de.fzi.sensidl.design.sensidl.SensorInterface;
-import de.fzi.sensidl.language.generator.templates.EPLicense;
+import de.fzi.sensidl.language.generator.templates.EclipsePuplicLicenseTemplate;
 import de.fzi.sensidl.language.generator.templates.ITemplate;
 import de.fzi.sensidl.language.generator.templates.java.opcua.OpcUaUtil;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -13,12 +13,15 @@ public class OpcUaServerTemplate extends ITemplate<SensorInterface> {
   
   private final static int DEFAULT_PORT = 12686;
   
+  private final String packagePrefix;
+  
   /**
    * The constructor.
    * @param newElement - SensorInterface-element which is needed for the code-generation.
    */
-  public OpcUaServerTemplate(final SensorInterface newElement) {
+  public OpcUaServerTemplate(final SensorInterface newElement, final String newPackagePrefix) {
     super(newElement);
+    this.packagePrefix = newPackagePrefix;
   }
   
   /**
@@ -28,11 +31,12 @@ public class OpcUaServerTemplate extends ITemplate<SensorInterface> {
   @Override
   public CharSequence getCode() {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _text = EPLicense.getText();
+    CharSequence _text = EclipsePuplicLicenseTemplate.getText();
     _builder.append(_text, "");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("package ");
+    _builder.append(this.packagePrefix, "");
     String _defaultPackageName = OpcUaUtil.getDefaultPackageName(this.element);
     _builder.append(_defaultPackageName, "");
     _builder.append(";");

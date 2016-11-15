@@ -17,13 +17,14 @@ import java.util.List
 import org.apache.log4j.Logger
 import org.eclipse.emf.ecore.EObject
 
-class JavaUtilityGenerator implements IUtilityGenerator {
-	private static Logger logger = Logger.getLogger(JavaUtilityGenerator)
-	private List<MeasurementData> data
-	private List<DataSet> dataSets
-	private SensorInterface currentSensorInterface;
-
-	private boolean createProject = false
+class JavaUtilityGenerator implements IUtilityGenerator {	
+	private static val Logger logger = Logger.getLogger(JavaUtilityGenerator)
+	
+	private val List<MeasurementData> data
+	private val List<DataSet> dataSets
+	private val SensorInterface currentSensorInterface;
+	private val String packagePrefix
+	
 	private boolean bigEndian
 	
 	/**
@@ -31,23 +32,11 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 	 * list of elements.
 	 * @param newData - represents the list of EObject-elements.
 	 */
-	new(List<EObject> newData) {
+	new(List<EObject> newData, String newPackagePrefix) {
 		this.data = newData.filter(MeasurementData).toList
 		this.dataSets = newData.filter(DataSet).toList
 		currentSensorInterface = newData.filter(SensorInterface).get(0);
-	}
-
-	/**
-	 * The constructor calls the constructor of the superclass to set a
-	 * list of Data-elements and a member-variable.
-	 * @param newData - represents the list of DataSet-elements.
-	 * @param createProject - indicates if a project should be created.
-	 */
-	new(List<EObject> newData, boolean createProject) {
-		this.data = newData.filter(MeasurementData).toList
-		this.dataSets = newData.filter(DataSet).toList
-		currentSensorInterface = newData.filter(SensorInterface).get(0);
-		this.createProject = createProject
+		packagePrefix = newPackagePrefix
 	}
 	
 	/**
@@ -62,14 +51,9 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 	
 		bigEndian = (this.currentSensorInterface.encodingSettings.endianness == Endianness.BIG_ENDIAN)
 	
-		// if a Plug-in Project is generated the file has to be generated to another path
-		if (createProject) {
-			filesToGenerate.put(
-				"src/de/fzi/sensidl/" + GenerationUtil.getSensorInterfaceName(this.currentSensorInterface) + "/" +
-					addFileExtensionTo(utilityName), generateClassBody(utilityName))
-		} else {
-			filesToGenerate.put(addFileExtensionTo(utilityName), generateClassBody(utilityName))
-		}
+		
+		filesToGenerate.put(addFileExtensionTo(utilityName), generateClassBody(utilityName))
+		
 
 		logger.info("File: " + addFileExtensionTo(utilityName) + " was generated in " +
 			SensIDLOutputConfigurationProvider.SENSIDL_GEN)
@@ -79,13 +63,8 @@ class JavaUtilityGenerator implements IUtilityGenerator {
 
 	def generateClassBody(String className) {
 		'''
-			«IF createProject»
-				package de.fzi.sensidl.«GenerationUtil.getSensorInterfaceName(this.currentSensorInterface)»;
-				 
-			«ELSE»
-				package «GenerationUtil.getSensorInterfaceName(this.currentSensorInterface)»;
-				 
-			«ENDIF» 
+			package «packagePrefix»«GenerationUtil.getSensorInterfaceName(this.currentSensorInterface)»;
+
 			import java.io.BufferedReader;
 			import java.io.ByteArrayInputStream;
 			import java.io.IOException;

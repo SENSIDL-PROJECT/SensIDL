@@ -20,7 +20,7 @@ import org.apache.log4j.Logger
 class JavaOpcUaGenerator implements IOpcUaGenerator {
 	
 	private static Logger logger = Logger.getLogger(JavaOpcUaGenerator)
-
+ 
 	private val List<ITemplate<?>> templates; 
 	
 	/**
@@ -28,19 +28,19 @@ class JavaOpcUaGenerator implements IOpcUaGenerator {
 	 * list of DataSet-elements.
 	 * @param newDataSet - represents the list of DataSet-elements.
 	 */
-	new(List<DataSet> datasets) {
+	new(List<DataSet> datasets, String packagePrefix) {
 		
 		val sensorInterface = GenerationUtil.getSensorInterface(datasets.get(0))
 		
 		templates = new ArrayList => [
 			
-			add(new OpcUaServerTemplate(sensorInterface))
-			add(new OpcUaServerNamespaceTemplate(sensorInterface))
-			add(new OpcUaDataSetInterfaceTemplate(sensorInterface))
+			add(new OpcUaServerTemplate(sensorInterface, packagePrefix))
+			add(new OpcUaServerNamespaceTemplate(sensorInterface, packagePrefix))
+			add(new OpcUaDataSetInterfaceTemplate(sensorInterface, packagePrefix))
 			
 		]
 			
-		datasets.forEach[dataset | templates.add(new OpcUaDataSetTemplate(dataset))]
+		datasets.forEach[dataset | templates.add(new OpcUaDataSetTemplate(dataset, packagePrefix))]
 
 	}
 	

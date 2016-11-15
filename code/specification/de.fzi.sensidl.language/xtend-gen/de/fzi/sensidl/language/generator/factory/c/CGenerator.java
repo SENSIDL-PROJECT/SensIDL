@@ -48,22 +48,6 @@ public class CGenerator implements ICodeGenerator {
   }
   
   /**
-   * @see ICodeGenerator#generateEncoder()
-   */
-  @Override
-  public HashMap<String, CharSequence> generateEncoder() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
-  }
-  
-  /**
-   * @see ICodeGenerator#generateDecoder()
-   */
-  @Override
-  public HashMap<String, CharSequence> generateDecoder() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
-  }
-  
-  /**
    * @see ICodeGenerator#generateUtilityClass(List<MeasurementData>)
    */
   @Override

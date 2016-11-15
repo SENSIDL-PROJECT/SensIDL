@@ -1,4 +1,4 @@
-package de.fzi.sensidl.language.generator.generationstep.skeletongenerationstep
+package de.fzi.sensidl.language.generator.generationstep
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
 import de.fzi.sensidl.language.generator.IExecuter
@@ -7,19 +7,17 @@ import de.fzi.sensidl.language.generator.elementfilter.ElementFilter
 import de.fzi.sensidl.language.generator.factory.c.CGenerator
 import de.fzi.sensidl.language.generator.factory.csharp.CSharpGenerator
 import de.fzi.sensidl.language.generator.factory.java.JavaGenerator
+import de.fzi.sensidl.language.generator.factory.java.unittest.JavaUnitTestGenerator
 import de.fzi.sensidl.language.generator.factory.javascript.JavaScriptGenerator
 import de.fzi.sensidl.language.generator.factory.plaintext.PlaintextGenerator
 import de.fzi.sensidl.language.generator.factory.sidl.SidlGenerator
 import de.fzi.sensidl.language.generator.generationstep.GenerationStep
 import java.util.HashMap
 import java.util.List
-import de.fzi.sensidl.language.generator.factory.java.unittest.JavaUnitTestGenerator
+import de.fzi.sensidl.language.generator.factory.java.JavaOpcUaGenerator
 
-/**
- * The SkeletonGenerationStep is a concrete subclass of the GenerationStep class. The main
- * task of the class is to generate the base structure (code-skeletons) of all files. 
- */
-class SkeletonGenerationStep extends GenerationStep {
+class DTOGenerationStep extends GenerationStep {
+	
 	private List<DataSet> dataSet
 
 	public static boolean createSidlFile = false
@@ -38,23 +36,25 @@ class SkeletonGenerationStep extends GenerationStep {
 	 * @see GenerationStep#startGenerationTask()
 	 */
 	override startGenerationTask() {
-		this.startGenerationTask(initExecuter)
+	
+		this.resourcesToGenerateMapping.get(generationLanguage).execute
+		
 	}
-
+	
 	/**
-	 * The initExecuter-method initializes a HashMap that maps each {@link GenerationLanguage} to a
+	 * Initializes a HashMap that maps each {@link GenerationLanguage} to a
 	 * {@link IExecuter} object.
 	 * @return the HashMap {@link GenerationLanguage} to {@link IExecuter}
 	 */
-	private def initExecuter() {
+	private def getResourcesToGenerateMapping() {
 		return new HashMap<GenerationLanguage, IExecuter> => [
 			put(GenerationLanguage.ALL, [
-				val JavaGenerator jgenerator = new JavaGenerator()
+				val JavaGenerator jgenerator = new JavaGenerator(javaPackagePrefix)
 				val CGenerator cgenerator = new CGenerator()
 				val CSharpGenerator csharpgenerator = new CSharpGenerator()
 				val JavaScriptGenerator jsgenerator = new JavaScriptGenerator()
 				val PlaintextGenerator generator = new PlaintextGenerator()
-				val JavaUnitTestGenerator jutgenerator = new JavaUnitTestGenerator()
+				val JavaUnitTestGenerator jutgenerator = new JavaUnitTestGenerator(javaPackagePrefix)
 				val SidlGenerator sgenerator = new SidlGenerator()
 				filesToGenerate => [
 					putAll(jgenerator.generateDTO(this.dataSet))
@@ -69,13 +69,12 @@ class SkeletonGenerationStep extends GenerationStep {
 					}
 					putAll(jgenerator.generateOpcUa(this.dataSet))
 				]
-//				generator.generateDecoder
-//				generator.generateEncoder
 			])
+			
 			put(GenerationLanguage.JAVA, [
-				val JavaGenerator generator = new JavaGenerator()
+				val JavaGenerator generator = new JavaGenerator(javaPackagePrefix)
 				val PlaintextGenerator generator2 = new PlaintextGenerator()
-				val JavaUnitTestGenerator jutgenerator = new JavaUnitTestGenerator()
+				val JavaUnitTestGenerator jutgenerator = new JavaUnitTestGenerator(javaPackagePrefix)
 				val SidlGenerator sgenerator = new SidlGenerator()
 				filesToGenerate => [
 					putAll(generator.generateDTO(this.dataSet))
@@ -86,34 +85,32 @@ class SkeletonGenerationStep extends GenerationStep {
 						createSidlFile = false;
 					}
 				]
-//				generator.generateDecoder
-//				generator.generateEncoder
 			])
-			put(GenerationLanguage.OPCUA, [
-				val JavaGenerator generator = new JavaGenerator()
-				val PlaintextGenerator generator2 = new PlaintextGenerator()
-				val JavaUnitTestGenerator jutgenerator = new JavaUnitTestGenerator()
-				filesToGenerate => [
-					putAll(generator.generateOpcUa(this.dataSet))
-					//putAll(generator2.generateOpcUa(this.dataSet))
-					//putAll(jutgenerator.generateOpcUa(this.dataSet))
-				]
-			])
+			
 			put(GenerationLanguage.JAVA_PLUGIN_PROJECT, [
-				val JavaGenerator generator = new JavaGenerator()
+				
+				val JavaGenerator generator = new JavaGenerator(javaPackagePrefix)
 				val PlaintextGenerator generator2 = new PlaintextGenerator()
 				val SidlGenerator sgenerator = new SidlGenerator()
 				filesToGenerate => [
-					putAll(generator.generatePluginProject(this.dataSet))
+					putAll(generator.generateDTO(this.dataSet))
 					putAll(generator2.generateDTO(this.dataSet))
 					if (createSidlFile) {
 						putAll(sgenerator.generateDTO(this.dataSet))
 						createSidlFile = false;
 					}
 				]
-//				generator.generateDecoder
-//				generator.generateEncoder
+				
 			])
+			
+			put(GenerationLanguage.OPCUA, [
+				
+				val opcuaGenerator = new JavaGenerator(javaPackagePrefix)
+				
+				filesToGenerate => [putAll(opcuaGenerator.generateOpcUa(this.dataSet))]
+				
+			])
+	
 			put(GenerationLanguage.C, [
 				val CGenerator generator = new CGenerator()
 				val PlaintextGenerator generator2 = new PlaintextGenerator()
@@ -126,9 +123,8 @@ class SkeletonGenerationStep extends GenerationStep {
 						createSidlFile = false;
 					}
 				]
-//				generator.generateDecoder
-//				generator.generateEncoder
 			])
+			
 			put(GenerationLanguage.CSHARP, [
 				val CSharpGenerator generator = new CSharpGenerator()
 				val PlaintextGenerator generator2 = new PlaintextGenerator()
@@ -141,9 +137,8 @@ class SkeletonGenerationStep extends GenerationStep {
 						createSidlFile = false;
 					}
 				]
-//				generator.generateDecoder
-//				generator.generateEncoder
 			])
+			
 			put(GenerationLanguage.JAVASCRIPT, [
 				val JavaScriptGenerator generator = new JavaScriptGenerator()
 				val PlaintextGenerator generator2 = new PlaintextGenerator()
@@ -156,9 +151,8 @@ class SkeletonGenerationStep extends GenerationStep {
 						createSidlFile = false;
 					}
 				]
-//				generator.generateDecoder
-//				generator.generateEncoder
 			])
+			
 			put(GenerationLanguage.PLAINTEXT, [
 				val PlaintextGenerator generator = new PlaintextGenerator()
 				val PlaintextGenerator generator2 = new PlaintextGenerator()
@@ -166,10 +160,13 @@ class SkeletonGenerationStep extends GenerationStep {
 					putAll(generator.generateDTO(this.dataSet))
 					putAll(generator2.generateDTO(this.dataSet))
 				]
-//				generator.generateDecoder
-//				generator.generateEncoder
 			])
+			
+			put(GenerationLanguage.NONE, [
+				
+			])
+			
 		]
 	}
-
+	
 }

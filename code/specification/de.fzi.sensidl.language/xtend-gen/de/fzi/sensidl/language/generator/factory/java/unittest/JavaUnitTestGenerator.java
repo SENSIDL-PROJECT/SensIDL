@@ -15,29 +15,22 @@ import org.eclipse.emf.ecore.EObject;
  */
 @SuppressWarnings("all")
 public class JavaUnitTestGenerator implements ICodeGenerator {
+  private String packagePrefix;
+  
+  public JavaUnitTestGenerator() {
+  }
+  
+  public JavaUnitTestGenerator(final String packagePrefix) {
+    this.packagePrefix = packagePrefix;
+  }
+  
   /**
    * @see ICodeGenerator#generateDTO()
    */
   @Override
   public HashMap<String, CharSequence> generateDTO(final List<DataSet> dataSet) {
-    JavaUnitTestDTOGenerator _javaUnitTestDTOGenerator = new JavaUnitTestDTOGenerator(dataSet);
+    JavaUnitTestDTOGenerator _javaUnitTestDTOGenerator = new JavaUnitTestDTOGenerator(dataSet, this.packagePrefix);
     return _javaUnitTestDTOGenerator.generate();
-  }
-  
-  /**
-   * @see ICodeGenerator#generateEncoder()
-   */
-  @Override
-  public HashMap<String, CharSequence> generateEncoder() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
-  }
-  
-  /**
-   * @see ICodeGenerator#generateDecoder()
-   */
-  @Override
-  public HashMap<String, CharSequence> generateDecoder() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
   
   /**
