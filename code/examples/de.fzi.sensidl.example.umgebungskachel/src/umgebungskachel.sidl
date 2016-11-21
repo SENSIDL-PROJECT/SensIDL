@@ -13,10 +13,10 @@ endianness : BIG_ENDIAN , alignment : 1 BIT
 		}
 		
 		dataSet AlertThresholdTemperature /** data description for the temperature threshold */{
-			threshold_temperature as DOUBLE in 캜 
+			threshold_temperature as DOUBLE in 째C adjusted with scaling factor : 0.555 and offset : -17.777
 			/** Upper threshold that triggers an alert if the measured temperature is too high */
 			
-			+getThresholdtemperatureWithDataConversion():DOUBLE as Method /** Calculates the threshold_temperature in 캟 instead  of Celsius*/			
+			+getThresholdtemperatureWithDataConversion():DOUBLE as Method /** Calculates the threshold_temperature in 째F instead  of Celsius*/
 		}
 		
 		dataSet LedToggle /** data description for an switch that controls a light source */ {
@@ -25,11 +25,11 @@ endianness : BIG_ENDIAN , alignment : 1 BIT
 
 		dataSet SensorState uses AlertThresholdBrightness, AlertThresholdTemperature , LedToggle, AlertThresholdHumidity
 			/** data description of all values the sensor REST-API contains */{ 
-			temperature as DOUBLE in 캜 adjusted with scaling factor : 0.555 and offset : -17.777/** measured temperature of the sensor*/
+			temperature as DOUBLE in 째C adjusted with scaling factor : 0.555 and offset : -17.777/** measured temperature of the sensor*/
 			brightness as DOUBLE in Ohm /** measured brightness of the sensor*/
 			humidity as INT8 in %			 
 			
-			+getTemperatureWithDataConversion():DOUBLE as Method /** Calculates the temperature in 캟 instead  of Celsius*/
+			+getTemperatureWithDataConversion():DOUBLE as Method /** Calculates the temperature in 째F instead  of Celsius*/
 		}
 	} 
 }
