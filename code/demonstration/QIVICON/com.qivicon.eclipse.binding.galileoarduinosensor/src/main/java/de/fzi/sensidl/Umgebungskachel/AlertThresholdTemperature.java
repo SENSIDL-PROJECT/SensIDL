@@ -1,9 +1,10 @@
 /*
 *File:							AlertThresholdTemperature.java
 *Version:						
-*Generate at:					15/06/2016 13:51:12
+*Generate at:					21/11/2016 16:06:45
 *Further generated artifacts:	SensorState.java, UmgebungskachelUtility.java, AlertThresholdTemperatureTest.java, 
-*								LedToggle.java, AlertThresholdBrightness.java, 
+*								LedToggle.java, AlertThresholdHumidityTest.java, 
+*								AlertThresholdBrightness.java, AlertThresholdHumidity.java, 
 *								AlertThresholdBrightnessTest.java, LedToggleTest.java, SensorStateTest.java
 */
 
@@ -43,9 +44,10 @@ public class AlertThresholdTemperature {
 	
 	}
 	
+	
 	/**
 	 * Method for getThresholdtemperatureWithDataConversion
-	 *  Calculates the threshold_temperature in °F instead  of Celsius
+	 *  Calculates the threshold_temperature in �F instead  of Celsius
 	 * @generated
 	 */	
 	public java.lang.Double getThresholdtemperatureWithDataConversion(){

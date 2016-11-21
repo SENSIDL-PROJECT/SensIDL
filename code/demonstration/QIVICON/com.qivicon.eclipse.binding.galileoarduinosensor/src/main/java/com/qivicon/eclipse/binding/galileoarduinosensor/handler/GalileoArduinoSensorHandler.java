@@ -114,6 +114,16 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 					s.setThresholdbrightness(number.doubleValue());
 					sendState(s);
 				}
+		} //Else check if the Humidity threshold changed
+		else if (channelUID.getId().equals(HUMID_THRESHOLD_CHANNEL)) {
+			if (command instanceof DecimalType) {
+				/* Use the Generated AlertThresholdBrightness Class and assign the freshly changed Threshold to it
+				 * Then parse it to a json Object and send it to the Sensor (sendState() Method)*/
+				AlertThresholdHumidity s = new AlertThresholdHumidity();					
+				DecimalType number = (DecimalType)command;
+				s.setThresholdhumidity(number.byteValue());
+				sendState(s);
+			}
 		}	else {
 				log.error("Unhandled command {} on {} : {}", command.toString(), this.getThing().getUID(), LED_CHANNEL);
 		}
@@ -203,6 +213,9 @@ public class GalileoArduinoSensorHandler extends BaseThingHandler {
 		
 		updateState(LIGHT_CHANNEL, new DecimalType(round2(state.getBrightness())));
 		updateState(LIGHT_THRESHOLD_CHANNEL, new DecimalType(round2(state.getAlertThresholdBrightness().getThresholdbrightness())));
+		
+		updateState(HUMID_CHANNEL, new DecimalType(state.getHumidity()));
+		updateState(HUMID_THRESHOLD_CHANNEL, new DecimalType(state.getAlertThresholdHumidity().getThresholdhumidity()));
 		
 		AlertThresholdTemperature att = state.getAlertThresholdTemperature();
 		double temp_threshold = (tempInCelsius)?att.getThresholdtemperature():att.getThresholdtemperatureWithDataConversion();

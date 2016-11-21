@@ -1,0 +1,34 @@
+# QMANIFEST-VERSION: 1.1.0, PMAP-VERSION: 0.4.0, TOOL-VERSION: 1.0.2
+# Required for basic Binding functionalities
+(org.osgi.framework.ServicePermission "org.eclipse.smarthome.config.discovery.DiscoveryService" "register")
+(org.osgi.framework.ServicePermission "org.eclipse.smarthome.core.thing.binding.ThingHandlerFactory" "register")
+(org.osgi.framework.ServicePermission "org.eclipse.smarthome.core.thing.binding.ThingHandler" "register")
+(org.osgi.framework.ServicePermission "org.eclipse.smarthome.core.thing.ThingRegistry" "get")
+(org.osgi.framework.ServicePermission "org.eclipse.smarthome.core.thing.type.ThingTypeRegistry" "get")
+(org.osgi.framework.ServicePermission "org.eclipse.smarthome.config.core.ConfigDescriptionRegistry" "get")
+(org.osgi.framework.ServicePermission "org.eclipse.smarthome.core.thing.binding.ThingHandler" "get")
+# Required external NETWORK Access
+(java.net.SocketPermission "141.21.51.6:80" "connect")
+(java.net.SocketPermission "141.21.51.6:80" "resolve")
+# Required for local Network e.g. 192.168.0.10
+(java.net.SocketPermission "*" "connect")
+(java.net.SocketPermission "*" "resolve")
+# Import permissions generated out of the MANIFEST.MF file
+(org.osgi.framework.PackagePermission "com.google.common.collect" "import")
+(org.osgi.framework.PackagePermission "com.google.gson" "import")
+(org.osgi.framework.PackagePermission "com.qivicon.eclipse.binding.galileoarduinosensor" "import")
+(org.osgi.framework.PackagePermission "com.qivicon.eclipse.binding.galileoarduinosensor.handler" "import")
+(org.osgi.framework.PackagePermission "de.fzi.sensidl.Umgebungskachel" "import")
+(org.osgi.framework.PackagePermission "org.eclipse.smarthome.config.core" "import")
+(org.osgi.framework.PackagePermission "org.eclipse.smarthome.config.discovery" "import")
+(org.osgi.framework.PackagePermission "org.eclipse.smarthome.core.library.types" "import")
+(org.osgi.framework.PackagePermission "org.eclipse.smarthome.core.thing" "import")
+(org.osgi.framework.PackagePermission "org.eclipse.smarthome.core.thing.binding" "import")
+(org.osgi.framework.PackagePermission "org.eclipse.smarthome.core.thing.binding.builder" "import")
+(org.osgi.framework.PackagePermission "org.eclipse.smarthome.core.thing.type" "import")
+(org.osgi.framework.PackagePermission "org.eclipse.smarthome.core.types" "import")
+(org.osgi.framework.PackagePermission "org.slf4j" "import")
+# Export permissions generated out of the MANIFEST.MF file
+(org.osgi.framework.PackagePermission "com.qivicon.eclipse.binding.galileoarduinosensor" "exportonly")
+(org.osgi.framework.PackagePermission "com.qivicon.eclipse.binding.galileoarduinosensor.handler" "exportonly")
+(org.osgi.framework.PackagePermission "de.fzi.sensidl.Umgebungskachel" "exportonly")

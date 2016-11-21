@@ -1,11 +1,11 @@
 /*
 *File:							UmgebungskachelUtility.java
 *Version:						
-*Generate at:					15/06/2016 13:51:12
+*Generate at:					21/11/2016 15:59:49
 *Further generated artifacts:	SensorState.java, AlertThresholdTemperature.java, 
-*								AlertThresholdTemperatureTest.java, LedToggle.java, AlertThresholdBrightness.java, 
-*								AlertThresholdBrightnessTest.java, LedToggleTest.java, 
-*								SensorStateTest.java
+*								AlertThresholdTemperatureTest.java, LedToggle.java, AlertThresholdHumidityTest.java, 
+*								AlertThresholdBrightness.java, AlertThresholdHumidity.java, 
+*								AlertThresholdBrightnessTest.java, LedToggleTest.java, SensorStateTest.java
 */
 
 package de.fzi.sensidl.Umgebungskachel;
@@ -61,6 +61,10 @@ public class UmgebungskachelUtility {
 		
 		if (elementToMarshall instanceof AlertThresholdBrightness) {
 			return gson.toJson((AlertThresholdBrightness) elementToMarshall);
+		}
+		
+		if (elementToMarshall instanceof AlertThresholdHumidity) {
+			return gson.toJson((AlertThresholdHumidity) elementToMarshall);
 		}
 		
 		if (elementToMarshall instanceof AlertThresholdTemperature) {
@@ -124,6 +128,13 @@ public class UmgebungskachelUtility {
 	 * Method responsible for serializing Byte-Array
 	 */
 	public static AlertThresholdBrightness marshalAlertThresholdBrightnessByteArray() {
+		//SENSIDL_TODO: implement Method
+		return null;
+	}
+	/**
+	 * Method responsible for serializing Byte-Array
+	 */
+	public static AlertThresholdHumidity marshalAlertThresholdHumidityByteArray() {
 		//SENSIDL_TODO: implement Method
 		return null;
 	}

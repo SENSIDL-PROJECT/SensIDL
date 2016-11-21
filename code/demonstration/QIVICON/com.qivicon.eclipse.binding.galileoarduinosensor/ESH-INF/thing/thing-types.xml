@@ -13,8 +13,10 @@
 			<channel id="channel_led" typeId="led-channel" />
 			<channel id="temperature" typeId="temp-channel" />
 			<channel id="lightning" typeId="light-channel" />
+			<channel id="humidity" typeId="humidity-channel" />
 			<channel id="temp_threshold" typeId="temperature_threshold" />
 			<channel id="light_threshold" typeId="brightness_threshold" />
+			<channel id="humid_threshold" typeId="humidity_threshold" />
 		</channels>
 
 		<config-description>
@@ -59,6 +61,12 @@
 		<description>Current Light Intensity measured by the Arduino Sensor.</description>
 		<state readOnly="true" pattern="%s KΩ"></state>
 	</channel-type>	
+	<channel-type id="humidity-channel">
+		<item-type>Number</item-type>
+		<label>Humidity</label>
+		<description>Current humidity measured by the Arduino Sensor.</description>
+		<state readOnly="true" pattern="%s %%"></state>
+	</channel-type>	
 	<channel-type id="temperature_threshold">
 		<item-type>Number</item-type>
 		<label>Temperature Threshold(°C/°F)</label>
@@ -70,6 +78,12 @@
 		<label>Brightness Threshold</label>
 		<description>Darkness (upper limit) at which the Galileo should start an acoustic warning signal.</description>
 		<state readOnly="false" pattern="%s KΩ"></state>
+	</channel-type>
+		<channel-type id="humidity_threshold">
+		<item-type>Percent</item-type>
+		<label>Humidity Threshold</label>
+		<description>Humidity value (upper limit) at which the Galileo should start an acoustic warning signal.</description>
+		<state readOnly="false" pattern="%s %%"></state>
 	</channel-type>
 
 </thing:thing-descriptions>

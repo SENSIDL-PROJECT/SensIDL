@@ -1,9 +1,10 @@
 /*
 *File:							SensorState.java
 *Version:						
-*Generate at:					15/06/2016 13:51:12
+*Generate at:					21/11/2016 15:59:49
 *Further generated artifacts:	UmgebungskachelUtility.java, AlertThresholdTemperature.java, 
-*								AlertThresholdTemperatureTest.java, LedToggle.java, AlertThresholdBrightness.java, 
+*								AlertThresholdTemperatureTest.java, LedToggle.java, AlertThresholdHumidityTest.java, 
+*								AlertThresholdBrightness.java, AlertThresholdHumidity.java, 
 *								AlertThresholdBrightnessTest.java, LedToggleTest.java, 
 *								SensorStateTest.java
 */
@@ -36,6 +37,11 @@ public class SensorState {
 	 */
 	private java.lang.Double brightness;
 	
+	/*
+	 * Unit: %
+	 */
+	private java.lang.Byte humidity;
+	
 	/*	
 	 *  data description for the brightness threshold 
 	 */
@@ -48,16 +54,22 @@ public class SensorState {
 	 *  data description for an switch that controls a light source 
 	 */
 	private LedToggle ledToggle;
+	/*	
+	 * 
+	 */
+	private AlertThresholdHumidity alertThresholdHumidity;
 	
 	/**
 	 * Constructor for the Data transfer object
 	 */
-	public SensorState(java.lang.Double temperature, java.lang.Double brightness, AlertThresholdBrightness alertThresholdBrightness, AlertThresholdTemperature alertThresholdTemperature, LedToggle ledToggle) {
+	public SensorState(java.lang.Double temperature, java.lang.Double brightness, java.lang.Byte humidity, AlertThresholdBrightness alertThresholdBrightness, AlertThresholdTemperature alertThresholdTemperature, LedToggle ledToggle, AlertThresholdHumidity alertThresholdHumidity) {
 		this.temperature = temperature;
 		this.brightness = brightness;
+		this.humidity = humidity;
 		this.alertThresholdBrightness = alertThresholdBrightness;
 		this.alertThresholdTemperature = alertThresholdTemperature;
 		this.ledToggle = ledToggle;
+		this.alertThresholdHumidity = alertThresholdHumidity;
 	}
 	
 	/**
@@ -67,9 +79,10 @@ public class SensorState {
 	
 	}
 	
+	
 	/**
 	 * Method for getTemperatureWithDataConversion
-	 *  Calculates the temperature in °F instead  of Celsius 
+	 *  Calculates the temperature in �F instead  of Celsius
 	 * @generated
 	 */	
 	public java.lang.Double getTemperatureWithDataConversion(){
@@ -127,6 +140,21 @@ public class SensorState {
 		this.brightness = brightness;
 	} 
 	
+	/**
+	 * @return the humidity
+	 */
+	public java.lang.Byte getHumidity() {
+		return this.humidity;
+	}
+	/**
+	 * @param humidity  
+	 *            the humidity to set
+	 */
+	public void setHumidity(java.lang.Byte humidity) {
+		
+		this.humidity = humidity;
+	} 
+	
 	
 	/**
 	 * @return the alertThresholdBrightness
@@ -174,6 +202,22 @@ public class SensorState {
 	 */
 	public void setLedToggle(LedToggle ledToggle) {
 		this.ledToggle = ledToggle;
+	}
+	
+	/**
+	 * @return the alertThresholdHumidity
+	 *
+	 */
+	public AlertThresholdHumidity getAlertThresholdHumidity() {
+		return this.alertThresholdHumidity;
+	}
+	
+	/**
+	 * @param info
+	 *            the alertThresholdHumidity to set
+	 */
+	public void setAlertThresholdHumidity(AlertThresholdHumidity alertThresholdHumidity) {
+		this.alertThresholdHumidity = alertThresholdHumidity;
 	}
 	
 }

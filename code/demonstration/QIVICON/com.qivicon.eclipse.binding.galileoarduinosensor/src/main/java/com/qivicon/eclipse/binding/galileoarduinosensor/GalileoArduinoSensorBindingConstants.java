@@ -20,6 +20,8 @@ public class GalileoArduinoSensorBindingConstants {
     public final static String LED_CHANNEL = "channel_led";
     public final static String TEMP_CHANNEL = "temperature";
     public final static String LIGHT_CHANNEL = "lightning";
+    public final static String HUMID_CHANNEL = "humidity";
     public final static String TEMP_THRESHOLD_CHANNEL = "temp_threshold";
     public final static String LIGHT_THRESHOLD_CHANNEL = "light_threshold";
+    public final static String HUMID_THRESHOLD_CHANNEL = "humid_threshold";
 }
