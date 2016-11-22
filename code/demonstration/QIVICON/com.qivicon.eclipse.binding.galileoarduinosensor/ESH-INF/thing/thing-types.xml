@@ -80,7 +80,7 @@
 		<state readOnly="false" pattern="%s KΩ"></state>
 	</channel-type>
 		<channel-type id="humidity_threshold">
-		<item-type>Percent</item-type>
+		<item-type>Number</item-type>
 		<label>Humidity Threshold</label>
 		<description>Humidity value (upper limit) at which the Galileo should start an acoustic warning signal.</description>
 		<state readOnly="false" pattern="%s %%"></state>
