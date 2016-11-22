@@ -52,6 +52,9 @@ void parseDatastructureFromJson(String json) {
 	if (root.containsKey("threshold_temperature")) {
 		set_SensorState_thresholdtemperature(&sensorState,(double)root["threshold_temperature"]);
 	}
+        if (root.containsKey("threshold_humidity")) {
+                set_SensorState_thresholdhumidity(&sensorState,(byte)root["threshold_humidity"]);  
+        }
 }
 
 double stringToDouble(String s) {
