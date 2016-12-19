@@ -512,5 +512,20 @@
             extensions="sidl">
     </provider>
   </extension>
+  <extension
+        point="org.eclipse.ui.newWizards">
+     <wizard
+           category="de.fzi.sensidl.language.ui.sensidl.category"
+           class="de.fzi.sensidl.language.ui.wizard.NewSensidlProjectWizard"
+           icon="images/SensIDL_logo.jpg"
+           id="de.fzi.sensidl.language.ui.sensidl"
+           name="SensIDL Project"
+           project="true">
+     </wizard>
+     <category
+           id="de.fzi.sensidl.language.ui.sensidl.category"
+           name="SensIDL">
+     </category>
+  </extension>
 
 </plugin>
