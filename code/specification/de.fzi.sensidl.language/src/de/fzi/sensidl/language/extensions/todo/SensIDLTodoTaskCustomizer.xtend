@@ -15,7 +15,8 @@ class SensIDLTodoTaskCustomizer {
 	private static val Logger logger = Logger.getLogger(SensIDLTodoTaskCustomizer);
 	
 	public static def getSensIDLTodoTag() {
-		registerSensIDLTodoTagIfNecessary();
+		if(isEclipseWorkspace)
+			registerSensIDLTodoTagIfNecessary();
 		
 		return SENSIDL_TODO_TAG;
 	}
@@ -61,4 +62,13 @@ class SensIDLTodoTaskCustomizer {
        		logger.error("Error occurred, SensIDL todo tag priority couldn't be set.");
        	}
 	}
+	
+	private static def isEclipseWorkspace() {
+		try {
+    		Class.forName("org.eclipse.ui.preferences.ScopedPreferenceStore");
+    		return true;
+		} catch(Exception e) {
+    		return false;
+		}
+	} 
 }

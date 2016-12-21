@@ -65,7 +65,13 @@ class FileGenerationStep extends GenerationStep {
 	}
 	
 	private def refreshWorkspace() {
-
+		//Don't refresh the workspace if not executed in an Eclipse Environment
+        try {
+            Class.forName("org.eclipse.core.resources.ResourcesPlugin")    
+        } catch(Exception e) {
+            return
+        }
+        
 		ResourcesPlugin.getWorkspace().getRoot().getProjects().forEach[eachProject | eachProject.refreshLocal(IResource.DEPTH_INFINITE, null)]
 
 	}
