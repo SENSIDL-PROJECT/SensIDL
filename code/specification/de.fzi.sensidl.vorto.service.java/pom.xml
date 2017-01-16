@@ -1,0 +1,134 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.eclipse.vorto</groupId>
+		<artifactId>generators</artifactId>
+		<version>0.9.0-SNAPSHOT</version>
+	</parent>
+	<groupId>de.fzi.sensidl</groupId>
+	<artifactId>de.fzi.sensidl.vorto.service.java</artifactId>
+	<url>http://sensidl-project.github.io/SensIDL/</url>
+	<description>Transforms the Vorto informationmodel to a SensIDL model instance and then generates Java code using the SensIDL Java code generator.</description>
+	<packaging>jar</packaging>
+
+	<repositories>
+		<repository>
+			<id>repo.eclipse.org</id>
+			<name>Eclipse Repository</name>
+			<url>https://repo.eclipse.org/org/eclipse/xtext/</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.eclipse.vorto</groupId>
+			<artifactId>org.eclipse.vorto.codegen</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.vorto</groupId>
+			<artifactId>org.eclipse.vorto.codegen.service</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>de.fzi.sensidl</groupId>
+			<artifactId>de.fzi.sensidl.vorto.service.qvtbundle</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<classifier>repackaged</classifier>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jscience</groupId>
+			<artifactId>jscience</artifactId>
+			<version>4.3.1</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>vorto-SensIDL</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.10</version>
+				<executions>
+					<execution>
+						<id>unpack</id>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>de.fzi.sensidl</groupId>
+									<artifactId>de.fzi.sensidl.vorto.service.qvtbundle</artifactId>
+									<version>0.0.1-SNAPSHOT</version>
+									<classifier>repackaged</classifier>
+									<overWrite>false</overWrite>
+									<outputDirectory>${project.build.directory}</outputDirectory>
+									<includes>META-INF/MANIFEST.MF</includes>
+									<includes>*.jar</includes>
+									<excludes>org.eclipse.core.runtime*</excludes>
+								</artifactItem>
+							</artifactItems>
+							<excludes></excludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.4.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+							</transformers>
+							<filters>
+								<filter>
+									<artifact>*:de.fzi.sensidl.vorto.service.qvtbundle:*</artifact>
+									<includes>
+										<include>*.jar</include>
+										<include>de/**</include>
+										<include>org/eclipse/jdt/internal/jarinjarloader/**</include>
+										<include>META-INF/MANIFEST.MF</include>
+									</includes>
+									<excludes>
+										<exclude>META-INF/*.SF</exclude>
+										<exclude>META-INF/*.DSA</exclude>
+										<exclude>META-INF/*.RSA</exclude>
+									</excludes>
+								</filter>
+							</filters>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
