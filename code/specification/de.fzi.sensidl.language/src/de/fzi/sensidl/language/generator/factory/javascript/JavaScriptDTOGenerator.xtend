@@ -105,9 +105,9 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 			bodyString += 
 			'''
 			«IF nmdata.constant»
-				_«nmdata.name.toUpperCase»«IF nmdata.value != null» : «IF nmdata.dataType == DataType.STRING»"«nmdata.value»"«ELSE»«nmdata.value»«ENDIF»«ENDIF»,«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
+				_«nmdata.name.toUpperCase»«IF nmdata.value != null» : «nmdata.value»«ENDIF»,«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
 			«ELSE»
-				_«GenerationUtil.toNameLower(nmdata)» : «IF nmdata.value != null»«IF nmdata.dataType == DataType.STRING»"«nmdata.value»"«ELSE»«nmdata.value»«ENDIF»«ELSE»«IF nmdata.dataType == DataType.STRING»""«ELSE»0«ENDIF»«ENDIF»,«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
+				_«GenerationUtil.toNameLower(nmdata)» : «IF nmdata.value != null»«nmdata.value»«ELSE»«IF nmdata.dataType == DataType.STRING»""«ELSE»0«ENDIF»«ENDIF»,«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
 			«ENDIF»
 			'''
 		}

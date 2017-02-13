@@ -302,7 +302,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 				«ENDIF»
 				 */
 				«ENDIF» 
-				private «d.toTypeName» «d.name.toUpperCase» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («d.value» - «d.toTypeName».MAX_VALUE)«ELSE»«IF d.dataType == DataType.STRING»"«d.value»"«ELSE»«d.formatedValue»«ENDIF»«ENDIF»;
+				private «d.toTypeName» «d.name.toUpperCase» = «IF d.dataType.isUnsigned»(«d.toSimpleTypeName») («d.value» - «d.toTypeName».MAX_VALUE)«ELSE»«IF d.dataType == DataType.STRING»«d.value»«ELSE»«d.formatedValue»«ENDIF»«ENDIF»;
 			'''
 		} else {
 			'''
@@ -311,7 +311,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 				  *«d.description»
 				  */
 				«ENDIF» 
-				private «d.toTypeName» «GenerationUtil.toNameLower(d)»«IF !d.value.nullOrEmpty» = «IF d.dataType == DataType.STRING»"«d.value»"«ELSE»«d.formatedValue»«ENDIF»«ENDIF»;
+				private «d.toTypeName» «GenerationUtil.toNameLower(d)»«IF !d.value.nullOrEmpty» = «IF d.dataType == DataType.STRING»«d.value»«ELSE»«d.formatedValue»«ENDIF»«ENDIF»;
 			'''
 		}
 
