@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.maven.model.Model;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -32,6 +31,8 @@ import org.eclipse.jdt.launching.LibraryLocation;
 import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.embedder.MavenModelManager;
 import org.eclipse.m2e.core.internal.IMavenConstants;
+
+import com.google.common.io.ByteStreams;
 
 import de.fzi.sensidl.language.generator.SensIDLConstants;
 
@@ -184,7 +185,7 @@ public class MavenProjectGenerator extends ProjectGenerator {
 		url = new URL(MAVEN_POM_FILE_URL);
 		content = url.openConnection().getInputStream();
 		
-		return IOUtils.toString(content);
+		return new String(ByteStreams.toByteArray(content), StandardCharsets.UTF_8);
 		
 	}
 

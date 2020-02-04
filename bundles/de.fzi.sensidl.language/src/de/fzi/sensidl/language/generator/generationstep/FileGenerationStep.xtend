@@ -6,11 +6,10 @@ import java.text.SimpleDateFormat
 import java.util.ArrayList
 import java.util.Date
 import java.util.HashMap
-import org.apache.commons.io.FilenameUtils
 import org.apache.log4j.Logger
+import org.eclipse.core.resources.IResource
 import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.core.resources.IResource
 
 /**
  * The FileGenerationStep is a concrete subclass of the GenerationStep class. 
@@ -95,9 +94,7 @@ class FileGenerationStep extends GenerationStep {
 	}
 	
 	def isTextFile(String file) {
-		
-		FilenameUtils.getExtension(file).equals(TEXT_FILE_EXTENSION)
-		
+		Files.getFileExtension(file).equals(TEXT_FILE_EXTENSION)		
 	}
 	
 	def insertVersioningCommentTo(String file) {
