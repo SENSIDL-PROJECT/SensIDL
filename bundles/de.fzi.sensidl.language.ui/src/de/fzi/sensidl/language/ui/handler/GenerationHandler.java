@@ -92,7 +92,7 @@ public class GenerationHandler {
 		}).injectMembers(fsa);
 
 		// generate
-		generator.doGenerate(resource, fsa);
+		generator.doGenerate(resource, fsa, null);
 
 		return true;
 

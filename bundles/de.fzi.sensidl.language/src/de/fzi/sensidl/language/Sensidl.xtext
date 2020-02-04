@@ -14,10 +14,11 @@
 grammar de.fzi.sensidl.language.Sensidl with org.eclipse.xtext.common.Terminals 
 
 // use a manually specified metamodel instead of generating one from the Xtext grammar
-// import "platform:/resource/de.fzi.sensidl.design/model/sensIDL.ecore" as sensidl
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore 
 import "http://fzi.de/sensidl/design/1.0" as sensidl
-import "http://fzi.de/sensidl/design/representation/1.0" as dataRepresentation
+// import dataRepresentation by platform resource URI to workaround limitation of Xtext
+// see https://sdqweb.ipd.kit.edu/wiki/Importing_nested_EPackages_in_Xtext
+import "platform:/resource/de.fzi.sensidl.design/model/sensIDL.ecore#//dataRepresentation" as dataRepresentation
 
 
 SensorInterface returns sensidl::SensorInterface: 

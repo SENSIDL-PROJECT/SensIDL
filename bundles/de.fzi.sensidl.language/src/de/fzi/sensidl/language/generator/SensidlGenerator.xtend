@@ -6,13 +6,14 @@ package de.fzi.sensidl.language.generator
 import com.google.inject.Inject
 import de.fzi.sensidl.design.sensidl.SensorInterface
 import de.fzi.sensidl.language.SensidlRuntimeModule
+import de.fzi.sensidl.language.generator.SensIDLConstants.GenerationLanguage
+import org.apache.log4j.Level
+import org.apache.log4j.Logger
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.generator.IGenerator
-import org.apache.log4j.Logger
-import org.apache.log4j.Level
-import de.fzi.sensidl.language.generator.SensIDLConstants.GenerationLanguage
+import org.eclipse.xtext.generator.AbstractGenerator
+import org.eclipse.xtext.generator.IFileSystemAccess2
+import org.eclipse.xtext.generator.IGeneratorContext
 
 /**
  * Der Generator für SensIDL.
@@ -24,7 +25,7 @@ import de.fzi.sensidl.language.generator.SensIDLConstants.GenerationLanguage
  * </ol>
  * @author Dominik Werle
  */
-class SensidlGenerator implements IGenerator {
+class SensidlGenerator extends AbstractGenerator {
 	/**
 	 * Der SensidlCodeGenerationExecutor, wird durch Guice gebunden.
 	 * @see SensidlRuntimeModule
@@ -48,7 +49,7 @@ class SensidlGenerator implements IGenerator {
 	 * @param resource die zu verarbeitende Resource
 	 * @param fsa Dateizugriff für die Dateigeneration
 	 */
-	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
+	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		setUpLogger()
 		
 		codeGenerator.generationLanguage = generationLanguage
