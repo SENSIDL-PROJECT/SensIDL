@@ -91,6 +91,7 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SensorDataDescription getSensorDataDescription() {
 		if (eContainerFeatureID() != DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION) return null;
 		return (SensorDataDescription)eInternalContainer();
@@ -111,6 +112,7 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSensorDataDescription(SensorDataDescription newSensorDataDescription) {
 		if (newSensorDataDescription != eInternalContainer() || (eContainerFeatureID() != DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION && newSensorDataDescription != null)) {
 			if (EcoreUtil.isAncestor(this, newSensorDataDescription))
@@ -132,6 +134,7 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Data> getData() {
 		if (data == null) {
 			data = new EObjectContainmentWithInverseEList<Data>(Data.class, this, DataRepresentationPackage.DATA_SET__DATA, DataRepresentationPackage.DATA__DATA_SET);
@@ -144,6 +147,7 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Method> getMethod() {
 		if (method == null) {
 			method = new EObjectContainmentWithInverseEList<Method>(Method.class, this, DataRepresentationPackage.DATA_SET__METHOD, DataRepresentationPackage.METHOD__DATA_SET);
@@ -156,6 +160,7 @@ public class DataSetImpl extends NamedElementImpl implements DataSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<DataSet> getUsedDataSets() {
 		if (usedDataSets == null) {
 			usedDataSets = new EObjectResolvingEList<DataSet>(DataSet.class, this, DataRepresentationPackage.DATA_SET__USED_DATA_SETS);

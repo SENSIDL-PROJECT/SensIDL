@@ -96,6 +96,7 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getLowerBound() {
 		return lowerBound;
 	}
@@ -105,6 +106,7 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLowerBound(double newLowerBound) {
 		double oldLowerBound = lowerBound;
 		lowerBound = newLowerBound;
@@ -117,6 +119,7 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getUpperBound() {
 		return upperBound;
 	}
@@ -126,6 +129,7 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUpperBound(double newUpperBound) {
 		double oldUpperBound = upperBound;
 		upperBound = newUpperBound;
@@ -138,6 +142,7 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LinearDataConversionWithInterval getLinearDataConversionFrom() {
 		if (eContainerFeatureID() != DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM) return null;
 		return (LinearDataConversionWithInterval)eInternalContainer();
@@ -158,6 +163,7 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLinearDataConversionFrom(LinearDataConversionWithInterval newLinearDataConversionFrom) {
 		if (newLinearDataConversionFrom != eInternalContainer() || (eContainerFeatureID() != DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_FROM && newLinearDataConversionFrom != null)) {
 			if (EcoreUtil.isAncestor(this, newLinearDataConversionFrom))
@@ -179,6 +185,7 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LinearDataConversionWithInterval getLinearDataConversionTo() {
 		if (eContainerFeatureID() != DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO) return null;
 		return (LinearDataConversionWithInterval)eInternalContainer();
@@ -199,6 +206,7 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLinearDataConversionTo(LinearDataConversionWithInterval newLinearDataConversionTo) {
 		if (newLinearDataConversionTo != eInternalContainer() || (eContainerFeatureID() != DataRepresentationPackage.INTERVAL__LINEAR_DATA_CONVERSION_TO && newLinearDataConversionTo != null)) {
 			if (EcoreUtil.isAncestor(this, newLinearDataConversionTo))
@@ -220,6 +228,7 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataRange getDataRange() {
 		if (eContainerFeatureID() != DataRepresentationPackage.INTERVAL__DATA_RANGE) return null;
 		return (DataRange)eInternalContainer();
@@ -240,6 +249,7 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDataRange(DataRange newDataRange) {
 		if (newDataRange != eInternalContainer() || (eContainerFeatureID() != DataRepresentationPackage.INTERVAL__DATA_RANGE && newDataRange != null)) {
 			if (EcoreUtil.isAncestor(this, newDataRange))
@@ -423,7 +433,7 @@ public class IntervalImpl extends IdentifiableElementImpl implements Interval {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (lowerBound: ");
 		result.append(lowerBound);
 		result.append(", upperBound: ");

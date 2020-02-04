@@ -96,7 +96,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link sensidlPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -110,12 +110,14 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 		if (isInited) return (sensidlPackage)EPackage.Registry.INSTANCE.getEPackage(sensidlPackage.eNS_URI);
 
 		// Obtain or create and register package
-		sensidlPackageImpl thesensidlPackage = (sensidlPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof sensidlPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new sensidlPackageImpl());
+		Object registeredsensidlPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		sensidlPackageImpl thesensidlPackage = registeredsensidlPackage instanceof sensidlPackageImpl ? (sensidlPackageImpl)registeredsensidlPackage : new sensidlPackageImpl();
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		DataRepresentationPackageImpl theDataRepresentationPackage = (DataRepresentationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DataRepresentationPackage.eNS_URI) instanceof DataRepresentationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DataRepresentationPackage.eNS_URI) : DataRepresentationPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(DataRepresentationPackage.eNS_URI);
+		DataRepresentationPackageImpl theDataRepresentationPackage = (DataRepresentationPackageImpl)(registeredPackage instanceof DataRepresentationPackageImpl ? registeredPackage : DataRepresentationPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thesensidlPackage.createPackageContents();
@@ -128,7 +130,6 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 		// Mark meta-data to indicate it can't be changed
 		thesensidlPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(sensidlPackage.eNS_URI, thesensidlPackage);
 		return thesensidlPackage;
@@ -139,6 +140,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIdentifiableElement() {
 		return identifiableElementEClass;
 	}
@@ -148,6 +150,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIdentifiableElement_ID() {
 		return (EAttribute)identifiableElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -157,6 +160,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNamedElement() {
 		return namedElementEClass;
 	}
@@ -166,6 +170,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNamedElement_Name() {
 		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -175,6 +180,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNamedElement_Description() {
 		return (EAttribute)namedElementEClass.getEStructuralFeatures().get(1);
 	}
@@ -184,6 +190,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSensorInterface() {
 		return sensorInterfaceEClass;
 	}
@@ -193,6 +200,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSensorInterface_EncodingSettings() {
 		return (EReference)sensorInterfaceEClass.getEStructuralFeatures().get(0);
 	}
@@ -202,6 +210,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSensorInterface_DataDescription() {
 		return (EReference)sensorInterfaceEClass.getEStructuralFeatures().get(1);
 	}
@@ -211,6 +220,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getEncodingSettings() {
 		return encodingSettingsEClass;
 	}
@@ -220,6 +230,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEncodingSettings_SensorInterface() {
 		return (EReference)encodingSettingsEClass.getEStructuralFeatures().get(0);
 	}
@@ -229,6 +240,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getEncodingSettings_Coding() {
 		return (EAttribute)encodingSettingsEClass.getEStructuralFeatures().get(1);
 	}
@@ -238,6 +250,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getEncodingSettings_Endianness() {
 		return (EAttribute)encodingSettingsEClass.getEStructuralFeatures().get(2);
 	}
@@ -247,6 +260,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getEncodingSettings_Alignment() {
 		return (EAttribute)encodingSettingsEClass.getEStructuralFeatures().get(3);
 	}
@@ -256,6 +270,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getCoding() {
 		return codingEEnum;
 	}
@@ -265,6 +280,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getEndianness() {
 		return endiannessEEnum;
 	}
@@ -274,6 +290,7 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public sensidlFactory getsensidlFactory() {
 		return (sensidlFactory)getEFactoryInstance();
 	}
@@ -386,47 +403,6 @@ public class sensidlPackageImpl extends EPackageImpl implements sensidlPackage {
 
 		// Create resource
 		createResource(eNS_URI);
-
-		// Create annotations
-		// http://www.eclipse.org/emf/2002/Ecore
-		createEcoreAnnotations();
-		// http:///org/eclipse/emf/ecore/util/ExtendedMetaData
-		createExtendedMetaDataAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";	
-		addAnnotation
-		  (this, 
-		   source, 
-		   new String[] {
-			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
-		   });
-	}
-
-	/**
-	 * Initializes the annotations for <b>http:///org/eclipse/emf/ecore/util/ExtendedMetaData</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";	
-		addAnnotation
-		  (getIdentifiableElement_ID(), 
-		   source, 
-		   new String[] {
-			 "name", "ID",
-			 "namespace", "http://fzi.de/sensidl/design/1.0"
-		   });
 	}
 
 } //sensidlPackageImpl

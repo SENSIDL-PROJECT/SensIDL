@@ -128,6 +128,7 @@ public class MethodImpl extends NamedElementImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataSet getDataSet() {
 		if (eContainerFeatureID() != DataRepresentationPackage.METHOD__DATA_SET) return null;
 		return (DataSet)eInternalContainer();
@@ -148,6 +149,7 @@ public class MethodImpl extends NamedElementImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDataSet(DataSet newDataSet) {
 		if (newDataSet != eInternalContainer() || (eContainerFeatureID() != DataRepresentationPackage.METHOD__DATA_SET && newDataSet != null)) {
 			if (EcoreUtil.isAncestor(this, newDataSet))
@@ -169,6 +171,7 @@ public class MethodImpl extends NamedElementImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<MethodParameter> getParameter() {
 		if (parameter == null) {
 			parameter = new EObjectContainmentWithInverseEList<MethodParameter>(MethodParameter.class, this, DataRepresentationPackage.METHOD__PARAMETER, DataRepresentationPackage.METHOD_PARAMETER__METHOD);
@@ -181,6 +184,7 @@ public class MethodImpl extends NamedElementImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataType getReturnType() {
 		return returnType;
 	}
@@ -190,6 +194,7 @@ public class MethodImpl extends NamedElementImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReturnType(DataType newReturnType) {
 		DataType oldReturnType = returnType;
 		returnType = newReturnType == null ? RETURN_TYPE_EDEFAULT : newReturnType;
@@ -202,6 +207,7 @@ public class MethodImpl extends NamedElementImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getVisibility() {
 		return visibility;
 	}
@@ -211,6 +217,7 @@ public class MethodImpl extends NamedElementImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVisibility(String newVisibility) {
 		String oldVisibility = visibility;
 		visibility = newVisibility;
@@ -223,6 +230,7 @@ public class MethodImpl extends NamedElementImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataSet getReturnTypeDataSet() {
 		if (returnTypeDataSet != null && returnTypeDataSet.eIsProxy()) {
 			InternalEObject oldReturnTypeDataSet = (InternalEObject)returnTypeDataSet;
@@ -249,6 +257,7 @@ public class MethodImpl extends NamedElementImpl implements Method {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReturnTypeDataSet(DataSet newReturnTypeDataSet) {
 		DataSet oldReturnTypeDataSet = returnTypeDataSet;
 		returnTypeDataSet = newReturnTypeDataSet;
@@ -415,7 +424,7 @@ public class MethodImpl extends NamedElementImpl implements Method {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (returnType: ");
 		result.append(returnType);
 		result.append(", visibility: ");

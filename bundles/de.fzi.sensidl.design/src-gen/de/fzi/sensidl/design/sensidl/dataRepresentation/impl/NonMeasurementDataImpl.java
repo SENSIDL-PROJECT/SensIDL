@@ -90,6 +90,7 @@ public class NonMeasurementDataImpl extends DataImpl implements NonMeasurementDa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isConstant() {
 		return constant;
 	}
@@ -99,6 +100,7 @@ public class NonMeasurementDataImpl extends DataImpl implements NonMeasurementDa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConstant(boolean newConstant) {
 		boolean oldConstant = constant;
 		constant = newConstant;
@@ -111,6 +113,7 @@ public class NonMeasurementDataImpl extends DataImpl implements NonMeasurementDa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getValue() {
 		return value;
 	}
@@ -120,6 +123,7 @@ public class NonMeasurementDataImpl extends DataImpl implements NonMeasurementDa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(String newValue) {
 		String oldValue = value;
 		value = newValue;
@@ -204,7 +208,7 @@ public class NonMeasurementDataImpl extends DataImpl implements NonMeasurementDa
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (constant: ");
 		result.append(constant);
 		result.append(", value: ");

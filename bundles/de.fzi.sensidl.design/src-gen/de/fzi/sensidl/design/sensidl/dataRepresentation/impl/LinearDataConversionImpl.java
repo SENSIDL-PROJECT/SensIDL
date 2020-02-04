@@ -87,6 +87,7 @@ public class LinearDataConversionImpl extends DataConversionImpl implements Line
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getScalingFactor() {
 		return scalingFactor;
 	}
@@ -96,6 +97,7 @@ public class LinearDataConversionImpl extends DataConversionImpl implements Line
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setScalingFactor(double newScalingFactor) {
 		double oldScalingFactor = scalingFactor;
 		scalingFactor = newScalingFactor;
@@ -108,6 +110,7 @@ public class LinearDataConversionImpl extends DataConversionImpl implements Line
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getOffset() {
 		return offset;
 	}
@@ -117,6 +120,7 @@ public class LinearDataConversionImpl extends DataConversionImpl implements Line
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOffset(double newOffset) {
 		double oldOffset = offset;
 		offset = newOffset;
@@ -201,7 +205,7 @@ public class LinearDataConversionImpl extends DataConversionImpl implements Line
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (scalingFactor: ");
 		result.append(scalingFactor);
 		result.append(", offset: ");
