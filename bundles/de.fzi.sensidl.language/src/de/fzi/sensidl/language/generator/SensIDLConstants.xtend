@@ -18,22 +18,22 @@ class SensIDLConstants {
 	public static val MAIN_HEADER_FILE_NAME = "DTOs"
 	public static val JAVA_CONVERT_ALL_TO_LITTLE_ENDIAN_METHOD_NAME = "convertAllToLittleEndian"
 	
-	private static val PUBLIC_IDENTIFIER = "+"
-	private static val PROTECTED_IDENTIFIER = "#"
-	private static val EMPTY_IDENTIFIER = ""
-	private static val PRIVATE_IDENTIFIER = "-"
-	private static val PUBLIC_VISIBILITY = "public"
-	private static val PROTECTED_VISIBILITY = "protected"
-	private static val EMPTY_VISIBILITY = ""
-	private static val PRIVATE_VISIBLITY = "private"
-	private static HashMap<String, String> identifierToVisibility
+	static val PUBLIC_IDENTIFIER = "+"
+	static val PROTECTED_IDENTIFIER = "#"
+	static val EMPTY_IDENTIFIER = ""
+	static val PRIVATE_IDENTIFIER = "-"
+	static val PUBLIC_VISIBILITY = "public"
+	static val PROTECTED_VISIBILITY = "protected"
+	static val EMPTY_VISIBILITY = ""
+	static val PRIVATE_VISIBLITY = "private"
+	static HashMap<String, String> identifierToVisibility
 	
 	public static val JAVA_PROJECT_PACKAGE_PATH = "src/de/fzi/sensidl/"
 	public static val JAVA_PROJECT_PACKAGE_PREFIX = "de.fzi.sensidl."
 	public static val JAVA_DEFAULT_PACKAGE_PREFIX = ""
 	
 
-	public enum GenerationLanguage {
+	enum GenerationLanguage {
 		NONE,
 		ALL,
 		JAVA,
@@ -58,7 +58,7 @@ class SensIDLConstants {
 	}
 	
 	private static def instantiateIfNecessary() {
-		if (identifierToVisibility == null) {
+		if (identifierToVisibility === null) {
 			identifierToVisibility = new HashMap<String, String> => [
 				put(PUBLIC_IDENTIFIER, PUBLIC_VISIBILITY)
 				put(PRIVATE_IDENTIFIER, PRIVATE_VISIBLITY)

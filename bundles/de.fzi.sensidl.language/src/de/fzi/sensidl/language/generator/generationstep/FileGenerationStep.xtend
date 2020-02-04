@@ -16,19 +16,19 @@ import org.eclipse.xtext.generator.IFileSystemAccess
  * The main task of the class encapsulate the responsibility of the actual code generation.
  */
 class FileGenerationStep extends GenerationStep {
-	private val static logger = Logger.getLogger(FileGenerationStep)
-	private val static LINE_LENGTH = 80; 
-	private val static SEPARATION_STRING = ", "
-	private val static UNIFIED_TAB_DISTANCE = "\t\t\t\t\t\t\t\t"
-	private val static START_SYMBOL = "*"
-	private val static DEFAUL_FILE_PATH = ""
-	private val static TEXT_FILE_EXTENSION = "txt"
+	val static logger = Logger.getLogger(FileGenerationStep)
+	val static LINE_LENGTH = 80; 
+	val static SEPARATION_STRING = ", "
+	val static UNIFIED_TAB_DISTANCE = "\t\t\t\t\t\t\t\t"
+	val static START_SYMBOL = "*"
+	val static DEFAUL_FILE_PATH = ""
+	val static TEXT_FILE_EXTENSION = "txt"
 	
-	private val IFileSystemAccess fsa;
+	val IFileSystemAccess fsa;
 	
-	private static var String filePath;
+	static var String filePath;
 	
-	private var HashMap<String, ArrayList<String>> fileCache;
+	var HashMap<String, ArrayList<String>> fileCache;
 	
 	/**
 	 * The constructor is used to initialize a new IFileSystemAccess-object.
@@ -40,7 +40,7 @@ class FileGenerationStep extends GenerationStep {
 		filePath = DEFAUL_FILE_PATH
 	}
 	
-	public static def setFilePath(String newFilePath) {
+	static def setFilePath(String newFilePath) {
 		
 		filePath = newFilePath
 		

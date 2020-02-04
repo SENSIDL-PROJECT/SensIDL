@@ -9,3 +9,4 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: FZI Forschungszentrum Informatik
+Automatic-Module-Name: de.fzi.sensidl.help

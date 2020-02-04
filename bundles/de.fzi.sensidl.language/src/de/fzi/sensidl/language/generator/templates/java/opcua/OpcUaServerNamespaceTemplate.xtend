@@ -10,11 +10,11 @@ import de.fzi.sensidl.language.generator.templates.EclipsePuplicLicenseTemplate
 
 class OpcUaServerNamespaceTemplate extends ITemplate<SensorInterface> {
 	
-	private var String dataSetInterfaceClassName
-	private var String dataSetInterfaceObjectName
-	private var String packagePrefix
+	var String dataSetInterfaceClassName
+	var String dataSetInterfaceObjectName
+	var String packagePrefix
 	
-	private var dataSetInterfaceImplementer = new ArrayList<CharSequence>
+	var dataSetInterfaceImplementer = new ArrayList<CharSequence>
 	
 	/**
 	 * The constructor.

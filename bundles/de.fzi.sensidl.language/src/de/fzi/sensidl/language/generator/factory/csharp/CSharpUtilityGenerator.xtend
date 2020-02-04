@@ -19,11 +19,11 @@ import de.fzi.sensidl.design.sensidl.SensorInterface
  * @author Nathalie Hipp
  */
 class CSharpUtilityGenerator implements IUtilityGenerator {
-	private static Logger logger = Logger.getLogger(CSharpUtilityGenerator)
-	private List<MeasurementData> data
-	private SensorInterface currentSensorInterface
+	static Logger logger = Logger.getLogger(CSharpUtilityGenerator)
+	List<MeasurementData> data
+	SensorInterface currentSensorInterface
 
-	private boolean createProject = false
+	boolean createProject = false
 
 	/**
 	 * The constructor calls the constructor of the superclass to set a list of Data-elements.

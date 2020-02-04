@@ -1,6 +1,6 @@
 package de.fzi.sensidl.language.generator.factory.c
 
-import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
+import de.fzi.sensidl.design.sensidl.SensorInterface
 import de.fzi.sensidl.language.generator.GenerationUtil
 import de.fzi.sensidl.language.generator.SensIDLConstants
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider
@@ -9,23 +9,20 @@ import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
 import org.eclipse.emf.ecore.EObject
-import de.fzi.sensidl.design.sensidl.SensorInterface
 
 /**
  * C code generator for the utility header-file.
  */
 class CUtilityGenerator implements IUtilityGenerator{
 	
-	private static Logger logger = Logger.getLogger(CUtilityGenerator)
-	private List<MeasurementData> data
-	private SensorInterface currentSensorInterface;
+	static Logger logger = Logger.getLogger(CUtilityGenerator)
+	SensorInterface currentSensorInterface;
 
 	/**
 	 * The constructor calls the constructor of the superclass to set a list of Data-elements.
 	 * @param newData Represents the list of DataSet-elements.
 	 */
 	new(List<EObject> newData) {
-		this.data = newData.filter(MeasurementData).toList
 		this.currentSensorInterface = newData.filter(SensorInterface).get(0)
 	}
 	

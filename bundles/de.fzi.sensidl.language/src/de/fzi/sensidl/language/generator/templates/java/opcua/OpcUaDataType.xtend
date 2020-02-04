@@ -5,20 +5,20 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 
 class OpcUaDataType {
 	
-	private static val OPCUA_INT8_DATA_TYPE = "Identifiers.Byte"
-	private static val OPCUA_UINT8_DATA_TYPE = "Identifiers.Byte"
-	private static val OPCUA_INT16_DATA_TYPE = "Identifiers.Int16"
-	private static val OPCUA_UINT16_DATA_TYPE = "Identifiers.UInt16"
-	private static val OPCUA_INT32_DATA_TYPE = "Identifiers.Int32"
-	private static val OPCUA_UINT32_DATA_TYPE = "Identifiers.UInt32"
-	private static val OPCUA_INT64_DATA_TYPE = "Identifiers.Int64"
-	private static val OPCUA_UINT64_DATA_TYPE = "Identifiers.UInt64"
-	private static val OPCUA_FLOAT_DATA_TYPE = "Identifiers.Float"
-	private static val OPCUA_DOUBLE_DATA_TYPE = "Identifiers.Double"
-	private static val OPCUA_BOOLEAN_DATA_TYPE = "Identifiers.Boolean"
-	private static val OPCUA_STRING_DATA_TYPE = "Identifiers.String"
+	static val OPCUA_INT8_DATA_TYPE = "Identifiers.Byte"
+	static val OPCUA_UINT8_DATA_TYPE = "Identifiers.Byte"
+	static val OPCUA_INT16_DATA_TYPE = "Identifiers.Int16"
+	static val OPCUA_UINT16_DATA_TYPE = "Identifiers.UInt16"
+	static val OPCUA_INT32_DATA_TYPE = "Identifiers.Int32"
+	static val OPCUA_UINT32_DATA_TYPE = "Identifiers.UInt32"
+	static val OPCUA_INT64_DATA_TYPE = "Identifiers.Int64"
+	static val OPCUA_UINT64_DATA_TYPE = "Identifiers.UInt64"
+	static val OPCUA_FLOAT_DATA_TYPE = "Identifiers.Float"
+	static val OPCUA_DOUBLE_DATA_TYPE = "Identifiers.Double"
+	static val OPCUA_BOOLEAN_DATA_TYPE = "Identifiers.Boolean"
+	static val OPCUA_STRING_DATA_TYPE = "Identifiers.String"
 	
-	private static val dataTypeMap = new HashMap() => [
+	static val dataTypeMap = new HashMap() => [
 		
 		put(DataType.INT8, OPCUA_INT8_DATA_TYPE);
 		put(DataType.UINT8, OPCUA_UINT8_DATA_TYPE);
@@ -35,7 +35,7 @@ class OpcUaDataType {
 		
 	]
 	
-	public def static getDataTypeAsNodeIdOf(DataType dataType) {
+	def static getDataTypeAsNodeIdOf(DataType dataType) {
 		
 		dataTypeMap.get(dataType)
 		

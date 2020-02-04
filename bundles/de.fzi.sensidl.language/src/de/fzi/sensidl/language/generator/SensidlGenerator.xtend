@@ -29,13 +29,13 @@ class SensidlGenerator implements IGenerator {
 	 * Der SensidlCodeGenerationExecutor, wird durch Guice gebunden.
 	 * @see SensidlRuntimeModule
 	 */
-	@Inject private SensidlCodeGenerationExecutor codeGenerator
+	@Inject SensidlCodeGenerationExecutor codeGenerator
 	
-	private static Logger logger = Logger.getLogger(SensidlGenerator);
+	static Logger logger = Logger.getLogger(SensidlGenerator);
 	
-	private static String EXTENSION = "sensidl"
+	static String EXTENSION = "sensidl"
 	
-	private GenerationLanguage generationLanguage = GenerationLanguage.ALL
+	GenerationLanguage generationLanguage = GenerationLanguage.ALL
 //	
 	/**
 	 * Der Einstiegspunkt für den Generator für SensIDL.
@@ -61,7 +61,7 @@ class SensidlGenerator implements IGenerator {
 			.filter(SensorInterface)
 			.head
 			
-		if (dataModel == null)
+		if (dataModel === null)
 			return
 		
 			

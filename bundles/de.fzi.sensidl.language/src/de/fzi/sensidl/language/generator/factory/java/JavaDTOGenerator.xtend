@@ -33,15 +33,15 @@ import de.fzi.sensidl.language.extensions.todo.SensIDLTodoTaskCustomizer
  */
  
 class JavaDTOGenerator implements IDTOGenerator {
-	private static val Logger logger = Logger.getLogger(JavaDTOGenerator)
-	private static val LONG_FORMATTED = "l"
-	private static val FLOAT_FORMATTED = "f";
-	private static val DOUBLE_FORMATTED = ".0";
+	static val Logger logger = Logger.getLogger(JavaDTOGenerator)
+	static val LONG_FORMATTED = "l"
+	static val FLOAT_FORMATTED = "f";
+	static val DOUBLE_FORMATTED = ".0";
 	
-	private val String packagePrefix 
-	private val List<DataSet> dataSet
+	val String packagePrefix 
+	val List<DataSet> dataSet
 	
-	private boolean bigEndian
+	boolean bigEndian
 	
 	/**
 	 * The constructor calls the constructor of the superclass to set a
@@ -147,7 +147,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 	 * 
 	 */
 	def getMethodVisibility(Method method) {
-		if (method.visibility != null) {
+		if (method.visibility !== null) {
 			SensIDLConstants.getVisibilityOf(method.visibility)
 		} else {
 			SensIDLConstants.defaultVisibility
@@ -161,7 +161,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 	def getMethodReturnType(Method method){
 		if (method.returnType != DataType.UNDEFINED){
 			return method.returnType.toTypeName
-		} else if (method.returnTypeDataSet != null){
+		} else if (method.returnTypeDataSet !== null){
 			return method.returnTypeDataSet.name
 		} else {
 			return "void"
@@ -177,13 +177,13 @@ class JavaDTOGenerator implements IDTOGenerator {
 		if (method.parameter.size > 0) {
 			if (method.parameter.head.dataType != DataType.UNDEFINED) {
 				str = method.parameter.head.dataType.toTypeName + " " + method.parameter.head.name
-			} else if (method.parameter.head.dataTypeDataSet != null) {
+			} else if (method.parameter.head.dataTypeDataSet !== null) {
 				str = method.parameter.head.dataTypeDataSet.name + " " + method.parameter.head.name
 			}
 			for (p : method.parameter.tail) {
 				if (p.dataType != DataType.UNDEFINED) {
 					str += ", " + p.dataType.toTypeName + " " + p.name
-				} else if (p.dataTypeDataSet != null) {
+				} else if (p.dataTypeDataSet !== null) {
 					str += ", " + p.dataTypeDataSet.name + " " + p.name
 				}
 			}
@@ -248,7 +248,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 	def generateDataFields(ListData data){
 		'''
 		
-		«IF data.description != null»
+		«IF data.description !== null»
 		/* 
 		 * «data.description»
 		 */ 
@@ -263,7 +263,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 	def generateDataFields(MeasurementData d) {
 		'''
 			/*
-			 «IF d.description != null»
+			 «IF d.description !== null»
 			 * «d.description»
 			 * 
 			 «ENDIF» 
@@ -273,7 +273,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			
 			«IF d.hasLinearDataConversionWithInterval»
 			/*
-			«IF d.description != null» * «d.description»
+			«IF d.description !== null» * «d.description»
 			 * 
 			«ENDIF» 
 			 * Unit: «d.unit»
@@ -290,7 +290,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 	def generateDataFields(NonMeasurementData d) {
 		if (d.constant) {
 			'''
-				«IF d.description != null»
+				«IF d.description !== null»
 				/*
 				 *«d.description»
 				 «IF d.dataType.isUnsigned» 
@@ -306,7 +306,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			'''
 		} else {
 			'''
-				«IF d.description != null»
+				«IF d.description !== null»
 				 /*
 				  *«d.description»
 				  */
@@ -458,7 +458,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 	def getListType(ListData data){
 		if (data.dataType != DataType.UNDEFINED){
 			return data.dataType.toTypeName
-		} else if (data.dataTypeDataSet != null){
+		} else if (data.dataTypeDataSet !== null){
 			return data.dataTypeDataSet.name
 		}
 	}
@@ -837,7 +837,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 			return null
 		}
 		var conversion = d.adjustments.filter(LinearDataConversionWithInterval);
-		if (conversion.empty || conversion == null){
+		if (conversion.empty || conversion === null){
 			return null
 		}
 		return conversion.head.dataType

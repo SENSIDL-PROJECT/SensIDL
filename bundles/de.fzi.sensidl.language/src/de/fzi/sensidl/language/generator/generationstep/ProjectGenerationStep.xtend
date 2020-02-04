@@ -15,10 +15,10 @@ import static de.fzi.sensidl.language.generator.generationstep.FileGenerationSte
 
 class ProjectGenerationStep extends GenerationStep {
 	
-	private static val PATH_SEPERATOR = "/"
+	static val PATH_SEPERATOR = "/"
 	
-	private val String projectName
-	private val IFileSystemAccess fsa;
+	val String projectName
+	val IFileSystemAccess fsa;
 	
 	/**
 	 * The constructor calls the needed data filtered by a

@@ -15,7 +15,7 @@ import org.apache.log4j.Logger
  */
 class MainDTOHeaderFileGenerator extends CDTOGenerator {
 	
-	private static Logger logger = Logger.getLogger(MainDTOHeaderFileGenerator)
+	static Logger logger = Logger.getLogger(MainDTOHeaderFileGenerator)
 	
 	/**
 	 * The constructor calls the constructor of the superclass to set a list of DataSet-elements.

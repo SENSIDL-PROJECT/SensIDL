@@ -17,7 +17,7 @@ abstract class GenerationStep {
 	 * This static method is used to reset the generation configurations for a new generation task.
 	 * @param newGenerationLanguage Corresponds to the desired language that you want to generate.
 	 */
-	public def static void setGlobalSettings(GenerationLanguage newGenerationLanguage) {
+	def static void setGlobalSettings(GenerationLanguage newGenerationLanguage) {
 		
 		resetFilesToGenerate
 		
@@ -34,7 +34,7 @@ abstract class GenerationStep {
 	
 	private def static resetFilesToGenerate() {
 		
-		if (filesToGenerate == null) {
+		if (filesToGenerate === null) {
 			filesToGenerate = new HashMap
 		} else {
 			filesToGenerate.clear
@@ -45,6 +45,6 @@ abstract class GenerationStep {
 	/**
 	 * Starts the generation task.
 	 */
-	public abstract def void startGenerationTask()
+	abstract def void startGenerationTask()
 	
 }

@@ -6,10 +6,10 @@ import de.fzi.sensidl.language.generator.templates.EclipsePuplicLicenseTemplate
 
 class OpcUaServerTemplate extends ITemplate<SensorInterface> {
 	
-	private static val CLASS_NAME_SUFFIX = "OpcUaServer"
-	private static val DEFAULT_PORT = 12686
+	static val CLASS_NAME_SUFFIX = "OpcUaServer"
+	static val DEFAULT_PORT = 12686
 	
-	private val String packagePrefix
+	val String packagePrefix
 	
 	/**
 	 * The constructor.

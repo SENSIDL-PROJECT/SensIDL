@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject
  * complexity of other generated classes.
  */
 class UtilityGenerationStep extends GenerationStep {
-	private val List<EObject> data;
+	val List<EObject> data;
 	
 	/**
 	 * The constructor calls the needed data filtered by a concrete element-filter.

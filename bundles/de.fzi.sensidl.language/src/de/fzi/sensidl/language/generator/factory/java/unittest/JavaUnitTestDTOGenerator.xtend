@@ -16,7 +16,6 @@ import de.fzi.sensidl.language.generator.factory.IDTOGenerator
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
-import org.eclipse.emf.common.util.EList
 
 /**
  * Java unit test code generator for the SensIDL Model. 
@@ -26,10 +25,10 @@ import org.eclipse.emf.common.util.EList
  */
  
 class JavaUnitTestDTOGenerator implements IDTOGenerator {
-	private static val Logger logger = Logger.getLogger(JavaUnitTestDTOGenerator)
+	static val Logger logger = Logger.getLogger(JavaUnitTestDTOGenerator)
 	
-	private val String packagePrefix
-	private val List<DataSet> dataSet
+	val String packagePrefix
+	val List<DataSet> dataSet
 		
 	/**
 	 * The constructor calls the constructor of the superclass to set a
@@ -483,7 +482,7 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 	def generateInitialValueTests(DataSet d) {
 		'''
 		«FOR data : d.data.filter(NonMeasurementData)»
-			«IF data.value!=null»
+			«IF data.value !== null»
 				/**
 				 * Test case for initial value of non measurement data «data.name.toFirstUpper».
 				 * testing if initial value is set correctly
@@ -574,18 +573,8 @@ class JavaUnitTestDTOGenerator implements IDTOGenerator {
 			return s.substring(0,s.length-1)
 		}
 	}
-		
-	/**
-	 * returns the imports necessary for the test cases
-	 */
-	private def getImports(EList<DataSet> dataSets) {
-		'''
-			«FOR dataSet : dataSets»
-				import «dataSet.sensorDataDescription.sensorInterface.name».«dataSet.name.toFirstUpper».«dataSet.name.toFirstUpper»;
-			«ENDFOR»
-		'''
-	}		
-		
+
+
 	/**
 	 * generates a setter test for a data
 	 */

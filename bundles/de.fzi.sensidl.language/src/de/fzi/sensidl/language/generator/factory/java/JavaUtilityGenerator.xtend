@@ -18,14 +18,14 @@ import org.apache.log4j.Logger
 import org.eclipse.emf.ecore.EObject
 
 class JavaUtilityGenerator implements IUtilityGenerator {	
-	private static val Logger logger = Logger.getLogger(JavaUtilityGenerator)
+	static val Logger logger = Logger.getLogger(JavaUtilityGenerator)
 	
-	private val List<MeasurementData> data
-	private val List<DataSet> dataSets
-	private val SensorInterface currentSensorInterface;
-	private val String packagePrefix
+	val List<MeasurementData> data
+	val List<DataSet> dataSets
+	val SensorInterface currentSensorInterface;
+	val String packagePrefix
 	
-	private boolean bigEndian
+	boolean bigEndian
 	
 	/**
 	 * The constructor calls the constructor of the superclass to set a

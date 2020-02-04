@@ -19,9 +19,9 @@ import org.apache.log4j.Logger
 
 class JavaOpcUaGenerator implements IOpcUaGenerator {
 	
-	private static Logger logger = Logger.getLogger(JavaOpcUaGenerator)
+	static Logger logger = Logger.getLogger(JavaOpcUaGenerator)
  
-	private val List<ITemplate<?>> templates; 
+	val List<ITemplate<?>> templates; 
 	
 	/**
 	 * The constructor calls the constructor of the superclass to set a

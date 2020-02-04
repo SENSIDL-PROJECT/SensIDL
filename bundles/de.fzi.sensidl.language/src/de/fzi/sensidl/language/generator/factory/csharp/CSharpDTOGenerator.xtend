@@ -1,22 +1,22 @@
 package de.fzi.sensidl.language.generator.factory.csharp
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
-import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
-import de.fzi.sensidl.language.generator.SensIDLConstants
-import de.fzi.sensidl.language.generator.factory.IDTOGenerator
-import java.util.List
-import org.apache.log4j.Logger
-import java.util.HashMap
-import de.fzi.sensidl.language.generator.GenerationUtil
-import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider
-import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData
-import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
-import java.util.ArrayList
-import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
-import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataRange
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
+import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
+import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData
+import de.fzi.sensidl.language.generator.GenerationUtil
+import de.fzi.sensidl.language.generator.SensIDLConstants
+import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider
+import de.fzi.sensidl.language.generator.factory.IDTOGenerator
+import java.util.ArrayList
+import java.util.HashMap
+import java.util.List
+import org.apache.log4j.Logger
 
 /**
 * CSharp code generator for the SensIDL Model. 
@@ -25,13 +25,13 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWith
 * @author Nathalie Hipp
 */
 class CSharpDTOGenerator implements IDTOGenerator {
-	private static Logger logger = Logger.getLogger(CSharpDTOGenerator)
+	static Logger logger = Logger.getLogger(CSharpDTOGenerator)
 	
-	private boolean createEmptyConstructor = true
-	private List<DataSet> dataSet
+	boolean createEmptyConstructor = true
+	List<DataSet> dataSet
 	
 
-	private boolean createProject = false
+	boolean createProject = false
 	
 
 	/**
@@ -248,7 +248,7 @@ class CSharpDTOGenerator implements IDTOGenerator {
 	def generateDataFields(MeasurementData d) {
 		'''
 			/// <summary>
-			«IF d.description != null» /// «d.description»
+			«IF d.description !== null» /// «d.description»
 			«ENDIF» 
 			/// Unit: «d.unit»
 			/// </summary>
@@ -262,7 +262,7 @@ class CSharpDTOGenerator implements IDTOGenerator {
 	def generateDataFields(NonMeasurementData d) {
 		if (d.constant) {
 			'''
-				«IF d.description != null»
+				«IF d.description !== null»
 				/// <summary> 
 				/// «d.description»
 				/// </summary>
@@ -271,7 +271,7 @@ class CSharpDTOGenerator implements IDTOGenerator {
 			'''
 		} else {
 			'''
-				«IF d.description != null»
+				«IF d.description !== null»
 				 /// <summary>
 				 /// «d.description»
 				 /// </summary>

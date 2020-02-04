@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject
  */
 class JavaGenerator implements ICodeGenerator {
 
-	private var String packagePrefix
+	var String packagePrefix
 	
 	new (String packagePrefix) {
 		

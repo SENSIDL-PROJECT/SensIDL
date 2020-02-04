@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject
  */
 class JavaUnitTestGenerator implements ICodeGenerator {
 
-	private var String packagePrefix
+	var String packagePrefix
 	
 	new() {
 		

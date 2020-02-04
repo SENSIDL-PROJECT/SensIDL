@@ -17,3 +17,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.jscience;bundle-version="4.3.1"
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: de.fzi.sensidl.design

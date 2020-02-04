@@ -18,7 +18,7 @@ class EcorePersistenceHelper {
 	/**
 	 * Persistieren des Modells mit XMI
 	 */
-	public static def void persistEcoreModel(EObject eObject, URI fileName, IFileSystemAccess fsa) {
+	static def void persistEcoreModel(EObject eObject, URI fileName, IFileSystemAccess fsa) {
 		val registry = Resource.Factory.Registry.INSTANCE
 		val extensionToFactoryMap = registry.extensionToFactoryMap
 		extensionToFactoryMap.put(fileName.fileExtension, new XMIResourceFactoryImpl)

@@ -18,7 +18,7 @@ class CGenerator implements ICodeGenerator {
  	*/
 	override generateDTO(List<DataSet> dataSet) {
 		val generators = new ArrayList<CDTOGenerator>()
-		generators += new HeaderDTOGenerator(dataSet)
+		generators += new HeaderDTOFileGenerator(dataSet)
 		generators += new MainDTOHeaderFileGenerator(dataSet)
 		generators += new CDTOFileGenerator(dataSet)
 		

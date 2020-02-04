@@ -11,14 +11,12 @@ import de.fzi.sensidl.language.generator.factory.java.unittest.JavaUnitTestGener
 import de.fzi.sensidl.language.generator.factory.javascript.JavaScriptGenerator
 import de.fzi.sensidl.language.generator.factory.plaintext.PlaintextGenerator
 import de.fzi.sensidl.language.generator.factory.sidl.SidlGenerator
-import de.fzi.sensidl.language.generator.generationstep.GenerationStep
 import java.util.HashMap
 import java.util.List
-import de.fzi.sensidl.language.generator.factory.java.JavaOpcUaGenerator
 
 class DTOGenerationStep extends GenerationStep {
 	
-	private List<DataSet> dataSet
+	List<DataSet> dataSet
 
 	public static boolean createSidlFile = false
 

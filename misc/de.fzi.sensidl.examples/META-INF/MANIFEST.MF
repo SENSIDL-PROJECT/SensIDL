@@ -10,3 +10,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide,
  org.eclipse.emf.common.ui
 Bundle-Vendor: FZI Forschungszentrum Informatik
+Automatic-Module-Name: de.fzi.sensidl.examples

@@ -27,9 +27,9 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.Method
  */
 class CDTOFileGenerator extends CDTOGenerator {
 	
-	private static Logger logger = Logger.getLogger(CDTOFileGenerator)
+	static Logger logger = Logger.getLogger(CDTOFileGenerator)
 	
-	private boolean bigEndian
+	boolean bigEndian
 	
 	/**
 	 * The constructor calls the constructor of the superclass to set a list of DataSet-elements.
@@ -154,7 +154,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 	def generateInit(DataSet dataset) {
 		'''
 			«FOR data : dataset.eContents.filter(NonMeasurementData)»
-			«IF data.value != null»  
+			«IF data.value !== null»  
 			 p->«data.name.replaceAll("[^a-zA-Z0-9]", "")» = «IF data.dataType == DataType.STRING»"«data.value»"«ELSE»«data.value»«ENDIF»;
 			«ENDIF»
 			«ENDFOR»
@@ -201,7 +201,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 	def getMethodReturnType(Method method){
 		if (method.returnType != DataType.UNDEFINED){
 			return method.returnType.toTypeName
-		} else if (method.returnTypeDataSet != null){
+		} else if (method.returnTypeDataSet !== null){
 			return method.returnTypeDataSet.name
 		} else {
 			return "void"
@@ -217,13 +217,13 @@ class CDTOFileGenerator extends CDTOGenerator {
 		if (method.parameter.size > 0) {
 			if (method.parameter.head.dataType != DataType.UNDEFINED) {
 				str = method.parameter.head.dataType.toTypeName + " " + method.parameter.head.name
-			} else if (method.parameter.head.dataTypeDataSet != null) {
+			} else if (method.parameter.head.dataTypeDataSet !== null) {
 				str = method.parameter.head.dataTypeDataSet.name + " " + method.parameter.head.name
 			}
 			for (p : method.parameter.tail) {
 				if (p.dataType != DataType.UNDEFINED) {
 					str += ", " + p.dataType.toTypeName + " " + p.name
-				} else if (p.dataTypeDataSet != null) {
+				} else if (p.dataTypeDataSet !== null) {
 					str += ", " + p.dataTypeDataSet.name + " " + p.name
 				}
 			}
@@ -540,7 +540,7 @@ class CDTOFileGenerator extends CDTOGenerator {
 		char * marshalJSON_«d.name.toFirstUpper»(«d.name.toFirstUpper»* p){
 			 
 			JsonNode *jsonObject = json_mkobject();
-	
+
 			«FOR dataSet : dataSets»
 				«FOR data : dataSet.data»
 					«IF !data.excludedMethods.contains("getter")»

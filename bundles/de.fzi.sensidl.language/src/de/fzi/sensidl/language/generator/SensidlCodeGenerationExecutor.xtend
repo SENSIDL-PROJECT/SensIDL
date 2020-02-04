@@ -16,8 +16,8 @@ import org.eclipse.xtext.generator.IFileSystemAccess
  */
 class SensidlCodeGenerationExecutor implements ISensidlCodeGenerator {
 
-	private static Logger logger = Logger.getLogger(SensidlCodeGenerationExecutor)
-	private GenerationLanguage generationLanguage
+	static Logger logger = Logger.getLogger(SensidlCodeGenerationExecutor)
+	GenerationLanguage generationLanguage
 	
 	/**
 	 * The entry point to the generation.

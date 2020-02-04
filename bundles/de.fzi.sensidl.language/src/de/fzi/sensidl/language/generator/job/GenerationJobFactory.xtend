@@ -17,7 +17,7 @@ import static de.fzi.sensidl.language.generator.generationstep.GenerationStep.*
 
 class GenerationJobFactory {
 	
-	public static def getGenerationJobBy(GenerationParameter parameter) {
+	static def getGenerationJobBy(GenerationParameter parameter) {
 		
 		return switch(parameter.generationLanguage) {
 			

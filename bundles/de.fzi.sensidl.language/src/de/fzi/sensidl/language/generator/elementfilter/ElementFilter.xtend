@@ -12,7 +12,7 @@ abstract class ElementFilter {
 	 * This static method is used to initialize the member-variable.
 	 * @param newInput Corresponds to the new Resource-object.
 	 */
-	public def static void init(Resource newInput) {
+	def static void init(Resource newInput) {
 		input = newInput
 	}
 	

@@ -18,12 +18,12 @@ import org.eclipse.emf.ecore.EObject
  */
 class SidlDTOGenerator implements IDTOGenerator {
 	
-	private static var String OHM_SIGN = "Ω";
-	private static var String CORRECT_OHM_SIGN_REPRESENTATION = "Ohm";
+	static var String OHM_SIGN = "Ω";
+	static var String CORRECT_OHM_SIGN_REPRESENTATION = "Ohm";
 
-	private static Logger logger = Logger.getLogger(SidlDTOGenerator)
+	static Logger logger = Logger.getLogger(SidlDTOGenerator)
 
-	private List<DataSet> dataSet
+	List<DataSet> dataSet
 
 	/**
 	 * The constructor calls the constructor of the superclass to set a
@@ -87,7 +87,7 @@ class SidlDTOGenerator implements IDTOGenerator {
 	 * generates the description for data
 	 */
 	def createDescription(Data d) {
-		if (d.description != null) {
+		if (d.description !== null) {
 			'''/** «d.description» */ '''
 		} else {
 			''''''

@@ -2,7 +2,7 @@ package de.fzi.sensidl.language.generator.templates
 
 class EclipsePuplicLicenseTemplate {
 	
-	public static def getText() {
+	static def getText() {
 		
 		'''
 			/*

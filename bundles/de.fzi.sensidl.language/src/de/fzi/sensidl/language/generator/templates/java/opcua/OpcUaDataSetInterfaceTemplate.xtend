@@ -10,8 +10,8 @@ class OpcUaDataSetInterfaceTemplate extends ITemplate<SensorInterface> {
 	
 	public static val DEFAULT_KEYWORD = "default";
 	
-	private val List<String> signatures;
-	private val String packagePrefix
+	val List<String> signatures;
+	val String packagePrefix
 	
 	/**
 	 * The constructor.

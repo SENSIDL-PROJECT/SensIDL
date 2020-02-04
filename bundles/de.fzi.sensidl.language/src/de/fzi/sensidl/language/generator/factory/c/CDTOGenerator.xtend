@@ -2,11 +2,9 @@ package de.fzi.sensidl.language.generator.factory.c
 
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 import de.fzi.sensidl.language.generator.factory.IDTOGenerator
 import java.util.List
-import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
-import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
-import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 
 /**
 * C code generator for the SensIDL Model. 

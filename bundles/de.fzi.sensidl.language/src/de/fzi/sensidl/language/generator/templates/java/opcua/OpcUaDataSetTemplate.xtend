@@ -13,17 +13,17 @@ import java.util.List
 
 class OpcUaDataSetTemplate extends ITemplate<DataSet> {
 	
-	private static val OBJECT_TYPE_SUFFIX = "ObjectType"
-	private static val DEFAULT_NUMERICAL_VALUE = "0"
-	private static val DEFAULT_STRING_VALUE = "\"\""
-	private static val DEFAULT_BOOLEAN_VALUE = "false"
-	private static val EMPTY_STRING = ""
+	static val OBJECT_TYPE_SUFFIX = "ObjectType"
+	static val DEFAULT_NUMERICAL_VALUE = "0"
+	static val DEFAULT_STRING_VALUE = "\"\""
+	static val DEFAULT_BOOLEAN_VALUE = "false"
+	static val EMPTY_STRING = ""
 	
-	private val String packagePrefix
+	val String packagePrefix
 	
-	private val members = new ArrayList<CharSequence>
-	private val constructors = new ArrayList<CharSequence>
-	private val methodsToImplement = new ArrayList<CharSequence>
+	val members = new ArrayList<CharSequence>
+	val constructors = new ArrayList<CharSequence>
+	val methodsToImplement = new ArrayList<CharSequence>
 	
 	/**
 	 * The constructor.

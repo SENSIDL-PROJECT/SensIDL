@@ -8,7 +8,7 @@ import org.eclipse.xtext.generator.OutputConfigurationProvider
  * an entry to specify a different generation location. 
  */
 class SensIDLOutputConfigurationProvider extends OutputConfigurationProvider {
-	public final static val SENSIDL_GEN = "./src-gen"
+	public static val SENSIDL_GEN = "./src-gen"
 	
 	override getOutputConfigurations() {
 		super.getOutputConfigurations() => [

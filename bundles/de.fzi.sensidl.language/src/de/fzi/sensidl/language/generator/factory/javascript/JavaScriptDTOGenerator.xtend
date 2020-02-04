@@ -27,9 +27,9 @@ import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
  * 
  */
 class JavaScriptDTOGenerator implements IDTOGenerator {
-	private static Logger logger = Logger.getLogger(JavaScriptDTOGenerator)
+	static Logger logger = Logger.getLogger(JavaScriptDTOGenerator)
 	
-	private List<DataSet> dataSet
+	List<DataSet> dataSet
 	
 	/**
 	 * The constructor calls the constructor of the superclass to set a list of DataSet-elements.
@@ -63,7 +63,7 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 	def generateClass(String name, DataSet dataset){
 
 		'''
-		«IF dataset.description != null»/* «dataset.description» */«ENDIF»
+		«IF dataset.description !== null»/* «dataset.description» */«ENDIF»
 		var «name» = {
 		 
 			«generateBodyIncludeParentDataSet(dataset)»
@@ -105,9 +105,9 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 			bodyString += 
 			'''
 			«IF nmdata.constant»
-				_«nmdata.name.toUpperCase»«IF nmdata.value != null» : «nmdata.value»«ENDIF»,«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
+				_«nmdata.name.toUpperCase»«IF nmdata.value !== null» : «nmdata.value»«ENDIF»,«IF nmdata.description !== null»/*«nmdata.description» */«ENDIF»
 			«ELSE»
-				_«GenerationUtil.toNameLower(nmdata)» : «IF nmdata.value != null»«nmdata.value»«ELSE»«IF nmdata.dataType == DataType.STRING»""«ELSE»0«ENDIF»«ENDIF»,«IF nmdata.description != null»/*«nmdata.description» */«ENDIF»
+				_«GenerationUtil.toNameLower(nmdata)» : «IF nmdata.value !== null»«nmdata.value»«ELSE»«IF nmdata.dataType == DataType.STRING»""«ELSE»0«ENDIF»«ENDIF»,«IF nmdata.description !== null»/*«nmdata.description» */«ENDIF»
 			«ENDIF»
 			'''
 		}
@@ -183,7 +183,7 @@ class JavaScriptDTOGenerator implements IDTOGenerator {
 		 */
 		«d.toSetterName» : function(«GenerationUtil.toNameLower(d)»){
 			this._«GenerationUtil.toNameLower(d)» = «GenerationUtil.toNameLower(d)»;
-		}«IF !d.constant»«IF !d.equals(last) || last != null »,«ENDIF»«ENDIF» 
+		}«IF !d.constant»«IF !d.equals(last) || last !== null »,«ENDIF»«ENDIF» 
 	«ENDIF»	'''
 	}
 	

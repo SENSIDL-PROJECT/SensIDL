@@ -5,7 +5,7 @@ import java.util.LinkedHashSet
 
 class GenerationJob {
 
-	private val LinkedHashSet<GenerationStep> generationChain;
+	val LinkedHashSet<GenerationStep> generationChain;
 	
 	new(LinkedHashSet<GenerationStep> generationChain) {
 		
@@ -13,7 +13,7 @@ class GenerationJob {
 		
 	}
 	
-	public def start() {
+	def start() {
 		
 		this.generationChain.forEach[generationStep | generationStep.startGenerationTask]
 		

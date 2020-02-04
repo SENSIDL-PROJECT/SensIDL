@@ -1,16 +1,15 @@
 package de.fzi.sensidl.language.generator
 
+import de.fzi.sensidl.design.sensidl.Endianness
 import de.fzi.sensidl.design.sensidl.SensorInterface
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
 import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
 import org.eclipse.emf.ecore.EObject
-import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
-import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
-import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
-import javax.sound.sampled.BooleanControl.Type
-import de.fzi.sensidl.design.sensidl.Endianness
 
 /**
  * The GenerationUtil-class is used to implement common methods, which are 
@@ -119,7 +118,7 @@ class GenerationUtil {
 		return conversion.dataType
 	}
 	
-	public static def isBigEndian(SensorInterface sensorInterface) {
+	static def isBigEndian(SensorInterface sensorInterface) {
 		return (sensorInterface.encodingSettings.endianness == Endianness.BIG_ENDIAN)
 	}
 }

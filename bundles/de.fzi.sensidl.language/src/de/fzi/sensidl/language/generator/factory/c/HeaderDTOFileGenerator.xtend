@@ -2,31 +2,31 @@ package de.fzi.sensidl.language.generator.factory.c
 
 import com.google.common.base.Strings
 import de.fzi.sensidl.design.sensidl.dataRepresentation.Data
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
 import de.fzi.sensidl.design.sensidl.dataRepresentation.DataSet
+import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
+import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
+import de.fzi.sensidl.design.sensidl.dataRepresentation.ListData
 import de.fzi.sensidl.design.sensidl.dataRepresentation.MeasurementData
+import de.fzi.sensidl.design.sensidl.dataRepresentation.Method
 import de.fzi.sensidl.design.sensidl.dataRepresentation.NonMeasurementData
 import de.fzi.sensidl.language.generator.GenerationUtil
 import de.fzi.sensidl.language.generator.SensIDLConstants
 import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider
 import de.fzi.sensidl.language.generator.factory.IDTOGenerator
+import java.util.ArrayList
 import java.util.HashMap
 import java.util.List
 import org.apache.log4j.Logger
-import java.util.ArrayList
-import de.fzi.sensidl.design.sensidl.dataRepresentation.DataConversion
-import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversionWithInterval
-import de.fzi.sensidl.design.sensidl.dataRepresentation.DataType
-import de.fzi.sensidl.design.sensidl.dataRepresentation.ListData
-import de.fzi.sensidl.design.sensidl.dataRepresentation.LinearDataConversion
-import de.fzi.sensidl.design.sensidl.dataRepresentation.Method
 
 /**
  * This class implements a part of the CDTOGenerator. This class is responsible for 
  * the generation of the header-files.
  */
-class HeaderDTOGenerator extends CDTOGenerator {
+class HeaderDTOFileGenerator extends CDTOGenerator {
 
-	private static Logger logger = Logger.getLogger(HeaderDTOGenerator)
+	static Logger logger = Logger.getLogger(HeaderDTOFileGenerator)
 	
 	/**
 	 * The constructor calls the constructor of the superclass to set a list of DataSet-elements.
@@ -169,7 +169,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	def getMethodReturnType(Method method){
 		if (method.returnType != DataType.UNDEFINED){
 			return method.returnType.toTypeName
-		} else if (method.returnTypeDataSet != null){
+		} else if (method.returnTypeDataSet !== null){
 			return method.returnTypeDataSet.name
 		} else {
 			return "void"
@@ -185,13 +185,13 @@ class HeaderDTOGenerator extends CDTOGenerator {
 		if (method.parameter.size > 0) {
 			if (method.parameter.head.dataType != DataType.UNDEFINED) {
 				str = method.parameter.head.dataType.toTypeName + " " + method.parameter.head.name
-			} else if (method.parameter.head.dataTypeDataSet != null) {
+			} else if (method.parameter.head.dataTypeDataSet !== null) {
 				str = method.parameter.head.dataTypeDataSet.name + " " + method.parameter.head.name
 			}
 			for (p : method.parameter.tail) {
 				if (p.dataType != DataType.UNDEFINED) {
 					str += ", " + p.dataType.toTypeName + " " + p.name
-				} else if (p.dataTypeDataSet != null) {
+				} else if (p.dataTypeDataSet !== null) {
 					str += ", " + p.dataTypeDataSet.name + " " + p.name
 				}
 			}
@@ -249,7 +249,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 		* @return the «d.name.toFirstUpper»
 		*/
 		«dataType» get_«dataset.name.toFirstUpper»_«d.name.replaceAll("[^a-zA-Z0-9]", "")»(«dataset.name.toFirstUpper»* p);
-	
+
 		«ENDIF»				
 		'''
 	}
@@ -375,9 +375,9 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 */
  	dispatch def generateVariable(MeasurementData data) {
  		'''
- 		«data.toTypeName» «GenerationUtil.toNameLower(data)»;  // Unit: «data.unit», «IF data.description != null»«data.description»«ENDIF»
+ 		«data.toTypeName» «GenerationUtil.toNameLower(data)»;  // Unit: «data.unit», «IF data.description !== null»«data.description»«ENDIF»
  		«IF data.isAdjustedByLinearConversionWithInterval»
- 		«data.getReturnDataType» «GenerationUtil.toNameLower(data)»Adjusted;  // Unit: «data.unit», «IF data.description != null»«data.description»«ENDIF»
+ 		«data.getReturnDataType» «GenerationUtil.toNameLower(data)»Adjusted;  // Unit: «data.unit», «IF data.description !== null»«data.description»«ENDIF»
  		«ENDIF»
  		'''
  	}	
@@ -388,7 +388,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	 * 			represents variable or constant non-measured data.
 	 */
 	dispatch def generateVariable(NonMeasurementData data) {
-		'''«data.toTypeName» «GenerationUtil.toNameLower(data)»;  «IF data.description != null»// «data.description»«ENDIF»'''
+		'''«data.toTypeName» «GenerationUtil.toNameLower(data)»;  «IF data.description !== null»// «data.description»«ENDIF»'''
 	}
 	
  	dispatch def generateVariable(ListData data) {
@@ -403,7 +403,7 @@ class HeaderDTOGenerator extends CDTOGenerator {
 	def getListType(ListData data){
 		if (data.dataType != DataType.UNDEFINED){
 			return data.dataType.toTypeName
-		} else if (data.dataTypeDataSet != null){
+		} else if (data.dataTypeDataSet !== null){
 			return data.dataTypeDataSet.name
 		}
 	}
