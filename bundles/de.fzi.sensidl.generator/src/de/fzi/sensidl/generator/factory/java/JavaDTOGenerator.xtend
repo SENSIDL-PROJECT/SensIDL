@@ -402,8 +402,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 		
 		for (data : dataSet.eContents.filter(Data)) {
 			if (data instanceof NonMeasurementData) {
-				var nmdata = data as NonMeasurementData
-				if (!nmdata.constant) {
+				if (!data.constant) {
 					dataList.add(data)
 				}
 			} else if (!(data instanceof ListData)) {
@@ -659,7 +658,7 @@ class JavaDTOGenerator implements IDTOGenerator {
 						 */
 						public void «d.toSetterName»WithDataConversion(«d.toTypeName» «GenerationUtil.toNameLower(d)») {
 							try {
-								«d.generateSetterBodyForMeasurementData(dataAdj as DataConversion)»
+								«d.generateSetterBodyForMeasurementData(dataAdj)»
 							} catch (IllegalArgumentException e) {
 								//Do something
 							}

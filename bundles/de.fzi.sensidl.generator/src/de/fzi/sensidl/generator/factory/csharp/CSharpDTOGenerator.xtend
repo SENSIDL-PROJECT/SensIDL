@@ -337,8 +337,7 @@ class CSharpDTOGenerator implements IDTOGenerator {
 
 		for (data : dataSet.eContents.filter(Data)) {
 			if (data instanceof NonMeasurementData) {
-				var nmdata = data as NonMeasurementData
-				if (!nmdata.constant) {
+				if (!data.constant) {
 					dataList.add(data)
 				}
 			} else {
@@ -349,8 +348,7 @@ class CSharpDTOGenerator implements IDTOGenerator {
 		for (DataSet pdataSet : dataSet.usedDataSets) {
 			for (data : pdataSet.eContents.filter(Data)) {
 				if (data instanceof NonMeasurementData) {
-					var nmdata = data as NonMeasurementData
-					if (!nmdata.constant) {
+					if (!data.constant) {
 						dataList.add(data)
 					}
 				} else {

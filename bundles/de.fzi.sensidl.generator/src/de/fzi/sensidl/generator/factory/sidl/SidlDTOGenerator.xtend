@@ -99,7 +99,7 @@ class SidlDTOGenerator implements IDTOGenerator {
 	 */
 	def createUnit(Data d) {
 		if (d instanceof MeasurementData) {
-			if (!((d as MeasurementData).getUnit.toString.isNullOrEmpty)) {
+			if (!(d.getUnit.toString.isNullOrEmpty)) {
 				'''in «d.unit.toString.convertUnitStringIfNecessary»'''
 			} else {
 				'''in Dimensionless'''

@@ -26,7 +26,7 @@ class GenerationUtil {
 	 */
 	static def SensorInterface getSensorInterface(EObject currentElement) {
 		if (currentElement instanceof SensorInterface) {
-			return (currentElement as SensorInterface);
+			return currentElement;
 		}
 		return getSensorInterface(currentElement.eContainer());
 	}
