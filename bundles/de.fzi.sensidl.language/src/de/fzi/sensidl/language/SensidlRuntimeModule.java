@@ -6,9 +6,9 @@ package de.fzi.sensidl.language;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.generator.IOutputConfigurationProvider;
 
-import de.fzi.sensidl.language.generator.ISensidlCodeGenerator;
-import de.fzi.sensidl.language.generator.SensIDLOutputConfigurationProvider;
-import de.fzi.sensidl.language.generator.SensidlCodeGenerationExecutor;
+import de.fzi.sensidl.generator.ISensidlCodeGenerator;
+import de.fzi.sensidl.generator.SensIDLOutputConfigurationProvider;
+import de.fzi.sensidl.generator.SensidlCodeGenerationExecutor;
 import de.fzi.sensidl.language.converters.SensIDLValueConverterService;
 
 /**

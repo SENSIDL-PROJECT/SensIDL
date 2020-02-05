@@ -86,6 +86,13 @@
          install-size="0"
          version="1.0.0.qualifier"
          unpack="false"/>
+         
+   <plugin
+         id="de.fzi.sensidl.generator"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
 
    <plugin
          id="de.fzi.sensidl.help"

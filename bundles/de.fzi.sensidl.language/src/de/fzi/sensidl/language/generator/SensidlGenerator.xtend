@@ -6,7 +6,8 @@ package de.fzi.sensidl.language.generator
 import com.google.inject.Inject
 import de.fzi.sensidl.design.sensidl.SensorInterface
 import de.fzi.sensidl.language.SensidlRuntimeModule
-import de.fzi.sensidl.language.generator.SensIDLConstants.GenerationLanguage
+import de.fzi.sensidl.generator.SensIDLConstants.GenerationLanguage
+import de.fzi.sensidl.generator.SensidlCodeGenerationExecutor
 import org.apache.log4j.Level
 import org.apache.log4j.Logger
 import org.eclipse.emf.common.util.URI
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import de.fzi.sensidl.generator.EcorePersistenceHelper
 
 /**
  * Der Generator für SensIDL.

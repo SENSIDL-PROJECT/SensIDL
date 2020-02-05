@@ -16,7 +16,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import de.fzi.sensidl.language.SensidlStandaloneSetup;
-import de.fzi.sensidl.language.generator.SensIDLConstants;
+import de.fzi.sensidl.generator.SensIDLConstants;
 import de.fzi.sensidl.language.generator.SensidlGenerator;
 import de.fzi.sensidl.language.ui.exception.NoSidlFileException;
 

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Generator
+Bundle-Name: SensIDL Generator
 Bundle-SymbolicName: de.fzi.sensidl.generator
 Bundle-Version: 1.0.0.qualifier
 Automatic-Module-Name: de.fzi.sensidl.generator
