@@ -109,6 +109,7 @@ public class MethodParameterImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -118,6 +119,7 @@ public class MethodParameterImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -130,6 +132,7 @@ public class MethodParameterImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Method getMethod() {
 		if (eContainerFeatureID() != DataRepresentationPackage.METHOD_PARAMETER__METHOD) return null;
 		return (Method)eInternalContainer();
@@ -150,6 +153,7 @@ public class MethodParameterImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMethod(Method newMethod) {
 		if (newMethod != eInternalContainer() || (eContainerFeatureID() != DataRepresentationPackage.METHOD_PARAMETER__METHOD && newMethod != null)) {
 			if (EcoreUtil.isAncestor(this, newMethod))
@@ -171,6 +175,7 @@ public class MethodParameterImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataType getDataType() {
 		return dataType;
 	}
@@ -180,6 +185,7 @@ public class MethodParameterImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDataType(DataType newDataType) {
 		DataType oldDataType = dataType;
 		dataType = newDataType == null ? DATA_TYPE_EDEFAULT : newDataType;
@@ -192,6 +198,7 @@ public class MethodParameterImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataSet getDataTypeDataSet() {
 		if (dataTypeDataSet != null && dataTypeDataSet.eIsProxy()) {
 			InternalEObject oldDataTypeDataSet = (InternalEObject)dataTypeDataSet;
@@ -218,6 +225,7 @@ public class MethodParameterImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDataTypeDataSet(DataSet newDataTypeDataSet) {
 		DataSet oldDataTypeDataSet = dataTypeDataSet;
 		dataTypeDataSet = newDataTypeDataSet;
@@ -367,7 +375,7 @@ public class MethodParameterImpl extends MinimalEObjectImpl.Container implements
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(", dataType: ");

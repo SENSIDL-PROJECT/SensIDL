@@ -178,7 +178,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link DataRepresentationPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -192,12 +192,14 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 		if (isInited) return (DataRepresentationPackage)EPackage.Registry.INSTANCE.getEPackage(DataRepresentationPackage.eNS_URI);
 
 		// Obtain or create and register package
-		DataRepresentationPackageImpl theDataRepresentationPackage = (DataRepresentationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof DataRepresentationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new DataRepresentationPackageImpl());
+		Object registeredDataRepresentationPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		DataRepresentationPackageImpl theDataRepresentationPackage = registeredDataRepresentationPackage instanceof DataRepresentationPackageImpl ? (DataRepresentationPackageImpl)registeredDataRepresentationPackage : new DataRepresentationPackageImpl();
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		sensidlPackageImpl thesensidlPackage = (sensidlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(sensidlPackage.eNS_URI) instanceof sensidlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(sensidlPackage.eNS_URI) : sensidlPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(sensidlPackage.eNS_URI);
+		sensidlPackageImpl thesensidlPackage = (sensidlPackageImpl)(registeredPackage instanceof sensidlPackageImpl ? registeredPackage : sensidlPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theDataRepresentationPackage.createPackageContents();
@@ -210,7 +212,6 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 		// Mark meta-data to indicate it can't be changed
 		theDataRepresentationPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(DataRepresentationPackage.eNS_URI, theDataRepresentationPackage);
 		return theDataRepresentationPackage;
@@ -221,6 +222,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSensorDataDescription() {
 		return sensorDataDescriptionEClass;
 	}
@@ -230,6 +232,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSensorDataDescription_DataSets() {
 		return (EReference)sensorDataDescriptionEClass.getEStructuralFeatures().get(0);
 	}
@@ -239,6 +242,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getSensorDataDescription_SensorInterface() {
 		return (EReference)sensorDataDescriptionEClass.getEStructuralFeatures().get(1);
 	}
@@ -248,6 +252,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDataSet() {
 		return dataSetEClass;
 	}
@@ -257,6 +262,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDataSet_SensorDataDescription() {
 		return (EReference)dataSetEClass.getEStructuralFeatures().get(0);
 	}
@@ -266,6 +272,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDataSet_Data() {
 		return (EReference)dataSetEClass.getEStructuralFeatures().get(1);
 	}
@@ -275,6 +282,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDataSet_Method() {
 		return (EReference)dataSetEClass.getEStructuralFeatures().get(2);
 	}
@@ -284,6 +292,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDataSet_UsedDataSets() {
 		return (EReference)dataSetEClass.getEStructuralFeatures().get(3);
 	}
@@ -293,6 +302,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getData() {
 		return dataEClass;
 	}
@@ -302,6 +312,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getData_DataSet() {
 		return (EReference)dataEClass.getEStructuralFeatures().get(0);
 	}
@@ -311,6 +322,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getData_DataType() {
 		return (EAttribute)dataEClass.getEStructuralFeatures().get(1);
 	}
@@ -320,6 +332,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getData_ExcludedMethods() {
 		return (EAttribute)dataEClass.getEStructuralFeatures().get(2);
 	}
@@ -329,6 +342,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMeasurementData() {
 		return measurementDataEClass;
 	}
@@ -338,6 +352,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMeasurementData_Adjustments() {
 		return (EReference)measurementDataEClass.getEStructuralFeatures().get(0);
 	}
@@ -347,6 +362,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMeasurementData_Unit() {
 		return (EAttribute)measurementDataEClass.getEStructuralFeatures().get(1);
 	}
@@ -356,6 +372,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNonMeasurementData() {
 		return nonMeasurementDataEClass;
 	}
@@ -365,6 +382,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNonMeasurementData_Constant() {
 		return (EAttribute)nonMeasurementDataEClass.getEStructuralFeatures().get(0);
 	}
@@ -374,6 +392,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getNonMeasurementData_Value() {
 		return (EAttribute)nonMeasurementDataEClass.getEStructuralFeatures().get(1);
 	}
@@ -383,6 +402,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDataAdjustment() {
 		return dataAdjustmentEClass;
 	}
@@ -392,6 +412,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDataAdjustment_MeasurementData() {
 		return (EReference)dataAdjustmentEClass.getEStructuralFeatures().get(0);
 	}
@@ -401,6 +422,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDataRange() {
 		return dataRangeEClass;
 	}
@@ -410,6 +432,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDataRange_Range() {
 		return (EReference)dataRangeEClass.getEStructuralFeatures().get(0);
 	}
@@ -419,6 +442,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDataConversion() {
 		return dataConversionEClass;
 	}
@@ -428,6 +452,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLinearDataConversion() {
 		return linearDataConversionEClass;
 	}
@@ -437,6 +462,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLinearDataConversion_ScalingFactor() {
 		return (EAttribute)linearDataConversionEClass.getEStructuralFeatures().get(0);
 	}
@@ -446,6 +472,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLinearDataConversion_Offset() {
 		return (EAttribute)linearDataConversionEClass.getEStructuralFeatures().get(1);
 	}
@@ -455,6 +482,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLinearDataConversionWithInterval() {
 		return linearDataConversionWithIntervalEClass;
 	}
@@ -464,6 +492,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLinearDataConversionWithInterval_FromInterval() {
 		return (EReference)linearDataConversionWithIntervalEClass.getEStructuralFeatures().get(0);
 	}
@@ -473,6 +502,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLinearDataConversionWithInterval_ToInterval() {
 		return (EReference)linearDataConversionWithIntervalEClass.getEStructuralFeatures().get(1);
 	}
@@ -482,6 +512,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLinearDataConversionWithInterval_DataType() {
 		return (EAttribute)linearDataConversionWithIntervalEClass.getEStructuralFeatures().get(2);
 	}
@@ -491,6 +522,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getInterval() {
 		return intervalEClass;
 	}
@@ -500,6 +532,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getInterval_LowerBound() {
 		return (EAttribute)intervalEClass.getEStructuralFeatures().get(0);
 	}
@@ -509,6 +542,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getInterval_UpperBound() {
 		return (EAttribute)intervalEClass.getEStructuralFeatures().get(1);
 	}
@@ -518,6 +552,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInterval_LinearDataConversionFrom() {
 		return (EReference)intervalEClass.getEStructuralFeatures().get(2);
 	}
@@ -527,6 +562,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInterval_LinearDataConversionTo() {
 		return (EReference)intervalEClass.getEStructuralFeatures().get(3);
 	}
@@ -536,6 +572,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getInterval_DataRange() {
 		return (EReference)intervalEClass.getEStructuralFeatures().get(4);
 	}
@@ -545,6 +582,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMethod() {
 		return methodEClass;
 	}
@@ -554,6 +592,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMethod_DataSet() {
 		return (EReference)methodEClass.getEStructuralFeatures().get(0);
 	}
@@ -563,6 +602,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMethod_Parameter() {
 		return (EReference)methodEClass.getEStructuralFeatures().get(1);
 	}
@@ -572,6 +612,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMethod_ReturnType() {
 		return (EAttribute)methodEClass.getEStructuralFeatures().get(2);
 	}
@@ -581,6 +622,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMethod_Visibility() {
 		return (EAttribute)methodEClass.getEStructuralFeatures().get(3);
 	}
@@ -590,6 +632,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMethod_ReturnTypeDataSet() {
 		return (EReference)methodEClass.getEStructuralFeatures().get(4);
 	}
@@ -599,6 +642,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getMethodParameter() {
 		return methodParameterEClass;
 	}
@@ -608,6 +652,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMethodParameter_Name() {
 		return (EAttribute)methodParameterEClass.getEStructuralFeatures().get(0);
 	}
@@ -617,6 +662,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMethodParameter_Method() {
 		return (EReference)methodParameterEClass.getEStructuralFeatures().get(1);
 	}
@@ -626,6 +672,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getMethodParameter_DataType() {
 		return (EAttribute)methodParameterEClass.getEStructuralFeatures().get(2);
 	}
@@ -635,6 +682,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getMethodParameter_DataTypeDataSet() {
 		return (EReference)methodParameterEClass.getEStructuralFeatures().get(3);
 	}
@@ -644,6 +692,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getListData() {
 		return listDataEClass;
 	}
@@ -653,6 +702,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getListData_DataTypeDataSet() {
 		return (EReference)listDataEClass.getEStructuralFeatures().get(0);
 	}
@@ -662,6 +712,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getDataType() {
 		return dataTypeEEnum;
 	}
@@ -671,6 +722,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getUnit() {
 		return unitEDataType;
 	}
@@ -680,6 +732,7 @@ public class DataRepresentationPackageImpl extends EPackageImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataRepresentationFactory getDataRepresentationFactory() {
 		return (DataRepresentationFactory)getEFactoryInstance();
 	}

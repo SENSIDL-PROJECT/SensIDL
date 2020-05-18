@@ -101,6 +101,7 @@ public class sensidlFactoryImpl extends EFactoryImpl implements sensidlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SensorInterface createSensorInterface() {
 		SensorInterfaceImpl sensorInterface = new SensorInterfaceImpl();
 		return sensorInterface;
@@ -111,6 +112,7 @@ public class sensidlFactoryImpl extends EFactoryImpl implements sensidlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EncodingSettings createEncodingSettings() {
 		EncodingSettingsImpl encodingSettings = new EncodingSettingsImpl();
 		return encodingSettings;
@@ -161,6 +163,7 @@ public class sensidlFactoryImpl extends EFactoryImpl implements sensidlFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public sensidlPackage getsensidlPackage() {
 		return (sensidlPackage)getEPackage();
 	}

@@ -82,6 +82,7 @@ public class MeasurementDataImpl extends DataImpl implements MeasurementData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<DataAdjustment> getAdjustments() {
 		if (adjustments == null) {
 			adjustments = new EObjectContainmentWithInverseEList<DataAdjustment>(DataAdjustment.class, this, DataRepresentationPackage.MEASUREMENT_DATA__ADJUSTMENTS, DataRepresentationPackage.DATA_ADJUSTMENT__MEASUREMENT_DATA);
@@ -94,6 +95,7 @@ public class MeasurementDataImpl extends DataImpl implements MeasurementData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Unit<?> getUnit() {
 		return unit;
 	}
@@ -103,6 +105,7 @@ public class MeasurementDataImpl extends DataImpl implements MeasurementData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUnit(Unit<?> newUnit) {
 		Unit<?> oldUnit = unit;
 		unit = newUnit;
@@ -218,7 +221,7 @@ public class MeasurementDataImpl extends DataImpl implements MeasurementData {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (unit: ");
 		result.append(unit);
 		result.append(')');

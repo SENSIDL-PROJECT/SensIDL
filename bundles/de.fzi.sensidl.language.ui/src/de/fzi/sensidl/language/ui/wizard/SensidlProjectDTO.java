@@ -1,10 +1,12 @@
 package de.fzi.sensidl.language.ui.wizard;
 
+import java.util.Optional;
+
 import org.eclipse.core.databinding.observable.value.WritableValue;
 
 public class SensidlProjectDTO {
 
-	private WritableValue sensidlFileName = new WritableValue();
+	private WritableValue<String> sensidlFileName = new WritableValue<>();
 	
 	public void setSensidlFileName(String sensidlFileName) {
 		
@@ -19,9 +21,7 @@ public class SensidlProjectDTO {
 	}
 	
 	public boolean isEmpty() {
-		
-		return sensidlFileName.equals("");
-		
+		return Optional.ofNullable(sensidlFileName.getValue()).map(v -> "".equals(v)).orElse(true);
 	}
 	
 }

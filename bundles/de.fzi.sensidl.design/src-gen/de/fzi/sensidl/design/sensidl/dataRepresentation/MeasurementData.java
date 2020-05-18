@@ -53,7 +53,7 @@ public interface MeasurementData extends Data {
 	 * @return the value of the '<em>Unit</em>' attribute.
 	 * @see #setUnit(Unit)
 	 * @see de.fzi.sensidl.design.sensidl.dataRepresentation.DataRepresentationPackage#getMeasurementData_Unit()
-	 * @model dataType="de.fzi.sensidl.design.sensidl.dataRepresentation.Unit<?>" required="true"
+	 * @model dataType="de.fzi.sensidl.design.sensidl.dataRepresentation.Unit&lt;?&gt;" required="true"
 	 * @generated
 	 */
 	Unit<?> getUnit();

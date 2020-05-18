@@ -61,6 +61,7 @@ public class ListDataImpl extends DataImpl implements ListData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataSet getDataTypeDataSet() {
 		if (dataTypeDataSet != null && dataTypeDataSet.eIsProxy()) {
 			InternalEObject oldDataTypeDataSet = (InternalEObject)dataTypeDataSet;
@@ -87,6 +88,7 @@ public class ListDataImpl extends DataImpl implements ListData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDataTypeDataSet(DataSet newDataTypeDataSet) {
 		DataSet oldDataTypeDataSet = dataTypeDataSet;
 		dataTypeDataSet = newDataTypeDataSet;

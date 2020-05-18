@@ -3,14 +3,14 @@ package de.fzi.sensidl.language.ui.wizard;
 import org.eclipse.core.databinding.AggregateValidationStatus;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateValueStrategy;
-import org.eclipse.core.databinding.beans.BeanProperties;
+import org.eclipse.core.databinding.beans.typed.BeanProperties;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.databinding.swt.typed.WidgetProperties;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -56,12 +56,12 @@ public class SensidlProjectWizardComposite extends Composite {
 	protected void createDataBindings(SensidlProjectDTO sensidlProjectDTO) {
 		DataBindingContext bindingContext = new DataBindingContext();
 		
-		UpdateValueStrategy strategyAtomicStringToModel = new UpdateValueStrategy();
+		UpdateValueStrategy<String, String> strategyAtomicStringToModel = new UpdateValueStrategy<>();
 		strategyAtomicStringToModel.setAfterGetValidator(new NonEmptyStringValidator());
-		UpdateValueStrategy strategyAtomicStringToTarget = new UpdateValueStrategy(); 
+		UpdateValueStrategy<String, String> strategyAtomicStringToTarget = new UpdateValueStrategy<>(); 
 		
-		IObservableValue observeTextTxtSensidlFileNameObserveWidget = WidgetProperties.text(SWT.Modify).observe(txtSensidlFileName);
-		IObservableValue atomicValidatedProjectName = new WritableValue(null, String.class);
+		IObservableValue<String> observeTextTxtSensidlFileNameObserveWidget = WidgetProperties.text(SWT.Modify).observe(txtSensidlFileName);
+		IObservableValue<String> atomicValidatedProjectName = new WritableValue<>(null, String.class);
 		bindingContext.bindValue(observeTextTxtSensidlFileNameObserveWidget, atomicValidatedProjectName, strategyAtomicStringToModel, strategyAtomicStringToTarget);
 		
 		IObservableValue model = BeanProperties.value("sensidlFileName").observe(sensidlProjectDTO);
@@ -79,17 +79,11 @@ public class SensidlProjectWizardComposite extends Composite {
 		super.dispose();
 	}
 	
-	private class NonEmptyStringValidator implements IValidator {
+	private class NonEmptyStringValidator implements IValidator<String> {
 
 		@Override
-		public IStatus validate(Object value) {
-			if (!(value instanceof String)) {
-				return new Status(IStatus.ERROR, "de.fzi.sensidl.language.ui", "The value must be a string.");
-			}
-			
-			String valueAsString = (String) value;
-			
-			if (isNullOrEmpty(valueAsString)) {
+		public IStatus validate(String value) {
+			if (isNullOrEmpty(value)) {
 				return new Status(IStatus.ERROR, "de.fzi.sensidl.language.ui", "The value must not be empty.");
 			}
 

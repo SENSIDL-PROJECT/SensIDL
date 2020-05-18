@@ -72,6 +72,7 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EncodingSettings getEncodingSettings() {
 		return encodingSettings;
 	}
@@ -96,6 +97,7 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEncodingSettings(EncodingSettings newEncodingSettings) {
 		if (newEncodingSettings != encodingSettings) {
 			NotificationChain msgs = null;
@@ -115,6 +117,7 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SensorDataDescription getDataDescription() {
 		return dataDescription;
 	}
@@ -139,6 +142,7 @@ public class SensorInterfaceImpl extends NamedElementImpl implements SensorInter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDataDescription(SensorDataDescription newDataDescription) {
 		if (newDataDescription != dataDescription) {
 			NotificationChain msgs = null;

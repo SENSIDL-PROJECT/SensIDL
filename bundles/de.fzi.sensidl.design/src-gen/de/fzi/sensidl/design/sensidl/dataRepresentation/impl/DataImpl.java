@@ -87,6 +87,7 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataSet getDataSet() {
 		if (eContainerFeatureID() != DataRepresentationPackage.DATA__DATA_SET) return null;
 		return (DataSet)eInternalContainer();
@@ -107,6 +108,7 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDataSet(DataSet newDataSet) {
 		if (newDataSet != eInternalContainer() || (eContainerFeatureID() != DataRepresentationPackage.DATA__DATA_SET && newDataSet != null)) {
 			if (EcoreUtil.isAncestor(this, newDataSet))
@@ -128,6 +130,7 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataType getDataType() {
 		return dataType;
 	}
@@ -137,6 +140,7 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDataType(DataType newDataType) {
 		DataType oldDataType = dataType;
 		dataType = newDataType == null ? DATA_TYPE_EDEFAULT : newDataType;
@@ -149,6 +153,7 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getExcludedMethods() {
 		if (excludedMethods == null) {
 			excludedMethods = new EDataTypeUniqueEList<String>(String.class, this, DataRepresentationPackage.DATA__EXCLUDED_METHODS);
@@ -289,7 +294,7 @@ public abstract class DataImpl extends NamedElementImpl implements Data {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (dataType: ");
 		result.append(dataType);
 		result.append(", excludedMethods: ");

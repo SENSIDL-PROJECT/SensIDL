@@ -6,15 +6,15 @@ import java.io.IOException
 import org.apache.log4j.Logger
 
 class SensIDLTodoTaskCustomizer {
-	private static val SENSIDL_TODO_TAG = "SENSIDL_TODO";
-	private static val JDT_PROPERTIES_QUALIFIER = "org.eclipse.jdt.core";
-	private static val TODO_TASK_TAG_PROPERTY_QUALIFIER = "org.eclipse.jdt.core.compiler.taskTags";
-	private static val TODO_TASK_PRIORITY_PROPERTY_QUALIFIER = "org.eclipse.jdt.core.compiler.taskPriorities";
-	private static val SENSIDL_TODO_TAG_PRIORITY = "NORMAL";
+	static val SENSIDL_TODO_TAG = "SENSIDL_TODO";
+	static val JDT_PROPERTIES_QUALIFIER = "org.eclipse.jdt.core";
+	static val TODO_TASK_TAG_PROPERTY_QUALIFIER = "org.eclipse.jdt.core.compiler.taskTags";
+	static val TODO_TASK_PRIORITY_PROPERTY_QUALIFIER = "org.eclipse.jdt.core.compiler.taskPriorities";
+	static val SENSIDL_TODO_TAG_PRIORITY = "NORMAL";
 	
-	private static val Logger logger = Logger.getLogger(SensIDLTodoTaskCustomizer);
+	static val Logger logger = Logger.getLogger(SensIDLTodoTaskCustomizer);
 	
-	public static def getSensIDLTodoTag() {
+	static def getSensIDLTodoTag() {
 		if(isEclipseWorkspace)
 			registerSensIDLTodoTagIfNecessary();
 		

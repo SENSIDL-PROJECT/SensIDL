@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: de.fzi.sensidl.design.sensidl.presentation.SensIDLEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: de.fzi.sensidl.design.sensidl.dataRepresentation.presentation,
  de.fzi.sensidl.design.sensidl.presentation
 Require-Bundle: org.eclipse.core.runtime,
@@ -17,3 +17,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: de.fzi.sensidl.design.editor

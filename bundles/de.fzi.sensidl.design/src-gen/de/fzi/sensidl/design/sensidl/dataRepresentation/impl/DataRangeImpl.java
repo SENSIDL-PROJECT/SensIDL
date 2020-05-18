@@ -59,6 +59,7 @@ public class DataRangeImpl extends DataAdjustmentImpl implements DataRange {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Interval getRange() {
 		return range;
 	}
@@ -83,6 +84,7 @@ public class DataRangeImpl extends DataAdjustmentImpl implements DataRange {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRange(Interval newRange) {
 		if (newRange != range) {
 			NotificationChain msgs = null;

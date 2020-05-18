@@ -51,6 +51,7 @@ public abstract class DataAdjustmentImpl extends IdentifiableElementImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MeasurementData getMeasurementData() {
 		if (eContainerFeatureID() != DataRepresentationPackage.DATA_ADJUSTMENT__MEASUREMENT_DATA) return null;
 		return (MeasurementData)eInternalContainer();
@@ -71,6 +72,7 @@ public abstract class DataAdjustmentImpl extends IdentifiableElementImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMeasurementData(MeasurementData newMeasurementData) {
 		if (newMeasurementData != eInternalContainer() || (eContainerFeatureID() != DataRepresentationPackage.DATA_ADJUSTMENT__MEASUREMENT_DATA && newMeasurementData != null)) {
 			if (EcoreUtil.isAncestor(this, newMeasurementData))

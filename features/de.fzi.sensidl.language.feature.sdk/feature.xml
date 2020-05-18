@@ -49,6 +49,7 @@
       <import plugin="org.eclipse.xtext.junit4"/>
       <import plugin="com.google.guava" version="15.0.0" match="greaterOrEqual"/>
       <import plugin="org.hamcrest.core"/>
+      <import plugin="org.jscience" version="4.3.1" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -85,9 +86,9 @@
          install-size="0"
          version="1.0.0.qualifier"
          unpack="false"/>
-
+         
    <plugin
-         id="de.fzi.sensidl.design.tests"
+         id="de.fzi.sensidl.generator"
          download-size="0"
          install-size="0"
          version="1.0.0.qualifier"
@@ -101,23 +102,16 @@
          unpack="false"/>
 
    <plugin
-         id="de.fzi.sensidl.language.tests"
-         download-size="0"
-         install-size="0"
-         version="1.0.0.qualifier"
-         unpack="false"/>
-
-   <plugin
-         id="org.jscience"
-         download-size="0"
-         install-size="0"
-         version="4.3.1"
-         unpack="false"/>
-
-   <plugin
          id="de.fzi.sensidl.language.feature.sdk.branding"
          download-size="0"
          install-size="0"
          version="0.0.0"/>
+
+   <plugin
+         id="de.fzi.sensidl.language.ide"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

@@ -115,6 +115,7 @@ public class DataRepresentationFactoryImpl extends EFactoryImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SensorDataDescription createSensorDataDescription() {
 		SensorDataDescriptionImpl sensorDataDescription = new SensorDataDescriptionImpl();
 		return sensorDataDescription;
@@ -125,6 +126,7 @@ public class DataRepresentationFactoryImpl extends EFactoryImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataSet createDataSet() {
 		DataSetImpl dataSet = new DataSetImpl();
 		return dataSet;
@@ -135,6 +137,7 @@ public class DataRepresentationFactoryImpl extends EFactoryImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MeasurementData createMeasurementData() {
 		MeasurementDataImpl measurementData = new MeasurementDataImpl();
 		return measurementData;
@@ -145,6 +148,7 @@ public class DataRepresentationFactoryImpl extends EFactoryImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NonMeasurementData createNonMeasurementData() {
 		NonMeasurementDataImpl nonMeasurementData = new NonMeasurementDataImpl();
 		return nonMeasurementData;
@@ -155,6 +159,7 @@ public class DataRepresentationFactoryImpl extends EFactoryImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataRange createDataRange() {
 		DataRangeImpl dataRange = new DataRangeImpl();
 		return dataRange;
@@ -165,6 +170,7 @@ public class DataRepresentationFactoryImpl extends EFactoryImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataConversion createDataConversion() {
 		DataConversionImpl dataConversion = new DataConversionImpl();
 		return dataConversion;
@@ -175,6 +181,7 @@ public class DataRepresentationFactoryImpl extends EFactoryImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LinearDataConversion createLinearDataConversion() {
 		LinearDataConversionImpl linearDataConversion = new LinearDataConversionImpl();
 		return linearDataConversion;
@@ -185,6 +192,7 @@ public class DataRepresentationFactoryImpl extends EFactoryImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LinearDataConversionWithInterval createLinearDataConversionWithInterval() {
 		LinearDataConversionWithIntervalImpl linearDataConversionWithInterval = new LinearDataConversionWithIntervalImpl();
 		return linearDataConversionWithInterval;
@@ -195,6 +203,7 @@ public class DataRepresentationFactoryImpl extends EFactoryImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Interval createInterval() {
 		IntervalImpl interval = new IntervalImpl();
 		return interval;
@@ -205,6 +214,7 @@ public class DataRepresentationFactoryImpl extends EFactoryImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Method createMethod() {
 		MethodImpl method = new MethodImpl();
 		return method;
@@ -215,6 +225,7 @@ public class DataRepresentationFactoryImpl extends EFactoryImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public MethodParameter createMethodParameter() {
 		MethodParameterImpl methodParameter = new MethodParameterImpl();
 		return methodParameter;
@@ -225,6 +236,7 @@ public class DataRepresentationFactoryImpl extends EFactoryImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ListData createListData() {
 		ListDataImpl listData = new ListDataImpl();
 		return listData;
@@ -280,6 +292,7 @@ public class DataRepresentationFactoryImpl extends EFactoryImpl implements DataR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataRepresentationPackage getDataRepresentationPackage() {
 		return (DataRepresentationPackage)getEPackage();
 	}

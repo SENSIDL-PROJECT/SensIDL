@@ -6,13 +6,16 @@ package de.fzi.sensidl.language.generator
 import com.google.inject.Inject
 import de.fzi.sensidl.design.sensidl.SensorInterface
 import de.fzi.sensidl.language.SensidlRuntimeModule
+import de.fzi.sensidl.generator.SensIDLConstants.GenerationLanguage
+import de.fzi.sensidl.generator.SensidlCodeGenerationExecutor
+import org.apache.log4j.Level
+import org.apache.log4j.Logger
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.generator.IGenerator
-import org.apache.log4j.Logger
-import org.apache.log4j.Level
-import de.fzi.sensidl.language.generator.SensIDLConstants.GenerationLanguage
+import org.eclipse.xtext.generator.AbstractGenerator
+import org.eclipse.xtext.generator.IFileSystemAccess2
+import org.eclipse.xtext.generator.IGeneratorContext
+import de.fzi.sensidl.generator.EcorePersistenceHelper
 
 /**
  * Der Generator für SensIDL.
@@ -24,18 +27,18 @@ import de.fzi.sensidl.language.generator.SensIDLConstants.GenerationLanguage
  * </ol>
  * @author Dominik Werle
  */
-class SensidlGenerator implements IGenerator {
+class SensidlGenerator extends AbstractGenerator {
 	/**
 	 * Der SensidlCodeGenerationExecutor, wird durch Guice gebunden.
 	 * @see SensidlRuntimeModule
 	 */
-	@Inject private SensidlCodeGenerationExecutor codeGenerator
+	@Inject SensidlCodeGenerationExecutor codeGenerator
 	
-	private static Logger logger = Logger.getLogger(SensidlGenerator);
+	static Logger logger = Logger.getLogger(SensidlGenerator);
 	
-	private static String EXTENSION = "sensidl"
+	static String EXTENSION = "sensidl"
 	
-	private GenerationLanguage generationLanguage = GenerationLanguage.ALL
+	GenerationLanguage generationLanguage = GenerationLanguage.ALL
 //	
 	/**
 	 * Der Einstiegspunkt für den Generator für SensIDL.
@@ -48,7 +51,7 @@ class SensidlGenerator implements IGenerator {
 	 * @param resource die zu verarbeitende Resource
 	 * @param fsa Dateizugriff für die Dateigeneration
 	 */
-	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
+	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		setUpLogger()
 		
 		codeGenerator.generationLanguage = generationLanguage
@@ -61,7 +64,7 @@ class SensidlGenerator implements IGenerator {
 			.filter(SensorInterface)
 			.head
 			
-		if (dataModel == null)
+		if (dataModel === null)
 			return
 		
 			

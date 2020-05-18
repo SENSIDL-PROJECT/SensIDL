@@ -67,6 +67,7 @@ public class SensorDataDescriptionImpl extends IdentifiableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<DataSet> getDataSets() {
 		if (dataSets == null) {
 			dataSets = new EObjectContainmentWithInverseEList<DataSet>(DataSet.class, this, DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__DATA_SETS, DataRepresentationPackage.DATA_SET__SENSOR_DATA_DESCRIPTION);
@@ -79,6 +80,7 @@ public class SensorDataDescriptionImpl extends IdentifiableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SensorInterface getSensorInterface() {
 		if (eContainerFeatureID() != DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE) return null;
 		return (SensorInterface)eInternalContainer();
@@ -99,6 +101,7 @@ public class SensorDataDescriptionImpl extends IdentifiableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSensorInterface(SensorInterface newSensorInterface) {
 		if (newSensorInterface != eInternalContainer() || (eContainerFeatureID() != DataRepresentationPackage.SENSOR_DATA_DESCRIPTION__SENSOR_INTERFACE && newSensorInterface != null)) {
 			if (EcoreUtil.isAncestor(this, newSensorInterface))

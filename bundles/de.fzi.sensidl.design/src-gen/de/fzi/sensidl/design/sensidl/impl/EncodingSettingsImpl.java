@@ -119,6 +119,7 @@ public class EncodingSettingsImpl extends IdentifiableElementImpl implements Enc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SensorInterface getSensorInterface() {
 		if (eContainerFeatureID() != sensidlPackage.ENCODING_SETTINGS__SENSOR_INTERFACE) return null;
 		return (SensorInterface)eInternalContainer();
@@ -139,6 +140,7 @@ public class EncodingSettingsImpl extends IdentifiableElementImpl implements Enc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSensorInterface(SensorInterface newSensorInterface) {
 		if (newSensorInterface != eInternalContainer() || (eContainerFeatureID() != sensidlPackage.ENCODING_SETTINGS__SENSOR_INTERFACE && newSensorInterface != null)) {
 			if (EcoreUtil.isAncestor(this, newSensorInterface))
@@ -160,6 +162,7 @@ public class EncodingSettingsImpl extends IdentifiableElementImpl implements Enc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Coding getCoding() {
 		return coding;
 	}
@@ -169,6 +172,7 @@ public class EncodingSettingsImpl extends IdentifiableElementImpl implements Enc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCoding(Coding newCoding) {
 		Coding oldCoding = coding;
 		coding = newCoding == null ? CODING_EDEFAULT : newCoding;
@@ -181,6 +185,7 @@ public class EncodingSettingsImpl extends IdentifiableElementImpl implements Enc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Endianness getEndianness() {
 		return endianness;
 	}
@@ -190,6 +195,7 @@ public class EncodingSettingsImpl extends IdentifiableElementImpl implements Enc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEndianness(Endianness newEndianness) {
 		Endianness oldEndianness = endianness;
 		endianness = newEndianness == null ? ENDIANNESS_EDEFAULT : newEndianness;
@@ -202,6 +208,7 @@ public class EncodingSettingsImpl extends IdentifiableElementImpl implements Enc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getAlignment() {
 		return alignment;
 	}
@@ -211,6 +218,7 @@ public class EncodingSettingsImpl extends IdentifiableElementImpl implements Enc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAlignment(int newAlignment) {
 		int oldAlignment = alignment;
 		alignment = newAlignment;
@@ -359,7 +367,7 @@ public class EncodingSettingsImpl extends IdentifiableElementImpl implements Enc
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (coding: ");
 		result.append(coding);
 		result.append(", endianness: ");

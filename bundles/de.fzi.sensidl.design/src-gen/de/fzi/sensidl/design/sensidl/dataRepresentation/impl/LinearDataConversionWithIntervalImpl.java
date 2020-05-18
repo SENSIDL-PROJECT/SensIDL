@@ -94,6 +94,7 @@ public class LinearDataConversionWithIntervalImpl extends DataConversionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Interval getFromInterval() {
 		return fromInterval;
 	}
@@ -118,6 +119,7 @@ public class LinearDataConversionWithIntervalImpl extends DataConversionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFromInterval(Interval newFromInterval) {
 		if (newFromInterval != fromInterval) {
 			NotificationChain msgs = null;
@@ -137,6 +139,7 @@ public class LinearDataConversionWithIntervalImpl extends DataConversionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Interval getToInterval() {
 		return toInterval;
 	}
@@ -161,6 +164,7 @@ public class LinearDataConversionWithIntervalImpl extends DataConversionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setToInterval(Interval newToInterval) {
 		if (newToInterval != toInterval) {
 			NotificationChain msgs = null;
@@ -180,6 +184,7 @@ public class LinearDataConversionWithIntervalImpl extends DataConversionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataType getDataType() {
 		return dataType;
 	}
@@ -189,6 +194,7 @@ public class LinearDataConversionWithIntervalImpl extends DataConversionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDataType(DataType newDataType) {
 		DataType oldDataType = dataType;
 		dataType = newDataType == null ? DATA_TYPE_EDEFAULT : newDataType;
@@ -319,7 +325,7 @@ public class LinearDataConversionWithIntervalImpl extends DataConversionImpl imp
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (dataType: ");
 		result.append(dataType);
 		result.append(')');

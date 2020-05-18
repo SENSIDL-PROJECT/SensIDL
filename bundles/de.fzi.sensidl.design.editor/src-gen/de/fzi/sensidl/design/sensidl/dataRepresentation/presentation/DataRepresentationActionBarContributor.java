@@ -165,6 +165,7 @@ public class DataRepresentationActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
+		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("datarepresentation-settings"));
 		toolBarManager.add(new Separator("datarepresentation-additions"));
 	}
@@ -201,6 +202,7 @@ public class DataRepresentationActionBarContributor
 		//
 		submenuManager.addMenuListener
 			(new IMenuListener() {
+				 @Override
 				 public void menuAboutToShow(IMenuManager menuManager) {
 					 menuManager.updateAll(true);
 				 }
@@ -248,6 +250,7 @@ public class DataRepresentationActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
 		// Remove any menu items for old selection.
 		//
